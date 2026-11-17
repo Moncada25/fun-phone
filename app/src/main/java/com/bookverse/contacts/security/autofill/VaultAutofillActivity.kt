@@ -61,6 +61,7 @@ import com.bookverse.contacts.data.password.PasswordRepository
 import com.bookverse.contacts.data.password.PasswordStore
 import com.bookverse.contacts.domain.passwords.CredentialMatchPolicy
 import com.bookverse.contacts.domain.passwords.CredentialTarget
+import com.bookverse.contacts.domain.passwords.KnownServices
 import com.bookverse.contacts.security.CryptoManager
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.activities.LocalizedAppCompatActivity
@@ -252,8 +253,9 @@ private fun VaultAutofillContent(
         try {
             val all = store.getAllForBackup()
             val matches = CredentialMatchPolicy.matching(all, request.target)
-            if (request is VaultAutofillRequest.Fill && matches.size == 1) {
-                onFill(request.form, matches.single())
+            val single = matches.singleOrNull()
+            if (request is VaultAutofillRequest.Fill && single != null && CredentialMatchPolicy.matchesExactly(single.url, request.target)) {
+                onFill(request.form, single)
             } else {
                 credentials = all
             }
@@ -445,7 +447,7 @@ private fun SaveCredentialForm(
     val context = androidx.compose.ui.platform.LocalContext.current.applicationContext
     val scope = rememberCoroutineScope()
     val label = targetLabel(request.target)
-    var name by remember { mutableStateOf(label) }
+    var name by remember { mutableStateOf(KnownServices.forTarget(request.target)?.name ?: label) }
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf<String?>(null) }
     var saving by remember { mutableStateOf(false) }

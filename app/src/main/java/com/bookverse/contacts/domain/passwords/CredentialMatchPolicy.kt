@@ -35,7 +35,7 @@ object CredentialMatchPolicy {
         return candidate.takeIf { !parsed.host.isNullOrEmpty() }
     }
 
-    fun matches(storedUrl: String?, target: CredentialTarget): Boolean {
+    fun matchesExactly(storedUrl: String?, target: CredentialTarget): Boolean {
         val stored = storedUrl?.trim().orEmpty()
         if (stored.isEmpty()) return false
         val requestHost = hostOf(target.webDomain)
@@ -45,6 +45,19 @@ object CredentialMatchPolicy {
         val storedHost = hostOf(stored) ?: return false
         if ('.' !in storedHost && storedHost != "localhost") return false
         return requestHost == storedHost || requestHost.endsWith(".$storedHost")
+    }
+
+    fun matches(storedUrl: String?, target: CredentialTarget): Boolean =
+        matchesExactly(storedUrl, target) || matchesKnownService(storedUrl, target)
+
+    private fun matchesKnownService(storedUrl: String?, target: CredentialTarget): Boolean {
+        val service = KnownServices.forHost(hostOf(storedUrl)) ?: return false
+        val requestHost = hostOf(target.webDomain)
+        return when {
+            requestHost != null -> KnownServices.coversHost(service, requestHost)
+            target.webDomain == null -> target.packageName in service.packages
+            else -> false
+        }
     }
 
     fun matching(
