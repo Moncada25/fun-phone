@@ -24,9 +24,9 @@
 </p>
 
 <p align="center">
-  <a href="https://play.google.com/store/apps/details?id=com.bookverse.contacts"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/es-419_badge_web_generic.png" height="80" alt="Disponible en Google Play"></a>
-  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Moncada25/fun-phone"><img src="https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png" height="54" alt="Disponible en Obtainium"></a>
-  <a href="https://github.com/Moncada25/fun-phone/releases/latest"><img src="https://img.shields.io/badge/Desc%C3%A1rgalo%20en-GitHub-181717?style=for-the-badge&logo=github" height="54" alt="Descárgalo en GitHub"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.bookverse.contacts"><img src="docs/media/badges/google-play-es.png" height="56" alt="Descargar en Google Play"></a>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Moncada25/fun-phone"><img src="docs/media/badges/obtainium.png" height="56" alt="Disponible en Obtainium"></a>
+  <a href="https://github.com/Moncada25/fun-phone/releases/latest"><img src="docs/media/badges/github-es.png" height="56" alt="Descargar en GitHub"></a>
 </p>
 
 <p align="center">
