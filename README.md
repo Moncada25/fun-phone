@@ -381,7 +381,8 @@ contratos permanecen congelados. Los PRs merged no generan una actualización in
 
 ## 📄 Licencia y Marca
 
-Este proyecto se distribuye bajo la **[GNU General Public License v3.0](LICENSE)**.
+Este proyecto se distribuye bajo la **[GNU General Public License v3.0](LICENSE) o, a tu elección,
+cualquier versión posterior** (SPDX: `GPL-3.0-or-later`).
 Copyright (C) 2026 Bookverse.
 
 Puedes usar, modificar y redistribuir bajo los términos de la GPL v3. Si distribuyes versiones

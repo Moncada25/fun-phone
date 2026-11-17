@@ -196,7 +196,8 @@ keep it focused, and never include incompatible code or real personal data.
 
 ## ⚖️ Licencia
 
-Al contribuir, aceptas que tus contribuciones se licenciarán bajo la misma [GPL v3](LICENSE) del proyecto.
+Al contribuir, aceptas que tus contribuciones se licenciarán bajo la misma licencia del proyecto:
+[GPL v3](LICENSE) o, a tu elección, cualquier versión posterior (`GPL-3.0-or-later`).
 
 ---
 

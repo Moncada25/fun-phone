@@ -15,7 +15,7 @@ UTF-8 plain text ready to paste into Play Console: `title.txt`, `short-descripti
 Phone JPEGs are 1080×1920; each `feature-graphic.jpg` is 1024×500. All app screens use fictional
 fixtures and localized native UI. Overview sheets are review aids; upload the eight numbered
 images rather than the overview sheet. The listing text is a candidate for current app behavior;
-the source document includes the current 3.20.5 release notes in all five languages.
+the source document includes the current 3.20.6 release notes in all five languages.
 
 Regenerate text with `python3 scripts/export-play-listing.py` from the repository root.
 Run `./scripts/verify-play-listing.sh` to detect stale exports, missing locale assets or text over
