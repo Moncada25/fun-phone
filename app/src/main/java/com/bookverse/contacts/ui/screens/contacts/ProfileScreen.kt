@@ -214,10 +214,7 @@ fun ProfileScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(
-                    R.string.profile_title,
-                    ContactUtils.getFirstName(profileContact.name)
-                ),
+                title = stringResource(R.string.profile_title),
                 onBackClick = {
                     if (showFullImage) showFullImage = false else onBackClick()
                 },

@@ -1043,7 +1043,7 @@
     <string name="share_vcard_include_photo_title">Include photo in the vCard?</string>
 
     <!-- Profile strings -->
-    <string name="profile_title">Profile of %1$s</string>
+    <string name="profile_title">Your profile</string>
     <string name="profile_item">Profile</string>
     <string name="my_profile">My profile</string>
     <string name="share_profile">Share Profile</string>

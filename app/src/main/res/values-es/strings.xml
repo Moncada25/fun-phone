@@ -1136,7 +1136,7 @@
     <string name="share_vcard_include_photo_title">¿Incluir foto en la tarjeta virtual?</string>
 
     <!-- Profile strings -->
-    <string name="profile_title">Perfil de %1$s</string>
+    <string name="profile_title">Tu perfil</string>
     <string name="profile_item">Perfil</string>
     <string name="my_profile">Mi perfil</string>
     <string name="share_profile">Compartir Perfil</string>

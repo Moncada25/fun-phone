@@ -1009,7 +1009,7 @@
     <string name="share_vcard_include_photo_title">Inclure la photo dans le vCard ?</string>
 
 
-    <string name="profile_title">Profil de %1$s</string>
+    <string name="profile_title">Votre profil</string>
     <string name="profile_item">Profil</string>
     <string name="my_profile">Mon profil</string>
     <string name="share_profile">Partager le profil</string>
