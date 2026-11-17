@@ -32,7 +32,7 @@ Release signing is optional for development and described in [SETUP.md](../SETUP
 
 | Flavor | Package | Differences |
 |--------|---------|-------------|
-| `community` | `com.bookverse.contacts.community` | No Google libraries. QR scanning with ZXing. Published on GitHub Releases and submitted to F-Droid. |
+| `community` | `com.bookverse.contacts.community` | No Google libraries. QR scanning with ZXing. Published on GitHub Releases; F-Droid listing planned. |
 | `play` | `com.bookverse.contacts` | QR scanning with ML Kit and Google Play In-App Review. Published on Google Play. |
 
 Neither flavor contains Firebase, ads or analytics. `scripts/verify-zero-collection.sh` enforces it.

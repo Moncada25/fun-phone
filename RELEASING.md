@@ -6,10 +6,13 @@ Every release ships on three channels from **one tagged commit on `main`**:
 |---|---|---|---|---|
 | Google Play | `fun-phone-play-X.Y.Z.aab` (`bundlePlayRelease`) | `com.bookverse.contacts` | Play upload key (`RELEASE_*`) | Maintainer, in Play Console |
 | GitHub Releases / Obtainium | `fun-phone-community-X.Y.Z.apk` (`assembleCommunityRelease`) | `com.bookverse.contacts.community` | Community key (`COMMUNITY_RELEASE_*`) | Maintainer, with `gh release create` |
-| F-Droid | Built by F-Droid from the tag | `com.bookverse.contacts.community` | Same community signature, copied from GitHub | Automatic |
+| F-Droid (not listed yet) | Built by F-Droid from the tag | `com.bookverse.contacts.community` | Same community signature, copied from GitHub | Automatic, once listed |
 
 F-Droid's recipe (`Binaries` + `AllowedAPKSigningKeys`) rebuilds the tag, downloads the GitHub APK and
-publishes it only if both are identical apart from the signature. So the GitHub APK **must** be built
+publishes it only if both are identical apart from the signature. Fun Phone is not on F-Droid yet: the
+first submission was closed because the public repository was younger than the 3 months of active
+development that F-Droid asks for, and it will be resubmitted after February 2027. Keep every release
+reproducible in the meantime: the GitHub APK **must** be built
 from a clean checkout of the exact tagged commit, after the squash merge, never from a feature branch
 or a dirty tree. `scripts/release.sh` does that for you.
 
@@ -117,8 +120,8 @@ apksigner verify --print-certs build/release/vX.Y.Z/fun-phone-community-X.Y.Z.ap
    `build/release/vX.Y.Z/fun-phone-play-X.Y.Z.aab` and paste the notes from
    `fastlane/metadata/android/<locale>/changelogs/<VERSION_CODE>.txt`. Upload `mapping.txt` and the
    native symbols if Play Console asks for them.
-3. **F-Droid.** Nothing to do. Its build server picks up the new tag and publishes the GitHub
-   signature once its own build matches.
+3. **F-Droid.** Once the app is listed, nothing to do. Its build server picks up the new tag and
+   publishes the GitHub signature once its own build matches.
 
 ## If something goes wrong
 
