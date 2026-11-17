@@ -96,6 +96,15 @@ Formato de commits (Conventional Commits):
 - Completa la plantilla del PR.
 - Espera la revisión de un maintainer.
 
+### 7. Publicación / Releases
+Los maintainers publican cada versión en Google Play, GitHub Releases y F-Droid desde un tag de
+`main`, siguiendo [RELEASING.md](RELEASING.md). Los PRs de contribución no cambian
+`release.properties` ni las notas de versión.
+
+Maintainers ship every version to Google Play, GitHub Releases and F-Droid from a tag on `main`,
+following [RELEASING.md](RELEASING.md). Contribution PRs don't change `release.properties` or the
+release notes.
+
 ---
 
 ## 🎨 Convenciones de código

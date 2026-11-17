@@ -1,0 +1,2 @@
+• Corregimos un cierre inesperado al rellenar en otra app un inicio de sesión guardado en el gestor de contraseñas.
+• El título de la pantalla de perfil ahora dice "Tu perfil".

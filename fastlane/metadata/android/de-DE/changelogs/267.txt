@@ -1,0 +1,2 @@
+• Absturz behoben, wenn ein gespeichertes Login aus dem Passwortmanager in einer anderen App ausgefüllt wurde.
+• Der Profilbildschirm heißt jetzt „Dein Profil“.

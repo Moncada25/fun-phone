@@ -1,0 +1,2 @@
+• Fixed a crash when filling a saved login from the password manager into another app.
+• The profile screen title now reads "Your profile".
