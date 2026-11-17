@@ -545,4 +545,4 @@ Build numbers increment with each release.
 
 - [GitHub Releases](https://github.com/Moncada25/fun-phone/releases)
 - [Documentation](.github/CI_CD_GUIDE.md)
-- [Contributing Guidelines](README.md#-guía-de-contribución)
+- [Contributing Guidelines](CONTRIBUTING.md)
