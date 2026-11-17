@@ -1002,7 +1002,7 @@
     <string name="share_vcard_include_photo_title">Foto in vCard aufnehmen?</string>
 
 
-    <string name="profile_title">Profil von %1$s</string>
+    <string name="profile_title">Dein Profil</string>
     <string name="profile_item">Profil</string>
     <string name="my_profile">Mein Profil</string>
     <string name="share_profile">Profil teilen</string>
