@@ -257,7 +257,7 @@ Stack técnico:
 |-----------------|--------|----------------------------------------|
 | Issue templates | ✅ Done | `bug_report.md` + `feature_request.md` |
 | PR template     | ✅ Done | Checklist con validaciones             |
-| `FUNDING.yml`   | ✅ Done | GitHub Sponsors configurado            |
+| `FUNDING.yml`   | ⏸️ Retirado | Se agrega cuando exista un perfil de Sponsors |
 | `CODEOWNERS`    | ✅ Done | Santiago como reviewer principal       |
 
 ### Fase 5: Changelog y release

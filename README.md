@@ -17,9 +17,9 @@
 > **Marcador y contactos privados y personalizables para Android**, con herramientas opcionales.
 > Construida con Jetpack Compose + Material 3 y licenciada bajo **GPL v3**.
 
-> **Estado de publicación:** el código aún no está disponible públicamente. La licencia y la
-> documentación están preparadas, pero el historial privado debe sanearse siguiendo
-> [PRE_PUBLISH_CHECKLIST.md](PRE_PUBLISH_CHECKLIST.md) antes de crear el repositorio público.
+> Disponible en [Google Play](https://play.google.com/store/apps/details?id=com.bookverse.contacts).
+> Las contribuciones son bienvenidas: lee [CONTRIBUTING.md](CONTRIBUTING.md) y propone ideas en
+> [Discussions](https://github.com/Moncada25/fun-phone/discussions).
 
 ---
 
@@ -343,7 +343,6 @@ no se escriben versiones ni notas manualmente en Play Console.
 | 🐛 [GitHub Issues](https://github.com/Moncada25/fun-phone/issues) | Bugs, features, preguntas técnicas. |
 | 💬 [GitHub Discussions](https://github.com/Moncada25/fun-phone/discussions) | Ideas, propuestas, comunidad. |
 | 📧 **Email** | `santiago.moncada.dev@gmail.com` (privado, sensible). |
-| 💖 [GitHub Sponsors](.github/FUNDING.yml) | Apoya el desarrollo. |
 
 ---
 
@@ -371,10 +370,10 @@ contratos permanecen congelados. Los PRs merged no generan una actualización in
 - ✅ 10 mini juegos Compose.
 - ✅ 5 idiomas (es/en/pt/fr/de).
 - ✅ Widget de favoritos.
-- ✅ Código licenciado bajo GPL v3; publicación pública sujeta al checklist de secretos históricos.
+- ✅ Código abierto en GitHub bajo GPL v3.
 - ⏳ Colaboración opcional multi-dispositivo.
 - ⏳ Mejoras continuas de accesibilidad (TalkBack, tamaños dinámicos).
-- 🧠 Las propuestas públicas se habilitarán junto con el repositorio limpio.
+- 🧠 Las propuestas se reciben en [GitHub Discussions](https://github.com/Moncada25/fun-phone/discussions).
 
 ---
 
