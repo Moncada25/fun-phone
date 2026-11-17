@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.20.7] - 2026-11-17
+
+### Fixed
+- Filling a saved login from the password manager into another app no longer crashes on Android 15+
+  or in dark mode: `Theme.Contacts` now extends an AppCompat theme in every configuration.
+
+### Changed
+- The profile screen shows a fixed "Your profile" title instead of "Profile of <first name>".
+- `RELEASING.md` documents the release process for Google Play, GitHub Releases and F-Droid, and
+  `scripts/release.sh` builds and verifies both artifacts from a clean checkout of the release tag.
+
 ## [3.20.6] - 2026-11-17
 
 ### Added

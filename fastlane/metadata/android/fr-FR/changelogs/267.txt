@@ -1,0 +1,2 @@
+• Correction d'un plantage lors du remplissage, dans une autre app, d'un identifiant enregistré dans le gestionnaire de mots de passe.
+• L'écran de profil s'intitule désormais « Votre profil ».

@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy candidate:** current 3.20.2/262 behavior; not yet uploaded
-**Release notes candidate below:** 3.20.6 (266)
+**Release notes candidate below:** 3.20.7 (267)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -182,37 +182,32 @@ Destaques:
 
 Os recursos do Android variam conforme o aparelho e a versão. Após instalar, abra Status do dispositivo para concluir as permissões e escolher o Fun Phone como discador padrão.
 
-## What's new — 3.20.6
+## What's new — 3.20.7
 
 ### English
 
-• Fun Phone is now open source under GPL-3.0. The code is on GitHub.
-• Lighter app: we removed an unused text recognition component.
-• The community version on GitHub scans QR codes with ZXing, without Google libraries.
+• Fixed a crash when filling a saved login from the password manager into another app.
+• The profile screen title now reads "Your profile".
 
 ### Español
 
-• Fun Phone ahora es código abierto (GPL-3.0). El código está en GitHub.
-• App más liviana: quitamos un componente de reconocimiento de texto que no se usaba.
-• La versión community de GitHub escanea QR con ZXing, sin librerías de Google.
+• Corregimos un cierre inesperado al rellenar en otra app un inicio de sesión guardado en el gestor de contraseñas.
+• El título de la pantalla de perfil ahora dice "Tu perfil".
 
 ### Deutsch
 
-• Fun Phone ist jetzt Open Source unter der GPL-3.0. Der Code liegt auf GitHub.
-• Schlankere App: Eine ungenutzte Texterkennungskomponente wurde entfernt.
-• Die Community-Version auf GitHub scannt QR-Codes mit ZXing, ohne Google-Bibliotheken.
+• Absturz behoben, wenn ein gespeichertes Login aus dem Passwortmanager in einer anderen App ausgefüllt wurde.
+• Der Profilbildschirm heißt jetzt „Dein Profil“.
 
 ### Français
 
-• Fun Phone est désormais open source sous licence GPL-3.0. Le code est sur GitHub.
-• Application plus légère : un composant de reconnaissance de texte inutilisé a été retiré.
-• La version community sur GitHub lit les QR codes avec ZXing, sans bibliothèques Google.
+• Correction d'un plantage lors du remplissage, dans une autre app, d'un identifiant enregistré dans le gestionnaire de mots de passe.
+• L'écran de profil s'intitule désormais « Votre profil ».
 
 ### Português
 
-• O Fun Phone agora é código aberto sob a GPL-3.0. O código está no GitHub.
-• App mais leve: removemos um componente de reconhecimento de texto que não era usado.
-• A versão community no GitHub lê QR codes com ZXing, sem bibliotecas do Google.
+• Corrigimos um fechamento inesperado ao preencher em outro app um login salvo no gerenciador de senhas.
+• A tela de perfil agora se chama "Seu perfil".
 
 ## Screenshot order
 
@@ -299,7 +294,7 @@ The guard checks title/short/full limits, export freshness, native fixture cover
 set for every language. Limits are 30, 80 and 4,000 characters respectively, per
 [Google Play product-detail guidance](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en).
 The full descriptions consistently disclose optional social previews, holiday requests, Android
-speech providers and account-managed contact synchronization. The 3.20.6 release notes above are ready for this local candidate; generating text does not upload it.
+speech providers and account-managed contact synchronization. The 3.20.7 release notes above are ready for this local candidate; generating text does not upload it.
 
 ## Custom listing drafts — publish only after source publication
 

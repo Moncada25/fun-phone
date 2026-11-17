@@ -1,0 +1,2 @@
+• Corrigimos um fechamento inesperado ao preencher em outro app um login salvo no gerenciador de senhas.
+• A tela de perfil agora se chama "Seu perfil".

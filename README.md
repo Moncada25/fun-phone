@@ -258,6 +258,7 @@ Gradle resuelve las credenciales en este orden:
 | `./gradlew bundlePlayRelease` | Genera el AAB oficial; requiere firma release. |
 | `./gradlew validateCommunityReleaseSigning assembleCommunityRelease` | Genera el APK `community` firmado para GitHub Releases; sin `COMMUNITY_RELEASE_*` lo deja sin firmar (F-Droid). |
 | `./gradlew preparePlayStoreArtifacts` | Genera y reúne AAB, mapping y símbolos Play; requiere firma release. |
+| `./scripts/release.sh vX.Y.Z` | Compila y verifica el AAB Play y el APK `community` desde un checkout limpio del tag; ver [RELEASING.md](RELEASING.md). |
 | `./gradlew connectedCommunityDebugAndroidTest` | Ejecuta tests instrumentados Community en dispositivos conectados. |
 | `./gradlew :app:generateReleaseManifest` | Genera versión, SDKs, distribuciones y capacidades desde `release.properties`. |
 | `./scripts/verify-android-only.sh` | Rechaza módulos, plugins o targets KMP/iOS. |
@@ -265,8 +266,6 @@ Gradle resuelve las credenciales en este orden:
 | `./scripts/verify-feature-boundaries.sh` | Evita dependencias directas entre features ya aisladas. |
 | `./scripts/verify-quality-contract.sh` | Protege matrices de calidad, pruebas críticas y tamaños de archivos de riesgo. |
 | `./scripts/verify-release-metadata.sh` | Verifica que el manifiesto generado coincide con `release.properties`. |
-| `./scripts/verify-play-release-notes.sh` | Valida y exporta las notas localizadas del candidato Play desde `CHANGELOG.md`. |
-| `python3 scripts/test_play_release_notes.py` | Prueba el parser de notas Play y sus casos de rechazo. |
 | `./scripts/verify-zero-collection.sh` | Verifica las rutas aprobadas de festivos y preview social/web, y rechaza AD_ID, Firebase, analítica y clientes con logging. |
 | `./scripts/smoke-emulator-incoming-call.sh emulator-5556` | Simula una llamada solo en emulador y restaura el dialer anterior. |
 
@@ -290,23 +289,12 @@ GitHub Actions en `.github/workflows/`:
 | **`android.yml`** | Push a `main` o ejecución manual | Compila Community, ejecuta tests/lint/guards y conserva diagnósticos solo ante fallos. |
 | **`pr-checks.yml`** | Pull Request a `main` | Validación de calidad; conserva diagnósticos solo ante fallos. |
 | **`secrets.yml`** | Push/PR a `main` | Escanea secretos nuevos sin depender de almacenamiento de artifacts. |
-| **`play-release.yml`** | Ejecución manual desde `main` | Valida, firma y publica el AAB Play al 100% tras aprobación del environment `play-production`. |
 
-### Configurar releases automáticos
+### Publicar una versión
 
-El workflow `play-release.yml` se ejecuta desde **Actions → Play Production Release → Run workflow**.
-Antes de usarlo, crea el environment `play-production`, limita sus deployments a `main` y configura
-aprobadores obligatorios. Registra allí estos secrets:
-
-- `PLAY_UPLOAD_KEYSTORE_BASE64`
-- `PLAY_KEYSTORE_PASSWORD`
-- `PLAY_KEY_ALIAS`
-- `PLAY_KEY_PASSWORD`
-- `PLAY_SERVICE_ACCOUNT_JSON_BASE64`
-
-La cuenta de servicio debe tener acceso de publicación para `com.bookverse.contacts` en Play Console.
-El workflow lee la versión desde `release.properties` y las notas localizadas desde `CHANGELOG.md`;
-no se escriben versiones ni notas manualmente en Play Console.
+Cada versión sale a Google Play (AAB) y a GitHub Releases (APK `community` firmado y reproducible), y
+F-Droid la compila desde el tag. El proceso completo, con `./scripts/release.sh`, está en
+**[RELEASING.md](RELEASING.md)**.
 
 ---
 
@@ -396,6 +384,7 @@ modificadas, **debes publicar el código fuente bajo la misma licencia**.
 |-----------|-------------|
 | [AGENTS.md](AGENTS.md) | Handbook para AI agents: arquitectura, features, prácticas. |
 | [DESIGN.md](DESIGN.md) | Sistema de diseño UI/UX y guía normativa para nuevas interfaces. |
+| [RELEASING.md](RELEASING.md) | Cómo publicar una versión en Google Play, GitHub Releases y F-Droid. |
 | [FUN_PHONE_PROGRESSIVE_RELEASE_SPEC.md](FUN_PHONE_PROGRESSIVE_RELEASE_SPEC.md) | Fuente de verdad y checklist de releases progresivos. |
 | [PRD.md](PRD.md) | Product Requirements Document detallado. |
 | [CHEATSHEET.md](CHEATSHEET.md) | Comandos rápidos, ADB, debugging. |
