@@ -9,6 +9,7 @@ import com.bookverse.contacts.integration.AppContainer
 import com.bookverse.contacts.integration.createAppContainer
 import com.bookverse.contacts.service.MissedCallSuppressor
 import com.bookverse.contacts.settings.LocaleController
+import com.bookverse.contacts.widget.WidgetSync
 import java.io.File
 
 class App : Application() {
@@ -39,6 +40,7 @@ class App : Application() {
         cleanupAppCheckStateOnUpdate()
         MissedCallSuppressor.start(this)
         ReminderBootWorker.enqueueReschedule(this)
+        WidgetSync.start(this)
     }
 
     private fun cleanupAppCheckStateOnUpdate() {

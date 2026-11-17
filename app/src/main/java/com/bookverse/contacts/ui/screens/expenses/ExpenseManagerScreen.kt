@@ -70,6 +70,7 @@ import com.bookverse.contacts.domain.expenses.ExpenseOverview
 import com.bookverse.contacts.domain.expenses.buildBudgetStatuses
 import com.bookverse.contacts.domain.expenses.buildCategoryDistribution
 import com.bookverse.contacts.domain.expenses.calculateMonthlyTotals
+import com.bookverse.contacts.domain.expenses.transactionsForMonth
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.OptionsDialog
 import com.bookverse.contacts.ui.components.OptionsDialogItem
@@ -85,7 +86,6 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.PiggyBank
 import com.composables.icons.lucide.Repeat
 import kotlinx.coroutines.launch
-import java.time.YearMonth
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -151,16 +151,8 @@ fun ExpenseManagerScreen(
     BackHandler(onBack = handleBack)
 
     val fixedTransactions = remember(transactions) { transactions.filter { it.isFixed } }
-    val monthlyTransactions = remember(transactions, selectedMonth, fixedTransactions) {
-        val regular = transactions.filter {
-            !it.isFixed && YearMonth.from(it.date) == selectedMonth
-        }
-        val fixedCopies = fixedTransactions.map {
-            it.copy(date = selectedMonth.atDay(1))
-        }
-        (regular + fixedCopies).sortedWith(
-            compareBy<ExpenseTransaction> { it.date }.thenBy { it.createdAt }
-        )
+    val monthlyTransactions = remember(transactions, selectedMonth) {
+        transactionsForMonth(transactions, selectedMonth)
     }
     val monthlyTotals =
         remember(monthlyTransactions) { calculateMonthlyTotals(monthlyTransactions) }

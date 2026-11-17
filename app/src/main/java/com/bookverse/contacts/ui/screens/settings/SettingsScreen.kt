@@ -110,6 +110,8 @@ import com.bookverse.contacts.utils.JsonUtils
 import com.bookverse.contacts.utils.PermissionUtils
 import com.bookverse.contacts.widget.FavoritesWidgetProvider
 import com.bookverse.contacts.widget.NotesWidgetReceiver
+import com.bookverse.contacts.widget.RecentCallsWidgetReceiver
+import com.bookverse.contacts.widget.ExpensesWidgetReceiver
 import com.composables.icons.lucide.Gamepad
 import com.composables.icons.lucide.KeySquare
 import com.composables.icons.lucide.Lucide
@@ -405,9 +407,8 @@ fun SettingsScreen(
         }
     }
 
-    fun requestFavoritesWidget() {
+    fun requestWidget(receiver: Class<*>) {
         val widgetManager = AppWidgetManager.getInstance(context)
-        val component = ComponentName(context, FavoritesWidgetProvider::class.java)
         if (!widgetManager.isRequestPinAppWidgetSupported) {
             snackbar.show(
                 message = resources.getString(R.string.widget_pin_not_supported),
@@ -415,26 +416,7 @@ fun SettingsScreen(
             )
             return
         }
-        val success = widgetManager.requestPinAppWidget(component, null, null)
-        if (!success) {
-            snackbar.show(
-                message = resources.getString(R.string.widget_pin_not_supported),
-                type = SnackbarType.Error
-            )
-        }
-    }
-
-    fun requestNotesWidget() {
-        val widgetManager = AppWidgetManager.getInstance(context)
-        val component = ComponentName(context, NotesWidgetReceiver::class.java)
-        if (!widgetManager.isRequestPinAppWidgetSupported) {
-            snackbar.show(
-                message = resources.getString(R.string.widget_pin_not_supported),
-                type = SnackbarType.Warning
-            )
-            return
-        }
-        val success = widgetManager.requestPinAppWidget(component, null, null)
+        val success = widgetManager.requestPinAppWidget(ComponentName(context, receiver), null, null)
         if (!success) {
             snackbar.show(
                 message = resources.getString(R.string.widget_pin_not_supported),
@@ -598,8 +580,10 @@ fun SettingsScreen(
                 )
             },
             onHomeShortcuts = { showShortcutSheet = true },
-            onFavoritesWidget = ::requestFavoritesWidget,
-            onNotesWidget = ::requestNotesWidget,
+            onFavoritesWidget = { requestWidget(FavoritesWidgetProvider::class.java) },
+            onNotesWidget = { requestWidget(NotesWidgetReceiver::class.java) },
+            onRecentCallsWidget = { requestWidget(RecentCallsWidgetReceiver::class.java) },
+            onExpensesWidget = { requestWidget(ExpensesWidgetReceiver::class.java) },
             onPasswordAuthChanged = { enabled ->
                 if (enabled) {
                     passwordAuthState.startSetupFlow()

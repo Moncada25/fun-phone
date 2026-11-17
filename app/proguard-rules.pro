@@ -64,6 +64,15 @@
 -keep,allowobfuscation,allowshrinking class retrofit2.Response
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
+# WorkManager 2.9 keeps InputMerger classes but not the constructor it calls reflectively;
+# R8 full mode strips it and every worker, including Glance widget sessions, fails to start.
+-keepclassmembers class * extends androidx.work.InputMerger {
+    public <init>();
+}
+
+# Glance finds widget instances by class; merged GlanceAppWidget subclasses would update each other.
+-keep class * extends androidx.glance.appwidget.GlanceAppWidget
+
 # Domain layer contains entry points referenced by WorkManager and other services.
 -keep class com.bookverse.contacts.domain.** { *; }
 

@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Recent calls and Monthly expenses home screen widgets. Recent calls lists the latest calls with
+  call-back buttons; Monthly expenses shows this month's spending, income and budget progress, and
+  hides amounts when sensitive sections are locked.
+- The password manager's Website field has a picker of common services (streaming, email and
+  social, shopping and payments, gaming and developer). Picking one fills the address and, when
+  empty, the account name. Known services also suggest the entry in their Android apps and related
+  sign-in domains when autofilling; only exact matches fill without asking.
+
+### Changed
+- The favorites widget now uses Jetpack Glance like the other widgets: it follows Material You
+  colors, light and dark mode, and adapts its columns to the widget size.
+- All widgets use the system widget corner radius, show a localized name and preview in the widget
+  picker, and refresh when their data changes and after the app restarts.
+- Personalization options apply instantly again from their own sheets, without the preview and
+  Apply step. Theme and accent changes crossfade; font size and list density keep their sliders.
+
+### Fixed
+- Widgets and background work failed in release builds because R8 removed the WorkManager input
+  merger constructor.
+- The notes widget did not refresh after notes changed, and its "+" button opened the notes list
+  instead of a new note.
+- Creating a new note from a shortcut while another note was open showed an empty editor.
+
 ## [3.20.7] - 2026-11-17
 
 ### Fixed

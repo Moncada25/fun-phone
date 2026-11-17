@@ -8,7 +8,8 @@ import android.os.strictmode.Violation
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.bookverse.contacts.service.CallNotificationManager
-import com.bookverse.contacts.widget.FavoritesWidgetViewsFactory
+import com.bookverse.contacts.widget.WidgetSync
+import com.bookverse.contacts.widget.WidgetUpdateHelper
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.Executor
 import org.junit.Assert.assertTrue
@@ -43,18 +44,10 @@ class RuntimeIoStrictModeTest {
     }
 
     @Test
-    fun widgetFactoryCallbacksDoNotPerformDiskIoOnCallerThread() {
-        val factory = FavoritesWidgetViewsFactory(context)
-        try {
-            assertNoCallerThreadDiskIo {
-                factory.onCreate()
-                factory.onDataSetChanged()
-                assertTrue(factory.getCount() >= 1)
-                factory.getViewAt(0)
-                factory.getLoadingView()
-            }
-        } finally {
-            factory.onDestroy()
+    fun widgetRefreshDoesNotPerformDiskIoOnCallerThread() {
+        assertNoCallerThreadDiskIo {
+            WidgetSync.start(context)
+            WidgetUpdateHelper.updateAllWidgets(context)
         }
     }
 

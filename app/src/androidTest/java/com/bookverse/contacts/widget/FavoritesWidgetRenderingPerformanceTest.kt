@@ -4,7 +4,7 @@ import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
-import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.system.measureNanoTime
@@ -27,7 +27,7 @@ class FavoritesWidgetRenderingPerformanceTest {
     }
 
     @Test
-    fun twelveFavoriteRemoteViewsRenderingStaysWithinBudget() {
+    fun twelveFavoriteWidgetEntriesRenderWithinBudget() {
         repeat(5) {
             render()
         }
@@ -44,12 +44,7 @@ class FavoritesWidgetRenderingPerformanceTest {
     }
 
     private fun render() {
-        runBlocking {
-            FavoritesWidgetUpdater.buildModernRemoteViews(
-                context = context,
-                favorites = favorites,
-                columnCount = 4,
-            )
-        }
+        val entries = favoriteWidgetEntries(context, favorites)
+        assertEquals(favorites.size, entries.size)
     }
 }

@@ -128,7 +128,7 @@ stabilization. Capture the median of five runs and the worst observed run.
 | PERF-01 | cold start to first interactive core route | median ≤ 1,500 ms; worst ≤ 2,500 ms | Benchmark 359 ms median/388 ms worst; stabilization pending |
 | PERF-02 | contact-list 90th percentile frame time | ≤ 24 ms | provisional Android 15 release-like run: 6.359 ms p90/14.348 ms worst across 118 frames with 2,000 isolated synthetic contacts; stabilization pending |
 | PERF-03 | dialer query update with 2,000 synthetic contacts | ≤ 100 ms | JVM p90 0.129 ms; physical UI trace pending |
-| PERF-04 | favorites widget refresh | ≤ 500 ms | Android 15 RemoteViews render p90 66.111 ms for 12 synthetic favorites; launcher/provider trace pending |
+| PERF-04 | favorites widget refresh | ≤ 500 ms | Glance migration: `FavoritesWidgetRenderingPerformanceTest` measures avatar preparation for 12 synthetic favorites; launcher/provider trace pending |
 | PERF-05 | reminder scheduling call | ≤ 100 ms caller time | Android 15 p90 11.562 ms over 20 cleaned samples |
 | PERF-06 | idle app private dirty memory after core navigation | ≤ 180 MB | Benchmark 27,564 KB; stabilization pending |
 

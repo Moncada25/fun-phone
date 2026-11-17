@@ -4,6 +4,7 @@ import com.bookverse.contacts.data.expenses.ExpenseBudget
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
+import java.time.YearMonth
 
 internal fun calculateMonthlyTotals(transactions: List<ExpenseTransaction>): MonthlyTotals {
     val income = transactions
@@ -63,4 +64,43 @@ internal fun buildBudgetStatuses(
             state = state
         )
     }.sortedBy { it.category?.name ?: "" }
+}
+
+internal fun transactionsForMonth(
+    transactions: List<ExpenseTransaction>,
+    month: YearMonth,
+): List<ExpenseTransaction> {
+    val regular = transactions.filter { !it.isFixed && YearMonth.from(it.date) == month }
+    val fixedCopies = transactions.filter { it.isFixed }.map { it.copy(date = month.atDay(1)) }
+    return (regular + fixedCopies).sortedWith(
+        compareBy<ExpenseTransaction> { it.date }.thenBy { it.createdAt },
+    )
+}
+
+data class MonthBudgetSummary(
+    val totals: MonthlyTotals,
+    val budgetLimit: Double,
+    val budgetSpent: Double,
+) {
+    val hasBudget: Boolean get() = budgetLimit > 0.0
+    val progress: Float get() = if (hasBudget) (budgetSpent / budgetLimit).toFloat().coerceIn(0f, 1f) else 0f
+    val state: BudgetState
+        get() = when {
+            !hasBudget -> BudgetState.OK
+            budgetSpent >= budgetLimit -> BudgetState.EXCEEDED
+            budgetSpent >= budgetLimit * 0.75 -> BudgetState.WARNING
+            else -> BudgetState.OK
+        }
+}
+
+internal fun buildMonthBudgetSummary(
+    monthTransactions: List<ExpenseTransaction>,
+    budgets: List<Pair<ExpenseBudget, ExpenseCategory?>>,
+): MonthBudgetSummary {
+    val statuses = buildBudgetStatuses(monthTransactions, budgets).filter { it.budget.limit > 0.0 }
+    return MonthBudgetSummary(
+        totals = calculateMonthlyTotals(monthTransactions),
+        budgetLimit = statuses.sumOf { it.budget.limit },
+        budgetSpent = statuses.sumOf { it.spent },
+    )
 }
