@@ -1,0 +1,4 @@
+• Neue Einstellung Glaseffekte: Automatisch passt die Unschärfe an dein Telefon an, oder schalte sie ein oder aus.
+• Schnellerer Start und flüssigeres Scrollen, besonders auf Mittelklasse-Geräten.
+• Wählfeld: Länderchip mit Flagge und Vorwahl; ein einzelner passender Kontakt ist direkt anrufbar.
+• Absturz im Verlauf behoben; aus anderen Apps synchronisierte Kontakte lassen sich wieder bearbeiten.

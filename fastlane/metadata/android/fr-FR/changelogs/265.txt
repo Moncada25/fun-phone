@@ -1,0 +1,4 @@
+• Nouveau réglage Effets de verre : Automatique adapte le flou à votre téléphone, ou activez-le et désactivez-le.
+• Démarrage plus rapide et défilement plus fluide, surtout en milieu de gamme.
+• Composeur : le pays affiche drapeau et indicatif, et un seul contact correspondant est prêt à appeler.
+• Correction d'un plantage dans l'Historique et de la modification des contacts synchronisés.

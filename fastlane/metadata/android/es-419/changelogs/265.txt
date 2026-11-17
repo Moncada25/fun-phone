@@ -1,0 +1,4 @@
+• Nuevo ajuste Efectos de cristal: Automático adapta el desenfoque a tu teléfono, o actívalo y desactívalo.
+• Arranque más rápido y scroll más fluido, sobre todo en gama media.
+• Marcador: el país muestra bandera y prefijo, y si un solo contacto coincide, aparece listo para llamar.
+• Corregimos un cierre en Historial y la edición de contactos sincronizados desde otras apps.

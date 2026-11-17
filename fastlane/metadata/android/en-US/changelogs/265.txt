@@ -1,0 +1,4 @@
+• New Glass effects setting: Automatic fits blur to your phone, or turn it on or off.
+• Faster startup and smoother scrolling, especially on mid-range phones.
+• Dialer: the country chip shows flag and code, and a single matching contact appears ready to call.
+• Fixed a crash in History and editing contacts after they sync from other apps.

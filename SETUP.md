@@ -47,6 +47,20 @@ RELEASE_STORE_PASSWORD=your-store-password
 RELEASE_KEY_PASSWORD=your-key-password
 ```
 
+La distribución `community` se firma con una clave propia, distinta de la de Play, para los APK de
+GitHub Releases. Si faltan estas propiedades, `assembleCommunityRelease` genera un APK sin firmar,
+que es lo que necesita F-Droid para firmarlo con su propia clave:
+
+```properties
+COMMUNITY_RELEASE_STORE_FILE=path/to/your-community-key.jks
+COMMUNITY_RELEASE_KEY_ALIAS=your-community-alias
+COMMUNITY_RELEASE_STORE_PASSWORD=your-community-store-password
+COMMUNITY_RELEASE_KEY_PASSWORD=your-community-key-password
+```
+
+Guarda los keystores fuera del repositorio y con una copia cifrada: todas las actualizaciones deben
+firmarse con la misma clave.
+
 ### Crear un keystore de desarrollo (opcional)
 
 ```bash

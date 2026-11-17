@@ -16,6 +16,33 @@ LANGUAGES = {
     "pt": "Português",
 }
 FIELDS = {"title.txt": 30, "short-description.txt": 80, "full-description.txt": 4000}
+FASTLANE_NAMES = {
+    "title.txt": "title.txt",
+    "short-description.txt": "short_description.txt",
+    "full-description.txt": "full_description.txt",
+}
+FASTLANE_ROOT = Path("fastlane/metadata/android")
+CHANGELOG_LIMIT = 500
+
+
+def release_properties():
+    values = {}
+    for line in (ROOT / "release.properties").read_text(encoding="utf-8").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            values[key.strip()] = value.strip()
+    return values
+
+
+def release_notes(document, version_name, heading):
+    body = section(document, "What's new — " + version_name)
+    match = re.search(r"^### " + re.escape(heading) + r"\n(.*?)(?=^### |\Z)", body, re.M | re.S)
+    if not match:
+        raise ValueError("Missing release notes for " + heading + " in " + version_name)
+    notes = match.group(1).strip()
+    if not notes or len(notes.encode("utf-8")) > CHANGELOG_LIMIT:
+        raise ValueError(f"Release notes for {heading}: {len(notes.encode('utf-8'))} bytes, expected 1–{CHANGELOG_LIMIT}")
+    return notes
 
 
 def section(document, heading):
@@ -76,11 +103,16 @@ def main():
         raise ValueError("The campaign must show several accent colours")
     manifest = {"source": "PLAY_STORE_LISTING.md", "pathsRelativeTo": "repository root", "locales": []}
     expected = {}
+    binaries = {}
+    release = release_properties()
     for language, heading in LANGUAGES.items():
         locale = campaign["export"]["playLocales"][language]
         values = listing_fields(document, heading)
         for name, value in values.items():
             expected[Path("play-listing") / locale / name] = value + "\n"
+            expected[FASTLANE_ROOT / locale / FASTLANE_NAMES[name]] = value + "\n"
+        changelog = FASTLANE_ROOT / locale / "changelogs" / (release["VERSION_CODE"] + ".txt")
+        expected[changelog] = release_notes(document, release["VERSION_NAME"], heading) + "\n"
         images = []
         for slide in campaign["slides"]:
             for field in ("headline", "subtitle", "label", "alt"):
@@ -100,6 +132,12 @@ def main():
         for image in images + [feature]:
             if not (ROOT / image).is_file():
                 raise ValueError("Missing Play image: " + image)
+        if locale == "en-US":
+            images_root = FASTLANE_ROOT / locale / "images"
+            binaries[images_root / "icon.png"] = Path("app/src/main/ic_launcher-playstore.png")
+            binaries[images_root / "featureGraphic.jpg"] = Path(feature)
+            for number, image in enumerate(images, 1):
+                binaries[images_root / "phoneScreenshots" / f"{number}.jpg"] = Path(image)
         manifest["locales"].append({
             "language": language,
             "playLocale": locale,
@@ -118,7 +156,16 @@ def main():
         else:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(content, encoding="utf-8")
-    print("Play listing export " + ("verified" if args.check else "written") + " for all five languages.")
+    for relative, source in binaries.items():
+        target = ROOT / relative
+        content = (ROOT / source).read_bytes()
+        if args.check:
+            if not target.is_file() or target.read_bytes() != content:
+                raise ValueError("Stale fastlane image; run scripts/export-play-listing.py: " + str(relative))
+        else:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+    print("Play and fastlane listing export " + ("verified" if args.check else "written") + " for all five languages.")
 
 
 if __name__ == "__main__":

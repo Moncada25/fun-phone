@@ -236,7 +236,8 @@ Abre el proyecto con Android Studio, selecciona el módulo `app` y ejecuta en un
 ### Firma de builds release
 
 Gradle resuelve las credenciales en este orden:
-1. Variables de entorno (`RELEASE_STORE_FILE`, `RELEASE_KEY_ALIAS`, etc.).
+1. Variables de entorno (`RELEASE_STORE_FILE`, `RELEASE_KEY_ALIAS`, etc.; `COMMUNITY_RELEASE_*` para
+   el APK `community` de GitHub Releases, con una clave distinta de la de Play).
 2. `local.properties`, `keystore.properties` o `gradle.properties.private` en la raíz.
 3. `gradle.properties` (no recomendado).
 
@@ -255,6 +256,7 @@ Gradle resuelve las credenciales en este orden:
 | `./gradlew ktlintFormat` | Elimina automáticamente los imports Kotlin sin usar. |
 | `./gradlew assemblePlayDebug` | Compila Play con In-App Review y sin Firebase. |
 | `./gradlew bundlePlayRelease` | Genera el AAB oficial; requiere firma release. |
+| `./gradlew validateCommunityReleaseSigning assembleCommunityRelease` | Genera el APK `community` firmado para GitHub Releases; sin `COMMUNITY_RELEASE_*` lo deja sin firmar (F-Droid). |
 | `./gradlew preparePlayStoreArtifacts` | Genera y reúne AAB, mapping y símbolos Play; requiere firma release. |
 | `./gradlew connectedCommunityDebugAndroidTest` | Ejecuta tests instrumentados Community en dispositivos conectados. |
 | `./gradlew :app:generateReleaseManifest` | Genera versión, SDKs, distribuciones y capacidades desde `release.properties`. |
