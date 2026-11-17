@@ -407,35 +407,6 @@ class AppSettingsViewModel(
         _fontType.value = fontType
     }
 
-    fun appearanceSettings() = com.bookverse.contacts.settings.AppearanceSettings(
-        style = _accentBarStyle.value, accent = _accentColor.value,
-        accentName = _accentColorName.value, font = _fontType.value,
-        theme = _themeMode.value, darkStyle = _darkModeStyle.value,
-        fontScale = _fontScale.value, density = _listDensity.value,
-    )
-
-    suspend fun applyAppearance(context: Context, appearance: com.bookverse.contacts.settings.AppearanceSettings) {
-        settingsStore.dataStore(context).edit { prefs ->
-            prefs[accentBarStyleKey] = appearance.style.name
-            prefs[accentColorNameKey] = appearance.accentName
-            prefs[accentColorKey] = appearance.accent.value.toString()
-            prefs[fontTypeKey] = appearance.font
-            prefs[themeKey] = appearance.theme.name
-            prefs[darkModeStyleKey] = appearance.darkStyle.name
-            prefs[fontScaleKey] = appearance.fontScale.toString()
-            prefs[listDensityKey] = appearance.density.name
-            com.bookverse.contacts.settings.ModernAppearanceMigration.markApplied(prefs)
-        }
-        _accentBarStyle.value = appearance.style
-        _accentColor.value = appearance.accent
-        _accentColorName.value = appearance.accentName
-        _fontType.value = appearance.font
-        _themeMode.value = appearance.theme
-        _darkModeStyle.value = appearance.darkStyle
-        _fontScale.value = appearance.fontScale
-        _listDensity.value = appearance.density
-    }
-
     fun setThemeMode(context: Context, mode: ThemeMode) {
         viewModelScope.launch {
             settingsStore.dataStore(context).edit { prefs ->

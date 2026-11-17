@@ -170,9 +170,6 @@ fun SettingsScreen(
     val speedDialContacts by appSettingsViewModel.speedDialContacts.collectAsStateWithLifecycle()
     val shortcutContainerColor = MaterialTheme.colorScheme.background
     val shortcutIconColor = MaterialTheme.colorScheme.onBackground
-    var appearanceEditor by remember { mutableStateOf<Pair<com.bookverse.contacts.settings.AppearanceSettings, AppearanceSection>?>(null) }
-    var appearanceSaving by remember { mutableStateOf(false) }
-    var appearanceError by remember { mutableStateOf(false) }
     var activePreferenceSheet by remember { mutableStateOf<SettingsPreferenceSheet?>(null) }
     var showSpeedDialDialog by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
@@ -555,12 +552,12 @@ fun SettingsScreen(
             sensitiveSectionsLockEnabled = sensitiveSectionsLockEnabled,
         ),
         actions = SettingsSectionsActions(
-            onTheme = { appearanceError = false; appearanceEditor = appSettingsViewModel.appearanceSettings() to AppearanceSection.THEME },
-            onAccentStyle = { appearanceError = false; appearanceEditor = appSettingsViewModel.appearanceSettings() to AppearanceSection.STYLE },
-            onAccentColor = { appearanceError = false; appearanceEditor = appSettingsViewModel.appearanceSettings() to AppearanceSection.COLOR },
-            onFont = { appearanceError = false; appearanceEditor = appSettingsViewModel.appearanceSettings() to AppearanceSection.FONT },
-            onFontScale = { appearanceError = false; appearanceEditor = appSettingsViewModel.appearanceSettings() to AppearanceSection.SIZE },
-            onListDensity = { appearanceError = false; appearanceEditor = appSettingsViewModel.appearanceSettings() to AppearanceSection.DENSITY },
+            onTheme = { activePreferenceSheet = SettingsPreferenceSheet.THEME },
+            onAccentStyle = { activePreferenceSheet = SettingsPreferenceSheet.ACCENT_STYLE },
+            onAccentColor = { activePreferenceSheet = SettingsPreferenceSheet.COLOR },
+            onFont = { activePreferenceSheet = SettingsPreferenceSheet.FONT },
+            onFontScale = { activePreferenceSheet = SettingsPreferenceSheet.FONT_SCALE },
+            onListDensity = { activePreferenceSheet = SettingsPreferenceSheet.LIST_DENSITY },
             onGlassEffects = { activePreferenceSheet = SettingsPreferenceSheet.GLASS_EFFECTS },
             onAnimationSpeed = {
                 activePreferenceSheet = SettingsPreferenceSheet.ANIMATION_SPEED
@@ -854,31 +851,6 @@ fun SettingsScreen(
             message = stringResource(R.string.uploading_photos),
         )
     }
-    appearanceEditor?.let { (initial, section) ->
-        AppearanceEditorSheet(
-            initial = initial, initialSection = section,
-            colors = appSettingsViewModel.availableColors,
-            saving = appearanceSaving, error = appearanceError,
-            onDismiss = { if (!appearanceSaving) appearanceEditor = null },
-            onApply = { appearance ->
-                appearanceSaving = true
-                appearanceError = false
-                coroutineScope.launch {
-                    try {
-                        appSettingsViewModel.applyAppearance(context, appearance)
-                        appearanceEditor = null
-                    } catch (error: kotlinx.coroutines.CancellationException) {
-                        throw error
-                    } catch (_: Exception) {
-                        appearanceError = true
-                    } finally {
-                        appearanceSaving = false
-                    }
-                }
-            },
-        )
-    }
-
     SettingsPreferenceSheets(
         activeSheet = activePreferenceSheet,
         state = SettingsPreferenceSheetState(

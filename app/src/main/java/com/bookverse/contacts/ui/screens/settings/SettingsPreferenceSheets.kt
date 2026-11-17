@@ -100,7 +100,7 @@ internal fun SettingsPreferenceSheets(
             optionLabel = { language -> stringResource(language.labelRes) },
         )
 
-        SettingsPreferenceSheet.FONT -> SettingsFontSheet(
+        SettingsPreferenceSheet.FONT -> SettingsFontCatalogSheet(
             selectedFontKey = state.fontType,
             onFontSelected = onFontSelected,
             onDismiss = onDismiss,
@@ -114,6 +114,9 @@ internal fun SettingsPreferenceSheets(
             onDismiss = onDismiss,
             optionKey = AccentBarStyle::name,
             optionLabel = { style -> stringResource(accentStyleLabelRes(style)) },
+            optionSupportingText = { style ->
+                if (style == AccentBarStyle.MODERN) stringResource(R.string.accent_usage_modern_description) else null
+            },
         )
 
         SettingsPreferenceSheet.COLOR -> SettingsColorSheet(
@@ -143,24 +146,16 @@ internal fun SettingsPreferenceSheets(
             optionLabel = { pattern -> stringResource(vibrationPatternLabelRes(pattern)) },
         )
 
-        SettingsPreferenceSheet.FONT_SCALE -> SettingsSelectionSheet(
-            title = stringResource(R.string.font_scale),
-            options = FONT_SCALE_OPTIONS,
-            selectedOption = state.fontScale,
-            onSelected = onFontScaleSelected,
+        SettingsPreferenceSheet.FONT_SCALE -> SettingsFontScaleSheet(
+            fontScale = state.fontScale,
+            onFontScaleSelected = onFontScaleSelected,
             onDismiss = onDismiss,
-            optionKey = { scale -> scale },
-            optionLabel = { scale -> stringResource(R.string.font_scale_value, fontScalePercent(scale)) },
         )
 
-        SettingsPreferenceSheet.LIST_DENSITY -> SettingsSelectionSheet(
-            title = stringResource(R.string.list_density),
-            options = ListDensity.presets,
-            selectedOption = state.listDensity,
-            onSelected = onListDensitySelected,
+        SettingsPreferenceSheet.LIST_DENSITY -> SettingsListDensitySheet(
+            density = state.listDensity,
+            onDensitySelected = onListDensitySelected,
             onDismiss = onDismiss,
-            optionKey = ListDensity::name,
-            optionLabel = { density -> listDensityLabel(density) },
         )
 
         SettingsPreferenceSheet.GLASS_EFFECTS -> SettingsSelectionSheet(
@@ -217,7 +212,6 @@ internal fun SettingsPreferenceSheets(
     }
 }
 
-private val FONT_SCALE_OPTIONS = listOf(0.8f, 0.9f, 1.0f, 1.1f, 1.2f)
 private val STARTUP_SCREEN_OPTIONS = listOf("favorites", "contacts", "history", "extras")
 private val CALL_ANSWER_STYLE_OPTIONS = listOf("swipe", "buttons")
 

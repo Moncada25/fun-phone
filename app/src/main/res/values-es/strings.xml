@@ -1951,10 +1951,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Moderno</string>
     <string name="accent_usage_modern_description">Títulos adaptables, desenfoque suave y navegación flotante.</string>
-    <string name="appearance_preview_hint">Prueba los cambios y pulsa Aplicar para guardarlos.</string>
-    <string name="appearance_preview_contact">Contacto de ejemplo</string>
-    <string name="appearance_preview_description">Vista previa del título, contacto de ejemplo, marcador y navegación.</string>
-    <string name="appearance_save_error">No se pudieron guardar los cambios. Inténtalo de nuevo.</string>
     <string name="font_category_recommended">Recomendadas</string>
     <string name="font_category_sans">Sin remates</string>
     <string name="font_category_serif">Con remates</string>
@@ -2083,6 +2079,15 @@
     </plurals>
     <string name="password_website">Sitio web</string>
     <string name="password_website_hint">Se usa para sugerir esta entrada al autocompletar</string>
+    <string name="password_service_picker_action">Elegir un servicio común</string>
+    <string name="password_service_picker_title">Elige un servicio</string>
+    <string name="password_service_picker_subtitle">Completa el sitio web. Aún puedes escribir cualquier dirección.</string>
+    <string name="password_service_search">Buscar servicios</string>
+    <string name="password_service_empty">Ningún servicio coincide con tu búsqueda</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">Correo y redes sociales</string>
+    <string name="password_service_category_shopping">Compras y pagos</string>
+    <string name="password_service_category_more">Juegos, desarrollo y más</string>
     <string name="password_website_home">Sitio web: %1$s</string>
     <string name="password_linked_app_home">App vinculada: %1$s</string>
     <string name="password_open_website">Abrir sitio web</string>

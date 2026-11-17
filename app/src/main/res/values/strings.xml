@@ -1775,6 +1775,7 @@
     <string name="imported_checklist_title">Imported checklist</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="font_preview_text">Fun Phone preview</string>
+    <string name="font_sample_glyphs" translatable="false">Aa</string>
     <string name="holiday_event_start">Start: %1$s</string>
     <string name="holiday_event_end">End: %1$s</string>
     <string name="holiday_event_description">Description:</string>
@@ -1932,10 +1933,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Modern</string>
     <string name="accent_usage_modern_description">Collapsing titles, soft blur and a floating dock.</string>
-    <string name="appearance_preview_hint">Preview your changes, then tap Apply to save.</string>
-    <string name="appearance_preview_contact">Sample contact</string>
-    <string name="appearance_preview_description">Appearance preview with a title, sample contact, dialer and navigation.</string>
-    <string name="appearance_save_error">Changes could not be saved. Try again.</string>
     <string name="font_category_recommended">Recommended</string>
     <string name="font_category_sans">Sans serif</string>
     <string name="font_category_serif">Serif</string>
@@ -2057,6 +2054,15 @@
     </plurals>
     <string name="password_website">Website</string>
     <string name="password_website_hint">Used to suggest this entry when autofilling</string>
+    <string name="password_service_picker_action">Choose a common service</string>
+    <string name="password_service_picker_title">Choose a service</string>
+    <string name="password_service_picker_subtitle">Fills in the website. You can still type any address.</string>
+    <string name="password_service_search">Search services</string>
+    <string name="password_service_empty">No services match your search</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">Email &amp; social</string>
+    <string name="password_service_category_shopping">Shopping &amp; payments</string>
+    <string name="password_service_category_more">Gaming, developer &amp; more</string>
     <string name="password_website_home">Website: %1$s</string>
     <string name="password_linked_app_home">Linked app: %1$s</string>
     <string name="password_open_website">Open website</string>

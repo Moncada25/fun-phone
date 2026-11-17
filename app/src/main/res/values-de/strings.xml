@@ -1921,10 +1921,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Modernes Design</string>
     <string name="accent_usage_modern_description">Flexible Titel, dezente Unschärfe und schwebende Navigation.</string>
-    <string name="appearance_preview_hint">Änderungen ansehen und mit Anwenden speichern.</string>
-    <string name="appearance_preview_contact">Beispielkontakt</string>
-    <string name="appearance_preview_description">Vorschau mit Titel, Beispielkontakt, Wähltastatur und Navigation.</string>
-    <string name="appearance_save_error">Änderungen konnten nicht gespeichert werden. Erneut versuchen.</string>
     <string name="font_category_recommended">Empfohlen</string>
     <string name="font_category_sans">Serifenlos</string>
     <string name="font_category_serif">Serifenschriften</string>
@@ -2044,6 +2040,15 @@
     </plurals>
     <string name="password_website">Webseite</string>
     <string name="password_website_hint">Wird genutzt, um diesen Eintrag beim automatischen Ausfüllen vorzuschlagen</string>
+    <string name="password_service_picker_action">Gängigen Dienst auswählen</string>
+    <string name="password_service_picker_title">Dienst auswählen</string>
+    <string name="password_service_picker_subtitle">Füllt die Website aus. Du kannst weiterhin jede Adresse eingeben.</string>
+    <string name="password_service_search">Dienste suchen</string>
+    <string name="password_service_empty">Keine Dienste entsprechen deiner Suche</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">E-Mail &amp; soziale Netzwerke</string>
+    <string name="password_service_category_shopping">Shopping &amp; Zahlungen</string>
+    <string name="password_service_category_more">Gaming, Entwicklung &amp; mehr</string>
     <string name="password_website_home">Webseite: %1$s</string>
     <string name="password_linked_app_home">Verknüpfte App: %1$s</string>
     <string name="password_open_website">Webseite öffnen</string>

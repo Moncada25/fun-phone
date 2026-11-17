@@ -1943,10 +1943,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Moderne</string>
     <string name="accent_usage_modern_description">Titres adaptatifs, flou discret et navigation flottante.</string>
-    <string name="appearance_preview_hint">Prévisualisez les modifications, puis appuyez sur Appliquer.</string>
-    <string name="appearance_preview_contact">Contact exemple</string>
-    <string name="appearance_preview_description">Aperçu du titre, du contact exemple, du clavier et de la navigation.</string>
-    <string name="appearance_save_error">Impossible de sauvegarder les modifications. Réessayez.</string>
     <string name="font_category_recommended">Recommandées</string>
     <string name="font_category_sans">Sans empattement</string>
     <string name="font_category_serif">Avec empattement</string>
@@ -2075,6 +2071,15 @@
     </plurals>
     <string name="password_website">Site web</string>
     <string name="password_website_hint">Sert à proposer cette entrée lors du remplissage automatique</string>
+    <string name="password_service_picker_action">Choisir un service courant</string>
+    <string name="password_service_picker_title">Choisir un service</string>
+    <string name="password_service_picker_subtitle">Remplit le site web. Vous pouvez toujours saisir n\'importe quelle adresse.</string>
+    <string name="password_service_search">Rechercher des services</string>
+    <string name="password_service_empty">Aucun service ne correspond à votre recherche</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">E-mail et réseaux sociaux</string>
+    <string name="password_service_category_shopping">Achats et paiements</string>
+    <string name="password_service_category_more">Jeux, développement et plus</string>
     <string name="password_website_home">Site web : %1$s</string>
     <string name="password_linked_app_home">Appli associée : %1$s</string>
     <string name="password_open_website">Ouvrir le site web</string>
