@@ -339,6 +339,11 @@ android {
         }
     }
 
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = true
+    }
+
     lint {
         abortOnError = true
         // Dependency freshness checks are advisory and vary with external repository state.
