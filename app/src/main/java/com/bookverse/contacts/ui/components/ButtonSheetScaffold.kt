@@ -6,13 +6,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -64,8 +69,11 @@ internal fun ButtonSheetScaffold(
             targetValue != SheetValue.Hidden || currentConfirmDismiss()
         },
     )
-    val maxSheetHeight = with(LocalDensity.current) {
-        LocalWindowInfo.current.containerSize.height.toDp() * 0.9f
+    val density = LocalDensity.current
+    val containerHeight = LocalWindowInfo.current.containerSize.height
+    val statusBarTop = WindowInsets.statusBars.getTop(density)
+    val maxSheetHeight = with(density) {
+        minOf(containerHeight * 0.9f, (containerHeight - statusBarTop).toFloat()).toDp() - SheetTopClearance
     }
     val contentScrollBarrier = remember {
         object : NestedScrollConnection {
@@ -95,6 +103,7 @@ internal fun ButtonSheetScaffold(
         tonalElevation = 0.dp,
         dragHandle = null,
         containerColor = MaterialTheme.colorScheme.surface,
+        contentWindowInsets = { WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom) },
     ) {
         Column(
             modifier = modifier
@@ -155,3 +164,5 @@ internal fun ButtonSheetScaffold(
         }
     }
 }
+
+private val SheetTopClearance = 8.dp

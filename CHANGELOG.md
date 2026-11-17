@@ -30,6 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The notes widget did not refresh after notes changed, and its "+" button opened the notes list
   instead of a new note.
 - Creating a new note from a shortcut while another note was open showed an empty editor.
+- Settings sheets with long lists, such as font type or accent color, could bounce endlessly at the
+  top of the screen after a fast upward swipe.
 
 ## [3.20.7] - 2026-11-17
 
