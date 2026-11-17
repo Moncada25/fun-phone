@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fastlane metadata (`fastlane/metadata/android`) generated with the Play listing export.
 
 ### Changed
+- Release APKs no longer embed the encrypted Google dependency metadata block (the Play bundle
+  keeps it), as F-Droid's scanner requires.
 - The `community` release reports a plain `versionName` (for example `3.20.5`).
 - The `community` build scans QR codes with ZXing and no longer ships ML Kit, Google Play Services,
   Play Core or Firebase classes. The `play` build keeps ML Kit.
