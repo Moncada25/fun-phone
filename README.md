@@ -2,11 +2,12 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL%20v3-blue" alt="License: GPL v3"></a>
-  <img src="https://img.shields.io/badge/Version-3.20.2-brightgreen" alt="Version 3.20.2">
+  <a href="https://github.com/Moncada25/fun-phone/releases/latest"><img src="https://img.shields.io/github/v/release/Moncada25/fun-phone?label=Release" alt="Latest release"></a>
 </p>
 
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.bookverse.contacts"><img src="https://img.shields.io/badge/Google%20Play-Descargar-brightgreen?logo=google-play" alt="Google Play"></a>
+  <a href="https://github.com/Moncada25/fun-phone/releases/latest"><img src="https://img.shields.io/badge/APK-GitHub%20Releases-black?logo=github" alt="APK en GitHub Releases"></a>
   <img src="https://img.shields.io/badge/Android-10%2B-green" alt="Android 10+">
   <img src="https://img.shields.io/badge/Jetpack%20Compose-100%25-blue?logo=jetpackcompose" alt="Jetpack Compose">
   <img src="https://img.shields.io/badge/Kotlin-2.3.21-purple?logo=kotlin" alt="Kotlin 2.3.21">
@@ -17,9 +18,18 @@
 > **Marcador y contactos privados y personalizables para Android**, con herramientas opcionales.
 > Construida con Jetpack Compose + Material 3 y licenciada bajo **GPL v3**.
 
-> Disponible en [Google Play](https://play.google.com/store/apps/details?id=com.bookverse.contacts).
+> Disponible en [Google Play](https://play.google.com/store/apps/details?id=com.bookverse.contacts) y como APK
+> `community` (sin librerías de Google) en [GitHub Releases](https://github.com/Moncada25/fun-phone/releases/latest),
+> compatible con [Obtainium](https://github.com/ImranR98/Obtainium).
 > Las contribuciones son bienvenidas: lee [CONTRIBUTING.md](CONTRIBUTING.md) y propone ideas en
 > [Discussions](https://github.com/Moncada25/fun-phone/discussions).
+
+<p align="center">
+  <img src="docs/media/dialer.gif" width="200" alt="Marcador con búsqueda T9 y prefijo del país"/>
+  <img src="docs/media/styles.gif" width="200" alt="Cambio de estilos, colores y efecto cristal"/>
+  <img src="docs/media/vault.gif" width="200" alt="Bóveda de contraseñas cifrada"/>
+  <img src="docs/media/games.gif" width="200" alt="Lista de minijuegos"/>
+</p>
 
 ---
 
@@ -135,8 +145,6 @@ Vistas de campaña: [español](screenshots/store-v3/overview-es.jpg), [inglés](
 |:---:|:---:|:---:|:---:|
 | <img src="screenshots/store-v3/es/05-vault.jpg" width="180" alt="Bóveda"/> | <img src="screenshots/store-v3/es/06-expenses.jpg" width="180" alt="Gastos"/> | <img src="screenshots/store-v3/es/07-tools.jpg" width="180" alt="Herramientas"/> | <img src="screenshots/store-v3/es/08-styles.jpg" width="180" alt="Personalización"/> |
 
----:|:---:|:---:|:---:|
-| <img src="screenshots/store-v2/es/05-vault.jpg" width="180" alt="Bóveda"/> | <img src="screenshots/store-v2/es/06-expenses.jpg" width="180" alt="Gastos"/> | <img src="screenshots/store-v2/es/07-tools.jpg" width="180" alt="Herramientas"/> | <img src="screenshots/store-v2/es/08-personalization.jpg" width="180" alt="Personalización"/> |
 
 ---
 
