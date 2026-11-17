@@ -383,8 +383,10 @@ Copyright (C) 2026 Bookverse.
 Puedes usar, modificar y redistribuir bajo los términos de la GPL v3. Si distribuyes versiones
 modificadas, **debes publicar el código fuente bajo la misma licencia**.
 
-> El repositorio no aporta evidencia de un registro formal de marca. La licencia de cada asset y las
-> pautas de atribución se describen en [TRADEMARK.md](TRADEMARK.md).
+> La GPL no concede derechos sobre el nombre "Fun Phone" ni sobre su logotipo e ícono. Si
+> distribuyes una versión modificada, debes cambiar el nombre, el ícono y el `applicationId`. Las
+> redistribuciones sin modificar (por ejemplo F-Droid u Obtainium) pueden usar el nombre original.
+> La licencia de cada asset y las reglas para forks están en [TRADEMARK.md](TRADEMARK.md).
 
 ---
 
