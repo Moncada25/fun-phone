@@ -1,0 +1,267 @@
+{
+  "es": {
+    "noteTitles": [
+      "Ideas que merecen espacio",
+      "Escapada a la montaña",
+      "Lista para el fin de semana",
+      "Pequeños planes, grandes días",
+      "Mi próxima lectura",
+      "Una idea para mañana",
+      "Recetas por probar",
+      "Ideas de regalo"
+    ],
+    "noteBodies": [
+      "<p>Aprender algo nuevo. Crear con calma. Hacer tiempo para lo que importa.</p>",
+      "<p>Reservar una cabaña, preparar la ruta y disfrutar el camino.</p>",
+      "",
+      "<p>Un café con Nora, una caminata y un rato para desconectar.</p>",
+      "<p>Historias que abren nuevas posibilidades.</p>",
+      "<p>Una libreta, una buena pregunta y tiempo para pensar.</p>",
+      "<p>Pasta al limón, verduras asadas y una tarta de manzana sencilla.</p>",
+      "<p>Un buen libro, una planta y una tarjeta escrita a mano.</p>"
+    ],
+    "vaultNames": [
+      "Correo personal",
+      "Estudio creativo",
+      "Biblioteca digital",
+      "Viajes",
+      "Mi espacio",
+      "Nube de fotos",
+      "Música",
+      "Cursos en línea"
+    ],
+    "expenseCategories": [
+      "Mi casa",
+      "Compra semanal",
+      "Viajes diarios",
+      "Estudio creativo",
+      "Ocio",
+      "Bienestar"
+    ],
+    "checklist": [
+      "Preparar la mochila",
+      "Elegir una buena ruta",
+      "Disfrutar sin prisa"
+    ],
+    "noteTags": [
+      "Ideas",
+      "Viajes",
+      "Casa",
+      "Lectura"
+    ]
+  },
+  "en": {
+    "noteTitles": [
+      "Ideas worth keeping",
+      "A weekend in the mountains",
+      "Ready for the weekend",
+      "Small plans, better days",
+      "My next good read",
+      "An idea for tomorrow",
+      "Recipes to try",
+      "Gift ideas"
+    ],
+    "noteBodies": [
+      "<p>Learn something new. Make room to create. Find time for what matters.</p>",
+      "<p>Book a cabin, plan the trail and enjoy the journey.</p>",
+      "",
+      "<p>Coffee with Nora, a long walk and time to slow down.</p>",
+      "<p>Stories that open up new possibilities.</p>",
+      "<p>A notebook, a good question and time to think.</p>",
+      "<p>Lemon pasta, roasted vegetables and a simple apple cake.</p>",
+      "<p>A good book, a plant and a handwritten card.</p>"
+    ],
+    "vaultNames": [
+      "Personal mail",
+      "Creative studio",
+      "Digital library",
+      "Travel",
+      "My workspace",
+      "Photo cloud",
+      "Music",
+      "Online courses"
+    ],
+    "expenseCategories": [
+      "My home",
+      "Weekly groceries",
+      "Daily travel",
+      "Creative work",
+      "Leisure",
+      "Wellbeing"
+    ],
+    "checklist": [
+      "Pack a bag",
+      "Pick a great trail",
+      "Take the time to enjoy"
+    ],
+    "noteTags": [
+      "Ideas",
+      "Travel",
+      "Home",
+      "Reading"
+    ]
+  },
+  "de": {
+    "noteTitles": [
+      "Ideen brauchen Raum",
+      "Ein Wochenende in den Bergen",
+      "Bereit fürs Wochenende",
+      "Kleine Pläne, schöne Tage",
+      "Mein nächstes Buch",
+      "Eine Idee für morgen",
+      "Rezepte zum Ausprobieren",
+      "Geschenkideen"
+    ],
+    "noteBodies": [
+      "<p>Etwas Neues lernen. In Ruhe kreativ sein. Zeit für das Wesentliche finden.</p>",
+      "<p>Eine Hütte buchen, die Route planen und den Weg genießen.</p>",
+      "",
+      "<p>Ein Kaffee mit Nora, ein Spaziergang und Zeit zum Abschalten.</p>",
+      "<p>Geschichten, die neue Möglichkeiten eröffnen.</p>",
+      "<p>Ein Notizbuch, eine gute Frage und Zeit zum Nachdenken.</p>",
+      "<p>Zitronenpasta, Ofengemüse und ein einfacher Apfelkuchen.</p>",
+      "<p>Ein gutes Buch, eine Pflanze und eine handgeschriebene Karte.</p>"
+    ],
+    "checklist": [
+      "Den Rucksack packen",
+      "Eine schöne Route wählen",
+      "Die Zeit in Ruhe genießen"
+    ],
+    "vaultNames": [
+      "Private E-Mails",
+      "Kreativstudio",
+      "Digitale Bibliothek",
+      "Reisen",
+      "Mein Arbeitsbereich",
+      "Foto-Cloud",
+      "Musik",
+      "Onlinekurse"
+    ],
+    "expenseCategories": [
+      "Mein Zuhause",
+      "Wocheneinkauf",
+      "Tägliche Fahrten",
+      "Kreative Arbeit",
+      "Freizeit",
+      "Wohlbefinden"
+    ],
+    "noteTags": [
+      "Ideen",
+      "Reisen",
+      "Zuhause",
+      "Lesen"
+    ]
+  },
+  "fr": {
+    "noteTitles": [
+      "Des idées à garder",
+      "Un week-end à la montagne",
+      "Prêts pour le week-end",
+      "Petits projets, belles journées",
+      "Ma prochaine lecture",
+      "Une idée pour demain",
+      "Recettes à essayer",
+      "Idées de cadeaux"
+    ],
+    "noteBodies": [
+      "<p>Apprendre quelque chose. Créer au calme. Prendre le temps de l’essentiel.</p>",
+      "<p>Réserver un chalet, préparer le parcours et profiter du chemin.</p>",
+      "",
+      "<p>Un café avec Nora, une promenade et du temps pour déconnecter.</p>",
+      "<p>Des histoires qui ouvrent de nouvelles perspectives.</p>",
+      "<p>Un carnet, une bonne question et le temps de réfléchir.</p>",
+      "<p>Pâtes au citron, légumes rôtis et un gâteau aux pommes tout simple.</p>",
+      "<p>Un bon livre, une plante et une carte écrite à la main.</p>"
+    ],
+    "checklist": [
+      "Préparer le sac",
+      "Choisir un beau parcours",
+      "Prendre le temps de profiter"
+    ],
+    "vaultNames": [
+      "Courriel personnel",
+      "Studio créatif",
+      "Bibliothèque numérique",
+      "Voyages",
+      "Mon espace de travail",
+      "Photos en ligne",
+      "Musique",
+      "Cours en ligne"
+    ],
+    "expenseCategories": [
+      "Mon logement",
+      "Courses de la semaine",
+      "Trajets quotidiens",
+      "Travail créatif",
+      "Loisirs",
+      "Bien-être"
+    ],
+    "noteTags": [
+      "Idées",
+      "Voyages",
+      "Maison",
+      "Lecture"
+    ]
+  },
+  "pt": {
+    "noteTitles": [
+      "Ideias que merecem espaço",
+      "Um fim de semana na montanha",
+      "Tudo para o fim de semana",
+      "Pequenos planos, grandes dias",
+      "Minha próxima leitura",
+      "Uma ideia para amanhã",
+      "Receitas para testar",
+      "Ideias de presente"
+    ],
+    "noteBodies": [
+      "<p>Aprender algo novo. Criar com calma. Ter tempo para o que importa.</p>",
+      "<p>Reservar uma cabana, planejar a trilha e aproveitar o caminho.</p>",
+      "",
+      "<p>Um café com Nora, uma caminhada e um tempo para desconectar.</p>",
+      "<p>Histórias que abrem novas possibilidades.</p>",
+      "<p>Um caderno, uma boa pergunta e tempo para pensar.</p>",
+      "<p>Macarrão ao limão, legumes assados e um bolo de maçã simples.</p>",
+      "<p>Um bom livro, uma planta e um cartão escrito à mão.</p>"
+    ],
+    "checklist": [
+      "Preparar a mochila",
+      "Escolher uma boa trilha",
+      "Aproveitar sem pressa"
+    ],
+    "vaultNames": [
+      "E-mail pessoal",
+      "Estúdio criativo",
+      "Biblioteca digital",
+      "Viagens",
+      "Meu espaço",
+      "Nuvem de fotos",
+      "Música",
+      "Cursos online"
+    ],
+    "expenseCategories": [
+      "Minha casa",
+      "Compras da semana",
+      "Viagens diárias",
+      "Trabalho criativo",
+      "Lazer",
+      "Bem-estar"
+    ],
+    "noteTags": [
+      "Ideias",
+      "Viagens",
+      "Casa",
+      "Leitura"
+    ]
+  },
+  "vaultSites": [
+    "mail.example.test",
+    "studio.example.test",
+    "library.example.test",
+    "travel.example.test",
+    "work.example.test",
+    "photos.example.test",
+    "music.example.test",
+    "learn.example.test"
+  ]
+}

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+   android:background="@drawable/widget_background"
+   android:padding="4dp"
+   tools:ignore="HardcodedText">
+
+  <GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="4"
+    android:useDefaultMargins="true"
+    android:alignmentMode="alignMargins"
+    android:rowOrderPreserved="false"
+    android:layout_marginTop="4dp"
+      tools:ignore="UselessParent">
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:orientation="vertical"
+      android:gravity="center_horizontal"
+      android:padding="6dp"
+      android:background="@drawable/widget_item_background">
+
+      <TextView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="J"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/widget_avatar_background"
+        android:backgroundTint="@color/widget_accent"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Juan Pérez"
+        android:textColor="@color/widget_text"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:orientation="vertical"
+      android:gravity="center_horizontal"
+      android:padding="6dp"
+      android:background="@drawable/widget_item_background">
+
+      <TextView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="M"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/widget_avatar_background"
+        android:backgroundTint="@color/widget_accent"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="María García"
+        android:textColor="@color/widget_text"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:orientation="vertical"
+      android:gravity="center_horizontal"
+      android:padding="6dp"
+      android:background="@drawable/widget_item_background">
+
+      <TextView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="L"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/widget_avatar_background"
+        android:backgroundTint="@color/widget_accent"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Luis Díaz"
+        android:textColor="@color/widget_text"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:orientation="vertical"
+      android:gravity="center_horizontal"
+      android:padding="6dp"
+      android:background="@drawable/widget_item_background">
+
+      <TextView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="A"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/widget_avatar_background"
+        android:backgroundTint="@color/widget_accent"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Ana Ruiz"
+        android:textColor="@color/widget_text"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="1"/>
+
+    </LinearLayout>
+
+  </GridLayout>
+
+</LinearLayout>

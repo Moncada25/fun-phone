@@ -1,0 +1,1 @@
+Private Android dialer with fast T9 search, favorites and local contacts

@@ -1,0 +1,505 @@
+import org.gradle.api.GradleException
+import org.gradle.api.Project
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.Sync
+import org.gradle.api.tasks.bundling.Zip
+import org.gradle.api.tasks.CacheableTask
+import groovy.json.JsonOutput
+import java.util.Properties
+import java.text.SimpleDateFormat
+import java.util.Date
+
+val releaseMetadata = Properties().apply {
+    rootProject.file("release.properties").inputStream().use(::load)
+}
+val appVersionCode = releaseMetadata.getProperty("VERSION_CODE").toInt()
+val appVersionName: String = releaseMetadata.getProperty("VERSION_NAME")
+val appMinSdk = releaseMetadata.getProperty("MIN_SDK").toInt()
+val appTargetSdk = releaseMetadata.getProperty("TARGET_SDK").toInt()
+
+data class SigningCredentials(
+    val storeFilePath: String?,
+    val storePassword: String?,
+    val keyAlias: String?,
+    val keyPassword: String?,
+)
+
+abstract class ValidateReleaseSigningTask : DefaultTask() {
+    @get:Input
+    abstract val storeFilePath: Property<String>
+
+    @get:Input
+    abstract val storePasswordPresent: Property<Boolean>
+
+    @get:Input
+    abstract val keyAliasPresent: Property<Boolean>
+
+    @get:Input
+    abstract val keyPasswordPresent: Property<Boolean>
+
+    @get:Internal
+    abstract val projectDirectory: DirectoryProperty
+
+    @TaskAction
+    fun validate() {
+        val path = storeFilePath.orNull?.takeUnless { it.isBlank() }
+            ?: throw GradleException(
+                "Release signing credentials are missing. Configure RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS, and RELEASE_KEY_PASSWORD.",
+            )
+
+        val storeFile = projectDirectory.file(path).get().asFile
+        if (!storeFile.exists()) {
+            throw GradleException(
+                "Release keystore not found at ${storeFile.absolutePath}. Update RELEASE_STORE_FILE or place the keystore in that path.",
+            )
+        }
+
+        val placeholderKeystores = setOf(
+            projectDirectory.file("bookverse-release-key.jks").get().asFile,
+            projectDirectory.file("key_prod.jks").get().asFile,
+        )
+        if (storeFile in placeholderKeystores) {
+            throw GradleException(
+                "The placeholder keystore ${storeFile.name} is not valid for Play Store uploads. Point RELEASE_STORE_FILE to your actual upload keystore.",
+            )
+        }
+
+        val missingValue = when {
+            !storePasswordPresent.get() -> "RELEASE_STORE_PASSWORD"
+            !keyAliasPresent.get() -> "RELEASE_KEY_ALIAS"
+            !keyPasswordPresent.get() -> "RELEASE_KEY_PASSWORD"
+            else -> null
+        }
+        if (missingValue != null) {
+            throw GradleException(
+                "Missing $missingValue. Define it in gradle.properties, local.properties, or as an environment variable before building release artifacts.",
+            )
+        }
+    }
+}
+
+@CacheableTask
+abstract class GenerateReleaseManifestTask : DefaultTask() {
+    @get:Input
+    abstract val versionName: Property<String>
+
+    @get:Input
+    abstract val versionCode: Property<Int>
+
+    @get:Input
+    abstract val minSdk: Property<Int>
+
+    @get:Input
+    abstract val targetSdk: Property<Int>
+
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val releaseProperties: RegularFileProperty
+
+    @get:OutputFile
+    abstract val outputFile: RegularFileProperty
+
+    @TaskAction
+    fun generate() {
+        val manifest = linkedMapOf(
+            "versionName" to versionName.get(),
+            "versionCode" to versionCode.get(),
+            "minSdk" to minSdk.get(),
+            "targetSdk" to targetSdk.get(),
+            "distributions" to linkedMapOf(
+                "community" to linkedMapOf(
+                    "applicationId" to "com.bookverse.contacts.community",
+                    "firebase" to false,
+                ),
+                "play" to linkedMapOf(
+                    "applicationId" to "com.bookverse.contacts",
+                    "firebase" to false,
+                ),
+            ),
+            "coreCapabilities" to listOf(
+                "dialer",
+                "contacts",
+                "favorites",
+                "call_history",
+                "limited_mode",
+            ),
+            "optionalTools" to listOf(
+                "notes",
+                "expenses",
+                "passwords",
+                "qr",
+                "voice",
+                "holidays",
+                "paint",
+                "games",
+                "pomodoro",
+                "wellness",
+            ),
+        )
+        val file = outputFile.get().asFile
+        file.parentFile.mkdirs()
+        file.writeText(JsonOutput.prettyPrint(JsonOutput.toJson(manifest)) + "\n")
+    }
+}
+
+fun Project.resolveReleaseSigningCredentials(): SigningCredentials {
+    val fallbackProperties = Properties().apply {
+        listOf(
+            "gradle.properties.private",
+            "keystore.properties",
+            "local.properties"
+        ).forEach { fileName ->
+            val file = rootProject.file(fileName)
+            if (file.exists()) {
+                file.inputStream().use(::load)
+            }
+        }
+    }
+
+    fun lookup(key: String): String? =
+        System.getenv(key)?.takeUnless { it.isBlank() }
+            ?: fallbackProperties.getProperty(key)?.takeUnless { it.isBlank() }
+            ?: (findProperty(key) as String?)?.takeUnless { it.isBlank() }
+
+    return SigningCredentials(
+        storeFilePath = lookup("RELEASE_STORE_FILE"),
+        storePassword = lookup("RELEASE_STORE_PASSWORD"),
+        keyAlias = lookup("RELEASE_KEY_ALIAS"),
+        keyPassword = lookup("RELEASE_KEY_PASSWORD"),
+    )
+}
+
+val releaseSigningCredentials = resolveReleaseSigningCredentials()
+val buildDate: String = SimpleDateFormat("ddMMyyyy").format(Date())
+
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.androidx.baselineprofile)
+    id("kotlin-parcelize")
+    id("com.google.devtools.ksp") version "2.3.9"
+    id("androidx.room") version "2.8.4" apply true
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+baselineProfile {
+    mergeIntoMain = true
+    saveInSrc = true
+    automaticGenerationDuringBuild = false
+    dexLayoutOptimization = true
+}
+
+androidComponents {
+    finalizeDsl { extension ->
+        listOf("nonMinifiedRelease", "benchmarkRelease").forEach { buildTypeName ->
+            extension.buildTypes.findByName(buildTypeName)?.signingConfig =
+                extension.signingConfigs.getByName("debug")
+            extension.sourceSets.findByName(buildTypeName)?.apply {
+                kotlin.srcDir("src/benchmark/java")
+                assets.srcDir("src/benchmark/assets")
+                manifest.srcFile("src/benchmark/AndroidManifest.xml")
+            }
+        }
+    }
+}
+
+android {
+    namespace = "com.bookverse.contacts"
+    compileSdk = 37
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        applicationId = "com.bookverse.contacts"
+        minSdk = appMinSdk
+        targetSdk = appTargetSdk
+        versionCode = appVersionCode
+        versionName = appVersionName
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true"
+                )
+            }
+        }
+    }
+
+    flavorDimensions += "distribution"
+    productFlavors {
+        create("community") {
+            dimension = "distribution"
+            applicationIdSuffix = ".community"
+            versionNameSuffix = "-community"
+            buildConfigField("String", "DISTRIBUTION", "\"community\"")
+        }
+        create("play") {
+            dimension = "distribution"
+            buildConfigField("String", "DISTRIBUTION", "\"play\"")
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            val storeFilePath = releaseSigningCredentials.storeFilePath
+            val storePass = releaseSigningCredentials.storePassword
+            val alias = releaseSigningCredentials.keyAlias
+            val keyPass = releaseSigningCredentials.keyPassword
+
+            if (storeFilePath != null && storePass != null && alias != null && keyPass != null) {
+                val resolvedStoreFile = rootProject.file(storeFilePath)
+                if (resolvedStoreFile.exists()) {
+                    storeFile = resolvedStoreFile
+                    storePassword = storePass
+                    keyAlias = alias
+                    keyPassword = keyPass
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = ".$buildDate Dev"
+            isMinifyEnabled = false
+            buildConfigField("boolean", "DEBUG", "true")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        release {
+            versionNameSuffix = ".$buildDate Prod"
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            buildConfigField("boolean", "DEBUG", "false")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
+        }
+        create("benchmark") {
+            initWith(getByName("release"))
+            applicationIdSuffix = ".benchmark"
+            versionNameSuffix = ".$buildDate Benchmark"
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
+    }
+
+    lint {
+        abortOnError = true
+        // Dependency freshness checks are advisory and vary with external repository state.
+        // Dependency updates remain reviewable through the version catalog.
+        disable += "AndroidGradlePluginVersion"
+        disable += "GradleDependency"
+        disable += "NewerVersionAvailable"
+        disable += "ObsoleteSdkInt"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
+    }
+    buildFeatures {
+        compose = true
+    }
+}
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_25)
+    }
+}
+val guardedReleaseTasks = setOf(
+    "assemblePlayRelease",
+    "bundlePlayRelease",
+    "preparePlayStoreArtifacts",
+    "packagePlayReleaseNativeSymbols",
+)
+
+val validatePlayReleaseSigning by tasks.registering(ValidateReleaseSigningTask::class) {
+    group = "distribution"
+    description = "Validates the credentials and keystore used for Play release artifacts."
+    storeFilePath.set(releaseSigningCredentials.storeFilePath.orEmpty())
+    storePasswordPresent.set(!releaseSigningCredentials.storePassword.isNullOrBlank())
+    keyAliasPresent.set(!releaseSigningCredentials.keyAlias.isNullOrBlank())
+    keyPasswordPresent.set(!releaseSigningCredentials.keyPassword.isNullOrBlank())
+    projectDirectory.set(layout.projectDirectory)
+}
+
+tasks.matching { it.name in guardedReleaseTasks }.configureEach {
+    dependsOn(validatePlayReleaseSigning)
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("com.google.crypto.tink:tink-android:1.23.0")
+        eachDependency {
+            if (requested.group == "com.google.crypto.tink" && requested.name == "tink") {
+                useTarget("com.google.crypto.tink:tink-android:1.23.0")
+            }
+        }
+    }
+}
+
+configurations.named("implementation") {
+    exclude(group = "com.intellij", module = "annotations")
+}
+
+configurations.matching { it.name.contains("AndroidTest", ignoreCase = true) }.configureEach {
+    resolutionStrategy.force(
+        "org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1",
+        "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1",
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1",
+        "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1",
+    )
+}
+
+ksp {
+    arg("room.incremental", "true")
+}
+
+dependencies {
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.haze)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.material.icons.extended)
+
+    implementation(libs.google.zxing.core)
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.compose)
+    implementation(libs.androidx.camera.view)
+    add("playImplementation", libs.google.mlkit.barcode.scanning)
+    implementation(libs.google.guava)
+    implementation(libs.google.gson)
+    add("playImplementation", libs.google.play.review)
+    add("playImplementation", libs.google.play.review.ktx)
+    implementation(libs.coil.svg)
+    implementation(libs.icons.lucide.android)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.richeditor.compose)
+    implementation(libs.contacts.android)
+    implementation(libs.yalantis.ucrop)
+    implementation(libs.androidx.transition)
+    implementation(libs.konfetti.compose)
+
+    implementation(libs.androidx.compose.foundation)
+
+    val composeBom = platform(libs.androidx.compose.bom)
+    listOf("implementation", "androidTestImplementation").forEach { configuration ->
+        add(configuration, composeBom)
+    }
+
+    implementation(libs.google.crypto.tink.android)
+    implementation(libs.androidx.security.crypto) {
+        exclude(group = "com.google.crypto.tink", module = "tink-android")
+        exclude(group = "com.google.crypto.tink", module = "tink")
+    }
+    implementation(libs.androidx.biometric)
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.glance.material3)
+    implementation(libs.androidx.profileinstaller)
+    baselineProfile(project(":baselineprofile"))
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+tasks.register("getApk") {
+    group = "build"
+    description = "Assembles the Play release APK for easy access from the IDE."
+    dependsOn("assemblePlayRelease")
+}
+
+tasks.register<GenerateReleaseManifestTask>("generateReleaseManifest") {
+    group = "distribution"
+    description =
+        "Generates version and capability metadata for documentation and the landing site."
+    versionName.set(appVersionName)
+    versionCode.set(appVersionCode)
+    minSdk.set(appMinSdk)
+    targetSdk.set(appTargetSdk)
+    releaseProperties.set(rootProject.layout.projectDirectory.file("release.properties"))
+    outputFile.set(layout.buildDirectory.file("reports/release/release-manifest.json"))
+}
+
+val packagePlayReleaseNativeSymbols by tasks.registering(Zip::class) {
+    group = "distribution"
+    description =
+        "Packages Play release native libraries as a symbol archive for Play Console uploads."
+    val variant = "playRelease"
+    dependsOn("mergePlayReleaseNativeLibs")
+    from(layout.buildDirectory.dir("intermediates/merged_native_libs/$variant/mergePlayReleaseNativeLibs/out/lib"))
+    include("**/*.so")
+    destinationDirectory.set(layout.buildDirectory.dir("outputs/native-debug-symbols/$variant"))
+    archiveFileName.set("native-debug-symbols.zip")
+}
+
+val preparePlayStoreArtifacts by tasks.registering(Sync::class) {
+    group = "distribution"
+    description = "Collects the release App Bundle, mapping file, and native debug symbols for Play Console uploads."
+    dependsOn("bundlePlayRelease", packagePlayReleaseNativeSymbols)
+    into(layout.buildDirectory.dir("playStoreArtifacts/playRelease"))
+    from(layout.buildDirectory.dir("outputs/bundle/playRelease")) {
+        include("*.aab")
+    }
+    from(layout.buildDirectory.dir("outputs/mapping/playRelease")) {
+        include("mapping.txt")
+    }
+    from(packagePlayReleaseNativeSymbols)
+}

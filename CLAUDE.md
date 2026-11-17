@@ -1,0 +1,102 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hub combining a default dialer, contact management, notes with rich text/reminders, encrypted password vault, QR tools, voice utilities, expense tracker, and 12+ Compose mini games.
+
+- **Min SDK 29** | **Target/Compile SDK 37** | **JVM Target 25**
+- **UI**: 100% Jetpack Compose + Material 3 — no XML layouts or fragments
+- **Architecture**: MVVM + Repository, manual DI (no Hilt)
+- **Modules**: `:app` plus the `:baselineprofile` test module (Baseline Profile generator and macrobenchmarks)
+- **Localization**: English baseline in `values/`, with Spanish, German, French, and Portuguese
+  translations in `values-es/`, `values-de/`, `values-fr/`, and `values-pt/`
+
+## Build Commands
+
+```bash
+./gradlew assembleDebug                # Debug APK
+./gradlew assembleRelease              # Release APK (requires signing credentials)
+./gradlew testDebugUnitTest            # Unit tests
+./gradlew testDebugUnitTest --tests "com.bookverse.contacts.SomeTest"  # Single test
+./gradlew connectedDebugAndroidTest    # Instrumented tests
+./gradlew ktlintCheck                  # Kotlin style check
+./gradlew ktlintFormat                 # Auto-format
+./gradlew lintCommunityDebug           # Android lint (zero errors)
+./scripts/verify-lint-ratchet.sh       # Zero errors and warning ceiling
+./gradlew installDebug                 # Install on device
+```
+
+## Architecture
+
+**Data flow**: Compose UI → ViewModel (StateFlow) → Repository → Room or local/platform APIs
+
+### Key Packages (`app/src/main/java/com/bookverse/contacts/`)
+
+- **`ui/viewmodel/`** — ViewModels extend `AndroidViewModel`, expose `StateFlow` via `MutableStateFlow` + `.asStateFlow()`. Use `viewModelScope` for coroutines. Manual factories via companion `provideFactory()`. Collect in Compose with `collectAsStateWithLifecycle()`.
+- **`ui/screens/`** — Feature screens organized by domain (contacts, calls, notes, games, qr, passwords, expenses, tools, settings)
+- **`ui/components/`** — ~58 reusable Compose components (dialogs, form fields, top bars, etc.)
+- **`ui/navigation/`** — `SecondaryScreen` enum + `SecondaryScreenContent` composable for routing. `NavigationViewModel` manages navigation state via `NavigationUiState` StateFlow.
+- **`ui/theme/`** — `ContactsAppTheme` with light/dark schemes and semantic color tokens (`CallAcceptColor`, `CallRejectColor`, `BadgeColor`, `BudgetOkColor`, etc.)
+- **`data/db/`** — Room `AppDatabase` with auto-migrations, DAOs, entities. Schemas exported to `app/schemas/`
+- **`data/notes/`, `data/expenses/`, `data/password/`, `data/qr/`** — Feature-specific Room entities and domain models annotated with `@Immutable` for Compose stability
+- **`data/repository/`** — Repository implementations for contacts and the bounded HTTPS holidays source.
+- **`service/`** — Android services: `FunPhoneInCallService`, `IncomingCallService`, `OngoingCallService`, `NotificationService`, `CallNotificationManager`
+- **`security/`** — `CryptoManager` (Tink + Android Keystore)
+- **`utils/`** — `ContactUtils`, `PermissionUtils`, `SpeechUtils`, `VibrationUtils`, `NoteShareUtils`, `NotesBackupUtils`
+
+### Data Persistence
+- **Room** (v32, auto/manual migrations) — contacts cache, contacts recycle bin, notes, passwords, expenses, and QR history
+- **DataStore** — app settings (theme, fonts, transitions) via `AppSettingsViewModel`
+- **Network** — Optional Nager.Date holidays and user-requested social/web previews are the only
+  direct network paths; no Firebase, analytics, advertising, or cloud backup.
+
+## Critical Code Style Rules
+
+- **No comments in code** unless the user explicitly requests them
+- **No XML layouts** — Compose only
+- 4-space indentation, trailing commas in multiline constructs, prefer `val`
+- Composable functions use PascalCase
+- Heavy operations must use `Dispatchers.IO`
+- Respond in the same language as the user's request
+
+## Compose Patterns
+
+- Use `collectAsStateWithLifecycle()` (not `collectAsState()`) for all StateFlow collection
+- LazyList `items()` must include `key` parameter for stable identity
+- Data classes used as Composable parameters should have `@Immutable` annotation
+- Use semantic color tokens from `ui/theme/ContactsAppTheme.kt` — avoid hardcoded `Color(0xFF...)` values
+- Avoid `runBlocking` and `coroutineScope.launch` inside Composables — use `LaunchedEffect` with appropriate keys
+- `LaunchedEffect(Unit)` should only be used for genuinely one-time effects (animations, SharedFlow collectors). For effects that depend on a value, use that value as key.
+
+## Localization
+
+All new user-facing strings must be added to the following resources:
+- `app/src/main/res/values/strings.xml` (English baseline)
+- `app/src/main/res/values-es/strings.xml`, `values-de/strings.xml`, `values-fr/strings.xml`, and
+  `values-pt/strings.xml` (supported translations)
+
+Never hardcode text in Kotlin. Use localized formatters for dates, numbers, currencies.
+Run `./scripts/verify-localization.sh` after changing localized resources.
+
+## Room Database Changes
+
+When modifying Room entities:
+1. Update entity classes + DAO + `AppDatabase`
+2. Run `./gradlew assembleDebug` to export updated schemas to `app/schemas/`
+3. Auto-migrations handle schema evolution
+
+## Release Signing
+
+Credentials resolved in order: environment variables → `keystore.properties` → `local.properties` → `gradle.properties`. Release tasks fail fast if signing is misconfigured.
+
+## Key Dependencies
+
+Compose BOM 2026.05.01, Kotlin 2.3.21, Room 2.8.4 (KSP), Tink 1.23.0, CameraX 1.6.1 + ML Kit.
+Version catalog: `gradle/libs.versions.toml`. No Dependabot configuration is active; dependency
+updates are reviewed manually.
+
+## Reusable Utilities
+
+Before creating new helpers, check: `ContactUtils`, `NoteShareUtils`, `NotesBackupUtils`, `PermissionUtils`, `SpeechUtils`, `VibrationUtils`, `CryptoManager`.

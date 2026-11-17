@@ -1,0 +1,11 @@
+# Default owner for everything
+* @Moncada25
+
+# Android source code
+app/ @Moncada25
+
+# CI/CD
+.github/workflows/ @Moncada25
+
+# Documentation
+*.md @Moncada25

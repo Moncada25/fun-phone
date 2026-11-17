@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">#FFFFFF</color>
+    <!-- Colores de acento para la aplicación -->
+    <color name="accent_red">#FFF44336</color>
+
+    <!-- Colores para el tema oscuro -->
+    <!-- Colores para el tema claro -->
+
+    <!-- Colores para el widget -->
+    <color name="widget_background">#F5F5F5</color>
+    <color name="widget_text">#212121</color>
+    <color name="widget_text_secondary">#757575</color>
+    <color name="widget_accent">#FF2196F3</color>
+    <color name="widget_border">#E0E0E0</color>
+    <color name="widget_item_pressed">#E3F2FD</color>
+    <color name="widget_avatar_default">#9E9E9E</color>
+</resources>
