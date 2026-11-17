@@ -1,0 +1,4 @@
+• Novo ajuste Efeitos de vidro: Automático adapta o desfoque ao seu celular, ou ative e desative.
+• Abertura mais rápida e rolagem mais fluida, principalmente em aparelhos intermediários.
+• Discador: o país mostra bandeira e código, e um único contato correspondente aparece pronto para ligar.
+• Corrigimos um fechamento no Histórico e a edição de contatos sincronizados de outros apps.

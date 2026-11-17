@@ -36,6 +36,9 @@ data class SigningCredentials(
 
 abstract class ValidateReleaseSigningTask : DefaultTask() {
     @get:Input
+    abstract val propertyPrefix: Property<String>
+
+    @get:Input
     abstract val storeFilePath: Property<String>
 
     @get:Input
@@ -52,15 +55,16 @@ abstract class ValidateReleaseSigningTask : DefaultTask() {
 
     @TaskAction
     fun validate() {
+        val prefix = propertyPrefix.get()
         val path = storeFilePath.orNull?.takeUnless { it.isBlank() }
             ?: throw GradleException(
-                "Release signing credentials are missing. Configure RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, RELEASE_KEY_ALIAS, and RELEASE_KEY_PASSWORD.",
+                "Release signing credentials are missing. Configure ${prefix}_STORE_FILE, ${prefix}_STORE_PASSWORD, ${prefix}_KEY_ALIAS, and ${prefix}_KEY_PASSWORD.",
             )
 
         val storeFile = projectDirectory.file(path).get().asFile
         if (!storeFile.exists()) {
             throw GradleException(
-                "Release keystore not found at ${storeFile.absolutePath}. Update RELEASE_STORE_FILE or place the keystore in that path.",
+                "Release keystore not found at ${storeFile.absolutePath}. Update ${prefix}_STORE_FILE or place the keystore in that path.",
             )
         }
 
@@ -70,14 +74,14 @@ abstract class ValidateReleaseSigningTask : DefaultTask() {
         )
         if (storeFile in placeholderKeystores) {
             throw GradleException(
-                "The placeholder keystore ${storeFile.name} is not valid for Play Store uploads. Point RELEASE_STORE_FILE to your actual upload keystore.",
+                "The placeholder keystore ${storeFile.name} is not valid for release artifacts. Point ${prefix}_STORE_FILE to your actual keystore.",
             )
         }
 
         val missingValue = when {
-            !storePasswordPresent.get() -> "RELEASE_STORE_PASSWORD"
-            !keyAliasPresent.get() -> "RELEASE_KEY_ALIAS"
-            !keyPasswordPresent.get() -> "RELEASE_KEY_PASSWORD"
+            !storePasswordPresent.get() -> "${prefix}_STORE_PASSWORD"
+            !keyAliasPresent.get() -> "${prefix}_KEY_ALIAS"
+            !keyPasswordPresent.get() -> "${prefix}_KEY_PASSWORD"
             else -> null
         }
         if (missingValue != null) {
@@ -152,7 +156,7 @@ abstract class GenerateReleaseManifestTask : DefaultTask() {
     }
 }
 
-fun Project.resolveReleaseSigningCredentials(): SigningCredentials {
+fun Project.resolveSigningCredentials(prefix: String): SigningCredentials {
     val fallbackProperties = Properties().apply {
         listOf(
             "gradle.properties.private",
@@ -172,14 +176,18 @@ fun Project.resolveReleaseSigningCredentials(): SigningCredentials {
             ?: (findProperty(key) as String?)?.takeUnless { it.isBlank() }
 
     return SigningCredentials(
-        storeFilePath = lookup("RELEASE_STORE_FILE"),
-        storePassword = lookup("RELEASE_STORE_PASSWORD"),
-        keyAlias = lookup("RELEASE_KEY_ALIAS"),
-        keyPassword = lookup("RELEASE_KEY_PASSWORD"),
+        storeFilePath = lookup("${prefix}_STORE_FILE"),
+        storePassword = lookup("${prefix}_STORE_PASSWORD"),
+        keyAlias = lookup("${prefix}_KEY_ALIAS"),
+        keyPassword = lookup("${prefix}_KEY_PASSWORD"),
     )
 }
 
-val releaseSigningCredentials = resolveReleaseSigningCredentials()
+fun SigningCredentials.isComplete(): Boolean =
+    storeFilePath != null && storePassword != null && keyAlias != null && keyPassword != null
+
+val releaseSigningCredentials = resolveSigningCredentials("RELEASE")
+val communitySigningCredentials = resolveSigningCredentials("COMMUNITY_RELEASE")
 val buildDate: String = SimpleDateFormat("ddMMyyyy").format(Date())
 
 plugins {
@@ -204,6 +212,9 @@ baselineProfile {
 }
 
 androidComponents {
+    onVariants(selector().withFlavor("distribution" to "community").withBuildType("release")) { variant ->
+        variant.outputs.forEach { output -> output.versionName.set(appVersionName) }
+    }
     finalizeDsl { extension ->
         listOf("nonMinifiedRelease", "benchmarkRelease").forEach { buildTypeName ->
             extension.buildTypes.findByName(buildTypeName)?.signingConfig =
@@ -243,26 +254,6 @@ android {
         }
     }
 
-    flavorDimensions += "distribution"
-    productFlavors {
-        create("community") {
-            dimension = "distribution"
-            applicationIdSuffix = ".community"
-            versionNameSuffix = "-community"
-            buildConfigField("String", "DISTRIBUTION", "\"community\"")
-        }
-        create("play") {
-            dimension = "distribution"
-            buildConfigField("String", "DISTRIBUTION", "\"play\"")
-        }
-    }
-
-    testOptions {
-        unitTests {
-            isReturnDefaultValues = true
-        }
-    }
-
     signingConfigs {
         create("release") {
             val storeFilePath = releaseSigningCredentials.storeFilePath
@@ -280,6 +271,38 @@ android {
                 }
             }
         }
+        create("community") {
+            if (communitySigningCredentials.isComplete()) {
+                storeFile = rootProject.file(communitySigningCredentials.storeFilePath!!)
+                storePassword = communitySigningCredentials.storePassword
+                keyAlias = communitySigningCredentials.keyAlias
+                keyPassword = communitySigningCredentials.keyPassword
+            }
+        }
+    }
+
+    flavorDimensions += "distribution"
+    productFlavors {
+        create("community") {
+            dimension = "distribution"
+            applicationIdSuffix = ".community"
+            versionNameSuffix = "-community"
+            buildConfigField("String", "DISTRIBUTION", "\"community\"")
+            if (communitySigningCredentials.isComplete()) {
+                signingConfig = signingConfigs.getByName("community")
+            }
+        }
+        create("play") {
+            dimension = "distribution"
+            buildConfigField("String", "DISTRIBUTION", "\"play\"")
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
     }
 
     buildTypes {
@@ -295,7 +318,6 @@ android {
         }
         release {
             versionNameSuffix = ".$buildDate Prod"
-            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             buildConfigField("boolean", "DEBUG", "false")
@@ -350,6 +372,7 @@ val guardedReleaseTasks = setOf(
 val validatePlayReleaseSigning by tasks.registering(ValidateReleaseSigningTask::class) {
     group = "distribution"
     description = "Validates the credentials and keystore used for Play release artifacts."
+    propertyPrefix.set("RELEASE")
     storeFilePath.set(releaseSigningCredentials.storeFilePath.orEmpty())
     storePasswordPresent.set(!releaseSigningCredentials.storePassword.isNullOrBlank())
     keyAliasPresent.set(!releaseSigningCredentials.keyAlias.isNullOrBlank())
@@ -359,6 +382,17 @@ val validatePlayReleaseSigning by tasks.registering(ValidateReleaseSigningTask::
 
 tasks.matching { it.name in guardedReleaseTasks }.configureEach {
     dependsOn(validatePlayReleaseSigning)
+}
+
+val validateCommunityReleaseSigning by tasks.registering(ValidateReleaseSigningTask::class) {
+    group = "distribution"
+    description = "Validates the credentials and keystore used for signed community release APKs."
+    propertyPrefix.set("COMMUNITY_RELEASE")
+    storeFilePath.set(communitySigningCredentials.storeFilePath.orEmpty())
+    storePasswordPresent.set(!communitySigningCredentials.storePassword.isNullOrBlank())
+    keyAliasPresent.set(!communitySigningCredentials.keyAlias.isNullOrBlank())
+    keyPasswordPresent.set(!communitySigningCredentials.keyPassword.isNullOrBlank())
+    projectDirectory.set(layout.projectDirectory)
 }
 
 configurations.all {

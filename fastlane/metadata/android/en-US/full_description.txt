@@ -1,0 +1,24 @@
+Make calls your way with a private Android dialer built around speed, clarity and control.
+
+Find contacts with T9 search, call from favorites or recents, and manage incoming, outgoing and missed calls with clear controls. Fun Phone can replace your default phone app. Device Status helps you review permissions and the default dialer role.
+
+Fun Phone processes contacts and call data on your device. Connected accounts may sync contacts under their own settings. The app has no ads, analytics, cloud account or developer-operated cloud. Contact photos are shared as local files through Android Sharesheet when you choose to share them.
+
+Two optional features connect directly to the internet. Public holidays uses Nager.Date after your approval, requesting the selected country and year. Opening a website or social preview contacts the selected site, which receives the URL, IP address, cookies and technical request data under its own policy. Speech tools use your configured Android speech provider, whose processing may require a connection.
+
+Personalize themes, colors, fonts, layouts and text size. Compact and large-text options help the app fit different screens, with labels and navigation designed for Android accessibility services and screen readers.
+
+Calls and contacts come first. Enable only the extra tools you want: notes, checklists, reminders, expenses and budgets, QR utilities, voice tools, a local password vault with PIN or biometrics, Pomodoro, wellbeing, paint and games.
+
+Highlights:
+• T9 contact search
+• Favorites, recents and missed calls
+• Incoming and active-call controls
+• Contact import, export and duplicate tools
+• Themes, colors, fonts and adjustable text size
+• Screen-reader-friendly labels and navigation
+• Optional tools you can enable or hide
+• Local password vault with PIN or biometrics
+• No ads, analytics or developer-operated cloud
+
+Android capabilities vary by device and version. After installation, open Device Status to complete permissions and choose Fun Phone as your default dialer.

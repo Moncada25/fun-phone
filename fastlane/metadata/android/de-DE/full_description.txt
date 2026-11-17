@@ -1,0 +1,24 @@
+Telefoniere auf deine Art: mit einem privaten Android-Dialer für schnelle Suche, klare Bedienung und mehr Kontrolle.
+
+Finde Kontakte per T9, rufe über Favoriten oder die Anrufliste an und verwalte eingehende, ausgehende und verpasste Anrufe mit übersichtlichen Steuerelementen. Fun Phone kann deine Standard-Telefon-App ersetzen. Im Gerätestatus prüfst du Berechtigungen und die Rolle als Standard-Dialer.
+
+Fun Phone verarbeitet Kontakte und Anrufdaten auf deinem Gerät. Verbundene Konten können Kontakte nach ihren eigenen Einstellungen synchronisieren. Die App enthält keine Werbung, Analytik, Cloud-Konten oder Entwickler-Cloud. Kontaktfotos werden nur auf deinen Wunsch als lokale Dateien über das Android-Teilen-Menü weitergegeben.
+
+Zwei optionale Funktionen verbinden sich direkt mit dem Internet. Das Feiertagswerkzeug fragt nach deiner Zustimmung das gewählte Land und Jahr bei Nager.Date ab. Wenn du eine Website- oder Social-Media-Vorschau öffnest, erhält die gewählte Website URL, IP-Adresse, Cookies und technische Anfragedaten gemäß ihrer eigenen Richtlinie. Sprachwerkzeuge nutzen deinen Android-Sprachanbieter, dessen Verarbeitung eine Verbindung benötigen kann.
+
+Passe Designs, Farben, Schriften, Layouts und Textgröße an. Kompakte Ansichten und große Schrift passen sich verschiedenen Bildschirmen an. Beschriftungen und Navigation sind auf Android-Bedienungshilfen und Screenreader ausgelegt.
+
+Anrufe und Kontakte stehen im Mittelpunkt. Aktiviere nur die Extras, die du möchtest: Notizen, Checklisten, Erinnerungen, Ausgaben und Budgets, QR- und Sprachwerkzeuge, einen lokalen Passworttresor mit PIN oder Biometrie, Pomodoro, Wohlbefinden, Malen und Spiele.
+
+Funktionen im Überblick:
+• Kontaktsuche per T9
+• Favoriten, Anrufliste und verpasste Anrufe
+• Steuerung eingehender und aktiver Anrufe
+• Kontaktimport, Export und Verwaltung von Duplikaten
+• Designs, Farben, Schriften und anpassbare Textgröße
+• Beschriftungen und Navigation für Screenreader
+• Optionale Werkzeuge zum Ein- und Ausblenden
+• Lokaler Passworttresor mit PIN oder Biometrie
+• Keine Werbung, Analytik oder Entwickler-Cloud
+
+Android-Funktionen hängen vom Gerät und der Version ab. Öffne nach der Installation den Gerätestatus, um Berechtigungen einzurichten und Fun Phone als Standard-Dialer auszuwählen.
