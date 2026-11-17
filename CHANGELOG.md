@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.20.6] - 2026-11-17
+
 ### Added
+- Fun Phone is open source under GPL-3.0.
 - Signed `community` release APKs for GitHub Releases and Obtainium, using a dedicated
   `COMMUNITY_RELEASE_*` key. Without it the build stays unsigned for F-Droid.
 - Fastlane metadata (`fastlane/metadata/android`) generated with the Play listing export.
@@ -15,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Release APKs no longer embed the encrypted Google dependency metadata block (the Play bundle
   keeps it), as F-Droid's scanner requires.
-- The `community` release reports a plain `versionName` (for example `3.20.5`).
+- The `community` release reports a plain `versionName` (for example `3.20.6`).
 - The `community` build scans QR codes with ZXing and no longer ships ML Kit, Google Play Services,
   Play Core or Firebase classes. The `play` build keeps ML Kit.
 

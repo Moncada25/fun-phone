@@ -1,0 +1,3 @@
+• Fun Phone ahora es código abierto (GPL-3.0). El código está en GitHub.
+• App más liviana: quitamos un componente de reconocimiento de texto que no se usaba.
+• La versión community de GitHub escanea QR con ZXing, sin librerías de Google.

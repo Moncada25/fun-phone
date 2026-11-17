@@ -1,0 +1,3 @@
+• Fun Phone is now open source under GPL-3.0. The code is on GitHub.
+• Lighter app: we removed an unused text recognition component.
+• The community version on GitHub scans QR codes with ZXing, without Google libraries.

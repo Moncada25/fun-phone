@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy candidate:** current 3.20.2/262 behavior; not yet uploaded
-**Release notes candidate below:** 3.20.5 (265)
+**Release notes candidate below:** 3.20.6 (266)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -182,42 +182,37 @@ Destaques:
 
 Os recursos do Android variam conforme o aparelho e a versão. Após instalar, abra Status do dispositivo para concluir as permissões e escolher o Fun Phone como discador padrão.
 
-## What's new — 3.20.5
+## What's new — 3.20.6
 
 ### English
 
-• New Glass effects setting: Automatic fits blur to your phone, or turn it on or off.
-• Faster startup and smoother scrolling, especially on mid-range phones.
-• Dialer: the country chip shows flag and code, and a single matching contact appears ready to call.
-• Fixed a crash in History and editing contacts after they sync from other apps.
+• Fun Phone is now open source under GPL-3.0. The code is on GitHub.
+• Lighter app: we removed an unused text recognition component.
+• The community version on GitHub scans QR codes with ZXing, without Google libraries.
 
 ### Español
 
-• Nuevo ajuste Efectos de cristal: Automático adapta el desenfoque a tu teléfono, o actívalo y desactívalo.
-• Arranque más rápido y scroll más fluido, sobre todo en gama media.
-• Marcador: el país muestra bandera y prefijo, y si un solo contacto coincide, aparece listo para llamar.
-• Corregimos un cierre en Historial y la edición de contactos sincronizados desde otras apps.
+• Fun Phone ahora es código abierto (GPL-3.0). El código está en GitHub.
+• App más liviana: quitamos un componente de reconocimiento de texto que no se usaba.
+• La versión community de GitHub escanea QR con ZXing, sin librerías de Google.
 
 ### Deutsch
 
-• Neue Einstellung Glaseffekte: Automatisch passt die Unschärfe an dein Telefon an, oder schalte sie ein oder aus.
-• Schnellerer Start und flüssigeres Scrollen, besonders auf Mittelklasse-Geräten.
-• Wählfeld: Länderchip mit Flagge und Vorwahl; ein einzelner passender Kontakt ist direkt anrufbar.
-• Absturz im Verlauf behoben; aus anderen Apps synchronisierte Kontakte lassen sich wieder bearbeiten.
+• Fun Phone ist jetzt Open Source unter der GPL-3.0. Der Code liegt auf GitHub.
+• Schlankere App: Eine ungenutzte Texterkennungskomponente wurde entfernt.
+• Die Community-Version auf GitHub scannt QR-Codes mit ZXing, ohne Google-Bibliotheken.
 
 ### Français
 
-• Nouveau réglage Effets de verre : Automatique adapte le flou à votre téléphone, ou activez-le et désactivez-le.
-• Démarrage plus rapide et défilement plus fluide, surtout en milieu de gamme.
-• Composeur : le pays affiche drapeau et indicatif, et un seul contact correspondant est prêt à appeler.
-• Correction d'un plantage dans l'Historique et de la modification des contacts synchronisés.
+• Fun Phone est désormais open source sous licence GPL-3.0. Le code est sur GitHub.
+• Application plus légère : un composant de reconnaissance de texte inutilisé a été retiré.
+• La version community sur GitHub lit les QR codes avec ZXing, sans bibliothèques Google.
 
 ### Português
 
-• Novo ajuste Efeitos de vidro: Automático adapta o desfoque ao seu celular, ou ative e desative.
-• Abertura mais rápida e rolagem mais fluida, principalmente em aparelhos intermediários.
-• Discador: o país mostra bandeira e código, e um único contato correspondente aparece pronto para ligar.
-• Corrigimos um fechamento no Histórico e a edição de contatos sincronizados de outros apps.
+• O Fun Phone agora é código aberto sob a GPL-3.0. O código está no GitHub.
+• App mais leve: removemos um componente de reconhecimento de texto que não era usado.
+• A versão community no GitHub lê QR codes com ZXing, sem bibliotecas do Google.
 
 ## Screenshot order
 
@@ -304,7 +299,7 @@ The guard checks title/short/full limits, export freshness, native fixture cover
 set for every language. Limits are 30, 80 and 4,000 characters respectively, per
 [Google Play product-detail guidance](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en).
 The full descriptions consistently disclose optional social previews, holiday requests, Android
-speech providers and account-managed contact synchronization. The 3.20.5 release notes above are ready for this local candidate; generating text does not upload it.
+speech providers and account-managed contact synchronization. The 3.20.6 release notes above are ready for this local candidate; generating text does not upload it.
 
 ## Custom listing drafts — publish only after source publication
 
