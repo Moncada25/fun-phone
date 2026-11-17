@@ -292,11 +292,6 @@ GitHub Actions en `.github/workflows/`:
 | **`secrets.yml`** | Push/PR a `main` | Escanea secretos nuevos sin depender de almacenamiento de artifacts. |
 | **`play-release.yml`** | Ejecución manual desde `main` | Valida, firma y publica el AAB Play al 100% tras aprobación del environment `play-production`. |
 
-Para sincronizar automáticamente la versión del landing privado, configura
-`FUN_PHONE_WEB_DISPATCH_TOKEN` como fine-grained PAT limitado a `fun-phone-web`
-con permiso **Contents: write**, necesario para enviar `repository_dispatch` a
-`Moncada25/fun-phone-web`. Si no existe, Android CI continúa y omite únicamente esa notificación.
-
 ### Configurar releases automáticos
 
 El workflow `play-release.yml` se ejecuta desde **Actions → Play Production Release → Run workflow**.

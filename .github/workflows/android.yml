@@ -62,23 +62,6 @@ jobs:
       if: ${{ github.event_name != 'pull_request' }}
       run: ./scripts/verify-release-metadata.sh
 
-    - name: Notify landing of release metadata
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      env:
-        GH_TOKEN: ${{ secrets.FUN_PHONE_WEB_DISPATCH_TOKEN }}
-      run: |
-        if [[ -z "$GH_TOKEN" ]]; then
-          echo "FUN_PHONE_WEB_DISPATCH_TOKEN is not configured; skipping landing sync."
-          exit 0
-        fi
-        jq -n \
-          --slurpfile release app/build/reports/release/release-manifest.json \
-          '{event_type: "fun-phone-release", client_payload: {release: $release[0]}}' \
-          > "$RUNNER_TEMP/fun-phone-release-dispatch.json"
-        gh api repos/Moncada25/fun-phone-web/dispatches \
-          --method POST \
-          --input "$RUNNER_TEMP/fun-phone-release-dispatch.json"
-
     - name: Upload debug APK
       uses: actions/upload-artifact@v7
       # APKs are useful for an explicitly requested manual QA run, but are too
