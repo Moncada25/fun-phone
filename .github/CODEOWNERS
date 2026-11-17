@@ -1,0 +1,11 @@
+# Default owner for everything
+* @santiago-moncada
+
+# Android source code
+app/ @santiago-moncada
+
+# CI/CD
+.github/workflows/ @santiago-moncada
+
+# Documentation
+*.md @santiago-moncada

@@ -1,0 +1,2 @@
+# False positive in roadmap prose; the entry is limited to the reported commit, file, rule, and line.
+570c0c644e58673ae319ae8ebc0bf7f94a7792d6:FUN_PHONE_EVOLUTION_SPEC.md:generic-api-key:276

@@ -1,0 +1,24 @@
+Faça chamadas do seu jeito com um discador Android privado, pensado para oferecer agilidade, clareza e controle.
+
+Encontre contatos com a busca T9, ligue pelos favoritos ou recentes e gerencie chamadas recebidas, realizadas e perdidas com controles claros. O Fun Phone pode substituir o app de telefone padrão. Em Status do dispositivo, você confere as permissões e a função de discador padrão.
+
+O Fun Phone processa contatos e dados de chamadas no aparelho. Contas conectadas podem sincronizar contatos conforme suas próprias configurações. O app não tem anúncios, análises, conta na nuvem nem nuvem operada pelo desenvolvedor. Fotos de contatos são compartilhadas como arquivos locais pelo menu de compartilhamento do Android quando você escolhe compartilhá-las.
+
+Duas funções opcionais se conectam diretamente à internet. A ferramenta de feriados consulta o Nager.Date com o país e o ano escolhidos, após sua aprovação. Ao abrir a prévia de um site ou de uma rede social, o site escolhido recebe a URL, o endereço IP, cookies e dados técnicos da solicitação conforme sua própria política. As ferramentas de voz usam o provedor configurado no Android, cujo processamento pode precisar de conexão.
+
+Personalize temas, cores, fontes, layouts e tamanho do texto. As opções compactas e de texto grande se adaptam a diferentes telas, com rótulos e navegação pensados para os serviços de acessibilidade e leitores de tela do Android.
+
+Chamadas e contatos vêm primeiro. Ative apenas os extras que quiser: notas, listas de tarefas, lembretes, gastos e orçamentos, ferramentas QR e de voz, cofre local de senhas com PIN ou biometria, Pomodoro, bem-estar, pintura e jogos.
+
+Destaques:
+• Busca T9 de contatos
+• Favoritos, recentes e chamadas perdidas
+• Controles de chamadas recebidas e em andamento
+• Importação, exportação e gerenciamento de duplicados
+• Temas, cores, fontes e tamanho do texto ajustável
+• Rótulos e navegação compatíveis com leitores de tela
+• Ferramentas opcionais para ativar ou ocultar
+• Cofre local de senhas com PIN ou biometria
+• Sem anúncios, análises nem nuvem operada pelo desenvolvedor
+
+Os recursos do Android variam conforme o aparelho e a versão. Após instalar, abra Status do dispositivo para concluir as permissões e escolher o Fun Phone como discador padrão.

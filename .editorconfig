@@ -1,0 +1,6 @@
+root = true
+
+[*.{kt,kts}]
+# Keep ktlint focused as an import guard; Android Studio remains the formatter.
+ktlint_standard = disabled
+ktlint_standard_no-unused-imports = enabled

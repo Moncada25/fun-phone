@@ -1,0 +1,24 @@
+Appelez à votre façon avec une application Téléphone Android privée, pensée pour la rapidité, la clarté et le contrôle.
+
+Retrouvez vos contacts avec la recherche T9, appelez depuis les favoris ou l’historique et gérez les appels entrants, sortants et manqués avec des commandes claires. Fun Phone peut remplacer votre application Téléphone par défaut. État de l’appareil vous aide à vérifier les autorisations et ce rôle.
+
+Fun Phone traite les contacts et les données d’appel sur votre appareil. Les comptes connectés peuvent synchroniser les contacts selon leurs propres réglages. L’application ne contient ni publicité, ni analytique, ni compte cloud ou cloud géré par le développeur. Les photos des contacts sont partagées comme fichiers locaux via le menu de partage Android, à votre demande.
+
+Deux fonctions facultatives se connectent directement à Internet. L’outil de jours fériés consulte Nager.Date avec le pays et l’année choisis, après votre accord. Lorsque vous ouvrez l’aperçu d’un site web ou d’un réseau social, le site choisi reçoit l’URL, l’adresse IP, les cookies et les données techniques de la requête selon sa propre politique. Les outils vocaux utilisent le fournisseur vocal configuré dans Android, dont le traitement peut nécessiter une connexion.
+
+Personnalisez les thèmes, les couleurs, les polices, la disposition et la taille du texte. Les vues compactes et les grands caractères s’adaptent aux écrans, avec des libellés et une navigation conçus pour les services d’accessibilité Android et les lecteurs d’écran.
+
+Les appels et les contacts restent essentiels. Activez uniquement les outils souhaités : notes, listes de tâches, rappels, dépenses et budgets, outils QR et vocaux, coffre-fort local de mots de passe avec code PIN ou biométrie, Pomodoro, bien-être, dessin et jeux.
+
+Fonctions principales :
+• Recherche de contacts T9
+• Favoris, historique et appels manqués
+• Commandes des appels entrants et en cours
+• Importation, exportation et gestion des doublons
+• Thèmes, couleurs, polices et taille du texte réglable
+• Libellés et navigation adaptés aux lecteurs d’écran
+• Outils facultatifs à afficher ou masquer
+• Coffre-fort local avec code PIN ou biométrie
+• Sans publicité, analytique ni cloud géré par le développeur
+
+Les fonctions Android varient selon l’appareil et la version. Après l’installation, ouvrez État de l’appareil pour configurer les autorisations et choisir Fun Phone comme application Téléphone par défaut.

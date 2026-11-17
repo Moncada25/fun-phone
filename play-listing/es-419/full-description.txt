@@ -1,0 +1,24 @@
+Haz llamadas a tu manera con un marcador Android privado pensado para ofrecer rapidez, claridad y control.
+
+Encuentra contactos con la búsqueda T9, llama desde favoritos o recientes y gestiona llamadas entrantes, salientes y perdidas con controles claros. Fun Phone puede reemplazar la app de teléfono predeterminada. Estado del Dispositivo te ayuda a revisar los permisos y el rol de marcador.
+
+Fun Phone procesa los contactos y datos de llamadas en tu dispositivo. Las cuentas conectadas pueden sincronizar contactos según sus propios ajustes. La app no tiene anuncios, analítica, cuenta en la nube ni nube operada por el desarrollador. Las fotos de contactos se comparten como archivos locales mediante Android Sharesheet cuando tú eliges compartirlas.
+
+Dos funciones opcionales se conectan directamente a internet. Los festivos usan Nager.Date tras tu aprobación y consultan el país y el año seleccionados. Al abrir el preview de un sitio web o una red social, el sitio elegido recibe la URL, la dirección IP, cookies y datos técnicos de la solicitud según su propia política. Las herramientas de voz usan el proveedor configurado en Android, cuyo procesamiento puede necesitar conexión.
+
+Personaliza temas, colores, fuentes, diseños y tamaño del texto. Las vistas compactas y de texto grande se adaptan a distintas pantallas, con etiquetas y navegación pensadas para los servicios de accesibilidad y lectores de pantalla de Android.
+
+Las llamadas y contactos son lo principal. Activa solo las herramientas adicionales que quieras: notas, listas, recordatorios, gastos y presupuestos, utilidades QR, voz, bóveda local de contraseñas con PIN o biometría, Pomodoro, bienestar, pintura y juegos.
+
+Funciones destacadas:
+• Búsqueda T9 de contactos
+• Favoritos, recientes y llamadas perdidas
+• Controles de llamada entrante y activa
+• Importación, exportación y gestión de duplicados
+• Temas, colores, fuentes y tamaño de texto ajustable
+• Etiquetas y navegación compatibles con lectores de pantalla
+• Herramientas opcionales que puedes mostrar u ocultar
+• Bóveda local de contraseñas con PIN o biometría
+• Sin anuncios, analítica ni nube operada por el desarrollador
+
+Las capacidades de Android varían según el dispositivo y la versión. Tras instalar, abre Estado del Dispositivo para completar los permisos y elegir Fun Phone como marcador predeterminado.
