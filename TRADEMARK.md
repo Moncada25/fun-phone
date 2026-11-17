@@ -66,15 +66,13 @@ pantalla "Acerca de" y en tu README.
 
 ### Licencia de los assets gráficos
 
-Los siguientes assets están protegidos por derechos de autor y **no están cubiertos** por la
-licencia GPL v3 del código:
+Todos los archivos de este repositorio, incluidos íconos, avatares, ilustraciones de juegos y
+material de ficha, se distribuyen bajo la GPL-3.0-or-later, salvo que un archivo indique otra cosa.
 
-- Los archivos de marca listados arriba (logotipo e íconos).
-- Avatares (`app/src/main/res/drawable-nodpi/avatar_*`).
-- El material de ficha de tienda listado arriba.
-
-Estos assets son propiedad de Bookverse y no pueden redistribuirse en forks sin autorización. Las
-redistribuciones sin modificar descritas arriba sí pueden incluirlos.
+Esa licencia de derechos de autor no permite usar el nombre "Fun Phone" ni el logotipo e ícono para
+identificar otra app o servicio: ese uso lo regula esta política de marca. En la práctica, un fork
+puede reutilizar los avatares y las ilustraciones de juegos, pero debe reemplazar los archivos de
+marca y el material de ficha.
 
 ---
 
@@ -145,14 +143,13 @@ About screen and in your README.
 
 ### Graphic asset license
 
-The following assets are copyrighted and are **not covered** by the GPL v3 code license:
+All files in this repository, including icons, avatars, game illustrations and store listing
+material, are distributed under GPL-3.0-or-later unless a file states otherwise.
 
-- The brand files listed above (logo and icons).
-- Avatars (`app/src/main/res/drawable-nodpi/avatar_*`).
-- The store listing material listed above.
-
-These assets are property of Bookverse and may not be redistributed in forks without permission.
-The unmodified redistributions described above may include them.
+That copyright license does not allow using the "Fun Phone" name or the logo and icon to identify
+another app or service: that use is governed by this trademark policy. In practice, a fork may
+reuse the avatars and game illustrations, but must replace the brand files and the store listing
+material.
 
 ---
 
