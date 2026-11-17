@@ -1,6 +1,7 @@
 package com.bookverse.contacts.integration
 
 import android.graphics.Bitmap
+import androidx.annotation.OptIn
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.barcode.BarcodeScanner
