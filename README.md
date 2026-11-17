@@ -109,7 +109,7 @@ All screenshots use fictional demo data.
 | Google libraries | ML Kit (QR) and In-App Review | None | None |
 | QR scanner | ML Kit | ZXing | ZXing |
 | Updates | Google Play | [Obtainium](https://github.com/ImranR98/Obtainium) or manual | F-Droid client |
-| Status | Available | Available | [Submission in review](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/57835) |
+| Status | Available | Available | Planned for early 2027 |
 
 The Google Play and community builds install side by side and don't share data. Use the in-app
 backup to move your data between them.
