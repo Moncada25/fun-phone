@@ -12,7 +12,6 @@ import androidx.compose.ui.res.stringResource
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.CountBreakdownSheet
 import com.bookverse.contacts.ui.components.CountInfoRow
-import com.bookverse.contacts.utils.ContactUtils
 
 private data class PasswordStrengthCount(
     val icon: ImageVector,
@@ -52,7 +51,7 @@ internal fun PasswordStrengthCountsSheet(
             count = passwords.count {
                 PasswordGenerator.strength(it) in level.minScore..level.maxScore
             },
-            color = ContactUtils.passwordStrengthInfo(level.minScore).first,
+            color = passwordStrengthInfo(level.minScore).first,
         )
     }
 

@@ -87,7 +87,6 @@ import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
-import com.bookverse.contacts.utils.ContactUtils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -131,7 +130,7 @@ fun PasswordEditScreen(
     val accentColor = MaterialTheme.colorScheme.primary
     val strength = remember(password) { PasswordGenerator.strength(password) }
     val (strengthColor, strengthLabelRes) = remember(strength) {
-        ContactUtils.passwordStrengthInfo(strength)
+        passwordStrengthInfo(strength)
     }
     val totpConfig = remember(totpInput) { Totp.parse(totpInput) }
     val totpInvalid = totpInput.isNotBlank() && totpConfig == null

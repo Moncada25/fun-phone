@@ -15,7 +15,7 @@ class PasswordBackupJsonTest {
         val deleted = credential(id = 11, folderId = folder.id, isDeleted = true)
 
         val root = JsonParser.parseString(
-            JsonUtils.buildPasswordsBackupJson(listOf(active, deleted), listOf(folder)),
+            PasswordJsonUtils.buildPasswordsBackupJson(listOf(active, deleted), listOf(folder)),
         ).asJsonObject
 
         assertEquals("passwords", root.get("type").asString)
@@ -33,12 +33,12 @@ class PasswordBackupJsonTest {
             .copy(url = "https://example.com", totp = totp)
 
         val backup = JsonParser.parseString(
-            JsonUtils.buildPasswordsBackupJson(listOf(withExtras), emptyList()),
+            PasswordJsonUtils.buildPasswordsBackupJson(listOf(withExtras), emptyList()),
         ).asJsonObject.getAsJsonArray("credentials")[0].asJsonObject
         assertEquals("https://example.com", backup.get("url").asString)
         assertEquals(totp, backup.get("totp").asString)
 
-        val shared = JsonUtils.passwordCredentialToMap(withExtras)
+        val shared = PasswordJsonUtils.passwordCredentialToMap(withExtras)
         assertEquals("https://example.com", shared["url"])
         assertFalse(shared.containsKey("totp"))
     }

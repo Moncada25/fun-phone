@@ -26,7 +26,7 @@ import com.bookverse.contacts.domain.backup.BackupContentException
 import com.bookverse.contacts.domain.passwords.PasswordImportPolicy
 import com.bookverse.contacts.service.NotificationService
 import com.bookverse.contacts.settings.AppDataStore
-import com.bookverse.contacts.utils.JsonUtils
+import com.bookverse.contacts.utils.PasswordJsonUtils
 import com.bookverse.contacts.utils.NotesBackupUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -67,7 +67,7 @@ class AppBackupManager(context: Context) {
             val expenseDao = database.expenseDao()
             val vaultJson = if (includeVault) {
                 val credentials = passwordStore.getAllForBackup()
-                JsonUtils.buildPasswordsBackupJson(credentials, passwordStore.getFoldersForBackup()) to
+                PasswordJsonUtils.buildPasswordsBackupJson(credentials, passwordStore.getFoldersForBackup()) to
                     credentials.size
             } else {
                 null

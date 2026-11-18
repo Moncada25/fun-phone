@@ -19,7 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
-import com.bookverse.contacts.utils.JsonUtils
+import com.bookverse.contacts.utils.PasswordJsonUtils
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -63,7 +63,7 @@ fun rememberPasswordBackupActions(
         transferJob = scope.launch {
             try {
                 if (isImport) {
-                    val result = JsonUtils.importPasswords(context, uri, passwords)
+                    val result = PasswordJsonUtils.importPasswords(context, uri, passwords)
                     val message = when {
                         result.skipped > 0 -> resources.getString(R.string.passwords_json_import_summary, result.imported, result.skipped)
                         result.imported > 0 -> resources.getString(R.string.passwords_json_import_success, result.imported)
@@ -71,7 +71,7 @@ fun rememberPasswordBackupActions(
                     }
                     message?.let { Toast.makeText(context, it, Toast.LENGTH_LONG).show() }
                 } else {
-                    JsonUtils.exportPasswords(context, passwords.getAllForBackup(), passwords.getFoldersForBackup(), uri)
+                    PasswordJsonUtils.exportPasswords(context, passwords.getAllForBackup(), passwords.getFoldersForBackup(), uri)
                 }
             } catch (error: CancellationException) {
                 throw error

@@ -90,7 +90,7 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.screens.settings.SettingsChoiceRow
 import com.bookverse.contacts.ui.screens.settings.SettingsSheetScaffold
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.utils.ClipboardUtils
 import com.bookverse.contacts.utils.LanguageOption
 import com.bookverse.contacts.utils.SpeechUtils
 import com.bookverse.contacts.utils.VoiceOption
@@ -358,7 +358,7 @@ fun VoiceScreen(
                                 accentColor = accentColor,
                                 showTranscription = showTranscription,
                                 onCopy = {
-                                    ContactUtils.copyToClipboard(
+                                    ClipboardUtils.copyToClipboard(
                                         context = context,
                                         text = transcriptionText,
                                         label = resources.getString(R.string.label_transcribed_text),

@@ -76,7 +76,9 @@ import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.data.qr.QRType
-import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.utils.ClipboardUtils
+import com.bookverse.contacts.utils.UrlUtils
+import com.bookverse.contacts.utils.ContactShareFormat
 import com.bookverse.contacts.utils.QRContentClassifier
 import com.bookverse.contacts.utils.QRContentType
 import com.google.gson.GsonBuilder
@@ -142,11 +144,11 @@ fun QRScannerScreen(
                                 detectedAsUrl = decoded.isUrl,
                             )
                             val isContactContent =
-                                rawValue.startsWith(ContactUtils.CONTACT_OBJECT)
+                                rawValue.startsWith(ContactShareFormat.CONTACT_OBJECT)
                             if (isContactContent && onContactSaved != null) {
                                 try {
                                     val contactJson =
-                                        rawValue.substring(ContactUtils.CONTACT_OBJECT.length)
+                                        rawValue.substring(ContactShareFormat.CONTACT_OBJECT.length)
                                     val jsonObject =
                                         JsonParser.parseString(contactJson).asJsonObject
                                     val gson = GsonBuilder().create()
@@ -293,12 +295,12 @@ fun QRScannerScreen(
                     QRCodeScanner(
                         onQrCodeScanned = { content, isUrlContent ->
                             if (!scanningEnabled) return@QRCodeScanner
-                            val isContactContent = content.startsWith(ContactUtils.CONTACT_OBJECT)
+                            val isContactContent = content.startsWith(ContactShareFormat.CONTACT_OBJECT)
                             if (isContactContent && onContactSaved != null) {
                                 scanningEnabled = false
                                 try {
                                     val contactJson =
-                                        content.substring(ContactUtils.CONTACT_OBJECT.length)
+                                        content.substring(ContactShareFormat.CONTACT_OBJECT.length)
                                     val jsonObject =
                                         JsonParser.parseString(contactJson).asJsonObject
                                     val gson = GsonBuilder().create()
@@ -683,7 +685,7 @@ fun QRContentDialog(
                 TextButton(
                     onClick = {
                         onSaveToHistory()
-                        ContactUtils.openUrl(context, content)
+                        UrlUtils.openUrl(context, content)
                         onDismiss()
                     }
                 ) {
@@ -696,7 +698,7 @@ fun QRContentDialog(
                 TextButton(
                     onClick = {
                         onSaveToHistory()
-                        ContactUtils.copyToClipboard(context, content)
+                        ClipboardUtils.copyToClipboard(context, content)
                         onDismiss()
                     }
                 ) {
@@ -709,7 +711,7 @@ fun QRContentDialog(
                 TextButton(
                     onClick = {
                         onSaveToHistory()
-                        ContactUtils.copyToClipboard(context, content)
+                        ClipboardUtils.copyToClipboard(context, content)
                         onDismiss()
                     }
                 ) {

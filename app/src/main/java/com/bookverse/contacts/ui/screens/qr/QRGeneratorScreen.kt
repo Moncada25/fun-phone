@@ -78,7 +78,7 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.data.qr.QRType
-import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.utils.UrlUtils
 import com.bookverse.contacts.utils.QRContentClassifier
 import com.bookverse.contacts.utils.QRContentType
 import com.google.zxing.BarcodeFormat
@@ -242,7 +242,7 @@ fun QRGeneratorScreen(
                     accentColor = accentColor,
                     textColor = textColor,
                     onOpenLink = { normalizedUrl ->
-                        ContactUtils.openUrl(context, normalizedUrl)
+                        UrlUtils.openUrl(context, normalizedUrl)
                     }
                 )
             }

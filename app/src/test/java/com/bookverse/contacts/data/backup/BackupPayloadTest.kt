@@ -4,7 +4,7 @@ import com.bookverse.contacts.data.password.PasswordCredential
 import com.bookverse.contacts.data.password.PasswordFolder
 import com.bookverse.contacts.domain.backup.BackupArchive
 import com.bookverse.contacts.domain.backup.BackupPassphraseException
-import com.bookverse.contacts.utils.JsonUtils
+import com.bookverse.contacts.utils.PasswordJsonUtils
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertThrows
@@ -32,7 +32,7 @@ class BackupPayloadTest {
     @Test
     fun vaultSectionRoundTripsThroughAnEncryptedArchive() {
         val folders = listOf(PasswordFolder(id = 3, name = "Work", description = "d", colorHex = "#112233", createdAt = 5))
-        val json = JsonUtils.buildPasswordsBackupJson(listOf(credential("Mail"), credential("Gone", deleted = true)), folders)
+        val json = PasswordJsonUtils.buildPasswordsBackupJson(listOf(credential("Mail"), credential("Gone", deleted = true)), folders)
         val passphrase = "a long passphrase".toCharArray()
         val file = ByteArrayOutputStream()
         BackupArchive.write(file, passphrase, 10_000) { zip ->

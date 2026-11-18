@@ -70,7 +70,8 @@ import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.settings.LocaleController
-import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.utils.ClipboardUtils
+import com.bookverse.contacts.utils.UrlUtils
 import com.bookverse.contacts.utils.QRContentClassifier
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -468,7 +469,7 @@ fun QRViewDialog(
                     ) {
                         Button(
                             onClick = {
-                                ContactUtils.openUrl(context, qrHistoryEntity.content)
+                                UrlUtils.openUrl(context, qrHistoryEntity.content)
                                 onDismiss()
                             },
                             modifier = Modifier.fillMaxWidth(),
@@ -499,7 +500,7 @@ fun QRViewDialog(
 
                             OutlinedButton(
                                 onClick = {
-                                    ContactUtils.copyToClipboard(context, qrHistoryEntity.content)
+                                    ClipboardUtils.copyToClipboard(context, qrHistoryEntity.content)
                                 },
                                 modifier = Modifier.weight(1f),
                                 shape = RoundedCornerShape(999.dp)
@@ -527,7 +528,7 @@ fun QRViewDialog(
 
                         OutlinedButton(
                             onClick = {
-                                ContactUtils.copyToClipboard(context, qrHistoryEntity.content)
+                                ClipboardUtils.copyToClipboard(context, qrHistoryEntity.content)
                             },
                             modifier = Modifier.weight(1f),
                             shape = RoundedCornerShape(999.dp)

@@ -114,8 +114,8 @@ import com.bookverse.contacts.settings.LocaleController
 
 import com.bookverse.contacts.ui.viewmodel.PasswordOp
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
-import com.bookverse.contacts.utils.ContactUtils
-import com.bookverse.contacts.utils.JsonUtils
+import com.bookverse.contacts.utils.ClipboardUtils
+import com.bookverse.contacts.utils.PasswordJsonUtils
 
 import com.composables.icons.lucide.KeyRound
 import com.composables.icons.lucide.Lucide
@@ -430,14 +430,14 @@ fun PasswordListScreen(
                                     },
                                     onToggleReveal = { revealMap[cred.id] = !revealed },
                                     onCopyUser = {
-                                        ContactUtils.copyToClipboard(context, cred.username, false)
+                                        ClipboardUtils.copyToClipboard(context, cred.username, false)
                                         snackHost.show(userCopiedStr, SnackbarType.Success)
                                     },
                                     onCopyPass = {
                                         com.bookverse.contacts.security.SensitiveClipboard.copy(context, cred.password)
                                         snackHost.show(passCopyStr, SnackbarType.Success)
                                     },
-                                    onShare = { scope.launch { JsonUtils.sharePasswordCredential(context, cred) } },
+                                    onShare = { scope.launch { PasswordJsonUtils.sharePasswordCredential(context, cred) } },
                                     onEdit = { credential ->
                                         passwordsViewModel.setSearch("")
                                         onEdit(credential)
@@ -611,7 +611,7 @@ private fun PasswordCard(
     val pass = credential.password
     val strength = remember(pass) { PasswordGenerator.strength(pass) }
     val (strengthColor, strengthLabelRes) = remember(strength) {
-        ContactUtils.passwordStrengthInfo(
+        passwordStrengthInfo(
             strength
         )
     }
