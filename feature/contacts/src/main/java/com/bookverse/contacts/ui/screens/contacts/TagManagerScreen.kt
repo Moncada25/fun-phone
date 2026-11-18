@@ -28,6 +28,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,7 +46,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactTag
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.TagFormDialog
@@ -78,13 +79,13 @@ fun TagManagerScreen(
             SecondaryTopBar(
                 expandable = true,
                 scrollBehavior = scrollBehavior,
-                title = stringResource(R.string.tag_manager_title),
+                title = stringResource(CoreUiR.string.tag_manager_title),
                 onBackClick = onBack,
                 appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.Add,
-                        contentDescription = stringResource(R.string.create_tag),
+                        contentDescription = stringResource(CoreUiR.string.create_tag),
                         onClick = { showCreateDialog = true },
                     )
                 },
@@ -192,7 +193,7 @@ fun TagManagerScreen(
                 showDeleteDialog = false
                 selectedTag = null
             },
-            title = stringResource(R.string.delete_tag),
+            title = stringResource(CoreUiR.string.delete_tag),
             message = stringResource(R.string.delete_tag_confirmation, selectedTag?.name ?: ""),
             appSettingsViewModel = appSettingsViewModel
         )
@@ -235,14 +236,14 @@ private fun TagListItem(
             IconButton(onClick = onEdit) {
                 Icon(
                     imageVector = Icons.Default.Edit,
-                    contentDescription = stringResource(R.string.edit_tag),
+                    contentDescription = stringResource(CoreUiR.string.edit_tag),
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
             IconButton(onClick = onDelete) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = stringResource(R.string.delete_tag),
+                    contentDescription = stringResource(CoreUiR.string.delete_tag),
                     tint = MaterialTheme.colorScheme.error,
                 )
             }

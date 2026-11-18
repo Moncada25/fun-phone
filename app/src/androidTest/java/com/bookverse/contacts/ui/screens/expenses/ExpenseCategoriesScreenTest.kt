@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.expenses.R as ExpensesR
 
 class ExpenseCategoriesScreenTest {
     @get:Rule
@@ -37,7 +38,7 @@ class ExpenseCategoriesScreenTest {
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
 
         composeRule.onNodeWithText(
-            text(R.string.expense_category_linked_transactions_title, CATEGORY.name),
+            text(ExpensesR.string.expense_category_linked_transactions_title, CATEGORY.name),
         ).assertIsDisplayed()
         composeRule.onNodeWithText(TRANSACTION.note!!).assertIsDisplayed()
         composeRule.onNodeWithText(
@@ -59,7 +60,7 @@ class ExpenseCategoriesScreenTest {
 
         composeRule.onNodeWithContentDescription(text(R.string.more_options)).performClick()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
-        composeRule.onNodeWithText(text(R.string.expense_delete_transaction)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_delete_transaction)).assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
 
         assertEquals(TRANSACTION, deletedTransaction.get())

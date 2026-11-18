@@ -52,7 +52,8 @@
 Debes:
 
 1. Cambiar el nombre visible de la app: `app_name` en `core/ui/src/main/res/values/strings.xml` y las
-   demás menciones de "Fun Phone" en `core/ui/src/main/res/values*/strings.xml`.
+   demás menciones de "Fun Phone" en `core/ui/src/main/res/values*/strings.xml` y
+   `feature/*/src/main/res/values*/strings.xml`.
 2. Reemplazar el logotipo y los íconos listados arriba.
 3. Cambiar el `applicationId` en `app/build.gradle.kts` (sabores `community` y `play`) por uno que
    no empiece por `com.bookverse`.
@@ -128,7 +129,8 @@ marca y el material de ficha.
 You must:
 
 1. Change the visible app name: `app_name` in `core/ui/src/main/res/values/strings.xml` and the other
-   mentions of "Fun Phone" in `core/ui/src/main/res/values*/strings.xml`.
+   mentions of "Fun Phone" in `core/ui/src/main/res/values*/strings.xml` and
+   `feature/*/src/main/res/values*/strings.xml`.
 2. Replace the logo and icons listed above.
 3. Change the `applicationId` in `app/build.gradle.kts` (`community` and `play` flavors) to one that
    does not start with `com.bookverse`.

@@ -31,6 +31,7 @@ import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
 import org.junit.Assume.assumeTrue
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.dialer.R as DialerR
 
 class HistoryFlowTest {
     @get:Rule
@@ -76,8 +77,8 @@ class HistoryFlowTest {
 
             composeRule
                 .onNode(
-                    hasText(composeRule.activity.getString(R.string.search_history)) or
-                        hasContentDescription(composeRule.activity.getString(R.string.search_history))
+                    hasText(composeRule.activity.getString(DialerR.string.search_history)) or
+                        hasContentDescription(composeRule.activity.getString(DialerR.string.search_history))
                 )
                 .performClick()
             composeRule

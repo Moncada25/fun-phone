@@ -44,6 +44,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.feature.qr.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -69,7 +71,6 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import androidx.core.net.toUri
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
@@ -273,7 +274,7 @@ fun QRGeneratorScreen(
                             )
                         }
                     } catch (_: Exception) {
-                        errorMessage = resources.getString(R.string.qr_error_generating)
+                        errorMessage = resources.getString(CoreUiR.string.qr_error_generating)
                     }
                 },
                 shape = RoundedCornerShape(999.dp),
@@ -381,7 +382,7 @@ fun QRGeneratorScreen(
                             )
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                text = stringResource(R.string.share),
+                                text = stringResource(CoreUiR.string.share),
                                 color = textColor
                             )
                         }
@@ -412,7 +413,7 @@ fun QRGeneratorScreen(
                             )
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                text = stringResource(R.string.save),
+                                text = stringResource(CoreUiR.string.save),
                                 color = textColor
                             )
                         }
@@ -488,7 +489,7 @@ private fun LinkPreviewCard(
                         color = accentColor
                     )
                     Text(
-                        text = stringResource(R.string.loading),
+                        text = stringResource(CoreUiR.string.loading),
                         color = textColor,
                         style = MaterialTheme.typography.bodyMedium
                     )

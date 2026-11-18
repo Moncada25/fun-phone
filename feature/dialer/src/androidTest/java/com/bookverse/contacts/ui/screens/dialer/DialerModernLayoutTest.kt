@@ -25,7 +25,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.dialer.R
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
@@ -33,6 +33,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class DialerModernLayoutTest {
     @get:Rule
@@ -70,11 +71,11 @@ class DialerModernLayoutTest {
         )
 
         composeRule
-            .onNodeWithText(composeRule.activity.getString(R.string.call))
+            .onNodeWithText(composeRule.activity.getString(CoreUiR.string.call))
             .assertIsDisplayed()
             .performClick()
         composeRule
-            .onNodeWithContentDescription(composeRule.activity.getString(R.string.whatsapp_action))
+            .onNodeWithContentDescription(composeRule.activity.getString(CoreUiR.string.whatsapp_action))
             .assertIsDisplayed()
             .performClick()
 
@@ -85,7 +86,7 @@ class DialerModernLayoutTest {
     @Test
     fun numberActionsAreOnlyEnabledWithNumber() {
         val addContactLabel = composeRule.activity.getString(R.string.add_contact)
-        val deleteLabel = composeRule.activity.getString(R.string.delete)
+        val deleteLabel = composeRule.activity.getString(CoreUiR.string.delete)
 
         showSheet()
         composeRule.onNodeWithContentDescription(addContactLabel).assertIsNotEnabled()
@@ -103,7 +104,7 @@ class DialerModernLayoutTest {
     fun deleteDispatchesTapAndLongPress() {
         val deleteCount = AtomicInteger(0)
         val longDeleteCount = AtomicInteger(0)
-        val deleteLabel = composeRule.activity.getString(R.string.delete)
+        val deleteLabel = composeRule.activity.getString(CoreUiR.string.delete)
 
         showSheet(
             dialedNumber = "5550199",
@@ -185,8 +186,8 @@ class DialerModernLayoutTest {
 
     @Test
     fun numberContextGrowsSheetUpwardWithoutMovingKeysOrEdges() {
-        val callLabel = composeRule.activity.getString(R.string.call)
-        val deleteLabel = composeRule.activity.getString(R.string.delete)
+        val callLabel = composeRule.activity.getString(CoreUiR.string.call)
+        val deleteLabel = composeRule.activity.getString(CoreUiR.string.delete)
         val sheetHeight = AtomicReference(0.dp)
 
         showSheet(dialedNumber = "3105550101", onHeightChanged = sheetHeight::set)
@@ -222,7 +223,7 @@ class DialerModernLayoutTest {
 
         composeRule.onNodeWithTag(DIALER_CALLING_CODE_TAG).assertIsDisplayed()
         composeRule.onNodeWithTag(DIALER_MATCHED_CONTACT_TAG).assertIsDisplayed()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.call)).assertIsDisplayed()
+        composeRule.onNodeWithText(composeRule.activity.getString(CoreUiR.string.call)).assertIsDisplayed()
 
         val root = composeRule.onRoot().fetchSemanticsNode().boundsInRoot
         val code = composeRule.onNodeWithTag(DIALER_CALLING_CODE_TAG).fetchSemanticsNode().boundsInRoot

@@ -2,13 +2,14 @@ package com.bookverse.contacts.ui.screens.settings
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.settings.FONT_SCALE_MAX_PERCENT
 import com.bookverse.contacts.settings.FONT_SCALE_MIN_PERCENT
 import com.bookverse.contacts.settings.TransitionType
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class SettingsPreferencePolicyTest {
     @Test
@@ -20,7 +21,7 @@ class SettingsPreferencePolicyTest {
 
     @Test
     fun shouldPreserveSafeFallbacksForStoredStringValues() {
-        assertEquals(R.string.tab_contacts, startupScreenLabelRes("unknown"))
+        assertEquals(CoreUiR.string.tab_contacts, startupScreenLabelRes("unknown"))
         assertEquals(R.string.call_answer_style_swipe, callAnswerStyleLabelRes("unknown"))
         assertEquals(R.string.vibration_pattern_simple, vibrationPatternLabelRes("unknown"))
         assertNotEquals(startupScreenLabelRes("favorites"), startupScreenLabelRes("contacts"))

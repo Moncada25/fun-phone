@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="recents_title">My History</string>
+    <string name="dialer_suggestions_title">Suggestions</string>
+    <string name="dialer_contacts_title">Your contacts</string>
+    <string name="add_contact">Add contact</string>
+    <string name="no_recent_operations">No recent operations</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="contact_avatar_placeholder">%1$s initial</string>
+    <string name="delete_recents_title">Delete history</string>
+    <string name="delete_recents_message">Are you sure you want to delete the records selected?</string>
+    <string name="delete_contact_recents_title">Delete history of %1$s</string>
+    <string name="delete_contact_recents_message">Are you sure you want to delete the history of %1$s for this date?</string>
+    <string name="delete_unknown_recents_title">Delete history for this number</string>
+    <string name="delete_unknown_recents_message">Are you sure you want to delete the history for this number for this date?</string>
+    <string name="delete_recents_success">Records deleted</string>
+    <string name="number_already_exists">This number already exists in your contacts</string>
+    <string name="profile_already_exists">This number is part of your profile</string>
+    <string name="history_recent_operations_sheet_title">History breakdown</string>
+    <string name="speed_dial_not_configured" tools:ignore="PluralsCandidate">Number %1$d has no speed dial configured. Set it up in Settings</string>
+    <string name="speed_dial_contact_not_found">Speed dial contact not found</string>
+    <string name="history_empty_title">No history yet</string>
+    <string name="history_empty_description">Your call and activity history will appear here once you start making calls or opening chats</string>
+    <string name="history_loading_more">Loading more history…</string>
+    <string name="history_load_more_hint">Keep scrolling to see older records</string>
+    <string name="history_filter_empty_title">No results for this filter</string>
+    <string name="history_filter_empty_description">Try selecting another history type or clear the filters to see more records.</string>
+    <string name="search_history">Search history</string>
+    <string name="filter_history">Filter history</string>
+    <string name="history_search_empty_title">No matching history</string>
+    <string name="history_search_empty_description">Try another name or phone number, or clear the search to see all records.</string>
+    <string name="dialer_calling_code_description">Calling code %1$s, %2$s</string>
+    <string name="dialer_matched_contact_description">Saved contact: %1$s</string>
+</resources>

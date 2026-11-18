@@ -82,7 +82,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.tools.R
 import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.PathType

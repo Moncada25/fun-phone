@@ -13,13 +13,13 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.provider.Settings
 import androidx.core.net.toUri
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.ReminderData
 import com.bookverse.contacts.data.notes.ReminderType
 import com.bookverse.contacts.data.notes.nextOccurrence
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
+import com.bookverse.contacts.feature.notes.R
 import com.bookverse.contacts.settings.LocaleController
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope

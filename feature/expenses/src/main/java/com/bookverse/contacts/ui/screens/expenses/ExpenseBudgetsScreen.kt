@@ -41,12 +41,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseBudget
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseType
 import com.bookverse.contacts.domain.expenses.BudgetStatus
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge
 import com.bookverse.contacts.ui.components.SelectBottomSheet
@@ -57,6 +57,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.PiggyBank
 import java.text.DecimalFormatSymbols
 import java.util.Locale
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun ExpenseBudgetsScreen(
@@ -372,7 +373,7 @@ private fun BudgetDialog(
                         colors = ButtonDefaults.outlinedButtonColors(contentColor = accentColor),
                         border = BorderStroke(1.dp, accentColor)
                     ) {
-                        Text(text = stringResourceSafe(R.string.cancel))
+                        Text(text = stringResourceSafe(CoreUiR.string.cancel))
                     }
                     Button(
                         onClick = {
@@ -393,7 +394,7 @@ private fun BudgetDialog(
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(999.dp)
                     ) {
-                        Text(text = stringResourceSafe(R.string.save))
+                        Text(text = stringResourceSafe(CoreUiR.string.save))
                     }
                 }
             }

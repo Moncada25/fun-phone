@@ -35,12 +35,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.passwords.CredentialMatchPolicy
 import com.bookverse.contacts.domain.passwords.KnownService
 import com.bookverse.contacts.domain.passwords.KnownServiceCategory
 import com.bookverse.contacts.domain.passwords.KnownServices
+import com.bookverse.contacts.feature.vault.R
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun PasswordServicePickerSheet(
@@ -68,7 +69,7 @@ internal fun PasswordServicePickerSheet(
             trailingIcon = if (query.isNotEmpty()) {
                 {
                     IconButton(onClick = { query = "" }) {
-                        Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.clear))
+                        Icon(Icons.Default.Clear, contentDescription = stringResource(CoreUiR.string.clear))
                     }
                 }
             } else {

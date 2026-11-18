@@ -38,13 +38,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactTag
 import com.bookverse.contacts.data.notes.NoteTag
+import com.bookverse.contacts.feature.notes.R
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.TagFormDialog
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal const val NOTE_TAGS_VISIBLE_ON_ITEM = 3
 
@@ -124,13 +125,13 @@ internal fun NoteTagsManagerSheet(
     val accentColor = MaterialTheme.colorScheme.primary
 
     ButtonSheetScaffold(
-        title = stringResource(R.string.tag_manager_title),
+        title = stringResource(CoreUiR.string.tag_manager_title),
         subtitle = stringResource(R.string.note_tags_manager_description),
         onDismiss = onDismiss,
     ) {
         if (tags.isEmpty()) {
             Text(
-                text = stringResource(R.string.no_tags_available),
+                text = stringResource(CoreUiR.string.no_tags_available),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 24.dp),
@@ -170,14 +171,14 @@ internal fun NoteTagsManagerSheet(
                         IconButton(onClick = { tagToEdit = tag }) {
                             Icon(
                                 imageVector = Icons.Default.Edit,
-                                contentDescription = stringResource(R.string.edit_tag),
+                                contentDescription = stringResource(CoreUiR.string.edit_tag),
                                 tint = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                         IconButton(onClick = { tagToDelete = tag }) {
                             Icon(
                                 imageVector = Icons.Default.Delete,
-                                contentDescription = stringResource(R.string.delete_tag),
+                                contentDescription = stringResource(CoreUiR.string.delete_tag),
                                 tint = MaterialTheme.colorScheme.error,
                             )
                         }
@@ -194,7 +195,7 @@ internal fun NoteTagsManagerSheet(
         ) {
             Icon(imageVector = Icons.Default.Add, contentDescription = null)
             Spacer(Modifier.width(8.dp))
-            Text(stringResource(R.string.create_tag))
+            Text(stringResource(CoreUiR.string.create_tag))
         }
     }
 
@@ -231,7 +232,7 @@ internal fun NoteTagsManagerSheet(
                 onDelete(deleting)
                 tagToDelete = null
             },
-            title = stringResource(R.string.delete_tag),
+            title = stringResource(CoreUiR.string.delete_tag),
             message = stringResource(R.string.note_tag_delete_confirmation, deleting.name),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel,

@@ -37,7 +37,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun CollageStyleDialog(
@@ -106,7 +107,7 @@ fun CollageStyleDialog(
                 colors = ButtonDefaults.buttonColors(containerColor = accentColor),
                 shape = RoundedCornerShape(999.dp)
             ) {
-                Text(text = stringResource(R.string.confirm))
+                Text(text = stringResource(CoreUiR.string.confirm))
             }
         },
         dismissButton = {
@@ -114,7 +115,7 @@ fun CollageStyleDialog(
                 onClick = onDismiss,
                 colors = ButtonDefaults.textButtonColors(contentColor = accentColor)
             ) {
-                Text(text = stringResource(R.string.cancel))
+                Text(text = stringResource(CoreUiR.string.cancel))
             }
         }
     )

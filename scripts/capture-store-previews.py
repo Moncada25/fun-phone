@@ -46,11 +46,13 @@ def hierarchy():
 
 def app_string(language, name):
     folder = "values" if language == "en" else "values-" + language
-    source = (ROOT / "core/ui/src/main/res" / folder / "strings.xml").read_text(encoding="utf-8")
-    match = re.search(r'<string name="' + re.escape(name) + r'"[^>]*>(.*?)</string>', source, re.S)
-    if not match:
-        raise SystemExit(f"Missing string resource {name} for {language}")
-    return html.unescape(match.group(1)).replace("\\'", "'")
+    pattern = r'<string name="' + re.escape(name) + r'"[^>]*>(.*?)</string>'
+    for module in ("core/*", "feature/*"):
+        for path in sorted(ROOT.glob(f"{module}/src/main/res/{folder}/strings.xml")):
+            match = re.search(pattern, path.read_text(encoding="utf-8"), re.S)
+            if match:
+                return html.unescape(match.group(1)).replace("\\'", "'")
+    raise SystemExit(f"Missing string resource {name} for {language}")
 
 
 def pattern_for(value, language):

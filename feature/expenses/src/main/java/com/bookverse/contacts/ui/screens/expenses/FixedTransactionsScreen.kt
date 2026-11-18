@@ -37,9 +37,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge
 import com.bookverse.contacts.ui.components.OptionsDialog
@@ -47,6 +47,7 @@ import com.bookverse.contacts.ui.components.OptionsDialogItem
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Repeat
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun FixedTransactionsScreen(
@@ -110,19 +111,19 @@ fun FixedTransactionsScreen(
     if (showOptionsDialog) {
         val optionItems = listOf(
             OptionsDialogItem(
-                label = stringResource(R.string.action_export_short),
+                label = stringResource(CoreUiR.string.action_export_short),
                 icon = Icons.Default.Backup,
                 enabled = transactions.isNotEmpty(),
                 onClick = onExport
             ),
             OptionsDialogItem(
-                label = stringResource(R.string.restore),
+                label = stringResource(CoreUiR.string.restore),
                 icon = Icons.Default.RestorePage,
                 onClick = onImport
             )
         )
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = optionItems,
             onDismiss = { showOptionsDialog = false },
         )
@@ -198,7 +199,7 @@ private fun RecurringTransactionsHeader(
                 ) {
                     Icon(
                         imageVector = Icons.Filled.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.78f),
                     )
                 }

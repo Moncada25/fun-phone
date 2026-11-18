@@ -15,8 +15,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
+import com.bookverse.contacts.feature.notes.R
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -24,6 +24,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class ChecklistItemEditSheetTest {
     @get:Rule
@@ -80,7 +81,7 @@ class ChecklistItemEditSheetTest {
     fun closeButtonIsNotRendered() {
         showSheet()
 
-        composeRule.onAllNodesWithContentDescription(text(R.string.close)).assertCountEquals(0)
+        composeRule.onAllNodesWithContentDescription(text(CoreUiR.string.close)).assertCountEquals(0)
     }
 
     private fun showSheet(

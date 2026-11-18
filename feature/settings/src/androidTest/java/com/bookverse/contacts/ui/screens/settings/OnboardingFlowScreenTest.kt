@@ -25,9 +25,9 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ToolsOrderConfig
 import com.bookverse.contacts.data.model.ToolsPreset
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.ui.components.PermissionBanner
 import com.bookverse.contacts.ui.components.setupActionContainerColor
 import com.bookverse.contacts.ui.components.setupActionContentColor
@@ -43,6 +43,8 @@ import org.junit.Test
 import java.io.File
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.core.ui.R as CoreUiR
+import com.bookverse.contacts.feature.tools.R as ToolsR
 
 class OnboardingFlowScreenTest {
     @get:Rule
@@ -105,7 +107,7 @@ class OnboardingFlowScreenTest {
                 outcomes = mapOf(PhoneStatusRequirement.CALL_LOG to SetupOutcome.BLOCKED),
             ), onFinish = { finishes.incrementAndGet() })
         }
-        node(R.string.open_settings).assertIsDisplayed()
+        node(CoreUiR.string.open_settings).assertIsDisplayed()
         click(R.string.onboarding_continue_later)
         assertEquals(2, finishes.get())
     }
@@ -151,9 +153,9 @@ class OnboardingFlowScreenTest {
                 onChooseTools = { destination.set("tools_order") },
             )
         }
-        click(R.string.permission_banner_cta)
+        click(CoreUiR.string.permission_banner_cta)
         assertEquals("phone_status", destination.get())
-        click(R.string.onboarding_choose_tools)
+        click(CoreUiR.string.onboarding_choose_tools)
         assertEquals("tools_order", destination.get())
     }
 
@@ -231,10 +233,10 @@ class OnboardingFlowScreenTest {
         }
         composeRule.onNodeWithTag("onboarding_body").performScrollToIndex(1)
         node(R.string.onboarding_optional_tools_title).assertIsDisplayed()
-        click(R.string.tools_preset_everything)
+        click(ToolsR.string.tools_preset_everything)
         assertEquals(ToolsPreset.EVERYTHING, selectedPreset.get())
         click(R.string.onboarding_customize_tools)
-        node(R.string.tools_menu_visible_title).performScrollTo().assertIsDisplayed()
+        node(CoreUiR.string.tools_menu_visible_title).performScrollTo().assertIsDisplayed()
     }
 
     @Test

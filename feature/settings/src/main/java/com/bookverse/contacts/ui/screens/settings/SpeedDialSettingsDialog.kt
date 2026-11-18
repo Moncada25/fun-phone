@@ -48,9 +48,10 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.ui.components.SearchFieldSurface
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal fun filterSpeedDialContacts(
     contacts: List<Contact>,
@@ -190,7 +191,7 @@ private fun SpeedDialNumberItem(
             Column(modifier = Modifier.weight(1f)) {
                 if (isDisabled) {
                     Text(
-                        text = stringResource(R.string.voicemail),
+                        text = stringResource(CoreUiR.string.voicemail),
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.SemiBold,
                         color = textColor.copy(alpha = 0.6f)
@@ -276,7 +277,7 @@ private fun androidx.compose.foundation.layout.ColumnScope.ContactPickerContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.PersonSearch,
-                        contentDescription = stringResource(R.string.search),
+                        contentDescription = stringResource(CoreUiR.string.search),
                         tint = textColor.copy(alpha = 0.6f),
                         modifier = Modifier.size(20.dp),
                     )
@@ -284,7 +285,7 @@ private fun androidx.compose.foundation.layout.ColumnScope.ContactPickerContent(
                     Box(Modifier.weight(1f)) {
                         if (searchQuery.isEmpty()) {
                             Text(
-                                text = stringResource(R.string.search),
+                                text = stringResource(CoreUiR.string.search),
                                 color = textColor.copy(alpha = 0.6f),
                                 fontSize = 16.sp,
                             )
@@ -306,7 +307,7 @@ private fun androidx.compose.foundation.layout.ColumnScope.ContactPickerContent(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = stringResource(R.string.no_contacts_found),
+                text = stringResource(CoreUiR.string.no_contacts_found),
                 color = textColor.copy(alpha = 0.6f),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,

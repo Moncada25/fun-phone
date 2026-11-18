@@ -26,6 +26,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -68,7 +70,6 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import android.media.AudioAttributes
 import android.media.SoundPool
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.GameCompletion
 import com.bookverse.contacts.domain.games.GameId
 import com.bookverse.contacts.domain.games.GameStatsRepository
@@ -558,8 +559,8 @@ fun FunBirdScreen(
 
     val primaryLabel = when (phase) {
         FunBirdPhase.Ready -> stringResource(R.string.play_label)
-        FunBirdPhase.Playing -> stringResource(R.string.pause_label)
-        FunBirdPhase.Paused -> stringResource(R.string.resume_label)
+        FunBirdPhase.Playing -> stringResource(CoreUiR.string.pause_label)
+        FunBirdPhase.Paused -> stringResource(CoreUiR.string.resume_label)
         FunBirdPhase.GameOver -> stringResource(R.string.play_label)
     }
     val primaryAction: () -> Unit = when (phase) {
@@ -776,7 +777,7 @@ fun FunBirdScreen(
                     )
                 ) {
                     Text(
-                        text = stringResource(R.string.reset_label),
+                        text = stringResource(CoreUiR.string.reset_label),
                         style = MaterialTheme.typography.labelLarge
                     )
                 }

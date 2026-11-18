@@ -37,7 +37,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.settings.FONT_SCALE_DEFAULT_PERCENT
 import com.bookverse.contacts.settings.FONT_SCALE_MAX_PERCENT
 import com.bookverse.contacts.settings.FONT_SCALE_MIN_PERCENT
@@ -46,6 +46,7 @@ import com.bookverse.contacts.settings.FontCategory
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.settings.ListDensity
 import kotlin.math.roundToInt
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun SettingsFontCatalogSheet(
@@ -187,7 +188,7 @@ private fun SettingsStepSlider(
                     fontWeight = FontWeight.SemiBold,
                 )
                 TextButton(onClick = { commit(defaultValue) }, enabled = dragValue != defaultValue) {
-                    Text(stringResource(R.string.reset_label))
+                    Text(stringResource(CoreUiR.string.reset_label))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically) {

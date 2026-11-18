@@ -52,6 +52,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.vault.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import com.bookverse.contacts.ui.components.withoutTop
 import androidx.compose.material3.Text
@@ -84,7 +86,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.password.PasswordCredential
 import com.bookverse.contacts.data.password.PASSWORD_FOLDER_FILTER_ALL
 import com.bookverse.contacts.data.password.PasswordFolder
@@ -111,12 +112,10 @@ import com.bookverse.contacts.ui.utils.rememberHapticFeedback
 import com.bookverse.contacts.settings.ListDensity
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.settings.LocaleController
-
 import com.bookverse.contacts.ui.viewmodel.PasswordOp
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 import com.bookverse.contacts.utils.ClipboardUtils
 import com.bookverse.contacts.utils.PasswordJsonUtils
-
 import com.composables.icons.lucide.KeyRound
 import com.composables.icons.lucide.Lucide
 import kotlinx.coroutines.delay
@@ -266,17 +265,17 @@ fun PasswordListScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(R.string.passwords_title),
+                title = stringResource(CoreUiR.string.passwords_title),
                 count = currentCount,
                 onBackClick = onBackClick,
                 onCountClick = { showStrengthSheet = true },
                 searchAction = if (credentials.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(
-                    stringResource(R.string.search_password), { searchActive = true }, feedback = true,
+                    stringResource(CoreUiR.string.search_password), { searchActive = true }, feedback = true,
                 ) else null,
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showOptionsDialog = true },
                         feedback = true,
                     )
@@ -288,7 +287,7 @@ fun PasswordListScreen(
                         TopBarSearchField(
                             value = search,
                             onValueChange = { passwordsViewModel.setSearch(it) },
-                            placeholder = stringResource(R.string.search_password),
+                            placeholder = stringResource(CoreUiR.string.search_password),
                             focusRequester = focusRequester,
                             onClose = {
                                 passwordsViewModel.setSearch("")
@@ -296,7 +295,7 @@ fun PasswordListScreen(
                                 searchActive = false
                             },
                             leadingContentDescription = stringResource(R.string.passwords_search_open),
-                            clearContentDescription = stringResource(R.string.clear),
+                            clearContentDescription = stringResource(CoreUiR.string.clear),
                         )
                     }
                 } else null
@@ -305,8 +304,8 @@ fun PasswordListScreen(
         topBarFooter = {
             Column(Modifier.fillMaxWidth().blur(blurRadius)) {
                 if (loadFailed) {
-                    Text(stringResource(R.string.vault_load_failed), color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(16.dp))
-                    androidx.compose.material3.TextButton(onClick = passwordsViewModel::unlock) { Text(stringResource(R.string.social_preview_retry)) }
+                    Text(stringResource(CoreUiR.string.vault_load_failed), color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(16.dp))
+                    androidx.compose.material3.TextButton(onClick = passwordsViewModel::unlock) { Text(stringResource(CoreUiR.string.social_preview_retry)) }
                 }
                 if (folders.isNotEmpty()) {
                     FolderFilterRow(
@@ -324,19 +323,19 @@ fun PasswordListScreen(
         contentOverlay = { padding ->
             val floatingActions = listOf(
                 FloatingOptionItem(
-                    label = stringResource(R.string.restore),
+                    label = stringResource(CoreUiR.string.restore),
                     icon = Icons.Default.RestorePage
                 ) {
                     backupActions.importBackup()
                 },
                 FloatingOptionItem(
-                    label = stringResource(R.string.action_export_short),
+                    label = stringResource(CoreUiR.string.action_export_short),
                     icon = Icons.Default.Backup
                 ) {
                     showExportWarning = true
                 },
                 FloatingOptionItem(
-                    label = stringResource(R.string.action_create_short),
+                    label = stringResource(CoreUiR.string.action_create_short),
                     icon = Icons.Default.Add
                 ) {
                     onCreateNew()
@@ -480,10 +479,10 @@ fun PasswordListScreen(
 
     if (showOptionsDialog) {
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = listOfNotNull(
                 OptionsDialogItem(
-                    label = stringResource(R.string.note_folders_title),
+                    label = stringResource(CoreUiR.string.note_folders_title),
                     icon = Icons.Default.Folder,
                     onClick = {
                         showOptionsDialog = false
@@ -492,7 +491,7 @@ fun PasswordListScreen(
                     },
                 ),
                 OptionsDialogItem(
-                    label = stringResource(R.string.recycle_bin_item),
+                    label = stringResource(CoreUiR.string.recycle_bin_item),
                     icon = Icons.Default.Delete,
                     onClick = {
                         showOptionsDialog = false
@@ -738,7 +737,7 @@ private fun PasswordCard(
                     }, modifier = Modifier.size(28.dp)) {
                         Icon(
                             imageVector = Icons.Default.MoreVert,
-                            contentDescription = stringResource(R.string.more_options),
+                            contentDescription = stringResource(CoreUiR.string.more_options),
                             modifier = Modifier.size(24.dp)
                         )
                     }
@@ -823,12 +822,12 @@ private fun PasswordCard(
                 onClick = onToggleReveal,
             ),
             OptionsDialogItem(
-                label = stringResource(R.string.share),
+                label = stringResource(CoreUiR.string.share),
                 icon = Icons.Default.Share,
                 onClick = onShare,
             ),
             OptionsDialogItem(
-                label = stringResource(R.string.edit),
+                label = stringResource(CoreUiR.string.edit),
                 icon = Icons.Default.EditNote,
                 onClick = { onEdit(credential) },
             ),
@@ -873,21 +872,21 @@ private fun PasswordCard(
                 emptyArray()
             },
             OptionsDialogItem(
-                label = stringResource(R.string.delete),
+                label = stringResource(CoreUiR.string.delete),
                 icon = Icons.Default.Delete,
                 destructive = true,
                 onClick = { showDeleteDialog = true },
             ),
             OptionsDialogItem(
-                label = "${stringResource(R.string.created_label)}: $formattedCreated $formattedCreatedTime",
+                label = "${stringResource(CoreUiR.string.created_label)}: $formattedCreated $formattedCreatedTime",
                 icon = null,
-                description = "${stringResource(R.string.updated_label)}: $formattedUpdated $formattedUpdatedTime",
+                description = "${stringResource(CoreUiR.string.updated_label)}: $formattedUpdated $formattedUpdatedTime",
                 enabled = false,
                 onClick = {},
             ),
         )
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = options,
             onDismiss = { showOptionsSheet = false },
         )

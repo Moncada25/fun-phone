@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import com.bookverse.contacts.feature.contacts.R
 import androidx.compose.foundation.lazy.items as lazyItems
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -71,7 +72,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import androidx.core.net.toUri
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.chromePolicy
 import com.bookverse.contacts.utils.ContactUtils
@@ -81,6 +81,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.util.UUID
 import kotlinx.coroutines.flow.distinctUntilChanged
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal enum class AvatarCategory(@param:StringRes val labelRes: Int) {
     People(R.string.avatar_category_people),
@@ -99,217 +100,217 @@ internal data class AvatarOption(
 internal val avatarOptions = listOf(
     AvatarOption(
         "person_blue",
-        R.drawable.avatar_person_blue,
+        CoreUiR.drawable.avatar_person_blue,
         R.string.avatar_label_person_blue,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_green",
-        R.drawable.avatar_person_green,
+        CoreUiR.drawable.avatar_person_green,
         R.string.avatar_label_person_green,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_orange",
-        R.drawable.avatar_person_orange,
+        CoreUiR.drawable.avatar_person_orange,
         R.string.avatar_label_person_orange,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_violet",
-        R.drawable.avatar_person_violet,
+        CoreUiR.drawable.avatar_person_violet,
         R.string.avatar_label_person_violet,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_gray",
-        R.drawable.avatar_person_gray,
+        CoreUiR.drawable.avatar_person_gray,
         R.string.avatar_label_person_gray,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_pink",
-        R.drawable.avatar_person_pink,
+        CoreUiR.drawable.avatar_person_pink,
         R.string.avatar_label_person_pink,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_teal",
-        R.drawable.avatar_person_teal,
+        CoreUiR.drawable.avatar_person_teal,
         R.string.avatar_label_person_teal,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_yellow",
-        R.drawable.avatar_person_yellow,
+        CoreUiR.drawable.avatar_person_yellow,
         R.string.avatar_label_person_yellow,
         AvatarCategory.People
     ),
     AvatarOption(
         "person_red",
-        R.drawable.avatar_person_red,
+        CoreUiR.drawable.avatar_person_red,
         R.string.avatar_label_person_red,
         AvatarCategory.People
     ),
     AvatarOption(
         "doctor",
-        R.drawable.avatar_doctor,
+        CoreUiR.drawable.avatar_doctor,
         R.string.avatar_label_doctor,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "teacher",
-        R.drawable.avatar_teacher,
+        CoreUiR.drawable.avatar_teacher,
         R.string.avatar_label_teacher,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "engineer",
-        R.drawable.avatar_engineer,
+        CoreUiR.drawable.avatar_engineer,
         R.string.avatar_label_engineer,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "designer",
-        R.drawable.avatar_designer,
+        CoreUiR.drawable.avatar_designer,
         R.string.avatar_label_designer,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "business",
-        R.drawable.avatar_business,
+        CoreUiR.drawable.avatar_business,
         R.string.avatar_label_business,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "chef",
-        R.drawable.avatar_chef,
+        CoreUiR.drawable.avatar_chef,
         R.string.avatar_label_chef,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "scientist",
-        R.drawable.avatar_scientist,
+        CoreUiR.drawable.avatar_scientist,
         R.string.avatar_label_scientist,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "photographer",
-        R.drawable.avatar_photographer,
+        CoreUiR.drawable.avatar_photographer,
         R.string.avatar_label_photographer,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "firefighter",
-        R.drawable.avatar_firefighter,
+        CoreUiR.drawable.avatar_firefighter,
         R.string.avatar_label_firefighter,
         AvatarCategory.Professions
     ),
     AvatarOption(
         "artist",
-        R.drawable.avatar_artist,
+        CoreUiR.drawable.avatar_artist,
         R.string.avatar_label_artist,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "musician",
-        R.drawable.avatar_musician,
+        CoreUiR.drawable.avatar_musician,
         R.string.avatar_label_musician,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "gamer",
-        R.drawable.avatar_gamer,
+        CoreUiR.drawable.avatar_gamer,
         R.string.avatar_label_gamer,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "reader",
-        R.drawable.avatar_reader,
+        CoreUiR.drawable.avatar_reader,
         R.string.avatar_label_reader,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "pet_lover",
-        R.drawable.avatar_pet_lover,
+        CoreUiR.drawable.avatar_pet_lover,
         R.string.avatar_label_pet_lover,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "traveler",
-        R.drawable.avatar_traveler,
+        CoreUiR.drawable.avatar_traveler,
         R.string.avatar_label_traveler,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "gardener",
-        R.drawable.avatar_gardener,
+        CoreUiR.drawable.avatar_gardener,
         R.string.avatar_label_gardener,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "cyclist",
-        R.drawable.avatar_cyclist,
+        CoreUiR.drawable.avatar_cyclist,
         R.string.avatar_label_cyclist,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "cinema",
-        R.drawable.avatar_cinema,
+        CoreUiR.drawable.avatar_cinema,
         R.string.avatar_label_cinema,
         AvatarCategory.Interests
     ),
     AvatarOption(
         "robot",
-        R.drawable.avatar_robot,
+        CoreUiR.drawable.avatar_robot,
         R.string.avatar_label_robot,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "astronaut",
-        R.drawable.avatar_astronaut,
+        CoreUiR.drawable.avatar_astronaut,
         R.string.avatar_label_astronaut,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "cat",
-        R.drawable.avatar_cat,
+        CoreUiR.drawable.avatar_cat,
         R.string.avatar_label_cat,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "superhero",
-        R.drawable.avatar_superhero,
+        CoreUiR.drawable.avatar_superhero,
         R.string.avatar_label_superhero,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "emoji",
-        R.drawable.avatar_emoji,
+        CoreUiR.drawable.avatar_emoji,
         R.string.avatar_label_emoji,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "alien",
-        R.drawable.avatar_alien,
+        CoreUiR.drawable.avatar_alien,
         R.string.avatar_label_alien,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "wizard",
-        R.drawable.avatar_wizard,
+        CoreUiR.drawable.avatar_wizard,
         R.string.avatar_label_wizard,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "dragon",
-        R.drawable.avatar_dragon,
+        CoreUiR.drawable.avatar_dragon,
         R.string.avatar_label_dragon,
         AvatarCategory.Fantasy
     ),
     AvatarOption(
         "fox",
-        R.drawable.avatar_fox,
+        CoreUiR.drawable.avatar_fox,
         R.string.avatar_label_fox,
         AvatarCategory.Fantasy
     )
@@ -487,7 +488,7 @@ fun PhotoSelector(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back),
+                        contentDescription = stringResource(CoreUiR.string.back),
                         tint = accentColor,
                     )
                 }
@@ -557,7 +558,7 @@ fun PhotoSelector(
                 if (hasExistingPhoto && existingPhotoUri != null) {
                     OptionRow(
                         option = OptionsDialogItem(
-                            label = stringResource(R.string.crop_image),
+                            label = stringResource(CoreUiR.string.crop_image),
                             icon = Icons.Default.Crop,
                             onClick = {
                                 val destUri = createCropDestination("crop_")
@@ -600,19 +601,19 @@ fun PhotoSelector(
     if (showCameraPermissionDialog) {
         AlertDialog(
             onDismissRequest = { showCameraPermissionDialog = false },
-            title = { Text(stringResource(R.string.permission_required)) },
+            title = { Text(stringResource(CoreUiR.string.permission_required)) },
             text = { Text(stringResource(R.string.contact_photo_permission_message)) },
             confirmButton = {
                 TextButton(onClick = {
                     cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
                     showCameraPermissionDialog = false
                 }) {
-                    Text(stringResource(R.string.grant_permission))
+                    Text(stringResource(CoreUiR.string.grant_permission))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showCameraPermissionDialog = false }) {
-                    Text(stringResource(R.string.cancel))
+                    Text(stringResource(CoreUiR.string.cancel))
                 }
             }
         )
@@ -676,7 +677,7 @@ internal fun AvatarPickerContent(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back),
+                        contentDescription = stringResource(CoreUiR.string.back),
                         tint = accentColor,
                     )
                 }
@@ -861,7 +862,7 @@ private fun getOptions(
 ): UCrop.Options {
     return UCrop.Options().apply {
         setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL)
-        setToolbarTitle(context.getString(R.string.crop_image))
+        setToolbarTitle(context.getString(CoreUiR.string.crop_image))
         setToolbarColor(toolbarColor)
         setStatusBarLight(true)
         setToolbarWidgetColor(textColor)

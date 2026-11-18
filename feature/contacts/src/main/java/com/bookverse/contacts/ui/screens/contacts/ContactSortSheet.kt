@@ -3,8 +3,8 @@ package com.bookverse.contacts.ui.screens.contacts
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.contacts.ContactSortOrder
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.components.SelectBottomSheet
 
 @StringRes

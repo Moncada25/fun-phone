@@ -55,11 +55,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.passwords.Totp
 import com.bookverse.contacts.domain.passwords.TotpConfig
+import com.bookverse.contacts.feature.vault.R
 import com.bookverse.contacts.ui.screens.qr.QRCodeScanner
 import kotlinx.coroutines.delay
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 private data class TotpSnapshot(val code: String, val remainingSeconds: Int)
 
@@ -250,11 +251,11 @@ internal fun TotpScannerDialog(
                         verticalArrangement = Arrangement.Center,
                     ) {
                         Text(
-                            stringResource(R.string.qr_scanner_permission_message),
+                            stringResource(CoreUiR.string.qr_scanner_permission_message),
                             textAlign = TextAlign.Center,
                         )
                         TextButton(onClick = { permissionLauncher.launch(Manifest.permission.CAMERA) }) {
-                            Text(stringResource(R.string.qr_scanner_retry))
+                            Text(stringResource(CoreUiR.string.qr_scanner_retry))
                         }
                     }
                 }
@@ -265,7 +266,7 @@ internal fun TotpScannerDialog(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         IconButton(onClick = onDismiss) {
-                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.close))
+                            Icon(Icons.Default.Close, contentDescription = stringResource(CoreUiR.string.close))
                         }
                         Text(
                             stringResource(R.string.password_totp_scan),

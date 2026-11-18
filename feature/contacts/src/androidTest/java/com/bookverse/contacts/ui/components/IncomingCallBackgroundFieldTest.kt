@@ -17,12 +17,13 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.theme.ThemeMode
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicInteger
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class IncomingCallBackgroundFieldTest {
     @get:Rule
@@ -83,8 +84,8 @@ class IncomingCallBackgroundFieldTest {
 
         composeRule.onNodeWithText("Ada Lovelace").assertIsDisplayed()
         composeRule.onNodeWithText("Mobile 555 0100").assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.answer)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.reject)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(CoreUiR.string.answer)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(CoreUiR.string.reject)).assertIsDisplayed()
     }
 
     private fun showField(

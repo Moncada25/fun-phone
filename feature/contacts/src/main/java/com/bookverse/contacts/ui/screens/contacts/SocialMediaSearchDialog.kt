@@ -63,13 +63,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.SocialMediaType
 import com.bookverse.contacts.domain.contacts.SocialLinkPolicy
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.components.SocialMediaButton
 import com.bookverse.contacts.utils.ExternalUriLauncher
 import java.io.ByteArrayInputStream
 import kotlinx.coroutines.delay
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 private const val DEFAULT_WEBSITE_URL = "https://google.com"
 private const val INPUT_DEBOUNCE_MS = 350L
@@ -126,9 +127,9 @@ fun SocialMediaSearchDialog(
                             }
                         },
                     ) {
-                        Icon(Icons.Default.Check, stringResource(R.string.confirm))
+                        Icon(Icons.Default.Check, stringResource(CoreUiR.string.confirm))
                     }
-                    IconButton(onClick = onDismiss) { Icon(Icons.Default.Close, stringResource(R.string.close)) }
+                    IconButton(onClick = onDismiss) { Icon(Icons.Default.Close, stringResource(CoreUiR.string.close)) }
                 }
                 BoxWithConstraints(Modifier.weight(1f)) {
                     val previewHeight = maxOf(240.dp, maxHeight - 240.dp)
@@ -255,7 +256,7 @@ private fun EmbeddedWebsitePreview(url: String?, retry: Int, onRetry: () -> Unit
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(stringResource(if (url == null) R.string.social_preview_invalid_url else R.string.social_preview_unavailable))
-                if (url != null) TextButton(onClick = onRetry) { Text(stringResource(R.string.social_preview_retry)) }
+                if (url != null) TextButton(onClick = onRetry) { Text(stringResource(CoreUiR.string.social_preview_retry)) }
             }
         } else if (status == PreviewStatus.LOADING) {
             CircularProgressIndicator(Modifier.align(Alignment.Center).size(40.dp))
@@ -281,6 +282,6 @@ private fun WebsiteButton(selected: Boolean, onClick: () -> Unit) {
             Icon(Icons.Default.Public, null, tint = colors.onSurface)
         }
         Spacer(Modifier.height(8.dp))
-        Text(stringResource(R.string.website), style = MaterialTheme.typography.labelMedium, fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal)
+        Text(stringResource(CoreUiR.string.website), style = MaterialTheme.typography.labelMedium, fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal)
     }
 }

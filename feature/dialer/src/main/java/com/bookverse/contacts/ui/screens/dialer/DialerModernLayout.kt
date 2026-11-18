@@ -68,7 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
 import com.bookverse.contacts.ui.components.LiquidGlassShape
 import com.bookverse.contacts.ui.components.LocalAppBackdrop
@@ -77,6 +77,7 @@ import com.bookverse.contacts.ui.components.NumberKeypad
 import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.ui.theme.CallAcceptColor
 import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 private val SheetContentMaxWidth = 480.dp
 private val SheetHorizontalPadding = 16.dp
@@ -244,7 +245,7 @@ internal fun DialerModernKeypadSheet(
                             modifier = Modifier
                                 .width(keyWidth)
                                 .height(keyHeight),
-                            label = stringResource(R.string.whatsapp_action),
+                            label = stringResource(CoreUiR.string.whatsapp_action),
                             containerColor = keyContainerColor,
                             contentColor = colorScheme.onSurface,
                             onClick = onWhatsApp,
@@ -275,7 +276,7 @@ internal fun DialerModernKeypadSheet(
                                     modifier = Modifier.size(24.dp),
                                 )
                                 Text(
-                                    text = stringResource(R.string.call),
+                                    text = stringResource(CoreUiR.string.call),
                                     style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.SemiBold,
                                     maxLines = 1,
@@ -362,7 +363,7 @@ private fun DialerModernNumberRow(
         DialerModernIconButton(
             modifier = Modifier.graphicsLayer { alpha = sideAlpha },
             icon = Icons.AutoMirrored.Outlined.Backspace,
-            label = stringResource(R.string.delete),
+            label = stringResource(CoreUiR.string.delete),
             enabled = hasNumber,
             onClick = onDelete,
             onLongClick = onLongDelete,

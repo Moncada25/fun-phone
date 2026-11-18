@@ -7,7 +7,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.tools.R
 import com.bookverse.contacts.ui.viewmodel.PomodoroSettings
 import com.bookverse.contacts.ui.viewmodel.PomodoroTimerState
 import org.junit.Assert.assertEquals
@@ -15,6 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class PomodoroScreenTest {
     @get:Rule
@@ -86,10 +87,10 @@ class PomodoroScreenTest {
         }
 
         composeRule
-            .onNodeWithText(composeRule.activity.getString(R.string.pause_label))
+            .onNodeWithText(composeRule.activity.getString(CoreUiR.string.pause_label))
             .performClick()
         composeRule
-            .onNodeWithText(composeRule.activity.getString(R.string.reset_label))
+            .onNodeWithText(composeRule.activity.getString(CoreUiR.string.reset_label))
             .performClick()
         composeRule
             .onNodeWithText(composeRule.activity.getString(R.string.pomodoro_skip))
@@ -126,8 +127,8 @@ class PomodoroScreenTest {
         ).forEach { resourceId ->
             composeRule.onNodeWithText(composeRule.activity.getString(resourceId)).assertIsDisplayed()
         }
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.cancel)).assertDoesNotExist()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.save)).performClick()
+        composeRule.onNodeWithText(composeRule.activity.getString(CoreUiR.string.cancel)).assertDoesNotExist()
+        composeRule.onNodeWithText(composeRule.activity.getString(CoreUiR.string.save)).performClick()
 
         assertEquals(settings, savedSettings.get())
     }

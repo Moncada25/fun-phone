@@ -32,10 +32,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.call.CallScreeningSettings
 import com.bookverse.contacts.domain.call.SimAccount
 import com.bookverse.contacts.domain.call.SimPreference
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.service.CallScreeningRole
 import com.bookverse.contacts.ui.components.SettingSwitch
 

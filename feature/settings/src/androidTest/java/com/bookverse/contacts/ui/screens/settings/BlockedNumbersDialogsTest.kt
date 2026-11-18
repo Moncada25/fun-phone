@@ -10,13 +10,14 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.repository.BlockedNumberInfo
+import com.bookverse.contacts.feature.settings.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class BlockedNumbersDialogsTest {
     @get:Rule
@@ -47,7 +48,7 @@ class BlockedNumbersDialogsTest {
             onUnblockNumber = unblockedNumber::set,
         )
 
-        val unblockLabel = composeRule.activity.getString(R.string.contact_unblock_action)
+        val unblockLabel = composeRule.activity.getString(CoreUiR.string.contact_unblock_action)
         composeRule.onNodeWithText(unblockLabel).performClick()
         composeRule
             .onNodeWithText(

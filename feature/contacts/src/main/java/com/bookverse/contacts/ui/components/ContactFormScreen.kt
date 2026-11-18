@@ -51,6 +51,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -85,7 +87,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.vector.ImageVector
 import coil.compose.AsyncImage
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.data.repository.InCallBackgroundChange
@@ -588,7 +589,7 @@ fun ContactFormScreen(
                                         IconButton(onClick = { ringtoneUri = null }) {
                                             Icon(
                                                 imageVector = Icons.Default.Close,
-                                                contentDescription = stringResource(R.string.delete),
+                                                contentDescription = stringResource(CoreUiR.string.delete),
                                                 tint = accentColor
                                             )
                                         }
@@ -640,7 +641,7 @@ fun ContactFormScreen(
                     item(key = "account_$formKey") {
                         val accountLabel =
                             if (selectedAccount.isLocal) {
-                                stringResource(R.string.local_account)
+                                stringResource(CoreUiR.string.local_account)
                             } else {
                                 selectedAccount.displayName
                             }
@@ -648,7 +649,7 @@ fun ContactFormScreen(
                         ContactFormSection(title = stringResource(R.string.contact_form_section_account)) {
                             ContactFormActionRow(
                                 icon = getAccountIcon(selectedAccount.type),
-                                title = stringResource(R.string.account),
+                                title = stringResource(CoreUiR.string.account),
                                 value = accountLabel,
                                 accentColor = accentColor,
                                 onClick = { showAccountSelector = true }
@@ -680,7 +681,7 @@ fun ContactFormScreen(
                         ButtonClick(
                             onClick = ::cancelForm,
                             modifier = Modifier.weight(1f),
-                            text = stringResource(R.string.cancel),
+                            text = stringResource(CoreUiR.string.cancel),
                             fontSize = 18
                         )
 
@@ -839,7 +840,7 @@ fun ContactFormScreen(
                                 )
                             } else {
                                 Text(
-                                    text = stringResource(R.string.save),
+                                    text = stringResource(CoreUiR.string.save),
                                     color = textColor,
                                     fontSize = 18.sp,
                                 )
@@ -891,7 +892,7 @@ fun ContactFormScreen(
             }
 
             if (showIncomingCallPreview && effectiveIncomingCallBackgroundUri != null) {
-                val previewName = name.ifBlank { stringResource(R.string.unknown) }
+                val previewName = name.ifBlank { stringResource(CoreUiR.string.unknown) }
                 val previewPhone = phones
                     .firstOrNull { it.number.isNotBlank() }
                     ?.let { phone ->
@@ -937,7 +938,7 @@ fun ContactFormScreen(
             }
 
             if (showInCallPreview && effectiveInCallBackgroundUri != null) {
-                val previewName = name.ifBlank { stringResource(R.string.unknown) }
+                val previewName = name.ifBlank { stringResource(CoreUiR.string.unknown) }
                 val previewPhone = phones
                     .firstOrNull { it.number.isNotBlank() }
                     ?.let { phone ->
@@ -977,10 +978,10 @@ fun ContactFormScreen(
 
             if (showAccountSelector) {
                 OptionsDialog(
-                    title = stringResource(R.string.account),
+                    title = stringResource(CoreUiR.string.account),
                     options = accounts.map { account ->
                         if (account.isLocal) {
-                            stringResource(R.string.local_account)
+                            stringResource(CoreUiR.string.local_account)
                         } else {
                             account.displayName
                         }
@@ -1026,10 +1027,10 @@ fun ContactFormScreen(
 }
 
 private fun incomingCallPreviewPhoneTypeLabel(type: PhoneEntity.Type?): Int = when (type) {
-    PhoneEntity.Type.WORK -> R.string.phone_type_work
-    PhoneEntity.Type.HOME -> R.string.phone_type_home
-    PhoneEntity.Type.MAIN -> R.string.phone_type_main
-    else -> R.string.phone_type_mobile
+    PhoneEntity.Type.WORK -> CoreUiR.string.phone_type_work
+    PhoneEntity.Type.HOME -> CoreUiR.string.phone_type_home
+    PhoneEntity.Type.MAIN -> CoreUiR.string.phone_type_main
+    else -> CoreUiR.string.phone_type_mobile
 }
 
 @Composable
@@ -1045,7 +1046,7 @@ internal fun IncomingCallBackgroundField(
 ) {
     val title = stringResource(titleRes)
     val status = when {
-        isLoading -> stringResource(R.string.loading)
+        isLoading -> stringResource(CoreUiR.string.loading)
         backgroundUri != null -> stringResource(configuredRes)
         else -> stringResource(notConfiguredRes)
     }

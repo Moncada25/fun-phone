@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recents_title">Mein Verlauf</string>
+    <string name="dialer_suggestions_title">Vorschläge</string>
+    <string name="dialer_contacts_title">Deine Kontakte</string>
+    <string name="add_contact">Kontakt hinzufügen</string>
+    <string name="no_recent_operations">Keine kürzlichen Vorgänge</string>
+    <string name="enter_a_number">Nummer eingeben</string>
+    <string name="contact_avatar_placeholder">%1$s Initial</string>
+    <string name="delete_recents_title">Verlauf löschen</string>
+    <string name="delete_recents_message">Möchtest du die ausgewählten Einträge wirklich löschen?</string>
+    <string name="delete_contact_recents_title">Verlauf von %1$s löschen</string>
+    <string name="delete_contact_recents_message">Möchtest du den Verlauf von %1$s für dieses Datum wirklich löschen?</string>
+    <string name="delete_unknown_recents_title">Verlauf dieser Nummer löschen</string>
+    <string name="delete_unknown_recents_message">Möchtest du den Verlauf dieser Nummer für dieses Datum wirklich löschen?</string>
+    <string name="delete_recents_success">Einträge gelöscht</string>
+    <string name="number_already_exists">Diese Nummer existiert bereits in deinen Kontakten</string>
+    <string name="profile_already_exists">Diese Nummer gehört zu deinem Profil</string>
+    <string name="history_recent_operations_sheet_title">Verlaufsdetails</string>
+    <string name="speed_dial_not_configured">Für Nummer %1$d ist keine Kurzwahl konfiguriert. Richte sie in den Einstellungen ein</string>
+    <string name="speed_dial_contact_not_found">Kurzwahl-Kontakt nicht gefunden</string>
+    <string name="history_empty_title">Noch kein Verlauf</string>
+    <string name="history_empty_description">Dein Anruf- und Aktivitätsverlauf wird hier angezeigt, sobald du Anrufe tätigst oder Chats öffnest</string>
+    <string name="history_loading_more">Weitere Verlaufseinträge werden geladen…</string>
+    <string name="history_load_more_hint">Scrolle weiter, um ältere Einträge zu sehen</string>
+    <string name="history_filter_empty_title">Keine Ergebnisse für diesen Filter</string>
+    <string name="history_filter_empty_description">Wähle einen anderen Verlaufstyp oder lösche die Filter, um mehr Einträge zu sehen.</string>
+    <string name="search_history">Verlauf durchsuchen</string>
+    <string name="filter_history">Verlauf filtern</string>
+    <string name="history_search_empty_title">Keine passenden Verlaufseinträge</string>
+    <string name="history_search_empty_description">Versuche einen anderen Namen oder eine andere Telefonnummer oder lösche die Suche, um alle Einträge zu sehen.</string>
+    <string name="dialer_calling_code_description">Vorwahl %1$s, %2$s</string>
+    <string name="dialer_matched_contact_description">Gespeicherter Kontakt: %1$s</string>
+</resources>

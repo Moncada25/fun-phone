@@ -29,8 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.contacts.R
 import java.io.File
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun IncomingCallBackgroundSelector(
@@ -180,7 +181,7 @@ fun IncomingCallBackgroundSelector(
     if (showCameraPermissionDialog) {
         AlertDialog(
             onDismissRequest = { showCameraPermissionDialog = false },
-            title = { Text(stringResource(R.string.permission_required)) },
+            title = { Text(stringResource(CoreUiR.string.permission_required)) },
             text = { Text(stringResource(cameraPermissionRes)) },
             confirmButton = {
                 TextButton(
@@ -190,7 +191,7 @@ fun IncomingCallBackgroundSelector(
                     },
                     colors = ButtonDefaults.textButtonColors(contentColor = accentColor),
                 ) {
-                    Text(stringResource(R.string.grant_permission))
+                    Text(stringResource(CoreUiR.string.grant_permission))
                 }
             },
             dismissButton = {
@@ -198,7 +199,7 @@ fun IncomingCallBackgroundSelector(
                     onClick = { showCameraPermissionDialog = false },
                     colors = ButtonDefaults.textButtonColors(contentColor = accentColor),
                 ) {
-                    Text(stringResource(R.string.cancel))
+                    Text(stringResource(CoreUiR.string.cancel))
                 }
             },
             containerColor = MaterialTheme.colorScheme.surface,

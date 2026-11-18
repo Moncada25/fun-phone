@@ -16,9 +16,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.core.graphics.createBitmap
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.settings.LocaleController
 import contacts.core.entities.EventDate
 import java.time.Instant
@@ -28,6 +28,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 object ContactUtils {
 
@@ -223,7 +224,7 @@ object ContactUtils {
         val yesterday = today.minusDays(1)
 
         return when (parsedDate) {
-            today -> context.getString(R.string.today)
+            today -> context.getString(CoreUiR.string.today)
             yesterday -> context.getString(R.string.yesterday)
             else -> this
         }
@@ -240,7 +241,7 @@ object ContactUtils {
         val yesterday = today.minusDays(1)
 
         return when (date) {
-            today -> context.getString(R.string.today)
+            today -> context.getString(CoreUiR.string.today)
             yesterday -> context.getString(R.string.yesterday)
             else -> date.format(DateTimeFormatter.ofPattern(pattern, locale))
         }

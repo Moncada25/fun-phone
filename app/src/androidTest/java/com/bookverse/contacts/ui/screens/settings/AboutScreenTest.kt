@@ -31,6 +31,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicBoolean
+import com.bookverse.contacts.feature.settings.R as SettingsR
 
 class AboutScreenTest {
     @get:Rule
@@ -41,26 +42,26 @@ class AboutScreenTest {
         showAboutScreen()
 
         composeRule.onNodeWithText(string(R.string.app_name)).assertIsDisplayed()
-        scrollTo(R.string.about_features_title)
-        composeRule.onNodeWithText(string(R.string.about_features_title)).assertIsDisplayed()
+        scrollTo(SettingsR.string.about_features_title)
+        composeRule.onNodeWithText(string(SettingsR.string.about_features_title)).assertIsDisplayed()
 
         listOf(
-            R.string.about_feature_dialer,
-            R.string.about_feature_t9_search,
-            R.string.about_feature_call_controls,
-            R.string.about_feature_call_history,
-            R.string.about_feature_contacts,
-            R.string.about_feature_favorites,
-            R.string.about_feature_dual_sim,
-            R.string.about_feature_default_phone,
-            R.string.about_feature_local_privacy,
-            R.string.about_feature_import_export,
-            R.string.about_feature_duplicates,
-            R.string.about_feature_accessibility,
-            R.string.about_feature_customization,
-            R.string.about_feature_shortcuts,
-            R.string.about_feature_widgets,
-            R.string.about_feature_optional_tools,
+            SettingsR.string.about_feature_dialer,
+            SettingsR.string.about_feature_t9_search,
+            SettingsR.string.about_feature_call_controls,
+            SettingsR.string.about_feature_call_history,
+            SettingsR.string.about_feature_contacts,
+            SettingsR.string.about_feature_favorites,
+            SettingsR.string.about_feature_dual_sim,
+            SettingsR.string.about_feature_default_phone,
+            SettingsR.string.about_feature_local_privacy,
+            SettingsR.string.about_feature_import_export,
+            SettingsR.string.about_feature_duplicates,
+            SettingsR.string.about_feature_accessibility,
+            SettingsR.string.about_feature_customization,
+            SettingsR.string.about_feature_shortcuts,
+            SettingsR.string.about_feature_widgets,
+            SettingsR.string.about_feature_optional_tools,
         ).forEach { featureRes ->
             composeRule
                 .onNode(hasScrollAction())
@@ -68,10 +69,10 @@ class AboutScreenTest {
             composeRule.onNodeWithContentDescription(string(featureRes)).assertIsDisplayed()
         }
 
-        scrollTo(R.string.about_support_title)
-        composeRule.onNodeWithText(string(R.string.about_support_title)).assertIsDisplayed()
-        scrollTo(R.string.about_footer_message)
-        composeRule.onNodeWithText(string(R.string.about_footer_message)).assertIsDisplayed()
+        scrollTo(SettingsR.string.about_support_title)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_title)).assertIsDisplayed()
+        scrollTo(SettingsR.string.about_footer_message)
+        composeRule.onNodeWithText(string(SettingsR.string.about_footer_message)).assertIsDisplayed()
     }
 
     @Test
@@ -83,12 +84,12 @@ class AboutScreenTest {
             .assertHasClickAction()
 
         listOf(
-            R.string.about_source_code,
-            R.string.about_report_issue,
-            R.string.about_releases,
-            R.string.about_contribute,
-            R.string.about_license,
-            R.string.about_star_repository,
+            SettingsR.string.about_source_code,
+            SettingsR.string.about_report_issue,
+            SettingsR.string.about_releases,
+            SettingsR.string.about_contribute,
+            SettingsR.string.about_license,
+            SettingsR.string.about_star_repository,
             R.string.share,
             R.string.website,
         ).forEach { actionRes ->
@@ -121,12 +122,12 @@ class AboutScreenTest {
         )
         val version = packageInfo.versionName ?: "N/A"
         composeRule
-            .onNodeWithText(string(R.string.about_version_short, version))
+            .onNodeWithText(string(SettingsR.string.about_version_short, version))
             .performClick()
 
         composeRule.waitUntil(timeoutMillis = 5_000) {
             composeRule
-                .onAllNodesWithText(string(R.string.about_version_copied))
+                .onAllNodesWithText(string(SettingsR.string.about_version_copied))
                 .fetchSemanticsNodes()
                 .isNotEmpty()
         }
@@ -142,7 +143,7 @@ class AboutScreenTest {
 
         composeRule.waitUntil(timeoutMillis = 5_000) {
             composeRule
-                .onAllNodesWithText(string(R.string.easter_egg_toast))
+                .onAllNodesWithText(string(SettingsR.string.easter_egg_toast))
                 .fetchSemanticsNodes()
                 .isNotEmpty()
         }
@@ -172,9 +173,9 @@ class AboutScreenTest {
         composeRule.waitForIdle()
 
         listOf(
-            R.string.about_star_repository,
-            R.string.about_support_title,
-            R.string.about_footer_message,
+            SettingsR.string.about_star_repository,
+            SettingsR.string.about_support_title,
+            SettingsR.string.about_footer_message,
         ).forEach { targetRes ->
             scrollTo(targetRes)
             composeRule.onNodeWithText(string(targetRes)).assertIsDisplayed()
@@ -206,10 +207,10 @@ class AboutScreenTest {
         composeRule.waitForIdle()
 
         composeRule.onNodeWithText(string(R.string.app_name)).assertIsDisplayed()
-        scrollTo(R.string.about_support_title)
-        composeRule.onNodeWithText(string(R.string.about_support_title)).assertIsDisplayed()
-        scrollTo(R.string.about_footer_message)
-        composeRule.onNodeWithText(string(R.string.about_footer_message)).assertIsDisplayed()
+        scrollTo(SettingsR.string.about_support_title)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_title)).assertIsDisplayed()
+        scrollTo(SettingsR.string.about_footer_message)
+        composeRule.onNodeWithText(string(SettingsR.string.about_footer_message)).assertIsDisplayed()
     }
 
     private fun showAboutScreen(onBack: () -> Unit = {}) {

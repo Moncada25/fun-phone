@@ -2,8 +2,8 @@ package com.bookverse.contacts.ui.screens.notes
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ReminderRepeat
+import com.bookverse.contacts.feature.notes.R
 
 @Composable
 internal fun reminderRepeatLabel(mode: ReminderRepeat): String = stringResource(

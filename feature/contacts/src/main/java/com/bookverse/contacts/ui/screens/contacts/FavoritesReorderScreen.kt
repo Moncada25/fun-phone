@@ -21,6 +21,8 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -44,7 +46,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
@@ -173,7 +174,7 @@ fun FavoritesReorderScreen(
                 Spacer(modifier = Modifier.height(32.dp))
 
                 FilledTonalButton(onClick = onBackClick) {
-                    Text(text = stringResource(R.string.back))
+                    Text(text = stringResource(CoreUiR.string.back))
                 }
             }
         } else {

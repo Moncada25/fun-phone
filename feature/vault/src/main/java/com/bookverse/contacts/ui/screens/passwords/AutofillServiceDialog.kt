@@ -14,8 +14,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.vault.R
 import com.bookverse.contacts.ui.components.MessageDialog
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 private enum class AutofillStatus { UNSUPPORTED, DISABLED, ENABLED }
 
@@ -53,12 +54,12 @@ internal fun AutofillServiceDialog(onDismiss: () -> Unit) {
             },
         ),
         buttonText = stringResource(
-            if (status == AutofillStatus.DISABLED) R.string.settings else R.string.understood,
+            if (status == AutofillStatus.DISABLED) CoreUiR.string.settings else CoreUiR.string.understood,
         ),
         onButtonClick = {
             if (status == AutofillStatus.DISABLED) openSystemSettings() else onDismiss()
         },
-        secondaryButtonText = if (status == AutofillStatus.DISABLED) stringResource(R.string.cancel) else null,
+        secondaryButtonText = if (status == AutofillStatus.DISABLED) stringResource(CoreUiR.string.cancel) else null,
         onSecondaryButtonClick = onDismiss,
         onDismiss = onDismiss,
     )

@@ -51,6 +51,8 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import com.bookverse.contacts.feature.vault.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -76,7 +78,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.password.PasswordCredential
 import com.bookverse.contacts.domain.passwords.Totp
 import com.bookverse.contacts.security.SensitiveClipboard
@@ -462,8 +463,8 @@ private fun AccountSection(
         accentColor = accentColor,
         modifier = modifier,
     ) {
-        EditorField(name, onNameChange, stringResource(R.string.account), Icons.Default.Badge, nameError, R.string.password_account_required, accentColor, ImeAction.Next)
-        EditorField(username, onUsernameChange, stringResource(R.string.password_username), Icons.Default.AccountCircle, usernameError, R.string.password_username_required, accentColor, ImeAction.Next)
+        EditorField(name, onNameChange, stringResource(CoreUiR.string.account), Icons.Default.Badge, nameError, R.string.password_account_required, accentColor, ImeAction.Next)
+        EditorField(username, onUsernameChange, stringResource(CoreUiR.string.password_username), Icons.Default.AccountCircle, usernameError, R.string.password_username_required, accentColor, ImeAction.Next)
         EditorField(
             value = url,
             onValueChange = onUrlChange,

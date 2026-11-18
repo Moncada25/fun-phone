@@ -9,8 +9,10 @@ contracts; they do not replace the explicitly manual device and assistive-techno
 
 ## Localization quality gate (LOC-01)
 
-`core/ui/src/main/res/values/strings.xml` is the canonical English baseline. The supported translations
-are `values-es`, `values-de`, `values-fr`, and `values-pt`.
+Each module with strings (`core/ui` and every `feature/*`) has its own canonical English baseline in
+`src/main/res/values/strings.xml`, and its supported translations are `values-es`, `values-de`,
+`values-fr`, and `values-pt` in the same module. The gate checks every module against its own
+baseline and fails when a string name is declared in more than one module.
 
 Run the reproducible gate from the repository root:
 

@@ -36,12 +36,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.backup.AppBackupManager
 import com.bookverse.contacts.data.backup.AppBackupSummary
 import com.bookverse.contacts.domain.backup.BackupArchive
 import com.bookverse.contacts.domain.backup.BackupFormatException
 import com.bookverse.contacts.domain.backup.BackupPassphraseException
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.security.AppLockSession
 import com.bookverse.contacts.security.AppLockSettings
 import com.bookverse.contacts.ui.auth.PasswordAuthState
@@ -56,6 +56,7 @@ import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 private enum class BackupStep { IDLE, EXPORT_PASSPHRASE, RESTORE_PASSPHRASE, WORKING }
 
@@ -140,8 +141,8 @@ internal fun ProtectionBackupHost(
         }
         launchDeviceAuthentication(
             activity = activity,
-            title = resources.getString(R.string.app_lock_prompt_title),
-            subtitle = resources.getString(R.string.app_lock_prompt_subtitle),
+            title = resources.getString(CoreUiR.string.app_lock_prompt_title),
+            subtitle = resources.getString(CoreUiR.string.app_lock_prompt_subtitle),
             onSuccess = {
                 AppLockSession.unlock()
                 scope.launch { AppLockSettings.setEnabled(context, enable) }
@@ -315,12 +316,12 @@ private fun PassphraseDialog(
                     )
                 }
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                    TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
+                    TextButton(onClick = onDismiss) { Text(stringResource(CoreUiR.string.cancel)) }
                     Button(
                         enabled = longEnough && matches,
                         onClick = { onSubmit(passphrase.toCharArray()) },
                     ) {
-                        Text(stringResource(R.string.action_continue))
+                        Text(stringResource(CoreUiR.string.action_continue))
                     }
                 }
             }

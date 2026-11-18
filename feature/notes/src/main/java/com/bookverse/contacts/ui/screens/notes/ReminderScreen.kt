@@ -42,6 +42,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -68,7 +70,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.ReminderData
 import com.bookverse.contacts.data.notes.ReminderRepeat
@@ -430,7 +431,7 @@ fun ReminderScreen(
                 if (isNewReminder) {
                     IconAction(
                         imageVector = Icons.Default.Check,
-                        contentDescription = stringResource(R.string.save),
+                        contentDescription = stringResource(CoreUiR.string.save),
                         onClick = { handleSave() }
                     )
                 }
@@ -706,10 +707,10 @@ fun ReminderScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.DateRange,
-                            contentDescription = stringResource(R.string.select_date)
+                            contentDescription = stringResource(CoreUiR.string.select_date)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
-                        Text(stringResource(R.string.select_date))
+                        Text(stringResource(CoreUiR.string.select_date))
                     }
 
                     Button(
@@ -723,10 +724,10 @@ fun ReminderScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.AccessTime,
-                            contentDescription = stringResource(R.string.select_time)
+                            contentDescription = stringResource(CoreUiR.string.select_time)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
-                        Text(stringResource(R.string.select_time))
+                        Text(stringResource(CoreUiR.string.select_time))
                     }
                 }
 
@@ -960,7 +961,7 @@ fun ReminderScreen(
             MessageDialog(
                 title = stringResource(R.string.reminder_validation_error_title),
                 message1 = validationMessage,
-                buttonText = stringResource(R.string.understood),
+                buttonText = stringResource(CoreUiR.string.understood),
                 onButtonClick = { showValidationDialog = false },
                 onDismiss = { showValidationDialog = false },
             )
@@ -970,7 +971,7 @@ fun ReminderScreen(
             MessageDialog(
                 title = stringResource(R.string.reminder_notification_permission_title),
                 message1 = stringResource(R.string.reminder_notification_permission_message),
-                buttonText = stringResource(R.string.grant_permission),
+                buttonText = stringResource(CoreUiR.string.grant_permission),
                 onButtonClick = {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         requestNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
@@ -984,7 +985,7 @@ fun ReminderScreen(
             MessageDialog(
                 title = stringResource(R.string.reminder_notification_settings_title),
                 message1 = stringResource(R.string.reminder_notification_settings_message),
-                buttonText = stringResource(R.string.open_settings),
+                buttonText = stringResource(CoreUiR.string.open_settings),
                 onButtonClick = {
                     showNotificationSettingsDialog = false
                     permissionSettingsLauncher.launch(
@@ -999,7 +1000,7 @@ fun ReminderScreen(
             MessageDialog(
                 title = stringResource(R.string.reminder_exact_alarm_permission_title),
                 message1 = stringResource(R.string.reminder_exact_alarm_permission_message),
-                buttonText = stringResource(R.string.action_continue),
+                buttonText = stringResource(CoreUiR.string.action_continue),
                 onButtonClick = {
                     showExactAlarmPermissionDialog = false
                     NotificationService.createAlarmPermissionIntent(context)?.let { intent ->
@@ -1019,12 +1020,12 @@ fun ReminderScreen(
             MessageDialog(
                 title = stringResource(R.string.reminder_silent_channel_title),
                 message1 = stringResource(R.string.reminder_silent_channel_message),
-                buttonText = stringResource(R.string.save),
+                buttonText = stringResource(CoreUiR.string.save),
                 onButtonClick = {
                     showSilentChannelDialog = false
                     saveReminder()
                 },
-                secondaryButtonText = stringResource(R.string.open_settings),
+                secondaryButtonText = stringResource(CoreUiR.string.open_settings),
                 onSecondaryButtonClick = {
                     showSilentChannelDialog = false
                     permissionSettingsLauncher.launch(

@@ -1,7 +1,7 @@
 package com.bookverse.contacts.ui.screens.passwords
 
 import androidx.compose.ui.graphics.Color
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.vault.R
 
 fun passwordStrengthInfo(strength: Int): Pair<Color, Int> {
     return when (strength) {

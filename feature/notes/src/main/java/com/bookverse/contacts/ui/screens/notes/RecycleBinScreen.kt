@@ -23,6 +23,8 @@ import androidx.compose.material.icons.filled.RestoreFromTrash
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,7 +45,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.integration.NotesViewModelFactory
@@ -101,7 +102,7 @@ fun RecycleBinScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(R.string.recycle_bin_title),
+                title = stringResource(CoreUiR.string.recycle_bin_title),
                 count = deletedNotes.size,
                 onBackClick = onBackClick,
                 onCountClick = { showNotesDialog = true },
@@ -109,7 +110,7 @@ fun RecycleBinScreen(
                     if (deletedNotes.isNotEmpty()) {
                         IconAction(
                             imageVector = Icons.Default.DeleteSweep,
-                            contentDescription = stringResource(R.string.empty_recycle_bin),
+                            contentDescription = stringResource(CoreUiR.string.empty_recycle_bin),
                             onClick = { showEmptyRecycleBinDialog = true }
                         )
                     }
@@ -136,13 +137,13 @@ fun RecycleBinScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = stringResource(R.string.recycle_bin_empty),
+                        contentDescription = stringResource(CoreUiR.string.recycle_bin_empty),
                         modifier = Modifier.size(120.dp),
                         tint = accentColor.copy(alpha = 0.6f)
                     )
                     Spacer(modifier = Modifier.height(24.dp))
                     Text(
-                        text = stringResource(R.string.recycle_bin_empty),
+                        text = stringResource(CoreUiR.string.recycle_bin_empty),
                         color = textColor.copy(alpha = 0.8f),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Medium
@@ -262,14 +263,14 @@ fun RecycleBinScreen(
                             isNormalNote = false,
                             onTransformToAudio = null,
                             restoreActionIcon = Icons.Default.RestoreFromTrash,
-                            restoreActionDescription = stringResource(R.string.restore),
+                            restoreActionDescription = stringResource(CoreUiR.string.restore),
                             onRestoreActionClick = {
                                 noteToRestore = note
                                 showRestoreDialog = true
                             },
                             replaceDeleteWithCustom = true,
                             deleteForeverActionIcon = Icons.Default.DeleteForever,
-                            deleteForeverActionDescription = stringResource(R.string.delete_permanently)
+                            deleteForeverActionDescription = stringResource(CoreUiR.string.delete_permanently)
                         )
                     }
                 }
@@ -294,11 +295,11 @@ fun RecycleBinScreen(
                         type = SnackbarType.Success
                     )
                 },
-                title = stringResource(R.string.restore),
-                message = stringResource(R.string.restore_confirm, noteToRestore!!.title),
+                title = stringResource(CoreUiR.string.restore),
+                message = stringResource(CoreUiR.string.restore_confirm, noteToRestore!!.title),
                 toastMessage = null,
                 appSettingsViewModel = appSettingsViewModel,
-                confirmButtonLabel = stringResource(R.string.restore),
+                confirmButtonLabel = stringResource(CoreUiR.string.restore),
                 isDestructive = false,
             )
         }
@@ -316,9 +317,9 @@ fun RecycleBinScreen(
                         type = SnackbarType.Success
                     )
                 },
-                title = stringResource(R.string.delete_permanently),
+                title = stringResource(CoreUiR.string.delete_permanently),
                 message = stringResource(
-                    R.string.delete_permanently_confirm,
+                    CoreUiR.string.delete_permanently_confirm,
                     noteToDeletePermanently!!.title
                 ),
                 toastMessage = null,
@@ -335,12 +336,12 @@ fun RecycleBinScreen(
                     }
                     showEmptyRecycleBinDialog = false
                     snackbar.show(
-                        message = resources.getString(R.string.recycle_bin_emptied),
+                        message = resources.getString(CoreUiR.string.recycle_bin_emptied),
                         type = SnackbarType.Success
                     )
                 },
-                title = stringResource(R.string.empty_recycle_bin),
-                message = stringResource(R.string.empty_recycle_bin_confirm),
+                title = stringResource(CoreUiR.string.empty_recycle_bin),
+                message = stringResource(CoreUiR.string.empty_recycle_bin_confirm),
                 toastMessage = null,
                 appSettingsViewModel = appSettingsViewModel
             )

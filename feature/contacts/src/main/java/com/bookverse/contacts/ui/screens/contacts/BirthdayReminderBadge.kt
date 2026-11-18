@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.service.ExactAlarmAccess
 import com.bookverse.contacts.service.birthday.BirthdayReminderAccess
 import com.bookverse.contacts.service.birthday.BirthdayReminderAccessIssue

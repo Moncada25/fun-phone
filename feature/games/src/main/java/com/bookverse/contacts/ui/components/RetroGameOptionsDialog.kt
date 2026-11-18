@@ -45,9 +45,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun RetroGameOptionsDialog(
@@ -134,7 +134,7 @@ fun RetroGameOptionsDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(R.string.close),
+                                contentDescription = stringResource(CoreUiR.string.close),
                                 tint = MaterialTheme.colorScheme.onSurface
                             )
                         }

@@ -37,6 +37,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.tools.R as ToolsR
 
 @OptIn(ExperimentalMaterial3Api::class)
 class ToolsReorderScreenTest {
@@ -134,7 +135,7 @@ class ToolsReorderScreenTest {
         swipe(Offset(center.x, height * 0.2f), Offset(center.x, height * 0.6f), durationMillis = 600)
     }
 
-    private fun titleY() = compose.onNodeWithText(text(R.string.tools_order_title)).fetchSemanticsNode().boundsInRoot.center.y
+    private fun titleY() = compose.onNodeWithText(text(ToolsR.string.tools_order_title)).fetchSemanticsNode().boundsInRoot.center.y
     private fun text(resource: Int) = context.getString(resource)
 
     private class MemorySettingsStore : AppSettingsStore, DataStore<Preferences> {

@@ -39,6 +39,8 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -65,7 +67,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.service.PomodoroService
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.screens.settings.SettingsSheetScaffold
@@ -112,14 +113,14 @@ fun PomodoroScreen(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SecondaryTopBar(
-                title = stringResource(R.string.pomodoro_title),
+                title = stringResource(CoreUiR.string.pomodoro_title),
                 onBackClick = onBackClick,
                 appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.Settings,
-                        contentDescription = stringResource(R.string.settings),
+                        contentDescription = stringResource(CoreUiR.string.settings),
                         onClick = { showSettingsSheet = true },
                     )
                 },
@@ -255,7 +256,7 @@ private fun TimerCard(
                 }
                 Column {
                     Text(
-                        text = stringResource(R.string.pomodoro_title),
+                        text = stringResource(CoreUiR.string.pomodoro_title),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                     )
@@ -513,7 +514,7 @@ internal fun ControlButtons(
             ) {
                 Icon(imageVector = Icons.Default.PlayArrow, contentDescription = null)
                 Text(
-                    text = stringResource(R.string.resume_label),
+                    text = stringResource(CoreUiR.string.resume_label),
                     modifier = Modifier.padding(start = 8.dp),
                 )
             }
@@ -539,7 +540,7 @@ internal fun ControlButtons(
             ) {
                 Icon(imageVector = Icons.Default.Pause, contentDescription = null)
                 Text(
-                    text = stringResource(R.string.pause_label),
+                    text = stringResource(CoreUiR.string.pause_label),
                     modifier = Modifier.padding(start = 8.dp),
                 )
             }
@@ -611,7 +612,7 @@ private fun SecondaryControlButtons(
         ) {
             Icon(imageVector = Icons.Default.Refresh, contentDescription = null)
             Text(
-                text = stringResource(R.string.reset_label),
+                text = stringResource(CoreUiR.string.reset_label),
                 modifier = Modifier.padding(start = 8.dp),
             )
         }
@@ -646,7 +647,7 @@ internal fun PomodoroSettingsSheet(
 
     SettingsSheetScaffold(
         title = stringResource(R.string.pomodoro_settings_title),
-        subtitle = stringResource(R.string.pomodoro_description),
+        subtitle = stringResource(CoreUiR.string.pomodoro_description),
         onDismiss = onDismiss,
     ) {
         Column(
@@ -703,7 +704,7 @@ internal fun PomodoroSettingsSheet(
                     contentColor = contentColorFor(accentColor),
                 ),
             ) {
-                Text(text = stringResource(R.string.save))
+                Text(text = stringResource(CoreUiR.string.save))
             }
         }
     }
@@ -758,7 +759,7 @@ private fun PomodoroSettingSlider(
 private fun timerStateLabel(timerState: PomodoroTimerState): String = when (timerState) {
     PomodoroTimerState.WORK -> stringResource(R.string.pomodoro_work_session)
     PomodoroTimerState.BREAK -> stringResource(R.string.pomodoro_break_session)
-    PomodoroTimerState.PAUSED -> stringResource(R.string.pause_label)
+    PomodoroTimerState.PAUSED -> stringResource(CoreUiR.string.pause_label)
     PomodoroTimerState.IDLE -> stringResource(R.string.pomodoro_ready)
 }
 

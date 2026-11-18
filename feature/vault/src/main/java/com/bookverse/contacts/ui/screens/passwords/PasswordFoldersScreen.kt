@@ -15,6 +15,8 @@ import androidx.compose.material.icons.filled.CreateNewFolder
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.vault.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +40,6 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.password.PasswordFolder
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ConfirmDialog
@@ -100,13 +101,13 @@ fun PasswordFoldersScreen(
             SecondaryTopBar(
                 expandable = true,
                 scrollBehavior = scrollBehavior,
-                title = stringResource(R.string.note_folders_title),
+                title = stringResource(CoreUiR.string.note_folders_title),
                 onBackClick = onBackClick,
                 actions = {
                     if (folders.isNotEmpty()) {
                         IconAction(
                             imageVector = Icons.Default.CreateNewFolder,
-                            contentDescription = stringResource(R.string.note_folders_create),
+                            contentDescription = stringResource(CoreUiR.string.note_folders_create),
                             onClick = { editingFolder = null; showForm = true },
                         )
                     }
@@ -124,7 +125,7 @@ fun PasswordFoldersScreen(
                     icon = Icons.Default.Folder,
                     title = stringResource(R.string.password_folders_empty_title),
                     description = stringResource(R.string.password_folders_empty_description),
-                    primaryActionLabel = stringResource(R.string.note_folders_create),
+                    primaryActionLabel = stringResource(CoreUiR.string.note_folders_create),
                     accentColor = accentColor,
                     onPrimaryAction = { editingFolder = null; showForm = true },
                 )
@@ -144,8 +145,8 @@ fun PasswordFoldersScreen(
                                 credentials.count { it.folderId == folder.id },
                             ),
                             accentColor = accentColor,
-                            editDescription = stringResource(R.string.edit),
-                            deleteDescription = stringResource(R.string.delete),
+                            editDescription = stringResource(CoreUiR.string.edit),
+                            deleteDescription = stringResource(CoreUiR.string.delete),
                             onEdit = { editingFolder = folder; showForm = true },
                             onDelete = { folderToDelete = folder },
                             isDragging = isDragging,
@@ -195,13 +196,13 @@ fun PasswordFoldersScreen(
         val isEditing = editingFolder != null
         FolderFormDialog(
             folder = editingFolder?.toUiModel(),
-            title = stringResource(if (isEditing) R.string.note_folders_form_title_edit else R.string.note_folders_form_title_add),
-            nameLabel = stringResource(R.string.note_folders_name_label),
-            descriptionLabel = stringResource(R.string.note_folders_description_label),
-            colorLabel = stringResource(R.string.note_folders_color_label),
-            editLabel = stringResource(R.string.edit),
-            cancelLabel = stringResource(R.string.cancel),
-            saveLabel = stringResource(R.string.save),
+            title = stringResource(if (isEditing) CoreUiR.string.note_folders_form_title_edit else CoreUiR.string.note_folders_form_title_add),
+            nameLabel = stringResource(CoreUiR.string.note_folders_name_label),
+            descriptionLabel = stringResource(CoreUiR.string.note_folders_description_label),
+            colorLabel = stringResource(CoreUiR.string.note_folders_color_label),
+            editLabel = stringResource(CoreUiR.string.edit),
+            cancelLabel = stringResource(CoreUiR.string.cancel),
+            saveLabel = stringResource(CoreUiR.string.save),
             accentColor = accentColor,
             appSettingsViewModel = appSettingsViewModel,
             onDismiss = { showForm = false; editingFolder = null },
@@ -230,7 +231,7 @@ fun PasswordFoldersScreen(
                 snackbar.show(resources.getString(R.string.password_folder_deleted, folder.name), SnackbarType.Success)
                 folderToDelete = null
             },
-            title = stringResource(R.string.note_folders_delete_title),
+            title = stringResource(CoreUiR.string.note_folders_delete_title),
             message = stringResource(R.string.password_folders_delete_message, folder.name),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel,

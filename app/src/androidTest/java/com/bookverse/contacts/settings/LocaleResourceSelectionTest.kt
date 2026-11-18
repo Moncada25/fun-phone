@@ -1,12 +1,12 @@
 package com.bookverse.contacts.settings
 
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.viewmodel.AppLanguage
 import org.junit.Assert.assertNotEquals
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.settings.R as SettingsR
 
 class LocaleResourceSelectionTest {
     @get:Rule
@@ -21,7 +21,7 @@ class LocaleResourceSelectionTest {
                 LocaleController().apply(AppLanguage.ENGLISH)
             }
             val englishContext = LocaleController.localizedContext(targetContext)
-            val englishSection = englishContext.getString(R.string.animations_vibration_section)
+            val englishSection = englishContext.getString(SettingsR.string.animations_vibration_section)
 
             listOf(
                 AppLanguage.SPANISH,
@@ -36,7 +36,7 @@ class LocaleResourceSelectionTest {
                 assertNotEquals(
                     "${language.name} must not fall back to English",
                     englishSection,
-                    localizedContext.getString(R.string.animations_vibration_section),
+                    localizedContext.getString(SettingsR.string.animations_vibration_section),
                 )
             }
         } finally {

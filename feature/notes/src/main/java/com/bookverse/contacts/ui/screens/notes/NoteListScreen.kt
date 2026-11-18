@@ -39,6 +39,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import com.bookverse.contacts.ui.components.withoutTop
 import androidx.compose.material3.Text
@@ -67,7 +69,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.NOTE_FOLDER_FILTER_ALL
 import com.bookverse.contacts.data.notes.Note
@@ -101,10 +102,8 @@ import com.bookverse.contacts.ui.components.floatingOptionsBlur
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.rememberFloatingOptionsState
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-
 import com.bookverse.contacts.ui.viewmodel.NotesViewModel
 import com.bookverse.contacts.utils.NoteShareUtils
-
 import com.composables.icons.lucide.ListCheck
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Mic
@@ -585,7 +584,7 @@ fun NoteListScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(R.string.notes_title),
+                title = stringResource(CoreUiR.string.notes_title),
                 count = folderNoteCount,
                 onBackClick = onBackClick,
                 searchAction = if (notes.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(
@@ -594,7 +593,7 @@ fun NoteListScreen(
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showOptionsDialog = true },
                         feedback = true
                     )
@@ -615,7 +614,7 @@ fun NoteListScreen(
                                 searchActive = false
                             },
                             leadingContentDescription = stringResource(R.string.notes_search_open),
-                            clearContentDescription = stringResource(R.string.clear),
+                            clearContentDescription = stringResource(CoreUiR.string.clear),
                         )
                     }
                 } else null)
@@ -1264,7 +1263,7 @@ fun NoteListScreen(
 
             val optionItems = listOf(
                 OptionsDialogItem(
-                    label = stringResource(R.string.note_folders_title),
+                    label = stringResource(CoreUiR.string.note_folders_title),
                     icon = Icons.Default.Folder,
                     enabled = true,
                     onClick = {
@@ -1273,7 +1272,7 @@ fun NoteListScreen(
                     }
                 ),
                 OptionsDialogItem(
-                    label = stringResource(R.string.tag_manager_title),
+                    label = stringResource(CoreUiR.string.tag_manager_title),
                     icon = Lucide.Tags,
                     enabled = true,
                     onClick = {
@@ -1282,7 +1281,7 @@ fun NoteListScreen(
                     }
                 ),
                 OptionsDialogItem(
-                    label = stringResource(R.string.recycle_bin_item),
+                    label = stringResource(CoreUiR.string.recycle_bin_item),
                     icon = Icons.Default.Delete,
                     enabled = true,
                     onClick = {
@@ -1300,18 +1299,18 @@ fun NoteListScreen(
                     }
                 ),
                 OptionsDialogItem(
-                    label = stringResource(R.string.restore),
+                    label = stringResource(CoreUiR.string.restore),
                     icon = Icons.Default.RestorePage,
                     enabled = !backupInProgress,
                     onClick = { handleImportRequest() }), OptionsDialogItem(
-                    label = stringResource(R.string.action_export_short),
+                    label = stringResource(CoreUiR.string.action_export_short),
                     icon = Icons.Default.Backup,
                     enabled = !backupInProgress,
                     onClick = { handleExportRequest() }
                 )
             )
             OptionsDialog(
-                title = stringResource(R.string.more_options),
+                title = stringResource(CoreUiR.string.more_options),
                 options = optionItems,
                 onDismiss = { showOptionsDialog = false },
             )
@@ -1334,7 +1333,7 @@ fun NoteListScreen(
                         message = message, type = SnackbarType.Success
                     )
                 },
-                title = stringResource(R.string.delete),
+                title = stringResource(CoreUiR.string.delete),
                 message = stringResource(R.string.delete_confirm_note, noteToDelete!!.title),
                 toastMessage = null,
                 appSettingsViewModel = appSettingsViewModel

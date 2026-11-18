@@ -42,13 +42,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.domain.expenses.CategoryShare
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
 import com.bookverse.contacts.domain.expenses.ExpenseOverview
 import com.bookverse.contacts.domain.expenses.MonthlyTotals
 import com.bookverse.contacts.domain.expenses.formatAsCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge

@@ -31,6 +31,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
@@ -55,7 +57,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.DuplicateGroup
 import com.bookverse.contacts.data.model.MatchType
@@ -160,7 +161,7 @@ fun DuplicateContactsScreen(
             SecondaryTopBar(
                 expandable = true,
                 scrollBehavior = scrollBehavior,
-                title = stringResource(R.string.duplicate_contacts_title),
+                title = stringResource(CoreUiR.string.duplicate_contacts_title),
                 onBackClick = onBack,
                 appSettingsViewModel = appSettingsViewModel,
                 actions = {
@@ -599,7 +600,7 @@ private fun MergeDialog(
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(
-                    text = stringResource(R.string.cancel),
+                    text = stringResource(CoreUiR.string.cancel),
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }

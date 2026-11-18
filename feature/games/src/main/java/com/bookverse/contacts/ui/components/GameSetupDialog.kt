@@ -32,9 +32,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.games.R
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Play
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 data class GameSetupOption(
     val title: String,
@@ -101,7 +102,7 @@ fun GameSetupDialog(
                             contentColor = MaterialTheme.colorScheme.onSurface,
                         ),
                     ) {
-                        Text(stringResource(R.string.cancel))
+                        Text(stringResource(CoreUiR.string.cancel))
                     }
                     Button(
                         onClick = onStart,

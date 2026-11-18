@@ -46,9 +46,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.DeletedContact
 import com.bookverse.contacts.domain.contacts.ContactRecycleBinPolicy
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ConfirmDialog
@@ -111,7 +112,7 @@ fun ContactRecycleBinScreen(
                 )
 
                 ContactRecycleBinEvent.Emptied -> snackbar.show(
-                    resources.getString(R.string.recycle_bin_emptied),
+                    resources.getString(CoreUiR.string.recycle_bin_emptied),
                     SnackbarType.Success,
                 )
 
@@ -129,14 +130,14 @@ fun ContactRecycleBinScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(R.string.contact_recycle_bin_title),
+                title = stringResource(CoreUiR.string.contact_recycle_bin_title),
                 count = deletedContacts.size,
                 onBackClick = onBackClick,
                 actions = {
                     if (deletedContacts.isNotEmpty()) {
                         IconAction(
                             imageVector = Icons.Default.DeleteSweep,
-                            contentDescription = stringResource(R.string.empty_recycle_bin),
+                            contentDescription = stringResource(CoreUiR.string.empty_recycle_bin),
                             onClick = { showEmptyConfirmation = true },
                             enabled = !isWorking,
                         )
@@ -168,7 +169,7 @@ fun ContactRecycleBinScreen(
                     )
                     Spacer(Modifier.height(24.dp))
                     Text(
-                        stringResource(R.string.recycle_bin_empty),
+                        stringResource(CoreUiR.string.recycle_bin_empty),
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Medium,
                     )
@@ -214,10 +215,10 @@ fun ContactRecycleBinScreen(
                 recycleBinViewModel.restore(entry)
                 contactToRestore = null
             },
-            title = stringResource(R.string.restore),
-            message = stringResource(R.string.restore_confirm, entry.displayLabel()),
+            title = stringResource(CoreUiR.string.restore),
+            message = stringResource(CoreUiR.string.restore_confirm, entry.displayLabel()),
             toastMessage = null,
-            confirmButtonLabel = stringResource(R.string.restore),
+            confirmButtonLabel = stringResource(CoreUiR.string.restore),
             isDestructive = false,
             appSettingsViewModel = appSettingsViewModel,
         )
@@ -229,8 +230,8 @@ fun ContactRecycleBinScreen(
                 recycleBinViewModel.deleteForever(entry)
                 contactToDelete = null
             },
-            title = stringResource(R.string.delete_permanently),
-            message = stringResource(R.string.delete_permanently_confirm, entry.displayLabel()),
+            title = stringResource(CoreUiR.string.delete_permanently),
+            message = stringResource(CoreUiR.string.delete_permanently_confirm, entry.displayLabel()),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel,
         )
@@ -242,8 +243,8 @@ fun ContactRecycleBinScreen(
                 recycleBinViewModel.emptyBin()
                 showEmptyConfirmation = false
             },
-            title = stringResource(R.string.empty_recycle_bin),
-            message = stringResource(R.string.empty_recycle_bin_confirm),
+            title = stringResource(CoreUiR.string.empty_recycle_bin),
+            message = stringResource(CoreUiR.string.empty_recycle_bin_confirm),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel,
         )
@@ -316,14 +317,14 @@ private fun DeletedContactCard(
             IconButton(onClick = onRestore, enabled = actionsEnabled) {
                 Icon(
                     Icons.Default.RestoreFromTrash,
-                    contentDescription = stringResource(R.string.restore),
+                    contentDescription = stringResource(CoreUiR.string.restore),
                     tint = accentColor,
                 )
             }
             IconButton(onClick = onDeleteForever, enabled = actionsEnabled) {
                 Icon(
                     Icons.Default.DeleteForever,
-                    contentDescription = stringResource(R.string.delete_permanently),
+                    contentDescription = stringResource(CoreUiR.string.delete_permanently),
                     tint = MaterialTheme.colorScheme.error,
                 )
             }

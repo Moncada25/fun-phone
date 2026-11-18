@@ -4,13 +4,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.settings.Country
 import com.bookverse.contacts.ui.components.ContactFormScreen
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,7 +31,7 @@ fun CreateContactScreen(
         phoneNumber = phoneNumber,
         appSettingsViewModel = appSettingsViewModel,
         contactsViewModel = contactsViewModel,
-        successMessage = stringResource(R.string.add_contact_success),
+        successMessage = stringResource(CoreUiR.string.add_contact_success),
         country = country,
         contactTagViewModel = contactTagViewModel
     )

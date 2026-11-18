@@ -1,5 +1,6 @@
 package com.bookverse.contacts.widget
 
+import com.bookverse.contacts.feature.widgets.R
 import com.bookverse.contacts.navigation.AppEntryPoints
 import android.content.Context
 import android.content.Intent
@@ -25,13 +26,13 @@ import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.ui.navigation.DynamicShortcuts
 import com.bookverse.contacts.ui.navigation.HomeShortcutDestination
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class NotesWidget : GlanceAppWidget() {
 
@@ -72,9 +73,9 @@ private fun NotesContent(context: Context, strings: Context, notes: List<Note>) 
     val openList = actionStartActivity(notesListIntent(context))
     WidgetSurface {
         WidgetHeader(
-            title = strings.getString(R.string.notes_widget_recent_title),
+            title = strings.getString(CoreUiR.string.notes_widget_recent_title),
             onTitleClick = openList,
-            actionIcon = R.drawable.ic_widget_add,
+            actionIcon = CoreUiR.drawable.ic_widget_add,
             actionLabel = strings.getString(R.string.notes_widget_new_note),
             onAction = actionStartActivity(DynamicShortcuts.launchIntent(context, HomeShortcutDestination.NEW_NOTE)),
         )

@@ -15,12 +15,13 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
+import com.bookverse.contacts.feature.tools.R
 import com.bookverse.contacts.navigation.AppEntryPoints
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.settings.LocaleController
 import java.util.Locale
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class PomodoroService : Service() {
 
@@ -213,7 +214,7 @@ class PomodoroService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setContentText(timeText)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(CoreUiR.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setOngoing(true)
             .setSilent(true)

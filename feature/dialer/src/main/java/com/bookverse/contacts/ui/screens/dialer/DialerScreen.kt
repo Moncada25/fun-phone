@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.dialer
 
+import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -33,7 +35,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.data.model.RecentType
@@ -92,7 +93,7 @@ fun DialerScreen(
     val textColor = MaterialTheme.colorScheme.onBackground
     val dataStore = remember(context) { AppDataStore.getDataStore(context) }
     var lastDialedNumber by remember { mutableStateOf<String?>(null) }
-    val unknownTitle = stringResource(R.string.unknown)
+    val unknownTitle = stringResource(CoreUiR.string.unknown)
     val vibrationDuration by appSettingsViewModel.vibrationDuration.collectAsStateWithLifecycle()
     val vibrationPattern by appSettingsViewModel.vibrationPattern.collectAsStateWithLifecycle()
     val profileContact = directory.profile.collectAsStateWithLifecycle().value
@@ -483,7 +484,7 @@ fun DialerScreen(
     Scaffold(
         topBar = {
             SecondaryTopBar(
-                title = stringResource(R.string.dialer),
+                title = stringResource(CoreUiR.string.dialer),
                 onBackClick = onBack,
                 appSettingsViewModel = appSettingsViewModel,
             )

@@ -47,7 +47,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
@@ -55,6 +54,7 @@ import com.bookverse.contacts.domain.expenses.ExpenseCurrency
 import com.bookverse.contacts.domain.expenses.ExpenseTransactionFilter
 import com.bookverse.contacts.domain.expenses.filterTransactions
 import com.bookverse.contacts.domain.expenses.formatAsCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
 import com.bookverse.contacts.ui.components.ConfirmDialog
@@ -68,6 +68,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 private enum class FilterDateBound {
     FROM,
@@ -124,7 +125,7 @@ fun ExpenseSearchScreen(
             item(key = "expense_search_empty") {
                 ExpenseEmptyState(
                     message = stringResource(
-                        if (filter.isActive) R.string.no_results else R.string.expense_search_no_transactions
+                        if (filter.isActive) CoreUiR.string.no_results else R.string.expense_search_no_transactions
                     )
                 )
             }
@@ -391,7 +392,7 @@ private fun ExpenseFilterSheet(
                         shape = SegmentedButtonDefaults.itemShape(index, typeOptions.size),
                         colors = segmentedColors,
                         label = {
-                            Text(text = stringResource(option?.labelRes() ?: R.string.all_filter))
+                            Text(text = stringResource(option?.labelRes() ?: CoreUiR.string.all_filter))
                         },
                     )
                 }
@@ -529,7 +530,7 @@ private fun ExpenseFilterSheet(
                         contentColor = accentContentColor,
                     ),
                 ) {
-                    Text(text = stringResource(R.string.apply), fontWeight = FontWeight.Bold)
+                    Text(text = stringResource(CoreUiR.string.apply), fontWeight = FontWeight.Bold)
                 }
             }
         }

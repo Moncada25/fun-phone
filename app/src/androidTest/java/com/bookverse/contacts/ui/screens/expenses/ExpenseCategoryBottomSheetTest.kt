@@ -18,6 +18,7 @@ import com.bookverse.contacts.ui.components.SELECT_BOTTOM_SHEET_LIST_TAG
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.expenses.R as ExpensesR
 
 class ExpenseCategoryBottomSheetTest {
     @get:Rule
@@ -51,7 +52,7 @@ class ExpenseCategoryBottomSheetTest {
 
         composeRule.onNodeWithText("Category 0").performClick()
 
-        composeRule.onNodeWithText(text(R.string.expense_category_picker_title)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_category_picker_title)).assertIsDisplayed()
         composeRule.onNodeWithContentDescription(dragHandleDescription()).assertIsDisplayed()
         composeRule.onNodeWithTag(SELECT_BOTTOM_SHEET_LIST_TAG).performScrollToIndex(39)
         composeRule.onNodeWithText("Category 39").performClick()

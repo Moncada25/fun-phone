@@ -33,6 +33,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -68,7 +70,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.NoteFolder
 import com.bookverse.contacts.integration.NotesViewModelFactory
 import com.bookverse.contacts.ui.components.AppSnackbarHost
@@ -141,13 +142,13 @@ fun FoldersNotesScreen(
             SecondaryTopBar(
                 expandable = true,
                 scrollBehavior = scrollBehavior,
-                title = stringResource(R.string.note_folders_title),
+                title = stringResource(CoreUiR.string.note_folders_title),
                 onBackClick = onBackClick,
                 actions = {
                     if (folders.isNotEmpty()) {
                         IconAction(
                             imageVector = Icons.Default.CreateNewFolder,
-                            contentDescription = stringResource(R.string.note_folders_create),
+                            contentDescription = stringResource(CoreUiR.string.note_folders_create),
                             onClick = {
                                 editingFolder = null
                                 showForm = true
@@ -298,7 +299,7 @@ fun FoldersNotesScreen(
                 )
                 folderToDelete = null
             },
-            title = stringResource(R.string.note_folders_delete_title),
+            title = stringResource(CoreUiR.string.note_folders_delete_title),
             message = stringResource(R.string.note_folders_delete_message, target.name),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel
@@ -344,7 +345,7 @@ private fun EmptyFoldersState(
             shape = RoundedCornerShape(999.dp)
         ) {
             Text(
-                text = stringResource(R.string.note_folders_create),
+                text = stringResource(CoreUiR.string.note_folders_create),
                 color = MaterialTheme.colorScheme.onBackground,
                 fontWeight = FontWeight.Bold
             )
@@ -416,13 +417,13 @@ private fun NoteFolderCard(
                 IconButton(onClick = onEdit) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = stringResource(R.string.edit)
+                        contentDescription = stringResource(CoreUiR.string.edit)
                     )
                 }
                 IconButton(onClick = onDelete) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = stringResource(R.string.delete),
+                        contentDescription = stringResource(CoreUiR.string.delete),
                         tint = MaterialTheme.colorScheme.error
                     )
                 }
@@ -476,8 +477,8 @@ private fun NoteFolderFormDialog(
             ) {
                 Text(
                     text = stringResource(
-                        if (folder == null) R.string.note_folders_form_title_add
-                        else R.string.note_folders_form_title_edit
+                        if (folder == null) CoreUiR.string.note_folders_form_title_add
+                        else CoreUiR.string.note_folders_form_title_edit
                     ),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
@@ -485,19 +486,19 @@ private fun NoteFolderFormDialog(
                 TextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = stringResource(R.string.note_folders_name_label),
+                    label = stringResource(CoreUiR.string.note_folders_name_label),
                     modifier = Modifier.fillMaxWidth()
                 )
                 TextField(
                     value = description,
                     onValueChange = { description = it },
-                    label = stringResource(R.string.note_folders_description_label),
+                    label = stringResource(CoreUiR.string.note_folders_description_label),
                     singleLine = false,
                     modifier = Modifier.fillMaxWidth()
                 )
                 Column {
                     Text(
-                        text = stringResource(R.string.note_folders_color_label),
+                        text = stringResource(CoreUiR.string.note_folders_color_label),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.onSurface
                     )
@@ -525,7 +526,7 @@ private fun NoteFolderFormDialog(
                                 fontWeight = FontWeight.SemiBold
                             )
                             Text(
-                                text = stringResource(R.string.edit),
+                                text = stringResource(CoreUiR.string.edit),
                                 style = MaterialTheme.typography.labelMedium,
                                 color = accentColor
                             )
@@ -546,7 +547,7 @@ private fun NoteFolderFormDialog(
                         shape = RoundedCornerShape(18.dp)
                     ) {
                         Text(
-                            text = stringResource(R.string.cancel),
+                            text = stringResource(CoreUiR.string.cancel),
                             color = MaterialTheme.colorScheme.onSurface
                         )
                     }
@@ -569,7 +570,7 @@ private fun NoteFolderFormDialog(
                         shape = RoundedCornerShape(18.dp)
                     ) {
                         Text(
-                            text = stringResource(R.string.save),
+                            text = stringResource(CoreUiR.string.save),
                             color = MaterialTheme.colorScheme.onBackground,
                             fontWeight = FontWeight.Bold
                         )

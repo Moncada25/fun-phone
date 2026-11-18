@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.history
 
+import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.Manifest
@@ -53,6 +54,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -84,7 +86,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.data.model.historyKey
@@ -193,37 +194,37 @@ fun HistoryScreen(
         Triple(
             RecentType.CALL_RECEIVED,
             Icons.AutoMirrored.Filled.CallReceived,
-            stringResource(R.string.recent_type_call_received)
+            stringResource(CoreUiR.string.recent_type_call_received)
         ),
         Triple(
             RecentType.CALL_SENT,
             Icons.AutoMirrored.Filled.CallMade,
-            stringResource(R.string.recent_type_call_sent)
+            stringResource(CoreUiR.string.recent_type_call_sent)
         ),
         Triple(
             RecentType.CALL_MISSED,
             Icons.AutoMirrored.Filled.CallMissed,
-            stringResource(R.string.recent_type_call_missed)
+            stringResource(CoreUiR.string.recent_type_call_missed)
         ),
         Triple(
             RecentType.CALL_REJECTED,
             Icons.AutoMirrored.Filled.CallMissedOutgoing,
-            stringResource(R.string.recent_type_call_rejected)
+            stringResource(CoreUiR.string.recent_type_call_rejected)
         ),
         Triple(
             RecentType.CALL_BLOCKED,
             Icons.Filled.HideSource,
-            stringResource(R.string.recent_type_call_blocked)
+            stringResource(CoreUiR.string.recent_type_call_blocked)
         ),
         Triple(
             RecentType.WHATSAPP_OPEN,
             Icons.Default.Whatsapp,
-            stringResource(R.string.recent_type_whatsapp)
+            stringResource(CoreUiR.string.recent_type_whatsapp)
         ),
         Triple(
             RecentType.CALL_UNKNOWN,
             Icons.Default.DeviceUnknown,
-            stringResource(R.string.recent_type_call_unknown)
+            stringResource(CoreUiR.string.recent_type_call_unknown)
         )
     )
     var selectedFilter by remember { mutableStateOf<RecentType?>(null) }
@@ -344,7 +345,7 @@ fun HistoryScreen(
     }
 
     if (showDeleteContactRecentsConfirm && contactToDeleteRecents != null) {
-        val unknown = stringResource(R.string.unknown)
+        val unknown = stringResource(CoreUiR.string.unknown)
         var title: String
         var message: String
 
@@ -432,8 +433,8 @@ fun HistoryScreen(
                             ) {
                                 val count = selectedOperations.size
                                 val label =
-                                    if (count == 1) stringResource(R.string.selected_single) else stringResource(
-                                        R.string.selected_plural
+                                    if (count == 1) stringResource(CoreUiR.string.selected_single) else stringResource(
+                                        CoreUiR.string.selected_plural
                                     )
                                 val titleContent: @Composable () -> Unit = {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -468,7 +469,7 @@ fun HistoryScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Cancel,
-                                        contentDescription = stringResource(R.string.cancel),
+                                        contentDescription = stringResource(CoreUiR.string.cancel),
                                         modifier = Modifier.size(20.dp)
                                     )
                                 }
@@ -476,7 +477,7 @@ fun HistoryScreen(
                                 IconButton(onClick = { contactsViewModel.clearRecentOperationSelection() }) {
                                     Icon(
                                         Icons.Default.Cancel,
-                                        contentDescription = stringResource(R.string.cancel),
+                                        contentDescription = stringResource(CoreUiR.string.cancel),
                                         tint = selectionContentColor
                                     )
                                 }
@@ -506,8 +507,8 @@ fun HistoryScreen(
                                     ) {
                                         Icon(
                                             imageVector = if (allSelected) Icons.Default.Deselect else Icons.Default.SelectAll,
-                                            contentDescription = if (allSelected) stringResource(R.string.deselect_all) else stringResource(
-                                                R.string.select_all
+                                            contentDescription = if (allSelected) stringResource(CoreUiR.string.deselect_all) else stringResource(
+                                                CoreUiR.string.select_all
                                             ),
                                             modifier = Modifier.size(20.dp)
                                         )
@@ -521,7 +522,7 @@ fun HistoryScreen(
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.DeleteSweep,
-                                            contentDescription = stringResource(R.string.delete),
+                                            contentDescription = stringResource(CoreUiR.string.delete),
                                             modifier = Modifier.size(20.dp)
                                         )
                                     }
@@ -534,8 +535,8 @@ fun HistoryScreen(
                                 }) {
                                     Icon(
                                         imageVector = if (allSelected) Icons.Default.Deselect else Icons.Default.SelectAll,
-                                        contentDescription = if (allSelected) stringResource(R.string.deselect_all) else stringResource(
-                                            R.string.select_all
+                                        contentDescription = if (allSelected) stringResource(CoreUiR.string.deselect_all) else stringResource(
+                                            CoreUiR.string.select_all
                                         ),
                                         tint = selectionContentColor
                                     )
@@ -545,7 +546,7 @@ fun HistoryScreen(
                                 }) {
                                     Icon(
                                         Icons.Default.DeleteSweep,
-                                        contentDescription = stringResource(R.string.delete),
+                                        contentDescription = stringResource(CoreUiR.string.delete),
                                         tint = selectionContentColor,
                                         modifier = Modifier.size(26.dp)
                                     )
@@ -577,7 +578,7 @@ fun HistoryScreen(
                                         isSearchActive = false
                                     },
                                     leadingContentDescription = stringResource(R.string.search_history),
-                                    clearContentDescription = stringResource(R.string.clear),
+                                    clearContentDescription = stringResource(CoreUiR.string.clear),
                                 )
                             }
                         } else {
@@ -954,7 +955,7 @@ fun HistoryScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Whatsapp,
-                                        contentDescription = stringResource(R.string.whatsapp_action),
+                                        contentDescription = stringResource(CoreUiR.string.whatsapp_action),
                                         tint = accentColor,
                                         modifier = Modifier.size(24.dp)
                                     )
@@ -974,7 +975,7 @@ fun HistoryScreen(
                                                     contactsViewModel.unblockNumber(normalized)
                                                 } else {
                                                     snackbar.show(
-                                                        message = resources.getString(R.string.contact_block_no_numbers),
+                                                        message = resources.getString(CoreUiR.string.contact_block_no_numbers),
                                                         type = SnackbarType.Warning
                                                     )
                                                 }
@@ -990,9 +991,9 @@ fun HistoryScreen(
                                     Icon(
                                         imageVector = Icons.Default.Block,
                                         contentDescription = if (contactIsBlocked) {
-                                            stringResource(R.string.contact_unblock_action)
+                                            stringResource(CoreUiR.string.contact_unblock_action)
                                         } else {
-                                            stringResource(R.string.contact_block_action)
+                                            stringResource(CoreUiR.string.contact_block_action)
                                         },
                                         tint = blockTint,
                                         modifier = Modifier.size(24.dp)
@@ -1007,7 +1008,7 @@ fun HistoryScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Delete,
-                                        contentDescription = stringResource(R.string.delete),
+                                        contentDescription = stringResource(CoreUiR.string.delete),
                                         tint = MaterialTheme.colorScheme.error,
                                         modifier = Modifier.size(24.dp)
                                     )
@@ -1044,7 +1045,7 @@ fun HistoryScreen(
             "#2: ${recentContact!!.phones.getOrNull(1)?.number ?: ""}"
         )
         OptionsDialog(
-            title = stringResource(R.string.select_phone_number),
+            title = stringResource(CoreUiR.string.select_phone_number),
             options = phoneOptions,
             onOptionSelected = { index: Int ->
                 when (index) {

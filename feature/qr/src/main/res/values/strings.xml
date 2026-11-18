@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="loading_contacts">Loading contacts…</string>
+    <string name="qr_flash_on">Turn on flash</string>
+    <string name="qr_flash_off">Turn off flash</string>
+    <string name="qr_share_code">Share QR code</string>
+    <string name="qr_save_code">Save QR code</string>
+    <string name="qr_empty_state_icon">No QR code generated</string>
+    <string name="qr_link_preview_icon">Website icon</string>
+    <string name="qr_generator_title">QR Generator</string>
+    <string name="qr_generator_instructions">Enter text to generate a QR code</string>
+    <string name="qr_generator_hint">Enter text or URL</string>
+    <string name="qr_generator_button">Create QR Code</string>
+    <string name="qr_empty_state_message">Your code will appear here</string>
+    <string name="qr_content_text">Text content</string>
+    <string name="qr_content_link">Link detected</string>
+    <string name="qr_open_link">Open link</string>
+    <string name="qr_copy_text">Copy text</string>
+    <string name="qr_error_scanning">Error scanning QR code</string>
+    <string name="qr_scanner_error_title">QR reader unavailable</string>
+    <string name="qr_scanner_error_message">The QR reader could not be initialized. Please try again.</string>
+    <string name="qr_saved_success">QR code saved successfully</string>
+    <string name="qr_share_ready">Code ready to share</string>
+    <string name="qr_share_error">Could not open the share menu</string>
+    <string name="qr_saved_error">Error saving QR code</string>
+    <string name="qr_share_title">Share QR code</string>
+    <string name="qr_pick_image">Pick image from gallery</string>
+    <string name="contact_qr_error">Error reading contact from QR code</string>
+    <string name="qr_history_load_error">Could not load QR history.</string>
+    <string name="qr_history_operation_error">Could not update QR history.</string>
+    <string name="qr_history_title">QR History</string>
+    <string name="qr_history_empty">You don\'t have any QRs in the history yet</string>
+    <string name="qr_history_clear">Clear history</string>
+    <string name="qr_history_clear_title">Clear all history</string>
+    <string name="qr_history_clear_message">Are you sure you want to delete all QR history?</string>
+    <string name="qr_history_generated">Generated</string>
+    <string name="qr_history_scanned">Scanned</string>
+    <string name="qr_wifi_security_wpa" translatable="false">WPA/WPA2/WPA3</string>
+    <string name="qr_wifi_security_wep" translatable="false">WEP</string>
+    <string name="qr_template_text">Text or link</string>
+    <string name="qr_template_wifi">Wi-Fi network</string>
+    <string name="qr_template_email">Email</string>
+    <string name="qr_template_phone">Phone</string>
+    <string name="qr_template_incomplete">Complete the required fields first</string>
+    <string name="qr_wifi_ssid">Network name (SSID)</string>
+    <string name="qr_wifi_password">Network password</string>
+    <string name="qr_wifi_password_rule">WPA passwords need 8 to 63 characters</string>
+    <string name="qr_wifi_security">Security type</string>
+    <string name="qr_wifi_security_open">No password</string>
+    <string name="qr_wifi_hidden">Hidden network</string>
+    <string name="qr_wifi_history_note">Wi-Fi codes are not kept in the history because they contain the network password.</string>
+    <string name="qr_email_address">Email address</string>
+    <string name="qr_email_subject">Subject (optional)</string>
+    <string name="qr_email_body">Message (optional)</string>
+    <string name="qr_phone_number">Phone number</string>
+</resources>

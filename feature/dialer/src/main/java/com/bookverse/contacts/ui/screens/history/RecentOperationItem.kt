@@ -45,7 +45,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.settings.LocaleController
@@ -54,6 +53,7 @@ import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.utils.ContactUtils
 import java.text.SimpleDateFormat
 import java.util.Date
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -85,11 +85,11 @@ fun RecentOperationItem(
         Column(modifier = Modifier.weight(1f)) {
             val hasSavedContact = operation.contact.id.isNotBlank()
             val contactName = if (hasSavedContact) {
-                operation.contact.name.ifBlank { stringResource(R.string.unknown) }
+                operation.contact.name.ifBlank { stringResource(CoreUiR.string.unknown) }
             } else {
                 val fallbackNumber = operation.contact.phones.firstOrNull()?.number.orEmpty()
                 operation.target.ifBlank { fallbackNumber }
-                    .ifBlank { stringResource(R.string.unknown) }
+                    .ifBlank { stringResource(CoreUiR.string.unknown) }
             }
             val (typeIcon, typeLabel) = recentTypePresentation(operation.type)
             val phoneType = remember(operation.contact.phones, operation.target) {
@@ -144,7 +144,7 @@ fun RecentOperationItem(
         ) {
             Icon(
                 imageVector = Icons.Default.Call,
-                contentDescription = stringResource(R.string.call),
+                contentDescription = stringResource(CoreUiR.string.call),
                 tint = accentColor,
                 modifier = Modifier.size(22.dp),
             )
@@ -208,20 +208,20 @@ private fun RecentOperationAvatar(
 @Composable
 private fun recentTypePresentation(type: RecentType) = when (type) {
     RecentType.WHATSAPP_OPEN ->
-        Icons.Default.Whatsapp to stringResource(R.string.recent_type_whatsapp)
+        Icons.Default.Whatsapp to stringResource(CoreUiR.string.recent_type_whatsapp)
     RecentType.CALL_SENT ->
-        Icons.AutoMirrored.Filled.CallMade to stringResource(R.string.recent_type_call_sent)
+        Icons.AutoMirrored.Filled.CallMade to stringResource(CoreUiR.string.recent_type_call_sent)
     RecentType.CALL_RECEIVED ->
-        Icons.AutoMirrored.Filled.CallReceived to stringResource(R.string.recent_type_call_received)
+        Icons.AutoMirrored.Filled.CallReceived to stringResource(CoreUiR.string.recent_type_call_received)
     RecentType.CALL_MISSED ->
-        Icons.AutoMirrored.Filled.CallMissed to stringResource(R.string.recent_type_call_missed)
+        Icons.AutoMirrored.Filled.CallMissed to stringResource(CoreUiR.string.recent_type_call_missed)
     RecentType.CALL_REJECTED ->
         Icons.AutoMirrored.Filled.CallMissedOutgoing to
-            stringResource(R.string.recent_type_call_rejected)
+            stringResource(CoreUiR.string.recent_type_call_rejected)
     RecentType.CALL_BLOCKED ->
-        Icons.Filled.HideSource to stringResource(R.string.recent_type_call_blocked)
+        Icons.Filled.HideSource to stringResource(CoreUiR.string.recent_type_call_blocked)
     RecentType.CALL_UNKNOWN ->
-        Icons.Default.DeviceUnknown to stringResource(R.string.recent_type_call_unknown)
+        Icons.Default.DeviceUnknown to stringResource(CoreUiR.string.recent_type_call_unknown)
 }
 
 internal fun normalizeRecentPhoneNumber(raw: String?): String? {

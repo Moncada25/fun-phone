@@ -37,9 +37,10 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.SocialMediaType
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun SocialMediaField(
@@ -133,7 +134,7 @@ fun SocialMediaField(
                                 Text(
                                     text = SocialMediaType.getSocialMediaName(
                                         socialMediaUrl,
-                                        stringResource(R.string.website)
+                                        stringResource(CoreUiR.string.website)
                                     ),
                                     color = networkColor,
                                     fontWeight = FontWeight.SemiBold,
@@ -143,7 +144,7 @@ fun SocialMediaField(
 
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(R.string.delete),
+                                contentDescription = stringResource(CoreUiR.string.delete),
                                 tint = networkColor,
                                 modifier = Modifier.size(20.dp)
                             )
@@ -165,7 +166,7 @@ fun SocialMediaField(
                         R.string.delete_social_media,
                         SocialMediaType.getSocialMediaName(
                             socialNetworks[indexSelected],
-                            stringResource(R.string.unknown),
+                            stringResource(CoreUiR.string.unknown),
                         )
                     ),
                     toastMessage = null,

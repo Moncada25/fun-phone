@@ -34,11 +34,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactPhone
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.settings.Countries
 import com.bookverse.contacts.settings.Country
 import contacts.core.entities.PhoneEntity
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 data class PhoneFieldState(
     val phone: ContactPhone,
@@ -81,10 +82,10 @@ fun PhoneNumbersField(
     }
 
     val phoneTypes = listOf(
-        PhoneEntity.Type.MOBILE to stringResource(R.string.phone_type_mobile),
-        PhoneEntity.Type.HOME to stringResource(R.string.phone_type_home),
-        PhoneEntity.Type.WORK to stringResource(R.string.phone_type_work),
-        PhoneEntity.Type.MAIN to stringResource(R.string.phone_type_main)
+        PhoneEntity.Type.MOBILE to stringResource(CoreUiR.string.phone_type_mobile),
+        PhoneEntity.Type.HOME to stringResource(CoreUiR.string.phone_type_home),
+        PhoneEntity.Type.WORK to stringResource(CoreUiR.string.phone_type_work),
+        PhoneEntity.Type.MAIN to stringResource(CoreUiR.string.phone_type_main)
     )
 
     fun updatePhones() {

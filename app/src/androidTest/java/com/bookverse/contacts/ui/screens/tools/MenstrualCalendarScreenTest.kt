@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.viewmodel.MenstrualCalendarUiState
@@ -22,6 +21,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicInteger
+import com.bookverse.contacts.feature.tools.R as ToolsR
 
 class MenstrualCalendarScreenTest {
     @get:Rule
@@ -35,10 +35,10 @@ class MenstrualCalendarScreenTest {
             DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(Locale.ENGLISH),
         )
         val description = composeRule.activity.getString(
-            R.string.menstrual_calendar_day_description,
+            ToolsR.string.menstrual_calendar_day_description,
             dateLabel,
-            composeRule.activity.getString(R.string.menstrual_phase_follicular),
-            composeRule.activity.getString(R.string.menstrual_today_marker),
+            composeRule.activity.getString(ToolsR.string.menstrual_phase_follicular),
+            composeRule.activity.getString(ToolsR.string.menstrual_today_marker),
         )
 
         showContent {
@@ -82,13 +82,13 @@ class MenstrualCalendarScreenTest {
         }
 
         composeRule.onNodeWithContentDescription(
-            composeRule.activity.getString(R.string.menstrual_calendar_previous_month),
+            composeRule.activity.getString(ToolsR.string.menstrual_calendar_previous_month),
         ).performClick()
         composeRule.onNodeWithContentDescription(
-            composeRule.activity.getString(R.string.menstrual_calendar_next_month),
+            composeRule.activity.getString(ToolsR.string.menstrual_calendar_next_month),
         ).performClick()
         composeRule.onNodeWithText(
-            composeRule.activity.getString(R.string.menstrual_calendar_today),
+            composeRule.activity.getString(ToolsR.string.menstrual_calendar_today),
         ).performClick()
 
         assertEquals(1, previous.get())
@@ -117,7 +117,7 @@ class MenstrualCalendarScreenTest {
         }
 
         composeRule.onNodeWithText(
-            composeRule.activity.getString(R.string.menstrual_reset_action),
+            composeRule.activity.getString(ToolsR.string.menstrual_reset_action),
         ).performClick()
 
         assertEquals(1, reset.get())

@@ -32,6 +32,7 @@ import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.theme.ThemeMode
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.contacts.R as ContactsR
 
 class ContactDetailsAccountsTest {
     @get:Rule val compose = createAndroidComposeRule<ComposeTestHostActivity>()
@@ -49,8 +50,8 @@ class ContactDetailsAccountsTest {
             assertDetailOpens()
             list.performScrollToNode(hasText(text(R.string.delete)))
             list.performTouchInput { swipeUp() }
-            compose.onNodeWithText(text(R.string.contact_info)).assertDoesNotExist()
-            compose.onNodeWithText(text(R.string.multiple_account_title)).assertDoesNotExist()
+            compose.onNodeWithText(text(ContactsR.string.contact_info)).assertDoesNotExist()
+            compose.onNodeWithText(text(ContactsR.string.multiple_account_title)).assertDoesNotExist()
         }
     }
 
@@ -60,10 +61,10 @@ class ContactDetailsAccountsTest {
         for (account in listOf(local, external)) {
             compose.runOnIdle { accounts = listOf(account) }
             assertDetailOpens()
-            list.performScrollToNode(hasText(text(R.string.contact_info)))
+            list.performScrollToNode(hasText(text(ContactsR.string.contact_info)))
             val label = if (account.isLocal) text(R.string.device) else account.displayName
             compose.onNodeWithText(label).assertIsDisplayed()
-            compose.onNodeWithText(text(R.string.multiple_account_title)).assertDoesNotExist()
+            compose.onNodeWithText(text(ContactsR.string.multiple_account_title)).assertDoesNotExist()
         }
     }
 
@@ -72,22 +73,22 @@ class ContactDetailsAccountsTest {
         accounts = listOf(local, external, local, excluded)
         showDetail()
         assertDetailOpens()
-        val label = compose.activity.resources.getQuantityString(R.plurals.multiple_account, 2, 2)
+        val label = compose.activity.resources.getQuantityString(ContactsR.plurals.multiple_account, 2, 2)
         list.performScrollToNode(hasText(label))
         compose.onNodeWithText(label).performClick()
-        compose.onNodeWithText(text(R.string.multiple_account_title)).assertIsDisplayed()
+        compose.onNodeWithText(text(ContactsR.string.multiple_account_title)).assertIsDisplayed()
         compose.onAllNodesWithText(text(R.string.device)).assertCountEquals(1)
         compose.onNodeWithText(external.displayName).assertIsDisplayed()
         compose.onNodeWithText(excluded.displayName).assertDoesNotExist()
         compose.runOnIdle { accounts = null }
-        compose.onNodeWithText(text(R.string.multiple_account_title)).assertDoesNotExist()
-        compose.onNodeWithText(text(R.string.contact_info)).assertDoesNotExist()
+        compose.onNodeWithText(text(ContactsR.string.multiple_account_title)).assertDoesNotExist()
+        compose.onNodeWithText(text(ContactsR.string.contact_info)).assertDoesNotExist()
         assertDetailOpens()
     }
 
     private fun assertDetailOpens() {
         list.performScrollToIndex(0)
-        compose.onNodeWithText(text(R.string.contact_details_title)).assertIsDisplayed()
+        compose.onNodeWithText(text(ContactsR.string.contact_details_title)).assertIsDisplayed()
         list.performScrollToNode(hasText("QA synthetic contact"))
         compose.onNodeWithText("QA synthetic contact").assertIsDisplayed()
     }

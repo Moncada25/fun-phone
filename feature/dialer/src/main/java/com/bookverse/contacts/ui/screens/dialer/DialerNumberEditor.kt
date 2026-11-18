@@ -30,7 +30,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun DialerNumberEditor(
@@ -155,7 +155,7 @@ internal fun DialerDeleteButton(
     onClick: () -> Unit,
     onLongClick: () -> Unit,
 ) {
-    val deleteDescription = stringResource(R.string.delete)
+    val deleteDescription = stringResource(CoreUiR.string.delete)
 
     Box(
         modifier = Modifier

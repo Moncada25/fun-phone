@@ -1,11 +1,11 @@
 package com.bookverse.contacts.ui.screens.settings
 
+import com.bookverse.contacts.feature.settings.R
 import kotlin.math.roundToInt
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.AnimationSpeed
 import com.bookverse.contacts.settings.GlassEffects
 import com.bookverse.contacts.settings.ListDensity
@@ -14,6 +14,7 @@ import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppLanguage
 import com.bookverse.contacts.ui.theme.DarkModeStyle
 import com.bookverse.contacts.ui.theme.ThemeMode
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal enum class SettingsPreferenceSheet {
     ANIMATION_SPEED,
@@ -218,7 +219,7 @@ private val CALL_ANSWER_STYLE_OPTIONS = listOf("swipe", "buttons")
 @StringRes
 internal fun animationSpeedLabelRes(speed: AnimationSpeed): Int = when (speed) {
     AnimationSpeed.FAST -> R.string.fast
-    AnimationSpeed.NORMAL -> R.string.normal
+    AnimationSpeed.NORMAL -> CoreUiR.string.normal
     AnimationSpeed.SLOW -> R.string.slow
     AnimationSpeed.OFF -> R.string.off
 }
@@ -261,11 +262,11 @@ internal fun listDensityLabel(density: ListDensity): String =
 
 @StringRes
 internal fun startupScreenLabelRes(screen: String): Int = when (screen) {
-    "favorites" -> R.string.tab_favorites
-    "contacts" -> R.string.tab_contacts
-    "history" -> R.string.tab_history
-    "extras" -> R.string.tab_extras
-    else -> R.string.tab_contacts
+    "favorites" -> CoreUiR.string.tab_favorites
+    "contacts" -> CoreUiR.string.tab_contacts
+    "history" -> CoreUiR.string.tab_history
+    "extras" -> CoreUiR.string.tab_extras
+    else -> CoreUiR.string.tab_contacts
 }
 
 @StringRes

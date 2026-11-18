@@ -63,8 +63,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.SocialMediaType
+import com.bookverse.contacts.feature.settings.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.FeatureItem
@@ -198,7 +199,7 @@ fun AboutScreen(
     fun shareApp() {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
-            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.app_name))
+            putExtra(Intent.EXTRA_SUBJECT, resources.getString(CoreUiR.string.app_name))
             putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.about_share_message))
         }
         context.startActivity(
@@ -293,7 +294,7 @@ fun AboutScreen(
         add(
             AboutLinkItem(
                 key = "share",
-                title = stringResource(R.string.share),
+                title = stringResource(CoreUiR.string.share),
                 summary = stringResource(R.string.about_share_summary),
                 icon = Lucide.Share2,
                 onClick = { shareApp() },
@@ -302,7 +303,7 @@ fun AboutScreen(
         add(
             AboutLinkItem(
                 key = "website",
-                title = stringResource(R.string.website),
+                title = stringResource(CoreUiR.string.website),
                 summary = stringResource(R.string.about_website_host),
                 icon = Lucide.Globe,
                 onClick = { open(AboutLinks.WEBSITE) },
@@ -488,7 +489,7 @@ private fun AboutHero(
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         Image(
-                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                            painter = painterResource(id = CoreUiR.drawable.ic_launcher_foreground),
                             contentDescription = stringResource(R.string.about_app_icon_description),
                             modifier = Modifier.size(84.dp),
                         )
@@ -496,7 +497,7 @@ private fun AboutHero(
                 }
 
                 Text(
-                    text = stringResource(R.string.app_name),
+                    text = stringResource(CoreUiR.string.app_name),
                     style = MaterialTheme.typography.headlineMedium.copy(
                         fontWeight = FontWeight.Bold,
                         letterSpacing = (-0.25).sp,

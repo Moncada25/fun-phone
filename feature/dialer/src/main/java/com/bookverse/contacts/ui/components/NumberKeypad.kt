@@ -34,7 +34,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.bookverse.contacts.core.ui.R
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,6 +41,7 @@ import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.theme.chromePolicy
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.utils.VibrationUtils
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun NumberKeypad(
@@ -225,7 +225,7 @@ private fun RowScope.NumberKeypadButton(
             if (text == "1") {
                 Icon(
                     imageVector = Icons.Default.Voicemail,
-                    contentDescription = stringResource(R.string.voicemail),
+                    contentDescription = stringResource(CoreUiR.string.voicemail),
                     tint = textColor.copy(alpha = 0.7f),
                     modifier = Modifier.height(if (Fonts.needsLargeButton(fontType)) 14.dp else 18.dp)
                 )

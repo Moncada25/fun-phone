@@ -7,13 +7,13 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
 import org.junit.Rule
 import org.junit.Test
 import java.time.LocalDate
+import com.bookverse.contacts.feature.expenses.R as ExpensesR
 
 class ExpenseTransactionCardTest {
     @get:Rule
@@ -45,12 +45,12 @@ class ExpenseTransactionCardTest {
 
         composeRule.onNodeWithContentDescription(
             InstrumentationRegistry.getInstrumentation().targetContext.getString(
-                R.string.expense_transaction_recurring_badge,
+                ExpensesR.string.expense_transaction_recurring_badge,
             ),
         ).assertIsDisplayed()
         composeRule.onNodeWithText(
             InstrumentationRegistry.getInstrumentation().targetContext.getString(
-                R.string.expense_transaction_recurring_badge,
+                ExpensesR.string.expense_transaction_recurring_badge,
             ),
         ).assertDoesNotExist()
     }

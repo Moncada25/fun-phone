@@ -34,6 +34,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.expenses.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import com.bookverse.contacts.ui.components.withoutTop
 import androidx.compose.material3.SegmentedButton
@@ -61,7 +63,6 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCsv
 import com.bookverse.contacts.data.expenses.ExpenseCsvHeaders
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
@@ -372,7 +373,7 @@ fun ExpenseManagerScreen(
                 actions = {
                     IconAction(
                         imageVector = Icons.Filled.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showManageDialog = true },
                         feedback = true
                     )
@@ -388,7 +389,7 @@ fun ExpenseManagerScreen(
                             placeholder = stringResource(R.string.expense_search_placeholder),
                             focusRequester = searchFocusRequester,
                             onClose = handleBack,
-                            clearContentDescription = stringResource(R.string.clear),
+                            clearContentDescription = stringResource(CoreUiR.string.clear),
                         )
                     }
                 } else null
@@ -767,7 +768,7 @@ fun ExpenseManagerScreen(
             )
         )
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = actionItems,
             onDismiss = { showManageDialog = false },
         )

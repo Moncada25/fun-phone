@@ -43,6 +43,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.File
 import kotlin.math.abs
+import com.bookverse.contacts.feature.expenses.R as ExpensesR
 
 class SecondaryGlassScreensTest {
     @get:Rule val compose = createAndroidComposeRule<ComposeTestHostActivity>()
@@ -51,7 +52,7 @@ class SecondaryGlassScreensTest {
     @After fun clearModels() { compose.runOnIdle { models.clear() } }
     @Test fun notesScrollBehindTheirGlassHeader() = verify(SecondaryScreen.NOTES, R.string.notes_title)
     @Test fun passwordsScrollBehindTheirGlassHeader() = verify(SecondaryScreen.PASSWORD_LIST, R.string.passwords_title)
-    @Test fun expensesScrollBehindTheirGlassHeader() = verify(SecondaryScreen.EXPENSES, R.string.expense_manager_title)
+    @Test fun expensesScrollBehindTheirGlassHeader() = verify(SecondaryScreen.EXPENSES, ExpensesR.string.expense_manager_title)
 
     private fun verify(screen: SecondaryScreen, title: Int) {
         val settings = AppSettingsViewModel(GlassSettingsStore())
