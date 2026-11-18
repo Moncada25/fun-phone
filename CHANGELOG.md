@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Declining a call on the lock screen briefly opened Fun Phone over the lock screen.
 - Declined calls and calls answered on another device showed a missed call notification.
 - A ringing call during another call plays the call waiting tone instead of the full ringtone.
+- Missed call notifications used the incoming call icon; they now show the standard missed call
+  icon.
 
 ## [3.20.7] - 2026-11-17
 

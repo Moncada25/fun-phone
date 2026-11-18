@@ -237,7 +237,7 @@ object CallNotificationManager {
         val text = contactName
             ?: localizedContext.resources.getQuantityString(R.plurals.missed_calls_count, count, count)
         val builder = NotificationCompat.Builder(context, MISSED_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_received_call)
+            .setSmallIcon(R.drawable.ic_missed_call)
             .setContentTitle(title)
             .setContentText(text)
             .setAutoCancel(true)
