@@ -42,8 +42,18 @@ import com.bookverse.contacts.ui.screens.contacts.FavoritesReorderScreen
 import com.bookverse.contacts.ui.screens.contacts.ProfileScreen
 import com.bookverse.contacts.ui.screens.contacts.UpdateContactScreen
 import com.bookverse.contacts.ui.screens.contacts.UpdateProfileScreen
+import com.bookverse.contacts.ui.screens.games.BreakoutScreen
+import com.bookverse.contacts.ui.screens.games.FunBirdScreen
+import com.bookverse.contacts.ui.screens.games.Game2048Screen
 import com.bookverse.contacts.ui.screens.games.GamesScreen
+import com.bookverse.contacts.ui.screens.games.HangmanScreen
+import com.bookverse.contacts.ui.screens.games.MemoryGameScreen
+import com.bookverse.contacts.ui.screens.games.MinesweeperScreen
 import com.bookverse.contacts.ui.screens.tools.PaintScreen
+import com.bookverse.contacts.ui.screens.games.PuzzleScreen
+import com.bookverse.contacts.ui.screens.games.SnakeScreen
+import com.bookverse.contacts.ui.screens.games.SudokuScreen
+import com.bookverse.contacts.ui.screens.games.TicTacToeScreen
 import com.bookverse.contacts.ui.screens.notes.ChecklistScreen
 import com.bookverse.contacts.ui.screens.notes.FoldersNotesScreen
 import com.bookverse.contacts.ui.screens.notes.NoteListScreen
@@ -178,10 +188,32 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.GAMES -> GamesScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
+            onFunBirdClick = { navigationViewModel.openSecondary(SecondaryScreen.FUN_BIRD) },
+            onTicTacToeClick = { navigationViewModel.openSecondary(SecondaryScreen.TIC_TAC_TOE) },
+            onPuzzleClick = { navigationViewModel.openSecondary(SecondaryScreen.PUZZLE) },
+            onHangmanClick = { navigationViewModel.openSecondary(SecondaryScreen.HANGMAN) },
+            onSnakeClick = { navigationViewModel.openSecondary(SecondaryScreen.SNAKE) },
+            on2048Click = { navigationViewModel.openSecondary(SecondaryScreen.GAME_2048) },
+            onMemoryGameClick = { navigationViewModel.openSecondary(SecondaryScreen.MEMORY) },
+            onBreakoutClick = { navigationViewModel.openSecondary(SecondaryScreen.BREAKOUT) },
+            onMinesweeperClick = { navigationViewModel.openSecondary(SecondaryScreen.MINESWEEPER) },
+            onSudokuClick = { navigationViewModel.openSecondary(SecondaryScreen.SUDOKU) },
             gameStatsRepository = appContainer.gameStatsRepository,
-            snakeViewModelFactory = appContainer.snakeViewModelFactory,
-            breakoutViewModelFactory = appContainer.breakoutViewModelFactory,
+        )
+
+        SecondaryScreen.TIC_TAC_TOE -> TicTacToeScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            gameStatsRepository = appContainer.gameStatsRepository,
+        )
+
+        SecondaryScreen.FUN_BIRD -> FunBirdScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            gameStatsRepository = appContainer.gameStatsRepository,
+        )
+
+        SecondaryScreen.PUZZLE -> PuzzleScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            gameStatsRepository = appContainer.gameStatsRepository,
         )
 
         SecondaryScreen.NOTES -> NoteListScreen(
@@ -312,9 +344,48 @@ fun SecondaryScreenContent(
             onBack = { navigationViewModel.navigateBack() },
         )
 
+        SecondaryScreen.HANGMAN -> HangmanScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            appSettingsViewModel = appSettingsViewModel,
+            gameStatsRepository = appContainer.gameStatsRepository,
+        )
+
         SecondaryScreen.PAINT -> PaintScreen(
             onBackClick = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel
+        )
+
+        SecondaryScreen.SNAKE -> SnakeScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            appSettingsViewModel = appSettingsViewModel,
+            viewModelFactory = appContainer.snakeViewModelFactory,
+        )
+
+        SecondaryScreen.GAME_2048 -> Game2048Screen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            gameStatsRepository = appContainer.gameStatsRepository,
+        )
+
+        SecondaryScreen.MEMORY -> MemoryGameScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            appSettingsViewModel = appSettingsViewModel,
+            gameStatsRepository = appContainer.gameStatsRepository,
+        )
+
+        SecondaryScreen.BREAKOUT -> BreakoutScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            appSettingsViewModel = appSettingsViewModel,
+            viewModelFactory = appContainer.breakoutViewModelFactory,
+        )
+
+        SecondaryScreen.MINESWEEPER -> MinesweeperScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            gameStatsRepository = appContainer.gameStatsRepository,
+        )
+
+        SecondaryScreen.SUDOKU -> SudokuScreen(
+            onBackClick = { navigationViewModel.navigateBack() },
+            gameStatsRepository = appContainer.gameStatsRepository,
         )
 
         SecondaryScreen.QR_SCANNER -> QRScannerScreen(

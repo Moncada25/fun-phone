@@ -18,7 +18,7 @@ class BackdropPolicyTest {
         for (screen in listOf(
             SecondaryScreen.NOTE, SecondaryScreen.PASSWORDS_NEW, SecondaryScreen.CHECKLIST,
             SecondaryScreen.MENSTRUAL_CALENDAR, SecondaryScreen.QR_SCANNER, SecondaryScreen.IN_CALL,
-            SecondaryScreen.PAINT, SecondaryScreen.GAMES,
+            SecondaryScreen.PAINT, SecondaryScreen.SNAKE,
         )) {
             assertFalse(screen.name, screen.allowsBackdrop())
         }

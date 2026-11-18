@@ -11,6 +11,9 @@
     <string name="games_dashboard_no_data">Du hast noch nicht gespielt. Fang an zu spielen, um deine Statistiken zu sehen!</string>
     <string name="games_dashboard_records_title">Rekorde pro Spiel</string>
     <string name="games_dashboard_no_favorite">Keine</string>
+    <string name="games_featured_section">Zuletzt gespielt</string>
+    <string name="games_all_games_section">Alle Spiele</string>
+    <string name="games_play_now">JETZT SPIELEN</string>
     <string name="play_game">SPIELEN</string>
     <string name="tic_tac_toe_title">Drei gewinnt</string>
     <string name="tic_tac_toe_turn">%1$s ist am Zug</string>
@@ -90,7 +93,7 @@
     <string name="tictactoe_player_turn">Du bist am Zug</string>
     <string name="tictactoe_cpu_thinking">KI denkt nach…</string>
     <string name="snake_title">Snake</string>
-    <string name="snake_instructions_text">Wische über das Spielfeld oder bewege den Steuerknüppel, um Äpfel zu fressen und zu wachsen. Drücke A zum Pausieren. Meide deinen Schwanz und beachte die gewählte Randregel.</string>
+    <string name="snake_instructions_text">Wische über das Spielfeld oder nutze das Steuerkreuz, um Äpfel zu fressen und zu wachsen. Meide deinen Schwanz und beachte die gewählte Randregel.</string>
     <string name="snake_setup_title">Spielweise wählen</string>
     <string name="snake_mode_label">Modus</string>
     <string name="snake_mode_walls_title">Klassische Wände</string>
@@ -113,6 +116,10 @@
     <string name="snake_food_none">kein Futter</string>
     <string name="snake_board_description">Snake-Spielfeld. %1$s. Punkte %2$d. %3$s. Futter %4$s und %5$s.</string>
     <string name="game_over_message">Dein Punktestand: %1$d</string>
+    <string name="snake_up">Hoch</string>
+    <string name="snake_down">Runter</string>
+    <string name="snake_left">Links</string>
+    <string name="snake_right">Rechts</string>
     <string name="cd_pause_game">Spiel pausieren</string>
     <string name="cd_resume_game">Spiel fortsetzen</string>
     <string name="score_label">Punktzahl</string>
@@ -123,7 +130,7 @@
     <string name="tictactoe_ai">KI</string>
     <string name="tictactoe_round_won">%1$s gewinnt diese Runde!</string>
     <string name="breakout_title">Breakout</string>
-    <string name="breakout_instructions_text">Halte den Steuerknüppel nach links oder rechts, um den Schläger zu bewegen, und drücke A zum Pausieren. Lass den Ball abprallen, um Blöcke zu zerstören. Nach fünf Schläger-Treffern erscheint oben eine neue Reihe und der Ball wird schneller. Erreichen die Blöcke den Schläger oder fällt der Ball herunter, ist das Spiel vorbei. Versuche, so viele Punkte wie möglich zu erzielen!</string>
+    <string name="breakout_instructions_text">Halte die Pfeile links und rechts gedrückt, um den Schläger zu bewegen. Lass den Ball abprallen, um Blöcke zu zerstören. Nach fünf Schläger-Treffern erscheint oben eine neue Reihe und der Ball wird schneller. Erreichen die Blöcke den Schläger oder fällt der Ball herunter, ist das Spiel vorbei. Versuche, so viele Punkte wie möglich zu erzielen!</string>
     <string name="breakout_arena_description">Breakout-Spielfeld. %1$s. Punkte %2$d. Rekord %3$d.</string>
     <string name="breakout_phase_ready">Bereit</string>
     <string name="breakout_phase_running">Läuft</string>
@@ -196,7 +203,7 @@
     <string name="fun_bird_final_score">Endstand: %1$d</string>
     <string name="play_label">Spielen</string>
     <string name="best_score_label">Beste</string>
-    <string name="fun_bird_instructions">Tippe auf den Bildschirm oder drücke A, damit Fun Bird mit den Flügeln schlägt und in der Luft bleibt. Vermeide Rohre und Boden. Du kannst mit der Haupttaste pausieren und jederzeit fortsetzen.</string>
+    <string name="fun_bird_instructions">Tippe auf den Bildschirm, damit Fun Bird mit den Flügeln schlägt und in der Luft bleibt. Vermeide Rohre und Boden. Du kannst mit der Haupttaste pausieren und jederzeit fortsetzen.</string>
     <string name="game_fact_fun_bird">Dong Nguyen veröffentlichte Flappy Bird 2013; seine virale Schwierigkeit definierte Casual-Spiele für Touchscreens neu.</string>
     <string name="game_fact_snake">Snake wurde 1997 auf dem Nokia 6110 weltberühmt und bewies, dass Handys Spieleplattformen sein konnten.</string>
     <string name="game_fact_breakout">Atari veröffentlichte Breakout 1976 als Weiterentwicklung von Pong; seine Entwicklung inspirierte Steve Wozniak zu einer hocheffizienten Platine.</string>
@@ -208,7 +215,7 @@
     <string name="game_fact_2048">Gabriele Cirulli erschuf 2048 im Jahr 2014 als Open-Source-Experiment; in wenigen Tagen wurde es zum weltweiten Logik-Puzzle-Phänomen.</string>
     <string name="game_fact_sudoku">Howard Garns machte Sudoku 1979 unter dem Namen Number Place bekannt, bevor Japan es umbenannte und weltweit verbreitete.</string>
     <string name="memory_instructions_text">Finde die passenden Kartenpaare. Tippe, um sie umzudrehen, und merke dir ihre Position, um alle Paare zu finden!</string>
-    <string name="game_2048_instructions_text">Wische im Brett oder bewege den Steuerknüppel, um die Kacheln zu bewegen. Gleiche Zahlen verschmelzen zur Summe. 5×5-Brett. Mit jedem Zug erscheint eine neue Kachel. Erreiche die höchstmögliche Punktzahl.</string>
+    <string name="game_2048_instructions_text">Wische im Brett, um die Kacheln zu bewegen. Gleiche Zahlen verschmelzen zur Summe. 5×5-Brett. Mit jedem Zug erscheint eine neue Kachel. Erreiche die höchstmögliche Punktzahl.</string>
     <string name="hangman_mode_easy">Leicht 🥱</string>
     <string name="hangman_mode_hard">Schwer 💪</string>
     <string name="hangman_mode_easy_description">Einen Buchstaben zu wiederholen kostet keinen Versuch.</string>
@@ -217,25 +224,12 @@
     <string name="cd_move_left">Nach links verschieben</string>
     <string name="cd_move_right">Nach rechts verschieben</string>
     <string name="games_how_to_play">So wird gespielt</string>
+    <string name="games_arcade_scoreboard">Anzeigetafel</string>
+    <string name="games_arcade_press_start">Drück Start für deinen ersten Rekord</string>
+    <string name="games_arcade_view_records">Tippen, um deine Rekorde zu sehen</string>
     <string name="games_record_high_score">Highscore</string>
     <string name="games_record_best_time">Bestzeit</string>
     <string name="games_record_fewest_moves">Wenigste Züge</string>
     <string name="games_record_wins">Siege</string>
     <string name="games_record_none">Noch kein Rekord</string>
-    <string name="games_arcade_select">Wähle ein Spiel</string>
-    <string name="games_arcade_position">%1$s von %2$s</string>
-    <string name="games_arcade_previous">Vorheriges Spiel</string>
-    <string name="games_arcade_next">Nächstes Spiel</string>
-    <string name="games_arcade_records">Rekorde</string>
-    <string name="games_arcade_exit">Beenden</string>
-    <string name="games_arcade_pause">Anhalten</string>
-    <string name="games_arcade_resume">Weiter</string>
-    <string name="games_arcade_jump">Springen</string>
-    <string name="games_arcade_new_game">Neues Spiel</string>
-    <string name="games_arcade_move">Bewegen</string>
-    <string name="games_arcade_touch">Bildschirm tippen</string>
-    <string name="games_arcade_unavailable">Nicht verfügbar</string>
-    <string name="games_arcade_joystick">Steuerknüppel</string>
-    <string name="cd_move_up">Nach oben bewegen</string>
-    <string name="cd_move_down">Nach unten bewegen</string>
 </resources>

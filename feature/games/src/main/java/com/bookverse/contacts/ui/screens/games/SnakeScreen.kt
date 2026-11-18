@@ -38,9 +38,8 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.ArcadeControlsEffect
-import com.bookverse.contacts.ui.components.GameScaffold
 import com.bookverse.contacts.core.ui.R as CoreUiR
+import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
@@ -93,13 +92,19 @@ import com.bookverse.contacts.domain.games.SnakeGameState
 import com.bookverse.contacts.domain.games.SnakePhase
 import com.bookverse.contacts.domain.games.SnakePoint
 import com.bookverse.contacts.settings.AnimationSpeed
+import com.bookverse.contacts.ui.components.GameButton
 import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
+import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.SnakeEvent
 import com.bookverse.contacts.ui.viewmodel.SnakeViewModel
+import com.composables.icons.lucide.ArrowDown
+import com.composables.icons.lucide.ArrowLeft
+import com.composables.icons.lucide.ArrowRight
+import com.composables.icons.lucide.ArrowUp
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Pause
 import com.composables.icons.lucide.Play
@@ -184,39 +189,29 @@ fun SnakeScreen(
     }
     BackHandler { onBackClick() }
 
-    ArcadeControlsEffect(
-        primaryLabel = stringResource(
-            if (state.phase == SnakePhase.PAUSED) R.string.games_arcade_resume else R.string.games_arcade_pause
-        ),
-        onPrimaryPress = if (state.phase == SnakePhase.RUNNING || state.phase == SnakePhase.PAUSED) {
-            { viewModel.onEvent(SnakeEvent.TogglePause) }
-        } else {
-            null
-        },
-        onDirection = { direction ->
-            direction?.let { viewModel.onEvent(SnakeEvent.ChangeDirection(SnakeDirection.valueOf(it.name))) }
-        },
-    )
-
-    GameScaffold(
-        title = stringResource(R.string.snake_title),
-        onBackClick = onBackClick,
-        actions = {
-            if (state.phase == SnakePhase.RUNNING || state.phase == SnakePhase.PAUSED) {
-                IconAction(
-                    imageVector = if (state.phase == SnakePhase.PAUSED) {
-                        Lucide.Play
-                    } else {
-                        Lucide.Pause
-                    },
-                    contentDescription = if (state.phase == SnakePhase.PAUSED) {
-                        stringResource(R.string.cd_resume_game)
-                    } else {
-                        stringResource(R.string.cd_pause_game)
-                    },
-                    onClick = { viewModel.onEvent(SnakeEvent.TogglePause) },
-                )
-            }
+    Scaffold(
+        topBar = {
+            SecondaryTopBar(
+                title = stringResource(R.string.snake_title),
+                onBackClick = onBackClick,
+                actions = {
+                    if (state.phase == SnakePhase.RUNNING || state.phase == SnakePhase.PAUSED) {
+                        IconAction(
+                            imageVector = if (state.phase == SnakePhase.PAUSED) {
+                                Lucide.Play
+                            } else {
+                                Lucide.Pause
+                            },
+                            contentDescription = if (state.phase == SnakePhase.PAUSED) {
+                                stringResource(R.string.cd_resume_game)
+                            } else {
+                                stringResource(R.string.cd_pause_game)
+                            },
+                            onClick = { viewModel.onEvent(SnakeEvent.TogglePause) },
+                        )
+                    }
+                },
+            )
         },
     ) { paddingValues ->
         BoxWithConstraints(
@@ -252,6 +247,13 @@ fun SnakeScreen(
                         verticalArrangement = Arrangement.spacedBy(20.dp),
                     ) {
                         SnakeScoreCard(state)
+                        SnakeControls(
+                            state = state,
+                            accentColor = accentColor,
+                            onDirection = { direction ->
+                                viewModel.onEvent(SnakeEvent.ChangeDirection(direction))
+                            },
+                        )
                     }
                 }
             } else {
@@ -274,6 +276,13 @@ fun SnakeScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f),
+                    )
+                    SnakeControls(
+                        state = state,
+                        accentColor = accentColor,
+                        onDirection = { direction ->
+                            viewModel.onEvent(SnakeEvent.ChangeDirection(direction))
+                        },
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -596,6 +605,53 @@ private fun playSnakeSound(soundId: Int, soundPool: SoundPool, rate: Float = 1f)
     }
 }
 
+@Composable
+private fun SnakeControls(
+    state: SnakeGameState,
+    accentColor: Color,
+    onDirection: (SnakeDirection) -> Unit,
+) {
+    val controlsEnabled = state.phase == SnakePhase.RUNNING
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        GameButton(
+            onClick = { onDirection(SnakeDirection.UP) },
+            icon = Lucide.ArrowUp,
+            contentDescription = stringResource(R.string.snake_up),
+            accentColor = accentColor,
+            size = 56.dp,
+            enabled = controlsEnabled && state.canRequest(SnakeDirection.UP),
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(64.dp)) {
+            GameButton(
+                onClick = { onDirection(SnakeDirection.LEFT) },
+                icon = Lucide.ArrowLeft,
+                contentDescription = stringResource(R.string.snake_left),
+                accentColor = accentColor,
+                size = 56.dp,
+                enabled = controlsEnabled && state.canRequest(SnakeDirection.LEFT),
+            )
+            GameButton(
+                onClick = { onDirection(SnakeDirection.RIGHT) },
+                icon = Lucide.ArrowRight,
+                contentDescription = stringResource(R.string.snake_right),
+                accentColor = accentColor,
+                size = 56.dp,
+                enabled = controlsEnabled && state.canRequest(SnakeDirection.RIGHT),
+            )
+        }
+        GameButton(
+            onClick = { onDirection(SnakeDirection.DOWN) },
+            icon = Lucide.ArrowDown,
+            contentDescription = stringResource(R.string.snake_down),
+            accentColor = accentColor,
+            size = 56.dp,
+            enabled = controlsEnabled && state.canRequest(SnakeDirection.DOWN),
+        )
+    }
+}
 
 @Composable
 private fun SnakeSetupDialog(

@@ -49,9 +49,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.ArcadeControlsEffect
-import com.bookverse.contacts.ui.components.GameScaffold
 import com.bookverse.contacts.core.ui.R as CoreUiR
+import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -74,6 +73,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
@@ -113,6 +113,7 @@ import com.bookverse.contacts.ui.components.GameSetupDialog
 import com.bookverse.contacts.ui.components.GameSetupOption
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
+import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.utils.VibrationUtils
@@ -143,6 +144,7 @@ fun HangmanScreen(
     val selectedLocale = LocaleController.effectiveLocale(context)
     val customCategory = resources.getString(R.string.hangman_category_custom)
     val gameSession = rememberGameSessionRecorder(GameId.HANGMAN, gameStatsRepository)
+    val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior(expandable = false)
 
     var showCategoryDialog by remember { mutableStateOf(false) }
     var selectedCategory by remember { mutableStateOf("") }
@@ -262,23 +264,23 @@ fun HangmanScreen(
         exitGame()
     }
 
-    ArcadeControlsEffect(
-        primaryLabel = stringResource(R.string.games_arcade_new_game),
-        onPrimaryPress = if (targetWord.isNotEmpty() && !anyDialogVisible && !showResultDialog) ::resetRound else null,
-        onDirection = null,
-    )
-
-    GameScaffold(
-        title = stringResource(R.string.hangman_title),
-        onBackClick = ::exitGame,
-        actions = {
-            if (targetWord.isNotEmpty() && !anyDialogVisible && !showResultDialog) {
-                IconAction(
-                    imageVector = Lucide.RotateCcw,
-                    contentDescription = stringResource(R.string.cd_restart_game),
-                    onClick = ::resetRound,
-                )
-            }
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            SecondaryTopBar(
+                title = stringResource(R.string.hangman_title),
+                onBackClick = ::exitGame,
+                scrollBehavior = scrollBehavior,
+                actions = {
+                    if (targetWord.isNotEmpty() && !anyDialogVisible && !showResultDialog) {
+                        IconAction(
+                            imageVector = Lucide.RotateCcw,
+                            contentDescription = stringResource(R.string.cd_restart_game),
+                            onClick = ::resetRound,
+                        )
+                    }
+                },
+            )
         },
     ) { paddingValues ->
         BoxWithConstraints(

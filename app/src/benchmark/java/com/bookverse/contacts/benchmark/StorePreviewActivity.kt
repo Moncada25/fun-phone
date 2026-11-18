@@ -287,7 +287,7 @@ class StorePreviewActivity : FragmentActivity() {
             "vault" -> PasswordListScreen({}, {}, {}, {}, {}, passwords, settings, PasswordBackupActions({}, {}))
             "expenses" -> ExpenseManagerScreen({}, expenses, settings)
             "tools" -> ToolsScreen({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, settings, rememberLazyListState())
-            "games" -> GamesScreen({}, settings, container.gameStatsRepository, container.snakeViewModelFactory, container.breakoutViewModelFactory)
+            "games" -> GamesScreen({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, container.gameStatsRepository)
             "qr" -> QRGeneratorScreen({}, qrHistory)
             else -> SettingsScreen({}, settings, AppBackupManager(this, container.gameStatsRepository, BuildConfig.VERSION_NAME), contactsViewModel = contacts, notesViewModel = notes, listState = rememberLazyListState())
         }

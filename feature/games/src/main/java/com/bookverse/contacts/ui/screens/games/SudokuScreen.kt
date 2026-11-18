@@ -28,9 +28,8 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.ArcadeControlsEffect
-import com.bookverse.contacts.ui.components.GameScaffold
 import com.bookverse.contacts.core.ui.R as CoreUiR
+import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -60,6 +59,7 @@ import com.bookverse.contacts.ui.components.GameSetupDialog
 import com.bookverse.contacts.ui.components.GameSetupOption
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
+import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.viewmodel.SudokuViewModel
 import com.bookverse.contacts.ui.viewmodel.SudokuViewModel.SudokuCell
@@ -129,18 +129,13 @@ fun SudokuScreen(
         SudokuDifficulty.HARD -> stringResource(R.string.sudoku_difficulty_hard)
     }
 
-    ArcadeControlsEffect(
-        primaryLabel = stringResource(R.string.games_arcade_new_game),
-        onPrimaryPress = {
-            viewModel.startNewGame(uiState.difficulty)
-            gameSession.start()
-        },
-        onDirection = null,
-    )
-
-    GameScaffold(
-        title = stringResource(R.string.sudoku_title),
-        onBackClick = onBackClick,
+    Scaffold(
+        topBar = {
+            SecondaryTopBar(
+                title = stringResource(R.string.sudoku_title),
+                onBackClick = onBackClick,
+            )
+        }
     ) { paddingValues ->
         Column(
             modifier = Modifier

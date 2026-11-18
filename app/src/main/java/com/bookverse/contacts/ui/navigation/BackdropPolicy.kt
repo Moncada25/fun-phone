@@ -11,6 +11,9 @@ fun SecondaryScreen.allowsBackdrop(): Boolean = when (this) {
     SecondaryScreen.RECORDING, SecondaryScreen.MENSTRUAL_CALENDAR,
     SecondaryScreen.INCOMING_CALL, SecondaryScreen.IN_CALL,
     SecondaryScreen.QR_SCANNER, SecondaryScreen.PAINT, SecondaryScreen.VOICE_RECOGNITION,
-    SecondaryScreen.GAMES -> false
+    SecondaryScreen.TIC_TAC_TOE, SecondaryScreen.PUZZLE, SecondaryScreen.HANGMAN,
+    SecondaryScreen.SNAKE, SecondaryScreen.GAME_2048, SecondaryScreen.MEMORY,
+    SecondaryScreen.BREAKOUT, SecondaryScreen.FUN_BIRD, SecondaryScreen.MINESWEEPER,
+    SecondaryScreen.SUDOKU -> false
     else -> true
 }

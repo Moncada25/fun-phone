@@ -221,13 +221,13 @@ La expansión responde a la tarea de cada destino, no a la mera presencia de scr
 
 | Tipo de tarea y destinos | Encabezado Moderno | Motivo |
 | --- | --- | --- |
-| Explorar: Contactos, Favoritos, Historial, Herramientas | Compacto inicial, expandible al tirar desde el inicio | Acercar título y acciones sin quitar espacio al recorrer contenido. |
+| Explorar: Contactos, Favoritos, Historial, Herramientas, catálogo de Juegos | Compacto inicial, expandible al tirar desde el inicio | Acercar título y acciones sin quitar espacio al recorrer contenido. |
 | Consultar: detalle de contacto, perfil, Ajustes, Estado del teléfono, Acerca de, gastos y calendarios | Compacto inicial, expandible | Mantener continuidad con las listas y facilitar el acceso a las acciones de consulta. |
 | Administrar listas: notas, contraseñas, carpetas, papeleras, etiquetas y duplicados | Compacto inicial, expandible; fijo durante búsqueda/selección cuando aplique | Recorrer colecciones conservando las acciones contextuales estables. |
 | Ordenar herramientas | Compacto inicial, expandible durante scroll; inmóvil durante el arrastre de una herramienta | Es también un catálogo largo de presets y visibilidad. El arrastre no debe desplazar los destinos de colocación. |
 | Crear/editar contacto o perfil, Nota, Checklist, contraseña, recordatorio y grabación | Compacto fijo | Priorizar campos, teclado, selección de texto y acciones de edición sin moverlos al cambiar de dirección. |
 | Ordenar favoritos | Compacto fijo | La tarea principal es colocar tarjetas en una cuadrícula; mantener referencias espaciales estables. |
-| Marcador, QR, voz, Pomodoro, Paint, collage y Juegos | Compacto fijo | Reservar espacio y estabilidad para entrada, cámara, lienzo o controles interactivos. |
+| Marcador, QR, voz, Pomodoro, Paint, collage y partidas | Compacto fijo | Reservar espacio y estabilidad para entrada, cámara, lienzo o controles interactivos. |
 
 Una pantalla expandible conecta su scroll real y su barra al mismo comportamiento y conserva
 offsets por destino. Las ventanas bajas mantienen la barra compacta. El detalle de contacto usa
@@ -482,28 +482,23 @@ editor state is encrypted and is exposed only after authenticating again.
 
 ## Contrato Arcade de Juegos — 2026-11-18
 
-Juegos es una máquina arcade: marquesina con luces (`ArcadeLightStrip`), pantalla CRT con bisel
-negro y scanlines, y un panel de control con palanca y botones A y B. La máquina usa el tema, el
-acento derivado, la fuente y su escala; la barra secundaria es compacta y fija, y el destino usa la
-superficie sólida como el resto de partidas.
+El catálogo de Juegos usa una metáfora de máquina arcade retro sin salir del sistema: conserva
+`AppScreenScaffold`, `SecondaryTopBar` expandible, el acento derivado, la fuente y su escala. En
+Moderno la cuadrícula se desplaza por detrás del encabezado de cristal.
 
-- La pantalla muestra primero el selector: arte del juego, título y récord, con el último juego
-  jugado como posición inicial. La palanca, las flechas o el deslizamiento cambian de juego; A lo
-  inicia y B abre los récords.
-- Los diez juegos corren dentro de la pantalla en el mismo destino `SecondaryScreen.GAMES`, sin
-  rutas propias. Cada juego usa `GameScaffold`, que publica su título y sus acciones en la barra
-  secundaria y su contenido en la pantalla. Back, la flecha y B ejecutan la salida propia del juego
-  y vuelven al selector.
-- `ArcadeControlsEffect` conecta la palanca y A con cada juego: Snake y 2048 se mueven con la
-  palanca, Breakout mueve la paleta mientras se mantiene, Fun Bird salta con A o arriba, y A pausa
-  o empieza una partida nueva según el juego. Los juegos de tablero se tocan en la pantalla; la
-  palanca se muestra desactivada con la indicación de tocar la pantalla.
-- La palanca y los botones tienen descripciones localizadas, acciones de accesibilidad para cada
-  dirección y respuesta háptica del sistema; la etiqueta de A cambia con la acción disponible.
-- En landscape compacto la palanca y los botones flanquean la pantalla y la marquesina se oculta
-  cuando falta altura. Los récords muestran la métrica de cada juego con números localizados.
+- Cada juego es una máquina: marquesina en `primaryContainer`/`onPrimaryContainer` con el título en
+  mayúsculas y luces alternas (`ArcadeLightStrip`), pantalla CRT con bisel negro, scanlines y
+  reflejo (`crtScanlines`), y un panel con el récord del juego y botones decorativos sin semántica.
+  La máquina completa es un único botón con etiqueta de acción localizada; el título conserva su
+  forma original para TalkBack.
+- El marcador superior resume partidas, mejor racha y juegos probados, y abre el dashboard.
+  Recientes es un carrusel de máquinas horizontales con indicador de nivel decorativo.
+- La cuadrícula usa columnas adaptables de 156 dp mínimo; marquesinas de dos líneas mantienen la
+  misma altura por fila con texto grande, en landscape compacto y en ventanas divididas.
+- Los récords muestran la métrica de cada juego (puntuación, tiempo, movimientos o victorias) con
+  números localizados y cifras tabulares.
 - Instrucciones, configuración y opciones de los juegos comparten `ArcadeDialogHeader`, un panel de
   pantalla desplazable y `ArcadePlayButton` con `primary`/`onPrimary`. La selección usa
   `primaryContainer`; no se crean containers con `primary.copy(alpha = ...)`.
-- El negro del bisel y las scanlines pertenecen a la pantalla CRT; no se propagan como color de
-  superficie a otras pantallas.
+- El negro del bisel y las scanlines pertenecen al arte de las pantallas CRT, que siempre es oscuro;
+  no se propagan como color de superficie a otras pantallas.

@@ -1,24 +1,23 @@
 package com.bookverse.contacts.ui.screens.games
 
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.togetherWith
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -29,41 +28,47 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.QueryStats
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
@@ -83,7 +88,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bookverse.contacts.domain.games.GameId
 import com.bookverse.contacts.domain.games.GameRecordKind
@@ -91,23 +95,32 @@ import com.bookverse.contacts.domain.games.GameStatsRepository
 import com.bookverse.contacts.domain.games.GameStatsSnapshot
 import com.bookverse.contacts.domain.games.gameRecordKinds
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
-import com.bookverse.contacts.ui.components.ArcadeCabinet
-import com.bookverse.contacts.ui.components.ArcadeControlsEffect
 import com.bookverse.contacts.ui.components.ArcadeDialogHeader
-import com.bookverse.contacts.ui.components.ArcadeDirection
-import com.bookverse.contacts.ui.components.ArcadeHostState
-import com.bookverse.contacts.ui.components.LocalArcadeHost
+import com.bookverse.contacts.ui.components.ArcadeLightStrip
 import com.bookverse.contacts.ui.components.SecondaryTopBar
+import kotlinx.coroutines.delay
 import com.bookverse.contacts.ui.components.arcadeLabelStyle
 import com.bookverse.contacts.ui.components.arcadeScoreStyle
 import com.bookverse.contacts.ui.components.crtScanlines
+import com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior
+import com.bookverse.contacts.ui.components.withoutTop
+import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AppChrome
+import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
+import kotlin.math.absoluteValue
 import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
+
+@Immutable
+data class GameData(
+    val id: GameId,
+    val title: String,
+    val iconRes: Int,
+    val onClick: () -> Unit
+)
 
 @Immutable
 private data class GameCatalogEntry(
@@ -141,117 +154,164 @@ private val catalogById = gameCatalog.associateBy(GameCatalogEntry::id)
 @Composable
 fun GamesScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
+    onFunBirdClick: () -> Unit,
+    onTicTacToeClick: () -> Unit,
+    onPuzzleClick: () -> Unit,
+    onHangmanClick: () -> Unit,
+    onSnakeClick: () -> Unit,
+    onMemoryGameClick: () -> Unit,
+    onBreakoutClick: () -> Unit,
+    on2048Click: () -> Unit,
+    onMinesweeperClick: () -> Unit,
+    onSudokuClick: () -> Unit,
     gameStatsRepository: GameStatsRepository,
-    snakeViewModelFactory: ViewModelProvider.Factory,
-    breakoutViewModelFactory: ViewModelProvider.Factory,
 ) {
+    val scrollBehavior = rememberAppBarScrollBehavior()
     var visibleSheet by remember { mutableStateOf<GamesSheet?>(null) }
-    var activeGame by rememberSaveable { mutableStateOf<GameId?>(null) }
-    var positionedOnRecent by rememberSaveable { mutableStateOf(false) }
-    val host = remember { ArcadeHostState() }
     val resources = LocalResources.current
     val locale = LocalConfiguration.current.locales[0]
     val numberFormat = remember(locale) { NumberFormat.getIntegerInstance(locale) }
-    val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-    val animationDuration = LocalAnimationSpeed.current.durationMs
     val stats by gameStatsRepository.stats.collectAsStateWithLifecycle(
         initialValue = GameStatsSnapshot(),
     )
-    val titles = remember(resources) {
-        gameCatalog.associate { entry -> entry.id to resources.getString(entry.titleRes) }
+
+    val games = remember(resources) {
+        val launchers = mapOf(
+            GameId.FUN_BIRD to onFunBirdClick,
+            GameId.SNAKE to onSnakeClick,
+            GameId.MINESWEEPER to onMinesweeperClick,
+            GameId.GAME_2048 to on2048Click,
+            GameId.PUZZLE to onPuzzleClick,
+            GameId.TIC_TAC_TOE to onTicTacToeClick,
+            GameId.HANGMAN to onHangmanClick,
+            GameId.BREAKOUT to onBreakoutClick,
+            GameId.SUDOKU to onSudokuClick,
+            GameId.MEMORY to onMemoryGameClick,
+        )
+        gameCatalog.map { entry ->
+            GameData(
+                id = entry.id,
+                title = resources.getString(entry.titleRes),
+                iconRes = entry.iconRes,
+                onClick = launchers.getValue(entry.id),
+            )
+        }
+    }
+
+    val recentGames = remember(games, stats) {
+        games.sortedWith(
+            compareByDescending<GameData> { game ->
+                stats.games[game.id]?.lastStartedAt ?: 0L
+            }.thenBy { game -> games.indexOf(game) }
+        ).take(5)
     }
     val records = remember(stats) {
         GameId.entries.associateWith { gameId -> stats.recordFor(gameId) }
     }
-    val pagerState = rememberPagerState(initialPage = 0) { gameCatalog.size }
-    val mostRecent = remember(stats) {
-        stats.games.entries
-            .filter { it.value.lastStartedAt > 0L }
-            .maxByOrNull { it.value.lastStartedAt }
-            ?.key
-    }
-
-    LaunchedEffect(mostRecent) {
-        if (!positionedOnRecent && mostRecent != null) {
-            positionedOnRecent = true
-            pagerState.scrollToPage(gameCatalog.indexOfFirst { it.id == mostRecent })
-        }
-    }
+    val pagerState = rememberPagerState(initialPage = 0) { recentGames.size }
+    val modern = LocalAppChromeStyle.current == AccentBarStyle.MODERN
 
     BackHandler {
-        if (activeGame != null) activeGame = null else onBackClick()
+        onBackClick()
     }
 
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            val chrome = host.chrome
             SecondaryTopBar(
-                title = chrome?.title ?: stringResource(CoreUiR.string.games_title),
-                onBackClick = { chrome?.navigateBack() ?: onBackClick() },
+                expandable = true,
+                title = stringResource(CoreUiR.string.games_title),
                 actions = {
-                    if (chrome != null) {
-                        chrome.actions?.invoke(this)
-                    } else {
-                        IconAction(
-                            imageVector = Icons.Default.QueryStats,
-                            contentDescription = stringResource(R.string.games_dashboard_action),
-                            onClick = { visibleSheet = GamesSheet.Dashboard }
-                        )
-                    }
+                    IconAction(
+                        imageVector = Icons.Default.QueryStats,
+                        contentDescription = stringResource(R.string.games_dashboard_action),
+                        onClick = { visibleSheet = GamesSheet.Dashboard }
+                    )
                 },
-                count = if (chrome == null) gameCatalog.size else null,
-                onCountClick = if (chrome == null) {
-                    { visibleSheet = GamesSheet.FunFacts }
-                } else {
-                    null
-                },
+                count = games.size,
+                onBackClick = onBackClick,
+                onCountClick = { visibleSheet = GamesSheet.FunFacts },
+                scrollBehavior = scrollBehavior
             )
         }
     ) { paddingValues ->
-        CompositionLocalProvider(LocalArcadeHost provides host) {
-            val currentGame = activeGame
-            ArcadeCabinet(
-                marquee = currentGame?.let(titles::getValue) ?: stringResource(R.string.games_arcade_marquee),
-                controls = host.controls,
-                secondaryLabel = stringResource(
-                    if (currentGame != null) R.string.games_arcade_exit else R.string.games_arcade_records
+        val contentTopPadding = if (modern) paddingValues.calculateTopPadding() else 0.dp
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(if (modern) paddingValues.withoutTop() else paddingValues)
+        ) {
+            val horizontalPadding = if (maxWidth >= 600.dp) 24.dp else 16.dp
+            val twoPaneHero = maxWidth >= 840.dp
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(minSize = 156.dp),
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(
+                    start = horizontalPadding,
+                    end = horizontalPadding,
+                    top = contentTopPadding + 16.dp,
+                    bottom = 24.dp,
                 ),
-                onSecondary = {
-                    if (activeGame != null) {
-                        backDispatcher?.onBackPressed() ?: run { activeGame = null }
-                    } else {
-                        visibleSheet = GamesSheet.Dashboard
-                    }
-                },
-                modifier = Modifier.padding(paddingValues),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                AnimatedContent(
-                    targetState = currentGame,
-                    transitionSpec = {
-                        (fadeIn(tween(animationDuration)) + scaleIn(tween(animationDuration), initialScale = 0.9f))
-                            .togetherWith(fadeOut(tween(animationDuration / 2)) + scaleOut(tween(animationDuration / 2), targetScale = 1.04f))
-                    },
-                    label = "arcade_screen",
-                ) { game ->
-                    if (game == null) {
-                        ArcadeSelector(
-                            titles = titles,
+                if (twoPaneHero) {
+                    item(key = "hero", span = { GridItemSpan(maxLineSpan) }) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                verticalArrangement = Arrangement.spacedBy(12.dp),
+                            ) {
+                                ArcadeSectionHeader(text = stringResource(R.string.games_dashboard_summary))
+                                ArcadeScoreboard(
+                                    stats = stats,
+                                    numberFormat = numberFormat,
+                                    onClick = { visibleSheet = GamesSheet.Dashboard },
+                                )
+                            }
+                            Column(
+                                modifier = Modifier.weight(1.2f),
+                                verticalArrangement = Arrangement.spacedBy(12.dp),
+                            ) {
+                                ArcadeSectionHeader(text = stringResource(R.string.games_featured_section))
+                                RecentGamesPager(
+                                    games = recentGames,
+                                    records = records,
+                                    numberFormat = numberFormat,
+                                    pagerState = pagerState,
+                                )
+                            }
+                        }
+                    }
+                } else {
+                    item(key = "scoreboard", span = { GridItemSpan(maxLineSpan) }) {
+                        ArcadeScoreboard(
+                            stats = stats,
+                            numberFormat = numberFormat,
+                            onClick = { visibleSheet = GamesSheet.Dashboard },
+                        )
+                    }
+                    item(key = "recent_header", span = { GridItemSpan(maxLineSpan) }) {
+                        ArcadeSectionHeader(text = stringResource(R.string.games_featured_section))
+                    }
+                    item(key = "recent_pager", span = { GridItemSpan(maxLineSpan) }) {
+                        RecentGamesPager(
+                            games = recentGames,
                             records = records,
                             numberFormat = numberFormat,
                             pagerState = pagerState,
-                            onPlay = { gameId -> activeGame = gameId },
-                        )
-                    } else {
-                        ArcadeGame(
-                            gameId = game,
-                            onExit = { activeGame = null },
-                            appSettingsViewModel = appSettingsViewModel,
-                            gameStatsRepository = gameStatsRepository,
-                            snakeViewModelFactory = snakeViewModelFactory,
-                            breakoutViewModelFactory = breakoutViewModelFactory,
                         )
                     }
+                }
+                item(key = "all_header", span = { GridItemSpan(maxLineSpan) }) {
+                    ArcadeSectionHeader(text = stringResource(R.string.games_all_games_section))
+                }
+                items(games, key = { game -> game.id.storageKey }) { game ->
+                    ArcadeCabinet(
+                        game = game,
+                        record = records.getValue(game.id),
+                        numberFormat = numberFormat,
+                    )
                 }
             }
         }
@@ -266,228 +326,6 @@ fun GamesScreen(
             numberFormat = numberFormat,
             onDismiss = { visibleSheet = null },
         )
-    }
-}
-
-@Composable
-private fun ArcadeGame(
-    gameId: GameId,
-    onExit: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
-    gameStatsRepository: GameStatsRepository,
-    snakeViewModelFactory: ViewModelProvider.Factory,
-    breakoutViewModelFactory: ViewModelProvider.Factory,
-) {
-    when (gameId) {
-        GameId.FUN_BIRD -> FunBirdScreen(onExit, gameStatsRepository)
-        GameId.SNAKE -> SnakeScreen(onExit, appSettingsViewModel, snakeViewModelFactory)
-        GameId.MINESWEEPER -> MinesweeperScreen(onExit, gameStatsRepository)
-        GameId.GAME_2048 -> Game2048Screen(onExit, gameStatsRepository)
-        GameId.PUZZLE -> PuzzleScreen(onExit, gameStatsRepository)
-        GameId.TIC_TAC_TOE -> TicTacToeScreen(onExit, gameStatsRepository)
-        GameId.HANGMAN -> HangmanScreen(onExit, appSettingsViewModel, gameStatsRepository)
-        GameId.BREAKOUT -> BreakoutScreen(onExit, appSettingsViewModel, breakoutViewModelFactory)
-        GameId.SUDOKU -> SudokuScreen(onExit, gameStatsRepository)
-        GameId.MEMORY -> MemoryGameScreen(onExit, appSettingsViewModel, gameStatsRepository)
-    }
-}
-
-@Composable
-private fun ArcadeSelector(
-    titles: Map<GameId, String>,
-    records: Map<GameId, GameRecord>,
-    numberFormat: NumberFormat,
-    pagerState: PagerState,
-    onPlay: (GameId) -> Unit,
-) {
-    val scope = rememberCoroutineScope()
-    val count = gameCatalog.size
-    fun step(delta: Int) {
-        val target = (pagerState.currentPage + delta + count) % count
-        scope.launch { pagerState.animateScrollToPage(target) }
-    }
-    ArcadeControlsEffect(
-        primaryLabel = stringResource(R.string.play_label),
-        onPrimaryPress = { onPlay(gameCatalog[pagerState.currentPage].id) },
-        onDirection = { direction ->
-            when (direction) {
-                ArcadeDirection.LEFT, ArcadeDirection.UP -> step(-1)
-                ArcadeDirection.RIGHT, ArcadeDirection.DOWN -> step(1)
-                null -> Unit
-            }
-        },
-    )
-    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-        val compact = maxHeight < 320.dp
-        val artSize = minOf(maxWidth * 0.62f, maxHeight * if (compact) 0.5f else 0.46f)
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp, vertical = if (compact) 6.dp else 14.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    text = stringResource(R.string.games_arcade_select),
-                    style = arcadeLabelStyle,
-                    color = MaterialTheme.colorScheme.primary,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .weight(1f)
-                        .semantics { heading() },
-                )
-                Text(
-                    text = stringResource(
-                        R.string.games_arcade_position,
-                        numberFormat.format(pagerState.currentPage + 1),
-                        numberFormat.format(count),
-                    ),
-                    style = MaterialTheme.typography.labelLarge.copy(fontFeatureSettings = "tnum"),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-            HorizontalPager(
-                state = pagerState,
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-            ) { page ->
-                val entry = gameCatalog[page]
-                SelectorPage(
-                    title = titles.getValue(entry.id),
-                    iconRes = entry.iconRes,
-                    record = records.getValue(entry.id),
-                    numberFormat = numberFormat,
-                    artSize = artSize,
-                    compact = compact,
-                    onPlay = { onPlay(entry.id) },
-                )
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                IconButton(onClick = { step(-1) }) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                        contentDescription = stringResource(R.string.games_arcade_previous),
-                        tint = MaterialTheme.colorScheme.primary,
-                    )
-                }
-                PagerLevelIndicator(
-                    count = count,
-                    selected = pagerState.currentPage,
-                )
-                IconButton(onClick = { step(1) }) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                        contentDescription = stringResource(R.string.games_arcade_next),
-                        tint = MaterialTheme.colorScheme.primary,
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun SelectorPage(
-    title: String,
-    @DrawableRes iconRes: Int,
-    record: GameRecord,
-    numberFormat: NumberFormat,
-    artSize: Dp,
-    compact: Boolean,
-    onPlay: () -> Unit,
-) {
-    val locale = LocalConfiguration.current.locales[0]
-    val playLabel = stringResource(R.string.play_label)
-    if (compact) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            CrtScreen(
-                iconRes = iconRes,
-                modifier = Modifier
-                    .size(artSize)
-                    .clip(RoundedCornerShape(18.dp))
-                    .clickable(onClickLabel = playLabel, role = Role.Button, onClick = onPlay),
-            )
-            Column(
-                modifier = Modifier.weight(1f, fill = false),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                SelectorTitle(title = title, locale = locale, textAlign = TextAlign.Start)
-                RecordReadout(record = record, numberFormat = numberFormat, valueStyle = arcadeScoreStyle)
-            }
-        }
-    } else {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
-        ) {
-            CrtScreen(
-                iconRes = iconRes,
-                modifier = Modifier
-                    .size(artSize)
-                    .clip(RoundedCornerShape(18.dp))
-                    .clickable(onClickLabel = playLabel, role = Role.Button, onClick = onPlay),
-            )
-            SelectorTitle(title = title, locale = locale, textAlign = TextAlign.Center)
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                RecordReadout(record = record, numberFormat = numberFormat, valueStyle = arcadeScoreStyle)
-            }
-        }
-    }
-}
-
-@Composable
-private fun SelectorTitle(title: String, locale: Locale, textAlign: TextAlign) {
-    Text(
-        text = title.uppercase(locale),
-        style = MaterialTheme.typography.headlineSmall.copy(
-            fontWeight = FontWeight.ExtraBold,
-            letterSpacing = 2.sp,
-        ),
-        color = MaterialTheme.colorScheme.onBackground,
-        textAlign = textAlign,
-        maxLines = 2,
-        overflow = TextOverflow.Ellipsis,
-        modifier = Modifier.semantics { contentDescription = title },
-    )
-}
-
-@Composable
-private fun PagerLevelIndicator(count: Int, selected: Int, modifier: Modifier = Modifier) {
-    Row(
-        modifier = modifier.clearAndSetSemantics {},
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        repeat(count) { index ->
-            Box(
-                modifier = Modifier
-                    .size(width = if (index == selected) 16.dp else 7.dp, height = 7.dp)
-                    .background(
-                        color = if (index == selected) {
-                            MaterialTheme.colorScheme.primary
-                        } else {
-                            MaterialTheme.colorScheme.outlineVariant
-                        },
-                        shape = RoundedCornerShape(2.dp),
-                    )
-            )
-        }
     }
 }
 
@@ -591,7 +429,7 @@ private fun DashboardContent(
 
     ArcadeDialogHeader(
         title = stringResource(R.string.games_dashboard_title),
-        eyebrow = stringResource(R.string.games_arcade_records),
+        eyebrow = stringResource(R.string.games_arcade_scoreboard),
         onClose = null,
     )
 
@@ -728,6 +566,354 @@ private fun ArcadeSectionHeader(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
+private fun ArcadeScoreboard(
+    stats: GameStatsSnapshot,
+    numberFormat: NumberFormat,
+    onClick: () -> Unit,
+) {
+    val shape = RoundedCornerShape(AppChrome.groupCorner)
+    val hasData = stats.totalSessionsStarted > 0
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .clickable(
+                onClickLabel = stringResource(R.string.games_dashboard_action),
+                role = Role.Button,
+                onClick = onClick,
+            ),
+        shape = shape,
+        color = MaterialTheme.colorScheme.surface,
+    ) {
+        Column(
+            modifier = Modifier.padding(horizontal = 20.dp, vertical = 18.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
+                ) {
+                    Text(
+                        text = stringResource(R.string.games_arcade_scoreboard),
+                        style = arcadeLabelStyle,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                    Text(
+                        text = stringResource(
+                            if (hasData) R.string.games_arcade_view_records else R.string.games_arcade_press_start
+                        ),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            ArcadeLightStrip(lightSize = 5.dp)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                ScoreboardStat(
+                    value = numberFormat.format(stats.totalSessionsStarted),
+                    label = stringResource(R.string.games_dashboard_total_played),
+                    modifier = Modifier.weight(1f),
+                )
+                VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                ScoreboardStat(
+                    value = numberFormat.format(stats.bestWinStreak),
+                    label = stringResource(R.string.games_dashboard_best_streak),
+                    modifier = Modifier.weight(1f),
+                )
+                VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                ScoreboardStat(
+                    value = "${numberFormat.format(stats.gamesTried)}/${numberFormat.format(GameId.entries.size)}",
+                    label = stringResource(R.string.games_dashboard_games_tried),
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ScoreboardStat(
+    value: String,
+    label: String,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier.padding(horizontal = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(2.dp),
+    ) {
+        Text(
+            text = value,
+            style = arcadeScoreStyle,
+            color = MaterialTheme.colorScheme.onSurface,
+            maxLines = 1,
+        )
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+}
+
+@Composable
+private fun RecentGamesPager(
+    games: List<GameData>,
+    records: Map<GameId, GameRecord>,
+    numberFormat: NumberFormat,
+    pagerState: PagerState,
+) {
+    BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
+        val pageWidth = (maxWidth * 0.88f).coerceIn(minOf(240.dp, maxWidth), 440.dp)
+        val screenSize = (pageWidth * 0.36f).coerceIn(84.dp, 136.dp)
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            HorizontalPager(
+                modifier = Modifier.fillMaxWidth(),
+                state = pagerState,
+                pageSize = PageSize.Fixed(pageWidth),
+                pageSpacing = 12.dp,
+            ) { page ->
+                val game = games[page]
+                FeaturedCabinet(
+                    game = game,
+                    record = records.getValue(game.id),
+                    numberFormat = numberFormat,
+                    screenSize = screenSize,
+                    modifier = Modifier.graphicsLayer {
+                        val offset = (pagerState.currentPage - page) + pagerState.currentPageOffsetFraction
+                        val proximity = (1f - offset.absoluteValue).coerceIn(0f, 1f)
+                        val pageScale = 0.94f + 0.06f * proximity
+                        scaleX = pageScale
+                        scaleY = pageScale
+                        alpha = 0.72f + 0.28f * proximity
+                    },
+                )
+            }
+            if (games.size > 1) {
+                PagerLevelIndicator(
+                    count = games.size,
+                    selected = pagerState.currentPage,
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun PagerLevelIndicator(count: Int, selected: Int, modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier.clearAndSetSemantics {},
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        repeat(count) { index ->
+            Box(
+                modifier = Modifier
+                    .size(width = if (index == selected) 18.dp else 8.dp, height = 8.dp)
+                    .background(
+                        color = if (index == selected) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.outlineVariant
+                        },
+                        shape = RoundedCornerShape(2.dp),
+                    )
+            )
+        }
+    }
+}
+
+@Composable
+private fun FeaturedCabinet(
+    game: GameData,
+    record: GameRecord,
+    numberFormat: NumberFormat,
+    screenSize: Dp,
+    modifier: Modifier = Modifier,
+) {
+    CabinetFrame(
+        game = game,
+        modifier = modifier,
+    ) {
+        CabinetMarquee(title = game.title, minLines = 1)
+        Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            CrtScreen(
+                iconRes = game.iconRes,
+                modifier = Modifier.size(screenSize),
+            )
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                RecordReadout(
+                    record = record,
+                    numberFormat = numberFormat,
+                    valueStyle = arcadeScoreStyle,
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(
+                    modifier = Modifier
+                        .heightIn(min = 36.dp)
+                        .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(12.dp))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.size(18.dp),
+                    )
+                    Text(
+                        text = stringResource(R.string.games_play_now),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ArcadeCabinet(
+    game: GameData,
+    record: GameRecord,
+    numberFormat: NumberFormat,
+    modifier: Modifier = Modifier,
+) {
+    CabinetFrame(
+        game = game,
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        CabinetMarquee(title = game.title, minLines = 2)
+        CrtScreen(
+            iconRes = game.iconRes,
+            modifier = Modifier
+                .padding(horizontal = 12.dp, vertical = 12.dp)
+                .fillMaxWidth(),
+        )
+        Row(
+            modifier = Modifier.padding(start = 14.dp, end = 14.dp, bottom = 14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                RecordReadout(
+                    record = record,
+                    numberFormat = numberFormat,
+                    valueStyle = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontFeatureSettings = "tnum",
+                    ),
+                )
+            }
+            ControlDeckButtons()
+        }
+    }
+}
+
+@Composable
+private fun CabinetFrame(
+    game: GameData,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
+    val shape = RoundedCornerShape(AppChrome.groupCorner)
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.97f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMedium
+        ),
+        label = "cabinet_scale"
+    )
+    Surface(
+        modifier = modifier
+            .scale(scale)
+            .clip(shape)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = LocalIndication.current,
+                onClickLabel = stringResource(R.string.play_label),
+                role = Role.Button,
+                onClick = game.onClick,
+            ),
+        shape = shape,
+        color = MaterialTheme.colorScheme.surface,
+    ) {
+        Column { content() }
+    }
+}
+
+@Composable
+private fun CabinetMarquee(title: String, minLines: Int) {
+    val locale = LocalConfiguration.current.locales[0]
+    val style = MaterialTheme.typography.titleSmall.copy(
+        fontWeight = FontWeight.ExtraBold,
+        letterSpacing = 1.6.sp,
+    )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.primaryContainer)
+    ) {
+        val reservedHeight = with(LocalDensity.current) { style.lineHeight.toDp() } * minLines
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 14.dp, end = 14.dp, top = 12.dp, bottom = 8.dp)
+                .heightIn(min = reservedHeight),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = title.uppercase(locale),
+                style = style,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.semantics { contentDescription = title },
+            )
+        }
+        ArcadeLightStrip(
+            modifier = Modifier.padding(start = 14.dp, end = 14.dp, bottom = 10.dp),
+            dimColor = MaterialTheme.colorScheme.surface,
+            lightSize = 4.dp,
+        )
+    }
+}
+
+@Composable
 private fun CrtScreen(
     @DrawableRes iconRes: Int,
     modifier: Modifier = Modifier,
@@ -784,7 +970,7 @@ private fun RecordReadout(
         Text(
             text = record.display(numberFormat),
             style = valueStyle,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = MaterialTheme.colorScheme.onSurface,
             maxLines = 1,
         )
     } else {
@@ -794,6 +980,26 @@ private fun RecordReadout(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+        )
+    }
+}
+
+@Composable
+private fun ControlDeckButtons() {
+    Row(
+        modifier = Modifier.clearAndSetSemantics {},
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            modifier = Modifier
+                .size(12.dp)
+                .background(MaterialTheme.colorScheme.primary, CircleShape)
+        )
+        Box(
+            modifier = Modifier
+                .size(12.dp)
+                .background(MaterialTheme.colorScheme.outlineVariant, CircleShape)
         )
     }
 }

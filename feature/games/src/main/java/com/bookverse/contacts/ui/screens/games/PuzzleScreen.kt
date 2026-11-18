@@ -42,9 +42,8 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.ArcadeControlsEffect
-import com.bookverse.contacts.ui.components.GameScaffold
 import com.bookverse.contacts.core.ui.R as CoreUiR
+import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -92,6 +91,7 @@ import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.RetroGameOptionsDialog
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
+import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.RotateCcw
@@ -318,30 +318,24 @@ fun PuzzleScreen(
         onBackClick()
     }
 
-    ArcadeControlsEffect(
-        primaryLabel = stringResource(R.string.games_arcade_new_game),
-        onPrimaryPress = if (puzzleMode == PuzzleMode.Numbers) {
-            { startPuzzle(puzzleMode, null) }
-        } else {
-            null
-        },
-        onDirection = null,
-    )
-
-    GameScaffold(
-        title = stringResource(R.string.puzzle_title),
-        onBackClick = onBackClick,
-        actions = {
-            if (puzzleMode == PuzzleMode.Numbers) {
-                IconAction(
-                    imageVector = Lucide.RotateCcw,
-                    contentDescription = stringResource(R.string.cd_restart_game),
-                    onClick = {
-                        startPuzzle(puzzleMode, null)
+    Scaffold(
+        topBar = {
+            SecondaryTopBar(
+                title = stringResource(R.string.puzzle_title),
+                onBackClick = onBackClick,
+                actions = {
+                    if (puzzleMode == PuzzleMode.Numbers) {
+                        IconAction(
+                            imageVector = Lucide.RotateCcw,
+                            contentDescription = stringResource(R.string.cd_restart_game),
+                            onClick = {
+                                startPuzzle(puzzleMode, null)
+                            }
+                        )
                     }
-                )
-            }
-        },
+                }
+            )
+        }
     ) { padding ->
         Column(
             modifier = Modifier

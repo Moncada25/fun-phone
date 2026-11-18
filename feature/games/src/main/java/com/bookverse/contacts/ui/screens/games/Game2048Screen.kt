@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,9 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.ArcadeControlsEffect
-import com.bookverse.contacts.ui.components.ArcadeDirection
-import com.bookverse.contacts.ui.components.GameScaffold
+import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -60,6 +58,7 @@ import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.RetroGameInstructionsDialog
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
+import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.RotateCcw
@@ -267,212 +266,180 @@ fun Game2048Screen(
     }
     BackHandler { onBackClick() }
 
-    ArcadeControlsEffect(
-        primaryLabel = stringResource(R.string.games_arcade_new_game),
-        onPrimaryPress = { startNew() },
-        onDirection = { direction ->
-            when (direction) {
-                ArcadeDirection.UP -> move(Dir.UP)
-                ArcadeDirection.DOWN -> move(Dir.DOWN)
-                ArcadeDirection.LEFT -> move(Dir.LEFT)
-                ArcadeDirection.RIGHT -> move(Dir.RIGHT)
-                null -> Unit
-            }
-        },
-    )
-
-    GameScaffold(
-        title = stringResource(R.string.game_2048_title),
-        onBackClick = onBackClick,
-        actions = {
-            IconAction(
-                imageVector = Lucide.RotateCcw,
-                contentDescription = stringResource(R.string.cd_restart_game),
-                onClick = { startNew() }
-            )
-        },
-    ) { padding ->
-        val scoreCard: @Composable () -> Unit = {
-                ScoreCard(
-                    entries = listOf(
-                        ScoreCardEntry(
-                            title = stringResource(R.string.score_label),
-                            value = score.toString()
-                        ),
-                        ScoreCardEntry(
-                            title = stringResource(R.string.best_score_label),
-                            value = highScore.toString()
-                        )
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp)
-                )
-        }
-        val gameBoard: @Composable (Modifier) -> Unit = { boardModifier ->
-                BoxWithConstraints(
-                    modifier = boardModifier,
-                    contentAlignment = Alignment.Center
-                ) {
-                    val boardSide = minOf(maxWidth * 0.9f, maxHeight)
-                    @Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
-                    BoxWithConstraints(
-                        modifier = Modifier
-                            .size(boardSide)
-                            .background(
-                                color = Color.Transparent,
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                            .border(
-                                width = 2.dp,
-                                color = textColor.copy(alpha = 0.2f),
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                    ) {
-                        val cellSpacing = 8.dp
-                        val gridPadding = 8.dp
-                        val tileSize: Dp =
-                            (maxWidth - gridPadding * 2 - cellSpacing * (size - 1)) / size
-                        val animSpec =
-                            tween<Dp>(durationMillis = 140, easing = LinearOutSlowInEasing)
-                        val density = LocalDensity.current
-                        val threshold = with(density) { 24.dp.toPx() }
-
-                        Box(
-                            modifier = Modifier
-                                .matchParentSize()
-                                .padding(gridPadding)
-                                .pointerInput(values) {
-                                    var dx = 0f
-                                    var dy = 0f
-                                    detectDragGestures(
-                                        onDragEnd = {
-                                            if (abs(dx) > abs(dy) && abs(dx) > threshold) {
-                                                if (dx > 0) move(Dir.RIGHT) else move(Dir.LEFT)
-                                            } else if (abs(dy) > threshold) {
-                                                if (dy > 0) move(Dir.DOWN) else move(Dir.UP)
-                                            }
-                                            dx = 0f
-                                            dy = 0f
-                                        },
-                                        onDrag = { _, dragAmount ->
-                                            dx += dragAmount.x
-                                            dy += dragAmount.y
-                                        }
-                                    )
-                                }
-                        ) {
-                            val tileShape = RoundedCornerShape(12.dp)
-
-                            Column(
-                                modifier = Modifier.matchParentSize(),
-                                verticalArrangement = Arrangement.spacedBy(cellSpacing),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                repeat(size) {
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.spacedBy(cellSpacing),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        repeat(size) {
-                                            Box(
-                                                modifier = Modifier
-                                                    .size(tileSize)
-                                                    .clip(tileShape)
-                                                    .background(Color(0xFFCDC1B4).copy(alpha = 0.8f))
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-
-                            val tiles = remember(values, ids) {
-                                buildList {
-                                    for (i in 0 until size) for (j in 0 until size) {
-                                        val v = values[i][j]
-                                        val id = ids[i][j]
-                                        if (v != 0 && id != 0L) add(TileItem(id, v, i, j))
-                                    }
-                                }
-                            }
-
-                            tiles.forEach { t ->
-                                key(t.id) {
-                                    val xTarget = gridPadding + (tileSize + cellSpacing) * t.col
-                                    val yTarget = gridPadding + (tileSize + cellSpacing) * t.row
-                                    val animX by androidx.compose.animation.core.animateDpAsState(
-                                        xTarget,
-                                        animSpec,
-                                        label = "x"
-                                    )
-                                    val animY by androidx.compose.animation.core.animateDpAsState(
-                                        yTarget,
-                                        animSpec,
-                                        label = "y"
-                                    )
-                                        Box(
-                                            modifier = Modifier
-                                            .offset {
-                                                IntOffset(
-                                                    x = (animX - gridPadding).roundToPx(),
-                                                    y = (animY - gridPadding).roundToPx(),
-                                                )
-                                            }
-                                            .size(tileSize)
-                                            .clip(RoundedCornerShape(12.dp))
-                                            .background(tileBgColor(t.value)),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        val base = when {
-                                            t.value < 128 -> tileSize.value * 0.42f
-                                            t.value < 1024 -> tileSize.value * 0.36f
-                                            else -> tileSize.value * 0.30f
-                                        }
-                                        Text(
-                                            text = t.value.toString(),
-                                            color = tileTextColor(t.value),
-                                            fontWeight = FontWeight.ExtraBold,
-                                            fontSize = base.sp,
-                                            textAlign = TextAlign.Center
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
+    Scaffold(
+        topBar = {
+            SecondaryTopBar(
+                title = stringResource(R.string.game_2048_title),
+                onBackClick = onBackClick,
+                actions = {
+                    IconAction(
+                        imageVector = Lucide.RotateCcw,
+                        contentDescription = stringResource(R.string.cd_restart_game),
+                        onClick = { startNew() }
+                    )
                 }
-
+            )
         }
-        BoxWithConstraints(
+    ) { padding ->
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(backgroundColor)
                 .padding(padding)
                 .blur(blurRadius),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            if (maxWidth > maxHeight * 1.25f) {
-                Row(
+            ScoreCard(
+                entries = listOf(
+                    ScoreCardEntry(
+                        title = stringResource(R.string.score_label),
+                        value = score.toString()
+                    ),
+                    ScoreCardEntry(
+                        title = stringResource(R.string.best_score_label),
+                        value = highScore.toString()
+                    )
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
+            )
+
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                @Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
+                BoxWithConstraints(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+                        .fillMaxWidth(0.9f)
+                        .aspectRatio(1f)
+                        .background(
+                            color = Color.Transparent,
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                        .border(
+                            width = 2.dp,
+                            color = textColor.copy(alpha = 0.2f),
+                            shape = RoundedCornerShape(16.dp)
+                        )
                 ) {
-                    Box(modifier = Modifier.weight(1f)) { scoreCard() }
-                    gameBoard(Modifier.weight(1f).fillMaxHeight().padding(vertical = 8.dp))
-                }
-            } else {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    scoreCard()
-                    gameBoard(Modifier.fillMaxWidth().weight(1f, fill = false))
-                    Spacer(modifier = Modifier.height(16.dp))
+                    val cellSpacing = 8.dp
+                    val gridPadding = 8.dp
+                    val tileSize: Dp =
+                        (maxWidth - gridPadding * 2 - cellSpacing * (size - 1)) / size
+                    val animSpec =
+                        tween<Dp>(durationMillis = 140, easing = LinearOutSlowInEasing)
+                    val density = LocalDensity.current
+                    val threshold = with(density) { 24.dp.toPx() }
+
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize()
+                            .padding(gridPadding)
+                            .pointerInput(values) {
+                                var dx = 0f
+                                var dy = 0f
+                                detectDragGestures(
+                                    onDragEnd = {
+                                        if (abs(dx) > abs(dy) && abs(dx) > threshold) {
+                                            if (dx > 0) move(Dir.RIGHT) else move(Dir.LEFT)
+                                        } else if (abs(dy) > threshold) {
+                                            if (dy > 0) move(Dir.DOWN) else move(Dir.UP)
+                                        }
+                                        dx = 0f
+                                        dy = 0f
+                                    },
+                                    onDrag = { _, dragAmount ->
+                                        dx += dragAmount.x
+                                        dy += dragAmount.y
+                                    }
+                                )
+                            }
+                    ) {
+                        val tileShape = RoundedCornerShape(12.dp)
+
+                        Column(
+                            modifier = Modifier.matchParentSize(),
+                            verticalArrangement = Arrangement.spacedBy(cellSpacing),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            repeat(size) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(cellSpacing),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    repeat(size) {
+                                        Box(
+                                            modifier = Modifier
+                                                .size(tileSize)
+                                                .clip(tileShape)
+                                                .background(Color(0xFFCDC1B4).copy(alpha = 0.8f))
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        val tiles = remember(values, ids) {
+                            buildList {
+                                for (i in 0 until size) for (j in 0 until size) {
+                                    val v = values[i][j]
+                                    val id = ids[i][j]
+                                    if (v != 0 && id != 0L) add(TileItem(id, v, i, j))
+                                }
+                            }
+                        }
+
+                        tiles.forEach { t ->
+                            key(t.id) {
+                                val xTarget = gridPadding + (tileSize + cellSpacing) * t.col
+                                val yTarget = gridPadding + (tileSize + cellSpacing) * t.row
+                                val animX by androidx.compose.animation.core.animateDpAsState(
+                                    xTarget,
+                                    animSpec,
+                                    label = "x"
+                                )
+                                val animY by androidx.compose.animation.core.animateDpAsState(
+                                    yTarget,
+                                    animSpec,
+                                    label = "y"
+                                )
+                                    Box(
+                                        modifier = Modifier
+                                        .offset {
+                                            IntOffset(
+                                                x = (animX - gridPadding).roundToPx(),
+                                                y = (animY - gridPadding).roundToPx(),
+                                            )
+                                        }
+                                        .size(tileSize)
+                                        .clip(RoundedCornerShape(12.dp))
+                                        .background(tileBgColor(t.value)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    val base = when {
+                                        t.value < 128 -> tileSize.value * 0.42f
+                                        t.value < 1024 -> tileSize.value * 0.36f
+                                        else -> tileSize.value * 0.30f
+                                    }
+                                    Text(
+                                        text = t.value.toString(),
+                                        color = tileTextColor(t.value),
+                                        fontWeight = FontWeight.ExtraBold,
+                                        fontSize = base.sp,
+                                        textAlign = TextAlign.Center
+                                    )
+                                }
+                            }
+                        }
+                    }
                 }
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 
