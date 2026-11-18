@@ -1718,6 +1718,29 @@
     <string name="notes_widget_card_description">Ajoutez le widget de notes pour consulter et créer des notes depuis l\'écran d\'accueil.</string>
     <string name="notes_widget_card_title">Notes rapides</string>
     <string name="notes_widget_locked_content">Touchez pour déverrouiller</string>
+    <string name="notes_widget_new_note">Nouvelle note</string>
+    <string name="recent_calls_widget_title">Appels récents</string>
+    <string name="recent_calls_widget_description">Consultez vos derniers appels et rappelez en un geste</string>
+    <string name="recent_calls_widget_empty">Aucun appel récent</string>
+    <string name="recent_calls_widget_permission">Autorisez l\'accès au journal d\'appels dans Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Appeler %1$s</string>
+    <string name="expenses_widget_title">Ce mois-ci</string>
+    <string name="expenses_widget_description">Suivez les dépenses du mois par rapport à votre budget</string>
+    <string name="expenses_widget_spent">Dépensé</string>
+    <string name="expenses_widget_income">Revenus</string>
+    <string name="expenses_widget_budget">%1$s sur %2$s de budget</string>
+    <string name="expenses_widget_no_budget">Aucun budget défini</string>
+    <string name="expenses_widget_locked">Les dépenses sont verrouillées. Touchez pour ouvrir.</string>
+    <string name="recent_calls_widget_card_title">Appels récents</string>
+    <string name="recent_calls_widget_card_description">Ajoutez le widget des appels récents pour rappeler depuis votre écran d\'accueil.</string>
+    <string name="expenses_widget_card_title">Dépenses du mois</string>
+    <string name="expenses_widget_card_description">Ajoutez le widget des dépenses pour suivre le budget du mois depuis votre écran d\'accueil.</string>
+    <string name="widget_preview_note_1_title">Liste de courses</string>
+    <string name="widget_preview_note_1_body">Lait, œufs et café</string>
+    <string name="widget_preview_note_2_title">Idées de voyage</string>
+    <string name="widget_preview_note_2_body">Réserver le chalet pour juin</string>
+    <string name="widget_preview_call_time_1">Il y a 10 min</string>
+    <string name="widget_preview_call_time_2">Hier</string>
     <string name="notes_widget_locked_title">Note protégée 🔐</string>
     <string name="paint_collage">Collage</string>
     <string name="paint_collage_error">Impossible de créer le collage</string>
@@ -1943,10 +1966,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Moderne</string>
     <string name="accent_usage_modern_description">Titres adaptatifs, flou discret et navigation flottante.</string>
-    <string name="appearance_preview_hint">Prévisualisez les modifications, puis appuyez sur Appliquer.</string>
-    <string name="appearance_preview_contact">Contact exemple</string>
-    <string name="appearance_preview_description">Aperçu du titre, du contact exemple, du clavier et de la navigation.</string>
-    <string name="appearance_save_error">Impossible de sauvegarder les modifications. Réessayez.</string>
     <string name="font_category_recommended">Recommandées</string>
     <string name="font_category_sans">Sans empattement</string>
     <string name="font_category_serif">Avec empattement</string>
@@ -2075,6 +2094,15 @@
     </plurals>
     <string name="password_website">Site web</string>
     <string name="password_website_hint">Sert à proposer cette entrée lors du remplissage automatique</string>
+    <string name="password_service_picker_action">Choisir un service courant</string>
+    <string name="password_service_picker_title">Choisir un service</string>
+    <string name="password_service_picker_subtitle">Remplit le site web. Vous pouvez toujours saisir n\'importe quelle adresse.</string>
+    <string name="password_service_search">Rechercher des services</string>
+    <string name="password_service_empty">Aucun service ne correspond à votre recherche</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">E-mail et réseaux sociaux</string>
+    <string name="password_service_category_shopping">Achats et paiements</string>
+    <string name="password_service_category_more">Jeux, développement et plus</string>
     <string name="password_website_home">Site web : %1$s</string>
     <string name="password_linked_app_home">Appli associée : %1$s</string>
     <string name="password_open_website">Ouvrir le site web</string>

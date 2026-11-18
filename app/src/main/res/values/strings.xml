@@ -1180,6 +1180,38 @@
     <string name="notes_widget_no_content">No content</string>
     <string name="notes_widget_locked_title">Protected note 🔐</string>
     <string name="notes_widget_locked_content">Tap to unlock</string>
+    <string name="notes_widget_new_note">New note</string>
+    <string name="recent_calls_widget_title">Recent calls</string>
+    <string name="recent_calls_widget_description">See your latest calls and call back with one tap</string>
+    <string name="recent_calls_widget_empty">No recent calls</string>
+    <string name="recent_calls_widget_permission">Allow call history access in Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Call %1$s</string>
+    <string name="expenses_widget_title">This month</string>
+    <string name="expenses_widget_description">Track this month\'s spending against your budget</string>
+    <string name="expenses_widget_spent">Spent</string>
+    <string name="expenses_widget_income">Income</string>
+    <string name="expenses_widget_budget">%1$s of %2$s budget</string>
+    <string name="expenses_widget_no_budget">No budget set</string>
+    <string name="expenses_widget_locked">Expenses are locked. Tap to open.</string>
+    <string name="recent_calls_widget_card_title">Recent calls</string>
+    <string name="recent_calls_widget_card_description">Add the recent calls widget to call back from your home screen.</string>
+    <string name="expenses_widget_card_title">Monthly expenses</string>
+    <string name="expenses_widget_card_description">Add the expenses widget to follow this month\'s budget from your home screen.</string>
+    <string name="widget_preview_note_1_title">Grocery list</string>
+    <string name="widget_preview_note_1_body">Milk, eggs and coffee</string>
+    <string name="widget_preview_note_2_title">Trip ideas</string>
+    <string name="widget_preview_note_2_body">Book the cabin for June</string>
+    <string name="widget_preview_call_time_1">10 min ago</string>
+    <string name="widget_preview_call_time_2">Yesterday</string>
+    <string name="widget_preview_name_1" translatable="false">Ana Rivera</string>
+    <string name="widget_preview_name_2" translatable="false">Leo Martín</string>
+    <string name="widget_preview_name_3" translatable="false">Emma Wilson</string>
+    <string name="widget_preview_name_4" translatable="false">Daniel Costa</string>
+    <string name="widget_preview_initial_1" translatable="false">A</string>
+    <string name="widget_preview_initial_2" translatable="false">L</string>
+    <string name="widget_preview_initial_3" translatable="false">E</string>
+    <string name="widget_preview_initial_4" translatable="false">D</string>
+    <string name="widget_preview_amount" translatable="false">$1,240</string>
 
     <string name="local_account">Local Account</string>
     <string name="device">Device</string>
@@ -1775,6 +1807,7 @@
     <string name="imported_checklist_title">Imported checklist</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="font_preview_text">Fun Phone preview</string>
+    <string name="font_sample_glyphs" translatable="false">Aa</string>
     <string name="holiday_event_start">Start: %1$s</string>
     <string name="holiday_event_end">End: %1$s</string>
     <string name="holiday_event_description">Description:</string>
@@ -1932,10 +1965,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Modern</string>
     <string name="accent_usage_modern_description">Collapsing titles, soft blur and a floating dock.</string>
-    <string name="appearance_preview_hint">Preview your changes, then tap Apply to save.</string>
-    <string name="appearance_preview_contact">Sample contact</string>
-    <string name="appearance_preview_description">Appearance preview with a title, sample contact, dialer and navigation.</string>
-    <string name="appearance_save_error">Changes could not be saved. Try again.</string>
     <string name="font_category_recommended">Recommended</string>
     <string name="font_category_sans">Sans serif</string>
     <string name="font_category_serif">Serif</string>
@@ -2057,6 +2086,15 @@
     </plurals>
     <string name="password_website">Website</string>
     <string name="password_website_hint">Used to suggest this entry when autofilling</string>
+    <string name="password_service_picker_action">Choose a common service</string>
+    <string name="password_service_picker_title">Choose a service</string>
+    <string name="password_service_picker_subtitle">Fills in the website. You can still type any address.</string>
+    <string name="password_service_search">Search services</string>
+    <string name="password_service_empty">No services match your search</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">Email &amp; social</string>
+    <string name="password_service_category_shopping">Shopping &amp; payments</string>
+    <string name="password_service_category_more">Gaming, developer &amp; more</string>
     <string name="password_website_home">Website: %1$s</string>
     <string name="password_linked_app_home">Linked app: %1$s</string>
     <string name="password_open_website">Open website</string>

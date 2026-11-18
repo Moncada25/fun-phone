@@ -1718,6 +1718,29 @@
     <string name="notes_widget_card_description">Adicione o widget de notas para ver e criar notas na tela inicial.</string>
     <string name="notes_widget_card_title">Notas rápidas</string>
     <string name="notes_widget_locked_content">Toque para desbloquear</string>
+    <string name="notes_widget_new_note">Nova nota</string>
+    <string name="recent_calls_widget_title">Chamadas recentes</string>
+    <string name="recent_calls_widget_description">Veja suas últimas chamadas e retorne com um toque</string>
+    <string name="recent_calls_widget_empty">Nenhuma chamada recente</string>
+    <string name="recent_calls_widget_permission">Permita o acesso ao histórico de chamadas no Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Ligar para %1$s</string>
+    <string name="expenses_widget_title">Este mês</string>
+    <string name="expenses_widget_description">Acompanhe os gastos do mês em relação ao seu orçamento</string>
+    <string name="expenses_widget_spent">Gasto</string>
+    <string name="expenses_widget_income">Receitas</string>
+    <string name="expenses_widget_budget">%1$s de %2$s do orçamento</string>
+    <string name="expenses_widget_no_budget">Nenhum orçamento definido</string>
+    <string name="expenses_widget_locked">As despesas estão bloqueadas. Toque para abrir.</string>
+    <string name="recent_calls_widget_card_title">Chamadas recentes</string>
+    <string name="recent_calls_widget_card_description">Adicione o widget de chamadas recentes para retornar ligações da tela inicial.</string>
+    <string name="expenses_widget_card_title">Despesas do mês</string>
+    <string name="expenses_widget_card_description">Adicione o widget de despesas para acompanhar o orçamento do mês na tela inicial.</string>
+    <string name="widget_preview_note_1_title">Lista de compras</string>
+    <string name="widget_preview_note_1_body">Leite, ovos e café</string>
+    <string name="widget_preview_note_2_title">Ideias de viagem</string>
+    <string name="widget_preview_note_2_body">Reservar a cabana para junho</string>
+    <string name="widget_preview_call_time_1">Há 10 min</string>
+    <string name="widget_preview_call_time_2">Ontem</string>
     <string name="notes_widget_locked_title">Nota protegida 🔐</string>
     <string name="paint_collage">Collage</string>
     <string name="paint_collage_error">Não foi possível criar a colagem</string>
@@ -1943,10 +1966,6 @@
     <!-- Modern appearance -->
     <string name="accent_usage_modern">Moderno</string>
     <string name="accent_usage_modern_description">Títulos adaptáveis, desfoque suave e navegação flutuante.</string>
-    <string name="appearance_preview_hint">Veja as alterações e toque em Aplicar para salvar.</string>
-    <string name="appearance_preview_contact">Contato de exemplo</string>
-    <string name="appearance_preview_description">Prévia do título, contato de exemplo, discador e navegação.</string>
-    <string name="appearance_save_error">Não foi possível salvar as alterações. Tente novamente.</string>
     <string name="font_category_recommended">Recomendadas</string>
     <string name="font_category_sans">Sem serifa</string>
     <string name="font_category_serif">Com serifa</string>
@@ -2075,6 +2094,15 @@
     </plurals>
     <string name="password_website">Site</string>
     <string name="password_website_hint">Usado para sugerir esta entrada no preenchimento automático</string>
+    <string name="password_service_picker_action">Escolher um serviço comum</string>
+    <string name="password_service_picker_title">Escolha um serviço</string>
+    <string name="password_service_picker_subtitle">Preenche o site. Você ainda pode digitar qualquer endereço.</string>
+    <string name="password_service_search">Pesquisar serviços</string>
+    <string name="password_service_empty">Nenhum serviço corresponde à sua pesquisa</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">E-mail e redes sociais</string>
+    <string name="password_service_category_shopping">Compras e pagamentos</string>
+    <string name="password_service_category_more">Jogos, desenvolvimento e mais</string>
     <string name="password_website_home">Site: %1$s</string>
     <string name="password_linked_app_home">App vinculado: %1$s</string>
     <string name="password_open_website">Abrir site</string>

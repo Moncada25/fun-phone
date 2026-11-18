@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Badge
 import androidx.compose.material.icons.filled.ContentCopy
@@ -444,6 +445,18 @@ private fun AccountSection(
     accentColor: Color,
     modifier: Modifier = Modifier,
 ) {
+    var showServicePicker by rememberSaveable { mutableStateOf(false) }
+    if (showServicePicker) {
+        PasswordServicePickerSheet(
+            selectedUrl = url,
+            onPick = { service ->
+                onUrlChange(service.url)
+                if (name.isBlank()) onNameChange(service.name)
+                showServicePicker = false
+            },
+            onDismiss = { showServicePicker = false },
+        )
+    }
     EditorSectionCard(
         title = stringResource(R.string.basic_data_title),
         icon = Icons.Default.AccountCircle,
@@ -463,6 +476,11 @@ private fun AccountSection(
             imeAction = ImeAction.Next,
             keyboardType = KeyboardType.Uri,
             supportingRes = R.string.password_website_hint,
+            trailingIcon = {
+                IconButton(onClick = { showServicePicker = true }) {
+                    Icon(Icons.AutoMirrored.Filled.List, contentDescription = stringResource(R.string.password_service_picker_action))
+                }
+            },
         )
         EditorField(notes, onNotesChange, stringResource(R.string.password_notes), Icons.Default.Description, false, null, accentColor, ImeAction.Done, singleLine = false)
     }
@@ -613,6 +631,7 @@ private fun EditorField(
     singleLine: Boolean = true,
     keyboardType: KeyboardType = KeyboardType.Text,
     @androidx.annotation.StringRes supportingRes: Int? = null,
+    trailingIcon: (@Composable () -> Unit)? = null,
 ) {
     OutlinedTextField(
         value = value,
@@ -620,6 +639,7 @@ private fun EditorField(
         modifier = Modifier.fillMaxWidth(),
         label = { Text(label) },
         leadingIcon = { Icon(icon, contentDescription = null) },
+        trailingIcon = trailingIcon,
         isError = isError,
         supportingText = if (isError && errorRes != null) {
             { Text(stringResource(errorRes)) }

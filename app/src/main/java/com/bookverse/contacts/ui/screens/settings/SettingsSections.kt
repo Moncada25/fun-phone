@@ -12,8 +12,10 @@ import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.FontDownload
 import androidx.compose.material.icons.filled.Fullscreen
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ManageAccounts
+import androidx.compose.material.icons.filled.Savings
 import androidx.compose.material.icons.filled.SecurityUpdateGood
 import androidx.compose.material.icons.filled.SettingsBackupRestore
 import androidx.compose.material.icons.filled.Share
@@ -108,6 +110,8 @@ internal data class SettingsSectionsActions(
     val onHomeShortcuts: () -> Unit,
     val onFavoritesWidget: () -> Unit,
     val onNotesWidget: () -> Unit,
+    val onRecentCallsWidget: () -> Unit,
+    val onExpensesWidget: () -> Unit,
     val onPasswordAuthChanged: (Boolean) -> Unit,
     val onPasswordManagerChanged: (Boolean) -> Unit,
     val onSensitiveSectionsLockChanged: (Boolean) -> Unit,
@@ -225,6 +229,8 @@ internal fun buildSettingsSections(
             SettingsItemModel("shortcuts", Icons.AutoMirrored.Filled.AddToHomeScreen, stringResource(R.string.home_shortcuts_card_title), stringResource(R.string.home_shortcuts_card_description), actions.onHomeShortcuts),
             SettingsItemModel("favorites_widget", Icons.Default.Widgets, stringResource(R.string.home_widget_card_title), stringResource(R.string.home_widget_card_description), actions.onFavoritesWidget),
             SettingsItemModel("notes_widget", Icons.AutoMirrored.Filled.NoteAdd, stringResource(R.string.notes_widget_card_title), stringResource(R.string.notes_widget_card_description), actions.onNotesWidget),
+            SettingsItemModel("recent_calls_widget", Icons.Default.History, stringResource(R.string.recent_calls_widget_card_title), stringResource(R.string.recent_calls_widget_card_description), actions.onRecentCallsWidget),
+            SettingsItemModel("expenses_widget", Icons.Default.Savings, stringResource(R.string.expenses_widget_card_title), stringResource(R.string.expenses_widget_card_description), actions.onExpensesWidget),
         ),
     ),
     SettingsSectionModel(

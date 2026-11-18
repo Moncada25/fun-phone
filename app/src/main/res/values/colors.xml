@@ -7,12 +7,10 @@
     <!-- Colores para el tema oscuro -->
     <!-- Colores para el tema claro -->
 
-    <!-- Colores para el widget -->
-    <color name="widget_background">#F5F5F5</color>
-    <color name="widget_text">#212121</color>
-    <color name="widget_text_secondary">#757575</color>
-    <color name="widget_accent">#FF2196F3</color>
-    <color name="widget_border">#E0E0E0</color>
-    <color name="widget_item_pressed">#E3F2FD</color>
-    <color name="widget_avatar_default">#9E9E9E</color>
+    <color name="widget_preview_surface">#FFF3F4F7</color>
+    <color name="widget_preview_on_surface">#FF1B1C1F</color>
+    <color name="widget_preview_on_surface_variant">#FF5F6368</color>
+    <color name="widget_preview_primary">#FF1E88E5</color>
+    <color name="widget_preview_primary_container">#FFD6E6FA</color>
+    <color name="widget_preview_on_primary_container">#FF0B2A4A</color>
 </resources>

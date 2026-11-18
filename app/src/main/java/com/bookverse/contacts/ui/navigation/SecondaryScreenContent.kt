@@ -3,6 +3,7 @@ package com.bookverse.contacts.ui.navigation
 import android.annotation.SuppressLint
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -272,32 +273,36 @@ fun SecondaryScreenContent(
             appSettingsViewModel = appSettingsViewModel
         )
 
-        SecondaryScreen.NOTE -> NoteScreen(
-            note = editNoteData?.first,
-            onSave = { note ->
-                if (note.id == 0L) notesViewModel.addNoteWithChecklist(
-                    note,
-                    emptyList()
-                ) else notesViewModel.updateNoteWithChecklist(note, emptyList())
-                navigationViewModel.replaceSecondary(SecondaryScreen.NOTES)
-            },
-            onCancel = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel
-        )
+        SecondaryScreen.NOTE -> key(editNoteData?.first?.id) {
+            NoteScreen(
+                note = editNoteData?.first,
+                onSave = { note ->
+                    if (note.id == 0L) notesViewModel.addNoteWithChecklist(
+                        note,
+                        emptyList()
+                    ) else notesViewModel.updateNoteWithChecklist(note, emptyList())
+                    navigationViewModel.replaceSecondary(SecondaryScreen.NOTES)
+                },
+                onCancel = { navigationViewModel.navigateBack() },
+                appSettingsViewModel = appSettingsViewModel
+            )
+        }
 
-        SecondaryScreen.CHECKLIST -> ChecklistScreen(
-            note = editNoteData?.first,
-            checklist = editNoteData?.second ?: emptyList(),
-            onSave = { note, checklist ->
-                if (note.id == 0L) notesViewModel.addNoteWithChecklist(
-                    note,
-                    checklist
-                ) else notesViewModel.updateNoteWithChecklist(note, checklist)
-                navigationViewModel.replaceSecondary(SecondaryScreen.NOTES)
-            },
-            onCancel = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel
-        )
+        SecondaryScreen.CHECKLIST -> key(editNoteData?.first?.id) {
+            ChecklistScreen(
+                note = editNoteData?.first,
+                checklist = editNoteData?.second ?: emptyList(),
+                onSave = { note, checklist ->
+                    if (note.id == 0L) notesViewModel.addNoteWithChecklist(
+                        note,
+                        checklist
+                    ) else notesViewModel.updateNoteWithChecklist(note, checklist)
+                    navigationViewModel.replaceSecondary(SecondaryScreen.NOTES)
+                },
+                onCancel = { navigationViewModel.navigateBack() },
+                appSettingsViewModel = appSettingsViewModel
+            )
+        }
 
         SecondaryScreen.REMINDER -> ReminderScreen(
             note = editReminderData?.first,

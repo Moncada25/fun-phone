@@ -39,6 +39,7 @@ EXACT_VALUE_ALLOWLIST: Dict[str, Tuple[str, Set[str], str]] = {
     "dialog_link_label": ("URL", ALL_LOCALES, "web acronym"),
     "expense_category_freelance": ("Freelance", ALL_LOCALES, "professional term"),
     "facebook": ("Facebook", ALL_LOCALES, "brand name"),
+    "password_service_category_streaming": ("Streaming", ALL_LOCALES, "established media loanword"),
     "font_cursive": ("Cursiva", ALL_LOCALES, "font-style value"),
     "font_caveat": ("Caveat", ALL_LOCALES, "font family name"),
     "font_great_vibes": ("Great Vibes", ALL_LOCALES, "font family name"),

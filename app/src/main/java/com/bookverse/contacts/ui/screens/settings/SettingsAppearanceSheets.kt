@@ -36,43 +36,6 @@ import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
 import com.bookverse.contacts.ui.viewmodel.ThemeMode
 
 @Composable
-internal fun SettingsFontSheet(
-    selectedFontKey: String,
-    onFontSelected: (String) -> Unit,
-    onDismiss: () -> Unit,
-) {
-    val previewText = stringResource(R.string.font_preview_text)
-    SettingsSelectionSheet(
-        title = stringResource(R.string.font_type),
-        options = Fonts.getAvailableFonts(),
-        selectedOption = selectedFontKey,
-        onSelected = onFontSelected,
-        onDismiss = onDismiss,
-        optionKey = { fontKey -> fontKey },
-        optionLabel = { fontKey -> settingsFontDisplayName(fontKey) },
-        optionSupportingText = { previewText },
-        optionFontFamily = Fonts::getFontFamily,
-        optionLeadingContent = { fontKey ->
-            val family = Fonts.getFontFamily(fontKey)
-            Box(
-                modifier = Modifier
-                    .size(38.dp)
-                    .clip(CircleShape)
-                    .border(1.dp, MaterialTheme.colorScheme.outline, CircleShape),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = "Aa",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontFamily = family,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-            }
-        },
-    )
-}
-
-@Composable
 internal fun SettingsColorSheet(
     selectedColor: Color,
     availableColors: Map<String, Color>,

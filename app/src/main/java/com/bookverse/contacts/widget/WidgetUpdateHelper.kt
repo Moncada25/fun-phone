@@ -1,29 +1,26 @@
 package com.bookverse.contacts.widget
 
-import android.appwidget.AppWidgetManager
 import android.content.Context
-import android.os.Build
+import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.updateAll
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 object WidgetUpdateHelper {
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     fun updateAllWidgets(context: Context) {
-        val appWidgetManager = AppWidgetManager.getInstance(context)
-        val appWidgetIds = appWidgetManager.getAppWidgetIds(
-            android.content.ComponentName(context, FavoritesWidgetProvider::class.java)
-        )
+        refresh(context, FavoritesWidget())
+    }
 
-        if (appWidgetIds.isNotEmpty()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                FavoritesWidgetUpdater.updateWidgets(context, appWidgetManager, appWidgetIds)
-            } else {
-                appWidgetIds.forEach { appWidgetId ->
-                    @Suppress("DEPRECATION")
-                    appWidgetManager.notifyAppWidgetViewDataChanged(
-                        appWidgetId,
-                        com.bookverse.contacts.R.id.widget_grid_view
-                    )
-                }
-            }
-        }
+    internal fun refresh(context: Context, widget: GlanceAppWidget) {
+        val appContext = context.applicationContext
+        scope.launch { runCatching { widget.updateAll(appContext) } }
+    }
+
+    internal suspend fun refreshNow(context: Context, widget: GlanceAppWidget) {
+        runCatching { widget.updateAll(context.applicationContext) }
     }
 }

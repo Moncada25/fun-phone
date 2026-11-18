@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.Density
+import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
 import com.bookverse.contacts.settings.GlassEffects
 import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
 import com.bookverse.contacts.ui.viewmodel.ThemeMode
@@ -144,7 +145,11 @@ fun ContactsAppTheme(
         onBackground = baseColorScheme.onBackground,
         isDark = darkTheme,
     )
-    val colorScheme = baseColorScheme.withAccentPalette(accentPalette)
+    val colorScheme = rememberAnimatedColorScheme(
+        target = baseColorScheme.withAccentPalette(accentPalette),
+        key = listOf(dynamicColor, darkTheme, darkModeStyle, accentSeed),
+        durationMs = LocalAnimationSpeed.current.durationMs,
+    )
 
     val defaults = Typography()
     val typography = Typography(
