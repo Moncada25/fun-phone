@@ -27,15 +27,11 @@ class CallActionReceiver : BroadcastReceiver() {
             ACTION_ANSWER -> {
                 DiagnosticLog.debug(DiagnosticEvent.CALL_ANSWER_REQUESTED)
                 callId?.let { CallController.markAnsweredFromNotification(it) }
-                IncomingCallService.cancelNotification(context)
-                IncomingCallService.stop(context)
                 CallController.answer(callId)
             }
             ACTION_REJECT -> {
                 DiagnosticLog.debug(DiagnosticEvent.CALL_REJECT_REQUESTED)
                 CallController.reject(callId)
-                IncomingCallService.stop(context)
-                IncomingCallService.cancelNotification(context)
             }
             ACTION_END -> {
                 DiagnosticLog.debug(DiagnosticEvent.CALL_END_REQUESTED)

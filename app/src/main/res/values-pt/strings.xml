@@ -1819,8 +1819,6 @@
     <string name="cd_play_recording">Reproduzir gravação</string>
     <string name="incoming_calls_channel_name">Chamadas recebidas</string>
     <string name="incoming_calls_channel_description">Notificações para chamadas recebidas</string>
-    <string name="incoming_calls_silent_channel_name">Chamadas recebidas (silenciosas)</string>
-    <string name="incoming_calls_silent_channel_description">Suporte para chamadas na tela de bloqueio</string>
     <string name="ongoing_calls_channel_name">Chamadas em andamento</string>
     <string name="ongoing_calls_channel_description">Notificações para chamadas em andamento</string>
     <plurals name="reminder_advance_notification">
@@ -2254,5 +2252,12 @@
         <item quantity="one">Pelo menos %1$d caractere</item>
         <item quantity="many">Pelo menos %1$d de caracteres</item>
         <item quantity="other">Pelo menos %1$d caracteres</item>
+    </plurals>
+    <string name="missed_call_action_call_back">Retornar ligação</string>
+    <string name="missed_call_action_message">Mensagem</string>
+    <plurals name="missed_calls_count">
+        <item quantity="one">%1$d chamada perdida</item>
+        <item quantity="many">%1$d chamadas perdidas</item>
+        <item quantity="other">%1$d chamadas perdidas</item>
     </plurals>
 </resources>

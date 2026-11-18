@@ -180,6 +180,7 @@ class MainActivity : LocalizedAppCompatActivity() {
         super.onCreate(savedInstanceState)
         ContactUtils.setupCallPermissionLauncher(this)
         readCallExtras(intent)
+        if (savedInstanceState == null) handleMissedCallExtras(intent)
         readDialerExtras(intent, initialLaunch = true)
         readWidgetExtras(intent)
         readShortcutDestination(intent)
@@ -415,6 +416,7 @@ class MainActivity : LocalizedAppCompatActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         readCallExtras(intent)
+        handleMissedCallExtras(intent)
         readDialerExtras(intent)
         readWidgetExtras(intent)
         readShortcutDestination(intent)
@@ -442,6 +444,21 @@ class MainActivity : LocalizedAppCompatActivity() {
         }
         if (intent.hasExtra("open_recents")) {
             openRecents = intent.getBooleanExtra("open_recents", false)
+        }
+    }
+
+    private fun handleMissedCallExtras(intent: Intent) {
+        if (!intent.getBooleanExtra(CallNotificationManager.EXTRA_CLEAR_MISSED_CALLS, false)) return
+        intent.removeExtra(CallNotificationManager.EXTRA_CLEAR_MISSED_CALLS)
+        CallNotificationManager.clearMissedCalls(this)
+        val number = intent.getStringExtra(CallNotificationManager.EXTRA_MISSED_CALL_NUMBER)
+        val action = intent.getStringExtra(CallNotificationManager.EXTRA_MISSED_CALL_ACTION)
+        intent.removeExtra(CallNotificationManager.EXTRA_MISSED_CALL_ACTION)
+        if (number.isNullOrBlank()) return
+        when (action) {
+            CallNotificationManager.MISSED_ACTION_CALL -> ContactUtils.callPhoneNumber(this, number)
+            CallNotificationManager.MISSED_ACTION_MESSAGE ->
+                runCatching { ContactUtils.openSmsApp(this, number) }
         }
     }
 

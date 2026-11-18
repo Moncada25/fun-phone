@@ -94,7 +94,6 @@ import com.bookverse.contacts.R
 import com.bookverse.contacts.domain.call.CallContactLookup
 import com.bookverse.contacts.domain.call.CallContactPresentation
 import com.bookverse.contacts.domain.call.CallState
-import com.bookverse.contacts.service.CallAlert
 import com.bookverse.contacts.service.CallController
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ThemeMode
@@ -147,25 +146,13 @@ fun IncomingCallScreen(
         }
     }
 
-    val contactOrNumber = remember(call) { call?.displayName ?: number }
-    val alert = remember { CallAlert(context) }
-    val alertTag = remember(call) { call?.id ?: callId ?: contactOrNumber }
     val callState = call?.state
-    LaunchedEffect(alertTag, callState) {
-        if (call != null && callState == CallState.RINGING) {
-            alert.start(alertTag)
-        } else {
-            alert.stop(alertTag)
-        }
-    }
-    DisposableEffect(alertTag) { onDispose { alert.stop(alertTag) } }
 
     fun answerCall() {
         if (userAction) return
         userAction = true
         hasNavigatedToInCall = true
         CallController.answer(callId)
-        alert.stop(alertTag)
         onAnswer()
         dragOffset = 0f
     }
@@ -174,7 +161,6 @@ fun IncomingCallScreen(
         if (userAction) return
         userAction = true
         CallController.reject(callId)
-        alert.stop(alertTag)
         onDismiss()
         dragOffset = 0f
     }
@@ -187,7 +173,6 @@ fun IncomingCallScreen(
         userAction = true
         showReplySheet = false
         CallController.rejectWithMessage(call?.id ?: callId, message)
-        alert.stop(alertTag)
         onDismiss()
         dragOffset = 0f
     }
@@ -197,7 +182,6 @@ fun IncomingCallScreen(
             if (!hasNavigatedToInCall) {
                 hasNavigatedToInCall = true
                 userAction = true
-                alert.stop(alertTag)
                 onAnswer()
             }
             dragOffset = 0f

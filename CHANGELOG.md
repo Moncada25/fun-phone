@@ -32,6 +32,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Creating a new note from a shortcut while another note was open showed an empty editor.
 - Settings sheets with long lists, such as font type or accent color, could bounce endlessly at the
   top of the screen after a fast upward swipe.
+- Missed calls showed two notifications: Fun Phone's and the system "Call Management" one. Fun Phone
+  now handles the system missed-call request itself, adds Call back and Message actions, clears the
+  system missed-call count when the notification is opened or dismissed.
+- The phone could keep ringing and vibrating after a call was missed, declined or hung up by the
+  caller. The ringtone and vibration now belong to the call itself and stop as soon as it stops
+  ringing, including when the app is in the background or its process is stopped.
+- Ringing and vibration stopped when leaving the incoming call screen while the call was still
+  ringing. They now continue until the call is answered, declined or missed, and the volume or
+  power button silences them as on other dialers.
+- The incoming call notification disappeared after unlocking the phone without answering. It now
+  stays visible with Answer and Decline for the whole ringing period, opens the incoming call screen
+  when tapped, and shows over the lock screen as a full-screen call.
+- Declining a call on the lock screen briefly opened Fun Phone over the lock screen.
+- Declined calls and calls answered on another device showed a missed call notification.
+- A ringing call during another call plays the call waiting tone instead of the full ringtone.
+- Missed and ongoing call notifications used the incoming call icon; they now show the standard
+  missed call and call icons.
+- The app icon looked blurry in grouped notifications and as a themed icon. It now has a simplified
+  monochrome layer.
 
 ## [3.20.7] - 2026-11-17
 

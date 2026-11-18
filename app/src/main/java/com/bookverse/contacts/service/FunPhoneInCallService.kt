@@ -7,6 +7,7 @@ import android.os.Build
 import android.telecom.Call
 import android.telecom.CallAudioState
 import android.telecom.CallEndpoint
+import android.telecom.DisconnectCause
 import android.telecom.InCallService
 import android.telecom.PhoneAccountHandle
 import android.telephony.PhoneNumberUtils
@@ -51,7 +52,6 @@ class FunPhoneInCallService : InCallService() {
     private val handledIncomingCallIds = mutableSetOf<String>()
     private val answeredFromNotification = mutableSetOf<String>()
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private var foregroundCallAlert: CallAlert? = null
 
     @Volatile
     private var availableEndpoints: List<CallEndpoint> = emptyList()
@@ -99,10 +99,7 @@ class FunPhoneInCallService : InCallService() {
                 Call.STATE_CONNECTING, Call.STATE_DIALING, Call.STATE_ACTIVE, Call.STATE_HOLDING -> {
                     incomingCallIds.remove(id)
                     answeredFromNotification.remove(id)
-
-                    stopForegroundCallAlert(id)
-                    IncomingCallService.stop(this@FunPhoneInCallService)
-                    IncomingCallService.cancelNotification(this@FunPhoneInCallService)
+                    endRinging(id)
 
                     when (
                         resolveCallSurface(
@@ -138,6 +135,7 @@ class FunPhoneInCallService : InCallService() {
                         isIncomingCall = isIncomingCall,
                         previousState = prev,
                         connectTimeMillis = call.details.connectTimeMillis,
+                        disconnectCode = call.details.disconnectCause?.code ?: DisconnectCause.UNKNOWN,
                     )
                     if (call.details.connectTimeMillis > 0L) {
                         ReviewEligibilityStore.recordConnectedCall(this@FunPhoneInCallService)
@@ -150,9 +148,7 @@ class FunPhoneInCallService : InCallService() {
                         }
                     }
                     CallNotificationManager.stopOngoing(this@FunPhoneInCallService)
-                    IncomingCallService.stop(this@FunPhoneInCallService)
-                    IncomingCallService.cancelNotification(this@FunPhoneInCallService)
-                    stopForegroundCallAlert(id)
+                    endRinging(id)
                     incomingCallIds.remove(id)
                     answeredFromNotification.remove(id)
                     handledIncomingCallIds.remove(id)
@@ -212,16 +208,38 @@ class FunPhoneInCallService : InCallService() {
             DefaultCallRepository.remove(id)
             incomingCallIds.remove(id)
             handledIncomingCallIds.remove(id)
+            endRinging(id)
             CallNotificationManager.stopOngoing(this@FunPhoneInCallService)
         }
     }
 
     override fun onCreate() {
-        super.onCreate(); CallController.attach(this)
+        super.onCreate()
+        CallController.attach(this)
     }
 
     override fun onDestroy() {
-        super.onDestroy(); CallController.detach(); serviceScope.cancel()
+        CallRinger.stopAll()
+        IncomingCallService.stop(this)
+        IncomingCallService.cancelNotification(this)
+        CallController.detach()
+        serviceScope.cancel()
+        super.onDestroy()
+    }
+
+    override fun onSilenceRinger() {
+        super.onSilenceRinger()
+        CallRinger.silence()
+    }
+
+    override fun onBringToForeground(showDialpad: Boolean) {
+        super.onBringToForeground(showDialpad)
+        val call = DefaultCallRepository.activeCall.value ?: return
+        if (call.state == CallState.RINGING) {
+            startIncomingCallActivity(call.id, call.number)
+        } else {
+            startInCallActivity(call.id, call.number)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -261,6 +279,7 @@ class FunPhoneInCallService : InCallService() {
         incomingCallIds.remove(id)
         answeredFromNotification.remove(id)
         handledIncomingCallIds.remove(id)
+        endRinging(id)
         CallNotificationManager.stopOngoing(this)
     }
 
@@ -413,14 +432,17 @@ class FunPhoneInCallService : InCallService() {
 
                 withContext(Dispatchers.Main) {
                     CallNotificationManager.stopOngoing(this@FunPhoneInCallService)
-                    IncomingCallService.stop(this@FunPhoneInCallService)
+                    endRinging(id)
                 }
                 return@launch
             }
 
-            val keyguardManager = getSystemService(KEYGUARD_SERVICE) as KeyguardManager
-            val isPhoneLocked = keyguardManager.isKeyguardLocked
-            val isAppInForeground = AppVisibility.isForeground
+            val immersiveIncomingCallsEnabled = AppSettingsViewModel.isImmersiveIncomingCallsEnabled(
+                applicationContext
+            )
+            withContext(Dispatchers.Main) {
+                presentIncomingCall(id, number, immersiveIncomingCallsEnabled)
+            }
 
             val displayContact = withContext(Dispatchers.IO) {
                 val contacts = repository.getContacts()
@@ -442,81 +464,57 @@ class FunPhoneInCallService : InCallService() {
                     }.getOrNull()
                 }
             }
-            @Suppress("DEPRECATION")
-            val currentState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) call.details.state else call.state
-            val existingCall = DefaultCallRepository.calls.value.firstOrNull { it.id == id }
-            val enrichedCall = (existingCall ?: UiCall(
-                id = id,
-                number = number,
-                state = mapPlatformState(currentState),
-                isMuted = lastAudioState?.isMuted ?: false,
-                isOnHold = currentState == Call.STATE_HOLDING,
-                connectTimeMillis = call.details.connectTimeMillis,
-                audioRoute = audioRouteFrom(lastAudioState)
-            )).copy(
-                displayName = displayContact?.name ?: existingCall?.displayName,
-                photoUri = displayContact?.photoUri?.toString() ?: existingCall?.photoUri,
-                avatarBytes = preloadedAvatarBytes ?: existingCall?.avatarBytes
-            )
-            DefaultCallRepository.upsert(id, enrichedCall, call)
-            DiagnosticLog.debug(DiagnosticEvent.CALL_CONTACT_LOOKUP_COMPLETED)
-            val immersiveIncomingCallsEnabled = AppSettingsViewModel.isImmersiveIncomingCallsEnabled(
-                applicationContext
-            )
             withContext(Dispatchers.Main) {
-                when {
-                    immersiveIncomingCallsEnabled -> {
-                        DiagnosticLog.debug(DiagnosticEvent.CALL_SURFACE_SELECTED)
-                        try {
-                            com.bookverse.contacts.utils.WakeUpHelper.wakeUp(applicationContext)
-                        } catch (_: Throwable) {
-                        }
-                        startIncomingCallActivity(id, number)
-                    }
-                    isPhoneLocked -> {
-                        DiagnosticLog.debug(DiagnosticEvent.CALL_SURFACE_SELECTED)
-
-                        if (PermissionUtils.hasNotificationPermission(this@FunPhoneInCallService)) {
-                            try {
-                                com.bookverse.contacts.utils.WakeUpHelper.wakeUp(applicationContext)
-                            } catch (_: Throwable) {}
-                        }
-                        startIncomingCallActivity(id, number)
-                    }
-
-                    else -> {
-                        when (
-                            resolveCallSurface(
-                                state = CallState.RINGING,
-                                appInForeground = isAppInForeground,
-                                notificationAvailability = CallNotificationManager.availability(
-                                    this@FunPhoneInCallService,
-                                ),
-                            )
-                        ) {
-                            CallSurface.IN_APP_INCOMING -> {
-                                DiagnosticLog.debug(DiagnosticEvent.CALL_SURFACE_SELECTED)
-                                startForegroundCallAlert(id)
-                            }
-                            CallSurface.INCOMING_NOTIFICATION -> {
-                                DiagnosticLog.debug(DiagnosticEvent.CALL_SURFACE_SELECTED)
-                                CallNotificationManager.showIncoming(
-                                    this@FunPhoneInCallService,
-                                    id,
-                                    number,
-                                    displayContact?.name,
-                                    preloadedAvatarBytes,
-                                )
-                            }
-                            CallSurface.NONE ->
-                                DiagnosticLog.warning(DiagnosticEvent.CALL_SURFACE_UNAVAILABLE)
-                            else -> Unit
-                        }
-                    }
-                }
+                val existingCall = DefaultCallRepository.calls.value.firstOrNull { it.id == id }
+                    ?: return@withContext
+                val enrichedCall = existingCall.copy(
+                    displayName = displayContact?.name ?: existingCall.displayName,
+                    photoUri = displayContact?.photoUri?.toString() ?: existingCall.photoUri,
+                    avatarBytes = preloadedAvatarBytes ?: existingCall.avatarBytes,
+                )
+                DefaultCallRepository.upsert(id, enrichedCall, call)
             }
+            DiagnosticLog.debug(DiagnosticEvent.CALL_CONTACT_LOOKUP_COMPLETED)
         }
     }
+
+    private fun isStillRinging(id: String): Boolean = previousStates[id] == Call.STATE_RINGING
+
+    private fun presentIncomingCall(id: String, number: String, immersive: Boolean) {
+        if (!isStillRinging(id)) return
+        val callWaiting = DefaultCallRepository.calls.value.any { other ->
+            other.id != id && other.state != CallState.RINGING && other.state != CallState.DISCONNECTED
+        }
+        CallRinger.start(this, id, callWaiting)
+        val notificationShown = CallNotificationManager.showIncoming(this, id, number)
+        if (!notificationShown) {
+            DiagnosticLog.warning(DiagnosticEvent.CALL_SURFACE_UNAVAILABLE)
+        }
+        val keyguardManager = getSystemService(KeyguardManager::class.java)
+        val deviceLocked = keyguardManager?.isKeyguardLocked == true
+        val launchActivity = shouldLaunchIncomingCallActivity(
+            immersive = immersive,
+            deviceLocked = deviceLocked,
+            appInForeground = AppVisibility.isForeground,
+            notificationShown = notificationShown,
+        )
+        DiagnosticLog.debug(DiagnosticEvent.CALL_SURFACE_SELECTED)
+        if (launchActivity) {
+            runCatching { com.bookverse.contacts.utils.WakeUpHelper.wakeUp(applicationContext) }
+            startIncomingCallActivity(id, number)
+        }
+    }
+
+    private fun endRinging(id: String) {
+        CallRinger.stop(id)
+        if (!CallRinger.isRinging() && !hasRingingCall(id)) {
+            IncomingCallService.stop(this)
+            IncomingCallService.cancelNotification(this)
+        }
+    }
+
+    private fun hasRingingCall(excludedId: String): Boolean =
+        previousStates.any { (callId, state) -> callId != excludedId && state == Call.STATE_RINGING }
 
     private fun startIncomingCallActivity(id: String, number: String) {
         try {
@@ -549,25 +547,29 @@ class FunPhoneInCallService : InCallService() {
         answeredFromNotification.add(callId)
         DiagnosticLog.debug(DiagnosticEvent.CALL_ANSWERED_FROM_NOTIFICATION)
     }
-
-    private fun startForegroundCallAlert(callId: String) {
-        val alert = foregroundCallAlert ?: CallAlert(applicationContext).also { foregroundCallAlert = it }
-        alert.start(callId)
-    }
-
-    private fun stopForegroundCallAlert(callId: String) {
-        foregroundCallAlert?.stop(callId)
-        if (CallAlert.activeTagsSnapshot().isEmpty()) {
-            foregroundCallAlert = null
-        }
-    }
 }
 
 internal fun isMissedCall(
     isIncomingCall: Boolean,
     previousState: Int?,
     connectTimeMillis: Long,
-): Boolean =
-    isIncomingCall &&
-        (previousState == Call.STATE_RINGING || previousState == Call.STATE_CONNECTING) &&
-        connectTimeMillis == 0L
+    disconnectCode: Int = DisconnectCause.UNKNOWN,
+): Boolean = when (disconnectCode) {
+    DisconnectCause.MISSED -> isIncomingCall
+    DisconnectCause.REJECTED,
+    DisconnectCause.LOCAL,
+    DisconnectCause.ANSWERED_ELSEWHERE,
+    DisconnectCause.CALL_PULLED,
+    -> false
+    else ->
+        isIncomingCall &&
+            (previousState == Call.STATE_RINGING || previousState == Call.STATE_CONNECTING) &&
+            connectTimeMillis == 0L
+}
+
+internal fun shouldLaunchIncomingCallActivity(
+    immersive: Boolean,
+    deviceLocked: Boolean,
+    appInForeground: Boolean,
+    notificationShown: Boolean,
+): Boolean = immersive || deviceLocked || (!appInForeground && !notificationShown)

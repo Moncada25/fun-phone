@@ -239,6 +239,14 @@
             android:name=".service.CallActionReceiver"
             android:exported="false" />
 
+        <receiver
+            android:name=".service.MissedCallsNotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.telecom.action.SHOW_MISSED_CALLS_NOTIFICATION" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".service.IncomingCallService"
             android:exported="false"

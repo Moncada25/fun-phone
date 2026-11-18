@@ -1822,8 +1822,6 @@
     <string name="cd_play_recording">Play recording</string>
     <string name="incoming_calls_channel_name">Incoming calls</string>
     <string name="incoming_calls_channel_description">Notifications for incoming calls</string>
-    <string name="incoming_calls_silent_channel_name">Incoming calls (silent)</string>
-    <string name="incoming_calls_silent_channel_description">Support for calls on the lock screen</string>
     <string name="ongoing_calls_channel_name">Ongoing calls</string>
     <string name="ongoing_calls_channel_description">Notifications for ongoing calls</string>
     <plurals name="reminder_advance_notification">
@@ -2245,5 +2243,11 @@
     <plurals name="full_backup_passphrase_min">
         <item quantity="one">At least %1$d character</item>
         <item quantity="other">At least %1$d characters</item>
+    </plurals>
+    <string name="missed_call_action_call_back">Call back</string>
+    <string name="missed_call_action_message">Message</string>
+    <plurals name="missed_calls_count">
+        <item quantity="one">%1$d missed call</item>
+        <item quantity="other">%1$d missed calls</item>
     </plurals>
 </resources>

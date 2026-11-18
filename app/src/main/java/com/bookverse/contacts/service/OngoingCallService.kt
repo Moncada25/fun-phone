@@ -242,7 +242,7 @@ class OngoingCallService : Service() {
         val speakerText = getString(if (isSpeakerOn) R.string.earpiece else R.string.speaker)
 
         return NotificationCompat.Builder(this, CallNotificationChannels.ONGOING_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_received_call)
+            .setSmallIcon(R.drawable.ic_widget_call)
             .setContentTitle(displayName)
             .setContentText(getString(R.string.call_in_progress))
             .setCategory(Notification.CATEGORY_CALL)
