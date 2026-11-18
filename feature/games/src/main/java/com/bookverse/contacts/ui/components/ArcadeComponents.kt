@@ -1,15 +1,15 @@
 package com.bookverse.contacts.ui.components
 
-import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
@@ -21,7 +21,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -38,36 +37,6 @@ import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.core.ui.R as CoreUiR
 
-private const val ARCADE_LIGHT_SPACING = 2.4f
-
-@Composable
-fun ArcadeLightStrip(
-    modifier: Modifier = Modifier,
-    litColor: Color = MaterialTheme.colorScheme.primary,
-    dimColor: Color = MaterialTheme.colorScheme.outlineVariant,
-    lightSize: Dp = 6.dp,
-) {
-    Canvas(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(lightSize)
-            .clearAndSetSemantics {},
-    ) {
-        val light = size.height
-        val step = light * ARCADE_LIGHT_SPACING
-        val count = ((size.width + step - light) / step).toInt().coerceAtLeast(1)
-        val used = light + step * (count - 1)
-        val start = (size.width - used) / 2f
-        repeat(count) { index ->
-            drawRoundRect(
-                color = if (index % 2 == 0) litColor else dimColor,
-                topLeft = Offset(start + step * index, 0f),
-                size = Size(light, light),
-                cornerRadius = CornerRadius(light / 4f),
-            )
-        }
-    }
-}
 
 fun Modifier.crtScanlines(
     lineColor: Color = Color.Black.copy(alpha = 0.18f),
@@ -153,6 +122,11 @@ fun ArcadeDialogHeader(
                 }
             }
         }
-        ArcadeLightStrip(modifier = Modifier.padding(horizontal = 8.dp))
+        Box(
+            modifier = Modifier
+                .size(width = 40.dp, height = 4.dp)
+                .background(MaterialTheme.colorScheme.primary, CircleShape)
+                .clearAndSetSemantics {},
+        )
     }
 }

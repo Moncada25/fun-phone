@@ -487,8 +487,9 @@ El catálogo de Juegos usa una metáfora de máquina arcade retro sin salir del 
 Moderno la cuadrícula se desplaza por detrás del encabezado de cristal.
 
 - Cada juego es una máquina: marquesina en `primaryContainer`/`onPrimaryContainer` con el título en
-  mayúsculas y luces alternas (`ArcadeLightStrip`), pantalla CRT con bisel negro, scanlines y
-  reflejo (`crtScanlines`), y un panel con el récord del juego y botones decorativos sin semántica.
+  mayúsculas y un filo de acento liso, pantalla CRT con bisel negro, scanlines y reflejo
+  (`crtScanlines`), y un panel con el récord del juego. La decoración se limita a ese filo, la
+  barra corta bajo los títulos de diálogo y las viñetas de sección; no se usan filas de puntos.
   La máquina completa es un único botón con etiqueta de acción localizada; el título conserva su
   forma original para TalkBack.
 - El marcador superior resume partidas, mejor racha y juegos probados, y abre el dashboard.

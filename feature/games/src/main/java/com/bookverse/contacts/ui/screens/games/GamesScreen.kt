@@ -96,7 +96,6 @@ import com.bookverse.contacts.domain.games.GameStatsSnapshot
 import com.bookverse.contacts.domain.games.gameRecordKinds
 import com.bookverse.contacts.feature.games.R
 import com.bookverse.contacts.ui.components.ArcadeDialogHeader
-import com.bookverse.contacts.ui.components.ArcadeLightStrip
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.arcadeLabelStyle
 import com.bookverse.contacts.ui.components.arcadeScoreStyle
@@ -550,8 +549,8 @@ private fun ArcadeSectionHeader(text: String, modifier: Modifier = Modifier) {
     ) {
         Box(
             modifier = Modifier
-                .size(8.dp)
-                .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(2.dp))
+                .size(width = 4.dp, height = 18.dp)
+                .background(MaterialTheme.colorScheme.primary, CircleShape)
         )
         Text(
             text = text,
@@ -615,7 +614,6 @@ private fun ArcadeScoreboard(
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            ArcadeLightStrip(lightSize = 5.dp)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -733,7 +731,7 @@ private fun PagerLevelIndicator(count: Int, selected: Int, modifier: Modifier = 
                         } else {
                             MaterialTheme.colorScheme.outlineVariant
                         },
-                        shape = RoundedCornerShape(2.dp),
+                        shape = CircleShape,
                     )
             )
         }
@@ -833,7 +831,6 @@ private fun ArcadeCabinet(
                     ),
                 )
             }
-            ControlDeckButtons()
         }
     }
 }
@@ -889,7 +886,7 @@ private fun CabinetMarquee(title: String, minLines: Int) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 14.dp, end = 14.dp, top = 12.dp, bottom = 8.dp)
+                .padding(horizontal = 14.dp, vertical = 12.dp)
                 .heightIn(min = reservedHeight),
             contentAlignment = Alignment.Center,
         ) {
@@ -903,10 +900,11 @@ private fun CabinetMarquee(title: String, minLines: Int) {
                 modifier = Modifier.semantics { contentDescription = title },
             )
         }
-        ArcadeLightStrip(
-            modifier = Modifier.padding(start = 14.dp, end = 14.dp, bottom = 10.dp),
-            dimColor = MaterialTheme.colorScheme.surface,
-            lightSize = 4.dp,
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(3.dp)
+                .background(MaterialTheme.colorScheme.primary)
         )
     }
 }
@@ -982,25 +980,6 @@ private fun RecordReadout(
     }
 }
 
-@Composable
-private fun ControlDeckButtons() {
-    Row(
-        modifier = Modifier.clearAndSetSemantics {},
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(
-            modifier = Modifier
-                .size(12.dp)
-                .background(MaterialTheme.colorScheme.primary, CircleShape)
-        )
-        Box(
-            modifier = Modifier
-                .size(12.dp)
-                .background(MaterialTheme.colorScheme.outlineVariant, CircleShape)
-        )
-    }
-}
 
 @Composable
 private fun ArcadeBadge(text: String) {
