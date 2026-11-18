@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
@@ -46,8 +47,12 @@ class PasswordAuthDialogsTest {
             .performScrollTo()
             .performClick()
 
+        val failedTitle = composeRule.activity.getString(R.string.auth_failed_title)
+        composeRule.waitUntil(timeoutMillis = 5_000) {
+            composeRule.onAllNodesWithText(failedTitle).fetchSemanticsNodes().isNotEmpty()
+        }
         composeRule
-            .onNodeWithText(composeRule.activity.getString(R.string.auth_failed_title))
+            .onNodeWithText(failedTitle)
             .assertIsDisplayed()
     }
 
