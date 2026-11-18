@@ -52,7 +52,7 @@ done
 pure_settings_components=(
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsComponents.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSections.kt"
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSheetComponents.kt"
+  "$repo_root/core/ui/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSheetComponents.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsAppearanceSheets.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferenceSheets.kt"
   "$repo_root/core/ui/src/main/java/com/bookverse/contacts/ui/components/SelectBottomSheet.kt"

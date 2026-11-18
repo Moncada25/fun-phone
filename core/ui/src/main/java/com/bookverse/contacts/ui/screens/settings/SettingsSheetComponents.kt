@@ -34,7 +34,7 @@ import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
 
 @Composable
-internal fun SettingsSheetScaffold(
+fun SettingsSheetScaffold(
     title: String,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
@@ -53,7 +53,7 @@ internal fun SettingsSheetScaffold(
 }
 
 @Composable
-internal fun <T> SettingsSelectionSheet(
+fun <T> SettingsSelectionSheet(
     title: String,
     options: List<T>,
     selectedOption: T?,
@@ -100,7 +100,7 @@ internal fun <T> SettingsSelectionSheet(
 }
 
 @Composable
-internal fun SettingsChoiceRow(
+fun SettingsChoiceRow(
     label: String,
     selected: Boolean,
     onClick: () -> Unit,

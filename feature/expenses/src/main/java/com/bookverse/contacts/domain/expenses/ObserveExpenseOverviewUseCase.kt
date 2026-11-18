@@ -66,7 +66,7 @@ internal fun buildBudgetStatuses(
     }.sortedBy { it.category?.name ?: "" }
 }
 
-internal fun transactionsForMonth(
+fun transactionsForMonth(
     transactions: List<ExpenseTransaction>,
     month: YearMonth,
 ): List<ExpenseTransaction> {
@@ -93,7 +93,7 @@ data class MonthBudgetSummary(
         }
 }
 
-internal fun buildMonthBudgetSummary(
+fun buildMonthBudgetSummary(
     monthTransactions: List<ExpenseTransaction>,
     budgets: List<Pair<ExpenseBudget, ExpenseCategory?>>,
 ): MonthBudgetSummary {
