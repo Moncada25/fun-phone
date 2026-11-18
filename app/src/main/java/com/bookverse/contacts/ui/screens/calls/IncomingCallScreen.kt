@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.calls
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.app.Activity
 import android.graphics.BitmapFactory
 import androidx.compose.animation.animateColorAsState
@@ -98,7 +99,6 @@ import com.bookverse.contacts.service.CallController
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.ui.viewmodel.calls.IncomingCallViewModel
-import com.bookverse.contacts.utils.ContactUtils
 import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -355,7 +355,7 @@ fun IncomingCallScreen(
                                     shape = CircleShape,
                                 )
                                 .clip(CircleShape)
-                                .background(ContactUtils.getRandomColor(contact?.name ?: unknown)),
+                                .background(ContactDisplay.getRandomColor(contact?.name ?: unknown)),
                             contentAlignment = Alignment.Center
                         ) {
                             if (photo != null) {

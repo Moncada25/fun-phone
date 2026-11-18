@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.utils.ContactDisplay
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,14 +29,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.settings.LocaleController
-import com.bookverse.contacts.utils.ContactUtils
-import com.bookverse.contacts.utils.ContactUtils.toRelativeDate
+import com.bookverse.contacts.utils.ContactDisplay.toRelativeDate
 import java.text.SimpleDateFormat
 import java.util.Date
-import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,19 +48,19 @@ fun HistoryItem(
     val context = LocalContext.current
     val timeFormat = SimpleDateFormat("HH:mm", LocaleController.effectiveLocale(context))
     val (icon, label) = when (operation.type) {
-        RecentType.WHATSAPP_OPEN -> Icons.Default.Whatsapp to stringResource(CoreUiR.string.recent_type_whatsapp)
-        RecentType.CALL_SENT -> Icons.AutoMirrored.Filled.CallMade to stringResource(CoreUiR.string.recent_type_call_sent)
+        RecentType.WHATSAPP_OPEN -> Icons.Default.Whatsapp to stringResource(R.string.recent_type_whatsapp)
+        RecentType.CALL_SENT -> Icons.AutoMirrored.Filled.CallMade to stringResource(R.string.recent_type_call_sent)
         RecentType.CALL_RECEIVED -> Icons.AutoMirrored.Filled.CallReceived to stringResource(
-            CoreUiR.string.recent_type_call_received
+            R.string.recent_type_call_received
         )
 
-        RecentType.CALL_MISSED -> Icons.AutoMirrored.Filled.CallMissed to stringResource(CoreUiR.string.recent_type_call_missed)
+        RecentType.CALL_MISSED -> Icons.AutoMirrored.Filled.CallMissed to stringResource(R.string.recent_type_call_missed)
         RecentType.CALL_REJECTED -> Icons.AutoMirrored.Filled.CallMissedOutgoing to stringResource(
-            CoreUiR.string.recent_type_call_rejected
+            R.string.recent_type_call_rejected
         )
 
-        RecentType.CALL_BLOCKED -> Icons.Filled.HideSource to stringResource(CoreUiR.string.recent_type_call_blocked)
-        RecentType.CALL_UNKNOWN -> Icons.Default.DeviceUnknown to stringResource(CoreUiR.string.recent_type_call_unknown)
+        RecentType.CALL_BLOCKED -> Icons.Filled.HideSource to stringResource(R.string.recent_type_call_blocked)
+        RecentType.CALL_UNKNOWN -> Icons.Default.DeviceUnknown to stringResource(R.string.recent_type_call_unknown)
     }
 
     Row(
@@ -97,7 +97,7 @@ fun HistoryItem(
             )
         }
         Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.End) {
-            val fullDate = ContactUtils.capitalizeFirstLetter(
+            val fullDate = ContactDisplay.capitalizeFirstLetter(
                 operation.date.toRelativeDate(context)
             ) + ", " + timeFormat.format(Date(operation.date))
 
@@ -112,7 +112,7 @@ fun HistoryItem(
             val duration = operation.time?.toInt() ?: 0
 
             Text(
-                text = ContactUtils.formatSeconds(context, duration),
+                text = ContactDisplay.formatSeconds(context, duration),
                 color = secondaryTextColor,
                 fontSize = 14.sp
             )

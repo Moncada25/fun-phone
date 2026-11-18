@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -58,7 +59,6 @@ import coil.compose.AsyncImage
 import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.theme.CallEndColor
 import com.bookverse.contacts.ui.theme.GradientScrimColor
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
@@ -167,7 +167,7 @@ internal fun InCallBackgroundPreview(
                                 shape = CircleShape,
                             )
                             .clip(CircleShape)
-                            .background(ContactUtils.getRandomColor(displayName)),
+                            .background(ContactDisplay.getRandomColor(displayName)),
                         contentAlignment = Alignment.Center,
                     ) {
                         if (photoUri != null && !photoLoadFailed) {
@@ -180,10 +180,10 @@ internal fun InCallBackgroundPreview(
                                 modifier = Modifier.fillMaxSize(),
                                 contentScale = ContentScale.Crop,
                                 placeholder = ColorPainter(
-                                    ContactUtils.getRandomColor(displayName),
+                                    ContactDisplay.getRandomColor(displayName),
                                 ),
                                 error = ColorPainter(
-                                    ContactUtils.getRandomColor(displayName),
+                                    ContactDisplay.getRandomColor(displayName),
                                 ),
                                 onError = { photoLoadFailed = true },
                                 onSuccess = { photoLoadFailed = false },

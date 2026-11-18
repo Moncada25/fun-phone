@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.dialer
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.compose.foundation.BorderStroke
@@ -64,7 +65,6 @@ import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.ui.theme.CallAcceptColor
 import com.bookverse.contacts.ui.theme.chromePolicy
 import com.bookverse.contacts.ui.theme.AccentBarStyle
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
@@ -694,7 +694,7 @@ private fun ContactGroupedItem(
                     )
                 } else {
                     Text(
-                        text = ContactUtils.highlightText(subtitle, highlightQuery, accentColor),
+                        text = ContactDisplay.highlightText(subtitle, highlightQuery, accentColor),
                         style = MaterialTheme.typography.bodyMedium,
                         color = textColor.copy(alpha = 0.7f),
                     )
@@ -734,7 +734,7 @@ private fun ContactAvatar(
     modifier: Modifier = Modifier,
 ) {
     val placeholderColor = remember(contact.id, contact.name) {
-        ContactUtils.getRandomColor(contact.name)
+        ContactDisplay.getRandomColor(contact.name)
     }
     val photoUri = contact.photoUri
     if (photoUri != null) {

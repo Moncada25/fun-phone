@@ -417,4 +417,13 @@
         <item quantity="many">%1$d chamadas perdidas</item>
         <item quantity="other">%1$d chamadas perdidas</item>
     </plurals>
+    <string name="yesterday">Ontem</string>
+    <string name="call_duration_minute_second">%1$d min %2$d s</string>
+    <string name="call_duration_minute_seconds">%1$d min %2$d s</string>
+    <string name="call_duration_minutes_second">%1$d min %2$d s</string>
+    <string name="call_duration_minutes_seconds">%1$d min %2$d s</string>
+    <string name="call_duration_minute">%1$d min.</string>
+    <string name="call_duration_minutes">%1$d min.</string>
+    <string name="call_duration_second">%1$d s</string>
+    <string name="call_duration_seconds">%1$d s</string>
 </resources>

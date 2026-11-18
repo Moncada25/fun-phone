@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.history
 
+import com.bookverse.contacts.utils.ContactDisplay
 import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
@@ -105,10 +106,8 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.topBarBackground
 import com.bookverse.contacts.ui.components.topBarColors
 import com.bookverse.contacts.ui.theme.AccentBarStyle
-import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.settings.LocaleController
-import com.bookverse.contacts.utils.ContactUtils
-import com.bookverse.contacts.utils.ContactUtils.toRelativeDate
+import com.bookverse.contacts.utils.ContactDisplay.toRelativeDate
 import com.bookverse.contacts.utils.SecondaryScreen
 import kotlinx.coroutines.flow.distinctUntilChanged
 import java.text.SimpleDateFormat
@@ -117,7 +116,7 @@ import java.util.Date
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistoryScreen(
-    contactsViewModel: ContactsViewModel,
+    callHistory: CallHistoryDirectory,
     onOpenSecondary: (SecondaryScreen) -> Unit,
     phoneActions: PhoneActionLauncher,
     onDialerPhoneNumberChange: (String) -> Unit,
@@ -131,13 +130,13 @@ fun HistoryScreen(
     val backgroundColor = colorScheme.background
     val textColor = colorScheme.onBackground
     val secondaryTextColor = textColor.copy(alpha = SecondaryTextAlpha)
-    val localOperations by contactsViewModel.localOperations.collectAsStateWithLifecycle()
-    val callLogs by contactsViewModel.callLogs.collectAsStateWithLifecycle()
-    val hasMoreCallLogs by contactsViewModel.hasMoreCallLogs.collectAsStateWithLifecycle()
-    val isLoadingMoreCallLogs by contactsViewModel.isLoadingMoreCallLogs.collectAsStateWithLifecycle()
-    val blockedNumbers by contactsViewModel.blockedNumbers.collectAsStateWithLifecycle()
-    val contacts by contactsViewModel.contacts.collectAsStateWithLifecycle()
-    val selectedOperations by contactsViewModel.selectedRecentOperations.collectAsStateWithLifecycle()
+    val localOperations by callHistory.localOperations.collectAsStateWithLifecycle()
+    val callLogs by callHistory.callLogs.collectAsStateWithLifecycle()
+    val hasMoreCallLogs by callHistory.hasMoreCallLogs.collectAsStateWithLifecycle()
+    val isLoadingMoreCallLogs by callHistory.isLoadingMoreCallLogs.collectAsStateWithLifecycle()
+    val blockedNumbers by callHistory.blockedNumbers.collectAsStateWithLifecycle()
+    val contacts by callHistory.contacts.collectAsStateWithLifecycle()
+    val selectedOperations by callHistory.selectedRecentOperations.collectAsStateWithLifecycle()
     val accentColor = MaterialTheme.colorScheme.primary
     val accentBarStyle = LocalAppChromeStyle.current
     val locale = LocaleController.effectiveLocale(context)
@@ -158,7 +157,7 @@ fun HistoryScreen(
         rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             hasCallLogPermissions = permissions.all { it.value }
             if (hasCallLogPermissions) {
-                contactsViewModel.fetchAllRecentOperations()
+                callHistory.fetchAllRecentOperations()
             }
         }
 
@@ -168,7 +167,7 @@ fun HistoryScreen(
                 permissionLauncher.launch(callLogPermissions)
             }
         } else {
-            contactsViewModel.fetchAllRecentOperations()
+            callHistory.fetchAllRecentOperations()
         }
     }
 
@@ -184,7 +183,7 @@ fun HistoryScreen(
             .collect { (totalItems, lastVisible) ->
                 val shouldLoadMore = totalItems > 0 && lastVisible >= totalItems - 3
                 if (shouldLoadMore && hasMoreCallLogs && !isLoadingMoreCallLogs) {
-                    contactsViewModel.loadMoreRecentOperations()
+                    callHistory.loadMoreRecentOperations()
                 }
             }
     }
@@ -274,7 +273,7 @@ fun HistoryScreen(
     val optimisticBlockStates = remember { mutableStateMapOf<String, Boolean>() }
 
     LaunchedEffect(Unit) {
-        contactsViewModel.snackbarEvents.collect { event ->
+        callHistory.snackbarEvents.collect { event ->
             snackbar.show(
                 message = event.message,
                 type = event.kind,
@@ -334,7 +333,7 @@ fun HistoryScreen(
             onConfirm = {
                 pendingDeleteCount = selectedOperations.size
                 showDeleteConfirm = false
-                contactsViewModel.deleteSelectedRecentOperations()
+                callHistory.deleteSelectedRecentOperations()
             },
             title = stringResource(R.string.delete_recents_title),
             message = stringResource(R.string.delete_recents_message),
@@ -350,11 +349,11 @@ fun HistoryScreen(
         if (unknown != contactToDeleteRecents!!.name) {
             title = stringResource(
                 R.string.delete_contact_recents_title,
-                ContactUtils.getFirstName(contactToDeleteRecents!!.name)
+                ContactDisplay.getFirstName(contactToDeleteRecents!!.name)
             )
             message = stringResource(
                 R.string.delete_contact_recents_message,
-                ContactUtils.getFirstName(contactToDeleteRecents!!.name)
+                ContactDisplay.getFirstName(contactToDeleteRecents!!.name)
             )
         } else {
             title = stringResource(R.string.delete_unknown_recents_title)
@@ -365,7 +364,7 @@ fun HistoryScreen(
             onDismiss = { showDeleteContactRecentsConfirm = false; contactToDeleteRecents = null },
             onConfirm = {
                 if (contactOperations.isNotEmpty()) {
-                    contactsViewModel.deleteRecentOperations(contactOperations)
+                    callHistory.deleteRecentOperations(contactOperations)
                 }
                 showDeleteContactRecentsConfirm = false
                 showBottomSheet = false
@@ -401,7 +400,7 @@ fun HistoryScreen(
     }
 
     BackHandler(enabled = selectedOperations.isNotEmpty()) {
-        contactsViewModel.clearRecentOperationSelection()
+        callHistory.clearRecentOperationSelection()
     }
 
     var showTypeCountsSheet by remember { mutableStateOf(false) }
@@ -460,7 +459,7 @@ fun HistoryScreen(
                             if (isMinimalAccent) {
                                 FloatingIconPill(
                                     modifier = Modifier.padding(start = 8.dp),
-                                    onClick = { contactsViewModel.clearRecentOperationSelection() },
+                                    onClick = { callHistory.clearRecentOperationSelection() },
                                     backgroundColor = pillBackground,
                                     contentColor = selectionContentColor
                                 ) {
@@ -471,7 +470,7 @@ fun HistoryScreen(
                                     )
                                 }
                             } else {
-                                IconButton(onClick = { contactsViewModel.clearRecentOperationSelection() }) {
+                                IconButton(onClick = { callHistory.clearRecentOperationSelection() }) {
                                     Icon(
                                         Icons.Default.Cancel,
                                         contentDescription = stringResource(CoreUiR.string.cancel),
@@ -492,9 +491,9 @@ fun HistoryScreen(
                                     FloatingIconPill(
                                         onClick = {
                                             if (allSelected) {
-                                                contactsViewModel.clearRecentOperationSelection()
+                                                callHistory.clearRecentOperationSelection()
                                             } else {
-                                                contactsViewModel.selectAllRecentOperations(
+                                                callHistory.selectAllRecentOperations(
                                                     allRecents
                                                 )
                                             }
@@ -526,7 +525,7 @@ fun HistoryScreen(
                                 }
                             } else {
                                 IconButton(onClick = {
-                                    if (allSelected) contactsViewModel.clearRecentOperationSelection() else contactsViewModel.selectAllRecentOperations(
+                                    if (allSelected) callHistory.clearRecentOperationSelection() else callHistory.selectAllRecentOperations(
                                         allRecents
                                     )
                                 }) {
@@ -728,7 +727,7 @@ fun HistoryScreen(
                                     horizontalArrangement = Arrangement.Center
                                 ) {
                                     Text(
-                                        text = ContactUtils.capitalizeFirstLetter(
+                                        text = ContactDisplay.capitalizeFirstLetter(
                                             date.toRelativeDate(context)
                                         ),
                                         color = textColor.copy(alpha = 0.8f),
@@ -768,7 +767,7 @@ fun HistoryScreen(
                                     accentColor = accentColor,
                                     onOperationClick = {
                                         if (selectedOperations.isNotEmpty()) {
-                                            contactsViewModel.toggleRecentOperationSelection(op)
+                                            callHistory.toggleRecentOperationSelection(op)
                                         } else {
                                             selectedContactId = op.contact.id
                                             selectedPhoneNumber =
@@ -778,9 +777,9 @@ fun HistoryScreen(
                                         }
                                     },
                                     onLongPress = {
-                                        contactsViewModel.toggleRecentOperationSelection(op)
+                                        callHistory.toggleRecentOperationSelection(op)
                                     },
-                                    contactsViewModel = contactsViewModel,
+                                    callHistory = callHistory,
                                     secondaryTextColor = secondaryTextColor,
                                     phoneActions = phoneActions,
                                 )
@@ -927,7 +926,7 @@ fun HistoryScreen(
                                     onClick = {
                                         if (!contact.phones.getOrNull(1)?.number.isNullOrBlank()) {
                                             phoneAction = { phoneNumber ->
-                                                contactsViewModel.addRecentOperation(
+                                                callHistory.addRecentOperation(
                                                     contact = contact,
                                                     type = RecentType.WHATSAPP_OPEN,
                                                     target = phoneNumber
@@ -937,7 +936,7 @@ fun HistoryScreen(
                                             recentContact = contact
                                             showPhoneSelectionDialog = true
                                         } else {
-                                            contactsViewModel.addRecentOperation(
+                                            callHistory.addRecentOperation(
                                                 contact = contact,
                                                 type = RecentType.WHATSAPP_OPEN,
                                                 target = contact.phones.first().number
@@ -961,14 +960,14 @@ fun HistoryScreen(
                                         if (contactIsBlocked) {
                                             blockKey?.let { optimisticBlockStates[it] = false }
                                             if (contact.id.isNotBlank()) {
-                                                contactsViewModel.unblockContact(contact)
+                                                callHistory.unblockContact(contact)
                                             } else {
                                                 val primaryNumber =
                                                     contact.phones.firstOrNull()?.number
                                                 val normalized =
                                                     normalizeRecentPhoneNumber(primaryNumber)
                                                 if (normalized != null) {
-                                                    contactsViewModel.unblockNumber(normalized)
+                                                    callHistory.unblockNumber(normalized)
                                                 } else {
                                                     snackbar.show(
                                                         message = resources.getString(CoreUiR.string.contact_block_no_numbers),
@@ -978,7 +977,7 @@ fun HistoryScreen(
                                             }
                                         } else {
                                             blockKey?.let { optimisticBlockStates[it] = true }
-                                            contactsViewModel.blockContact(contact)
+                                            callHistory.blockContact(contact)
                                         }
                                         showBottomSheet = false
                                     },

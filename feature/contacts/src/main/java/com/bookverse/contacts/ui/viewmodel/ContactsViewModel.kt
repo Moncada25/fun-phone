@@ -1,7 +1,8 @@
 package com.bookverse.contacts.ui.viewmodel
 
+import com.bookverse.contacts.utils.ContactDisplay
 import com.bookverse.contacts.feature.contacts.R
-import com.bookverse.contacts.ui.screens.dialer.DialerDirectory
+import com.bookverse.contacts.ui.screens.history.CallHistoryDirectory
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
@@ -72,6 +73,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -105,7 +107,7 @@ class ContactsViewModel(
     private val contactUsageRepository: ContactUsageRepository,
     private val funnelTelemetry: FunnelTelemetry,
     private val refreshWidgets: () -> Unit,
-) : AndroidViewModel(application), DialerDirectory {
+) : AndroidViewModel(application), CallHistoryDirectory {
 
     private val application = getApplication<Application>()
     private val contactPhotoUpdateResolver = ContactPhotoUpdateResolver(
@@ -127,7 +129,7 @@ class ContactsViewModel(
     val selectedContacts: StateFlow<Set<String>> = _selectedContacts.asStateFlow()
 
     private val _selectedRecentOperations = MutableStateFlow<Set<String>>(emptySet())
-    val selectedRecentOperations: StateFlow<Set<String>> = _selectedRecentOperations.asStateFlow()
+    override val selectedRecentOperations: StateFlow<Set<String>> = _selectedRecentOperations.asStateFlow()
 
     private val _isDeleting = MutableStateFlow(false)
     val isDeleting: StateFlow<Boolean> = _isDeleting.asStateFlow()
@@ -142,10 +144,10 @@ class ContactsViewModel(
     override val topUsedContacts = contactUsageRepository.getTopUsedContacts(10)
 
     private val _isLoadingMoreCallLogs = MutableStateFlow(false)
-    val isLoadingMoreCallLogs: StateFlow<Boolean> = _isLoadingMoreCallLogs.asStateFlow()
+    override val isLoadingMoreCallLogs: StateFlow<Boolean> = _isLoadingMoreCallLogs.asStateFlow()
 
     private val _hasMoreCallLogs = MutableStateFlow(true)
-    val hasMoreCallLogs: StateFlow<Boolean> = _hasMoreCallLogs.asStateFlow()
+    override val hasMoreCallLogs: StateFlow<Boolean> = _hasMoreCallLogs.asStateFlow()
 
     private val callLogCache = mutableListOf<RecentOperation>()
     private var callLogOldestTimestamp: Long? = null
@@ -159,16 +161,10 @@ class ContactsViewModel(
     val accounts: StateFlow<List<ContactAccount>> = _accounts.asStateFlow()
 
     private val _blockedNumbers = MutableStateFlow<List<BlockedNumberInfo>>(emptyList())
-    val blockedNumbers: StateFlow<List<BlockedNumberInfo>> = _blockedNumbers.asStateFlow()
+    override val blockedNumbers: StateFlow<List<BlockedNumberInfo>> = _blockedNumbers.asStateFlow()
 
-    data class SnackEvent(
-        val message: String,
-        val kind: SnackbarType = SnackbarType.Info,
-        val actionLabel: String? = null
-    )
-
-    private val _snackbarEvents = MutableSharedFlow<SnackEvent>(extraBufferCapacity = 1)
-    val snackbarEvents = _snackbarEvents.asSharedFlow()
+    private val _snackbarEvents = MutableSharedFlow<ContactSnackEvent>(extraBufferCapacity = 1)
+    override val snackbarEvents: SharedFlow<ContactSnackEvent> = _snackbarEvents.asSharedFlow()
     private val pendingSnackbarStore = PendingSnackbarStore()
     val pendingSnackbarEvents = pendingSnackbarStore.events
     private val contactMediaCoordinator = ContactMediaCoordinator(
@@ -177,7 +173,7 @@ class ContactsViewModel(
         viewModelScope,
     ) { resourceId ->
         pendingSnackbarStore.enqueue(
-            listOf(SnackEvent(localizedContext().getString(resourceId), SnackbarType.Warning)),
+            listOf(ContactSnackEvent(localizedContext().getString(resourceId), SnackbarType.Warning)),
         )
     }
 
@@ -189,7 +185,7 @@ class ContactsViewModel(
         onContactsImported = ::loadContacts,
     )
 
-    fun consumePendingSnackbarEvents(events: List<SnackEvent>) {
+    fun consumePendingSnackbarEvents(events: List<ContactSnackEvent>) {
         pendingSnackbarStore.consume(events)
     }
 
@@ -275,7 +271,7 @@ class ContactsViewModel(
                                 val message = req.errorMessage.ifBlank {
                                     localizedContext().getString(R.string.edit_contact_error)
                                 }
-                                _snackbarEvents.tryEmit(SnackEvent(message, SnackbarType.Error))
+                                _snackbarEvents.tryEmit(ContactSnackEvent(message, SnackbarType.Error))
                                 req.onResult?.invoke(ContactSaveResult.Failure)
                             }
                         }
@@ -292,7 +288,7 @@ class ContactsViewModel(
                             val message = req.errorMessage.ifBlank {
                                 localizedContext().getString(R.string.edit_contact_error)
                             }
-                            _snackbarEvents.tryEmit(SnackEvent(message, SnackbarType.Error))
+                            _snackbarEvents.tryEmit(ContactSnackEvent(message, SnackbarType.Error))
                             req.onResult?.invoke(ContactSaveResult.Failure)
                         }
                     }
@@ -379,7 +375,7 @@ class ContactsViewModel(
         val contactWithAccount = sanitizedInput.copy(accounts = listOf(account))
         if (contactWithAccount.phones.isEmpty()) {
             val errorMessage = localizedContext().getString(R.string.add_contact_error)
-            _snackbarEvents.tryEmit(SnackEvent(message = errorMessage, kind = SnackbarType.Error))
+            _snackbarEvents.tryEmit(ContactSnackEvent(message = errorMessage, kind = SnackbarType.Error))
             onSaveResult?.invoke(ContactSaveResult.Failure)
             onResult?.invoke(null)
             return
@@ -447,7 +443,7 @@ class ContactsViewModel(
                     withContext(Dispatchers.Main) {
                         _contacts.value = previousContacts
                         _snackbarEvents.tryEmit(
-                            SnackEvent(message = errorMessage, kind = SnackbarType.Error)
+                            ContactSnackEvent(message = errorMessage, kind = SnackbarType.Error)
                         )
                         onSaveResult?.invoke(ContactSaveResult.Failure)
                         onResult?.invoke(null)
@@ -458,7 +454,7 @@ class ContactsViewModel(
                 withContext(Dispatchers.Main) {
                     _contacts.value = previousContacts
                     _snackbarEvents.tryEmit(
-                        SnackEvent(message = errorMessage, kind = SnackbarType.Error)
+                        ContactSnackEvent(message = errorMessage, kind = SnackbarType.Error)
                     )
                     onSaveResult?.invoke(ContactSaveResult.Failure)
                     onResult?.invoke(null)
@@ -592,7 +588,7 @@ class ContactsViewModel(
         }
     }
 
-    fun uriToBitmap(uri: Uri): Bitmap? = contactMediaCoordinator.uriToBitmap(uri)
+    override fun uriToBitmap(uri: Uri): Bitmap? = contactMediaCoordinator.uriToBitmap(uri)
 
     override suspend fun loadContactPhoto(uri: Uri): Bitmap? = contactMediaCoordinator.loadContactPhoto(uri)
 
@@ -617,14 +613,14 @@ class ContactsViewModel(
         }
     }
 
-    fun deleteSelectedRecentOperations() {
+    override fun deleteSelectedRecentOperations() {
         val toDelete = _selectedRecentOperations.value
         if (toDelete.isEmpty()) return
         val selectedOps = (_localOperations.value + _callLogs.value).filter { it.historyKey in toDelete }
         deleteRecentOperations(selectedOps)
     }
 
-    fun deleteRecentOperations(operations: List<RecentOperation>) {
+    override fun deleteRecentOperations(operations: List<RecentOperation>) {
         val ids = operations.idsBySource()
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -682,7 +678,7 @@ class ContactsViewModel(
         }
     }
 
-    fun loadMoreRecentOperations() {
+    override fun loadMoreRecentOperations() {
         if (!PermissionUtils.hasCallLogPermission(application)) return
         val anchor = callLogOldestTimestamp ?: return
         if (_isLoadingMoreCallLogs.value || !_hasMoreCallLogs.value) return
@@ -726,7 +722,7 @@ class ContactsViewModel(
         val index = currentContacts.indexOfFirst { it.id == contactId }
         if (index == -1) {
             val fallback = errorMessage ?: localizedContext().getString(R.string.delete_contact_error)
-            _snackbarEvents.tryEmit(SnackEvent(fallback, SnackbarType.Error))
+            _snackbarEvents.tryEmit(ContactSnackEvent(fallback, SnackbarType.Error))
             onResult?.invoke(false)
             return
         }
@@ -734,7 +730,7 @@ class ContactsViewModel(
         val ids = listOfNotNull(contactId.toLongOrNull())
         if (ids.isEmpty()) {
             val fallback = errorMessage ?: localizedContext().getString(R.string.delete_contact_error)
-            _snackbarEvents.tryEmit(SnackEvent(fallback, SnackbarType.Error))
+            _snackbarEvents.tryEmit(ContactSnackEvent(fallback, SnackbarType.Error))
             onResult?.invoke(false)
             return
         }
@@ -762,7 +758,7 @@ class ContactsViewModel(
                 } else {
                     _contacts.value = currentContacts
                     val fallback = errorMessage ?: localizedContext().getString(R.string.delete_contact_error)
-                    _snackbarEvents.tryEmit(SnackEvent(fallback, SnackbarType.Error))
+                    _snackbarEvents.tryEmit(ContactSnackEvent(fallback, SnackbarType.Error))
                     onResult?.invoke(false)
                 }
             }
@@ -798,7 +794,7 @@ class ContactsViewModel(
             _contacts.value = previousContacts
             _isDeleting.value = false
             val fallback = errorMessage ?: localizedContext().getString(R.string.delete_contacts_error)
-            _snackbarEvents.tryEmit(SnackEvent(fallback, SnackbarType.Error))
+            _snackbarEvents.tryEmit(ContactSnackEvent(fallback, SnackbarType.Error))
             onResult?.invoke(false)
             return
         }
@@ -818,14 +814,14 @@ class ContactsViewModel(
                     clearContactSelection()
                     if (!successMessage.isNullOrBlank()) {
                         _snackbarEvents.tryEmit(
-                            SnackEvent(successMessage, SnackbarType.Success)
+                            ContactSnackEvent(successMessage, SnackbarType.Success)
                         )
                     }
                     onResult?.invoke(true)
                 } else {
                     _contacts.value = previousContacts
                     val fallback = errorMessage ?: localizedContext().getString(R.string.delete_contacts_error)
-                    _snackbarEvents.tryEmit(SnackEvent(fallback, SnackbarType.Error))
+                    _snackbarEvents.tryEmit(ContactSnackEvent(fallback, SnackbarType.Error))
                     onResult?.invoke(false)
                 }
             }
@@ -891,7 +887,7 @@ class ContactsViewModel(
                             if (c.id == contactId) previousContact else c
                         }
                         _snackbarEvents.tryEmit(
-                            SnackEvent(
+                            ContactSnackEvent(
                                 message = localizedContext().getString(R.string.contact_edit_not_found),
                                 kind = SnackbarType.Error
                             )
@@ -922,7 +918,7 @@ class ContactsViewModel(
                         withContext(Dispatchers.Main) {
                             if (message.isNotEmpty()) {
                                 _snackbarEvents.tryEmit(
-                                    SnackEvent(
+                                    ContactSnackEvent(
                                         message = message,
                                         kind = SnackbarType.Success
                                     )
@@ -948,7 +944,7 @@ class ContactsViewModel(
                 if (contact.id == contactId) previousContact else contact
             }
             _snackbarEvents.tryEmit(
-                SnackEvent(
+                ContactSnackEvent(
                     message = localizedContext().getString(R.string.contact_update_error),
                     kind = SnackbarType.Error
                 )
@@ -956,7 +952,7 @@ class ContactsViewModel(
         }
     }
 
-    fun blockContact(contact: Contact) {
+    override fun blockContact(contact: Contact) {
         viewModelScope.launch {
             val contactId = contact.id
             val previousState = _contacts.value.find { it.id == contactId }?.isBlocked ?: contact.isBlocked
@@ -964,14 +960,14 @@ class ContactsViewModel(
                 updateBlockedState(contactId, true)
             }
 
-            val firstName = ContactUtils.getFirstName(contact.name)
+            val firstName = ContactDisplay.getFirstName(contact.name)
             val blockResult = runCatching { contactRepository.blockContact(contact) }
             val success = blockResult.getOrDefault(false)
 
             if (success) {
                 refreshBlockedNumbers()
                 _snackbarEvents.tryEmit(
-                    SnackEvent(
+                    ContactSnackEvent(
                         message = localizedContext().getString(R.string.contact_block_success, firstName),
                         kind = SnackbarType.Success
                     )
@@ -981,7 +977,7 @@ class ContactsViewModel(
                     updateBlockedState(contactId, previousState)
                 }
                 _snackbarEvents.tryEmit(
-                    SnackEvent(
+                    ContactSnackEvent(
                         message = localizedContext().getString(R.string.contact_block_error),
                         kind = SnackbarType.Error
                     )
@@ -990,7 +986,7 @@ class ContactsViewModel(
         }
     }
 
-    fun unblockContact(contact: Contact) {
+    override fun unblockContact(contact: Contact) {
         viewModelScope.launch {
             val contactId = contact.id
             val previousState = _contacts.value.find { it.id == contactId }?.isBlocked ?: contact.isBlocked
@@ -998,14 +994,14 @@ class ContactsViewModel(
                 updateBlockedState(contactId, false)
             }
 
-            val firstName = ContactUtils.getFirstName(contact.name)
+            val firstName = ContactDisplay.getFirstName(contact.name)
             val unblockResult = runCatching { contactRepository.unblockContact(contact) }
             val success = unblockResult.getOrDefault(false)
 
             if (success) {
                 refreshBlockedNumbers()
                 _snackbarEvents.tryEmit(
-                    SnackEvent(
+                    ContactSnackEvent(
                         message = localizedContext().getString(R.string.contact_unblock_success, firstName),
                         kind = SnackbarType.Success
                     )
@@ -1015,7 +1011,7 @@ class ContactsViewModel(
                     updateBlockedState(contactId, previousState)
                 }
                 _snackbarEvents.tryEmit(
-                    SnackEvent(
+                    ContactSnackEvent(
                         message = localizedContext().getString(R.string.contact_unblock_error),
                         kind = SnackbarType.Error
                     )
@@ -1029,7 +1025,7 @@ class ContactsViewModel(
             val success = runCatching { contactRepository.blockNumber(number) }.getOrDefault(false)
             if (success) refreshBlockedNumbers()
             _snackbarEvents.tryEmit(
-                SnackEvent(
+                ContactSnackEvent(
                     message = localizedContext().getString(
                         if (success) R.string.blocked_number_added else R.string.blocked_number_add_error,
                     ),
@@ -1039,20 +1035,20 @@ class ContactsViewModel(
         }
     }
 
-    fun unblockNumber(number: String) {
+    override fun unblockNumber(number: String) {
         viewModelScope.launch {
             val success = contactRepository.unblockNumber(number)
             if (success) {
                 refreshBlockedNumbers()
                 _snackbarEvents.tryEmit(
-                    SnackEvent(
+                    ContactSnackEvent(
                         message = localizedContext().getString(R.string.blocked_number_unblocked),
                         kind = SnackbarType.Success
                     )
                 )
             } else {
                 _snackbarEvents.tryEmit(
-                    SnackEvent(
+                    ContactSnackEvent(
                         message = localizedContext().getString(R.string.blocked_number_unblock_error),
                         kind = SnackbarType.Error
                     )
@@ -1111,18 +1107,18 @@ class ContactsViewModel(
         _selectedContacts.value = list.map { it.id }.toSet()
     }
 
-    fun toggleRecentOperationSelection(operation: RecentOperation) {
+    override fun toggleRecentOperationSelection(operation: RecentOperation) {
         val key = operation.historyKey
         _selectedRecentOperations.value = _selectedRecentOperations.value.toMutableSet().apply {
             if (contains(key)) remove(key) else add(key)
         }
     }
 
-    fun clearRecentOperationSelection() {
+    override fun clearRecentOperationSelection() {
         _selectedRecentOperations.value = emptySet()
     }
 
-    fun selectAllRecentOperations(list: List<RecentOperation>) {
+    override fun selectAllRecentOperations(list: List<RecentOperation>) {
         _selectedRecentOperations.value = list.map { it.historyKey }.toSet()
     }
 
@@ -1171,7 +1167,7 @@ class ContactsViewModel(
         )
 
         if (desired.phones.isEmpty()) {
-            _snackbarEvents.tryEmit(SnackEvent(errorMessage, SnackbarType.Error))
+            _snackbarEvents.tryEmit(ContactSnackEvent(errorMessage, SnackbarType.Error))
             onResult?.invoke(ContactSaveResult.Failure)
             return
         }
@@ -1235,7 +1231,7 @@ class ContactsViewModel(
         )
 
         if (optimistic.phones.isEmpty()) {
-            _snackbarEvents.tryEmit(SnackEvent(errorMessage, SnackbarType.Error))
+            _snackbarEvents.tryEmit(ContactSnackEvent(errorMessage, SnackbarType.Error))
             onResult?.invoke(ContactSaveResult.Failure)
             return
         }
@@ -1379,7 +1375,7 @@ class ContactsViewModel(
         } catch (_: Exception) {
             DiagnosticLog.error(DiagnosticEvent.CONTACT_QR_SHARE_FAILED)
             _snackbarEvents.tryEmit(
-                SnackEvent(
+                ContactSnackEvent(
                     message = localizedContext().getString(R.string.error_sharing_qr),
                     kind = SnackbarType.Error
                 )
@@ -1676,7 +1672,7 @@ class ContactsViewModel(
 
     private fun emitPhotoWarning() {
         _snackbarEvents.tryEmit(
-            SnackEvent(
+            ContactSnackEvent(
                 message = localizedContext().getString(R.string.contact_photo_save_warning),
                 kind = SnackbarType.Warning,
             ),

@@ -8,7 +8,6 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":feature:contacts"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)

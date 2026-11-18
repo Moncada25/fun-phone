@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.graphics.Bitmap
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -92,7 +93,6 @@ import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.FavoritesCardShape
 import com.bookverse.contacts.ui.viewmodel.FavoritesSortOrder
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.avatarLabel
 import com.bookverse.contacts.utils.initialInfo
 import java.util.Locale
@@ -630,7 +630,7 @@ fun FavoriteContactItem(
             .aspectRatio(1f)
             .clip(shape)
             .clickable(onClick = onContactClick)
-            .background(ContactUtils.getRandomColor(contact.name)),
+            .background(ContactDisplay.getRandomColor(contact.name)),
         contentAlignment = Alignment.Center
     ) {
         val avatarFontSize = if (columns == 2) 70.sp else 54.sp
@@ -704,7 +704,7 @@ fun ProfileFavoriteItem(
             .clickable(onClick = onProfileClick)
             .background(
                 if (profileContact != null) {
-                    ContactUtils.getRandomColor(profileContact.name)
+                    ContactDisplay.getRandomColor(profileContact.name)
                 } else {
                     accentColor.copy(alpha = 0.3f)
                 }

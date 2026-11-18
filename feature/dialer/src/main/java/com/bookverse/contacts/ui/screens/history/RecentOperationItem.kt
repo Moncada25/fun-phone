@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.history
 
+import com.bookverse.contacts.utils.ContactDisplay
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import android.telephony.PhoneNumberUtils
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -49,8 +50,6 @@ import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.getPhoneTypeLabel
-import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
-import com.bookverse.contacts.utils.ContactUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import com.bookverse.contacts.core.ui.R as CoreUiR
@@ -64,7 +63,7 @@ fun RecentOperationItem(
     accentColor: Color,
     onOperationClick: () -> Unit,
     onLongPress: () -> Unit,
-    contactsViewModel: ContactsViewModel,
+    callHistory: CallHistoryDirectory,
     secondaryTextColor: Color,
     phoneActions: PhoneActionLauncher,
 ) {
@@ -80,7 +79,7 @@ fun RecentOperationItem(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        RecentOperationAvatar(operation, isSelected, accentColor, textColor, contactsViewModel)
+        RecentOperationAvatar(operation, isSelected, accentColor, textColor, callHistory)
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
             val hasSavedContact = operation.contact.id.isNotBlank()
@@ -158,7 +157,7 @@ private fun RecentOperationAvatar(
     isSelected: Boolean,
     accentColor: Color,
     textColor: Color,
-    contactsViewModel: ContactsViewModel,
+    callHistory: CallHistoryDirectory,
 ) {
     Box(
         modifier = Modifier.size(45.dp),
@@ -175,7 +174,7 @@ private fun RecentOperationAvatar(
         }
         val photoUri = operation.contact.photoUri
         val bitmap = remember(photoUri) {
-            photoUri?.let(contactsViewModel::uriToBitmap)
+            photoUri?.let(callHistory::uriToBitmap)
         }
         if (bitmap != null) {
             Image(
@@ -191,7 +190,7 @@ private fun RecentOperationAvatar(
                 modifier = Modifier
                     .size(45.dp)
                     .clip(CircleShape)
-                    .background(ContactUtils.getRandomColor(operation.contact.name)),
+                    .background(ContactDisplay.getRandomColor(operation.contact.name)),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
