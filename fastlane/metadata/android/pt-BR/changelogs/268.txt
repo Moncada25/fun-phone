@@ -1,0 +1,5 @@
+• Chamadas: só aparece a notificação de chamada perdida do Fun Phone, o toque para assim que a chamada termina e a chamada recebida fica acessível até atender ou recusar.
+• Novos widgets de chamadas recentes e gastos do mês, nas suas cores.
+• Gerenciador de senhas: escolha serviços comuns no campo de site.
+• A personalização volta a ser aplicada na hora.
+• Corrigimos widgets e tarefas em segundo plano que não funcionavam.

@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy candidate:** current 3.20.2/262 behavior; not yet uploaded
-**Release notes candidate below:** 3.20.7 (267)
+**Release notes candidate below:** 3.20.8 (268)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -182,32 +182,47 @@ Destaques:
 
 Os recursos do Android variam conforme o aparelho e a versão. Após instalar, abra Status do dispositivo para concluir as permissões e escolher o Fun Phone como discador padrão.
 
-## What's new — 3.20.7
+## What's new — 3.20.8
 
 ### English
 
-• Fixed a crash when filling a saved login from the password manager into another app.
-• The profile screen title now reads "Your profile".
+• Calls: only Fun Phone's missed call notification shows, ringing stops as soon as a call ends, and the incoming call stays reachable until you answer or decline.
+• New Recent calls and Monthly expenses widgets; all widgets follow your colors.
+• Password manager: pick common services for the website field.
+• Personalization changes apply instantly again.
+• Fixed widgets and background tasks that stopped working.
 
 ### Español
 
-• Corregimos un cierre inesperado al rellenar en otra app un inicio de sesión guardado en el gestor de contraseñas.
-• El título de la pantalla de perfil ahora dice "Tu perfil".
+• Llamadas: solo aparece la notificación de llamada perdida de Fun Phone, el timbre se detiene al terminar la llamada y la entrante sigue a mano hasta contestar o rechazar.
+• Nuevos widgets de llamadas recientes y gastos del mes; todos siguen tus colores.
+• Gestor de contraseñas: elige servicios comunes en el sitio web.
+• La personalización vuelve a aplicarse al instante.
+• Corregimos widgets y tareas en segundo plano que no funcionaban.
 
 ### Deutsch
 
-• Absturz behoben, wenn ein gespeichertes Login aus dem Passwortmanager in einer anderen App ausgefüllt wurde.
-• Der Profilbildschirm heißt jetzt „Dein Profil“.
+• Anrufe: Es erscheint nur noch die Benachrichtigung von Fun Phone für verpasste Anrufe, das Klingeln endet mit dem Anruf und der eingehende Anruf bleibt bis zum Annehmen oder Ablehnen erreichbar.
+• Neue Widgets für letzte Anrufe und Monatsausgaben, alle in deinen Farben.
+• Passwortmanager: gängige Dienste für die Website auswählen.
+• Personalisierung wirkt wieder sofort.
+• Widgets und Hintergrundaufgaben funktionieren wieder.
 
 ### Français
 
-• Correction d'un plantage lors du remplissage, dans une autre app, d'un identifiant enregistré dans le gestionnaire de mots de passe.
-• L'écran de profil s'intitule désormais « Votre profil ».
+• Appels : seule la notification d'appel manqué de Fun Phone s'affiche, la sonnerie s'arrête dès la fin de l'appel et l'appel entrant reste accessible jusqu'à la réponse ou au refus.
+• Nouveaux widgets Appels récents et Dépenses du mois, aux couleurs de votre thème.
+• Mots de passe : choisissez un service courant pour le site web.
+• La personnalisation s'applique de nouveau tout de suite.
+• Widgets et tâches en arrière-plan réparés.
 
 ### Português
 
-• Corrigimos um fechamento inesperado ao preencher em outro app um login salvo no gerenciador de senhas.
-• A tela de perfil agora se chama "Seu perfil".
+• Chamadas: só aparece a notificação de chamada perdida do Fun Phone, o toque para assim que a chamada termina e a chamada recebida fica acessível até atender ou recusar.
+• Novos widgets de chamadas recentes e gastos do mês, nas suas cores.
+• Gerenciador de senhas: escolha serviços comuns no campo de site.
+• A personalização volta a ser aplicada na hora.
+• Corrigimos widgets e tarefas em segundo plano que não funcionavam.
 
 ## Screenshot order
 

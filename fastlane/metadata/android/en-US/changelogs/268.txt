@@ -1,0 +1,5 @@
+• Calls: only Fun Phone's missed call notification shows, ringing stops as soon as a call ends, and the incoming call stays reachable until you answer or decline.
+• New Recent calls and Monthly expenses widgets; all widgets follow your colors.
+• Password manager: pick common services for the website field.
+• Personalization changes apply instantly again.
+• Fixed widgets and background tasks that stopped working.

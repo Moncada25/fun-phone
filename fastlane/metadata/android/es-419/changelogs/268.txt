@@ -1,0 +1,5 @@
+• Llamadas: solo aparece la notificación de llamada perdida de Fun Phone, el timbre se detiene al terminar la llamada y la entrante sigue a mano hasta contestar o rechazar.
+• Nuevos widgets de llamadas recientes y gastos del mes; todos siguen tus colores.
+• Gestor de contraseñas: elige servicios comunes en el sitio web.
+• La personalización vuelve a aplicarse al instante.
+• Corregimos widgets y tareas en segundo plano que no funcionaban.
