@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts.dialer
+package com.bookverse.contacts.ui.screens.dialer
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween

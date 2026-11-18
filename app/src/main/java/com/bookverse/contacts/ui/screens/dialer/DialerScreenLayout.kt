@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts.dialer
+package com.bookverse.contacts.ui.screens.dialer
 
 import android.graphics.Bitmap
 import android.net.Uri

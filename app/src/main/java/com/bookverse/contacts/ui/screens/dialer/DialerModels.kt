@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts.dialer
+package com.bookverse.contacts.ui.screens.dialer
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.bookverse.contacts.data.model.Contact

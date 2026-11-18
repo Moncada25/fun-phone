@@ -102,7 +102,7 @@ import com.bookverse.contacts.ui.navigation.NavigationItem
 import com.bookverse.contacts.ui.screens.calls.IncomingCallScreen
 import com.bookverse.contacts.ui.screens.calls.RejectWithMessageSheet
 import com.bookverse.contacts.ui.screens.contacts.ContactListScreen
-import com.bookverse.contacts.ui.screens.contacts.DialerScreen
+import com.bookverse.contacts.ui.screens.dialer.DialerScreen
 import com.bookverse.contacts.ui.screens.contacts.FavoritesScreen
 import com.bookverse.contacts.ui.screens.expenses.ExpenseManagerScreen
 import com.bookverse.contacts.ui.screens.games.GamesScreen

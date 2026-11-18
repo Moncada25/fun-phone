@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.Manifest
 import android.content.pm.PackageManager
@@ -933,7 +934,7 @@ fun HistoryScreen(
                                                     type = RecentType.WHATSAPP_OPEN,
                                                     target = phoneNumber
                                                 )
-                                                ContactUtils.openWhatsApp(context, phoneNumber)
+                                                PhoneActions.openWhatsApp(context, phoneNumber)
                                             }
                                             recentContact = contact
                                             showPhoneSelectionDialog = true
@@ -942,7 +943,7 @@ fun HistoryScreen(
                                                 contact = contact,
                                                 type = RecentType.WHATSAPP_OPEN,
                                                 target = contact.phones.first().number
-                                            ); ContactUtils.openWhatsApp(
+                                            ); PhoneActions.openWhatsApp(
                                                 context,
                                                 contact.phones.first().number
                                             )

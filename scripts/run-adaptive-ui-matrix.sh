@@ -70,7 +70,7 @@ test_classes+=",com.bookverse.contacts.ui.screens.settings.BlockedNumbersDialogs
 test_classes+=",com.bookverse.contacts.ui.screens.tools.ToolsPresetSelectorTest"
 test_classes+=",com.bookverse.contacts.ui.AccessibilityCoreContractTest"
 test_classes+=",com.bookverse.contacts.ui.auth.PasswordAuthDialogsTest"
-test_classes+=",com.bookverse.contacts.ui.screens.contacts.dialer.DialerNumberEditorTest"
+test_classes+=",com.bookverse.contacts.ui.screens.dialer.DialerNumberEditorTest"
 
 scenarios=(
   "split-width-proxy|360|720|1.3|no|es"

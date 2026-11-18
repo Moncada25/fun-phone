@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts.dialer
+package com.bookverse.contacts.ui.screens.dialer
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme

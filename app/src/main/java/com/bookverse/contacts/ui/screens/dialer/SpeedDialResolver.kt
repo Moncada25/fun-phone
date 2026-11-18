@@ -1,12 +1,12 @@
-package com.bookverse.contacts.ui.screens.contacts.dialer
+package com.bookverse.contacts.ui.screens.dialer
 
+import com.bookverse.contacts.utils.PhoneActions
 import android.content.Context
 import android.content.res.Resources
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.ui.components.AppSnackbarState
 import com.bookverse.contacts.ui.components.SnackbarType
-import com.bookverse.contacts.utils.ContactUtils
 
 sealed interface SpeedDialResolution {
     data class Dial(val phoneNumber: String) : SpeedDialResolution
@@ -40,7 +40,7 @@ fun handleSpeedDialLongPress(
 ) {
     when (val resolution = resolveSpeedDial(key, assignments, contacts)) {
         is SpeedDialResolution.Dial ->
-            ContactUtils.callPhoneNumber(context, resolution.phoneNumber)
+            PhoneActions.callPhoneNumber(context, resolution.phoneNumber)
         SpeedDialResolution.ContactUnavailable ->
             snackbar.show(
                 resources.getString(R.string.speed_dial_contact_not_found),

@@ -31,7 +31,7 @@ import com.bookverse.contacts.ui.screens.calls.IncomingCallScreen
 import com.bookverse.contacts.ui.screens.contacts.ContactDetailsScreen
 import com.bookverse.contacts.ui.screens.contacts.CreateContactScreen
 import com.bookverse.contacts.ui.screens.contacts.CreateProfileScreen
-import com.bookverse.contacts.ui.screens.contacts.DialerScreen
+import com.bookverse.contacts.ui.screens.dialer.DialerScreen
 import com.bookverse.contacts.ui.screens.contacts.ContactRecycleBinScreen
 import com.bookverse.contacts.ui.screens.contacts.DuplicateContactsScreen
 import com.bookverse.contacts.ui.screens.contacts.FavoritesReorderScreen
@@ -137,7 +137,7 @@ fun SecondaryScreenContent(
         SecondaryScreen.DIALER -> DialerScreen(
             onBack = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
-            contactsViewModel = contactsViewModel,
+            directory = contactsViewModel,
             phoneNumber = dialerPhoneNumber,
             onPhoneNumberChange = { onDialerPhoneNumberChange(it) },
             onAddContactClick = { phone, country ->

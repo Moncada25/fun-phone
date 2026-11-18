@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.ui.screens.dialer.DialerScreen
 import android.Manifest
 import android.content.ContentUris
 import android.graphics.Bitmap
@@ -316,7 +317,7 @@ class ContactCrudFlowTest {
                     DialerScreen(
                         onBack = {},
                         appSettingsViewModel = settingsViewModel,
-                        contactsViewModel = contactsViewModel,
+                        directory = contactsViewModel,
                         phoneNumber = query,
                         onPhoneNumberChange = {},
                         onCallPhoneNumber = { _, number -> onCall(number) },

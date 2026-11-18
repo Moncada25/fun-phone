@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import android.telephony.PhoneNumberUtils
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -135,7 +136,7 @@ fun RecentOperationItem(
         IconButton(
             onClick = {
                 if (phoneNumber.isNotBlank()) {
-                    ContactUtils.callPhoneNumber(context, phoneNumber)
+                    PhoneActions.callPhoneNumber(context, phoneNumber)
                 }
             },
             modifier = Modifier.size(44.dp),

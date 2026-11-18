@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.graphics.Bitmap
 import android.media.RingtoneManager
@@ -451,7 +452,7 @@ fun ContactDetailsScreen(
                         ) {
                             if (contact.phones.size > 1) {
                                 phoneAction = { phoneNumber ->
-                                    ContactUtils.openWhatsApp(context, phoneNumber)
+                                    PhoneActions.openWhatsApp(context, phoneNumber)
                                     contactsViewModel.addRecentOperation(
                                         contact = contact,
                                         type = RecentType.WHATSAPP_OPEN,
@@ -461,7 +462,7 @@ fun ContactDetailsScreen(
                                 showPhoneSelectionDialog = true
                             } else {
                                 val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                ContactUtils.openWhatsApp(context, primaryPhone)
+                                PhoneActions.openWhatsApp(context, primaryPhone)
                                 contactsViewModel.addRecentOperation(
                                     contact = contact,
                                     type = RecentType.WHATSAPP_OPEN,
@@ -505,12 +506,12 @@ fun ContactDetailsScreen(
                         ) {
                             if (contact.phones.size > 1) {
                                 phoneAction = { phoneNumber ->
-                                    ContactUtils.callPhoneNumber(context, phoneNumber)
+                                    PhoneActions.callPhoneNumber(context, phoneNumber)
                                 }
                                 showPhoneSelectionDialog = true
                             } else {
                                 val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                ContactUtils.callPhoneNumber(context, primaryPhone)
+                                PhoneActions.callPhoneNumber(context, primaryPhone)
                             }
                         }
 
@@ -523,12 +524,12 @@ fun ContactDetailsScreen(
                         ) {
                             if (contact.phones.size > 1) {
                                 phoneAction = { phoneNumber ->
-                                    ContactUtils.openSmsApp(context, phoneNumber)
+                                    PhoneActions.openSmsApp(context, phoneNumber)
                                 }
                                 showPhoneSelectionDialog = true
                             } else {
                                 val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                ContactUtils.openSmsApp(context, primaryPhone)
+                                PhoneActions.openSmsApp(context, primaryPhone)
                             }
                         }
                     }

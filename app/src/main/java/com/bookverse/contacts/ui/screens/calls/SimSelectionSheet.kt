@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.calls
 
+import com.bookverse.contacts.utils.PhoneActions
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,7 +40,6 @@ import com.bookverse.contacts.service.SimSelectionCoordinator
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
 import com.bookverse.contacts.ui.components.SettingSwitch
 import com.bookverse.contacts.ui.screens.settings.SettingsChoiceRow
-import com.bookverse.contacts.utils.ContactUtils
 
 @Composable
 fun SimSelectionHost() {
@@ -62,7 +62,7 @@ fun SimSelectionHost() {
             if (callId != null) {
                 if (!CallController.selectPhoneAccount(callId, account.id)) CallController.end(callId)
             } else {
-                ContactUtils.callPhoneNumberWithSim(context, current.number, account.id)
+                PhoneActions.callPhoneNumberWithSim(context, current.number, account.id)
             }
         },
         onDismiss = {

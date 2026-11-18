@@ -1,5 +1,6 @@
-package com.bookverse.contacts.ui.screens.contacts
+package com.bookverse.contacts.ui.screens.dialer
 
+import com.bookverse.contacts.utils.PhoneActions
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.compose.BackHandler
@@ -45,34 +46,9 @@ import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.withoutTop
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerEditText
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerEditValue
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerModernKeypadSheet
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerModernResults
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerActionResolution
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerNumberContext
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerScreenLayout
-import com.bookverse.contacts.ui.screens.contacts.dialer.areDialerNumbersEquivalent
-import com.bookverse.contacts.ui.screens.contacts.dialer.findExactDialerContact
-import com.bookverse.contacts.ui.screens.contacts.dialer.DialerSuggestionEntry
-import com.bookverse.contacts.ui.screens.contacts.dialer.LAST_DIALED_NUMBER_KEY
-import com.bookverse.contacts.ui.screens.contacts.dialer.MAX_DIALED_NUMBERS
-import com.bookverse.contacts.ui.screens.contacts.dialer.NumberExistenceResult
-import com.bookverse.contacts.ui.screens.contacts.dialer.buildDialerTarget
-import com.bookverse.contacts.ui.screens.contacts.dialer.buildSmartSuggestions
-import com.bookverse.contacts.ui.screens.contacts.dialer.buildDialerContactSearchIndex
-import com.bookverse.contacts.ui.screens.contacts.dialer.deleteDialerText
-import com.bookverse.contacts.ui.screens.contacts.dialer.filterDialerContacts
-import com.bookverse.contacts.ui.screens.contacts.dialer.handleSpeedDialLongPress
-import com.bookverse.contacts.ui.screens.contacts.dialer.insertDialerText
-import com.bookverse.contacts.ui.screens.contacts.dialer.resolveDialerAction
-import com.bookverse.contacts.ui.screens.contacts.dialer.sanitizeDialerText
-import com.bookverse.contacts.ui.screens.contacts.dialer.sanitizePastedDialerText
 import com.bookverse.contacts.settings.AppDataStore
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.VibrationUtils
 import contacts.core.entities.PhoneEntity
 import kotlinx.coroutines.flow.firstOrNull
@@ -85,11 +61,11 @@ import kotlin.math.min
 fun DialerScreen(
     onBack: () -> Unit,
     appSettingsViewModel: AppSettingsViewModel = viewModel(),
-    contactsViewModel: ContactsViewModel = viewModel(),
+    directory: DialerDirectory,
     phoneNumber: String,
     onPhoneNumberChange: (String) -> Unit,
     onAddContactClick: (String, Country?) -> Unit = { _, _ -> },
-    onCallPhoneNumber: (Context, String) -> Unit = ContactUtils::callPhoneNumber,
+    onCallPhoneNumber: (Context, String) -> Unit = PhoneActions::callPhoneNumber,
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
@@ -118,10 +94,10 @@ fun DialerScreen(
     val unknownTitle = stringResource(R.string.unknown)
     val vibrationDuration by appSettingsViewModel.vibrationDuration.collectAsStateWithLifecycle()
     val vibrationPattern by appSettingsViewModel.vibrationPattern.collectAsStateWithLifecycle()
-    val profileContact = contactsViewModel.profile.collectAsStateWithLifecycle().value
-    val localRecents by contactsViewModel.localOperations.collectAsStateWithLifecycle()
-    val callLogRecents by contactsViewModel.callLogs.collectAsStateWithLifecycle()
-    val topUsedContacts by contactsViewModel.topUsedContacts.collectAsStateWithLifecycle(initialValue = emptyList())
+    val profileContact = directory.profile.collectAsStateWithLifecycle().value
+    val localRecents by directory.localOperations.collectAsStateWithLifecycle()
+    val callLogRecents by directory.callLogs.collectAsStateWithLifecycle()
+    val topUsedContacts by directory.topUsedContacts.collectAsStateWithLifecycle(initialValue = emptyList())
     val speedDialContacts by appSettingsViewModel.speedDialContacts.collectAsStateWithLifecycle()
 
     val coroutineScope = rememberCoroutineScope()
@@ -174,7 +150,7 @@ fun DialerScreen(
         }
     }
 
-    val allContacts by contactsViewModel.contacts.collectAsStateWithLifecycle()
+    val allContacts by directory.contacts.collectAsStateWithLifecycle()
 
     val smartSuggestions = remember(localRecents, callLogRecents, topUsedContacts) {
         buildSmartSuggestions(
@@ -362,8 +338,8 @@ fun DialerScreen(
 
     fun openWhatsApp(targetNumber: String) {
         coroutineScope.launch {
-            val contact = contactsViewModel.findContactByPhoneNumber(targetNumber)
-            contactsViewModel.addRecentOperation(
+            val contact = directory.findContactByPhoneNumber(targetNumber)
+            directory.addRecentOperation(
                 contact ?: Contact(
                     name = unknownTitle,
                     phones = listOf(
@@ -377,11 +353,11 @@ fun DialerScreen(
                 target = targetNumber,
             )
         }
-        ContactUtils.openWhatsApp(context, targetNumber)
+        PhoneActions.openWhatsApp(context, targetNumber)
     }
 
     fun placeCall(targetNumber: String) {
-        contactsViewModel.recordCallUsage(targetNumber)
+        directory.recordCallUsage(targetNumber)
         onCallPhoneNumber(context, targetNumber)
     }
 
@@ -422,7 +398,7 @@ fun DialerScreen(
             lastDialedNumber = sanitizeDialerInput(storedNumber)
         }
 
-        contactsViewModel.fetchAllRecentOperations()
+        directory.fetchAllRecentOperations()
     }
 
     LaunchedEffect(phoneNumber) {
@@ -472,7 +448,7 @@ fun DialerScreen(
         onPhoneNumberChange(updatedValue.text)
     }
     val onContactCall: (String) -> Unit = { number ->
-        contactsViewModel.recordCallUsage(number)
+        directory.recordCallUsage(number)
         onCallPhoneNumber(context, number)
     }
     val onMatchedContactClick: () -> Unit = {
@@ -489,13 +465,13 @@ fun DialerScreen(
     }
     val onOneLongPress: () -> Unit = {
         VibrationUtils.vibrate(context, vibrationDuration, vibrationPattern)
-        ContactUtils.callVoicemail(context)
+        PhoneActions.callVoicemail(context)
     }
     val onNumberLongPress: (Int) -> Unit = { number ->
         handleSpeedDialLongPress(
             number,
             speedDialContacts,
-            contactsViewModel.contacts.value,
+            directory.contacts.value,
             context,
             resources,
             snackbar,
@@ -557,7 +533,7 @@ fun DialerScreen(
                 unknownTitle = unknownTitle,
                 accentColor = accentColor,
                 textColor = textColor,
-                loadContactPhoto = contactsViewModel::loadContactPhoto,
+                loadContactPhoto = directory::loadContactPhoto,
                 onContactCall = onContactCall,
                 onAddContact = ::requestAddContact,
             )
@@ -593,7 +569,7 @@ fun DialerScreen(
                 onDigit = ::insertSymbol,
                 onOneLongPress = onOneLongPress,
                 onNumberLongPress = onNumberLongPress,
-                loadContactPhoto = contactsViewModel::loadContactPhoto,
+                loadContactPhoto = directory::loadContactPhoto,
             )
         }
     }

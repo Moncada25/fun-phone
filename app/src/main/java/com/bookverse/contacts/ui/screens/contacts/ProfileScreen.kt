@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.graphics.Bitmap
 import android.widget.Toast
@@ -340,7 +341,7 @@ fun ProfileScreen(
                         ) {
                             if (contact.phones.size > 1) {
                                 phoneAction = { phoneNumber ->
-                                    ContactUtils.openWhatsApp(context, phoneNumber)
+                                    PhoneActions.openWhatsApp(context, phoneNumber)
                                     contactsViewModel.addRecentOperation(
                                         contact = contact,
                                         type = RecentType.WHATSAPP_OPEN,
@@ -350,7 +351,7 @@ fun ProfileScreen(
                                 showPhoneSelectionDialog = true
                             } else {
                                 val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                ContactUtils.openWhatsApp(context, primaryPhone)
+                                PhoneActions.openWhatsApp(context, primaryPhone)
                                 contactsViewModel.addRecentOperation(
                                     contact = contact,
                                     type = RecentType.WHATSAPP_OPEN,
@@ -368,12 +369,12 @@ fun ProfileScreen(
                         ) {
                             if (contact.phones.size > 1) {
                                 phoneAction = { phoneNumber ->
-                                    ContactUtils.callPhoneNumber(context, phoneNumber)
+                                    PhoneActions.callPhoneNumber(context, phoneNumber)
                                 }
                                 showPhoneSelectionDialog = true
                             } else {
                                 val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                ContactUtils.callPhoneNumber(context, primaryPhone)
+                                PhoneActions.callPhoneNumber(context, primaryPhone)
                             }
                         }
                     }
