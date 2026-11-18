@@ -254,4 +254,5 @@
     <string name="holidays_hide_past_agenda">Ocultar anteriores de este mes</string>
     <string name="holidays_past_agenda_title">Anteriores de este mes</string>
     <string name="holidays_no_upcoming_agenda">No hay eventos próximos este mes.</string>
+    <string name="paint_size">Tamaño</string>
 </resources>

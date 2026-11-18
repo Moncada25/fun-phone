@@ -571,7 +571,6 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                     blurIntensity = state.blurIntensity,
                     selectedShape = selectedShape,
                     shapeFilled = shapeFilled,
-                    accentColor = accentColor,
                     enabled = controlsEnabled,
                 ),
                 onEvent = onControlsEvent,
