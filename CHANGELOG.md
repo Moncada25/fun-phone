@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Each feature module now owns its strings and their Spanish, German, French and Portuguese
   translations; `:core:ui` keeps only the strings that several modules share. The localization gate
   checks every module and rejects a string name declared in two modules. No text changes.
+- `:app` uses an application convention plugin, shared components read the accent bar style from
+  the theme instead of the settings view model, call history no longer depends on the contacts
+  module, and the Baseline Profile was regenerated for the new modules. No user-visible change.
 
 ### Fixed
 - Google Play hid the app from landscape-only devices because the photo crop screen is locked to
