@@ -1226,7 +1226,6 @@
     <string name="about_feature_widgets">Widgets personnalisables pour un accès rapide aux favoris</string>
     <string name="about_feature_shortcuts">Raccourcis dynamiques pour appels et actions fréquentes</string>
     <string name="about_developer_title">Développeur</string>
-    <string name="about_developer_contact">Retrouvez-moi sur les réseaux sociaux et découvrez mes autres projets ! ⭐</string>
     <string name="easter_egg_toast">Merci d\'utiliser Fun Phone ! 🎉</string>
 
 
@@ -1586,11 +1585,8 @@
 
 
     <string name="about_features_description">Fonctions essentielles d’appel et de contact, avec des extras facultatifs</string>
-    <string name="about_feedback">Retours</string>
     <string name="about_version">Version : %1$s</string>
     <string name="about_version_copied">Informations de version copiées</string>
-    <string name="about_actions_title">Actions rapides</string>
-    <string name="about_actions_description">Partagez l\'app, visitez le site ou laissez un avis.</string>
     <string name="about_share_message">Découvrez Fun Phone : un composeur et gestionnaire de contacts Android privé et personnalisable, avec des outils facultatifs. Téléchargez ici : https://play.google.com/store/apps/details?id=com.bookverse.contacts</string>
     <string name="about_share_title">Partager Fun Phone</string>
     <string name="about_footer_title">Conçu avec soin</string>
@@ -2260,4 +2256,27 @@
         <item quantity="many">%1$d appels manqués</item>
         <item quantity="other">%1$d appels manqués</item>
     </plurals>
+    <string name="about_badge_open_source">Logiciel libre</string>
+    <string name="about_badge_no_ads">Sans publicité</string>
+    <string name="about_badge_no_trackers">Sans traqueurs</string>
+    <string name="about_open_source_title">Logiciel libre</string>
+    <string name="about_open_source_description">Un logiciel libre développé en public. Lisez le code, suivez les progrès et aidez à façonner la suite.</string>
+    <string name="about_source_code">Code source</string>
+    <string name="about_report_issue">Signaler un problème</string>
+    <string name="about_report_issue_summary">Un bug ou une idée ? Ouvrez un ticket sur GitHub.</string>
+    <string name="about_releases">Versions et nouveautés</string>
+    <string name="about_releases_summary">Découvrez ce qui a changé dans chaque version.</string>
+    <string name="about_contribute">Contribuer</string>
+    <string name="about_contribute_summary">Lisez le guide et envoyez votre première pull request.</string>
+    <string name="about_license">Licence</string>
+    <string name="about_license_summary">Licence publique générale GNU v3.0</string>
+    <string name="about_star_repository">Ajouter une étoile sur GitHub</string>
+    <string name="about_support_title">Soutenir le projet</string>
+    <string name="about_support_description">Faites passer le mot et aidez plus de personnes à découvrir un composeur privé et libre.</string>
+    <string name="about_share_summary">Recommandez Fun Phone à vos proches.</string>
+    <string name="about_rate_play">Noter sur Google Play</string>
+    <string name="about_rate_play_summary">Votre avis aide d’autres personnes à découvrir l’app.</string>
+    <string name="about_developer_role">Créateur et mainteneur</string>
+    <string name="about_developer_description">Des questions, des idées ou envie de collaborer ? Écrivez-moi.</string>
+    <string name="about_footer_legal">%1$s · Sous licence %2$s</string>
 </resources>

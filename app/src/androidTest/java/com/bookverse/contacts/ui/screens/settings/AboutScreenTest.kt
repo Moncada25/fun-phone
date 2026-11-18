@@ -67,8 +67,8 @@ class AboutScreenTest {
             composeRule.onNodeWithContentDescription(string(featureRes)).assertIsDisplayed()
         }
 
-        scrollTo(R.string.about_actions_title)
-        composeRule.onNodeWithText(string(R.string.about_actions_title)).assertIsDisplayed()
+        scrollTo(R.string.about_support_title)
+        composeRule.onNodeWithText(string(R.string.about_support_title)).assertIsDisplayed()
         scrollTo(R.string.about_footer_message)
         composeRule.onNodeWithText(string(R.string.about_footer_message)).assertIsDisplayed()
     }
@@ -81,11 +81,15 @@ class AboutScreenTest {
             .onNodeWithContentDescription(string(R.string.back))
             .assertHasClickAction()
 
-        scrollTo(R.string.about_actions_title)
         listOf(
+            R.string.about_source_code,
+            R.string.about_report_issue,
+            R.string.about_releases,
+            R.string.about_contribute,
+            R.string.about_license,
+            R.string.about_star_repository,
             R.string.share,
             R.string.website,
-            R.string.about_feedback,
         ).forEach { actionRes ->
             scrollTo(actionRes)
             composeRule
@@ -166,8 +170,8 @@ class AboutScreenTest {
         composeRule.waitForIdle()
 
         listOf(
-            R.string.about_actions_title,
-            R.string.about_feedback,
+            R.string.about_star_repository,
+            R.string.about_support_title,
             R.string.about_footer_message,
         ).forEach { targetRes ->
             scrollTo(targetRes)
@@ -199,8 +203,8 @@ class AboutScreenTest {
         composeRule.waitForIdle()
 
         composeRule.onNodeWithText(string(R.string.app_name)).assertIsDisplayed()
-        scrollTo(R.string.about_actions_title)
-        composeRule.onNodeWithText(string(R.string.about_actions_title)).assertIsDisplayed()
+        scrollTo(R.string.about_support_title)
+        composeRule.onNodeWithText(string(R.string.about_support_title)).assertIsDisplayed()
         scrollTo(R.string.about_footer_message)
         composeRule.onNodeWithText(string(R.string.about_footer_message)).assertIsDisplayed()
     }

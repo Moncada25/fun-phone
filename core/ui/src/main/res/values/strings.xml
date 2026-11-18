@@ -1291,7 +1291,6 @@
     <string name="about_feature_widgets">Customizable widgets for quick access to favorites</string>
     <string name="about_feature_shortcuts">Dynamic shortcuts for frequent calls and actions</string>
     <string name="about_developer_title">Developer</string>
-    <string name="about_developer_contact">Connect with me on social media and check out my other projects! ⭐</string>
     <string name="easter_egg_toast">Thank you for using Fun Phone! 🎉</string>
 
     <!-- Strings for voice recording notes -->
@@ -1663,11 +1662,8 @@
 
     <!-- New strings for AboutScreen -->
     <string name="about_features_description">Core calling and contact features, with optional extras</string>
-    <string name="about_feedback">Feedback</string>
     <string name="about_version">Version %1$s</string>
     <string name="about_version_copied">Version information copied</string>
-    <string name="about_actions_title">Quick actions</string>
-    <string name="about_actions_description">Share the app, visit the website, or leave feedback.</string>
     <string name="about_share_message">Meet Fun Phone: a private, customizable Android dialer and contacts app with optional tools. Download it here: https://play.google.com/store/apps/details?id=com.bookverse.contacts</string>
     <string name="about_share_title">Share Fun Phone</string>
     <string name="about_footer_title">Crafted with care</string>
@@ -2250,4 +2246,31 @@
         <item quantity="one">%1$d missed call</item>
         <item quantity="other">%1$d missed calls</item>
     </plurals>
+    <string name="about_license_short" translatable="false">GPL-3.0</string>
+    <string name="about_repository_path" translatable="false">github.com/Moncada25/fun-phone</string>
+    <string name="about_website_host" translatable="false">moncada25.github.io/fun-phone-web</string>
+    <string name="about_developer_name" translatable="false">Santiago Moncada</string>
+    <string name="about_badge_open_source">Open source</string>
+    <string name="about_badge_no_ads">No ads</string>
+    <string name="about_badge_no_trackers">No trackers</string>
+    <string name="about_open_source_title">Open source</string>
+    <string name="about_open_source_description">Free software built in the open. Read the code, follow progress, and help shape what comes next.</string>
+    <string name="about_source_code">Source code</string>
+    <string name="about_report_issue">Report an issue</string>
+    <string name="about_report_issue_summary">Found a bug or have an idea? Open an issue on GitHub.</string>
+    <string name="about_releases">Releases and changelog</string>
+    <string name="about_releases_summary">See what changed in every version.</string>
+    <string name="about_contribute">Contribute</string>
+    <string name="about_contribute_summary">Read the guide and send your first pull request.</string>
+    <string name="about_license">License</string>
+    <string name="about_license_summary">GNU General Public License v3.0</string>
+    <string name="about_star_repository">Star on GitHub</string>
+    <string name="about_support_title">Support the project</string>
+    <string name="about_support_description">Spread the word and help more people discover a private, open source dialer.</string>
+    <string name="about_share_summary">Recommend Fun Phone to friends and family.</string>
+    <string name="about_rate_play">Rate on Google Play</string>
+    <string name="about_rate_play_summary">Your review helps others discover the app.</string>
+    <string name="about_developer_role">Creator and maintainer</string>
+    <string name="about_developer_description">Questions, ideas, or want to collaborate? Get in touch.</string>
+    <string name="about_footer_legal">%1$s · Licensed under %2$s</string>
 </resources>
