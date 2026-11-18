@@ -21,7 +21,7 @@ import com.bookverse.contacts.ui.theme.AccentBarStyle
 
 /** The main dialer and appearance preview share the same style-specific rendering. */
 @Composable
-internal fun DialerFloatingActionButton(
+fun DialerFloatingActionButton(
     style: AccentBarStyle,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,

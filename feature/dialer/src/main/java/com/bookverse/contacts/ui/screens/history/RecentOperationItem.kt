@@ -1,6 +1,6 @@
-package com.bookverse.contacts.ui.screens.contacts
+package com.bookverse.contacts.ui.screens.history
 
-import com.bookverse.contacts.utils.PhoneActions
+import com.bookverse.contacts.utils.PhoneActionLauncher
 import android.telephony.PhoneNumberUtils
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -66,6 +66,7 @@ fun RecentOperationItem(
     onLongPress: () -> Unit,
     contactsViewModel: ContactsViewModel,
     secondaryTextColor: Color,
+    phoneActions: PhoneActionLauncher,
 ) {
     val context = LocalContext.current
     val timeFormat = SimpleDateFormat("HH:mm", LocaleController.effectiveLocale(context))
@@ -136,7 +137,7 @@ fun RecentOperationItem(
         IconButton(
             onClick = {
                 if (phoneNumber.isNotBlank()) {
-                    PhoneActions.callPhoneNumber(context, phoneNumber)
+                    phoneActions.callPhoneNumber(context, phoneNumber)
                 }
             },
             modifier = Modifier.size(44.dp),

@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.dialer
 
+import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -10,8 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bookverse.contacts.testing.ComposeTestContent
-import com.bookverse.contacts.testing.ComposeTestHostActivity
 import java.util.concurrent.atomic.AtomicReference
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -19,7 +18,8 @@ import org.junit.Test
 
 class DialerNumberEditorTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<ComposeTestHostActivity>()
+    val composeRule = createAndroidComposeRule<ComponentActivity>()
+    private val testContent = SwappableComposeContent { composeRule.setContent(it) }
 
     @Test
     fun nativeEditorSanitizesPasteAndSelectedReplacement() {
@@ -84,24 +84,22 @@ class DialerNumberEditorTest {
         observed: AtomicReference<TextFieldValue>,
         valueState: MutableState<TextFieldValue> = mutableStateOf(TextFieldValue("", TextRange.Zero)),
     ) {
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                var value by valueState
-                MaterialTheme {
-                    DialerNumberEditor(
-                        value = value,
-                        onValueChange = {
-                            value = it
-                            observed.set(it)
-                        },
-                        registerEditText = editor::set,
-                        textColor = MaterialTheme.colorScheme.onSurface.toArgb(),
-                        textSizePx = 32f,
-                        cursorColor = Color(0xFF2196F3).toArgb(),
-                        selectionBackgroundColor =
-                            Color(0xFF2196F3).copy(alpha = 0.4f).toArgb(),
-                    )
-                }
+        testContent.show {
+            var value by valueState
+            MaterialTheme {
+                DialerNumberEditor(
+                    value = value,
+                    onValueChange = {
+                        value = it
+                        observed.set(it)
+                    },
+                    registerEditText = editor::set,
+                    textColor = MaterialTheme.colorScheme.onSurface.toArgb(),
+                    textSizePx = 32f,
+                    cursorColor = Color(0xFF2196F3).toArgb(),
+                    selectionBackgroundColor =
+                        Color(0xFF2196F3).copy(alpha = 0.4f).toArgb(),
+                )
             }
         }
     }

@@ -133,7 +133,7 @@ object PhoneActions : PhoneActionLauncher {
         }
     }
 
-    fun callVoicemail(context: Context) {
+    override fun callVoicemail(context: Context) {
         DiagnosticLog.debug(DiagnosticEvent.CALL_VOICEMAIL_REQUESTED)
         if (PermissionUtils.isDefaultDialer(context)) {
             executeVoicemailCall(context)

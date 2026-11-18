@@ -37,8 +37,8 @@ check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/settings
 check_line_ceiling "feature/contacts/src/main/java/com/bookverse/contacts/ui/viewmodel/ContactsViewModel.kt" 1714
 check_line_ceiling "feature/contacts/src/main/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsScreen.kt" 1604
 check_line_ceiling "feature/notes/src/main/java/com/bookverse/contacts/ui/screens/notes/NoteListScreen.kt" 1372
-check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/dialer/DialerScreen.kt" 1127
-check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/contacts/HistoryScreen.kt" 1109
+check_line_ceiling "feature/dialer/src/main/java/com/bookverse/contacts/ui/screens/dialer/DialerScreen.kt" 1127
+check_line_ceiling "feature/dialer/src/main/java/com/bookverse/contacts/ui/screens/history/HistoryScreen.kt" 1109
 check_line_ceiling "feature/tools/src/main/java/com/bookverse/contacts/ui/screens/tools/HolidaysScreen.kt" 1352
 
 speed_dial_sheet="$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsDialog.kt"
@@ -78,12 +78,12 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/domain/telemetry/FunnelTelemetryTest.kt"
   "app/src/test/java/com/bookverse/contacts/service/TelecomCallActionsTest.kt"
   "feature/notes/src/test/java/com/bookverse/contacts/service/ReminderDeliveryActionTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/RecentPhoneMatchTest.kt"
+  "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/history/RecentPhoneMatchTest.kt"
   "feature/contacts/src/test/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsPhoneTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/HistoryProjectionTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerContactFilterTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerInputPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerSearchPerformanceTest.kt"
+  "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/history/HistoryProjectionTest.kt"
+  "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerContactFilterTest.kt"
+  "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerInputPolicyTest.kt"
+  "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerSearchPerformanceTest.kt"
   "feature/notes/src/test/java/com/bookverse/contacts/ui/screens/notes/NoteFolderFilterStateTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowControllerTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/settings/PhoneStatusStateTest.kt"
@@ -95,7 +95,7 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/settings/LocaleControllerTest.kt"
   "feature/games/src/test/java/com/bookverse/contacts/data/hangman/HangmanWordsTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/NavigationViewModelTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/dialer/SpeedDialResolverTest.kt"
+  "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/dialer/SpeedDialResolverTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/PasswordAuthMethodContractTest.kt"
   "core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt"
   "core/database/src/main/java/com/bookverse/contacts/data/db/LegacyDatabaseMigrations.kt"
@@ -103,7 +103,7 @@ required_tests=(
   "app/src/androidTest/java/com/bookverse/contacts/service/ReminderSchedulingPerformanceTest.kt"
   "core/ui/src/androidTest/java/com/bookverse/contacts/ui/auth/PasswordAuthDialogsTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/navigation/MainTabNavigationBarTest.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/ui/screens/dialer/DialerNumberEditorTest.kt"
+  "feature/dialer/src/androidTest/java/com/bookverse/contacts/ui/screens/dialer/DialerNumberEditorTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowScreenTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/BlockedNumbersDialogsTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/screens/tools/ToolsPresetSelectorTest.kt"

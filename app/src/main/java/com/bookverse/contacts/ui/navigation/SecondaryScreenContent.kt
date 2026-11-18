@@ -139,6 +139,7 @@ fun SecondaryScreenContent(
             onBack = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
             directory = contactsViewModel,
+            phoneActions = PhoneActions,
             phoneNumber = dialerPhoneNumber,
             onPhoneNumberChange = { onDialerPhoneNumberChange(it) },
             onAddContactClick = { phone, country ->

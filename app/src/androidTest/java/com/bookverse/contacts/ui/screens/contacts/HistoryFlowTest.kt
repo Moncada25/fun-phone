@@ -1,5 +1,7 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.ui.screens.history.HistoryScreen
+import com.bookverse.contacts.utils.PhoneActions
 import android.os.Build
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -62,7 +64,8 @@ class HistoryFlowTest {
                         HistoryScreen(
                             appSettingsViewModel = settingsViewModel,
                             contactsViewModel = contactsViewModel,
-                            navigationViewModel = navigationViewModel,
+                            onOpenSecondary = { navigationViewModel.openSecondary(it) },
+                            phoneActions = PhoneActions,
                             onDialerPhoneNumberChange = {},
                             isLimitedMode = true,
                             listState = rememberLazyListState(),

@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts
+package com.bookverse.contacts.ui.screens.history
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

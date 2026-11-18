@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts
+package com.bookverse.contacts.ui.screens.history
 
 import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType

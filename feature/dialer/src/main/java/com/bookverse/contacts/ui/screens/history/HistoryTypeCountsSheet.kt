@@ -1,4 +1,4 @@
-package com.bookverse.contacts.ui.screens.contacts
+package com.bookverse.contacts.ui.screens.history
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

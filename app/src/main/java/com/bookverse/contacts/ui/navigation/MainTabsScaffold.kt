@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.navigation
 
+import com.bookverse.contacts.utils.PhoneActions
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -19,7 +20,7 @@ import com.bookverse.contacts.utils.SecondaryScreen
 import com.bookverse.contacts.ui.screens.tools.ToolsScreen
 import com.bookverse.contacts.ui.screens.contacts.ContactListScreen
 import com.bookverse.contacts.ui.screens.contacts.FavoritesScreen
-import com.bookverse.contacts.ui.screens.contacts.HistoryScreen
+import com.bookverse.contacts.ui.screens.history.HistoryScreen
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
@@ -110,7 +111,8 @@ fun MainTabsScaffold(
                 2 -> HistoryScreen(
                     appSettingsViewModel = appSettingsViewModel,
                     contactsViewModel = contactsViewModel,
-                    navigationViewModel = navigationViewModel,
+                    onOpenSecondary = { navigationViewModel.openSecondary(it) },
+                    phoneActions = PhoneActions,
                     onDialerPhoneNumberChange = onDialerPhoneNumberChange,
                     onContactClick = {
                         if (it.id == profileContact?.id) onNavigateToProfile() else onSelectContact(

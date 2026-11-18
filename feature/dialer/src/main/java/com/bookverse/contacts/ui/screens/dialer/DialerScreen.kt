@@ -1,6 +1,6 @@
 package com.bookverse.contacts.ui.screens.dialer
 
-import com.bookverse.contacts.utils.PhoneActions
+import com.bookverse.contacts.utils.PhoneActionLauncher
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.compose.BackHandler
@@ -65,7 +65,8 @@ fun DialerScreen(
     phoneNumber: String,
     onPhoneNumberChange: (String) -> Unit,
     onAddContactClick: (String, Country?) -> Unit = { _, _ -> },
-    onCallPhoneNumber: (Context, String) -> Unit = PhoneActions::callPhoneNumber,
+    phoneActions: PhoneActionLauncher,
+    onCallPhoneNumber: (Context, String) -> Unit = phoneActions::callPhoneNumber,
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
@@ -353,7 +354,7 @@ fun DialerScreen(
                 target = targetNumber,
             )
         }
-        PhoneActions.openWhatsApp(context, targetNumber)
+        phoneActions.openWhatsApp(context, targetNumber)
     }
 
     fun placeCall(targetNumber: String) {
@@ -465,10 +466,11 @@ fun DialerScreen(
     }
     val onOneLongPress: () -> Unit = {
         VibrationUtils.vibrate(context, vibrationDuration, vibrationPattern)
-        PhoneActions.callVoicemail(context)
+        phoneActions.callVoicemail(context)
     }
     val onNumberLongPress: (Int) -> Unit = { number ->
         handleSpeedDialLongPress(
+            phoneActions = phoneActions,
             number,
             speedDialContacts,
             directory.contacts.value,

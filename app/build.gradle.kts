@@ -419,6 +419,7 @@ dependencies {
     implementation(project(":core:security"))
     implementation(project(":core:ui"))
     implementation(project(":feature:contacts"))
+    implementation(project(":feature:dialer"))
     implementation(project(":feature:expenses"))
     implementation(project(":feature:games"))
     implementation(project(":feature:notes"))

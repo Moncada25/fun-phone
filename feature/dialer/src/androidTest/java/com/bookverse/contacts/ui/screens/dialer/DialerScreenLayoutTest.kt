@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.dialer
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
@@ -20,8 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
-import com.bookverse.contacts.testing.ComposeTestContent
-import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
@@ -32,7 +31,8 @@ import org.junit.Test
 
 class DialerScreenLayoutTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<ComposeTestHostActivity>()
+    val composeRule = createAndroidComposeRule<ComponentActivity>()
+    private val testContent = SwappableComposeContent { composeRule.setContent(it) }
 
     @Test
     fun primaryActionsAreDisplayedAndMeetMinimumTouchTarget() {
@@ -188,41 +188,39 @@ class DialerScreenLayoutTest {
         numberContext: DialerNumberContext = DialerNumberContext(),
         accentBarStyle: AccentBarStyle = AccentBarStyle.MINIMAL,
     ) {
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    DialerScreenLayout(
-                        modifier = Modifier.fillMaxSize(),
-                        accentColor = Color(0xFF2196F3),
-                        textColor = MaterialTheme.colorScheme.onBackground,
-                        accentBarStyle = accentBarStyle,
-                        fontType = "default",
-                        dtmfTonesEnabled = "disabled",
-                        vibrationDuration = 0,
-                        vibrationPattern = "default",
-                        phoneFieldValue = TextFieldValue(
-                            text = dialedNumber,
-                            selection = TextRange(dialedNumber.length),
-                        ),
-                        dialedNumber = dialedNumber,
-                        suggestionEntries = emptyList(),
-                        filteredContacts = filteredContacts,
-                        unknownTitle = "Unknown",
-                        onValueChange = {},
-                        registerEditText = {},
-                        onContactCall = onContactCall,
-                        onAddContact = onAddContact,
-                        onCall = {},
-                        onWhatsApp = {},
-                        onDelete = {},
-                        onLongDelete = {},
-                        onDigit = {},
-                        onOneLongPress = {},
-                        onNumberLongPress = {},
-                        loadContactPhoto = { null },
-                        numberContext = numberContext,
-                    )
-                }
+        testContent.show {
+            MaterialTheme {
+                DialerScreenLayout(
+                    modifier = Modifier.fillMaxSize(),
+                    accentColor = Color(0xFF2196F3),
+                    textColor = MaterialTheme.colorScheme.onBackground,
+                    accentBarStyle = accentBarStyle,
+                    fontType = "default",
+                    dtmfTonesEnabled = "disabled",
+                    vibrationDuration = 0,
+                    vibrationPattern = "default",
+                    phoneFieldValue = TextFieldValue(
+                        text = dialedNumber,
+                        selection = TextRange(dialedNumber.length),
+                    ),
+                    dialedNumber = dialedNumber,
+                    suggestionEntries = emptyList(),
+                    filteredContacts = filteredContacts,
+                    unknownTitle = "Unknown",
+                    onValueChange = {},
+                    registerEditText = {},
+                    onContactCall = onContactCall,
+                    onAddContact = onAddContact,
+                    onCall = {},
+                    onWhatsApp = {},
+                    onDelete = {},
+                    onLongDelete = {},
+                    onDigit = {},
+                    onOneLongPress = {},
+                    onNumberLongPress = {},
+                    loadContactPhoto = { null },
+                    numberContext = numberContext,
+                )
             }
         }
         composeRule.waitForIdle()

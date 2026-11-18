@@ -1,5 +1,6 @@
 package com.bookverse.contacts.benchmark
 
+import com.bookverse.contacts.utils.PhoneActions
 import android.Manifest
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -273,7 +274,7 @@ class StorePreviewActivity : FragmentActivity() {
         when (scene) {
             "favorites" -> FavoritesScreen(contacts, {}, appSettingsViewModel = settings)
             "contacts" -> ContactListScreen(contacts, tags, {}, settings, onCreateContact = {})
-            "dialer" -> DialerScreen({}, settings, contacts, number, {}, onCallPhoneNumber = { _, _ -> })
+            "dialer" -> DialerScreen({}, settings, contacts, number, {}, phoneActions = PhoneActions, onCallPhoneNumber = { _, _ -> })
             "call", "call-reply" -> {
                 val themeMode by settings.themeMode.collectAsStateWithLifecycle()
                 IncomingCallScreen(FIXTURE_CALL_ID, {}, {}, {}, FixtureCallLookup, themeMode, settings)

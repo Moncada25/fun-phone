@@ -8,4 +8,6 @@ interface PhoneActionLauncher {
     fun openSmsApp(context: Context, phoneNumber: String)
 
     fun openWhatsApp(context: Context, phoneNumber: String)
+
+    fun callVoicemail(context: Context)
 }

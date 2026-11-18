@@ -1,6 +1,6 @@
-package com.bookverse.contacts.ui.screens.contacts
+package com.bookverse.contacts.ui.screens.history
 
-import com.bookverse.contacts.utils.PhoneActions
+import com.bookverse.contacts.utils.PhoneActionLauncher
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.Manifest
 import android.content.pm.PackageManager
@@ -105,7 +105,6 @@ import com.bookverse.contacts.ui.components.topBarColors
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
-import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.ContactUtils.toRelativeDate
@@ -119,7 +118,8 @@ import java.util.Date
 fun HistoryScreen(
     appSettingsViewModel: AppSettingsViewModel,
     contactsViewModel: ContactsViewModel,
-    navigationViewModel: NavigationViewModel,
+    onOpenSecondary: (SecondaryScreen) -> Unit,
+    phoneActions: PhoneActionLauncher,
     onDialerPhoneNumberChange: (String) -> Unit,
     onContactClick: ((Contact) -> Unit)? = null,
     isLimitedMode: Boolean = false,
@@ -603,8 +603,8 @@ fun HistoryScreen(
                 }
                 if (isLimitedMode && !(accentBarStyle == AccentBarStyle.MODERN && isSearchActive)) {
                     PermissionBanner(
-                        onReviewPhoneStatus = { navigationViewModel.openSecondary(SecondaryScreen.PHONE_STATUS) },
-                        onChooseTools = { navigationViewModel.openSecondary(SecondaryScreen.TOOLS_ORDER) },
+                        onReviewPhoneStatus = { onOpenSecondary(SecondaryScreen.PHONE_STATUS) },
+                        onChooseTools = { onOpenSecondary(SecondaryScreen.TOOLS_ORDER) },
                     )
                 }
                 AnimatedVisibility(
@@ -784,7 +784,8 @@ fun HistoryScreen(
                                         contactsViewModel.toggleRecentOperationSelection(op)
                                     },
                                     contactsViewModel = contactsViewModel,
-                                    secondaryTextColor = secondaryTextColor
+                                    secondaryTextColor = secondaryTextColor,
+                                    phoneActions = phoneActions,
                                 )
                             }
                         }
@@ -934,7 +935,7 @@ fun HistoryScreen(
                                                     type = RecentType.WHATSAPP_OPEN,
                                                     target = phoneNumber
                                                 )
-                                                PhoneActions.openWhatsApp(context, phoneNumber)
+                                                phoneActions.openWhatsApp(context, phoneNumber)
                                             }
                                             recentContact = contact
                                             showPhoneSelectionDialog = true
@@ -943,7 +944,7 @@ fun HistoryScreen(
                                                 contact = contact,
                                                 type = RecentType.WHATSAPP_OPEN,
                                                 target = contact.phones.first().number
-                                            ); PhoneActions.openWhatsApp(
+                                            ); phoneActions.openWhatsApp(
                                                 context,
                                                 contact.phones.first().number
                                             )
@@ -1027,7 +1028,7 @@ fun HistoryScreen(
                             secondaryTextColor = secondaryTextColor,
                             onEditBeforeDial = {
                                 onDialerPhoneNumberChange(it)
-                                navigationViewModel.openSecondary(SecondaryScreen.DIALER)
+                                onOpenSecondary(SecondaryScreen.DIALER)
                                 showBottomSheet = false
                             }
                         )

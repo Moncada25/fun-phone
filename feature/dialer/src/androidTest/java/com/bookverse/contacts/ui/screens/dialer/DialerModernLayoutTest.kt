@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.dialer
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
@@ -25,8 +26,6 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.core.ui.R
-import com.bookverse.contacts.testing.ComposeTestContent
-import com.bookverse.contacts.testing.ComposeTestHostActivity
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
@@ -37,7 +36,8 @@ import org.junit.Test
 
 class DialerModernLayoutTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<ComposeTestHostActivity>()
+    val composeRule = createAndroidComposeRule<ComponentActivity>()
+    private val testContent = SwappableComposeContent { composeRule.setContent(it) }
 
     @Test
     fun sheetActionsMeetMinimumTouchTarget() {
@@ -122,24 +122,22 @@ class DialerModernLayoutTest {
     fun addContactCardDispatchesCallbackForUnknownNumber() {
         val addContactClicked = AtomicBoolean(false)
 
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    DialerModernResults(
-                        modifier = Modifier.fillMaxSize(),
-                        topInset = 0.dp,
-                        bottomInset = 0.dp,
-                        dialedNumber = "5550199",
-                        suggestionEntries = emptyList(),
-                        filteredContacts = emptyList(),
-                        unknownTitle = "Unknown",
-                        accentColor = Color(0xFF2196F3),
-                        textColor = MaterialTheme.colorScheme.onBackground,
-                        loadContactPhoto = { null },
-                        onContactCall = {},
-                        onAddContact = { addContactClicked.set(true) },
-                    )
-                }
+        testContent.show {
+            MaterialTheme {
+                DialerModernResults(
+                    modifier = Modifier.fillMaxSize(),
+                    topInset = 0.dp,
+                    bottomInset = 0.dp,
+                    dialedNumber = "5550199",
+                    suggestionEntries = emptyList(),
+                    filteredContacts = emptyList(),
+                    unknownTitle = "Unknown",
+                    accentColor = Color(0xFF2196F3),
+                    textColor = MaterialTheme.colorScheme.onBackground,
+                    loadContactPhoto = { null },
+                    onContactCall = {},
+                    onAddContact = { addContactClicked.set(true) },
+                )
             }
         }
         composeRule.waitForIdle()
@@ -260,39 +258,37 @@ class DialerModernLayoutTest {
         fontScale: Float = 1f,
         onHeightChanged: (Dp) -> Unit = {},
     ) {
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                val density = LocalDensity.current
-                CompositionLocalProvider(
-                    LocalDensity provides Density(density.density, fontScale),
-                ) {
-                    MaterialTheme {
-                        DialerModernKeypadSheet(
-                            modifier = Modifier.fillMaxSize(),
-                            accentColor = Color(0xFF2196F3),
-                            fontType = "default",
-                            dtmfTonesEnabled = "disabled",
-                            vibrationDuration = 0,
-                            vibrationPattern = "default",
-                            phoneFieldValue = TextFieldValue(
-                                text = dialedNumber,
-                                selection = TextRange(dialedNumber.length),
-                            ),
-                            dialedNumber = dialedNumber,
-                            onValueChange = {},
-                            registerEditText = {},
-                            onAddContact = {},
-                            onCall = onCall,
-                            onWhatsApp = onWhatsApp,
-                            onDelete = onDelete,
-                            onLongDelete = onLongDelete,
-                            onDigit = {},
-                            onOneLongPress = {},
-                            onNumberLongPress = {},
-                            numberContext = numberContext,
-                            onHeightChanged = onHeightChanged,
-                        )
-                    }
+        testContent.show {
+            val density = LocalDensity.current
+            CompositionLocalProvider(
+                LocalDensity provides Density(density.density, fontScale),
+            ) {
+                MaterialTheme {
+                    DialerModernKeypadSheet(
+                        modifier = Modifier.fillMaxSize(),
+                        accentColor = Color(0xFF2196F3),
+                        fontType = "default",
+                        dtmfTonesEnabled = "disabled",
+                        vibrationDuration = 0,
+                        vibrationPattern = "default",
+                        phoneFieldValue = TextFieldValue(
+                            text = dialedNumber,
+                            selection = TextRange(dialedNumber.length),
+                        ),
+                        dialedNumber = dialedNumber,
+                        onValueChange = {},
+                        registerEditText = {},
+                        onAddContact = {},
+                        onCall = onCall,
+                        onWhatsApp = onWhatsApp,
+                        onDelete = onDelete,
+                        onLongDelete = onLongDelete,
+                        onDigit = {},
+                        onOneLongPress = {},
+                        onNumberLongPress = {},
+                        numberContext = numberContext,
+                        onHeightChanged = onHeightChanged,
+                    )
                 }
             }
         }
