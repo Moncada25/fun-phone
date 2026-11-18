@@ -32,18 +32,18 @@ if ! grep -Eq '^include\(":app"\)[[:space:]]*$' settings.gradle.kts; then
 fi
 
 unexpected_includes=$(grep -E '^[[:space:]]*include\(' settings.gradle.kts |
-    grep -Ev '^include\(":(app|baselineprofile|core:[a-z]+)"\)[[:space:]]*$' || true)
+    grep -Ev '^include\(":(app|baselineprofile|(core|feature):[a-z]+)"\)[[:space:]]*$' || true)
 if [ -n "$unexpected_includes" ]; then
-    fail "settings.gradle.kts includes modules other than :app, :core:* Android libraries and the Android :baselineprofile test module: $unexpected_includes"
+    fail "settings.gradle.kts includes modules other than :app, :core:* and :feature:* Android libraries and the Android :baselineprofile test module: $unexpected_includes"
 fi
 
-core_modules=$(sed -nE 's/^include\(":core:([a-z]+)"\)[[:space:]]*$/\1/p' settings.gradle.kts)
-for core_module in $core_modules; do
-    core_build_file="core/$core_module/build.gradle.kts"
-    if [ ! -f "$core_build_file" ]; then
-        fail ":core:$core_module has no $core_build_file"
-    elif ! grep -Eq 'libs\.plugins\.funphone\.android\.library' "$core_build_file"; then
-        fail ":core:$core_module must apply the funphone.android.library convention plugin"
+library_modules=$(sed -nE 's/^include\(":((core|feature):[a-z]+)"\)[[:space:]]*$/\1/p' settings.gradle.kts)
+for library_module in $library_modules; do
+    library_build_file="${library_module/://}/build.gradle.kts"
+    if [ ! -f "$library_build_file" ]; then
+        fail ":$library_module has no $library_build_file"
+    elif ! grep -Eq 'libs\.plugins\.funphone\.android\.library' "$library_build_file"; then
+        fail ":$library_module must apply the funphone.android.library convention plugin"
     fi
 done
 

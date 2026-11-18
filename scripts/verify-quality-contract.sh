@@ -93,7 +93,7 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/ui/components/CallStateBannerTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/HolidaysViewModelTest.kt"
   "app/src/test/java/com/bookverse/contacts/settings/LocaleControllerTest.kt"
-  "app/src/test/java/com/bookverse/contacts/data/hangman/HangmanWordsTest.kt"
+  "feature/games/src/test/java/com/bookverse/contacts/data/hangman/HangmanWordsTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/NavigationViewModelTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/dialer/SpeedDialResolverTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/PasswordAuthMethodContractTest.kt"
