@@ -117,6 +117,7 @@ androidx-baselineprofile = { id = "androidx.baselineprofile", version.ref = "ben
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintPlugin" }
+funphone-android-application-compose = { id = "funphone.android.application.compose" }
 funphone-android-library = { id = "funphone.android.library" }
 funphone-android-library-compose = { id = "funphone.android.library.compose" }
 funphone-android-room = { id = "funphone.android.room" }

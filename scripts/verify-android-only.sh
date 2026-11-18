@@ -37,6 +37,10 @@ if [ -n "$unexpected_includes" ]; then
     fail "settings.gradle.kts includes modules other than :app, :core:* and :feature:* Android libraries and the Android :baselineprofile test module: $unexpected_includes"
 fi
 
+if ! grep -Eq 'libs\.plugins\.funphone\.android\.application' app/build.gradle.kts; then
+    fail ":app must apply the funphone.android.application.compose convention plugin"
+fi
+
 library_modules=$(sed -nE 's/^include\(":((core|feature):[a-z]+)"\)[[:space:]]*$/\1/p' settings.gradle.kts)
 for library_module in $library_modules; do
     library_build_file="${library_module/://}/build.gradle.kts"

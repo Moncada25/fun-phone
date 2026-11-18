@@ -34,6 +34,10 @@ gradlePlugin {
             id = "funphone.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "funphone.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
         register("androidRoom") {
             id = "funphone.android.room"
             implementationClass = "AndroidRoomConventionPlugin"

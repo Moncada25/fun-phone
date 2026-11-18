@@ -19,9 +19,11 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
   `:feature:tools`) hold a feature's screens, ViewModels, domain and data, and depend on `:core:ui`;
   `:app` keeps navigation, the `AppContainer` composition root, the in-call screens and telecom
   services, the contact detail and autofill activities and the manifest. `:feature:dialer` holds the keypad and call history. Shared Gradle setup lives in the `build-logic` convention plugins
-  (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
-- **Localization**: English baseline in `:core:ui` `values/`, with Spanish, German, French, and Portuguese
-  translations in `values-es/`, `values-de/`, `values-fr/`, and `values-pt/`
+  (`funphone.android.application.compose` for `:app`, `funphone.android.library`,
+  `funphone.android.library.compose`, `funphone.android.room`)
+- **Localization**: each feature module and `:core:ui` (shared strings) has its English baseline in
+  `values/`, with Spanish, German, French, and Portuguese translations in `values-es/`, `values-de/`,
+  `values-fr/`, and `values-pt/`
 
 ## Build Commands
 
