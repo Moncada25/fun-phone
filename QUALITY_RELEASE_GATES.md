@@ -160,8 +160,9 @@ require their scenario-specific profiler evidence. Never publish the benchmark A
 `app/src/main/generated/baselineProfiles/`, so release installs AOT-compile cold start, the
 Contacts list scroll, Favorites, History and the dialer instead of waiting for JIT. The
 `:baselineprofile` module (`androidx.baselineprofile` + Macrobenchmark) regenerates them. It clears
-the target Community package's data and seeds 2,000 synthetic contacts through the benchmark
-setup Activity, so it refuses physical devices unless
+the target Community package's data, sets its app language to `en-US` so the journeys find their
+labels on any device language, and seeds 2,000 synthetic contacts through the benchmark setup
+Activity, so it refuses physical devices unless
 `-Pandroid.testInstrumentationRunnerArguments.allowPhysicalDevice=true` is passed for a dedicated
 test phone. Regenerate after significant UI changes and commit the updated files:
 
