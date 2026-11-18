@@ -384,7 +384,13 @@ fun SecondaryScreenContent(
         SecondaryScreen.QR_SCANNER -> QRScannerScreen(
             onBackClick = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
-            contactsViewModel = contactsViewModel,
+            onCreateContact = { contact, successMessage, account ->
+                contactsViewModel.createContact(
+                    contact = contact,
+                    successMessage = successMessage,
+                    account = account,
+                )
+            },
             qrHistoryViewModel = qrHistoryViewModel,
             onContactSaved = {
                 onSelectedContactChange(it); navigationViewModel.openSecondary(

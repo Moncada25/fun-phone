@@ -421,6 +421,7 @@ dependencies {
     implementation(project(":feature:expenses"))
     implementation(project(":feature:games"))
     implementation(project(":feature:notes"))
+    implementation(project(":feature:qr"))
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)

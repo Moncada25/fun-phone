@@ -69,11 +69,11 @@ import androidx.core.net.toUri
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.ui.components.LoaderDialog
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.data.qr.QRType
 import com.bookverse.contacts.utils.ClipboardUtils
@@ -93,7 +93,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 fun QRScannerScreen(
     onBackClick: () -> Unit,
     appSettingsViewModel: AppSettingsViewModel,
-    contactsViewModel: ContactsViewModel,
+    onCreateContact: (contact: Contact, successMessage: String, account: ContactAccount) -> Unit,
     qrHistoryViewModel: QRHistoryViewModel,
     onContactSaved: ((Contact) -> Unit)? = null
 ) {
@@ -193,10 +193,10 @@ fun QRScannerScreen(
                                                 remotePhotoUri = null,
                                                 accounts = listOf(accountToSaveContact)
                                             )
-                                            contactsViewModel.createContact(
-                                                contact = contactToSave,
-                                                successMessage = successMessage,
-                                                account = accountToSaveContact
+                                            onCreateContact(
+                                                contactToSave,
+                                                successMessage,
+                                                accountToSaveContact,
                                             )
                                             contactAdded = contactToSave
                                             onContactSaved(contactToSave)
@@ -343,10 +343,10 @@ fun QRScannerScreen(
                                                 remotePhotoUri = null,
                                                 accounts = listOf(accountToSaveContact)
                                             )
-                                            contactsViewModel.createContact(
-                                                contact = contactToSave,
-                                                successMessage = successMessage,
-                                                account = accountToSaveContact
+                                            onCreateContact(
+                                                contactToSave,
+                                                successMessage,
+                                                accountToSaveContact,
                                             )
                                             contactAdded = contactToSave
                                             onContactSaved(contactToSave)
