@@ -1,8 +1,9 @@
 # Manual operativo para agentes de desarrollo
 
-Este archivo define cómo trabajar de forma segura y consistente en Fun Phone. Es un contrato
-operativo: úsalo para decidir cómo explorar, cambiar, validar y entregar trabajo en este
-repositorio. Evita duplicar aquí inventarios de producto o versiones que ya tienen una fuente de
+Este archivo define cómo trabajar de forma segura y consistente en Fun Phone. Es el único archivo
+de instrucciones para agentes del repositorio (Claude Code, Codex, Copilot y demás lo leen como
+`AGENTS.md`). Es un contrato operativo: úsalo para decidir cómo explorar, cambiar, validar y
+entregar trabajo en este repositorio. Evita duplicar aquí inventarios de producto o versiones que ya tienen una fuente de
 verdad ejecutable.
 
 ## 1. Reglas no negociables
@@ -27,6 +28,8 @@ verdad ejecutable.
    sincronizados.
 10. **Validar proporcionalmente.** Ejecutar los checks correspondientes al riesgo del cambio y
     declarar con claridad cualquier validación omitida.
+11. **Sin comentarios en el código** salvo que el usuario los pida de forma explícita.
+12. **Responder en el idioma del usuario.**
 
 ## 2. Fuentes de verdad
 
@@ -36,8 +39,9 @@ la inconsistencia si está dentro del alcance.
 | Tema | Fuente canónica |
 | --- | --- |
 | versión, `minSdk` y `targetSdk` | `release.properties` |
-| `compileSdk`, flavors, build types, signing y tareas | `app/build.gradle.kts` |
-| versiones de dependencias y plugins | `gradle/libs.versions.toml` |
+| `compileSdk`, JVM, lint y dependencias Compose compartidos | convention plugins en `build-logic/convention/` |
+| flavors, build types, signing y tareas de release | `app/build.gradle.kts` |
+| versiones de dependencias y plugins | `gradle/libs.versions.toml` (sin Dependabot; las actualizaciones se revisan a mano) |
 | módulos y repositorios Gradle | `settings.gradle.kts` y convention plugins en `build-logic/` |
 | permisos, components y entry points Android | `app/src/main/AndroidManifest.xml` |
 | esquema Room y migraciones activas | `AppDatabase.kt` y `core/database/schemas/` (`:core:database`) |
@@ -54,9 +58,39 @@ como completa en la especificación de releases.
 
 ## 3. Contexto técnico estable
 
-Fun Phone es una aplicación Android single-module (`app/`) con package
-`com.bookverse.contacts`. Combina marcador predeterminado, contactos, llamadas, productividad,
-herramientas y juegos en una experiencia local-first.
+Fun Phone es una aplicación Android con package `com.bookverse.contacts`. Combina marcador
+predeterminado, contactos, llamadas, notas, bóveda de contraseñas cifrada, QR, utilidades de voz,
+gastos, herramientas y juegos en una experiencia local-first. `minSdk` 29, `compileSdk` y
+`targetSdk` 37, JVM 25. Solo Android: no hay KMP ni iOS.
+
+Módulos Gradle:
+
+- `:app`: navegación, la composition root `AppContainer`, las pantallas en llamada, los servicios
+  Telecom (`FunPhoneInCallService`, `IncomingCallService`, `OngoingCallService`,
+  `NotificationService`, `CallNotificationManager`), las activities de detalle de contacto y
+  autofill, y el manifest.
+- `:core:designsystem`: tema (`ContactsAppTheme`, `ThemeMode`, `DarkModeStyle`, `AccentBarStyle`,
+  tokens semánticos como `CallAcceptColor`, `CallRejectColor`, `BadgeColor`, `BudgetOkColor`) y
+  componentes Compose genéricos sin strings.
+- `:core:database`: Room (`AppDatabase`, DAOs, converters y entidades de todas las features).
+- `:core:datastore`: la única instancia del DataStore de ajustes `app_settings_datastore`.
+- `:core:security`: `CryptoManager` (Tink + Android Keystore), PIN y bloqueo de la app.
+- `:core:ui`: strings, drawables, avatares y fuentes compartidos, `AppSettingsViewModel`,
+  componentes compartidos y la UI de autenticación de acciones protegidas.
+- `:core:common`: diagnósticos, `SecondaryScreen`, `AppEntryPoints` y utilidades genéricas.
+- `:feature:contacts`, `:feature:dialer` (teclado e historial de llamadas), `:feature:settings`,
+  `:feature:widgets`, `:feature:games`, `:feature:expenses`, `:feature:notes`, `:feature:qr`,
+  `:feature:vault` y `:feature:tools`: pantallas, ViewModels, dominio y datos de cada feature;
+  dependen de `:core:ui`.
+- `:baselineprofile`: generador de Baseline Profile y macrobenchmarks.
+
+La configuración Gradle compartida vive en los convention plugins de `build-logic`:
+`funphone.android.application.compose` para `:app`, `funphone.android.library`,
+`funphone.android.library.compose` y `funphone.android.room`.
+
+No renombrar packages ni clases que Android guarda por nombre (workers, receivers, services,
+widget providers, `InCallService`, Parcelables, activities): romperían a quienes actualizan. Los
+componentes que se abren desde otro módulo usan `AppEntryPoints`.
 
 Stack y límites principales:
 
@@ -88,8 +122,11 @@ Compose UI
 
 ### UI y presentación
 
-- Las pantallas viven en `ui/screens/<feature>/`; los elementos compartidos en `ui/components/`
-  (genéricos sin strings de la app en `:core:designsystem`, el resto en `:app`).
+- Las pantallas viven en `ui/screens/<feature>/` del módulo de su feature. Los componentes
+  genéricos sin strings van en `:core:designsystem`; los compartidos que usan strings o ajustes, en
+  `:core:ui`; los de una sola feature se quedan en ella.
+- La navegación secundaria usa el enum `SecondaryScreen` y `SecondaryScreenContent`;
+  `NavigationViewModel` expone `NavigationUiState`.
 - Aplicar [DESIGN.md](DESIGN.md): tokens semánticos, componentes existentes, estados completos,
   accesibilidad y layouts adaptables.
 - Recoger flujos en Compose con `collectAsStateWithLifecycle()`.
@@ -103,7 +140,9 @@ Compose UI
 
 - Los ViewModels coordinan estado y casos de uso; no conservan referencias a `Activity`/`View` ni
   renderizan UI. Encapsular dependencias de plataforma tras los adapters existentes cuando aplique.
-- Exponer `StateFlow` inmutable y usar `viewModelScope` para coroutines ligadas al ciclo de vida.
+- Los ViewModels extienden `AndroidViewModel`, exponen `StateFlow` con `MutableStateFlow` +
+  `.asStateFlow()`, usan `viewModelScope` y se crean con factories manuales (`provideFactory()` en
+  el companion o las factories de `AppContainer`).
 - Extraer lógica determinista a políticas o funciones puras cuando permita pruebas JVM rápidas.
 - No crear una capa o use case vacío que solo reenvíe una llamada.
 - Mantener interfaces de dominio en fronteras con plataforma, red, cifrado o persistencia cuando
@@ -119,7 +158,13 @@ Compose UI
 
 ### Persistencia y trabajo durable
 
-- Room es la fuente para datos relacionales de la app; DataStore para preferencias reactivas.
+- Room es la fuente para datos relacionales de la app (caché y papelera de contactos, notas,
+  contraseñas, gastos e historial QR); DataStore para preferencias reactivas (tema, fuentes,
+  transiciones) mediante `AppSettingsViewModel`.
+- Un archivo DataStore tiene una sola instancia en todo el proceso: reutilizar la de
+  `:core:datastore` o la del `AppContainer` (por ejemplo `DataStoreGameStatsRepository`) y nunca
+  abrir una segunda.
+- Los modelos de dominio y entidades usados por Compose llevan `@Immutable`.
 - No usar `fallbackToDestructiveMigration`.
 - Los workers deben ser idempotentes, usar unique work cuando corresponda y tolerar reintentos,
   reinicio y cambios de zona horaria.
@@ -135,9 +180,9 @@ Compose UI
   en `UPPER_SNAKE_CASE`.
 - Preferir nullabilidad explícita, sealed types y data classes inmutables frente a flags ambiguos.
 - Prefijar con `_` únicamente variables intencionalmente no usadas.
-- Añadir comentarios solo para explicar decisiones, invariantes o límites no evidentes; no narrar
-  código obvio.
 - Mantener imports limpios y archivos dentro del package de su feature.
+- Antes de crear helpers nuevos, revisar `ContactUtils`, `NoteShareUtils`, `NotesBackupUtils`,
+  `PermissionUtils`, `SpeechUtils`, `VibrationUtils` y `CryptoManager`.
 
 ### Compose
 
@@ -153,7 +198,11 @@ Compose UI
   durables.
 - Usar `rememberSaveable` para estado de presentación que deba sobrevivir recreación y tenga un
   saver seguro.
-- Proporcionar keys estables en listas/grids de entidades.
+- Proporcionar keys estables (`key`) en `items()` de listas/grids de entidades.
+- Las data classes que se pasan como parámetros a composables llevan `@Immutable`.
+- No usar `runBlocking` ni `coroutineScope.launch` dentro de composables: usar `LaunchedEffect`
+  con las keys adecuadas. `LaunchedEffect(Unit)` solo para efectos realmente únicos (animaciones,
+  colectores de `SharedFlow`); si el efecto depende de un valor, ese valor es la key.
 - Mantener targets de 48 dp, labels localizados y semántica para controles accionables.
 - No realizar I/O bloqueante ni mutaciones de estado no controladas durante composición.
 
@@ -172,6 +221,10 @@ Compose UI
   (`feature/<nombre>/src/main/res`, o `core/ui/src/main/res` si la comparten varios módulos) y a
   `values-es`, `values-de`, `values-fr` y `values-pt` de ese mismo módulo. Un nombre de string vive
   en un solo módulo.
+- Referenciar las strings propias con `com.bookverse.contacts.feature.<nombre>.R` y las compartidas
+  con `com.bookverse.contacts.core.ui.R` (importado como `CoreUiR` junto al `R` de la feature).
+  `:app` solo conserva recursos del manifest (tema, ícono, previews de widgets y configs `xml/`).
+- Nunca hardcodear texto en Kotlin.
 - Conservar nombres, placeholders, plurales y arrays exactamente alineados.
 - Usar formatters localizados para fecha, hora, números y moneda.
 - No ampliar allowlists de localización para ocultar traducciones ausentes.
@@ -199,7 +252,7 @@ Compose UI
 
 1. Cambiar entidad, DAO y `AppDatabase` de forma atómica.
 2. Incrementar versión y añadir auto-migration o migración manual explícita.
-3. Compilar para exportar el nuevo schema en `core/database/schemas/`.
+3. Compilar (`./gradlew assembleDebug`) para exportar el nuevo schema en `core/database/schemas/`.
 4. Añadir pruebas que migren desde las versiones relevantes y preserven datos.
 5. Revisar backup/import/export y workers que lean las tablas afectadas.
 
@@ -234,7 +287,9 @@ Compose UI
 ### Release o build logic
 
 1. Leer `SETUP.md`, la especificación progresiva y las guardas de signing.
-2. No usar ni modificar keystores reales dentro del repositorio.
+2. No usar ni modificar keystores reales dentro del repositorio. Las credenciales se resuelven en
+   este orden: variables de entorno, `keystore.properties`, `local.properties` y
+   `gradle.properties`; las tareas release fallan de inmediato si el signing está incompleto.
 3. Mantener separadas las distribuciones `community` y `play` y el benchmark no publicable.
 4. No relajar lint, privacidad, metadata o budgets para hacer pasar una release.
 
@@ -261,14 +316,21 @@ Comandos de referencia habituales:
 
 ```bash
 ./gradlew assembleCommunityDebug
+./gradlew assembleRelease
+./gradlew installDebug
 ./gradlew testCommunityDebugUnitTest
+./gradlew testDebugUnitTest --tests "com.bookverse.contacts.SomeTest"
 ./gradlew lintCommunityDebug
 ./gradlew connectedCommunityDebugAndroidTest
 ./gradlew ktlintCheck
+./gradlew ktlintFormat
 ./scripts/verify-localization.sh
 ./scripts/verify-quality-contract.sh
 ./scripts/verify-lint-ratchet.sh
 ```
+
+`assembleRelease` requiere credenciales de signing. `verify-lint-ratchet.sh` exige cero errores y
+un techo de warnings.
 
 No ejecutar `ktlintFormat`, formatters globales, `clean` ni una suite instrumentada completa si
 pueden alterar o bloquear trabajo ajeno sin necesidad. Usar la validación más enfocada que demuestre
