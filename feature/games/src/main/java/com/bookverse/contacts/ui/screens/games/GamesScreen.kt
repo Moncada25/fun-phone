@@ -98,7 +98,6 @@ import com.bookverse.contacts.feature.games.R
 import com.bookverse.contacts.ui.components.ArcadeDialogHeader
 import com.bookverse.contacts.ui.components.ArcadeLightStrip
 import com.bookverse.contacts.ui.components.SecondaryTopBar
-import kotlinx.coroutines.delay
 import com.bookverse.contacts.ui.components.arcadeLabelStyle
 import com.bookverse.contacts.ui.components.arcadeScoreStyle
 import com.bookverse.contacts.ui.components.crtScanlines
@@ -107,7 +106,6 @@ import com.bookverse.contacts.ui.components.withoutTop
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.absoluteValue

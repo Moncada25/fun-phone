@@ -18,7 +18,6 @@ import com.bookverse.contacts.domain.games.GamePerformance
 import com.bookverse.contacts.domain.games.GameStatsRepository
 import com.bookverse.contacts.domain.games.GameStatsSnapshot
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -86,7 +85,6 @@ class GamesScreenTest {
         onLaunch: (GameId) -> Unit = {},
     ) {
         val repository = FakeGameStatsRepository(snapshot)
-        val appSettingsViewModel = AppSettingsViewModel()
         composeRule.setContent {
             MaterialTheme {
                 GamesScreen(
@@ -101,7 +99,6 @@ class GamesScreenTest {
                     on2048Click = { onLaunch(GameId.GAME_2048) },
                     onMinesweeperClick = { onLaunch(GameId.MINESWEEPER) },
                     onSudokuClick = { onLaunch(GameId.SUDOKU) },
-                    appSettingsViewModel = appSettingsViewModel,
                     gameStatsRepository = repository,
                 )
             }
