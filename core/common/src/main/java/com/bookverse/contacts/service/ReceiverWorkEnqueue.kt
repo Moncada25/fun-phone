@@ -8,7 +8,7 @@ import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 
 /** Keeps a receiver alive until WorkManager has persisted and scheduled its operation. */
-internal fun awaitWorkEnqueue(
+fun awaitWorkEnqueue(
     context: Context,
     pendingResult: BroadcastReceiver.PendingResult?,
     enqueue: () -> Operation?,

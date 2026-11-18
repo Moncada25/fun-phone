@@ -420,6 +420,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":feature:expenses"))
     implementation(project(":feature:games"))
+    implementation(project(":feature:notes"))
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)

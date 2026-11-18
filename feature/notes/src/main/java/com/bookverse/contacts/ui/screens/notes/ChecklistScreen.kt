@@ -91,7 +91,7 @@ import com.bookverse.contacts.ui.components.SelectBottomSheet
 import com.bookverse.contacts.ui.components.TopBarSearchField
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.NotesViewModel
-import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.utils.ClipboardUtils
 import com.bookverse.contacts.utils.VibrationUtils
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.SearchX
@@ -651,7 +651,7 @@ fun ChecklistScreen(
                     )
                 },
                 onCopy = {
-                    ContactUtils.copyToClipboard(
+                    ClipboardUtils.copyToClipboard(
                         context = context,
                         text = checklistState[itemIndex].text,
                         label = itemContentLabel

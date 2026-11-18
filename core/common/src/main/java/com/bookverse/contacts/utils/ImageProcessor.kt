@@ -31,19 +31,19 @@ sealed interface ImageProcessingResult {
     data object Failure : ImageProcessingResult
 }
 
-internal data class EncodedPhoto(
+data class EncodedPhoto(
     val bytes: ByteArray,
     val width: Int,
     val height: Int,
     val format: ContactPhotoFormat,
 )
 
-internal data class PreparedContactPhoto(
+data class PreparedContactPhoto(
     val localVariant: EncodedPhoto,
     val providerVariants: List<EncodedPhoto>,
 )
 
-internal enum class ContactPhotoFormat(val extension: String) {
+enum class ContactPhotoFormat(val extension: String) {
     JPEG("jpg"),
     PNG("png"),
 }
@@ -98,7 +98,7 @@ object ImageSizingPolicy {
     }
 }
 
-internal object ContactPhotoSizingPolicy {
+object ContactPhotoSizingPolicy {
     const val LOCAL_MAX_DIMENSION = 2048
     const val LOCAL_JPEG_QUALITY = 97
 
@@ -169,7 +169,7 @@ object ImageProcessor {
         ImageProcessingResult.Failure
     }
 
-    internal suspend fun prepareContactPhoto(
+    suspend fun prepareContactPhoto(
         context: Context,
         uri: Uri,
     ): Result<PreparedContactPhoto> = withContext(Dispatchers.IO) {

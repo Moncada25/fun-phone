@@ -8,7 +8,7 @@ import android.content.Intent
 import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.MainActivity
+import com.bookverse.contacts.navigation.AppEntryPoints
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.notes.nextOccurrence
@@ -175,7 +175,7 @@ class ReminderDeliveryCoordinator(
     }
 
     private fun createContentIntent(): PendingIntent {
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val intent = AppEntryPoints.mainActivityIntent(context).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             putExtra("open_notes_list", true)
         }
