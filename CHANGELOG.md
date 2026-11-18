@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Google Play hid the app from landscape-only devices because the photo crop screen is locked to
+  portrait. The app now declares portrait screens as optional.
+
 ## [3.20.8] - 2026-11-18
 
 ### Added
