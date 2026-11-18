@@ -360,7 +360,6 @@ fun ContactFormScreen(
             SecondaryTopBar(
                 title = title,
                 onBackClick = ::cancelForm,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         },
@@ -504,7 +503,6 @@ fun ContactFormScreen(
                             socialNetworks = socialNetworks,
                             onSocialNetworksChange = { socialNetworks = it },
                             onNavigateToSearch = { showSocialNetworkDialog = true },
-                            appSettingsViewModel = appSettingsViewModel
                         )
 
                         if (!isProfileEdit) {
@@ -868,7 +866,6 @@ fun ContactFormScreen(
                     },
                     hasExistingPhoto = photoUri != null,
                     existingPhotoUri = photoUri,
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
 

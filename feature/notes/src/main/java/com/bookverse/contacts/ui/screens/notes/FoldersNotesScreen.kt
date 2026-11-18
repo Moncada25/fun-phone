@@ -156,7 +156,6 @@ fun FoldersNotesScreen(
                         )
                     }
                 },
-                appSettingsViewModel = appSettingsViewModel
             )
         },
         snackbarHost = { AppSnackbarHost(snackbar.hostState) }
@@ -302,7 +301,6 @@ fun FoldersNotesScreen(
             title = stringResource(CoreUiR.string.note_folders_delete_title),
             message = stringResource(R.string.note_folders_delete_message, target.name),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

@@ -310,7 +310,6 @@ fun ContactDetailsScreen(
                         onClick = { onEditContact(contact) }
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         },
@@ -1248,7 +1247,6 @@ fun ContactDetailsScreen(
                     title = stringResource(R.string.delete_contact),
                     message = stringResource(R.string.delete_contact_confirm, contact.name),
                     toastMessage = null,
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
 
@@ -1584,7 +1582,6 @@ fun ContactDetailsScreen(
                         R.string.delete_contact_full_history_message,
                         contact.name
                     ),
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
         }

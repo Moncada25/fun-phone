@@ -114,7 +114,6 @@ fun ToolsScreen(
         topBar = {
             MainTopBar(
                 title = stringResource(CoreUiR.string.tab_extras),
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconAction(

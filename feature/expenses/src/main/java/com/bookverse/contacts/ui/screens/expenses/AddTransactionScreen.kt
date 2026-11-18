@@ -437,7 +437,6 @@ fun AddTransactionScreen(
             },
             title = stringResource(R.string.expense_delete_transaction),
             message = stringResource(R.string.expense_delete_transaction_confirm),
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 }

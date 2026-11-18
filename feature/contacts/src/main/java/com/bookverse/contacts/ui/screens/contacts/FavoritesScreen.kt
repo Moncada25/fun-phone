@@ -180,7 +180,6 @@ fun FavoritesScreen(
             Column {
                 MainTopBar(
                     title = stringResource(R.string.favorites_title),
-                    appSettingsViewModel = appSettingsViewModel,
                     scrollBehavior = scrollBehavior,
                     actions = {
                         IconAction(

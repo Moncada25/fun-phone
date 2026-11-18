@@ -64,7 +64,6 @@ import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.DuplicateContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.DuplicateEvent
 import com.bookverse.contacts.utils.avatarLabel
@@ -76,7 +75,6 @@ import com.composables.icons.lucide.ScanSearch
 fun DuplicateContactsScreen(
     contacts: List<Contact>,
     duplicateContactsViewModel: DuplicateContactsViewModel,
-    appSettingsViewModel: AppSettingsViewModel,
     onBack: () -> Unit,
     onContactsMerged: () -> Unit = {},
 ) {
@@ -163,7 +161,6 @@ fun DuplicateContactsScreen(
                 scrollBehavior = scrollBehavior,
                 title = stringResource(CoreUiR.string.duplicate_contacts_title),
                 onBackClick = onBack,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     IconAction(
                         imageVector = Lucide.ScanSearch,

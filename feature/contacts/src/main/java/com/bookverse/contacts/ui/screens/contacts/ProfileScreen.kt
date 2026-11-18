@@ -228,7 +228,6 @@ fun ProfileScreen(
                         onClick = { onEditProfile(contact) }
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         },
@@ -814,7 +813,6 @@ fun ProfileScreen(
                     title = stringResource(CoreUiR.string.delete),
                     message = stringResource(R.string.delete_profile_confirm),
                     toastMessage = stringResource(R.string.profile_deleted),
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
 

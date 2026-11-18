@@ -84,7 +84,6 @@ import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.CountrySelectDialog
 import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.SecondaryTopBar
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.HolidaysUiState
 import com.bookverse.contacts.ui.viewmodel.HolidaysViewModel
 import com.bookverse.contacts.utils.PermissionUtils
@@ -102,7 +101,6 @@ private const val MAX_CALENDAR_WEEKS = 6
 @Composable
 fun HolidaysScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     contactsFlow: StateFlow<List<Contact>>,
     profileFlow: StateFlow<Contact?>,
     viewModel: HolidaysViewModel,
@@ -211,7 +209,6 @@ fun HolidaysScreen(
                 expandable = true,
                 title = stringResource(R.string.holidays_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconAction(onClick = { showCountrySelector = true }) {

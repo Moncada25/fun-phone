@@ -61,7 +61,6 @@ import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.DatePickerDialog
 import com.bookverse.contacts.ui.components.SelectionButton
 import com.bookverse.contacts.ui.components.TextField
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import java.text.DecimalFormatSymbols
 import java.time.Instant
 import java.time.LocalDate
@@ -86,7 +85,6 @@ fun ExpenseSearchScreen(
     currency: ExpenseCurrency,
     onEditTransaction: (ExpenseTransaction) -> Unit,
     onDeleteTransaction: (ExpenseTransaction) -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     modifier: Modifier = Modifier,
 ) {
     var showFilterSheet by remember { mutableStateOf(false) }
@@ -170,7 +168,6 @@ fun ExpenseSearchScreen(
             },
             title = stringResource(R.string.expense_delete_transaction),
             message = stringResource(R.string.expense_delete_transaction_confirm),
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 }

@@ -81,7 +81,6 @@ import com.bookverse.contacts.domain.games.GameStatsRepository
 import com.bookverse.contacts.domain.games.GameStatsSnapshot
 import com.bookverse.contacts.domain.games.gameRecordKinds
 import com.bookverse.contacts.ui.components.SecondaryTopBar
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlinx.coroutines.delay
 import java.util.Locale
 import kotlin.math.absoluteValue
@@ -109,7 +108,6 @@ fun GamesScreen(
     on2048Click: () -> Unit,
     onMinesweeperClick: () -> Unit,
     onSudokuClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior()
@@ -216,7 +214,6 @@ fun GamesScreen(
                 count = games.size,
                 onBackClick = onBackClick,
                 onCountClick = { visibleSheet = GamesSheet.FunFacts },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         }

@@ -60,7 +60,6 @@ import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.RotateCcw
 import kotlin.math.abs
@@ -71,7 +70,6 @@ import kotlin.random.Random
 @Composable
 fun Game2048Screen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val backgroundColor = MaterialTheme.colorScheme.background
@@ -273,7 +271,6 @@ fun Game2048Screen(
             SecondaryTopBar(
                 title = stringResource(R.string.game_2048_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     IconAction(
                         imageVector = Lucide.RotateCcw,

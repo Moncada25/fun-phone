@@ -109,7 +109,6 @@ fun MainTabsScaffold(
                 )
 
                 2 -> HistoryScreen(
-                    appSettingsViewModel = appSettingsViewModel,
                     contactsViewModel = contactsViewModel,
                     onOpenSecondary = { navigationViewModel.openSecondary(it) },
                     phoneActions = PhoneActions,

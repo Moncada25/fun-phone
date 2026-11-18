@@ -146,7 +146,6 @@ class ExpenseHomeScreenTest {
                     onNextMonth = onNextMonth,
                     onEditTransaction = onEditTransaction,
                     onDeleteTransaction = onDeleteTransaction,
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
         }
@@ -159,9 +158,7 @@ class ExpenseHomeScreenTest {
         onPrevMonth: () -> Unit,
         onNextMonth: () -> Unit,
         onEditTransaction: (ExpenseTransaction) -> Unit,
-        onDeleteTransaction: (ExpenseTransaction) -> Unit,
-        appSettingsViewModel: AppSettingsViewModel
-    ) {
+        onDeleteTransaction: (ExpenseTransaction) -> Unit,) {
         ExpenseHomeScreen(
             overview = ExpenseOverview(
                 month = MONTH,
@@ -178,7 +175,6 @@ class ExpenseHomeScreenTest {
             onNextMonth = onNextMonth,
             onEditTransaction = onEditTransaction,
             onDeleteTransaction = onDeleteTransaction,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 

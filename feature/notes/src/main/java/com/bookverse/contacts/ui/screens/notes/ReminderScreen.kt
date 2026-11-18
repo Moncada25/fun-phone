@@ -443,7 +443,6 @@ fun ReminderScreen(
             SecondaryTopBar(
                 title = topBarTitle,
                 onBackClick = { onCancel() },
-                appSettingsViewModel = appSettingsViewModel,
                 actions = topBarActions
             )
         },

@@ -115,7 +115,6 @@ fun RecycleBinScreen(
                         )
                     }
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         },
@@ -298,7 +297,6 @@ fun RecycleBinScreen(
                 title = stringResource(CoreUiR.string.restore),
                 message = stringResource(CoreUiR.string.restore_confirm, noteToRestore!!.title),
                 toastMessage = null,
-                appSettingsViewModel = appSettingsViewModel,
                 confirmButtonLabel = stringResource(CoreUiR.string.restore),
                 isDestructive = false,
             )
@@ -323,7 +321,6 @@ fun RecycleBinScreen(
                     noteToDeletePermanently!!.title
                 ),
                 toastMessage = null,
-                appSettingsViewModel = appSettingsViewModel
             )
         }
 
@@ -343,7 +340,6 @@ fun RecycleBinScreen(
                 title = stringResource(CoreUiR.string.empty_recycle_bin),
                 message = stringResource(CoreUiR.string.empty_recycle_bin_confirm),
                 toastMessage = null,
-                appSettingsViewModel = appSettingsViewModel
             )
         }
     }

@@ -193,7 +193,6 @@ fun PasswordEditScreen(
                         )
                     }
                 },
-                appSettingsViewModel = appSettingsViewModel,
             )
         },
         snackbarHost = { AppSnackbarHost(snackHost.hostState) },

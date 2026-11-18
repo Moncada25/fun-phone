@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -19,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +30,6 @@ import com.bookverse.contacts.core.ui.R
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.theme.accentPalette
 import com.composables.icons.lucide.ArrowLeft
@@ -45,7 +44,6 @@ fun SecondaryTopBar(
     title: String,
     onBackClick: () -> Unit,
     actions: @Composable (ActionPillScope.() -> Unit)? = null,
-    appSettingsViewModel: AppSettingsViewModel,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     titleContent: (@Composable () -> Unit)? = null,
     count: Int? = null,
@@ -53,7 +51,7 @@ fun SecondaryTopBar(
     expandable: Boolean = false,
     searchAction: AppBarSearchAction? = null,
 ) {
-    val accentBarStyle by appSettingsViewModel.accentBarStyle.collectAsStateWithLifecycle()
+    val accentBarStyle = LocalAppChromeStyle.current
     val keyboard = androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
     val density = androidx.compose.ui.platform.LocalDensity.current
     val imeVisible = androidx.compose.foundation.layout.WindowInsets.ime.getBottom(density) > 0

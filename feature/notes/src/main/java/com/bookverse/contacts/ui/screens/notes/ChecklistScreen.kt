@@ -302,7 +302,6 @@ fun ChecklistScreen(
                         feedback = true
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 titleContent = if (searchActive) {
                     {

@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -26,8 +27,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.theme.accentPalette
 import com.composables.icons.lucide.Lucide
@@ -38,7 +37,6 @@ import com.composables.icons.lucide.Search
 fun MainTopBar(
     title: String = "",
     count: Int? = null,
-    appSettingsViewModel: AppSettingsViewModel,
     scrollBehavior: TopAppBarScrollBehavior = rememberAppBarScrollBehavior(),
     titleContent: (@Composable () -> Unit)? = null,
     actions: @Composable (ActionPillScope.() -> Unit)? = null,
@@ -46,7 +44,7 @@ fun MainTopBar(
     searchAction: AppBarSearchAction? = null,
     solidWhenCollapsed: Boolean = false,
 ) {
-    val accentBarStyle by appSettingsViewModel.accentBarStyle.collectAsStateWithLifecycle()
+    val accentBarStyle = LocalAppChromeStyle.current
     if (accentBarStyle == AccentBarStyle.MODERN) {
         ModernTopBar(
             title = title, count = count, onCountClick = onCountClick,

@@ -242,7 +242,6 @@ fun ContactListScreen(
                 ContactRecycleBinPolicy.RETENTION_DAYS,
             ),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 
@@ -437,7 +436,6 @@ fun ContactListScreen(
                 } else {
                     MainTopBar(
                         title = stringResource(R.string.contacts_title),
-                        appSettingsViewModel = appSettingsViewModel,
                         count = filteredContacts.size,
                         scrollBehavior = scrollBehavior,
                         searchAction = if (contacts.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(

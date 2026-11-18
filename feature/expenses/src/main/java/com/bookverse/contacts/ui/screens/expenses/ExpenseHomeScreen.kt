@@ -52,7 +52,6 @@ import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Coins
 import com.composables.icons.lucide.Lucide
 import java.time.YearMonth
@@ -68,7 +67,6 @@ fun ExpenseHomeScreen(
     onNextMonth: () -> Unit,
     onEditTransaction: (ExpenseTransaction) -> Unit,
     onDeleteTransaction: (ExpenseTransaction) -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     modifier: Modifier = Modifier,
     topContentPadding: Dp = 0.dp,
 ) {
@@ -206,7 +204,6 @@ fun ExpenseHomeScreen(
             },
             title = stringResource(R.string.expense_delete_transaction),
             message = stringResource(R.string.expense_delete_transaction_confirm),
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

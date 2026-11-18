@@ -81,7 +81,6 @@ fun TagManagerScreen(
                 scrollBehavior = scrollBehavior,
                 title = stringResource(CoreUiR.string.tag_manager_title),
                 onBackClick = onBack,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.Add,
@@ -195,7 +194,6 @@ fun TagManagerScreen(
             },
             title = stringResource(CoreUiR.string.delete_tag),
             message = stringResource(R.string.delete_tag_confirmation, selectedTag?.name ?: ""),
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

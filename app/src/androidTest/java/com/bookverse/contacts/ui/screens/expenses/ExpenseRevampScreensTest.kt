@@ -65,7 +65,6 @@ class ExpenseRevampScreensTest {
                     onDeleteTransaction = {},
                     onExport = {},
                     onImport = {},
-                    appSettingsViewModel = appSettingsViewModel,
                 )
             }
         }
@@ -101,7 +100,6 @@ class ExpenseRevampScreensTest {
                     currency = CURRENCY,
                     onSaveBudget = {},
                     onDeleteBudget = deletedBudget::set,
-                    appSettingsViewModel = appSettingsViewModel,
                 )
             }
         }
@@ -195,7 +193,6 @@ class ExpenseRevampScreensTest {
                     onDeleteCategory = { _, _ -> },
                     onEditTransaction = {},
                     onDeleteTransaction = {},
-                    appSettingsViewModel = appSettingsViewModel,
                 )
             }
         }

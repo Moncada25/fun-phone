@@ -376,7 +376,6 @@ fun RecordingScreen(
                         onClick = { handleSaveLogic() }
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel
             )
         }
     ) { padding ->

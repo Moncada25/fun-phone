@@ -52,7 +52,6 @@ import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.clampCollagePan
 import com.bookverse.contacts.ui.components.collageCellRects
 import com.bookverse.contacts.ui.components.drawCollageCell
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlin.math.min
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +64,6 @@ fun CollageEditorScreen(
     isRendering: Boolean,
     onCancel: () -> Unit,
     onConfirm: (List<CollageCellTransform>) -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
 ) {
     val accentColor = MaterialTheme.colorScheme.primary
     val onAccent = contentColorFor(accentColor)
@@ -108,7 +106,6 @@ fun CollageEditorScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.paint_collage_editor_title),
                 onBackClick = { if (!isRendering) onCancel() },
-                appSettingsViewModel = appSettingsViewModel,
             )
         },
     ) { padding ->

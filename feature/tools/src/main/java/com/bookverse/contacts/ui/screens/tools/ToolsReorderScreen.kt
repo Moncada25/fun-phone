@@ -106,7 +106,6 @@ fun ToolsReorderScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.tools_order_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 expandable = true,
                 scrollBehavior = scrollBehavior,
             )

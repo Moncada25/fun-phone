@@ -44,7 +44,6 @@ import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge
 import com.bookverse.contacts.ui.components.OptionsDialog
 import com.bookverse.contacts.ui.components.OptionsDialogItem
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Repeat
 import com.bookverse.contacts.core.ui.R as CoreUiR
@@ -58,9 +57,7 @@ fun FixedTransactionsScreen(
     onEditTransaction: (ExpenseTransaction) -> Unit,
     onDeleteTransaction: (ExpenseTransaction) -> Unit,
     onExport: () -> Unit,
-    onImport: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel
-) {
+    onImport: () -> Unit,) {
     var transactionToDelete by remember { mutableStateOf<ExpenseTransaction?>(null) }
     var showOptionsDialog by remember { mutableStateOf(false) }
 
@@ -139,7 +136,6 @@ fun FixedTransactionsScreen(
             },
             title = stringResource(R.string.expense_delete_transaction),
             message = stringResource(R.string.expense_delete_transaction_confirm),
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

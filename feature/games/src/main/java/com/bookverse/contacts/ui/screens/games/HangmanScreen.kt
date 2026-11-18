@@ -270,7 +270,6 @@ fun HangmanScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.hangman_title),
                 onBackClick = ::exitGame,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     if (targetWord.isNotEmpty() && !anyDialogVisible && !showResultDialog) {

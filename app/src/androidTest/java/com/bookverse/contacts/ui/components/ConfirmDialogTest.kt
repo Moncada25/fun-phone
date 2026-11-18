@@ -79,7 +79,6 @@ class ConfirmDialogTest {
                     message = "Decision message",
                     confirmButtonLabel = confirmButtonLabel,
                     isDestructive = isDestructive,
-                    appSettingsViewModel = appSettingsViewModel,
                 )
             }
         }

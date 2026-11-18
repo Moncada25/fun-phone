@@ -52,7 +52,6 @@ import com.bookverse.contacts.ui.components.CountBadge
 import com.bookverse.contacts.ui.components.SelectBottomSheet
 import com.bookverse.contacts.ui.components.SelectionButton
 import com.bookverse.contacts.ui.components.TextField
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.PiggyBank
 import java.text.DecimalFormatSymbols
@@ -68,7 +67,6 @@ fun ExpenseBudgetsScreen(
     currency: ExpenseCurrency,
     onSaveBudget: (ExpenseBudget) -> Unit,
     onDeleteBudget: (ExpenseBudget) -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     modifier: Modifier = Modifier,
 ) {
     var showDialog by rememberSaveable { mutableStateOf(false) }
@@ -179,7 +177,6 @@ fun ExpenseBudgetsScreen(
             },
             title = stringResourceSafe(R.string.expense_budget_delete_title),
             message = stringResourceSafe(R.string.expense_delete_budget_confirm),
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

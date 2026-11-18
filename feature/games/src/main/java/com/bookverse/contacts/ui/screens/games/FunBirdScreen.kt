@@ -79,7 +79,6 @@ import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
 import com.bookverse.contacts.ui.components.SecondaryTopBar
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
@@ -140,7 +139,6 @@ private data class FunBirdLevelStyle(
 @Composable
 fun FunBirdScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior(expandable = false)
@@ -589,7 +587,6 @@ fun FunBirdScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.fun_bird_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         }

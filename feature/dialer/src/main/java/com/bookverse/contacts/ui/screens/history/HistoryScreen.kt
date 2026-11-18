@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.history
 
+import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
@@ -103,7 +104,6 @@ import com.bookverse.contacts.ui.components.TopBarSearchField
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.topBarBackground
 import com.bookverse.contacts.ui.components.topBarColors
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.settings.LocaleController
@@ -117,7 +117,6 @@ import java.util.Date
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistoryScreen(
-    appSettingsViewModel: AppSettingsViewModel,
     contactsViewModel: ContactsViewModel,
     onOpenSecondary: (SecondaryScreen) -> Unit,
     phoneActions: PhoneActionLauncher,
@@ -140,7 +139,7 @@ fun HistoryScreen(
     val contacts by contactsViewModel.contacts.collectAsStateWithLifecycle()
     val selectedOperations by contactsViewModel.selectedRecentOperations.collectAsStateWithLifecycle()
     val accentColor = MaterialTheme.colorScheme.primary
-    val accentBarStyle by appSettingsViewModel.accentBarStyle.collectAsStateWithLifecycle()
+    val accentBarStyle = LocalAppChromeStyle.current
     val locale = LocaleController.effectiveLocale(context)
     val dateFormat = SimpleDateFormat("EEE dd/MM/yyyy", locale)
     val callLogPermissions =
@@ -340,7 +339,6 @@ fun HistoryScreen(
             title = stringResource(R.string.delete_recents_title),
             message = stringResource(R.string.delete_recents_message),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 
@@ -377,7 +375,6 @@ fun HistoryScreen(
             title = title,
             message = message,
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 
@@ -560,7 +557,6 @@ fun HistoryScreen(
                     MainTopBar(
                         title = stringResource(R.string.recents_title),
                         count = if (selectedFilter != null || searchQuery.isNotBlank()) filteredRecents.size else allRecents.size,
-                        appSettingsViewModel = appSettingsViewModel,
                         scrollBehavior = scrollBehavior,
                         searchAction = if (allRecents.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(
                             stringResource(R.string.search_history), { isSearchActive = true },

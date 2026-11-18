@@ -67,7 +67,6 @@ import com.bookverse.contacts.data.qr.QRHistoryEntity
 import com.bookverse.contacts.data.qr.QRType
 import com.bookverse.contacts.feature.qr.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.utils.ClipboardUtils
@@ -90,9 +89,7 @@ import com.bookverse.contacts.core.ui.R as CoreUiR
 @Composable
 fun QRHistoryDialog(
     onDismiss: () -> Unit,
-    qrHistoryViewModel: QRHistoryViewModel,
-    appSettingsViewModel: AppSettingsViewModel
-) {
+    qrHistoryViewModel: QRHistoryViewModel,) {
     val accentColor = MaterialTheme.colorScheme.primary
     val backgroundColor = MaterialTheme.colorScheme.surface
     val textColor = MaterialTheme.colorScheme.onBackground
@@ -247,7 +244,6 @@ fun QRHistoryDialog(
             onConfirm = { qrHistoryViewModel.clearAllHistory() },
             title = stringResource(R.string.qr_history_clear_title),
             message = stringResource(R.string.qr_history_clear_message),
-            appSettingsViewModel = appSettingsViewModel,
             confirmButtonLabel = stringResource(CoreUiR.string.delete)
         )
     }

@@ -599,7 +599,6 @@ fun NoteListScreen(
                     )
                 },
                 onCountClick = { showNotesDialog = true },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 titleContent = if (searchActive) {
                     {
@@ -1336,7 +1335,6 @@ fun NoteListScreen(
                 title = stringResource(CoreUiR.string.delete),
                 message = stringResource(R.string.delete_confirm_note, noteToDelete!!.title),
                 toastMessage = null,
-                appSettingsViewModel = appSettingsViewModel
             )
         }
 

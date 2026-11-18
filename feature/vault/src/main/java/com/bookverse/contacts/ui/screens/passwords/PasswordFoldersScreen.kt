@@ -112,7 +112,6 @@ fun PasswordFoldersScreen(
                         )
                     }
                 },
-                appSettingsViewModel = appSettingsViewModel,
             )
         },
         snackbarHost = { AppSnackbarHost(snackbar.hostState) },
@@ -234,7 +233,6 @@ fun PasswordFoldersScreen(
             title = stringResource(CoreUiR.string.note_folders_delete_title),
             message = stringResource(R.string.password_folders_delete_message, folder.name),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 }

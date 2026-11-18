@@ -486,7 +486,6 @@ fun DialerScreen(
             SecondaryTopBar(
                 title = stringResource(CoreUiR.string.dialer),
                 onBackClick = onBack,
-                appSettingsViewModel = appSettingsViewModel,
             )
         },
         snackbarHost = { AppSnackbarHost(snackbar.hostState) },

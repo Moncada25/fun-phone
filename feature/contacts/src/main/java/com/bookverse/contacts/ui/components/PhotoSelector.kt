@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
@@ -51,7 +52,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -72,7 +72,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import androidx.core.net.toUri
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.chromePolicy
 import com.bookverse.contacts.utils.ContactUtils
 import com.yalantis.ucrop.UCrop
@@ -326,9 +325,7 @@ fun PhotoSelector(
     onPhotoSelected: (Uri?) -> Unit,
     onDeletePhoto: (() -> Unit)? = null,
     hasExistingPhoto: Boolean = false,
-    existingPhotoUri: Uri? = null,
-    appSettingsViewModel: AppSettingsViewModel
-) {
+    existingPhotoUri: Uri? = null,) {
     val context = LocalContext.current
     val accentColor = MaterialTheme.colorScheme.primary
     val textColor = MaterialTheme.colorScheme.onBackground
@@ -348,7 +345,7 @@ fun PhotoSelector(
     var showAvatarPicker by remember(instanceKey) { mutableStateOf(false) }
     var selectedCategory by remember(instanceKey) { mutableStateOf(AvatarCategory.People) }
     var showAvatarErrorDialog by remember(instanceKey) { mutableStateOf(false) }
-    val accentBarStyle by appSettingsViewModel.accentBarStyle.collectAsStateWithLifecycle()
+    val accentBarStyle = LocalAppChromeStyle.current
     val isMinimal = accentBarStyle.chromePolicy.neutralControls
     val themeBackground = if (isMinimal) {
         MaterialTheme.colorScheme.background

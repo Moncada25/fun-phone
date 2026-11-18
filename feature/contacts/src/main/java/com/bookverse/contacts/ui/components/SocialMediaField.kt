@@ -39,16 +39,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.data.model.SocialMediaType
 import com.bookverse.contacts.feature.contacts.R
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun SocialMediaField(
     socialNetworks: List<String>,
     onSocialNetworksChange: (List<String>) -> Unit,
-    onNavigateToSearch: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel
-) {
+    onNavigateToSearch: () -> Unit,) {
     val accentColor = MaterialTheme.colorScheme.primary
     val textColor = MaterialTheme.colorScheme.onBackground
     var showDeleteConfirm by remember { mutableStateOf(false) }
@@ -170,7 +167,6 @@ fun SocialMediaField(
                         )
                     ),
                     toastMessage = null,
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
         }

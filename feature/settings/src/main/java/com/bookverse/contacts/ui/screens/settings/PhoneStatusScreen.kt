@@ -45,19 +45,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bookverse.contacts.ui.components.setupActionContainerColor
 import com.bookverse.contacts.ui.components.setupActionContentColor
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhoneStatusScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel = viewModel()
 ) {
     val accentColor = MaterialTheme.colorScheme.primary
     val textColor = MaterialTheme.colorScheme.onBackground
@@ -83,7 +80,6 @@ fun PhoneStatusScreen(
                 scrollBehavior = scrollBehavior,
                 title = stringResource(R.string.phone_status_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel
             )
         },
         snackbarHost = { AppSnackbarHost(snackHost.hostState) },

@@ -353,7 +353,6 @@ fun NoteScreen(
             SecondaryTopBar(
                 title = if (note != null) stringResource(R.string.edit_note) else stringResource(R.string.create_note),
                 onBackClick = { handleBack() },
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     if (note != null && isEditing) {
                         IconAction(

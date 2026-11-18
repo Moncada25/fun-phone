@@ -677,7 +677,6 @@ fun SettingsScreen(
                 searchAction = com.bookverse.contacts.ui.components.AppBarSearchAction(
                     stringResource(R.string.search_setting), { searchActive = true },
                 ),
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 titleContent = if (searchActive) {
                     {

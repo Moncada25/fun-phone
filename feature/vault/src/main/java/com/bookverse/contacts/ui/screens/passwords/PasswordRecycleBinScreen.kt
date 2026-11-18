@@ -54,7 +54,6 @@ import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,7 +61,6 @@ import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 fun PasswordRecycleBinScreen(
     onBackClick: () -> Unit,
     passwordsViewModel: PasswordsViewModel,
-    appSettingsViewModel: AppSettingsViewModel,
 ) {
     val deletedCredentials by passwordsViewModel.deletedCredentials.collectAsStateWithLifecycle()
     val folders by passwordsViewModel.folders.collectAsStateWithLifecycle()
@@ -94,7 +92,6 @@ fun PasswordRecycleBinScreen(
                         )
                     }
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
             )
         },
@@ -177,7 +174,6 @@ fun PasswordRecycleBinScreen(
             toastMessage = null,
             confirmButtonLabel = stringResource(CoreUiR.string.restore),
             isDestructive = false,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
     credentialToDelete?.let { credential ->
@@ -191,7 +187,6 @@ fun PasswordRecycleBinScreen(
             title = stringResource(CoreUiR.string.delete_permanently),
             message = stringResource(CoreUiR.string.delete_permanently_confirm, credential.name),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
     if (showEmptyConfirmation) {
@@ -205,7 +200,6 @@ fun PasswordRecycleBinScreen(
             title = stringResource(CoreUiR.string.empty_recycle_bin),
             message = stringResource(CoreUiR.string.empty_recycle_bin_confirm),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 

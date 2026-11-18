@@ -70,7 +70,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bookverse.contacts.service.PomodoroService
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.screens.settings.SettingsSheetScaffold
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.PomodoroSettings
 import com.bookverse.contacts.ui.viewmodel.PomodoroTimerState
 import com.bookverse.contacts.ui.viewmodel.PomodoroViewModel
@@ -79,7 +78,6 @@ import kotlin.math.roundToInt
 @Composable
 fun PomodoroScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     pomodoroViewModel: PomodoroViewModel,
 ) {
     val context = LocalContext.current
@@ -115,7 +113,6 @@ fun PomodoroScreen(
             SecondaryTopBar(
                 title = stringResource(CoreUiR.string.pomodoro_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconAction(

@@ -369,7 +369,6 @@ fun ExpenseManagerScreen(
                 expandable = true,
                 title = stringResource(R.string.expense_manager_title),
                 onBackClick = handleBack,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     IconAction(
                         imageVector = Icons.Filled.MoreVert,
@@ -538,7 +537,6 @@ fun ExpenseManagerScreen(
                                 onDeleteTransaction = {
                                     expensesViewModel.deleteTransaction(it.id)
                                 },
-                                appSettingsViewModel = appSettingsViewModel,
                                 modifier = Modifier.fillMaxSize(),
                                 topContentPadding = contentTopPadding,
                             )
@@ -557,7 +555,6 @@ fun ExpenseManagerScreen(
                                     )
                                 },
                                 onDeleteBudget = { expensesViewModel.deleteBudget(it.id) },
-                                appSettingsViewModel = appSettingsViewModel,
                                 modifier = Modifier.padding(top = contentTopPadding)
                             )
 
@@ -629,7 +626,6 @@ fun ExpenseManagerScreen(
                                 currentSection = ExpenseSection.ADD
                             },
                             onDeleteTransaction = { expensesViewModel.deleteTransaction(it.id) },
-                            appSettingsViewModel = appSettingsViewModel
                         )
 
                         ExpenseSection.FIXED -> FixedTransactionsScreen(
@@ -667,7 +663,6 @@ fun ExpenseManagerScreen(
                                     arrayOf("application/json", "application/octet-stream")
                                 )
                             },
-                            appSettingsViewModel = appSettingsViewModel
                         )
 
                         ExpenseSection.YEARLY -> ExpenseYearlyScreen(
@@ -692,7 +687,6 @@ fun ExpenseManagerScreen(
                                 currentSection = ExpenseSection.ADD
                             },
                             onDeleteTransaction = { expensesViewModel.deleteTransaction(it.id) },
-                            appSettingsViewModel = appSettingsViewModel,
                         )
 
                         else -> Unit

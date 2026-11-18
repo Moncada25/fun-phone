@@ -281,7 +281,6 @@ fun QRScannerScreen(
                         onClick = { isTorchEnabled = !isTorchEnabled }
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel
             )
         }
     ) { paddingValues ->
