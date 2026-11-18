@@ -1,5 +1,7 @@
 package com.bookverse.contacts.benchmark
 
+import com.bookverse.contacts.data.backup.AppBackupManager
+import com.bookverse.contacts.BuildConfig
 import com.bookverse.contacts.utils.PhoneActions
 import android.Manifest
 import android.content.pm.PackageManager
@@ -287,7 +289,7 @@ class StorePreviewActivity : FragmentActivity() {
             "tools" -> ToolsScreen({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, settings, rememberLazyListState())
             "games" -> GamesScreen({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, settings, container.gameStatsRepository)
             "qr" -> QRGeneratorScreen({}, settings, qrHistory)
-            else -> SettingsScreen({}, settings, contactsViewModel = contacts, notesViewModel = notes, listState = rememberLazyListState())
+            else -> SettingsScreen({}, settings, AppBackupManager(this, container.gameStatsRepository, BuildConfig.VERSION_NAME), contactsViewModel = contacts, notesViewModel = notes, listState = rememberLazyListState())
         }
     }
 

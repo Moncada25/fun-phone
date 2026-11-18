@@ -206,7 +206,7 @@ class ContactDetailActivity : LocalizedAppCompatActivity() {
     companion object {
         const val EXTRA_CONTACT_ID = AppEntryPoints.EXTRA_CONTACT_ID
         const val EXTRA_CONTACT_NAME = AppEntryPoints.EXTRA_CONTACT_NAME
-        const val EXTRA_CONTACT_PHONE = "contact_phone"
+        const val EXTRA_CONTACT_PHONE = AppEntryPoints.EXTRA_CONTACT_PHONE
         const val EXTRA_CONTACT = "contact"
     }
 }

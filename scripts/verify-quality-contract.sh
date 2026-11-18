@@ -33,7 +33,7 @@ check_line_ceiling() {
   fi
 }
 
-check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsScreen.kt" 2080
+check_line_ceiling "feature/settings/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsScreen.kt" 2080
 check_line_ceiling "feature/contacts/src/main/java/com/bookverse/contacts/ui/viewmodel/ContactsViewModel.kt" 1714
 check_line_ceiling "feature/contacts/src/main/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsScreen.kt" 1604
 check_line_ceiling "feature/notes/src/main/java/com/bookverse/contacts/ui/screens/notes/NoteListScreen.kt" 1372
@@ -41,7 +41,7 @@ check_line_ceiling "feature/dialer/src/main/java/com/bookverse/contacts/ui/scree
 check_line_ceiling "feature/dialer/src/main/java/com/bookverse/contacts/ui/screens/history/HistoryScreen.kt" 1109
 check_line_ceiling "feature/tools/src/main/java/com/bookverse/contacts/ui/screens/tools/HolidaysScreen.kt" 1352
 
-speed_dial_sheet="$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsDialog.kt"
+speed_dial_sheet="$repo_root/feature/settings/src/main/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsDialog.kt"
 for forbidden_view_model in AppSettingsViewModel ContactsViewModel; do
   if grep -Fq "$forbidden_view_model" "$speed_dial_sheet"; then
     echo "SpeedDialConfigSheet must consume immutable values and callbacks, not $forbidden_view_model."
@@ -50,11 +50,11 @@ for forbidden_view_model in AppSettingsViewModel ContactsViewModel; do
 done
 
 pure_settings_components=(
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsComponents.kt"
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSections.kt"
+  "$repo_root/feature/settings/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsComponents.kt"
+  "$repo_root/feature/settings/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSections.kt"
   "$repo_root/core/ui/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSheetComponents.kt"
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsAppearanceSheets.kt"
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferenceSheets.kt"
+  "$repo_root/feature/settings/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsAppearanceSheets.kt"
+  "$repo_root/feature/settings/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferenceSheets.kt"
   "$repo_root/core/ui/src/main/java/com/bookverse/contacts/ui/components/SelectBottomSheet.kt"
   "$repo_root/core/designsystem/src/main/java/com/bookverse/contacts/ui/components/SettingSwitch.kt"
 )
@@ -85,10 +85,10 @@ required_tests=(
   "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerInputPolicyTest.kt"
   "feature/dialer/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerSearchPerformanceTest.kt"
   "feature/notes/src/test/java/com/bookverse/contacts/ui/screens/notes/NoteFolderFilterStateTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowControllerTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/settings/PhoneStatusStateTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferencePolicyTest.kt"
+  "feature/settings/src/test/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowControllerTest.kt"
+  "feature/settings/src/test/java/com/bookverse/contacts/ui/screens/settings/PhoneStatusStateTest.kt"
+  "feature/settings/src/test/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsPolicyTest.kt"
+  "feature/settings/src/test/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferencePolicyTest.kt"
   "feature/tools/src/test/java/com/bookverse/contacts/ui/screens/tools/HolidayDateFormatterTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/components/CallStateBannerTest.kt"
   "feature/tools/src/test/java/com/bookverse/contacts/ui/viewmodel/HolidaysViewModelTest.kt"
@@ -104,12 +104,12 @@ required_tests=(
   "core/ui/src/androidTest/java/com/bookverse/contacts/ui/auth/PasswordAuthDialogsTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/navigation/MainTabNavigationBarTest.kt"
   "feature/dialer/src/androidTest/java/com/bookverse/contacts/ui/screens/dialer/DialerNumberEditorTest.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowScreenTest.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/BlockedNumbersDialogsTest.kt"
+  "feature/settings/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowScreenTest.kt"
+  "feature/settings/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/BlockedNumbersDialogsTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/screens/tools/ToolsPresetSelectorTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/settings/LocaleResourceSelectionTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/AccessibilityCoreContractTest.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/widget/FavoritesWidgetRenderingPerformanceTest.kt"
+  "feature/widgets/src/androidTest/java/com/bookverse/contacts/widget/FavoritesWidgetRenderingPerformanceTest.kt"
 )
 for relative_path in "${required_tests[@]}"; do
   [[ -f "$repo_root/$relative_path" ]] || {

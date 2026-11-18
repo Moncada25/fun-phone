@@ -8,13 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- The theme, generic Compose components, Room database, settings DataStore, encryption and PIN
-  code, shared resources and generic utilities now live in the `:core:designsystem`,
-  `:core:database`, `:core:datastore`, `:core:security`, `:core:ui` and `:core:common` Android
-  library modules, and contacts, the dialer, games, expenses, notes, QR, the vault and the tools live
-  in `:feature:contacts`, `:feature:dialer`, `:feature:games`, `:feature:expenses`, `:feature:notes`, `:feature:qr`,
-  `:feature:vault` and `:feature:tools`, with shared Gradle setup in `build-logic`
-  convention plugins. No user-visible change.
+- The theme, generic Compose components, Room database, settings DataStore, encryption and PIN code,
+  shared resources and generic utilities now live in the `:core:designsystem`, `:core:database`,
+  `:core:datastore`, `:core:security`, `:core:ui` and `:core:common` Android library modules, and
+  contacts, the dialer, settings, widgets, games, expenses, notes, QR, the vault and the tools live
+  in `:feature:contacts`, `:feature:dialer`, `:feature:settings`, `:feature:widgets`,
+  `:feature:games`, `:feature:expenses`, `:feature:notes`, `:feature:qr`, `:feature:vault` and
+  `:feature:tools`, with shared Gradle setup in `build-logic` convention plugins. No user-visible
+  change.
 
 ### Fixed
 - Google Play hid the app from landscape-only devices because the photo crop screen is locked to

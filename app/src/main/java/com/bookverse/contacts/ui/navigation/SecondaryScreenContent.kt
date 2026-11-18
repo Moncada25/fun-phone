@@ -1,5 +1,8 @@
 package com.bookverse.contacts.ui.navigation
 
+import androidx.compose.runtime.remember
+import com.bookverse.contacts.data.backup.AppBackupManager
+import com.bookverse.contacts.BuildConfig
 import com.bookverse.contacts.utils.PhoneActions
 import android.annotation.SuppressLint
 import androidx.compose.foundation.lazy.LazyListState
@@ -119,21 +122,28 @@ fun SecondaryScreenContent(
 ) {
     val appContainer = (LocalContext.current.applicationContext as App).container
     when (screen) {
-        SecondaryScreen.SETTINGS -> SettingsScreen(
-            onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
-            onFontChange = onFontChange,
-            contactsViewModel = contactsViewModel,
-            notesViewModel = notesViewModel,
-            listState = settingsListState,
-            onNavigateToPhoneStatus = { navigationViewModel.openSecondary(SecondaryScreen.PHONE_STATUS) },
-            onNavigateToProfile = { navigationViewModel.openSecondary(SecondaryScreen.PROFILE) },
-            onNavigateToAbout = { navigationViewModel.openSecondary(SecondaryScreen.ABOUT) },
-            onNavigateToTagManager = { navigationViewModel.openSecondary(SecondaryScreen.TAG_MANAGER) },
-            onNavigateToDuplicateContacts = { navigationViewModel.openSecondary(SecondaryScreen.DUPLICATE_CONTACTS) },
-            onNavigateToContactRecycleBin = { navigationViewModel.openSecondary(SecondaryScreen.CONTACT_RECYCLE_BIN) },
-            onNavigateToToolsReorder = { navigationViewModel.openSecondary(SecondaryScreen.TOOLS_ORDER) }
-        )
+        SecondaryScreen.SETTINGS -> {
+            val backupContext = LocalContext.current
+            val appBackupManager = remember(backupContext) {
+                AppBackupManager(backupContext, appContainer.gameStatsRepository, BuildConfig.VERSION_NAME)
+            }
+            SettingsScreen(
+                onBackClick = { navigationViewModel.navigateBack() },
+                appSettingsViewModel = appSettingsViewModel,
+                appBackupManager = appBackupManager,
+                onFontChange = onFontChange,
+                contactsViewModel = contactsViewModel,
+                notesViewModel = notesViewModel,
+                listState = settingsListState,
+                onNavigateToPhoneStatus = { navigationViewModel.openSecondary(SecondaryScreen.PHONE_STATUS) },
+                onNavigateToProfile = { navigationViewModel.openSecondary(SecondaryScreen.PROFILE) },
+                onNavigateToAbout = { navigationViewModel.openSecondary(SecondaryScreen.ABOUT) },
+                onNavigateToTagManager = { navigationViewModel.openSecondary(SecondaryScreen.TAG_MANAGER) },
+                onNavigateToDuplicateContacts = { navigationViewModel.openSecondary(SecondaryScreen.DUPLICATE_CONTACTS) },
+                onNavigateToContactRecycleBin = { navigationViewModel.openSecondary(SecondaryScreen.CONTACT_RECYCLE_BIN) },
+                onNavigateToToolsReorder = { navigationViewModel.openSecondary(SecondaryScreen.TOOLS_ORDER) }
+            )
+        }
 
         SecondaryScreen.DIALER -> DialerScreen(
             onBack = { navigationViewModel.navigateBack() },
@@ -334,6 +344,7 @@ fun SecondaryScreenContent(
         )
 
         SecondaryScreen.ABOUT -> AboutScreen(
+            showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
             onBack = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel
         )

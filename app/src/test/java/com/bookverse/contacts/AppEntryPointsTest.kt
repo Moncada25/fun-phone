@@ -16,5 +16,6 @@ class AppEntryPointsTest {
         assertEquals(ContactDetailActivity::class.java.name, AppEntryPoints.CONTACT_DETAIL_ACTIVITY)
         assertEquals(ContactDetailActivity.EXTRA_CONTACT_ID, AppEntryPoints.EXTRA_CONTACT_ID)
         assertEquals(ContactDetailActivity.EXTRA_CONTACT_NAME, AppEntryPoints.EXTRA_CONTACT_NAME)
+        assertEquals(ContactDetailActivity.EXTRA_CONTACT_PHONE, AppEntryPoints.EXTRA_CONTACT_PHONE)
     }
 }
