@@ -34,8 +34,8 @@ check_line_ceiling() {
 }
 
 check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsScreen.kt" 2080
-check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/viewmodel/ContactsViewModel.kt" 1714
-check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsScreen.kt" 1604
+check_line_ceiling "feature/contacts/src/main/java/com/bookverse/contacts/ui/viewmodel/ContactsViewModel.kt" 1714
+check_line_ceiling "feature/contacts/src/main/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsScreen.kt" 1604
 check_line_ceiling "feature/notes/src/main/java/com/bookverse/contacts/ui/screens/notes/NoteListScreen.kt" 1372
 check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/dialer/DialerScreen.kt" 1127
 check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/contacts/HistoryScreen.kt" 1109
@@ -66,20 +66,20 @@ for component in "${pure_settings_components[@]}"; do
 done
 
 required_tests=(
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactSearchPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactImportPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/BlockedNumberMatchPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactInputPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactDuplicatePolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactSortPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactRecycleBinPolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/domain/contacts/vcard/VCardCodecTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/ContactSearchPolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/ContactImportPolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/BlockedNumberMatchPolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/ContactInputPolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/ContactDuplicatePolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/ContactSortPolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/ContactRecycleBinPolicyTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/domain/contacts/vcard/VCardCodecTest.kt"
   "core/database/src/test/java/com/bookverse/contacts/data/db/DeletedContactsMigrationSqlTest.kt"
   "app/src/test/java/com/bookverse/contacts/domain/telemetry/FunnelTelemetryTest.kt"
   "app/src/test/java/com/bookverse/contacts/service/TelecomCallActionsTest.kt"
   "feature/notes/src/test/java/com/bookverse/contacts/service/ReminderDeliveryActionTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/RecentPhoneMatchTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsPhoneTest.kt"
+  "feature/contacts/src/test/java/com/bookverse/contacts/ui/screens/contacts/ContactDetailsPhoneTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/HistoryProjectionTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerContactFilterTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/dialer/DialerInputPolicyTest.kt"

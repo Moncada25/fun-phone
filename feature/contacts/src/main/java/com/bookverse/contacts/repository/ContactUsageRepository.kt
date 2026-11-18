@@ -16,10 +16,10 @@ class ContactUsageRepository(context: Context) {
     suspend fun recordCall(phoneNumber: String, duration: Long = 0) = withContext(Dispatchers.IO) {
         val cleanNumber = phoneNumber.trim()
         if (cleanNumber.isEmpty()) return@withContext
-        
+
         val timestamp = System.currentTimeMillis()
         val existing = dao.getStatsForNumber(cleanNumber)
-        
+
         if (existing != null) {
             dao.incrementCallCount(cleanNumber, timestamp, duration)
         } else {

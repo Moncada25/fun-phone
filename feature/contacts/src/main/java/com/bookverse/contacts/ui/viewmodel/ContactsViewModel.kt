@@ -46,7 +46,6 @@ import com.bookverse.contacts.utils.applyEditableFields
 import com.bookverse.contacts.utils.ImageProcessor
 import com.bookverse.contacts.utils.PermissionUtils
 import com.bookverse.contacts.utils.PreparedContactPhoto
-import com.bookverse.contacts.widget.WidgetUpdateHelper
 import com.google.gson.GsonBuilder
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -104,6 +103,7 @@ class ContactsViewModel(
     contactVCardRepository: ContactVCardRepository,
     private val contactUsageRepository: ContactUsageRepository,
     private val funnelTelemetry: FunnelTelemetry,
+    private val refreshWidgets: () -> Unit,
 ) : AndroidViewModel(application), DialerDirectory {
 
     private val application = getApplication<Application>()
@@ -180,7 +180,7 @@ class ContactsViewModel(
         )
     }
 
-    internal val vCard = ContactVCardCoordinator(
+    val vCard = ContactVCardCoordinator(
         repository = contactVCardRepository,
         scope = viewModelScope,
         currentContacts = { _contacts.value },
@@ -259,7 +259,7 @@ class ContactsViewModel(
                                         ContactSaveResult.Success(savedContact)
                                     },
                                 )
-                                WidgetUpdateHelper.updateAllWidgets(application)
+                                refreshWidgets()
                             }
                             req.reconcile()
                         } else {
@@ -927,7 +927,7 @@ class ContactsViewModel(
                                     )
                                 )
                             }
-                            WidgetUpdateHelper.updateAllWidgets(application)
+                            refreshWidgets()
                         }
                     } else {
                         showFavoriteUpdateError(contactId, previousContact)

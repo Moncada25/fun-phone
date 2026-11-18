@@ -36,7 +36,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.bookverse.contacts.core.ui.R
-import com.bookverse.contacts.service.NotificationService
+import com.bookverse.contacts.service.ExactAlarmAccess
 import com.bookverse.contacts.service.birthday.BirthdayReminderAccess
 import com.bookverse.contacts.service.birthday.BirthdayReminderAccessIssue
 import com.bookverse.contacts.service.birthday.BirthdayReminderNotifier
@@ -101,7 +101,7 @@ fun BirthdayReminderBadge(
                     }
                 }
                 BirthdayReminderAccessIssue.EXACT_ALARM_PERMISSION -> {
-                    NotificationService.createAlarmPermissionIntent(context)?.let(settingsLauncher::launch)
+                    ExactAlarmAccess.createAlarmPermissionIntent(context)?.let(settingsLauncher::launch)
                 }
                 BirthdayReminderAccessIssue.NOTIFICATION_SETTINGS -> {
                     val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {

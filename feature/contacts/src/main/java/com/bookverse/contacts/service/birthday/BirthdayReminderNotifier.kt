@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.birthday.BirthdayReminder
 import com.bookverse.contacts.settings.LocaleController
-import com.bookverse.contacts.widget.ContactDetailActivity
+import com.bookverse.contacts.navigation.AppEntryPoints
 
 class BirthdayReminderNotifier(context: Context) {
     private val appContext = context.applicationContext
@@ -85,10 +85,10 @@ class BirthdayReminderNotifier(context: Context) {
     }
 
     private fun contactPendingIntent(reminder: BirthdayReminder): PendingIntent {
-        val intent = Intent(appContext, ContactDetailActivity::class.java).apply {
+        val intent = AppEntryPoints.contactDetailIntent(appContext).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            putExtra(ContactDetailActivity.EXTRA_CONTACT_ID, reminder.contact.id)
-            putExtra(ContactDetailActivity.EXTRA_CONTACT_NAME, reminder.contact.name)
+            putExtra(AppEntryPoints.EXTRA_CONTACT_ID, reminder.contact.id)
+            putExtra(AppEntryPoints.EXTRA_CONTACT_NAME, reminder.contact.name)
         }
         return PendingIntent.getActivity(
             appContext,

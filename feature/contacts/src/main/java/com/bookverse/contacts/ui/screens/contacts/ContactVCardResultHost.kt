@@ -10,11 +10,11 @@ import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.viewmodel.ContactVCardResult
 
-internal const val VCARD_MIME_TYPE = "text/x-vcard"
-internal val VCARD_OPEN_MIME_TYPES = arrayOf(VCARD_MIME_TYPE, "text/vcard", "text/directory")
+const val VCARD_MIME_TYPE = "text/x-vcard"
+val VCARD_OPEN_MIME_TYPES = arrayOf(VCARD_MIME_TYPE, "text/vcard", "text/directory")
 
 @Composable
-internal fun ContactVCardResultHost(
+fun ContactVCardResultHost(
     result: ContactVCardResult?,
     isImporting: Boolean,
     onConsumed: () -> Unit,

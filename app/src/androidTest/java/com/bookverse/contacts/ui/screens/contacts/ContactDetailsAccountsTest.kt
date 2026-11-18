@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -101,6 +102,7 @@ class ContactDetailsAccountsTest {
                 ContactsAppTheme(themeMode = ThemeMode.LIGHT, accentBarStyle = AccentBarStyle.MODERN) {
                     CompositionLocalProvider(LocalBackdropAllowed provides false) {
                         ContactDetailsScreen(
+                            phoneActions = PhoneActions,
                             contact = Contact("qa-account-regression", "QA synthetic contact", emptyList(), accounts = accounts),
                             onBackClick = {}, onEditContact = {},
                             appSettingsViewModel = settings, contactsViewModel = contacts,

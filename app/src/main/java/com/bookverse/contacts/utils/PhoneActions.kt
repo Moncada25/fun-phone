@@ -28,7 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-object PhoneActions {
+object PhoneActions : PhoneActionLauncher {
 
     private sealed interface PendingCallRequest {
         data class Number(val value: String) : PendingCallRequest
@@ -100,7 +100,7 @@ object PhoneActions {
         }
     }
 
-    fun callPhoneNumber(context: Context, phoneNumber: String) {
+    override fun callPhoneNumber(context: Context, phoneNumber: String) {
         DiagnosticLog.debug(DiagnosticEvent.CALL_PHONE_REQUESTED)
         if (PermissionUtils.isDefaultDialer(context)) {
             executeCall(context, phoneNumber)
@@ -354,13 +354,13 @@ object PhoneActions {
         }
     }
 
-    fun openWhatsApp(context: Context, phoneNumber: String) {
+    override fun openWhatsApp(context: Context, phoneNumber: String) {
         val formattedNumber = phoneNumber.replace(Regex("[^0-9]"), "")
         val url = "https://wa.me/$formattedNumber"
         UrlUtils.openUrl(context, url)
     }
 
-    fun openSmsApp(context: Context, phoneNumber: String) {
+    override fun openSmsApp(context: Context, phoneNumber: String) {
         val uri = "smsto:$phoneNumber".toUri()
         val intent = Intent(Intent.ACTION_SENDTO, uri)
         context.startActivity(intent)

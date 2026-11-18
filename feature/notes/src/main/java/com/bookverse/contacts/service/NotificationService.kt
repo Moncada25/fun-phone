@@ -147,17 +147,7 @@ class NotificationService {
         const val REQUEST_CODE_PREFIX = 2000
         const val ADVANCE_REQUEST_CODE_PREFIX = 3000
 
-        fun canScheduleExactAlarms(context: Context): Boolean {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return true
-
-            return try {
-                val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                alarmManager.canScheduleExactAlarms()
-            } catch (_: Exception) {
-                DiagnosticLog.error(DiagnosticEvent.REMINDER_EXACT_ALARM_PERMISSION_READ_FAILED)
-                false
-            }
-        }
+        fun canScheduleExactAlarms(context: Context): Boolean = ExactAlarmAccess.canScheduleExactAlarms(context)
 
         fun openAlarmPermissionSettings(context: Context) {
             createAlarmPermissionIntent(context)?.let { intent ->
@@ -166,13 +156,7 @@ class NotificationService {
             }
         }
 
-        fun createAlarmPermissionIntent(context: Context): Intent? {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return null
-
-            return Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
-                data = "package:${context.packageName}".toUri()
-            }
-        }
+        fun createAlarmPermissionIntent(context: Context): Intent? = ExactAlarmAccess.createAlarmPermissionIntent(context)
 
         fun createNotificationSettingsIntent(context: Context): Intent =
             Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {

@@ -3,7 +3,7 @@ package com.bookverse.contacts.service.birthday
 import android.app.NotificationManager
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat
-import com.bookverse.contacts.service.NotificationService
+import com.bookverse.contacts.service.ExactAlarmAccess
 import com.bookverse.contacts.utils.PermissionUtils
 
 enum class BirthdayReminderAccessIssue {
@@ -20,7 +20,7 @@ object BirthdayReminderAccess {
         return resolve(
             notificationPermissionGranted = PermissionUtils.hasNotificationPermission(context),
             notificationsEnabled = NotificationManagerCompat.from(context).areNotificationsEnabled(),
-            exactAlarmsEnabled = NotificationService.canScheduleExactAlarms(context),
+            exactAlarmsEnabled = ExactAlarmAccess.canScheduleExactAlarms(context),
             channelEnabled = channelEnabled,
         )
     }

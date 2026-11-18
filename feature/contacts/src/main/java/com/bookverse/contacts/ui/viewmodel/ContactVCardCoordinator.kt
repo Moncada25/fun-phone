@@ -21,7 +21,7 @@ sealed interface ContactVCardResult {
     data object ExportFailed : ContactVCardResult
 }
 
-internal class ContactVCardCoordinator(
+class ContactVCardCoordinator(
     private val repository: ContactVCardRepository,
     private val scope: CoroutineScope,
     private val currentContacts: () -> List<Contact>,
