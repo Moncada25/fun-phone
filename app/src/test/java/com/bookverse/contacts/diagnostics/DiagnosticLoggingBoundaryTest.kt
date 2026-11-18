@@ -37,12 +37,17 @@ class DiagnosticLoggingBoundaryTest {
     }
 
     private fun productionSources(): Sequence<File> {
-        val sourceRoot = sequenceOf(
-            File("src/main/java"),
-            File("app/src/main/java"),
-        ).firstOrNull(File::isDirectory)
-            ?: error("Unable to locate production Kotlin sources")
+        val repositoryRoot = sequenceOf(File("."), File(".."))
+            .map(File::getAbsoluteFile)
+            .firstOrNull { File(it, "settings.gradle.kts").isFile }
+            ?: error("Unable to locate the repository root")
+        val sourceRoots = sequenceOf("app", "core", "feature")
+            .map { File(repositoryRoot, it) }
+            .filter(File::isDirectory)
+            .flatMap { it.walkTopDown().filter { dir -> dir.isDirectory && dir.path.endsWith("src/main/java") } }
+            .toList()
+        check(sourceRoots.any { it.path.contains("app") }) { "Unable to locate production Kotlin sources" }
 
-        return sourceRoot.walkTopDown().filter { file -> file.extension == "kt" }
+        return sourceRoots.asSequence().flatMap { it.walkTopDown() }.filter { file -> file.extension == "kt" }
     }
 }

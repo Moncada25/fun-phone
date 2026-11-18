@@ -1,7 +1,7 @@
 package com.bookverse.contacts.diagnostics
 
 import android.util.Log
-import com.bookverse.contacts.BuildConfig
+import com.bookverse.contacts.core.common.BuildConfig
 
 /** Stable, content-free identifiers for diagnostics that are safe to emit to Logcat. */
 enum class DiagnosticEvent {

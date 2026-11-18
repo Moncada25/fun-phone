@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- The theme, generic Compose components and Room database now live in the `:core:designsystem`
-  and `:core:database` Android library modules, with shared Gradle setup in `build-logic`
+- The theme, generic Compose components, Room database and generic utilities now live in the
+  `:core:designsystem`, `:core:database` and `:core:common` Android library modules, with shared Gradle setup in `build-logic`
   convention plugins. No user-visible change.
 
 ### Fixed

@@ -24,6 +24,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "fun-phone"
 include(":app")
+include(":core:common")
 include(":core:database")
 include(":core:designsystem")
 include(":baselineprofile")

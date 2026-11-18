@@ -9,8 +9,8 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **Min SDK 29** | **Target/Compile SDK 37** | **JVM Target 25**
 - **UI**: 100% Jetpack Compose + Material 3 — no XML layouts or fragments
 - **Architecture**: MVVM + Repository, manual DI (no Hilt)
-- **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components)
-  and `:core:database` (Room), plus the `:baselineprofile` test module (Baseline Profile generator and
+- **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components),
+  `:core:database` (Room) and `:core:common` (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
   macrobenchmarks). Shared Gradle setup lives in the `build-logic` convention plugins
   (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
 - **Localization**: English baseline in `values/`, with Spanish, German, French, and Portuguese

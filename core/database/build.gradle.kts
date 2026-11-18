@@ -16,6 +16,4 @@ dependencies {
     implementation(libs.google.gson)
 
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.test.runner)
 }
