@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.auth
 
+import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.test.assertIsDisplayed
@@ -8,8 +9,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import com.bookverse.contacts.core.ui.R
-import com.bookverse.contacts.testing.ComposeTestContent
-import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordAuthMethod
 import org.junit.Assert.assertFalse
@@ -20,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class PasswordAuthDialogsTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<ComposeTestHostActivity>()
+    val composeRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
     fun validPinCompletesProtectedAction() {
@@ -106,21 +105,19 @@ class PasswordAuthDialogsTest {
         val appSettingsViewModel = AppSettingsViewModel().apply {
             setPasswordPin(composeRule.activity, expectedPin)
         }
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    val authState = rememberPasswordAuthState(appSettingsViewModel)
-                    LaunchedEffect(authState) {
-                        authState.handleProtectedAction(
-                            passwordManagerEnabled = true,
-                            authMethod = PasswordAuthMethod.PIN,
-                            onSuccess = onSuccess,
-                        )
-                    }
-                    PasswordAuthDialogs(
-                        state = authState,
+        composeRule.setContent {
+            MaterialTheme {
+                val authState = rememberPasswordAuthState(appSettingsViewModel)
+                LaunchedEffect(authState) {
+                    authState.handleProtectedAction(
+                        passwordManagerEnabled = true,
+                        authMethod = PasswordAuthMethod.PIN,
+                        onSuccess = onSuccess,
                     )
                 }
+                PasswordAuthDialogs(
+                    state = authState,
+                )
             }
         }
         composeRule

@@ -40,7 +40,7 @@ import com.composables.icons.lucide.Lucide
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ModernTopBar(
+fun ModernTopBar(
     title: String,
     scrollBehavior: TopAppBarScrollBehavior?,
     expandable: Boolean,

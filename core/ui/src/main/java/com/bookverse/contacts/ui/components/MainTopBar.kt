@@ -123,7 +123,7 @@ fun MainTopBar(
 /** Paints the app bar and its system insets as one surface while the controls are visible. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun Modifier.topBarBackground(
+fun Modifier.topBarBackground(
     accentBarStyle: AccentBarStyle,
     scrollBehavior: TopAppBarScrollBehavior?,
     solidWhenCollapsed: Boolean = false,
@@ -140,7 +140,7 @@ internal fun Modifier.topBarBackground(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun topBarColors(accentBarStyle: AccentBarStyle): TopAppBarColors {
+fun topBarColors(accentBarStyle: AccentBarStyle): TopAppBarColors {
     val contentColor = if (accentBarStyle == AccentBarStyle.RETRO) {
         MaterialTheme.accentPalette.onSeed
     } else {

@@ -3,17 +3,23 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ui_root="$repo_root/app/src/main/java/com/bookverse/contacts/ui"
-design_system_ui_root="$repo_root/core/designsystem/src/main/java/com/bookverse/contacts/ui"
+shopt -s nullglob
+ui_roots=("$ui_root")
+for module_ui_root in "$repo_root"/core/*/src/main/java/com/bookverse/contacts/ui "$repo_root"/feature/*/src/main/java/com/bookverse/contacts/ui; do
+  ui_roots+=("$module_ui_root")
+done
+shopt -u nullglob
 
 ui_file() {
-  if [[ -f "$ui_root/$1" ]]; then
-    printf '%s\n' "$ui_root/$1"
-  elif [[ -f "$design_system_ui_root/$1" ]]; then
-    printf '%s\n' "$design_system_ui_root/$1"
-  else
-    echo "Accent contract source is missing: $1" >&2
-    exit 1
-  fi
+  local root
+  for root in "${ui_roots[@]}"; do
+    if [[ -f "$root/$1" ]]; then
+      printf '%s\n' "$root/$1"
+      return
+    fi
+  done
+  echo "Accent contract source is missing: $1" >&2
+  exit 1
 }
 
 while IFS= read -r raw_seed_consumer; do
@@ -24,7 +30,7 @@ while IFS= read -r raw_seed_consumer; do
       exit 1
       ;;
   esac
-done < <(grep -rn -F '.accentColor.collectAsStateWithLifecycle()' "$ui_root" "$design_system_ui_root" --include='*.kt' || true)
+done < <(grep -rn -F '.accentColor.collectAsStateWithLifecycle()' "${ui_roots[@]}" --include='*.kt' || true)
 
 while IFS= read -r seed_consumer; do
   case "$seed_consumer" in
@@ -40,7 +46,7 @@ while IFS= read -r seed_consumer; do
       exit 1
       ;;
   esac
-done < <(grep -rln -E '(accentPalette|preview)\.seed' "$ui_root" "$design_system_ui_root" --include='*.kt' | grep -v '/theme/' || true)
+done < <(grep -rln -E '(accentPalette|preview)\.seed' "${ui_roots[@]}" --include='*.kt' | grep -v '/theme/' || true)
 
 theme_file=$(ui_file theme/ContactsAppTheme.kt)
 palette_file=$(ui_file theme/AccentPalette.kt)

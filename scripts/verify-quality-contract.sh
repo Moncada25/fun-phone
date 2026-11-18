@@ -55,7 +55,7 @@ pure_settings_components=(
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsSheetComponents.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsAppearanceSheets.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferenceSheets.kt"
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/components/SelectBottomSheet.kt"
+  "$repo_root/core/ui/src/main/java/com/bookverse/contacts/ui/components/SelectBottomSheet.kt"
   "$repo_root/core/designsystem/src/main/java/com/bookverse/contacts/ui/components/SettingSwitch.kt"
 )
 for component in "${pure_settings_components[@]}"; do
@@ -101,7 +101,7 @@ required_tests=(
   "core/database/src/main/java/com/bookverse/contacts/data/db/LegacyDatabaseMigrations.kt"
   "core/security/src/androidTest/java/com/bookverse/contacts/security/CryptoManagerTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/service/ReminderSchedulingPerformanceTest.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/ui/auth/PasswordAuthDialogsTest.kt"
+  "core/ui/src/androidTest/java/com/bookverse/contacts/ui/auth/PasswordAuthDialogsTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/navigation/MainTabNavigationBarTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/screens/contacts/dialer/DialerNumberEditorTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/screens/settings/OnboardingFlowScreenTest.kt"

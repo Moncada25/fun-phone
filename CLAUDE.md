@@ -11,7 +11,8 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **Architecture**: MVVM + Repository, manual DI (no Hilt)
 - **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components),
   `:core:database` (Room), `:core:datastore` (the single app settings DataStore), `:core:security` (`CryptoManager`, PIN and
-  app lock), `:core:ui` (shared strings, drawables and fonts) and `:core:common`
+  app lock), `:core:ui` (shared strings, drawables, fonts, `AppSettingsViewModel`, shared
+  components and the protected-action auth UI) and `:core:common`
   (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
   macrobenchmarks). Shared Gradle setup lives in the `build-logic` convention plugins
   (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
@@ -41,8 +42,9 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 
 - **`ui/viewmodel/`** — ViewModels extend `AndroidViewModel`, expose `StateFlow` via `MutableStateFlow` + `.asStateFlow()`. Use `viewModelScope` for coroutines. Manual factories via companion `provideFactory()`. Collect in Compose with `collectAsStateWithLifecycle()`.
 - **`ui/screens/`** — Feature screens organized by domain (contacts, calls, notes, games, qr, passwords, expenses, tools, settings)
-- **`ui/components/`** — reusable Compose components. Generic ones that need no app strings live in
-  `:core:designsystem`; components that use app strings or feature types stay in `:app`
+- **`ui/components/`** — reusable Compose components. Generic ones that need no strings live in
+  `:core:designsystem`; shared ones that use strings or settings live in `:core:ui`; components
+  owned by a single feature stay with that feature
 - **`ui/navigation/`** — `SecondaryScreen` enum + `SecondaryScreenContent` composable for routing. `NavigationViewModel` manages navigation state via `NavigationUiState` StateFlow.
 - **`ui/theme/`** (`:core:designsystem`) — `ContactsAppTheme`, `ThemeMode`, `DarkModeStyle`, `AccentBarStyle` with light/dark schemes and semantic color tokens (`CallAcceptColor`, `CallRejectColor`, `BadgeColor`, `BudgetOkColor`, etc.)
 - **`data/db/`** (`:core:database`) — Room `AppDatabase` with auto-migrations, DAOs, converters and the

@@ -151,7 +151,7 @@ fun OptionsDialog(
 }
 
 @Composable
-internal fun OptionRow(
+fun OptionRow(
     option: OptionsDialogItem,
     onDismiss: () -> Unit,
 ) {

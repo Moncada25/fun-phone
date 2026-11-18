@@ -2,12 +2,12 @@ package com.bookverse.contacts.ui.components
 
 import androidx.biometric.BiometricPrompt
 
-internal enum class BiometricErrorOutcome {
+enum class BiometricErrorOutcome {
     CANCEL,
     FAIL,
 }
 
-internal fun classifyBiometricError(errorCode: Int): BiometricErrorOutcome =
+fun classifyBiometricError(errorCode: Int): BiometricErrorOutcome =
     when (errorCode) {
         BiometricPrompt.ERROR_NEGATIVE_BUTTON,
         BiometricPrompt.ERROR_USER_CANCELED,

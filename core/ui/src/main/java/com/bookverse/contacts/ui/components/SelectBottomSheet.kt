@@ -25,10 +25,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.core.ui.R
 
-internal const val SELECT_BOTTOM_SHEET_LIST_TAG = "select_bottom_sheet_list"
+const val SELECT_BOTTOM_SHEET_LIST_TAG = "select_bottom_sheet_list"
 
 @Composable
-internal fun <T> SelectBottomSheet(
+fun <T> SelectBottomSheet(
     onDismiss: () -> Unit,
     title: String,
     options: List<T>,
