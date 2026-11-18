@@ -25,9 +25,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.icons.lucide.android)
 
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.test.manifest)
-
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
 }

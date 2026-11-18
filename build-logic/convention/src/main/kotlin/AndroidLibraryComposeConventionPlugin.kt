@@ -20,6 +20,8 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
                 add("androidTestImplementation", bom)
                 add("implementation", libs.findLibrary("androidx-ui-tooling-preview").get())
                 add("debugImplementation", libs.findLibrary("androidx-ui-tooling").get())
+                add("debugImplementation", libs.findLibrary("androidx-ui-test-manifest").get())
+                add("androidTestImplementation", libs.findLibrary("androidx-ui-test-junit4").get())
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.tools
 
+import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.assertCountEquals
@@ -12,8 +13,6 @@ import androidx.compose.ui.test.performClick
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.holidays.BirthdayAgendaEntry
 import com.bookverse.contacts.domain.holidays.CalendarSource
-import com.bookverse.contacts.testing.ComposeTestContent
-import com.bookverse.contacts.testing.ComposeTestHostActivity
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -22,22 +21,20 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class HolidayAgendaComponentsTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<ComposeTestHostActivity>()
+    val composeRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
     fun birthdayRowShowsContactAndLocalizedBadge() {
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    AgendaBirthdayRow(
-                        birthday = BirthdayAgendaEntry(
-                            contactId = "1",
-                            contactName = "Ada Lovelace",
-                            date = LocalDate.of(2026, 12, 10),
-                        ),
-                        accentColor = Color.Blue,
-                    )
-                }
+        composeRule.setContent {
+            MaterialTheme {
+                AgendaBirthdayRow(
+                    birthday = BirthdayAgendaEntry(
+                        contactId = "1",
+                        contactName = "Ada Lovelace",
+                        date = LocalDate.of(2026, 12, 10),
+                    ),
+                    accentColor = Color.Blue,
+                )
             }
         }
 
@@ -49,18 +46,16 @@ class HolidayAgendaComponentsTest {
 
     @Test
     fun calendarDayAnnouncesBirthdayAndCalendarEvent() {
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    CalendarDayCell(
-                        day = 9,
-                        isToday = false,
-                        isHoliday = false,
-                        hasEvent = true,
-                        hasBirthday = true,
-                        accentColor = Color.Blue,
-                    )
-                }
+        composeRule.setContent {
+            MaterialTheme {
+                CalendarDayCell(
+                    day = 9,
+                    isToday = false,
+                    isHoliday = false,
+                    hasEvent = true,
+                    hasBirthday = true,
+                    accentColor = Color.Blue,
+                )
             }
         }
 
@@ -79,18 +74,16 @@ class HolidayAgendaComponentsTest {
             CalendarSource(2L, "Work", "grace@example.com", "com.google"),
             CalendarSource(3L, "Work", "grace@example.com", "com.google"),
         )
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    CalendarSelectorSheet(
-                        calendars = calendars,
-                        selectedIds = emptySet(),
-                        isLoading = false,
-                        accentColor = Color.Blue,
-                        onApply = {},
-                        onDismiss = {},
-                    )
-                }
+        composeRule.setContent {
+            MaterialTheme {
+                CalendarSelectorSheet(
+                    calendars = calendars,
+                    selectedIds = emptySet(),
+                    isLoading = false,
+                    accentColor = Color.Blue,
+                    onApply = {},
+                    onDismiss = {},
+                )
             }
         }
 
@@ -100,18 +93,16 @@ class HolidayAgendaComponentsTest {
     @Test
     fun calendarSelectorCancelDismissesSheet() {
         val dismissed = AtomicBoolean(false)
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    CalendarSelectorSheet(
-                        calendars = emptyList(),
-                        selectedIds = emptySet(),
-                        isLoading = false,
-                        accentColor = Color.Blue,
-                        onApply = {},
-                        onDismiss = { dismissed.set(true) },
-                    )
-                }
+        composeRule.setContent {
+            MaterialTheme {
+                CalendarSelectorSheet(
+                    calendars = emptyList(),
+                    selectedIds = emptySet(),
+                    isLoading = false,
+                    accentColor = Color.Blue,
+                    onApply = {},
+                    onDismiss = { dismissed.set(true) },
+                )
             }
         }
 
@@ -124,16 +115,14 @@ class HolidayAgendaComponentsTest {
     @Test
     fun pastAgendaToggleInvokesExpansion() {
         val toggled = AtomicBoolean(false)
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme {
-                    PastAgendaToggle(
-                        pastItemCount = 3,
-                        expanded = false,
-                        accentColor = Color.Blue,
-                        onToggle = { toggled.set(true) },
-                    )
-                }
+        composeRule.setContent {
+            MaterialTheme {
+                PastAgendaToggle(
+                    pastItemCount = 3,
+                    expanded = false,
+                    accentColor = Color.Blue,
+                    onToggle = { toggled.set(true) },
+                )
             }
         }
 

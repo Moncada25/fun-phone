@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.tools
 
+import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.assertIsDisplayed
@@ -7,8 +8,6 @@ import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.bookverse.contacts.core.ui.R
-import com.bookverse.contacts.testing.ComposeTestContent
-import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.viewmodel.PomodoroSettings
 import com.bookverse.contacts.ui.viewmodel.PomodoroTimerState
 import org.junit.Assert.assertEquals
@@ -19,7 +18,7 @@ import java.util.concurrent.atomic.AtomicReference
 
 class PomodoroScreenTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<ComposeTestHostActivity>()
+    val composeRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
     fun timerDisplayAnnouncesTimeAndReadyState() {
@@ -134,10 +133,8 @@ class PomodoroScreenTest {
     }
 
     private fun showContent(content: @androidx.compose.runtime.Composable () -> Unit) {
-        composeRule.runOnUiThread {
-            ComposeTestContent.show {
-                MaterialTheme(content = content)
-            }
+        composeRule.setContent {
+            MaterialTheme(content = content)
         }
         composeRule.waitForIdle()
     }
