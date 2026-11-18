@@ -19,7 +19,8 @@ Release signing is optional for development and described in [SETUP.md](../SETUP
 
 - **Modules:** `:app` (the application, package `com.bookverse.contacts`), the Android libraries
   `:core:designsystem` (theme and generic Compose components), `:core:database` (Room),
-  `:core:datastore` (app settings DataStore) and `:core:common` (diagnostics and generic utilities), and
+  `:core:datastore` (app settings DataStore), `:core:security` (encryption, PIN and app lock) and
+  `:core:common` (diagnostics and generic utilities), and
   `:baselineprofile` (Baseline Profile generator and macrobenchmarks). Shared Gradle configuration
   lives in the convention plugins under `build-logic/`.
 - **UI:** 100% Jetpack Compose and Material 3. No XML layouts or fragments.

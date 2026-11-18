@@ -99,7 +99,7 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/PasswordAuthMethodContractTest.kt"
   "core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt"
   "core/database/src/main/java/com/bookverse/contacts/data/db/LegacyDatabaseMigrations.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/security/CryptoManagerTest.kt"
+  "core/security/src/androidTest/java/com/bookverse/contacts/security/CryptoManagerTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/service/ReminderSchedulingPerformanceTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/auth/PasswordAuthDialogsTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/navigation/MainTabNavigationBarTest.kt"

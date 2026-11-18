@@ -10,7 +10,8 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **UI**: 100% Jetpack Compose + Material 3 — no XML layouts or fragments
 - **Architecture**: MVVM + Repository, manual DI (no Hilt)
 - **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components),
-  `:core:database` (Room), `:core:datastore` (the single app settings DataStore) and `:core:common`
+  `:core:database` (Room), `:core:datastore` (the single app settings DataStore), `:core:security` (`CryptoManager`, PIN and
+  app lock) and `:core:common`
   (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
   macrobenchmarks). Shared Gradle setup lives in the `build-logic` convention plugins
   (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
@@ -49,7 +50,8 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **`data/notes/`, `data/expenses/`, `data/password/`, `data/qr/`** — Feature-specific Room entities and domain models annotated with `@Immutable` for Compose stability
 - **`data/repository/`** — Repository implementations for contacts and the bounded HTTPS holidays source.
 - **`service/`** — Android services: `FunPhoneInCallService`, `IncomingCallService`, `OngoingCallService`, `NotificationService`, `CallNotificationManager`
-- **`security/`** — `CryptoManager` (Tink + Android Keystore)
+- **`security/`** (`:core:security`) — `CryptoManager` (Tink + Android Keystore), PIN and app lock; the
+  vault autofill service stays in `:app`
 - **`utils/`** — `ContactUtils`, `PermissionUtils`, `SpeechUtils`, `VibrationUtils`, `NoteShareUtils`, `NotesBackupUtils`
 
 ### Data Persistence

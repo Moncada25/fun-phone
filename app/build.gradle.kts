@@ -416,6 +416,7 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:datastore"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:security"))
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)

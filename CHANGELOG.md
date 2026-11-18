@@ -8,9 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- The theme, generic Compose components, Room database, settings DataStore and generic utilities
-  now live in the `:core:designsystem`, `:core:database`, `:core:datastore` and `:core:common`
-  Android library modules, with shared Gradle setup in `build-logic`
+- The theme, generic Compose components, Room database, settings DataStore, encryption and PIN
+  code and generic utilities now live in the `:core:designsystem`, `:core:database`,
+  `:core:datastore`, `:core:security` and `:core:common` Android library modules, with shared Gradle setup in `build-logic`
   convention plugins. No user-visible change.
 
 ### Fixed
