@@ -1,0 +1,5 @@
+• Appels : seule la notification d'appel manqué de Fun Phone s'affiche, la sonnerie s'arrête dès la fin de l'appel et l'appel entrant reste accessible jusqu'à la réponse ou au refus.
+• Nouveaux widgets Appels récents et Dépenses du mois, aux couleurs de votre thème.
+• Mots de passe : choisissez un service courant pour le site web.
+• La personnalisation s'applique de nouveau tout de suite.
+• Widgets et tâches en arrière-plan réparés.

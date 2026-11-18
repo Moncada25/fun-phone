@@ -1,0 +1,5 @@
+• Anrufe: Es erscheint nur noch die Benachrichtigung von Fun Phone für verpasste Anrufe, das Klingeln endet mit dem Anruf und der eingehende Anruf bleibt bis zum Annehmen oder Ablehnen erreichbar.
+• Neue Widgets für letzte Anrufe und Monatsausgaben, alle in deinen Farben.
+• Passwortmanager: gängige Dienste für die Website auswählen.
+• Personalisierung wirkt wieder sofort.
+• Widgets und Hintergrundaufgaben funktionieren wieder.

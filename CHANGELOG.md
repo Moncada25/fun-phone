@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.20.8] - 2026-11-18
+
 ### Added
 - Recent calls and Monthly expenses home screen widgets. Recent calls lists the latest calls with
   call-back buttons; Monthly expenses shows this month's spending, income and budget progress, and
