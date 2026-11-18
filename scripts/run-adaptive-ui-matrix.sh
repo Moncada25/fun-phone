@@ -56,21 +56,29 @@ restore_device() {
 trap restore_device EXIT
 
 cd "$repo_root"
-./gradlew :app:assembleCommunityDebug :app:assembleCommunityDebugAndroidTest
+./gradlew :app:assembleCommunityDebug :app:assembleCommunityDebugAndroidTest \
+  :core:ui:assembleDebugAndroidTest :feature:dialer:assembleDebugAndroidTest
 
-main_apk="app/build/outputs/apk/community/debug/app-community-debug.apk"
-test_apk="app/build/outputs/apk/androidTest/community/debug/app-community-debug-androidTest.apk"
-"${adb_device[@]}" install -r -t "$main_apk" >/dev/null
-"${adb_device[@]}" install -r -t "$test_apk" >/dev/null
+"${adb_device[@]}" install -r -t "app/build/outputs/apk/community/debug/app-community-debug.apk" >/dev/null
+for test_apk in \
+  "app/build/outputs/apk/androidTest/community/debug/app-community-debug-androidTest.apk" \
+  "core/ui/build/outputs/apk/androidTest/debug/ui-debug-androidTest.apk" \
+  "feature/dialer/build/outputs/apk/androidTest/debug/dialer-debug-androidTest.apk"; do
+  "${adb_device[@]}" install -r -t "$test_apk" >/dev/null
+done
 
-test_classes="com.bookverse.contacts.ui.screens.settings.OnboardingFlowScreenTest"
-test_classes+=",com.bookverse.contacts.ui.screens.settings.OnboardingRestorationTest"
-test_classes+=",com.bookverse.contacts.ui.navigation.MainTabNavigationBarTest"
-test_classes+=",com.bookverse.contacts.ui.screens.settings.BlockedNumbersDialogsTest"
-test_classes+=",com.bookverse.contacts.ui.screens.tools.ToolsPresetSelectorTest"
-test_classes+=",com.bookverse.contacts.ui.AccessibilityCoreContractTest"
-test_classes+=",com.bookverse.contacts.ui.auth.PasswordAuthDialogsTest"
-test_classes+=",com.bookverse.contacts.ui.screens.dialer.DialerNumberEditorTest"
+app_test_classes="com.bookverse.contacts.ui.screens.settings.OnboardingFlowScreenTest"
+app_test_classes+=",com.bookverse.contacts.ui.screens.settings.OnboardingRestorationTest"
+app_test_classes+=",com.bookverse.contacts.ui.navigation.MainTabNavigationBarTest"
+app_test_classes+=",com.bookverse.contacts.ui.screens.settings.BlockedNumbersDialogsTest"
+app_test_classes+=",com.bookverse.contacts.ui.screens.tools.ToolsPresetSelectorTest"
+app_test_classes+=",com.bookverse.contacts.ui.AccessibilityCoreContractTest"
+
+suites=(
+  "$test_package|$app_package|$app_test_classes"
+  "com.bookverse.contacts.core.ui.test|com.bookverse.contacts.core.ui.test|com.bookverse.contacts.ui.auth.PasswordAuthDialogsTest"
+  "com.bookverse.contacts.feature.dialer.test|com.bookverse.contacts.feature.dialer.test|com.bookverse.contacts.ui.screens.dialer.DialerNumberEditorTest"
+)
 
 scenarios=(
   "split-width-proxy|360|720|1.3|no|es"
@@ -85,20 +93,24 @@ for scenario in "${scenarios[@]}"; do
   "${adb_device[@]}" shell wm size "${width}dpx${height}dp" >/dev/null
   "${adb_device[@]}" shell settings put system font_scale "$scale" >/dev/null
   "${adb_device[@]}" shell cmd uimode night "$night" >/dev/null
-  "${adb_device[@]}" shell cmd locale set-app-locales "$app_package" \
-    --locales "$locale" >/dev/null
 
-  instrument_output="$(
-    "${adb_device[@]}" shell am instrument -w -r \
-      -e class "$test_classes" \
-      "$test_package/$runner"
-  )"
-  if ! grep -q '^OK (' <<<"$instrument_output"; then
-    echo "$instrument_output" >&2
-    echo "Adaptive scenario failed: $name" >&2
-    exit 1
-  fi
-  grep '^OK (' <<<"$instrument_output"
+  for suite in "${suites[@]}"; do
+    IFS='|' read -r suite_test_package locale_package suite_classes <<<"$suite"
+    "${adb_device[@]}" shell cmd locale set-app-locales "$locale_package" \
+      --locales "$locale" >/dev/null
+
+    instrument_output="$(
+      "${adb_device[@]}" shell am instrument -w -r \
+        -e class "$suite_classes" \
+        "$suite_test_package/$runner"
+    )"
+    if ! grep -q '^OK (' <<<"$instrument_output"; then
+      echo "$instrument_output" >&2
+      echo "Adaptive scenario failed: $name ($suite_test_package)" >&2
+      exit 1
+    fi
+    echo "$suite_test_package: $(grep '^OK (' <<<"$instrument_output")"
+  done
 done
 
 echo "Adaptive UI matrix passed on emulator $serial."

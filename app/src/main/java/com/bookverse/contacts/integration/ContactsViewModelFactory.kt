@@ -13,6 +13,7 @@ import com.bookverse.contacts.data.repository.RecentOperationsRepository
 import com.bookverse.contacts.repository.ContactUsageRepository
 import com.bookverse.contacts.domain.telemetry.FunnelTelemetry
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
+import com.bookverse.contacts.widget.WidgetUpdateHelper
 
 class ContactsViewModelFactory(
     private val application: Application,
@@ -36,6 +37,7 @@ class ContactsViewModelFactory(
             contactVCardRepository = ContactVCardRepository(application, contactRepository),
             contactUsageRepository = ContactUsageRepository(application),
             funnelTelemetry = funnelTelemetry,
+            refreshWidgets = { WidgetUpdateHelper.updateAllWidgets(application) },
         ) as T
     }
 }

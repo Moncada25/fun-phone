@@ -21,11 +21,6 @@ import com.bookverse.contacts.settings.DataStoreAppSettingsStore
 import com.bookverse.contacts.utils.ConnectivityChecker
 import java.time.YearMonth
 
-interface Telemetry {
-    fun setCollectionEnabled(enabled: Boolean)
-    fun recordEvent(name: String, parameters: Map<String, String> = emptyMap())
-}
-
 interface IntegrityProvider {
     suspend fun initialize()
 }

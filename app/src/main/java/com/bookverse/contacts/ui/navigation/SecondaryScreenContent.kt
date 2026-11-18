@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.navigation
 
+import com.bookverse.contacts.utils.PhoneActions
 import android.annotation.SuppressLint
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
@@ -138,6 +139,7 @@ fun SecondaryScreenContent(
             onBack = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
             directory = contactsViewModel,
+            phoneActions = PhoneActions,
             phoneNumber = dialerPhoneNumber,
             onPhoneNumberChange = { onDialerPhoneNumberChange(it) },
             onAddContactClick = { phone, country ->
@@ -149,6 +151,7 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.DETAIL -> selectedContact?.let { contact ->
             ContactDetailsScreen(
+                phoneActions = PhoneActions,
                 contact = contact,
                 onBackClick = { navigationViewModel.navigateBack(); onSelectedContactChange(null) },
                 appSettingsViewModel = appSettingsViewModel,
@@ -407,6 +410,7 @@ fun SecondaryScreenContent(
         )
 
         SecondaryScreen.PROFILE -> ProfileScreen(
+            phoneActions = PhoneActions,
             onBackClick = { navigationViewModel.navigateBack() },
             onEditProfile = { contact ->
                 onContactBeingEditedChange(contact)

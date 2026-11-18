@@ -1,5 +1,7 @@
 package com.bookverse.contacts.widget
 
+import com.bookverse.contacts.utils.PhoneActions
+import com.bookverse.contacts.navigation.AppEntryPoints
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -152,6 +154,7 @@ class ContactDetailActivity : LocalizedAppCompatActivity() {
                                 )
                             } else {
                                 ContactDetailsScreen(
+                                    phoneActions = PhoneActions,
                                     contact = contact,
                                     onBackClick = { this@ContactDetailActivity.finish() },
                                     onEditContact = { latest ->
@@ -201,8 +204,8 @@ class ContactDetailActivity : LocalizedAppCompatActivity() {
         }
 
     companion object {
-        const val EXTRA_CONTACT_ID = "contact_id"
-        const val EXTRA_CONTACT_NAME = "contact_name"
+        const val EXTRA_CONTACT_ID = AppEntryPoints.EXTRA_CONTACT_ID
+        const val EXTRA_CONTACT_NAME = AppEntryPoints.EXTRA_CONTACT_NAME
         const val EXTRA_CONTACT_PHONE = "contact_phone"
         const val EXTRA_CONTACT = "contact"
     }
