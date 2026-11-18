@@ -422,6 +422,7 @@ dependencies {
     implementation(project(":feature:games"))
     implementation(project(":feature:notes"))
     implementation(project(":feature:qr"))
+    implementation(project(":feature:tools"))
     implementation(project(":feature:vault"))
 
     implementation(libs.androidx.core.splashscreen)

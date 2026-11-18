@@ -57,9 +57,9 @@ class PomodoroViewModel : ViewModel() {
     }
 
     fun startBreakSession() {
-        val isLongBreak = (_completedSessions.value % _settings.value.sessionsUntilLongBreak) == 0 
+        val isLongBreak = (_completedSessions.value % _settings.value.sessionsUntilLongBreak) == 0
             && _completedSessions.value > 0
-        
+
         _timerState.value = PomodoroTimerState.BREAK
         _totalSeconds.value = if (isLongBreak) {
             _settings.value.longBreakMinutes * 60

@@ -1,5 +1,7 @@
 package com.bookverse.contacts.ui.screens.tools
 
+import com.bookverse.contacts.data.model.Contact
+import kotlinx.coroutines.flow.StateFlow
 import android.Manifest
 import android.app.Activity
 import androidx.activity.compose.BackHandler
@@ -82,7 +84,6 @@ import com.bookverse.contacts.ui.components.CountrySelectDialog
 import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.HolidaysUiState
 import com.bookverse.contacts.ui.viewmodel.HolidaysViewModel
 import com.bookverse.contacts.utils.PermissionUtils
@@ -101,12 +102,13 @@ private const val MAX_CALENDAR_WEEKS = 6
 fun HolidaysScreen(
     onBackClick: () -> Unit,
     appSettingsViewModel: AppSettingsViewModel,
-    contactsViewModel: ContactsViewModel,
+    contactsFlow: StateFlow<List<Contact>>,
+    profileFlow: StateFlow<Contact?>,
     viewModel: HolidaysViewModel,
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val contacts by contactsViewModel.contacts.collectAsStateWithLifecycle()
-    val profile by contactsViewModel.profile.collectAsStateWithLifecycle()
+    val contacts by contactsFlow.collectAsStateWithLifecycle()
+    val profile by profileFlow.collectAsStateWithLifecycle()
     val accentColor = MaterialTheme.colorScheme.primary
     val monthPagerScope = rememberCoroutineScope()
     val pagerBaseMonth = remember { state.selectedMonth }

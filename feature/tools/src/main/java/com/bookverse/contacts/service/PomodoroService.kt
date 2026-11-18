@@ -15,7 +15,7 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
-import com.bookverse.contacts.MainActivity
+import com.bookverse.contacts.navigation.AppEntryPoints
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
@@ -193,7 +193,7 @@ class PomodoroService : Service() {
         val seconds = timeLeft % 60
         val timeText = String.format(Locale.ROOT, "%02d:%02d", minutes, seconds)
 
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = AppEntryPoints.mainActivityIntent(this).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
             putExtra("OPEN_POMODORO", true)
         }

@@ -169,7 +169,8 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.TOOLS_ORDER -> com.bookverse.contacts.ui.screens.tools.ToolsReorderScreen(
             appSettingsViewModel = appSettingsViewModel,
-            onBackClick = { navigationViewModel.navigateBack() }
+            onBackClick = { navigationViewModel.navigateBack() },
+            onPresetSelected = { preset -> appContainer.funnelTelemetry.toolsPresetSelected(preset) },
         )
 
         SecondaryScreen.GAMES -> GamesScreen(
@@ -492,7 +493,8 @@ fun SecondaryScreenContent(
         SecondaryScreen.HOLIDAYS -> HolidaysScreen(
             onBackClick = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
-            contactsViewModel = contactsViewModel,
+            contactsFlow = contactsViewModel.contacts,
+            profileFlow = contactsViewModel.profile,
             viewModel = holidaysViewModel,
         )
 

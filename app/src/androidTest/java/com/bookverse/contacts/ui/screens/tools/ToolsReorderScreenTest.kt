@@ -122,7 +122,7 @@ class ToolsReorderScreenTest {
                     LocalAppBarRoute provides "tools-order",
                     LocalBackdropAllowed provides false,
                 ) {
-                    ToolsReorderScreen(settings, {})
+                    ToolsReorderScreen(settings, {}, {})
                 }
             }
         }

@@ -23,6 +23,7 @@ dependencies {
     implementation(libs.icons.lucide.android)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.icons.lucide.android)
 
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)

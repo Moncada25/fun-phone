@@ -39,7 +39,7 @@ check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/contacts
 check_line_ceiling "feature/notes/src/main/java/com/bookverse/contacts/ui/screens/notes/NoteListScreen.kt" 1372
 check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/contacts/DialerScreen.kt" 1127
 check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/contacts/HistoryScreen.kt" 1109
-check_line_ceiling "app/src/main/java/com/bookverse/contacts/ui/screens/tools/HolidaysScreen.kt" 1352
+check_line_ceiling "feature/tools/src/main/java/com/bookverse/contacts/ui/screens/tools/HolidaysScreen.kt" 1352
 
 speed_dial_sheet="$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsDialog.kt"
 for forbidden_view_model in AppSettingsViewModel ContactsViewModel; do
@@ -89,9 +89,9 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/ui/screens/settings/PhoneStatusStateTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/settings/SpeedDialSettingsPolicyTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferencePolicyTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/screens/tools/HolidayDateFormatterTest.kt"
+  "feature/tools/src/test/java/com/bookverse/contacts/ui/screens/tools/HolidayDateFormatterTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/components/CallStateBannerTest.kt"
-  "app/src/test/java/com/bookverse/contacts/ui/viewmodel/HolidaysViewModelTest.kt"
+  "feature/tools/src/test/java/com/bookverse/contacts/ui/viewmodel/HolidaysViewModelTest.kt"
   "app/src/test/java/com/bookverse/contacts/settings/LocaleControllerTest.kt"
   "feature/games/src/test/java/com/bookverse/contacts/data/hangman/HangmanWordsTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/NavigationViewModelTest.kt"
