@@ -28,9 +28,9 @@ import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.data.model.ToolAction
 import com.bookverse.contacts.ui.auth.PasswordAuthDialogs
 import com.bookverse.contacts.ui.auth.rememberPasswordAuthState
-import com.bookverse.contacts.ui.components.GroupItem
-import com.bookverse.contacts.ui.components.GroupedCardList
 import com.bookverse.contacts.ui.components.MainTopBar
+import com.bookverse.contacts.ui.components.OutlinedListCard
+import com.bookverse.contacts.ui.components.OutlinedListRow
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.utils.ToolsRegistry
 
@@ -144,17 +144,17 @@ fun ToolsScreen(
                 state = listState
             ) {
                 item {
-                    GroupedCardList(
+                    OutlinedListCard(
                         items = toolItems.map { toolItem ->
                             {
-                                GroupItem(
+                                OutlinedListRow(
                                     icon = toolItem.icon,
                                     title = stringResource(toolItem.titleRes),
-                                    description = stringResource(toolItem.descriptionRes),
+                                    summary = stringResource(toolItem.descriptionRes),
                                     onClick = { executeToolAction(toolItem.action) },
                                 )
                             }
-                        }
+                        },
                     )
                 }
 
