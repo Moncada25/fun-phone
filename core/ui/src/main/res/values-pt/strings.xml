@@ -1872,7 +1872,7 @@
     <string name="holidays_no_upcoming_agenda">Não há eventos futuros neste mês.</string>
 
     <string name="onboarding_welcome_title">Seu telefone, mais simples</string>
-    <string name="onboarding_welcome_subtitle">Contatos e chamadas, do seu jeito. Escolha ferramentas opcionais abaixo.</string>
+    <string name="onboarding_welcome_subtitle">Um discador e gerenciador de contatos limpo e privado, feito para o dia a dia.</string>
     <string name="onboarding_optional_tools_title">Ferramentas opcionais</string>
     <string name="onboarding_optional_tools_description">Escolha quais extras aparecem no Fun Phone. Você poderá mudar isso depois em Configurações.</string>
     <string name="onboarding_customize_tools">Personalizar ferramentas</string>
@@ -1880,9 +1880,6 @@
     <string name="onboarding_setup_subtitle">Ative o que precisa. Você pode concluir a configuração depois.</string>
     <string name="onboarding_step_count">Etapa %1$d de %2$d</string>
     <string name="onboarding_requirements_count">%1$d de %2$d requisitos configurados</string>
-    <string name="onboarding_benefit_contacts">Encontre e organize as pessoas importantes para você.</string>
-    <string name="onboarding_benefit_calls">Faça e receba chamadas com um discador simples e claro.</string>
-    <string name="onboarding_benefit_recents">Veja chamadas recentes e perdidas rapidamente.</string>
     <string name="onboarding_enter">Entrar no Fun Phone</string>
     <string name="onboarding_continue_later">Continuar por enquanto</string>
     <string name="onboarding_choose_tools">Escolher ferramentas</string>
@@ -2256,7 +2253,6 @@
         <item quantity="many">%1$d chamadas perdidas</item>
         <item quantity="other">%1$d chamadas perdidas</item>
     </plurals>
-    <string name="about_badge_open_source">Código aberto</string>
     <string name="about_badge_no_ads">Sem anúncios</string>
     <string name="about_badge_no_trackers">Sem rastreadores</string>
     <string name="about_open_source_title">Código aberto</string>
@@ -2279,4 +2275,12 @@
     <string name="about_developer_role">Criador e mantenedor</string>
     <string name="about_developer_description">Dúvidas, ideias ou quer colaborar? Entre em contato.</string>
     <string name="about_footer_legal">%1$s · Licenciado sob %2$s</string>
+    <string name="onboarding_badge_open_source">Gratuito e de código aberto</string>
+    <string name="onboarding_value_private_title">Privado por design</string>
+    <string name="onboarding_value_private_body">Seus contatos e chamadas ficam no seu dispositivo. Sem anúncios nem análises.</string>
+    <string name="onboarding_value_calls_title">Chamadas, aprimoradas</string>
+    <string name="onboarding_value_calls_body">Um discador rápido com busca T9, recentes e suporte a dois chips.</string>
+    <string name="onboarding_value_personal_title">Do seu jeito</string>
+    <string name="onboarding_value_personal_body">Temas, fontes e ferramentas opcionais que você ativa quando quiser.</string>
+    <string name="onboarding_footer_note">Não precisa de conta. Você pode mudar tudo depois.</string>
 </resources>

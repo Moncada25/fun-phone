@@ -130,6 +130,11 @@ private object AboutLinks {
 
 private const val PLAY_DISTRIBUTION = "play"
 
+private val SEMANTIC_VERSION = Regex("""^\d+(\.\d+)*""")
+
+internal fun displayVersion(versionName: String): String =
+    SEMANTIC_VERSION.find(versionName)?.value ?: versionName
+
 @Immutable
 private data class AboutLinkItem(
     val key: String,
@@ -248,8 +253,6 @@ fun AboutScreen(
     }
 
     val badges = listOf(
-        AboutBadge(stringResource(R.string.about_badge_open_source), Lucide.CodeXml),
-        AboutBadge(stringResource(R.string.about_license_short), Lucide.Scale),
         AboutBadge(stringResource(R.string.about_badge_no_ads), Lucide.Ban),
         AboutBadge(stringResource(R.string.about_badge_no_trackers), Lucide.EyeOff),
     )
@@ -539,7 +542,7 @@ private fun AboutHero(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Text(
-                            text = stringResource(R.string.about_version, version),
+                            text = stringResource(R.string.about_version_short, displayVersion(version)),
                             style = MaterialTheme.typography.labelLarge,
                         )
                         Icon(

@@ -1872,7 +1872,7 @@
     <string name="holidays_no_upcoming_agenda">Aucun événement à venir ce mois-ci.</string>
 
     <string name="onboarding_welcome_title">Votre téléphone, en plus simple</string>
-    <string name="onboarding_welcome_subtitle">Vos contacts et vos appels, à votre façon. Choisissez vos outils facultatifs ci-dessous.</string>
+    <string name="onboarding_welcome_subtitle">Un composeur et carnet de contacts épuré et privé, pensé pour le quotidien.</string>
     <string name="onboarding_optional_tools_title">Outils facultatifs</string>
     <string name="onboarding_optional_tools_description">Choisissez les extras affichés dans Fun Phone. Vous pourrez modifier ce choix dans les paramètres.</string>
     <string name="onboarding_customize_tools">Personnaliser les outils</string>
@@ -1880,9 +1880,6 @@
     <string name="onboarding_setup_subtitle">Activez ce dont vous avez besoin. Vous pourrez terminer plus tard.</string>
     <string name="onboarding_step_count">Étape %1$d sur %2$d</string>
     <string name="onboarding_requirements_count">%1$d conditions remplies sur %2$d</string>
-    <string name="onboarding_benefit_contacts">Retrouvez et organisez vos contacts importants.</string>
-    <string name="onboarding_benefit_calls">Passez et recevez des appels avec une interface simple.</string>
-    <string name="onboarding_benefit_recents">Consultez vos appels récents et manqués en un coup d’œil.</string>
     <string name="onboarding_enter">Ouvrir Fun Phone</string>
     <string name="onboarding_continue_later">Continuer pour le moment</string>
     <string name="onboarding_choose_tools">Choisir des outils</string>
@@ -2256,7 +2253,6 @@
         <item quantity="many">%1$d appels manqués</item>
         <item quantity="other">%1$d appels manqués</item>
     </plurals>
-    <string name="about_badge_open_source">Logiciel libre</string>
     <string name="about_badge_no_ads">Sans publicité</string>
     <string name="about_badge_no_trackers">Sans traqueurs</string>
     <string name="about_open_source_title">Logiciel libre</string>
@@ -2279,4 +2275,12 @@
     <string name="about_developer_role">Créateur et mainteneur</string>
     <string name="about_developer_description">Des questions, des idées ou envie de collaborer ? Écrivez-moi.</string>
     <string name="about_footer_legal">%1$s · Sous licence %2$s</string>
+    <string name="onboarding_badge_open_source">Gratuit et open source</string>
+    <string name="onboarding_value_private_title">Privé par conception</string>
+    <string name="onboarding_value_private_body">Vos contacts et appels restent sur votre appareil. Sans publicité ni analyse.</string>
+    <string name="onboarding_value_calls_title">Des appels plus fluides</string>
+    <string name="onboarding_value_calls_body">Un composeur rapide avec recherche T9, appels récents et double SIM.</string>
+    <string name="onboarding_value_personal_title">À votre image</string>
+    <string name="onboarding_value_personal_body">Thèmes, polices et outils facultatifs à activer quand vous voulez.</string>
+    <string name="onboarding_footer_note">Aucun compte requis. Vous pourrez tout modifier plus tard.</string>
 </resources>

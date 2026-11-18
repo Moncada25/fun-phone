@@ -1851,7 +1851,7 @@
     <string name="holidays_no_upcoming_agenda">Diesen Monat stehen keine weiteren Termine an.</string>
 
     <string name="onboarding_welcome_title">Dein Telefon, ganz einfach</string>
-    <string name="onboarding_welcome_subtitle">Kontakte und Anrufe, ganz nach deinen Wünschen. Wähle unten optionale Werkzeuge.</string>
+    <string name="onboarding_welcome_subtitle">Eine klare, private Telefon- und Kontakte-App für jeden Tag.</string>
     <string name="onboarding_optional_tools_title">Optionale Werkzeuge</string>
     <string name="onboarding_optional_tools_description">Wähle, welche Extras in Fun Phone erscheinen. Du kannst das später in den Einstellungen ändern.</string>
     <string name="onboarding_customize_tools">Werkzeuge anpassen</string>
@@ -1859,9 +1859,6 @@
     <string name="onboarding_setup_subtitle">Aktiviere, was du brauchst. Du kannst die Einrichtung später abschließen.</string>
     <string name="onboarding_step_count">Schritt %1$d von %2$d</string>
     <string name="onboarding_requirements_count">%1$d von %2$d Voraussetzungen erfüllt</string>
-    <string name="onboarding_benefit_contacts">Finde und organisiere deine wichtigsten Kontakte.</string>
-    <string name="onboarding_benefit_calls">Telefoniere mit einer übersichtlichen, einfachen Telefon-App.</string>
-    <string name="onboarding_benefit_recents">Sieh letzte und verpasste Anrufe auf einen Blick.</string>
     <string name="onboarding_enter">Fun Phone öffnen</string>
     <string name="onboarding_continue_later">Vorerst fortfahren</string>
     <string name="onboarding_choose_tools">Tools auswählen</string>
@@ -2220,7 +2217,6 @@
         <item quantity="one">%1$d verpasster Anruf</item>
         <item quantity="other">%1$d verpasste Anrufe</item>
     </plurals>
-    <string name="about_badge_open_source">Open Source</string>
     <string name="about_badge_no_ads">Keine Werbung</string>
     <string name="about_badge_no_trackers">Keine Tracker</string>
     <string name="about_open_source_title">Open Source</string>
@@ -2243,4 +2239,12 @@
     <string name="about_developer_role">Entwickler und Maintainer</string>
     <string name="about_developer_description">Fragen, Ideen oder Lust auf Zusammenarbeit? Melde dich.</string>
     <string name="about_footer_legal">%1$s · Lizenziert unter %2$s</string>
+    <string name="onboarding_badge_open_source">Kostenlos und quelloffen</string>
+    <string name="onboarding_value_private_title">Privat von Grund auf</string>
+    <string name="onboarding_value_private_body">Kontakte und Anrufe bleiben auf deinem Gerät. Keine Werbung, keine Analysen.</string>
+    <string name="onboarding_value_calls_title">Telefonieren, verfeinert</string>
+    <string name="onboarding_value_calls_body">Ein schneller Wähler mit T9-Suche, Anrufliste und Dual-SIM-Unterstützung.</string>
+    <string name="onboarding_value_personal_title">Ganz nach deinem Stil</string>
+    <string name="onboarding_value_personal_body">Designs, Schriften und optionale Werkzeuge, die du jederzeit aktivieren kannst.</string>
+    <string name="onboarding_footer_note">Kein Konto nötig. Du kannst alles später ändern.</string>
 </resources>

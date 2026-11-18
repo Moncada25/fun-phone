@@ -1880,7 +1880,7 @@
     <string name="holidays_no_upcoming_agenda">No hay eventos próximos este mes.</string>
 
     <string name="onboarding_welcome_title">Tu teléfono, más simple</string>
-    <string name="onboarding_welcome_subtitle">Contactos y llamadas, a tu manera. Elige herramientas opcionales abajo.</string>
+    <string name="onboarding_welcome_subtitle">Un marcador y gestor de contactos limpio y privado, pensado para el día a día.</string>
     <string name="onboarding_optional_tools_title">Herramientas opcionales</string>
     <string name="onboarding_optional_tools_description">Elige qué extras aparecen en Fun Phone. Puedes cambiarlo después en Configuración.</string>
     <string name="onboarding_customize_tools">Personalizar herramientas</string>
@@ -1888,9 +1888,6 @@
     <string name="onboarding_setup_subtitle">Activa lo que necesitas. Puedes completar la configuración después.</string>
     <string name="onboarding_step_count">Paso %1$d de %2$d</string>
     <string name="onboarding_requirements_count">%1$d de %2$d requisitos configurados</string>
-    <string name="onboarding_benefit_contacts">Encuentra y organiza a quienes te importan.</string>
-    <string name="onboarding_benefit_calls">Haz y recibe llamadas con un marcador claro y sencillo.</string>
-    <string name="onboarding_benefit_recents">Consulta tus llamadas recientes y perdidas de un vistazo.</string>
     <string name="onboarding_enter">Entrar a Fun Phone</string>
     <string name="onboarding_continue_later">Continuar por ahora</string>
     <string name="onboarding_choose_tools">Elegir herramientas</string>
@@ -2264,7 +2261,6 @@
         <item quantity="many">%1$d llamadas perdidas</item>
         <item quantity="other">%1$d llamadas perdidas</item>
     </plurals>
-    <string name="about_badge_open_source">Código abierto</string>
     <string name="about_badge_no_ads">Sin anuncios</string>
     <string name="about_badge_no_trackers">Sin rastreadores</string>
     <string name="about_open_source_title">Código abierto</string>
@@ -2287,4 +2283,12 @@
     <string name="about_developer_role">Creador y mantenedor</string>
     <string name="about_developer_description">¿Preguntas, ideas o quieres colaborar? Escríbeme.</string>
     <string name="about_footer_legal">%1$s · Con licencia %2$s</string>
+    <string name="onboarding_badge_open_source">Gratis y de código abierto</string>
+    <string name="onboarding_value_private_title">Privado por diseño</string>
+    <string name="onboarding_value_private_body">Tus contactos y llamadas se quedan en tu dispositivo. Sin anuncios ni analítica.</string>
+    <string name="onboarding_value_calls_title">Llamadas, mejoradas</string>
+    <string name="onboarding_value_calls_body">Un marcador rápido con búsqueda T9, recientes y soporte para doble SIM.</string>
+    <string name="onboarding_value_personal_title">Hazlo tuyo</string>
+    <string name="onboarding_value_personal_body">Temas, fuentes y herramientas opcionales que puedes activar cuando quieras.</string>
+    <string name="onboarding_footer_note">No necesitas cuenta. Puedes cambiar todo después.</string>
 </resources>

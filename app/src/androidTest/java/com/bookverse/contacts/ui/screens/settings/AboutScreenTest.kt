@@ -120,7 +120,7 @@ class AboutScreenTest {
         )
         val version = packageInfo.versionName ?: "N/A"
         composeRule
-            .onNodeWithText(string(R.string.about_version, version))
+            .onNodeWithText(string(R.string.about_version_short, displayVersion(version)))
             .performClick()
 
         composeRule.waitUntil(timeoutMillis = 5_000) {
