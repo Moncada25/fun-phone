@@ -10,7 +10,8 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **UI**: 100% Jetpack Compose + Material 3 — no XML layouts or fragments
 - **Architecture**: MVVM + Repository, manual DI (no Hilt)
 - **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components),
-  `:core:database` (Room) and `:core:common` (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
+  `:core:database` (Room), `:core:datastore` (the single app settings DataStore) and `:core:common`
+  (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
   macrobenchmarks). Shared Gradle setup lives in the `build-logic` convention plugins
   (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
 - **Localization**: English baseline in `values/`, with Spanish, German, French, and Portuguese
@@ -53,7 +54,8 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 
 ### Data Persistence
 - **Room** (v32, auto/manual migrations) — contacts cache, contacts recycle bin, notes, passwords, expenses, and QR history
-- **DataStore** — app settings (theme, fonts, transitions) via `AppSettingsViewModel`
+- **DataStore** — app settings (theme, fonts, transitions) via `AppSettingsViewModel`; the single
+  `app_settings_datastore` instance lives in `:core:datastore`
 - **Network** — Optional Nager.Date holidays and user-requested social/web previews are the only
   direct network paths; no Firebase, analytics, advertising, or cloud backup.
 

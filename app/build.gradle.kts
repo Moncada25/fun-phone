@@ -414,6 +414,7 @@ configurations.matching { it.name.contains("AndroidTest", ignoreCase = true) }.c
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:database"))
+    implementation(project(":core:datastore"))
     implementation(project(":core:designsystem"))
 
     implementation(libs.androidx.core.splashscreen)
