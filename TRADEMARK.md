@@ -20,7 +20,7 @@
 - Los archivos de marca de este repositorio:
   - `app/src/main/ic_launcher-playstore.png`
   - `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml`
-  - `app/src/main/res/drawable-nodpi/ic_launcher_foreground.png` e `ic_launcher_foreground_adaptive.png`
+  - `core/ui/src/main/res/drawable-nodpi/ic_launcher_foreground.png` y `app/src/main/res/drawable-nodpi/ic_launcher_foreground_adaptive.png`
   - `fastlane/metadata/android/*/images/icon.png` y `featureGraphic.jpg`
 - El material de ficha de tienda, que muestra la marca oficial: `screenshots/`,
   `fastlane/metadata/android/*/images/phoneScreenshots/`, los textos de `fastlane/metadata/` y
@@ -51,8 +51,8 @@
 
 Debes:
 
-1. Cambiar el nombre visible de la app: `app_name` en `app/src/main/res/values/strings.xml` y las
-   demás menciones de "Fun Phone" en `app/src/main/res/values*/strings.xml`.
+1. Cambiar el nombre visible de la app: `app_name` en `core/ui/src/main/res/values/strings.xml` y las
+   demás menciones de "Fun Phone" en `core/ui/src/main/res/values*/strings.xml`.
 2. Reemplazar el logotipo y los íconos listados arriba.
 3. Cambiar el `applicationId` en `app/build.gradle.kts` (sabores `community` y `play`) por uno que
    no empiece por `com.bookverse`.
@@ -96,7 +96,7 @@ marca y el material de ficha.
 - The brand files in this repository:
   - `app/src/main/ic_launcher-playstore.png`
   - `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml`
-  - `app/src/main/res/drawable-nodpi/ic_launcher_foreground.png` and `ic_launcher_foreground_adaptive.png`
+  - `core/ui/src/main/res/drawable-nodpi/ic_launcher_foreground.png` and `app/src/main/res/drawable-nodpi/ic_launcher_foreground_adaptive.png`
   - `fastlane/metadata/android/*/images/icon.png` and `featureGraphic.jpg`
 - Store listing material, which shows the official brand: `screenshots/`,
   `fastlane/metadata/android/*/images/phoneScreenshots/`, and the texts in `fastlane/metadata/` and
@@ -127,8 +127,8 @@ marca y el material de ficha.
 
 You must:
 
-1. Change the visible app name: `app_name` in `app/src/main/res/values/strings.xml` and the other
-   mentions of "Fun Phone" in `app/src/main/res/values*/strings.xml`.
+1. Change the visible app name: `app_name` in `core/ui/src/main/res/values/strings.xml` and the other
+   mentions of "Fun Phone" in `core/ui/src/main/res/values*/strings.xml`.
 2. Replace the logo and icons listed above.
 3. Change the `applicationId` in `app/build.gradle.kts` (`community` and `play` flavors) to one that
    does not start with `com.bookverse`.

@@ -9,7 +9,7 @@ contracts; they do not replace the explicitly manual device and assistive-techno
 
 ## Localization quality gate (LOC-01)
 
-`app/src/main/res/values/strings.xml` is the canonical English baseline. The supported translations
+`core/ui/src/main/res/values/strings.xml` is the canonical English baseline. The supported translations
 are `values-es`, `values-de`, `values-fr`, and `values-pt`.
 
 Run the reproducible gate from the repository root:

@@ -50,7 +50,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.graphics.toColorInt
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlin.math.roundToInt
 

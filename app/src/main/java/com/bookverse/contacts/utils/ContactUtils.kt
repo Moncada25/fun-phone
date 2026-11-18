@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.core.graphics.createBitmap
 import androidx.core.net.toUri
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.domain.call.SimDecision

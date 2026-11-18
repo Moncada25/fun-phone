@@ -34,7 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.settings.Countries
 import com.bookverse.contacts.settings.Country

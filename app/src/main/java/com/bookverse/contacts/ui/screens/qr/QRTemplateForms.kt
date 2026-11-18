@@ -23,7 +23,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.SettingSwitch
 import com.bookverse.contacts.ui.components.TextField
 import com.bookverse.contacts.utils.QrTemplates

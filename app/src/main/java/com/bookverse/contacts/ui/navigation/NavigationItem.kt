@@ -5,7 +5,7 @@ import androidx.compose.material.icons.filled.Contacts
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.composables.icons.lucide.History
 import com.composables.icons.lucide.Lucide
 

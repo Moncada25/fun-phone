@@ -65,7 +65,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.service.PomodoroService
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.screens.settings.SettingsSheetScaffold

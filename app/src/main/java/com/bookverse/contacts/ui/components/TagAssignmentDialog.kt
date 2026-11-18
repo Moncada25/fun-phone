@@ -53,7 +53,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.graphics.toColorInt
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactTag
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide

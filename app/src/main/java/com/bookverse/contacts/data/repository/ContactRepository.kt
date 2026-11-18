@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.ContactPhone

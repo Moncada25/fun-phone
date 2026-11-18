@@ -24,7 +24,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.lifecycle.ViewModelProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.ContactPhone

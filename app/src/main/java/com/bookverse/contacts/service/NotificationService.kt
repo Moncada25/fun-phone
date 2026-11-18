@@ -13,7 +13,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.provider.Settings
 import androidx.core.net.toUri
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.ReminderData
 import com.bookverse.contacts.data.notes.ReminderType

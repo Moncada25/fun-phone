@@ -7,7 +7,7 @@ import android.util.Base64
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.FileProvider
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.password.PasswordCredential

@@ -6,7 +6,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.viewmodel.PomodoroSettings

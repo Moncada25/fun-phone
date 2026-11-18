@@ -44,7 +44,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType

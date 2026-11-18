@@ -28,7 +28,7 @@ import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.material.icons.outlined.PersonOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.composables.icons.lucide.AArrowUp
 import com.composables.icons.lucide.AlignJustify
 import com.composables.icons.lucide.ArchiveRestore

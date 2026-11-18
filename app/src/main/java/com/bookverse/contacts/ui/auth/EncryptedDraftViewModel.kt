@@ -154,7 +154,7 @@ fun encryptedDraft(key: String, settings: AppSettingsViewModel): EncryptedDraftV
 fun ReportDraftFailure(draft: EncryptedDraftViewModel) {
     val failed = draft.failed.collectAsStateWithLifecycle().value
     val context = LocalContext.current
-    val message = androidx.compose.ui.res.stringResource(com.bookverse.contacts.R.string.protected_draft_error)
+    val message = androidx.compose.ui.res.stringResource(com.bookverse.contacts.core.ui.R.string.protected_draft_error)
     androidx.compose.runtime.LaunchedEffect(failed) {
         if (failed) android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_LONG).show()
     }

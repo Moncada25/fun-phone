@@ -2,7 +2,7 @@ package com.bookverse.contacts.ui.screens.contacts.dialer
 
 import android.content.Context
 import android.content.res.Resources
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.ui.components.AppSnackbarState
 import com.bookverse.contacts.ui.components.SnackbarType

@@ -55,7 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.theme.CallEndColor
 import com.bookverse.contacts.ui.theme.GradientScrimColor
 import com.bookverse.contacts.utils.ContactUtils

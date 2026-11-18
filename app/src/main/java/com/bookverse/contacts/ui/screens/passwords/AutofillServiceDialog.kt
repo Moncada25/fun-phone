@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.MessageDialog
 
 private enum class AutofillStatus { UNSUPPORTED, DISABLED, ENABLED }

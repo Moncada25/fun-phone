@@ -30,7 +30,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 
 @Composable
 internal fun DialerNumberEditor(

@@ -9,7 +9,7 @@ import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.bookverse.contacts.MainActivity
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.notes.nextOccurrence
 import com.bookverse.contacts.data.notes.repeats

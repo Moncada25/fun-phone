@@ -19,7 +19,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.AppSettingsStore
 import com.bookverse.contacts.ui.components.AppBarStateRegistry
 import com.bookverse.contacts.ui.components.LocalAppBarRoute

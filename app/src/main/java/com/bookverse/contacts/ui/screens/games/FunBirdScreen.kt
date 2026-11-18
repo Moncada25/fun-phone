@@ -68,7 +68,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import android.media.AudioAttributes
 import android.media.SoundPool
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.GameCompletion
 import com.bookverse.contacts.domain.games.GameId
 import com.bookverse.contacts.domain.games.GameStatsRepository

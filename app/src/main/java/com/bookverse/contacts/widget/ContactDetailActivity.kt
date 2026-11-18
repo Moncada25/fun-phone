@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed

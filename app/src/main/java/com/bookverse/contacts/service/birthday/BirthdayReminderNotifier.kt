@@ -12,7 +12,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.birthday.BirthdayReminder
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.widget.ContactDetailActivity

@@ -63,7 +63,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.qr.QRHistoryEntity
 import com.bookverse.contacts.data.qr.QRType
 import com.bookverse.contacts.ui.components.ConfirmDialog

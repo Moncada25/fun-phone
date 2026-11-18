@@ -92,7 +92,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isUnspecified
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.integration.NotesViewModelFactory
 import com.bookverse.contacts.ui.components.AppSnackbarHost

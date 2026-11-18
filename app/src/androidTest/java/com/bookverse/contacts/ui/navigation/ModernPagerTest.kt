@@ -31,7 +31,7 @@ import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.AppScreenScaffold
 import com.bookverse.contacts.ui.theme.contrastRatio
 import com.bookverse.contacts.ui.theme.ContactsAppTheme

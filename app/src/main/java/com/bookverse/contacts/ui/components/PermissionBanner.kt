@@ -22,7 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Smartphone
 

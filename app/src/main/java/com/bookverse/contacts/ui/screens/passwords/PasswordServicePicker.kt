@@ -35,7 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.passwords.CredentialMatchPolicy
 import com.bookverse.contacts.domain.passwords.KnownService
 import com.bookverse.contacts.domain.passwords.KnownServiceCategory

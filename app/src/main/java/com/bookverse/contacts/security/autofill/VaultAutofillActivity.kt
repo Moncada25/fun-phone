@@ -54,7 +54,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.password.PasswordCredential
 import com.bookverse.contacts.data.password.PasswordRepository

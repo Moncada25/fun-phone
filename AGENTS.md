@@ -168,7 +168,7 @@ Compose UI
 
 ### Recursos y localización
 
-- Añadir cada string visible al baseline `app/src/main/res/values/strings.xml` y a `values-es`,
+- Añadir cada string visible al baseline `core/ui/src/main/res/values/strings.xml` y a `values-es`,
   `values-de`, `values-fr` y `values-pt`.
 - Conservar nombres, placeholders, plurales y arrays exactamente alineados.
 - Usar formatters localizados para fecha, hora, números y moneda.

@@ -14,7 +14,7 @@ class ProfileRepository(private val context: Context) {
     suspend fun getProfileContact(): Contact? = withContext(Dispatchers.IO) {
         val providerContact = Contacts(context).profile().query().find().contact
         val profileContact = providerContact?.toAppContact(
-            unknownName = context.getString(com.bookverse.contacts.R.string.unknown),
+            unknownName = context.getString(com.bookverse.contacts.core.ui.R.string.unknown),
             resolvedPhotoUri = contactPhotoStore.resolveProfilePhoto(providerContact.photoUri),
         )
 

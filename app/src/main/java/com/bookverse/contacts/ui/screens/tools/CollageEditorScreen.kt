@@ -44,7 +44,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.CollageCellTransform
 import com.bookverse.contacts.ui.components.CollageLayout
 import com.bookverse.contacts.ui.components.SecondaryTopBar

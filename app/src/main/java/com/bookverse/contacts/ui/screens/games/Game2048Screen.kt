@@ -49,7 +49,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.GameCompletion
 import com.bookverse.contacts.domain.games.GameId
 import com.bookverse.contacts.domain.games.GameStatsRepository

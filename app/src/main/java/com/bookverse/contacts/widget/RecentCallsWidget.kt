@@ -43,7 +43,7 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import com.bookverse.contacts.MainActivity
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.LocaleController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

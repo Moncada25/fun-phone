@@ -3,7 +3,7 @@ package com.bookverse.contacts.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.NoteDao

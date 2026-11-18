@@ -5,7 +5,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.annotation.FontRes
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 
 enum class Fonts(val font: String, val fontFamily: FontFamily) {
     DEFAULT("default", FontFamily.Default),

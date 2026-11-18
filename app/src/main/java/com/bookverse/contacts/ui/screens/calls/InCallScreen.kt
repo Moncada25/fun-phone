@@ -81,7 +81,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.call.CallContactLookup
 import com.bookverse.contacts.domain.call.CallContactPresentation
 import com.bookverse.contacts.domain.call.AudioRoute

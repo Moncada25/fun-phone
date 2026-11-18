@@ -11,11 +11,11 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **Architecture**: MVVM + Repository, manual DI (no Hilt)
 - **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components),
   `:core:database` (Room), `:core:datastore` (the single app settings DataStore), `:core:security` (`CryptoManager`, PIN and
-  app lock) and `:core:common`
+  app lock), `:core:ui` (shared strings, drawables and fonts) and `:core:common`
   (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
   macrobenchmarks). Shared Gradle setup lives in the `build-logic` convention plugins
   (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
-- **Localization**: English baseline in `values/`, with Spanish, German, French, and Portuguese
+- **Localization**: English baseline in `:core:ui` `values/`, with Spanish, German, French, and Portuguese
   translations in `values-es/`, `values-de/`, `values-fr/`, and `values-pt/`
 
 ## Build Commands
@@ -82,11 +82,13 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 ## Localization
 
 All new user-facing strings must be added to the following resources:
-- `app/src/main/res/values/strings.xml` (English baseline)
-- `app/src/main/res/values-es/strings.xml`, `values-de/strings.xml`, `values-fr/strings.xml`, and
+- `core/ui/src/main/res/values/strings.xml` (English baseline)
+- `core/ui/src/main/res/values-es/strings.xml`, `values-de/strings.xml`, `values-fr/strings.xml`, and
   `values-pt/strings.xml` (supported translations)
 
-Never hardcode text in Kotlin. Use localized formatters for dates, numbers, currencies.
+Shared strings, drawables, avatars and fonts live in `:core:ui`; reference them through
+`com.bookverse.contacts.core.ui.R`. `:app` keeps only manifest-owned resources (theme, launcher
+icon, widget previews and `xml/` configs). Never hardcode text in Kotlin. Use localized formatters for dates, numbers, currencies.
 Run `./scripts/verify-localization.sh` after changing localized resources.
 
 ## Room Database Changes

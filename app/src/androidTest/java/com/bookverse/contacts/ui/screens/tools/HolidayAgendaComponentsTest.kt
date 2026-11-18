@@ -9,7 +9,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.holidays.BirthdayAgendaEntry
 import com.bookverse.contacts.domain.holidays.CalendarSource
 import com.bookverse.contacts.testing.ComposeTestContent

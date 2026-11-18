@@ -46,7 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.BREAKOUT_BALL_RADIUS
 import com.bookverse.contacts.domain.games.BREAKOUT_BRICK_GAP
 import com.bookverse.contacts.domain.games.BREAKOUT_BRICK_HEIGHT

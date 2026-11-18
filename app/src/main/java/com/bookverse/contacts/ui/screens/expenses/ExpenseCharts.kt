@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.annotation.StringRes
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
 import com.bookverse.contacts.domain.expenses.CategoryShare

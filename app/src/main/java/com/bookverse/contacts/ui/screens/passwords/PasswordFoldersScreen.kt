@@ -38,7 +38,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.password.PasswordFolder
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ConfirmDialog

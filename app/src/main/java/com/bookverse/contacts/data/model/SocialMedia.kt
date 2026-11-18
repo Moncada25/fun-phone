@@ -3,7 +3,7 @@ package com.bookverse.contacts.data.model
 import com.bookverse.contacts.domain.contacts.SocialLinkPolicy
 import android.os.Parcelable
 import androidx.compose.ui.graphics.Color
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

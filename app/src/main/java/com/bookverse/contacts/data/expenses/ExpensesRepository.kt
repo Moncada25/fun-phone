@@ -3,7 +3,7 @@ package com.bookverse.contacts.data.expenses
 import android.content.Context
 import android.net.Uri
 import androidx.annotation.StringRes
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.utils.FixedTransactionsBackupUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

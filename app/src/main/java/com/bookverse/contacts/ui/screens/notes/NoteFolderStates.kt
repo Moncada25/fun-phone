@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.NOTE_FOLDER_FILTER_ALL
 import com.bookverse.contacts.data.notes.NoteFolder
 import com.bookverse.contacts.ui.components.folders.FolderFilterRow

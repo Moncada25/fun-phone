@@ -2,7 +2,7 @@ package com.bookverse.contacts.ui.screens.notes
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ReminderRepeat
 
 @Composable

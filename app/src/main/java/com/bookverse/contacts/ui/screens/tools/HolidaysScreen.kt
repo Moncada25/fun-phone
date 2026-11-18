@@ -71,7 +71,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.CalendarEvent
 import com.bookverse.contacts.data.model.PublicHoliday
 import com.bookverse.contacts.domain.holidays.BirthdayAgendaEntry

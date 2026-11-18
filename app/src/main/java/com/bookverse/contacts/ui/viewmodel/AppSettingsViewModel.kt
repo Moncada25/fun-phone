@@ -10,7 +10,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog

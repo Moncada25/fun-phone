@@ -89,7 +89,7 @@ import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.ui.components.AppSnackbarHost

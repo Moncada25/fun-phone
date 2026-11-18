@@ -18,7 +18,7 @@ import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeUp
 import androidx.lifecycle.ViewModelProvider
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.testing.ComposeTestContent

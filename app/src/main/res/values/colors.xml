@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="splash_background">#FFFFFF</color>
-    <!-- Colores de acento para la aplicación -->
-    <color name="accent_red">#FFF44336</color>
 
     <!-- Colores para el tema oscuro -->
     <!-- Colores para el tema claro -->

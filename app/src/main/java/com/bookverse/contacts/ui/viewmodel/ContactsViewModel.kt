@@ -13,7 +13,7 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.contacts.ContactRecycleBin
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount

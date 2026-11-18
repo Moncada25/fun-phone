@@ -47,7 +47,7 @@ import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.DialerFloatingActionButton
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.domain.contacts.ContactInputPolicy

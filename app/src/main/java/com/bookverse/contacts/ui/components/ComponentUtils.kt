@@ -2,7 +2,7 @@ package com.bookverse.contacts.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import contacts.core.entities.PhoneEntity
 
 @Composable

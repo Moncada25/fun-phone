@@ -19,7 +19,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.auth.ProtectedScreenHost

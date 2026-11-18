@@ -47,7 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType

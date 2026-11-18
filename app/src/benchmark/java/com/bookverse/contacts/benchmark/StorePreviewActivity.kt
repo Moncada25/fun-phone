@@ -67,7 +67,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.expenses.ExpenseBudgetEntity
 import com.bookverse.contacts.data.expenses.ExpenseCategoryEntity

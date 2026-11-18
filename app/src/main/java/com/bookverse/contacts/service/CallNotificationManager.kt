@@ -17,7 +17,7 @@ import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
 import com.bookverse.contacts.App
 import com.bookverse.contacts.MainActivity
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.settings.LocaleController

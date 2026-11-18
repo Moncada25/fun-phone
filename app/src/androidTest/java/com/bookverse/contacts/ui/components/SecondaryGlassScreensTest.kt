@@ -20,7 +20,7 @@ import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeUp
 import androidx.lifecycle.ViewModelStore
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.navigation.allowsBackdrop

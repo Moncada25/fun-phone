@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Timer
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ToolAction
 import com.bookverse.contacts.data.model.ToolItem
 import com.bookverse.contacts.data.model.ToolsOrderConfig

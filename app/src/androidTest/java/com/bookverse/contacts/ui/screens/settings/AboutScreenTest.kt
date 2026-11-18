@@ -21,7 +21,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.Density
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.theme.AccentBarStyle

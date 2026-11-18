@@ -17,7 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 
 object PermissionUtils {
 

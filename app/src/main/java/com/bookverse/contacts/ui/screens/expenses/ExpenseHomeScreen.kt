@@ -42,7 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.domain.expenses.CategoryShare
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency

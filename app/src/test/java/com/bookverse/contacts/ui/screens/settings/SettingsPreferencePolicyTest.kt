@@ -2,7 +2,7 @@ package com.bookverse.contacts.ui.screens.settings
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.FONT_SCALE_MAX_PERCENT
 import com.bookverse.contacts.settings.FONT_SCALE_MIN_PERCENT
 import com.bookverse.contacts.settings.TransitionType

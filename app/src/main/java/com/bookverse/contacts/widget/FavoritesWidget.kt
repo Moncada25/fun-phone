@@ -42,7 +42,7 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
 import com.bookverse.contacts.MainActivity
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.utils.ContactUtils
 import kotlinx.coroutines.Dispatchers

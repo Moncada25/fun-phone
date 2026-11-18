@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.nativeCanvas
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.max

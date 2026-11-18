@@ -68,7 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
 import com.bookverse.contacts.ui.components.LiquidGlassShape
 import com.bookverse.contacts.ui.components.LocalAppBackdrop

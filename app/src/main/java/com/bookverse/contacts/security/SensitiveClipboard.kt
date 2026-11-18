@@ -8,7 +8,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.os.PersistableBundle
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import java.util.UUID
 
 /** Clears only the clip created by this action, never a later copy from another app. */

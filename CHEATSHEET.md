@@ -230,8 +230,8 @@ firebase crashlytics:symbols:upload \
 ## 🌍 Localization
 
 ```bash
-find app/src/main/res -name "strings.xml"
-diff app/src/main/res/values/strings.xml app/src/main/res/values-es/strings.xml
+find core/ui/src/main/res -name "strings.xml"
+diff core/ui/src/main/res/values/strings.xml core/ui/src/main/res/values-es/strings.xml
 
 grep -r "hardcoded text" app/src/main/java
 ```

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.FileProvider
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.RecordingData

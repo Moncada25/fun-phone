@@ -18,7 +18,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test

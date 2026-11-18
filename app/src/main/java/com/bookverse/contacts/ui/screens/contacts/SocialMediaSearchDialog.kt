@@ -63,7 +63,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.SocialMediaType
 import com.bookverse.contacts.domain.contacts.SocialLinkPolicy
 import com.bookverse.contacts.ui.components.SocialMediaButton

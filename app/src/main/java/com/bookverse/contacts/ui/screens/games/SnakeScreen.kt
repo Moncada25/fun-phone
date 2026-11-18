@@ -82,7 +82,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.SNAKE_BOARD_HEIGHT
 import com.bookverse.contacts.domain.games.SNAKE_BOARD_WIDTH
 import com.bookverse.contacts.domain.games.SnakeBoundaryMode

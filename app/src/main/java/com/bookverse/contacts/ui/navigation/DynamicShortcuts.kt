@@ -8,7 +8,7 @@ import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import com.bookverse.contacts.MainActivity
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 
 internal data class DynamicShortcutSpec(
     val destination: HomeShortcutDestination,
