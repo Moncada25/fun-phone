@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 data class ScoreCardEntry(
@@ -66,11 +67,21 @@ fun ScoreCard(
                         style = arcadeLabelStyle,
                         color = MaterialTheme.colorScheme.primary
                     )
+                    val numeric = entry.value.none(Char::isLetter)
                     Text(
                         text = entry.value,
-                        style = MaterialTheme.typography.headlineMedium.copy(fontFeatureSettings = "tnum"),
+                        style = if (numeric) {
+                            MaterialTheme.typography.headlineMedium.copy(fontFeatureSettings = "tnum")
+                        } else {
+                            MaterialTheme.typography.titleMedium
+                        },
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = when (alignment) {
+                            Alignment.Start -> TextAlign.Start
+                            Alignment.End -> TextAlign.End
+                            else -> TextAlign.Center
+                        },
                     )
                 }
             }

@@ -19,7 +19,9 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
+import com.bookverse.contacts.ui.components.ArcadeControlsEffect
+import com.bookverse.contacts.ui.components.ArcadeDirection
+import com.bookverse.contacts.ui.components.GameScaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -60,18 +62,14 @@ import com.bookverse.contacts.domain.games.BreakoutGameState
 import com.bookverse.contacts.domain.games.BreakoutPhase
 import com.bookverse.contacts.domain.games.BreakoutPaddleInput
 import com.bookverse.contacts.settings.AnimationSpeed
-import com.bookverse.contacts.ui.components.GameButtonHold
 import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.RetroGameInstructionsDialog
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
-import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.BreakoutEvent
 import com.bookverse.contacts.ui.viewmodel.BreakoutViewModel
-import com.composables.icons.lucide.ArrowLeft
-import com.composables.icons.lucide.ArrowRight
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Pause
 import com.composables.icons.lucide.Play
@@ -180,31 +178,45 @@ fun BreakoutScreen(
     }
     BackHandler { onBackClick() }
 
-    Scaffold(
-        topBar = {
-            SecondaryTopBar(
-                title = stringResource(R.string.breakout_title),
-                onBackClick = onBackClick,
-                actions = {
-                    if (state.phase == BreakoutPhase.RUNNING || state.phase == BreakoutPhase.PAUSED) {
-                        IconAction(
-                            imageVector = if (state.phase == BreakoutPhase.PAUSED) {
-                                Lucide.Play
-                            } else {
-                                Lucide.Pause
-                            },
-                            contentDescription = stringResource(
-                                if (state.phase == BreakoutPhase.PAUSED) {
-                                    R.string.cd_resume_game
-                                } else {
-                                    R.string.cd_pause_game
-                                }
-                            ),
-                            onClick = { viewModel.onEvent(BreakoutEvent.TogglePause) },
-                        )
-                    }
-                },
-            )
+    ArcadeControlsEffect(
+        primaryLabel = stringResource(
+            if (state.phase == BreakoutPhase.PAUSED) R.string.games_arcade_resume else R.string.games_arcade_pause
+        ),
+        onPrimaryPress = if (state.phase == BreakoutPhase.RUNNING || state.phase == BreakoutPhase.PAUSED) {
+            { viewModel.onEvent(BreakoutEvent.TogglePause) }
+        } else {
+            null
+        },
+        onDirection = { direction ->
+            when (direction) {
+                ArcadeDirection.LEFT -> viewModel.onEvent(BreakoutEvent.SetPaddleInput(BreakoutPaddleInput.LEFT))
+                ArcadeDirection.RIGHT -> viewModel.onEvent(BreakoutEvent.SetPaddleInput(BreakoutPaddleInput.RIGHT))
+                else -> viewModel.onEvent(BreakoutEvent.ReleasePaddle)
+            }
+        },
+    )
+
+    GameScaffold(
+        title = stringResource(R.string.breakout_title),
+        onBackClick = onBackClick,
+        actions = {
+            if (state.phase == BreakoutPhase.RUNNING || state.phase == BreakoutPhase.PAUSED) {
+                IconAction(
+                    imageVector = if (state.phase == BreakoutPhase.PAUSED) {
+                        Lucide.Play
+                    } else {
+                        Lucide.Pause
+                    },
+                    contentDescription = stringResource(
+                        if (state.phase == BreakoutPhase.PAUSED) {
+                            R.string.cd_resume_game
+                        } else {
+                            R.string.cd_pause_game
+                        }
+                    ),
+                    onClick = { viewModel.onEvent(BreakoutEvent.TogglePause) },
+                )
+            }
         },
     ) { paddingValues ->
         BoxWithConstraints(
@@ -258,14 +270,8 @@ fun BreakoutScreen(
                         accentColor = accentColor,
                         animationSpeed = animationSpeed,
                         modifier = Modifier
-                            .weight(1f, fill = false)
-                            .fillMaxWidth()
-                            .aspectRatio(0.72f),
-                    )
-                    BreakoutControls(
-                        enabled = state.phase == BreakoutPhase.RUNNING,
-                        accentColor = accentColor,
-                        onEvent = viewModel::onEvent,
+                            .weight(1f)
+                            .aspectRatio(0.72f, matchHeightConstraintsFirst = true),
                     )
                 }
             }
@@ -320,11 +326,6 @@ private fun BreakoutSidePanel(
         verticalArrangement = Arrangement.spacedBy(18.dp),
     ) {
         BreakoutStats(state)
-        BreakoutControls(
-            enabled = state.phase == BreakoutPhase.RUNNING,
-            accentColor = accentColor,
-            onEvent = onEvent,
-        )
         Text(
             text = breakoutPhaseLabel(state.phase),
             style = MaterialTheme.typography.labelLarge,
@@ -352,43 +353,6 @@ private fun BreakoutStats(state: BreakoutGameState) {
     )
 }
 
-@Composable
-private fun BreakoutControls(
-    enabled: Boolean,
-    accentColor: Color,
-    onEvent: (BreakoutEvent) -> Unit,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        GameButtonHold(
-            onPressStart = {
-                onEvent(BreakoutEvent.SetPaddleInput(BreakoutPaddleInput.LEFT))
-            },
-            onPressEnd = { onEvent(BreakoutEvent.ReleasePaddle) },
-            icon = Lucide.ArrowLeft,
-            contentDescription = stringResource(R.string.cd_move_left),
-            accentColor = accentColor,
-            size = 64.dp,
-            enabled = enabled,
-        )
-        GameButtonHold(
-            onPressStart = {
-                onEvent(BreakoutEvent.SetPaddleInput(BreakoutPaddleInput.RIGHT))
-            },
-            onPressEnd = { onEvent(BreakoutEvent.ReleasePaddle) },
-            icon = Lucide.ArrowRight,
-            contentDescription = stringResource(R.string.cd_move_right),
-            accentColor = accentColor,
-            size = 64.dp,
-            enabled = enabled,
-        )
-    }
-}
 
 @Composable
 private fun BreakoutArena(

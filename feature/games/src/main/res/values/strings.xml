@@ -12,9 +12,6 @@
     <string name="games_dashboard_no_data">You haven\'t played yet. Start playing to see your stats!</string>
     <string name="games_dashboard_records_title">Records by Game</string>
     <string name="games_dashboard_no_favorite">None</string>
-    <string name="games_featured_section">Recent Games</string>
-    <string name="games_all_games_section">All Games</string>
-    <string name="games_play_now">PLAY NOW</string>
     <string name="play_game">PLAY</string>
     <string name="tic_tac_toe_title">Tic Tac Toe</string>
     <string name="tic_tac_toe_turn">Turn of %1$s</string>
@@ -94,7 +91,7 @@
     <string name="tictactoe_player_turn">Your turn</string>
     <string name="tictactoe_cpu_thinking">AI is thinking…</string>
     <string name="snake_title">Snake</string>
-    <string name="snake_instructions_text">Swipe on the board or use the direction pad to eat the apples and grow. Avoid your own tail and follow the selected border rule.</string>
+    <string name="snake_instructions_text">Swipe on the board or move the joystick to eat the apples and grow. Press A to pause. Avoid your own tail and follow the selected border rule.</string>
     <string name="snake_setup_title">Choose how to play</string>
     <string name="snake_mode_label">Mode</string>
     <string name="snake_mode_walls_title">Classic walls</string>
@@ -117,10 +114,6 @@
     <string name="snake_food_none">no food</string>
     <string name="snake_board_description">Snake board. %1$s. Score %2$d. %3$s. Food %4$s and %5$s.</string>
     <string name="game_over_message">Your score: %1$d</string>
-    <string name="snake_up">Up</string>
-    <string name="snake_down">Down</string>
-    <string name="snake_left">Left</string>
-    <string name="snake_right">Right</string>
     <string name="cd_pause_game">Pause game</string>
     <string name="cd_resume_game">Resume game</string>
     <string name="score_label">Score</string>
@@ -131,7 +124,7 @@
     <string name="tictactoe_ai">AI</string>
     <string name="tictactoe_round_won">%1$s wins this round!</string>
     <string name="breakout_title">Breakout</string>
-    <string name="breakout_instructions_text">Hold the left and right arrows to move the paddle. Bounce the ball to break the blocks. Every five paddle hits, a new row appears at the top and the ball speeds up. If the blocks reach the paddle or the ball falls below, it\'s game over. Try to score as many points as possible!</string>
+    <string name="breakout_instructions_text">Hold the joystick left or right to move the paddle and press A to pause. Bounce the ball to break the blocks. Every five paddle hits, a new row appears at the top and the ball speeds up. If the blocks reach the paddle or the ball falls below, it\'s game over. Try to score as many points as possible!</string>
     <string name="breakout_arena_description">Breakout arena. %1$s. Score %2$d. Best %3$d.</string>
     <string name="breakout_phase_ready">Ready</string>
     <string name="breakout_phase_running">Playing</string>
@@ -204,7 +197,7 @@
     <string name="fun_bird_final_score">Final score: %1$d</string>
     <string name="play_label">Play</string>
     <string name="best_score_label">Best</string>
-    <string name="fun_bird_instructions">Tap the screen to make Fun Bird flap and stay in the air. Avoid hitting the pipes or the ground. You can pause with the main button and resume anytime.</string>
+    <string name="fun_bird_instructions">Tap the screen or press A to make Fun Bird flap and stay in the air. Avoid hitting the pipes or the ground. You can pause with the main button and resume anytime.</string>
     <string name="game_fact_fun_bird">Dong Nguyen released Flappy Bird in 2013; its viral difficulty redefined casual games for touch screens.</string>
     <string name="game_fact_snake">Snake became world-famous on the Nokia 6110 in 1997, proving phones could be gaming platforms.</string>
     <string name="game_fact_breakout">Atari released Breakout in 1976 as an evolution of Pong; its development inspired Steve Wozniak to create an ultra-efficient board.</string>
@@ -216,7 +209,7 @@
     <string name="game_fact_2048">Gabriele Cirulli created 2048 in 2014 as an open source experiment; within days it became a global logic puzzle phenomenon.</string>
     <string name="game_fact_sudoku">Howard Garns popularized Sudoku in 1979 under the name Number Place, before Japan renamed and exported it worldwide.</string>
     <string name="memory_instructions_text">Find the matching pairs of cards. Tap to flip them and remember their positions to match all pairs!</string>
-    <string name="game_2048_instructions_text">Swipe inside the board to move the tiles. Merge equal numbers to add up. 5×5 board. A new tile appears with each move. Reach the highest score you can.</string>
+    <string name="game_2048_instructions_text">Swipe inside the board or move the joystick to slide the tiles. Merge equal numbers to add up. 5×5 board. A new tile appears with each move. Reach the highest score you can.</string>
     <string name="hangman_mode_easy">Easy 🥱</string>
     <string name="hangman_mode_hard">Hard 💪</string>
     <string name="hangman_mode_easy_description">Repeating a letter is free.</string>
@@ -225,12 +218,26 @@
     <string name="cd_move_left">Move left</string>
     <string name="cd_move_right">Move right</string>
     <string name="games_how_to_play">How to play</string>
-    <string name="games_arcade_scoreboard">Scoreboard</string>
-    <string name="games_arcade_press_start">Press start to set your first record</string>
-    <string name="games_arcade_view_records">Tap to see your records</string>
     <string name="games_record_high_score">High score</string>
     <string name="games_record_best_time">Best time</string>
     <string name="games_record_fewest_moves">Fewest moves</string>
     <string name="games_record_wins">Wins</string>
     <string name="games_record_none">No record yet</string>
+    <string name="games_arcade_marquee" translatable="false">Fun Phone Arcade</string>
+    <string name="games_arcade_select">Select a game</string>
+    <string name="games_arcade_position">%1$s of %2$s</string>
+    <string name="games_arcade_previous">Previous game</string>
+    <string name="games_arcade_next">Next game</string>
+    <string name="games_arcade_records">Records</string>
+    <string name="games_arcade_exit">Exit</string>
+    <string name="games_arcade_pause">Pause</string>
+    <string name="games_arcade_resume">Resume</string>
+    <string name="games_arcade_jump">Jump</string>
+    <string name="games_arcade_new_game">New game</string>
+    <string name="games_arcade_move">Move</string>
+    <string name="games_arcade_touch">Tap screen</string>
+    <string name="games_arcade_unavailable">Not available</string>
+    <string name="games_arcade_joystick">Joystick</string>
+    <string name="cd_move_up">Move up</string>
+    <string name="cd_move_down">Move down</string>
 </resources>

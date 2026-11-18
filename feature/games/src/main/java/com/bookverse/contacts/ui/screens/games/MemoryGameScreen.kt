@@ -44,7 +44,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
+import com.bookverse.contacts.ui.components.ArcadeControlsEffect
+import com.bookverse.contacts.ui.components.GameScaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
@@ -65,7 +66,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
@@ -93,7 +93,6 @@ import com.bookverse.contacts.ui.components.MessageDialog
 import com.bookverse.contacts.ui.components.RetroGameOptionsDialog
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
-import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.model.CardState
 import com.bookverse.contacts.ui.model.MemoryCard
@@ -127,7 +126,6 @@ fun MemoryGameScreen(
     )
     val context = LocalContext.current
     val gameSession = rememberGameSessionRecorder(GameId.MEMORY, gameStatsRepository)
-    val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior(expandable = false)
 
     var bestMoves by remember { mutableIntStateOf(0) }
     var showWinDialog by remember { mutableStateOf(false) }
@@ -240,23 +238,23 @@ fun MemoryGameScreen(
 
     BackHandler { exitGame() }
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            SecondaryTopBar(
-                title = stringResource(R.string.memory_game_title),
-                onBackClick = ::exitGame,
-                scrollBehavior = scrollBehavior,
-                actions = {
-                    if (!anyDialogVisible && !showWinDialog) {
-                        IconAction(
-                            imageVector = Lucide.RotateCcw,
-                            contentDescription = stringResource(R.string.cd_restart_game),
-                            onClick = ::restartGame,
-                        )
-                    }
-                },
-            )
+    ArcadeControlsEffect(
+        primaryLabel = stringResource(R.string.games_arcade_new_game),
+        onPrimaryPress = if (!anyDialogVisible && !showWinDialog) ::restartGame else null,
+        onDirection = null,
+    )
+
+    GameScaffold(
+        title = stringResource(R.string.memory_game_title),
+        onBackClick = ::exitGame,
+        actions = {
+            if (!anyDialogVisible && !showWinDialog) {
+                IconAction(
+                    imageVector = Lucide.RotateCcw,
+                    contentDescription = stringResource(R.string.cd_restart_game),
+                    onClick = ::restartGame,
+                )
+            }
         },
     ) { paddingValues ->
         BoxWithConstraints(

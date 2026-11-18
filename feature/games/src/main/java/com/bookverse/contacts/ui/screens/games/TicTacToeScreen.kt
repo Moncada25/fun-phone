@@ -31,7 +31,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import com.bookverse.contacts.feature.games.R
-import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
+import com.bookverse.contacts.ui.components.ArcadeControlsEffect
+import com.bookverse.contacts.ui.components.GameScaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,7 +62,6 @@ import com.bookverse.contacts.ui.components.GameSetupDialog
 import com.bookverse.contacts.ui.components.GameSetupOption
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
-import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.RotateCcw
@@ -568,20 +568,22 @@ fun TicTacToeScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            SecondaryTopBar(
-                title = stringResource(R.string.tic_tac_toe_title),
-                onBackClick = onBackClick,
-                actions = {
-                    IconAction(
-                        imageVector = Lucide.RotateCcw,
-                        contentDescription = stringResource(R.string.cd_restart_game),
-                        onClick = { resetFullGame() }
-                    )
-                }
+    ArcadeControlsEffect(
+        primaryLabel = stringResource(R.string.games_arcade_new_game),
+        onPrimaryPress = { resetFullGame() },
+        onDirection = null,
+    )
+
+    GameScaffold(
+        title = stringResource(R.string.tic_tac_toe_title),
+        onBackClick = onBackClick,
+        actions = {
+            IconAction(
+                imageVector = Lucide.RotateCcw,
+                contentDescription = stringResource(R.string.cd_restart_game),
+                onClick = { resetFullGame() }
             )
-        }
+        },
     ) { padding ->
         val player1Name = if (isCpuMode) {
             stringResource(R.string.tictactoe_player)

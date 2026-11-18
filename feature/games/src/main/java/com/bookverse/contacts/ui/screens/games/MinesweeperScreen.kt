@@ -40,8 +40,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.ui.components.ArcadeControlsEffect
+import com.bookverse.contacts.ui.components.GameScaffold
 import com.bookverse.contacts.core.ui.R as CoreUiR
-import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
@@ -59,7 +60,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -72,7 +72,6 @@ import com.bookverse.contacts.domain.games.GameStatsRepository
 import com.bookverse.contacts.ui.components.RetroGameInstructionsDialog
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
-import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import kotlin.random.Random
 
@@ -92,7 +91,6 @@ fun MinesweeperScreen(
     onBackClick: () -> Unit,
     gameStatsRepository: GameStatsRepository,
 ) {
-    val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior(expandable = false)
     val accentColor = MaterialTheme.colorScheme.primary
     val haptic = LocalHapticFeedback.current
     val gameSession = rememberGameSessionRecorder(GameId.MINESWEEPER, gameStatsRepository)
@@ -131,15 +129,15 @@ fun MinesweeperScreen(
         onBackClick()
     }
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            SecondaryTopBar(
-                title = stringResource(R.string.minesweeper_title),
-                onBackClick = onBackClick,
-                scrollBehavior = scrollBehavior
-            )
-        }
+    ArcadeControlsEffect(
+        primaryLabel = stringResource(R.string.games_arcade_new_game),
+        onPrimaryPress = { resetGame() },
+        onDirection = null,
+    )
+
+    GameScaffold(
+        title = stringResource(R.string.minesweeper_title),
+        onBackClick = onBackClick,
     ) { paddingValues ->
         val columnScrollState = rememberScrollState()
         Column(

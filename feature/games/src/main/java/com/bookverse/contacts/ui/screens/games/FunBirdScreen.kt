@@ -27,8 +27,10 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.ui.components.ArcadeControlsEffect
+import com.bookverse.contacts.ui.components.ArcadeDirection
+import com.bookverse.contacts.ui.components.GameScaffold
 import com.bookverse.contacts.core.ui.R as CoreUiR
-import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -57,7 +59,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
@@ -78,7 +79,6 @@ import com.bookverse.contacts.ui.components.RetroGameInstructionsDialog
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
 import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
-import com.bookverse.contacts.ui.components.SecondaryTopBar
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
@@ -141,7 +141,6 @@ fun FunBirdScreen(
     onBackClick: () -> Unit,
     gameStatsRepository: GameStatsRepository,
 ) {
-    val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior(expandable = false)
     val density = LocalDensity.current
     val haptic = LocalHapticFeedback.current
     val gameSession = rememberGameSessionRecorder(GameId.FUN_BIRD, gameStatsRepository)
@@ -581,15 +580,17 @@ fun FunBirdScreen(
     val resetEnabled = phase != FunBirdPhase.Ready || score > 0
 
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            SecondaryTopBar(
-                title = stringResource(R.string.fun_bird_title),
-                onBackClick = onBackClick,
-                scrollBehavior = scrollBehavior
-            )
-        }
+    ArcadeControlsEffect(
+        primaryLabel = stringResource(R.string.games_arcade_jump),
+        onPrimaryPress = { handleFlap() },
+        onDirection = { direction ->
+            if (direction == ArcadeDirection.UP) handleFlap()
+        },
+    )
+
+    GameScaffold(
+        title = stringResource(R.string.fun_bird_title),
+        onBackClick = onBackClick,
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -618,7 +619,7 @@ fun FunBirdScreen(
 
             Card(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .weight(1f, fill = false)
                     .aspectRatio(1f),
                 shape = RoundedCornerShape(36.dp),
                 colors = CardDefaults.cardColors(
