@@ -61,6 +61,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.core.ui.R
@@ -107,6 +108,7 @@ internal fun OnboardingContent(
         contentAlignment = Alignment.TopCenter,
     ) {
         val footerMaxHeight = maxHeight * 0.45f
+        val compactHeight = maxHeight < 480.dp
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -137,7 +139,7 @@ internal fun OnboardingContent(
             ) {
                 if (welcome) {
                     item(key = "heading") {
-                        WelcomeHero(accentColor = accentColor)
+                        WelcomeHero(accentColor = accentColor, compactHeight = compactHeight)
                     }
                     item(key = "optional_tools") {
                         OptionalToolsSection(
@@ -271,66 +273,49 @@ private fun OnboardingHeader(
 }
 
 @Composable
-private fun WelcomeHero(accentColor: Color) {
+private fun WelcomeHero(accentColor: Color, compactHeight: Boolean) {
     val colors = MaterialTheme.colorScheme
     val entrance = remember { MutableTransitionState(false).apply { targetState = true } }
+    val textAlign = if (compactHeight) TextAlign.Start else TextAlign.Center
     AnimatedVisibility(
         visibleState = entrance,
         enter = fadeIn(tween(durationMillis = 450)) +
             slideInVertically(tween(durationMillis = 450)) { it / 16 },
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth().padding(top = if (compactHeight) 0.dp else 8.dp),
+            horizontalAlignment = if (compactHeight) Alignment.Start else Alignment.CenterHorizontally,
         ) {
-            Surface(
-                modifier = Modifier.size(96.dp),
-                shape = RoundedCornerShape(28.dp),
-                shadowElevation = 12.dp,
-                color = Color.White,
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Image(
-                        painterResource(R.drawable.ic_launcher_foreground),
-                        stringResource(R.string.onboarding_app_icon_description),
-                        modifier = Modifier.size(78.dp),
-                    )
-                }
-            }
-            Surface(
-                modifier = Modifier.padding(top = 28.dp),
-                shape = CircleShape,
-                color = accentColor.copy(alpha = 0.12f),
-                contentColor = colors.onBackground,
-            ) {
+            if (compactHeight) {
                 Row(
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
-                    Icon(Lucide.CodeXml, null, tint = accentColor, modifier = Modifier.size(14.dp))
-                    Text(
-                        stringResource(R.string.onboarding_badge_open_source),
-                        style = MaterialTheme.typography.labelMedium,
-                    )
+                    WelcomeAppIcon(size = 56.dp)
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        OpenSourceBadge(accentColor)
+                        WelcomeTitle(textAlign = textAlign)
+                    }
                 }
+            } else {
+                WelcomeAppIcon(size = 96.dp)
+                OpenSourceBadge(accentColor, Modifier.padding(top = 28.dp))
+                WelcomeTitle(textAlign = textAlign, modifier = Modifier.padding(top = 16.dp))
             }
-            Text(
-                stringResource(R.string.onboarding_welcome_title),
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = (-0.5).sp,
-                ),
-                color = colors.onBackground,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 16.dp).semantics { heading() },
-            )
             Text(
                 stringResource(R.string.onboarding_welcome_subtitle),
                 style = MaterialTheme.typography.bodyLarge,
                 color = colors.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 12.dp, start = 8.dp, end = 8.dp),
+                textAlign = textAlign,
+                modifier = Modifier.padding(
+                    top = 12.dp,
+                    start = if (compactHeight) 0.dp else 8.dp,
+                    end = if (compactHeight) 0.dp else 8.dp,
+                ),
             )
             Column(
                 modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
@@ -357,6 +342,60 @@ private fun WelcomeHero(accentColor: Color) {
             }
         }
     }
+}
+
+@Composable
+private fun WelcomeAppIcon(size: Dp) {
+    Surface(
+        modifier = Modifier.size(size),
+        shape = RoundedCornerShape(size * 0.29f),
+        shadowElevation = size / 8,
+        color = Color.White,
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            Image(
+                painterResource(R.drawable.ic_launcher_foreground),
+                stringResource(R.string.onboarding_app_icon_description),
+                modifier = Modifier.size(size * 0.81f),
+            )
+        }
+    }
+}
+
+@Composable
+private fun OpenSourceBadge(accentColor: Color, modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier,
+        shape = CircleShape,
+        color = accentColor.copy(alpha = 0.12f),
+        contentColor = MaterialTheme.colorScheme.onBackground,
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            Icon(Lucide.CodeXml, null, tint = accentColor, modifier = Modifier.size(14.dp))
+            Text(
+                stringResource(R.string.onboarding_badge_open_source),
+                style = MaterialTheme.typography.labelMedium,
+            )
+        }
+    }
+}
+
+@Composable
+private fun WelcomeTitle(textAlign: TextAlign, modifier: Modifier = Modifier) {
+    Text(
+        stringResource(R.string.onboarding_welcome_title),
+        style = MaterialTheme.typography.headlineLarge.copy(
+            fontWeight = FontWeight.Bold,
+            letterSpacing = (-0.5).sp,
+        ),
+        color = MaterialTheme.colorScheme.onBackground,
+        textAlign = textAlign,
+        modifier = modifier.semantics { heading() },
+    )
 }
 
 @Composable
