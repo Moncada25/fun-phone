@@ -280,7 +280,6 @@ fun PasswordListScreen(
                         feedback = true,
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 titleContent = if (searchActive) {
                     {
@@ -413,7 +412,6 @@ fun PasswordListScreen(
                                 PasswordCard(
                                     credential = cred,
                                     passwordsViewModel = passwordsViewModel,
-                                    appSettingsViewModel = appSettingsViewModel,
                                     listDensity = listDensity,
                                     revealed = revealed,
                                     reused = cred.id in reusedIds,
@@ -471,7 +469,6 @@ fun PasswordListScreen(
             onConfirm = { backupActions.exportBackup() },
             title = stringResource(R.string.passwords_export_unencrypted_title),
             message = stringResource(R.string.passwords_export_unencrypted_message),
-            appSettingsViewModel = appSettingsViewModel,
             confirmButtonLabel = stringResource(R.string.passwords_export_unencrypted_confirm),
             isDestructive = false,
         )
@@ -589,7 +586,6 @@ private fun PasswordNoResultsState(textColor: androidx.compose.ui.graphics.Color
 private fun PasswordCard(
     credential: PasswordCredential,
     passwordsViewModel: PasswordsViewModel,
-    appSettingsViewModel: AppSettingsViewModel,
     listDensity: ListDensity = ListDensity.NORMAL,
     revealed: Boolean,
     reused: Boolean,
@@ -906,7 +902,6 @@ private fun PasswordCard(
             onDismiss = { showDeleteDialog = false },
             title = stringResource(R.string.delete_password),
             message = stringResource(R.string.delete_password_confirm, credential.name),
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

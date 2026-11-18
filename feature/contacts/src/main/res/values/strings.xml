@@ -187,7 +187,6 @@
         <item quantity="other">%1$d favorites selected</item>
     </plurals>
     <string name="multiple_contacts_modified">Favorites list updated</string>
-    <string name="yesterday">Yesterday</string>
     <string name="search_website">Search website</string>
     <string name="create_contact_cta">Create contact</string>
     <string name="recent_activity_title">Recent activity</string>
@@ -232,14 +231,6 @@
     <string name="error_sharing_qr">Error sharing QR code</string>
     <string name="contact_edit_not_found">Could not find the contact to edit</string>
     <string name="contact_update_error">Could not update the contact</string>
-    <string name="call_duration_minute_second" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
-    <string name="call_duration_minute_seconds" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
-    <string name="call_duration_minutes_second" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
-    <string name="call_duration_minutes_seconds" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
-    <string name="call_duration_minute" tools:ignore="PluralsCandidate">%1$d min</string>
-    <string name="call_duration_minutes" tools:ignore="PluralsCandidate">%1$d min</string>
-    <string name="call_duration_second" tools:ignore="PluralsCandidate">%1$d sec</string>
-    <string name="call_duration_seconds" tools:ignore="PluralsCandidate">%1$d sec</string>
     <string name="birthday_reminders_channel_name">Birthday reminders</string>
     <string name="birthday_reminders_channel_description">Alerts two days before, one day before, and on each contact’s birthday</string>
     <string name="birthday_notification_today_title">%1$s’s birthday is today</string>

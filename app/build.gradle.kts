@@ -191,9 +191,7 @@ val communitySigningCredentials = resolveSigningCredentials("COMMUNITY_RELEASE")
 val buildDate: String = SimpleDateFormat("ddMMyyyy").format(Date())
 
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ktlint)
+    alias(libs.plugins.funphone.android.application.compose)
     alias(libs.plugins.androidx.baselineprofile)
     id("kotlin-parcelize")
 }
@@ -224,7 +222,6 @@ androidComponents {
 
 android {
     namespace = "com.bookverse.contacts"
-    compileSdk = 37
 
     buildFeatures {
         buildConfig = true
@@ -236,8 +233,6 @@ android {
         targetSdk = appTargetSdk
         versionCode = appVersionCode
         versionName = appVersionName
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -285,12 +280,6 @@ android {
         }
     }
 
-    testOptions {
-        unitTests {
-            isReturnDefaultValues = true
-        }
-    }
-
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
@@ -331,29 +320,10 @@ android {
     }
 
     lint {
-        abortOnError = true
         checkDependencies = true
-        // Dependency freshness checks are advisory and vary with external repository state.
-        // Dependency updates remain reviewable through the version catalog.
-        disable += "AndroidGradlePluginVersion"
-        disable += "GradleDependency"
-        disable += "NewerVersionAvailable"
-        disable += "ObsoleteSdkInt"
     }
+}
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
-    }
-    buildFeatures {
-        compose = true
-    }
-}
-kotlin {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_25)
-    }
-}
 val guardedReleaseTasks = setOf(
     "assemblePlayRelease",
     "bundlePlayRelease",
@@ -438,7 +408,6 @@ dependencies {
     implementation(libs.haze)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
@@ -469,11 +438,6 @@ dependencies {
 
     implementation(libs.androidx.compose.foundation)
 
-    val composeBom = platform(libs.androidx.compose.bom)
-    listOf("implementation", "androidTestImplementation").forEach { configuration ->
-        add(configuration, composeBom)
-    }
-
     implementation(libs.google.crypto.tink.android)
     implementation(libs.androidx.security.crypto) {
         exclude(group = "com.google.crypto.tink", module = "tink-android")
@@ -487,12 +451,8 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.room.testing)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }
 
 tasks.register("getApk") {

@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.app.Activity
 import android.content.Intent
 import android.media.RingtoneManager
@@ -99,7 +100,6 @@ import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactSaveResult
-import com.bookverse.contacts.utils.ContactUtils
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Tags
 import com.bookverse.contacts.utils.ContactUtils.isValidEmail
@@ -360,7 +360,6 @@ fun ContactFormScreen(
             SecondaryTopBar(
                 title = title,
                 onBackClick = ::cancelForm,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         },
@@ -482,7 +481,7 @@ fun ContactFormScreen(
                 item(key = "personal_$formKey") {
                     ContactFormSection(title = stringResource(R.string.contact_form_section_personal_details)) {
                         val birthdayCopy = if (birthday != null) {
-                            ContactUtils.capitalizeFirstLetter(
+                            ContactDisplay.capitalizeFirstLetter(
                                 SimpleDateFormat(
                                     "MMMM dd",
                                     LocaleController.effectiveLocale(context)
@@ -504,7 +503,6 @@ fun ContactFormScreen(
                             socialNetworks = socialNetworks,
                             onSocialNetworksChange = { socialNetworks = it },
                             onNavigateToSearch = { showSocialNetworkDialog = true },
-                            appSettingsViewModel = appSettingsViewModel
                         )
 
                         if (!isProfileEdit) {
@@ -868,7 +866,6 @@ fun ContactFormScreen(
                     },
                     hasExistingPhoto = photoUri != null,
                     existingPhotoUri = photoUri,
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
 

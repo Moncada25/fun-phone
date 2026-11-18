@@ -93,7 +93,6 @@ import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.RotateCcw
 import com.yalantis.ucrop.UCrop
@@ -109,7 +108,6 @@ import kotlin.time.Duration.Companion.milliseconds
 @Composable
 fun PuzzleScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val context = LocalContext.current
@@ -325,7 +323,6 @@ fun PuzzleScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.puzzle_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     if (puzzleMode == PuzzleMode.Numbers) {
                         IconAction(

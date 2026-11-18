@@ -69,7 +69,6 @@ import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge
 import com.bookverse.contacts.ui.components.TextField
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Tags
 import com.composables.icons.lucide.TrendingDown
@@ -88,9 +87,7 @@ fun ExpenseCategoriesScreen(
     onSaveCategory: (ExpenseCategory) -> Unit,
     onDeleteCategory: (ExpenseCategory, (Boolean) -> Unit) -> Unit,
     onEditTransaction: (ExpenseTransaction) -> Unit,
-    onDeleteTransaction: (ExpenseTransaction) -> Unit,
-    appSettingsViewModel: AppSettingsViewModel
-) {
+    onDeleteTransaction: (ExpenseTransaction) -> Unit,) {
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var showDeleteDialog by remember { mutableStateOf<ExpenseCategory?>(null) }
     var editingCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
@@ -212,7 +209,6 @@ fun ExpenseCategoriesScreen(
                 R.string.expense_category_delete_message,
                 deleteTarget.localizedName()
             ),
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 
@@ -226,7 +222,6 @@ fun ExpenseCategoriesScreen(
             },
             title = stringResourceSafe(R.string.expense_delete_transaction),
             message = stringResourceSafe(R.string.expense_delete_transaction_confirm),
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 }

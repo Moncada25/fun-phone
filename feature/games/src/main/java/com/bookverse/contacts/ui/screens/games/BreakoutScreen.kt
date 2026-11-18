@@ -185,7 +185,6 @@ fun BreakoutScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.breakout_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     if (state.phase == BreakoutPhase.RUNNING || state.phase == BreakoutPhase.PAUSED) {
                         IconAction(

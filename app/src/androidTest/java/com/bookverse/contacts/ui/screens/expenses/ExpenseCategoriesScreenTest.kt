@@ -86,7 +86,6 @@ class ExpenseCategoriesScreenTest {
                     onDeleteCategory = { _, _ -> },
                     onEditTransaction = onEditTransaction,
                     onDeleteTransaction = onDeleteTransaction,
-                    appSettingsViewModel = appSettingsViewModel,
                 )
             }
         }

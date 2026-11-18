@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,7 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.theme.accentPalette
 import com.bookverse.contacts.ui.theme.AccentBarStyle
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,13 +43,12 @@ fun ConfirmDialog(
     onConfirm: () -> Unit,
     title: String,
     message: String,
-    appSettingsViewModel: AppSettingsViewModel,
     confirmButtonLabel: String? = null,
     toastMessage: String? = null,
     isDestructive: Boolean = true,
 ) {
     val context = LocalContext.current
-    val accentBarStyle by appSettingsViewModel.accentBarStyle.collectAsStateWithLifecycle()
+    val accentBarStyle = LocalAppChromeStyle.current
     val colorScheme = MaterialTheme.colorScheme
     val accentPalette = MaterialTheme.accentPalette
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)

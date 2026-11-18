@@ -73,7 +73,6 @@ import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.DatePickerDialog
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.theme.menstrualPhaseColors
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.DEFAULT_CYCLE_LENGTH
 import com.bookverse.contacts.ui.viewmodel.DEFAULT_LUTEAL_LENGTH
 import com.bookverse.contacts.ui.viewmodel.MenstrualCalendarUiState
@@ -97,7 +96,6 @@ import java.util.Locale
 @Composable
 fun MenstrualCalendarScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     viewModel: MenstrualCalendarViewModel = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -190,7 +188,6 @@ fun MenstrualCalendarScreen(
             title = stringResource(R.string.menstrual_reset_title),
             message = stringResource(R.string.menstrual_reset_message),
             confirmButtonLabel = stringResource(R.string.menstrual_reset_confirm),
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 
@@ -201,7 +198,6 @@ fun MenstrualCalendarScreen(
                 expandable = true,
                 title = stringResource(R.string.menstrual_calendar_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     if (isConfigured) {

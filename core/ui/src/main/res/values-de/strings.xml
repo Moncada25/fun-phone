@@ -412,4 +412,13 @@
         <item quantity="one">%1$d verpasster Anruf</item>
         <item quantity="other">%1$d verpasste Anrufe</item>
     </plurals>
+    <string name="yesterday">Gestern</string>
+    <string name="call_duration_minute_second">%1$d Min. %2$d Sek.</string>
+    <string name="call_duration_minute_seconds">%1$d Min. %2$d Sek.</string>
+    <string name="call_duration_minutes_second">%1$d Min. %2$d Sek.</string>
+    <string name="call_duration_minutes_seconds">%1$d Min. %2$d Sek.</string>
+    <string name="call_duration_minute">%1$d Min.</string>
+    <string name="call_duration_minutes">%1$d Min.</string>
+    <string name="call_duration_second">%1$d Sek.</string>
+    <string name="call_duration_seconds">%1$d Sek.</string>
 </resources>

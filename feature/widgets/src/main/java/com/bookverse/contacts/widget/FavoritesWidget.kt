@@ -1,5 +1,6 @@
 package com.bookverse.contacts.widget
 
+import com.bookverse.contacts.utils.ContactDisplay
 import com.bookverse.contacts.feature.widgets.R
 import com.bookverse.contacts.navigation.AppEntryPoints
 import android.content.Context
@@ -161,7 +162,7 @@ private fun initialAvatar(name: String, size: Int): Bitmap {
         radius,
         radius,
         radius,
-        Paint(Paint.ANTI_ALIAS_FLAG).apply { color = ContactUtils.getRandomColor(name).toArgb() },
+        Paint(Paint.ANTI_ALIAS_FLAG).apply { color = ContactDisplay.getRandomColor(name).toArgb() },
     )
     val initial = name.firstOrNull()?.uppercaseChar()?.toString().orEmpty()
     if (initial.isNotEmpty()) {

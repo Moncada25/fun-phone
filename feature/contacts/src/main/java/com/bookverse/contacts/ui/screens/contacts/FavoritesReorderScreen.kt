@@ -125,7 +125,6 @@ fun FavoritesReorderScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.favorites_order_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel
             )
         }
     ) { paddingValues ->

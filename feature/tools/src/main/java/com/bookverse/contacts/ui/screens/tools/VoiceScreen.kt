@@ -79,7 +79,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.ui.components.AppSnackbarHost
@@ -90,7 +89,6 @@ import com.bookverse.contacts.ui.components.TextField
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.screens.settings.SettingsChoiceRow
 import com.bookverse.contacts.ui.screens.settings.SettingsSheetScaffold
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.utils.ClipboardUtils
 import com.bookverse.contacts.utils.LanguageOption
 import com.bookverse.contacts.utils.SpeechUtils
@@ -103,7 +101,6 @@ import java.io.File
 @Composable
 fun VoiceScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel = viewModel(),
     initialTextToSpeak: String? = null,
     showSnackbar: Boolean = false,
 ) {
@@ -233,7 +230,6 @@ fun VoiceScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.voice_utilities_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
             )
         },

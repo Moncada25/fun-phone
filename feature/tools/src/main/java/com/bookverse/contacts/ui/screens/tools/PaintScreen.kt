@@ -465,7 +465,6 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                     }
                 }
             },
-            appSettingsViewModel = appSettingsViewModel,
         )
         return
     }
@@ -556,7 +555,6 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                         enabled = !state.isBlurProcessing,
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel
             )
         },
         snackbarHost = {

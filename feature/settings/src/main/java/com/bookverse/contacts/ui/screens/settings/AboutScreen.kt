@@ -74,7 +74,6 @@ import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.utils.ContactUtils
 import com.composables.icons.lucide.Accessibility
 import com.composables.icons.lucide.ArrowUpRight
@@ -148,7 +147,6 @@ private data class AboutBadge(
 @Composable
 fun AboutScreen(
     onBack: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     showPlayStoreRating: Boolean,
 ) {
     val colorScheme = MaterialTheme.colorScheme
@@ -330,7 +328,6 @@ fun AboutScreen(
                 expandable = true,
                 title = stringResource(R.string.about_app_title),
                 onBackClick = onBack,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
             )
         },

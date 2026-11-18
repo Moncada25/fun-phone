@@ -76,7 +76,6 @@ import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.TextField
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.data.qr.QRType
 import com.bookverse.contacts.utils.UrlUtils
@@ -99,7 +98,6 @@ import kotlin.time.Duration.Companion.milliseconds
 @Composable
 fun QRGeneratorScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     qrHistoryViewModel: QRHistoryViewModel
 ) {
     val context = LocalContext.current
@@ -149,7 +147,6 @@ fun QRGeneratorScreen(
                         onClick = { showHistoryDialog = true }
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel
             )
         },
         snackbarHost = { AppSnackbarHost(snackbar.hostState) }
@@ -427,7 +424,6 @@ fun QRGeneratorScreen(
         QRHistoryDialog(
             onDismiss = { showHistoryDialog = false },
             qrHistoryViewModel = qrHistoryViewModel,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 }

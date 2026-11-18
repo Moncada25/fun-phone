@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import androidx.activity.compose.BackHandler
@@ -113,7 +114,6 @@ import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.avatarLabel
 import com.composables.icons.lucide.ArrowDownAZ
 import com.composables.icons.lucide.Lucide
@@ -242,7 +242,6 @@ fun ContactListScreen(
                 ContactRecycleBinPolicy.RETENTION_DAYS,
             ),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel
         )
     }
 
@@ -437,7 +436,6 @@ fun ContactListScreen(
                 } else {
                     MainTopBar(
                         title = stringResource(R.string.contacts_title),
-                        appSettingsViewModel = appSettingsViewModel,
                         count = filteredContacts.size,
                         scrollBehavior = scrollBehavior,
                         searchAction = if (contacts.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(
@@ -902,7 +900,7 @@ fun ContactItem(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                    .background(ContactUtils.getRandomColor(contact.name))
+                    .background(ContactDisplay.getRandomColor(contact.name))
                 ) {
                     if (photoUri != null) {
                         val loadedBitmap = bitmap
@@ -955,7 +953,7 @@ fun ContactItem(
                 )
             } else if (isNumericSearch) {
                 Text(
-                    text = ContactUtils.highlightText(
+                    text = ContactDisplay.highlightText(
                         contact.phones.first().number,
                         searchQuery,
                         accentColor
@@ -968,7 +966,7 @@ fun ContactItem(
                 )
             } else {
                 Text(
-                    text = ContactUtils.highlightText(contact.name, searchQuery, accentColor),
+                    text = ContactDisplay.highlightText(contact.name, searchQuery, accentColor),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Normal,
                     maxLines = 1,

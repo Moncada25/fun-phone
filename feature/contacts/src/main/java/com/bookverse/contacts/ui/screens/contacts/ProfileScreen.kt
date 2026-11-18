@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.ContactDisplay
 import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
@@ -228,7 +229,6 @@ fun ProfileScreen(
                         onClick = { onEditProfile(contact) }
                     )
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         },
@@ -284,7 +284,7 @@ fun ProfileScreen(
                                 Box(
                                     modifier = Modifier
                                         .fillMaxSize()
-                                        .background(ContactUtils.getRandomColor(contact.name)),
+                                        .background(ContactDisplay.getRandomColor(contact.name)),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
@@ -536,7 +536,7 @@ fun ProfileScreen(
                                 Text(
                                     text = stringResource(
                                         R.string.about_contact_title,
-                                        ContactUtils.getFirstName(contact.name)
+                                        ContactDisplay.getFirstName(contact.name)
                                     ),
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
@@ -619,7 +619,7 @@ fun ProfileScreen(
                                             Spacer(modifier = Modifier.width(16.dp))
                                             Column {
                                                 Text(
-                                                    text = ContactUtils.capitalizeFirstLetter(
+                                                    text = ContactDisplay.capitalizeFirstLetter(
                                                         SimpleDateFormat(
                                                             "MMMM dd",
                                                             LocaleController.effectiveLocale(LocalContext.current)
@@ -814,7 +814,6 @@ fun ProfileScreen(
                     title = stringResource(CoreUiR.string.delete),
                     message = stringResource(R.string.delete_profile_confirm),
                     toastMessage = stringResource(R.string.profile_deleted),
-                    appSettingsViewModel = appSettingsViewModel
                 )
             }
 

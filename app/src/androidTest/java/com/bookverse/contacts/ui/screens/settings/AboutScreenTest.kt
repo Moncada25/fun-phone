@@ -163,7 +163,6 @@ class AboutScreenTest {
                             AboutScreen(
                                 showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                                 onBack = {},
-                                appSettingsViewModel = settingsViewModel
                             )
                         }
                     }
@@ -198,7 +197,6 @@ class AboutScreenTest {
                         AboutScreen(
                             showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                             onBack = {},
-                            appSettingsViewModel = settingsViewModel
                         )
                     }
                 }
@@ -221,7 +219,6 @@ class AboutScreenTest {
                     AboutScreen(
                         showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                         onBack = onBack,
-                        appSettingsViewModel = settingsViewModel
                     )
                 }
             }

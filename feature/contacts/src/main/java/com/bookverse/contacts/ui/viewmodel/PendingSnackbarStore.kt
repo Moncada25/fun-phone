@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 internal class PendingSnackbarStore {
-    private val _events = MutableStateFlow<List<ContactsViewModel.SnackEvent>>(emptyList())
+    private val _events = MutableStateFlow<List<ContactSnackEvent>>(emptyList())
     val events = _events.asStateFlow()
 
-    fun enqueue(events: List<ContactsViewModel.SnackEvent>) {
+    fun enqueue(events: List<ContactSnackEvent>) {
         if (events.isNotEmpty()) {
             _events.value += events
         }
@@ -18,16 +18,16 @@ internal class PendingSnackbarStore {
         enqueue(
             buildList {
                 if (successMessage.isNotEmpty()) {
-                    add(ContactsViewModel.SnackEvent(successMessage, SnackbarType.Success))
+                    add(ContactSnackEvent(successMessage, SnackbarType.Success))
                 }
                 if (photoWarningMessage != null) {
-                    add(ContactsViewModel.SnackEvent(photoWarningMessage, SnackbarType.Warning))
+                    add(ContactSnackEvent(photoWarningMessage, SnackbarType.Warning))
                 }
             },
         )
     }
 
-    fun consume(events: List<ContactsViewModel.SnackEvent>) {
+    fun consume(events: List<ContactSnackEvent>) {
         _events.compareAndSet(events, emptyList())
     }
 }

@@ -235,7 +235,6 @@ internal fun NoteTagsManagerSheet(
             title = stringResource(CoreUiR.string.delete_tag),
             message = stringResource(R.string.note_tag_delete_confirmation, deleting.name),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 }

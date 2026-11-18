@@ -58,7 +58,6 @@ import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.rememberDestinationListState
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactRecycleBinEvent
 import com.bookverse.contacts.ui.viewmodel.ContactRecycleBinViewModel
 import com.bookverse.contacts.utils.toContactInitialInfo
@@ -68,7 +67,6 @@ import com.bookverse.contacts.utils.toContactInitialInfo
 fun ContactRecycleBinScreen(
     onBackClick: () -> Unit,
     recycleBinViewModel: ContactRecycleBinViewModel,
-    appSettingsViewModel: AppSettingsViewModel,
     onContactRestored: () -> Unit,
 ) {
     val deletedContacts by recycleBinViewModel.deletedContacts.collectAsStateWithLifecycle()
@@ -143,7 +141,6 @@ fun ContactRecycleBinScreen(
                         )
                     }
                 },
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
             )
         },
@@ -220,7 +217,6 @@ fun ContactRecycleBinScreen(
             toastMessage = null,
             confirmButtonLabel = stringResource(CoreUiR.string.restore),
             isDestructive = false,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
     contactToDelete?.let { entry ->
@@ -233,7 +229,6 @@ fun ContactRecycleBinScreen(
             title = stringResource(CoreUiR.string.delete_permanently),
             message = stringResource(CoreUiR.string.delete_permanently_confirm, entry.displayLabel()),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
     if (showEmptyConfirmation) {
@@ -246,7 +241,6 @@ fun ContactRecycleBinScreen(
             title = stringResource(CoreUiR.string.empty_recycle_bin),
             message = stringResource(CoreUiR.string.empty_recycle_bin_confirm),
             toastMessage = null,
-            appSettingsViewModel = appSettingsViewModel,
         )
     }
 }

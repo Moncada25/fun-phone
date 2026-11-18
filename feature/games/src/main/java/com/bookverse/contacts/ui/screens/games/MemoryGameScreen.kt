@@ -246,7 +246,6 @@ fun MemoryGameScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.memory_game_title),
                 onBackClick = ::exitGame,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     if (!anyDialogVisible && !showWinDialog) {

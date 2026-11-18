@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.calls
 
+import com.bookverse.contacts.utils.ContactDisplay
 import android.graphics.Bitmap
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
@@ -91,7 +92,6 @@ import com.bookverse.contacts.service.CallController
 import com.bookverse.contacts.ui.components.NumberKeypad
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.calls.InCallViewModel
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.ProximitySensorManager
 import java.util.Locale
 
@@ -270,7 +270,7 @@ fun InCallScreen(
                             .aspectRatio(1f)
                             .clip(CircleShape)
                             .background(
-                                ContactUtils.getRandomColor(
+                                ContactDisplay.getRandomColor(
                                     contact?.name ?: stringResource(R.string.unknown)
                                 )
                             ),

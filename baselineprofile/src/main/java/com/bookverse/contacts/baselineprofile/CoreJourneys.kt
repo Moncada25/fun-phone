@@ -20,6 +20,7 @@ private const val TAB_FAVORITES = "Favorites"
 private const val TAB_HISTORY = "History"
 private const val DIALER_DESCRIPTION = "Dialer"
 private const val DIALED_DIGITS = "5551234"
+private const val JOURNEY_LOCALE = "en-US"
 
 internal fun targetPackageName(): String =
     InstrumentationRegistry.getArguments().getString("targetAppId")
@@ -33,6 +34,7 @@ internal fun prepareSyntheticContacts(packageName: String) {
             "for a dedicated test device."
     }
     device.executeShellCommand("pm clear $packageName")
+    device.executeShellCommand("cmd locale set-app-locales $packageName --locales $JOURNEY_LOCALE")
     device.executeShellCommand(
         "am start -W -n $packageName/$SETUP_ACTIVITY --ei contact_count $SYNTHETIC_CONTACT_COUNT",
     )

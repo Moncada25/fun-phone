@@ -63,7 +63,6 @@ import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.RotateCcw
 import kotlinx.coroutines.delay
@@ -73,7 +72,6 @@ import kotlin.time.Duration.Companion.milliseconds
 @Composable
 fun TicTacToeScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val playerX = "X"
@@ -575,7 +573,6 @@ fun TicTacToeScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.tic_tac_toe_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     IconAction(
                         imageVector = Lucide.RotateCcw,

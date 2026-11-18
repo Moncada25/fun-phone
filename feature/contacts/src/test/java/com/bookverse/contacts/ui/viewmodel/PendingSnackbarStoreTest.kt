@@ -8,8 +8,8 @@ class PendingSnackbarStoreTest {
     @Test
     fun `events remain pending until destination consumes them`() {
         val store = PendingSnackbarStore()
-        val success = ContactsViewModel.SnackEvent("Contact updated", SnackbarType.Success)
-        val warning = ContactsViewModel.SnackEvent("Photo warning", SnackbarType.Warning)
+        val success = ContactSnackEvent("Contact updated", SnackbarType.Success)
+        val warning = ContactSnackEvent("Photo warning", SnackbarType.Warning)
 
         store.enqueue(listOf(success, warning))
 
@@ -17,14 +17,14 @@ class PendingSnackbarStoreTest {
 
         store.consume(store.events.value)
 
-        assertEquals(emptyList<ContactsViewModel.SnackEvent>(), store.events.value)
+        assertEquals(emptyList<ContactSnackEvent>(), store.events.value)
     }
 
     @Test
     fun `stale consumer cannot clear a newer event`() {
         val store = PendingSnackbarStore()
-        val first = ContactsViewModel.SnackEvent("First")
-        val second = ContactsViewModel.SnackEvent("Second")
+        val first = ContactSnackEvent("First")
+        val second = ContactSnackEvent("Second")
         store.enqueue(listOf(first))
         val staleSnapshot = store.events.value
         store.enqueue(listOf(second))

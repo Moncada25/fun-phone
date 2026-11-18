@@ -63,8 +63,7 @@ class HistoryFlowTest {
                 ComposeTestContent.show {
                     MaterialTheme {
                         HistoryScreen(
-                            appSettingsViewModel = settingsViewModel,
-                            contactsViewModel = contactsViewModel,
+                            callHistory = contactsViewModel,
                             onOpenSecondary = { navigationViewModel.openSecondary(it) },
                             phoneActions = PhoneActions,
                             onDialerPhoneNumberChange = {},

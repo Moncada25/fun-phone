@@ -74,7 +74,6 @@ import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlin.random.Random
 
 data class Cell(
@@ -91,7 +90,6 @@ data class Cell(
 @Composable
 fun MinesweeperScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior(expandable = false)
@@ -139,7 +137,6 @@ fun MinesweeperScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.minesweeper_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior
             )
         }

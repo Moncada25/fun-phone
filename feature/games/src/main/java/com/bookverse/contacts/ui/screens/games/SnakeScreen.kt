@@ -194,7 +194,6 @@ fun SnakeScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.snake_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel,
                 actions = {
                     if (state.phase == SnakePhase.RUNNING || state.phase == SnakePhase.PAUSED) {
                         IconAction(

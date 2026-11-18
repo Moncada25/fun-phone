@@ -61,7 +61,6 @@ import com.bookverse.contacts.ui.components.ScoreCard
 import com.bookverse.contacts.ui.components.ScoreCardEntry
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.retroGameDialogBlur
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.SudokuViewModel
 import com.bookverse.contacts.ui.viewmodel.SudokuViewModel.SudokuCell
 import com.bookverse.contacts.ui.viewmodel.SudokuViewModel.SudokuDifficulty
@@ -72,7 +71,6 @@ import java.util.Locale
 @Composable
 fun SudokuScreen(
     onBackClick: () -> Unit,
-    appSettingsViewModel: AppSettingsViewModel,
     gameStatsRepository: GameStatsRepository,
 ) {
     val viewModel: SudokuViewModel = viewModel()
@@ -136,7 +134,6 @@ fun SudokuScreen(
             SecondaryTopBar(
                 title = stringResource(R.string.sudoku_title),
                 onBackClick = onBackClick,
-                appSettingsViewModel = appSettingsViewModel
             )
         }
     ) { paddingValues ->

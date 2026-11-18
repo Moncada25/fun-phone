@@ -198,25 +198,21 @@ fun SecondaryScreenContent(
             onBreakoutClick = { navigationViewModel.openSecondary(SecondaryScreen.BREAKOUT) },
             onMinesweeperClick = { navigationViewModel.openSecondary(SecondaryScreen.MINESWEEPER) },
             onSudokuClick = { navigationViewModel.openSecondary(SecondaryScreen.SUDOKU) },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
         SecondaryScreen.TIC_TAC_TOE -> TicTacToeScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
         SecondaryScreen.FUN_BIRD -> FunBirdScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
         SecondaryScreen.PUZZLE -> PuzzleScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
@@ -346,7 +342,6 @@ fun SecondaryScreenContent(
         SecondaryScreen.ABOUT -> AboutScreen(
             showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
             onBack = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel
         )
 
         SecondaryScreen.HANGMAN -> HangmanScreen(
@@ -368,7 +363,6 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.GAME_2048 -> Game2048Screen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
@@ -386,13 +380,11 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.MINESWEEPER -> MinesweeperScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
         SecondaryScreen.SUDOKU -> SudokuScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             gameStatsRepository = appContainer.gameStatsRepository,
         )
 
@@ -416,7 +408,6 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.QR_GENERATOR -> QRGeneratorScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             qrHistoryViewModel = qrHistoryViewModel
         )
 
@@ -507,7 +498,6 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.HOLIDAYS -> HolidaysScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             contactsFlow = contactsViewModel.contacts,
             profileFlow = contactsViewModel.profile,
             viewModel = holidaysViewModel,
@@ -515,24 +505,20 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.MENSTRUAL_CALENDAR -> MenstrualCalendarScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel
         )
 
         SecondaryScreen.VOICE_RECOGNITION -> VoiceScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             initialTextToSpeak = navigationViewModel.uiState.value.voiceTextToSpeak,
             showSnackbar = navigationViewModel.uiState.value.voiceTextToSpeak != null
         )
 
         SecondaryScreen.PHONE_STATUS -> PhoneStatusScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel
         )
 
         SecondaryScreen.POMODORO -> PomodoroScreen(
             onBackClick = { navigationViewModel.navigateBack() },
-            appSettingsViewModel = appSettingsViewModel,
             pomodoroViewModel = pomodoroViewModel
         )
 
@@ -586,7 +572,6 @@ fun SecondaryScreenContent(
         SecondaryScreen.PASSWORD_RECYCLE_BIN -> PasswordRecycleBinScreen(
             onBackClick = { navigationViewModel.navigateBack() },
             passwordsViewModel = passwordsViewModel,
-            appSettingsViewModel = appSettingsViewModel,
         )
 
         SecondaryScreen.PASSWORDS_NEW -> PasswordEditScreen(
@@ -621,7 +606,6 @@ fun SecondaryScreenContent(
             DuplicateContactsScreen(
                 contacts = contacts,
                 duplicateContactsViewModel = duplicateContactsViewModel,
-                appSettingsViewModel = appSettingsViewModel,
                 onBack = { navigationViewModel.navigateBack() },
                 onContactsMerged = { contactsViewModel.loadContacts() },
             )
@@ -635,7 +619,6 @@ fun SecondaryScreenContent(
             ContactRecycleBinScreen(
                 onBackClick = { navigationViewModel.navigateBack() },
                 recycleBinViewModel = contactRecycleBinViewModel,
-                appSettingsViewModel = appSettingsViewModel,
                 onContactRestored = { contactsViewModel.loadContacts() },
             )
         }

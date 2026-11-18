@@ -482,4 +482,13 @@
         <item quantity="one">%1$d missed call</item>
         <item quantity="other">%1$d missed calls</item>
     </plurals>
+    <string name="yesterday">Yesterday</string>
+    <string name="call_duration_minute_second" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minute_seconds" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minutes_second" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minutes_seconds" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minute" tools:ignore="PluralsCandidate">%1$d min</string>
+    <string name="call_duration_minutes" tools:ignore="PluralsCandidate">%1$d min</string>
+    <string name="call_duration_second" tools:ignore="PluralsCandidate">%1$d sec</string>
+    <string name="call_duration_seconds" tools:ignore="PluralsCandidate">%1$d sec</string>
 </resources>

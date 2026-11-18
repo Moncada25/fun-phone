@@ -190,7 +190,6 @@
         <item quantity="other">%1$d favoritos seleccionados</item>
     </plurals>
     <string name="multiple_contacts_modified">Lista de favoritos actualizada</string>
-    <string name="yesterday">Ayer</string>
     <string name="search_website">Buscar sitio web</string>
     <string name="create_contact_cta">Crear contacto</string>
     <string name="recent_activity_title">Actividad reciente</string>
@@ -237,14 +236,6 @@
     <string name="error_sharing_qr">Error al compartir el código QR</string>
     <string name="contact_edit_not_found">No se encontró el contacto que quieres editar</string>
     <string name="contact_update_error">No se pudo actualizar el contacto</string>
-    <string name="call_duration_minute_second">%1$d min %2$d seg</string>
-    <string name="call_duration_minute_seconds">%1$d min %2$d seg</string>
-    <string name="call_duration_minutes_second">%1$d min %2$d seg</string>
-    <string name="call_duration_minutes_seconds">%1$d min %2$d seg</string>
-    <string name="call_duration_minute">%1$d min.</string>
-    <string name="call_duration_minutes">%1$d min.</string>
-    <string name="call_duration_second">%1$d seg</string>
-    <string name="call_duration_seconds">%1$d seg</string>
     <string name="birthday_reminders_channel_name">Recordatorios de cumpleaños</string>
     <string name="birthday_reminders_channel_description">Avisos dos días antes, un día antes y el día del cumpleaños de cada contacto</string>
     <string name="birthday_notification_today_title">Hoy es el cumpleaños de %1$s</string>
