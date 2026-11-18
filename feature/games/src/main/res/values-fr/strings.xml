@@ -82,7 +82,6 @@
     <string name="hangman_custom_word_error_empty">Saisissez au moins une lettre.</string>
     <string name="hangman_custom_word_error_length">Le mot ne peut pas dépasser 20 caractères.</string>
     <string name="hangman_custom_word_confirm">Jouer</string>
-    <string name="instructions_title">Mode d\'emploi</string>
     <string name="hangman_instructions_text">Devinez le mot lettre par lettre. Vous avez 7 essais avant que le pendu ne soit complet. Bonne chance !</string>
     <string name="puzzle_instructions_numbers">Rangez les tuiles de 1 à 15 en partant du coin supérieur gauche et en allant horizontalement. Vous ne pouvez déplacer que les tuiles adjacentes à l\'espace vide. Résolvez le puzzle le plus vite et avec le moins de coups possible !</string>
     <string name="puzzle_instructions_image">Choisissez une photo, recadrez-la en carré, puis glissez les tuiles autour de l\'espace vide jusqu\'à reconstituer l\'image avec le moins de coups et le plus vite possible.</string>
@@ -225,4 +224,13 @@
     <string name="hangman_setup_title">Choisissez votre mode</string>
     <string name="cd_move_left">Déplacer à gauche</string>
     <string name="cd_move_right">Déplacer à droite</string>
+    <string name="games_how_to_play">Comment jouer</string>
+    <string name="games_arcade_scoreboard">Tableau des scores</string>
+    <string name="games_arcade_press_start">Appuyez sur start pour établir votre premier record</string>
+    <string name="games_arcade_view_records">Touchez pour voir vos records</string>
+    <string name="games_record_high_score">Meilleur score</string>
+    <string name="games_record_best_time">Meilleur temps</string>
+    <string name="games_record_fewest_moves">Moins de coups</string>
+    <string name="games_record_wins">Victoires</string>
+    <string name="games_record_none">Pas encore de record</string>
 </resources>

@@ -63,14 +63,14 @@ fun ScoreCard(
                 ) {
                     Text(
                         text = entry.title,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurface
+                        style = arcadeLabelStyle,
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text(
                         text = entry.value,
-                        style = MaterialTheme.typography.headlineMedium,
+                        style = MaterialTheme.typography.headlineMedium.copy(fontFeatureSettings = "tnum"),
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }

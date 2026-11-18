@@ -7,34 +7,32 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.bookverse.contacts.feature.games.R
-import com.composables.icons.lucide.Lucide
-import com.composables.icons.lucide.Play
+import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.core.ui.R as CoreUiR
 
 data class GameSetupOption(
@@ -44,6 +42,7 @@ data class GameSetupOption(
 
 @Composable
 fun GameSetupDialog(
+    gameTitle: String,
     title: String,
     instructions: String,
     options: List<GameSetupOption>,
@@ -53,43 +52,54 @@ fun GameSetupDialog(
     onStart: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    val onAccent = contentColorFor(accentColor)
-
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(dismissOnClickOutside = false, usePlatformDefaultWidth = false),
     ) {
         Surface(
-            modifier = Modifier.fillMaxWidth(0.9f).heightIn(max = 620.dp),
-            shape = RoundedCornerShape(28.dp),
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .widthIn(max = 560.dp)
+                .heightIn(max = 640.dp),
+            shape = RoundedCornerShape(AppChrome.sheetCorner),
             color = MaterialTheme.colorScheme.surface,
         ) {
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()).padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(18.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
+                ArcadeDialogHeader(
+                    title = gameTitle,
+                    eyebrow = stringResource(R.string.games_how_to_play),
+                    onClose = null,
+                )
+                ArcadeScreenPanel {
+                    Text(
+                        text = instructions,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Center,
+                    style = arcadeLabelStyle,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.fillMaxWidth(),
                 )
-                Text(
-                    text = instructions,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Center,
-                )
-                options.forEachIndexed { index, option ->
-                    GameSetupOptionRow(
-                        selected = index == selectedIndex,
-                        title = option.title,
-                        description = option.description,
-                        accentColor = accentColor,
-                        onClick = { onOptionSelected(index) },
-                    )
+                Column(
+                    modifier = Modifier.selectableGroup(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    options.forEachIndexed { index, option ->
+                        GameSetupOptionRow(
+                            selected = index == selectedIndex,
+                            title = option.title,
+                            description = option.description,
+                            accentColor = accentColor,
+                            onClick = { onOptionSelected(index) },
+                        )
+                    }
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -97,24 +107,23 @@ fun GameSetupDialog(
                 ) {
                     OutlinedButton(
                         onClick = onDismiss,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .heightIn(min = AppChrome.touchTarget),
+                        shape = RoundedCornerShape(16.dp),
                         colors = ButtonDefaults.outlinedButtonColors(
                             contentColor = MaterialTheme.colorScheme.onSurface,
                         ),
                     ) {
-                        Text(stringResource(CoreUiR.string.cancel))
+                        Text(
+                            text = stringResource(CoreUiR.string.cancel),
+                            fontWeight = FontWeight.SemiBold,
+                        )
                     }
-                    Button(
+                    ArcadePlayButton(
                         onClick = onStart,
                         modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = accentColor,
-                            contentColor = onAccent,
-                        ),
-                    ) {
-                        Icon(Lucide.Play, contentDescription = null)
-                        Text(stringResource(R.string.play_game))
-                    }
+                    )
                 }
             }
         }
@@ -134,21 +143,21 @@ private fun GameSetupOptionRow(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape)
-            .selectable(selected = selected, onClick = onClick)
+            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
             .border(
                 width = if (selected) 2.dp else 1.dp,
                 color = if (selected) {
                     accentColor
                 } else {
-                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.16f)
+                    MaterialTheme.colorScheme.outlineVariant
                 },
                 shape = shape,
             ),
         shape = shape,
         color = if (selected) {
-            MaterialTheme.colorScheme.onBackground.copy(alpha = 0.08f)
+            MaterialTheme.colorScheme.primaryContainer
         } else {
-            MaterialTheme.colorScheme.surface
+            MaterialTheme.colorScheme.surfaceContainerHigh
         },
     ) {
         Row(
@@ -161,7 +170,7 @@ private fun GameSetupOptionRow(
                 onClick = null,
                 colors = RadioButtonDefaults.colors(
                     selectedColor = accentColor,
-                    unselectedColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
+                    unselectedColor = MaterialTheme.colorScheme.outline,
                 ),
             )
             Column(modifier = Modifier.weight(1f)) {
@@ -169,12 +178,16 @@ private fun GameSetupOptionRow(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = if (selected) {
+                        MaterialTheme.colorScheme.onPrimaryContainer
+                    } else {
+                        MaterialTheme.colorScheme.onSurface
+                    },
                 )
                 Text(
                     text = description,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.74f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }

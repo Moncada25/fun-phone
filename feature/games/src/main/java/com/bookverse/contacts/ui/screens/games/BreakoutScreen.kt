@@ -284,7 +284,7 @@ fun BreakoutScreen(
 
     if (showInstructions) {
         RetroGameInstructionsDialog(
-            title = stringResource(R.string.instructions_title),
+            title = stringResource(R.string.breakout_title),
             instructions = stringResource(R.string.breakout_instructions_text),
             onPlayClick = {
                 showInstructions = false

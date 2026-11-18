@@ -324,7 +324,7 @@ fun MinesweeperScreen(
 
     if (showInstructions) {
         RetroGameInstructionsDialog(
-            title = stringResource(R.string.instructions_title),
+            title = stringResource(R.string.minesweeper_title),
             instructions = stringResource(R.string.minesweeper_instructions_text),
             onPlayClick = {
                 showInstructions = false

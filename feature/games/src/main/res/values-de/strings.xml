@@ -82,7 +82,6 @@
     <string name="hangman_custom_word_error_empty">Gib mindestens einen Buchstaben ein.</string>
     <string name="hangman_custom_word_error_length">Das Wort darf nicht länger als 20 Zeichen sein.</string>
     <string name="hangman_custom_word_confirm">Spielen</string>
-    <string name="instructions_title">Anleitung</string>
     <string name="hangman_instructions_text">Errate das Wort Buchstabe für Buchstabe. Du hast 7 Versuche, bevor der Galgen vollständig ist. Viel Glück!</string>
     <string name="puzzle_instructions_numbers">Sortiere die Kacheln von 1 bis 15, beginne oben links und gehe horizontal vor. Du kannst nur Kacheln bewegen, die an die leere Fläche angrenzen. Löse das Puzzle so schnell und mit so wenigen Zügen wie möglich!</string>
     <string name="puzzle_instructions_image">Wähle ein Foto, schneide es quadratisch zu und schiebe die Kacheln um die leere Fläche, bis das Bild mit möglichst wenigen Zügen und in kürzester Zeit wiederhergestellt ist.</string>
@@ -224,4 +223,13 @@
     <string name="hangman_setup_title">Spielweise wählen</string>
     <string name="cd_move_left">Nach links verschieben</string>
     <string name="cd_move_right">Nach rechts verschieben</string>
+    <string name="games_how_to_play">So wird gespielt</string>
+    <string name="games_arcade_scoreboard">Anzeigetafel</string>
+    <string name="games_arcade_press_start">Drück Start für deinen ersten Rekord</string>
+    <string name="games_arcade_view_records">Tippen, um deine Rekorde zu sehen</string>
+    <string name="games_record_high_score">Highscore</string>
+    <string name="games_record_best_time">Bestzeit</string>
+    <string name="games_record_fewest_moves">Wenigste Züge</string>
+    <string name="games_record_wins">Siege</string>
+    <string name="games_record_none">Noch kein Rekord</string>
 </resources>

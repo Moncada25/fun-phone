@@ -11,25 +11,23 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -42,17 +40,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.ui.theme.AppChrome
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 import com.bookverse.contacts.core.ui.R as CoreUiR
@@ -75,15 +72,11 @@ fun RetroGameInstructionsDialog(
     onPlayClick: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    val accentColor = MaterialTheme.colorScheme.primary
     var isVisible by remember { mutableStateOf(false) }
-    var showContent by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         delay(100.milliseconds)
         isVisible = true
-        delay(300.milliseconds)
-        showContent = true
     }
 
     Dialog(
@@ -97,127 +90,74 @@ fun RetroGameInstructionsDialog(
         AnimatedVisibility(
             visible = isVisible,
             enter = fadeIn(
-                animationSpec = tween(400, easing = FastOutSlowInEasing)
+                animationSpec = tween(300, easing = FastOutSlowInEasing)
             ) + scaleIn(
-                initialScale = 0.7f,
+                initialScale = 0.85f,
                 animationSpec = spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessLow
+                    dampingRatio = Spring.DampingRatioLowBouncy,
+                    stiffness = Spring.StiffnessMediumLow
                 )
             ),
             exit = fadeOut(
                 animationSpec = tween(200)
             ) + scaleOut(
-                targetScale = 0.8f,
+                targetScale = 0.9f,
                 animationSpec = tween(200)
             )
         ) {
             Surface(
-                shape = RoundedCornerShape(28.dp),
+                shape = RoundedCornerShape(AppChrome.sheetCorner),
                 color = MaterialTheme.colorScheme.surface,
-                modifier = Modifier.fillMaxWidth(0.9f)
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .widthIn(max = 560.dp)
             ) {
                 Column(
                     modifier = Modifier
-                        .padding(28.dp)
+                        .verticalScroll(rememberScrollState())
+                        .padding(24.dp)
                         .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
+                    ArcadeDialogHeader(
+                        title = title,
+                        eyebrow = stringResource(R.string.games_how_to_play),
+                        onClose = onDismiss,
+                    )
+
+                    ArcadeScreenPanel {
+                        Text(
+                            text = instructions,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        Spacer(modifier = Modifier.width(40.dp))
-
-                        AnimatedVisibility(
-                            visible = showContent,
-                            enter = fadeIn(tween(400)) + scaleIn(
-                                initialScale = 0.5f,
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy
-                                )
+                        OutlinedButton(
+                            onClick = onDismiss,
+                            modifier = Modifier
+                                .weight(1f)
+                                .heightIn(min = AppChrome.touchTarget),
+                            shape = RoundedCornerShape(16.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface
                             )
                         ) {
                             Text(
-                                text = title,
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.weight(1f)
+                                text = stringResource(CoreUiR.string.cancel),
+                                fontWeight = FontWeight.SemiBold
                             )
                         }
 
-                        IconButton(
-                            onClick = onDismiss,
-                            modifier = Modifier.size(40.dp)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(CoreUiR.string.close),
-                                tint = MaterialTheme.colorScheme.onBackground
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(24.dp))
-
-                    AnimatedVisibility(
-                        visible = showContent,
-                        enter = fadeIn(tween(500, delayMillis = 100)) + scaleIn(
-                            initialScale = 0.9f,
-                            animationSpec = tween(500, delayMillis = 100)
+                        ArcadePlayButton(
+                            onClick = onPlayClick,
+                            modifier = Modifier.weight(1f)
                         )
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(
-                                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
-                                        shape = RoundedCornerShape(16.dp)
-                                    )
-                                    .padding(20.dp)
-                            ) {
-                                Text(
-                                    text = instructions,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    textAlign = TextAlign.Center,
-                                    lineHeight = 24.sp
-                                )
-                            }
-
-                            Spacer(modifier = Modifier.height(28.dp))
-
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(12.dp)
-                            ) {
-                                OutlinedButton(
-                                    onClick = onDismiss,
-                                    modifier = Modifier.weight(1f),
-                                    shape = RoundedCornerShape(16.dp),
-                                    colors = ButtonDefaults.outlinedButtonColors(
-                                        contentColor = MaterialTheme.colorScheme.onSurface
-                                    )
-                                ) {
-                                    Text(
-                                        text = stringResource(CoreUiR.string.cancel),
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-                                }
-
-                                RetroPlayButton(
-                                    onClick = onPlayClick,
-                                    accentColor = accentColor,
-                                    modifier = Modifier.weight(1f)
-                                )
-                            }
-                        }
                     }
                 }
             }
@@ -226,12 +166,33 @@ fun RetroGameInstructionsDialog(
 }
 
 @Composable
-private fun RetroPlayButton(
-    onClick: () -> Unit,
-    accentColor: Color,
-    modifier: Modifier = Modifier
+fun ArcadeScreenPanel(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
 ) {
-    var isPressed by remember { mutableStateOf(false) }
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .crtScanlines(
+                lineColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.035f),
+            ),
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerHighest,
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            content()
+        }
+    }
+}
+
+@Composable
+fun ArcadePlayButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.95f else 1f,
         animationSpec = spring(
@@ -242,31 +203,25 @@ private fun RetroPlayButton(
     )
 
     Button(
-        onClick = {
-            isPressed = true
-            onClick()
-        },
-        modifier = modifier.scale(scale),
+        onClick = onClick,
+        modifier = modifier
+            .heightIn(min = AppChrome.touchTarget)
+            .scale(scale),
         shape = RoundedCornerShape(16.dp),
+        interactionSource = interactionSource,
         colors = ButtonDefaults.buttonColors(
-            containerColor = accentColor
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
         )
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.PlayArrow,
-                contentDescription = null,
-                tint = Color.White
-            )
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(
-                text = stringResource(R.string.play_game),
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-        }
+        Icon(
+            imageVector = Icons.Default.PlayArrow,
+            contentDescription = null,
+        )
+        Text(
+            text = stringResource(R.string.play_game),
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(start = 4.dp),
+        )
     }
 }

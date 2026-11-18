@@ -445,7 +445,7 @@ fun Game2048Screen(
 
     if (showInstructions) {
         RetroGameInstructionsDialog(
-            title = stringResource(R.string.instructions_title),
+            title = stringResource(R.string.game_2048_title),
             instructions = stringResource(R.string.game_2048_instructions_text),
             onPlayClick = {
                 showInstructions = false

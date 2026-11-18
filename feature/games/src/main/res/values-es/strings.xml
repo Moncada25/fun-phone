@@ -161,7 +161,6 @@
     <string name="hangman_custom_word_error_empty">Ingresa al menos una letra.</string>
     <string name="hangman_custom_word_error_length">La palabra no puede superar los 20 caracteres.</string>
     <string name="hangman_custom_word_confirm">Jugar</string>
-    <string name="instructions_title">Instrucciones</string>
     <string name="hangman_instructions_text">Adivina la palabra letra por letra. Tienes 7 intentos antes de que el ahorcado se complete. ¡Buena suerte!</string>
     <string name="puzzle_instructions_numbers">Ordena las fichas del 1 al 15, empezando por la esquina superior izquierda y siguiendo horizontalmente. Solo puedes mover las fichas adyacentes al espacio vacío. ¡Resuelve el rompecabezas lo más rápido posible y con el menor número de movimientos posible!</string>
     <string name="puzzle_instructions_image">Elige una imagen y recórtala en formato cuadrado. Después desliza las piezas alrededor del espacio vacío para reconstruir la foto completa con el menor número de movimientos y en el menor tiempo posible.</string>
@@ -225,4 +224,13 @@
     <string name="hangman_setup_title">Elige cómo jugar</string>
     <string name="cd_move_left">Mover izquierda</string>
     <string name="cd_move_right">Mover derecha</string>
+    <string name="games_how_to_play">Cómo jugar</string>
+    <string name="games_arcade_scoreboard">Marcador</string>
+    <string name="games_arcade_press_start">Pulsa start para marcar tu primer récord</string>
+    <string name="games_arcade_view_records">Toca para ver tus récords</string>
+    <string name="games_record_high_score">Récord</string>
+    <string name="games_record_best_time">Mejor tiempo</string>
+    <string name="games_record_fewest_moves">Menos movimientos</string>
+    <string name="games_record_wins">Victorias</string>
+    <string name="games_record_none">Sin récord aún</string>
 </resources>
