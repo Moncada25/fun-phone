@@ -62,7 +62,7 @@ grep -Fq 'private const val MIN_CONTENT_CONTRAST = 4.5f' "$palette_file" || {
   echo "Accent content roles must retain the 4.5:1 contrast target."
   exit 1
 }
-settings_screen="$ui_root/screens/settings/SettingsScreen.kt"
+settings_screen=$(ui_file screens/settings/SettingsScreen.kt)
 grep -Fq 'val accentSeed = MaterialTheme.accentPalette.seed' "$settings_screen" || {
   echo "The accent picker must receive the exact selected seed, not the derived primary role."
   exit 1
@@ -98,7 +98,7 @@ grep -Fq 'TopBarSearchField(' "$settings_screen" || {
   echo "SettingsScreen must use the shared top bar search field."
   exit 1
 }
-settings_components="$ui_root/screens/settings/SettingsComponents.kt"
+settings_components=$(ui_file screens/settings/SettingsComponents.kt)
 grep -Fq 'color = MaterialTheme.colorScheme.primaryContainer' "$settings_components" || {
   echo "Settings current-value badges must retain the soft accent container."
   exit 1

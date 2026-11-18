@@ -57,20 +57,20 @@ trap restore_device EXIT
 
 cd "$repo_root"
 ./gradlew :app:assembleCommunityDebug :app:assembleCommunityDebugAndroidTest \
-  :core:ui:assembleDebugAndroidTest :feature:dialer:assembleDebugAndroidTest
+  :core:ui:assembleDebugAndroidTest :feature:dialer:assembleDebugAndroidTest \
+  :feature:settings:assembleDebugAndroidTest
 
 "${adb_device[@]}" install -r -t "app/build/outputs/apk/community/debug/app-community-debug.apk" >/dev/null
 for test_apk in \
   "app/build/outputs/apk/androidTest/community/debug/app-community-debug-androidTest.apk" \
   "core/ui/build/outputs/apk/androidTest/debug/ui-debug-androidTest.apk" \
-  "feature/dialer/build/outputs/apk/androidTest/debug/dialer-debug-androidTest.apk"; do
+  "feature/dialer/build/outputs/apk/androidTest/debug/dialer-debug-androidTest.apk" \
+  "feature/settings/build/outputs/apk/androidTest/debug/settings-debug-androidTest.apk"; do
   "${adb_device[@]}" install -r -t "$test_apk" >/dev/null
 done
 
-app_test_classes="com.bookverse.contacts.ui.screens.settings.OnboardingFlowScreenTest"
-app_test_classes+=",com.bookverse.contacts.ui.screens.settings.OnboardingRestorationTest"
+app_test_classes="com.bookverse.contacts.ui.screens.settings.OnboardingRestorationTest"
 app_test_classes+=",com.bookverse.contacts.ui.navigation.MainTabNavigationBarTest"
-app_test_classes+=",com.bookverse.contacts.ui.screens.settings.BlockedNumbersDialogsTest"
 app_test_classes+=",com.bookverse.contacts.ui.screens.tools.ToolsPresetSelectorTest"
 app_test_classes+=",com.bookverse.contacts.ui.AccessibilityCoreContractTest"
 
@@ -78,6 +78,7 @@ suites=(
   "$test_package|$app_package|$app_test_classes"
   "com.bookverse.contacts.core.ui.test|com.bookverse.contacts.core.ui.test|com.bookverse.contacts.ui.auth.PasswordAuthDialogsTest"
   "com.bookverse.contacts.feature.dialer.test|com.bookverse.contacts.feature.dialer.test|com.bookverse.contacts.ui.screens.dialer.DialerNumberEditorTest"
+  "com.bookverse.contacts.feature.settings.test|com.bookverse.contacts.feature.settings.test|com.bookverse.contacts.ui.screens.settings.OnboardingFlowScreenTest,com.bookverse.contacts.ui.screens.settings.BlockedNumbersDialogsTest"
 )
 
 scenarios=(

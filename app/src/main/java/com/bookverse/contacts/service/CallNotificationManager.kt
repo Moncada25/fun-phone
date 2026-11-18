@@ -9,7 +9,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.CallLog
-import android.provider.Settings
 import android.telecom.TelecomManager
 import android.telephony.PhoneNumberUtils
 import android.annotation.SuppressLint
@@ -68,30 +67,7 @@ object CallNotificationManager {
         OngoingCallService.stop(context.applicationContext)
     }
 
-    fun openCallNotificationSettings(context: Context) {
-        val availability = availability(context)
-        val intent = if (
-            availability.appNotificationsEnabled &&
-            (!availability.incomingChannelEnabled || !availability.ongoingChannelEnabled)
-        ) {
-            Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
-                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-                putExtra(
-                    Settings.EXTRA_CHANNEL_ID,
-                    if (!availability.incomingChannelEnabled) {
-                        CallNotificationChannels.INCOMING_CHANNEL_ID
-                    } else {
-                        CallNotificationChannels.ONGOING_CHANNEL_ID
-                    },
-                )
-            }
-        } else {
-            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
-                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-            }
-        }.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        context.startActivity(intent)
-    }
+    fun openCallNotificationSettings(context: Context) = CallNotificationChannels.openSettings(context)
 
     @RequiresPermission("android.permission.POST_NOTIFICATIONS")
     fun showMissed(context: Context, number: String) {
