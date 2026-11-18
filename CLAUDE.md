@@ -15,7 +15,7 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
   components and the protected-action auth UI) and `:core:common`
   (diagnostics, `SecondaryScreen` and generic utilities), plus the `:baselineprofile` test module (Baseline Profile generator and
   macrobenchmarks). Feature modules
-  (`:feature:games`, `:feature:expenses`, `:feature:notes`, `:feature:qr`) hold a feature's screens, ViewModels, domain and data, and depend on `:core:ui`;
+  (`:feature:games`, `:feature:expenses`, `:feature:notes`, `:feature:qr`, `:feature:vault`) hold a feature's screens, ViewModels, domain and data, and depend on `:core:ui`;
   `:app` keeps navigation, the `AppContainer` composition root, services and the manifest. Shared Gradle setup lives in the `build-logic` convention plugins
   (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
 - **Localization**: English baseline in `:core:ui` `values/`, with Spanish, German, French, and Portuguese
