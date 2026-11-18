@@ -479,3 +479,27 @@ at large font scales or in landscape.
 Protected destinations use immediate session locking and secure window ownership through animated
 transitions. Cancelled authentication cannot execute an old pending action. Restorable vault/note
 editor state is encrypted and is exposed only after authenticating again.
+
+## Contrato Arcade de Juegos — 2026-11-18
+
+El catálogo de Juegos usa una metáfora de máquina arcade retro sin salir del sistema: conserva
+`AppScreenScaffold`, `SecondaryTopBar` expandible, el acento derivado, la fuente y su escala. En
+Moderno la cuadrícula se desplaza por detrás del encabezado de cristal.
+
+- Cada juego es una máquina: marquesina en `primaryContainer`/`onPrimaryContainer` con el título en
+  mayúsculas y un filo de acento liso, pantalla CRT con bisel negro, scanlines y reflejo
+  (`crtScanlines`), y un panel con el récord del juego. La decoración se limita a ese filo, la
+  barra corta bajo los títulos de diálogo y las viñetas de sección; no se usan filas de puntos.
+  La máquina completa es un único botón con etiqueta de acción localizada; el título conserva su
+  forma original para TalkBack.
+- El marcador superior resume partidas, mejor racha y juegos probados, y abre el dashboard.
+  Recientes es un carrusel de máquinas horizontales con indicador de nivel decorativo.
+- La cuadrícula usa columnas adaptables de 156 dp mínimo; marquesinas de dos líneas mantienen la
+  misma altura por fila con texto grande, en landscape compacto y en ventanas divididas.
+- Los récords muestran la métrica de cada juego (puntuación, tiempo, movimientos o victorias) con
+  números localizados y cifras tabulares.
+- Instrucciones, configuración y opciones de los juegos comparten `ArcadeDialogHeader`, un panel de
+  pantalla desplazable y `ArcadePlayButton` con `primary`/`onPrimary`. La selección usa
+  `primaryContainer`; no se crean containers con `primary.copy(alpha = ...)`.
+- El negro del bisel y las scanlines pertenecen al arte de las pantallas CRT, que siempre es oscuro;
+  no se propagan como color de superficie a otras pantallas.

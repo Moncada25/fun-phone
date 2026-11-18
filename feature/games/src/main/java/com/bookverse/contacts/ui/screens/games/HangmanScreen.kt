@@ -423,6 +423,7 @@ fun HangmanScreen(
 
     if (showGameModeSelection) {
         GameSetupDialog(
+            gameTitle = stringResource(R.string.hangman_title),
             title = stringResource(R.string.hangman_setup_title),
             instructions = stringResource(R.string.hangman_instructions_text),
             options = listOf(

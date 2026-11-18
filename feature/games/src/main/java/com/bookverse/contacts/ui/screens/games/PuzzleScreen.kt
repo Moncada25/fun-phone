@@ -643,6 +643,7 @@ fun PuzzleScreen(
     if (showSetupDialog) {
         val isImageSelected = setupSelectedIndex == 1
         GameSetupDialog(
+            gameTitle = stringResource(R.string.puzzle_title),
             title = stringResource(R.string.snake_setup_title),
             instructions = stringResource(
                 if (isImageSelected) {

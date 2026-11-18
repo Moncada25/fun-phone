@@ -371,8 +371,7 @@
     <string name="vcard_import_title">Kontakte aus vCard importieren</string>
     <string name="vcard_import_description">Füge Kontakte aus einer .vcf-Datei hinzu und überspringe bereits vorhandene.</string>
     <string name="contact_recycle_bin_description">Gelöschte Kontakte wiederherstellen oder endgültig entfernen.</string>
-    <string name="protection_backup_title">App-Sperre und Komplettsicherung</string>
-    <string name="protection_backup_description">Fun Phone beim Öffnen sperren und alles in einer verschlüsselten Datei sichern</string>
+    <string name="protection_backup_description">Alles in einer verschlüsselten Datei sichern</string>
     <string name="app_lock_setting_title">Ganze App sperren</string>
     <string name="app_lock_setting_description">Fragt beim Öffnen oder Zurückkehren nach Fingerabdruck, Gesicht oder Displaysperre. Anrufe lassen sich immer annehmen.</string>
     <string name="app_lock_requires_screen_lock">Richte zuerst eine Displaysperre auf diesem Gerät ein</string>

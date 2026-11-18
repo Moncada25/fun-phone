@@ -339,6 +339,7 @@ fun MemoryGameScreen(
 
     if (showBoardSizeDialog) {
         GameSetupDialog(
+            gameTitle = stringResource(R.string.memory_game_title),
             title = stringResource(R.string.memory_board_size_title),
             instructions = stringResource(R.string.memory_instructions_text),
             options = listOf(

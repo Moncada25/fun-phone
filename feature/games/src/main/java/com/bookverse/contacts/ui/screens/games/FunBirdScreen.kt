@@ -784,7 +784,7 @@ fun FunBirdScreen(
 
     if (showInstructions) {
         RetroGameInstructionsDialog(
-            title = stringResource(R.string.instructions_title),
+            title = stringResource(R.string.fun_bird_title),
             instructions = stringResource(R.string.fun_bird_instructions),
             onPlayClick = {
                 showInstructions = false

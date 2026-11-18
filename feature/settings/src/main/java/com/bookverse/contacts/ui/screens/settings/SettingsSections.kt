@@ -33,11 +33,13 @@ import com.composables.icons.lucide.AArrowUp
 import com.composables.icons.lucide.AlignJustify
 import com.composables.icons.lucide.ArchiveRestore
 import com.composables.icons.lucide.BadgeInfo
+import com.composables.icons.lucide.DatabaseBackup
 import com.composables.icons.lucide.Download
 import com.composables.icons.lucide.FileInput
 import com.composables.icons.lucide.FileOutput
 import com.composables.icons.lucide.KeyRound
 import com.composables.icons.lucide.Languages
+import com.composables.icons.lucide.LockKeyhole
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.PhoneForwarded
 import com.composables.icons.lucide.SaveAll
@@ -79,6 +81,7 @@ internal data class SettingsSectionsState(
     val passwordAuthEnabled: Boolean,
     val passwordManagerEnabled: Boolean,
     val sensitiveSectionsLockEnabled: Boolean,
+    val appLockEnabled: Boolean,
 )
 
 internal data class SettingsSectionsActions(
@@ -116,6 +119,7 @@ internal data class SettingsSectionsActions(
     val onPasswordAuthChanged: (Boolean) -> Unit,
     val onPasswordManagerChanged: (Boolean) -> Unit,
     val onSensitiveSectionsLockChanged: (Boolean) -> Unit,
+    val onAppLockChanged: (Boolean) -> Unit,
     val onSaveContacts: () -> Unit,
     val onShareContacts: () -> Unit,
     val onRestoreContacts: () -> Unit,
@@ -239,6 +243,7 @@ internal fun buildSettingsSections(
         title = stringResource(R.string.security_settings),
         description = stringResource(R.string.security_settings_description),
         items = listOf(
+            SettingsItemModel("app_lock", Lucide.LockKeyhole, stringResource(R.string.app_lock_setting_title), stringResource(R.string.app_lock_setting_description), {}, toggle = SettingsToggleModel(state.appLockEnabled, actions.onAppLockChanged)),
             SettingsItemModel("biometrics", Icons.Default.Fingerprint, stringResource(CoreUiR.string.security_biometrics), stringResource(R.string.biometrics_protection), {}, toggle = SettingsToggleModel(state.passwordAuthEnabled, actions.onPasswordAuthChanged)),
             SettingsItemModel("passwords", Lucide.KeyRound, stringResource(CoreUiR.string.passwords_item), stringResource(R.string.password_manager_switch), {}, toggle = SettingsToggleModel(state.passwordManagerEnabled, actions.onPasswordManagerChanged)),
             SettingsItemModel("sensitive_lock", Lucide.ShieldCheck, stringResource(R.string.expenses_lock_title), stringResource(R.string.expenses_lock_description), {}, toggle = SettingsToggleModel(state.sensitiveSectionsLockEnabled, actions.onSensitiveSectionsLockChanged)),
@@ -256,7 +261,7 @@ internal fun buildSettingsSections(
             SettingsItemModel("import_vcard", Lucide.FileInput, stringResource(R.string.vcard_import_title), stringResource(R.string.vcard_import_description), actions.onImportVCard),
             SettingsItemModel("save_settings", Lucide.Download, stringResource(R.string.save_settings_title), stringResource(R.string.save_settings_description), actions.onSaveSettings),
             SettingsItemModel("restore_settings", Lucide.Upload, stringResource(R.string.restore_settings_title), stringResource(R.string.restore_settings_description), actions.onRestoreSettings),
-            SettingsItemModel("protection_backup", Lucide.ShieldCheck, stringResource(R.string.protection_backup_title), stringResource(R.string.protection_backup_description), actions.onProtectionBackup),
+            SettingsItemModel("protection_backup", Lucide.DatabaseBackup, stringResource(R.string.full_backup_title), stringResource(R.string.protection_backup_description), actions.onProtectionBackup),
         ),
     ),
     SettingsSectionModel(

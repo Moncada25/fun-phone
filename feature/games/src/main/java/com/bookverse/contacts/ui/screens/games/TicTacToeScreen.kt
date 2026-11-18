@@ -687,6 +687,7 @@ fun TicTacToeScreen(
 
     if (showSetupDialog) {
         GameSetupDialog(
+            gameTitle = stringResource(R.string.tic_tac_toe_title),
             title = stringResource(R.string.snake_setup_title),
             instructions = stringResource(R.string.tictactoe_instructions_text),
             options = listOf(

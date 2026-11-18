@@ -82,7 +82,6 @@
     <string name="hangman_custom_word_error_empty">Digite pelo menos uma letra.</string>
     <string name="hangman_custom_word_error_length">A palavra não pode ter mais de 20 caracteres.</string>
     <string name="hangman_custom_word_confirm">Jogar</string>
-    <string name="instructions_title">Instruções</string>
     <string name="hangman_instructions_text">Adivinhe a palavra letra por letra. Você tem 7 tentativas antes de a forca se completar. Boa sorte!</string>
     <string name="puzzle_instructions_numbers">Ordene as peças de 1 a 15, começando do canto superior esquerdo e indo horizontalmente. Você só pode mover peças adjacentes ao espaço vazio. Resolva o quebra-cabeça o mais rápido e com o menor número de movimentos possível!</string>
     <string name="puzzle_instructions_image">Escolha uma foto, corte em quadrado e deslize as peças pelo espaço vazio até restaurar a imagem completa com o menor número de movimentos e no menor tempo possível.</string>
@@ -225,4 +224,13 @@
     <string name="hangman_setup_title">Escolha como jogar</string>
     <string name="cd_move_left">Mover para a esquerda</string>
     <string name="cd_move_right">Mover para a direita</string>
+    <string name="games_how_to_play">Como jogar</string>
+    <string name="games_arcade_scoreboard">Placar</string>
+    <string name="games_arcade_press_start">Pressione start para marcar seu primeiro recorde</string>
+    <string name="games_arcade_view_records">Toque para ver seus recordes</string>
+    <string name="games_record_high_score">Recorde</string>
+    <string name="games_record_best_time">Melhor tempo</string>
+    <string name="games_record_fewest_moves">Menos movimentos</string>
+    <string name="games_record_wins">Vitórias</string>
+    <string name="games_record_none">Sem recorde ainda</string>
 </resources>

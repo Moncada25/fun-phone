@@ -83,7 +83,6 @@
     <string name="hangman_custom_word_error_empty">Type at least one letter.</string>
     <string name="hangman_custom_word_error_length">The word cannot be longer than 20 characters.</string>
     <string name="hangman_custom_word_confirm">Play</string>
-    <string name="instructions_title">Instructions</string>
     <string name="hangman_instructions_text">Guess the word letter by letter. You have 7 attempts before the hangman is completed. Good luck!</string>
     <string name="puzzle_instructions_numbers">Sort the tiles from 1 to 15, starting from the top left corner and going horizontally. You can only move tiles adjacent to the empty space. Solve the puzzle as quickly and with as few moves as possible!</string>
     <string name="puzzle_instructions_image">Pick a photo, crop it to a square, and then slide the tiles around the empty space until the full picture is restored with the fewest moves and in the shortest time you can.</string>
@@ -225,4 +224,13 @@
     <string name="hangman_setup_title">Choose how to play</string>
     <string name="cd_move_left">Move left</string>
     <string name="cd_move_right">Move right</string>
+    <string name="games_how_to_play">How to play</string>
+    <string name="games_arcade_scoreboard">Scoreboard</string>
+    <string name="games_arcade_press_start">Press start to set your first record</string>
+    <string name="games_arcade_view_records">Tap to see your records</string>
+    <string name="games_record_high_score">High score</string>
+    <string name="games_record_best_time">Best time</string>
+    <string name="games_record_fewest_moves">Fewest moves</string>
+    <string name="games_record_wins">Wins</string>
+    <string name="games_record_none">No record yet</string>
 </resources>

@@ -221,6 +221,7 @@ fun SudokuScreen(
 
     if (showDifficultyDialog) {
         GameSetupDialog(
+            gameTitle = stringResource(R.string.sudoku_title),
             title = stringResource(R.string.sudoku_setup_title),
             instructions = stringResource(R.string.sudoku_instructions_text),
             options = difficultyOptions,
