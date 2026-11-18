@@ -47,16 +47,16 @@ fi
 
 network_sources="$(
   grep -RlE 'HttpsURLConnection|HttpURLConnection|Retrofit\.Builder|OkHttpClient|WebView' \
-    app/src/main/java 2>/dev/null | sort || true
+    app/src/main/java core/*/src/main/java feature/*/src/main/java 2>/dev/null | sort || true
 )"
-expected_network_sources=$'app/src/main/java/com/bookverse/contacts/data/repository/HolidaysRepository.kt\napp/src/main/java/com/bookverse/contacts/ui/screens/contacts/SocialMediaSearchDialog.kt'
+expected_network_sources=$'app/src/main/java/com/bookverse/contacts/data/repository/HolidaysRepository.kt\nfeature/contacts/src/main/java/com/bookverse/contacts/ui/screens/contacts/SocialMediaSearchDialog.kt'
 if [[ "$network_sources" != "$expected_network_sources" ]]; then
   echo "Unexpected direct-network source detected:"
   echo "$network_sources"
   exit 1
 fi
 
-social_network_source="app/src/main/java/com/bookverse/contacts/ui/screens/contacts/SocialMediaSearchDialog.kt"
+social_network_source="feature/contacts/src/main/java/com/bookverse/contacts/ui/screens/contacts/SocialMediaSearchDialog.kt"
 if ! grep -Fq 'WebView' "$social_network_source"; then
   echo "The approved social-media network boundary is missing its WebView implementation."
   exit 1
