@@ -75,11 +75,12 @@ class ContactDetailsAccountsTest {
         assertDetailOpens()
         val label = compose.activity.resources.getQuantityString(ContactsR.plurals.multiple_account, 2, 2)
         list.performScrollToNode(hasText(label))
+        val excludedBeforeSheet = compose.onAllNodesWithText(excluded.displayName).fetchSemanticsNodes().size
         compose.onNodeWithText(label).performClick()
         compose.onNodeWithText(text(ContactsR.string.multiple_account_title)).assertIsDisplayed()
         compose.onAllNodesWithText(text(R.string.device)).assertCountEquals(1)
         compose.onNodeWithText(external.displayName).assertIsDisplayed()
-        compose.onNodeWithText(excluded.displayName).assertDoesNotExist()
+        compose.onAllNodesWithText(excluded.displayName).assertCountEquals(excludedBeforeSheet)
         compose.runOnIdle { accounts = null }
         compose.onNodeWithText(text(ContactsR.string.multiple_account_title)).assertDoesNotExist()
         compose.onNodeWithText(text(ContactsR.string.contact_info)).assertDoesNotExist()

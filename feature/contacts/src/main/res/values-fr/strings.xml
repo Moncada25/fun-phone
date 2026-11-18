@@ -304,4 +304,6 @@
         <item quantity="many">Déplacer %1$d contacts vers la corbeille ? Vous pourrez les restaurer pendant %2$d jours.</item>
         <item quantity="other">Déplacer %1$d contacts vers la corbeille ? Vous pourrez les restaurer pendant %2$d jours.</item>
     </plurals>
+    <string name="contact_action_message">Message</string>
+    <string name="contact_action_favorite">Favori</string>
 </resources>

@@ -304,4 +304,6 @@
         <item quantity="many">Mover %1$d contatos para a lixeira? Você poderá restaurá-los por %2$d dias.</item>
         <item quantity="other">Mover %1$d contatos para a lixeira? Você poderá restaurá-los por %2$d dias.</item>
     </plurals>
+    <string name="contact_action_message">Mensagem</string>
+    <string name="contact_action_favorite">Favorito</string>
 </resources>
