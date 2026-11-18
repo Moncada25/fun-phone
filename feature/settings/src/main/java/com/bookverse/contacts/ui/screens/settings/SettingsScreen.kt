@@ -441,6 +441,9 @@ fun SettingsScreen(
     val passwordAuthMethod by appSettingsViewModel.passwordAuthMethod.collectAsStateWithLifecycle()
     val passwordManagerEnabled by appSettingsViewModel.passwordManagerEnabled.collectAsStateWithLifecycle()
     val sensitiveSectionsLockEnabled by appSettingsViewModel.sensitiveSectionsLockEnabled.collectAsStateWithLifecycle()
+    val appLockToggle = rememberAppLockToggle(
+        onMessage = { message, type -> snackbar.show(message = message, type = type) },
+    )
     val toolsOrder by appSettingsViewModel.toolsOrder.collectAsStateWithLifecycle()
 
     val hasContactsPermission = PermissionUtils.hasContactsPermission(context)
@@ -536,6 +539,7 @@ fun SettingsScreen(
             passwordAuthEnabled = passwordAuthMethod != null,
             passwordManagerEnabled = passwordManagerEnabled,
             sensitiveSectionsLockEnabled = sensitiveSectionsLockEnabled,
+            appLockEnabled = appLockToggle.enabled,
         ),
         actions = SettingsSectionsActions(
             onTheme = { activePreferenceSheet = SettingsPreferenceSheet.THEME },
@@ -604,6 +608,7 @@ fun SettingsScreen(
             onPasswordManagerChanged = { enabled ->
                 appSettingsViewModel.setPasswordManagerEnabled(context, enabled)
             },
+            onAppLockChanged = appLockToggle.onChange,
             onSensitiveSectionsLockChanged = { enabled ->
                 if (enabled) {
                     if (passwordAuthMethod == null) {

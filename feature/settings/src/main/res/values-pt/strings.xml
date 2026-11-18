@@ -375,8 +375,7 @@
     <string name="vcard_import_title">Importar contatos de um vCard</string>
     <string name="vcard_import_description">Adicione contatos de um arquivo .vcf e ignore os que você já tem.</string>
     <string name="contact_recycle_bin_description">Restaure contatos excluídos ou remova-os permanentemente.</string>
-    <string name="protection_backup_title">Bloqueio do app e backup completo</string>
-    <string name="protection_backup_description">Bloqueie o Fun Phone ao abrir e salve tudo em um único arquivo criptografado</string>
+    <string name="protection_backup_description">Salve tudo em um único arquivo criptografado</string>
     <string name="app_lock_setting_title">Bloquear o app inteiro</string>
     <string name="app_lock_setting_description">Pede digital, rosto ou bloqueio de tela ao abrir o Fun Phone ou voltar a ele. As chamadas sempre podem ser atendidas.</string>
     <string name="app_lock_requires_screen_lock">Configure primeiro um bloqueio de tela neste dispositivo</string>

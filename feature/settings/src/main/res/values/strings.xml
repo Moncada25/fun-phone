@@ -373,8 +373,7 @@
     <string name="vcard_import_title">Import contacts from vCard</string>
     <string name="vcard_import_description">Add contacts from a .vcf file and skip the ones you already have.</string>
     <string name="contact_recycle_bin_description">Restore deleted contacts or remove them permanently.</string>
-    <string name="protection_backup_title">App lock and full backup</string>
-    <string name="protection_backup_description">Lock Fun Phone on open and back up everything into one encrypted file</string>
+    <string name="protection_backup_description">Back up everything into one encrypted file</string>
     <string name="app_lock_setting_title">Lock the whole app</string>
     <string name="app_lock_setting_description">Ask for fingerprint, face or screen lock when opening Fun Phone or returning to it. Calls can always be answered.</string>
     <string name="app_lock_requires_screen_lock">Set up a screen lock on this device first</string>

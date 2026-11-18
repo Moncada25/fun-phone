@@ -23,9 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -34,7 +32,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bookverse.contacts.data.backup.AppBackupManager
 import com.bookverse.contacts.data.backup.AppBackupSummary
@@ -42,15 +39,10 @@ import com.bookverse.contacts.domain.backup.BackupArchive
 import com.bookverse.contacts.domain.backup.BackupFormatException
 import com.bookverse.contacts.domain.backup.BackupPassphraseException
 import com.bookverse.contacts.feature.settings.R
-import com.bookverse.contacts.security.AppLockSession
-import com.bookverse.contacts.security.AppLockSettings
 import com.bookverse.contacts.ui.auth.PasswordAuthState
-import com.bookverse.contacts.ui.auth.canUseDeviceAuthentication
-import com.bookverse.contacts.ui.auth.launchDeviceAuthentication
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
 import com.bookverse.contacts.ui.components.LoaderDialog
 import com.bookverse.contacts.ui.components.MessageDialog
-import com.bookverse.contacts.ui.components.SettingSwitch
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import kotlinx.coroutines.CancellationException
@@ -69,11 +61,8 @@ internal fun ProtectionBackupHost(
     onMessage: (String, SnackbarType) -> Unit,
     manager: AppBackupManager,
 ) {
-    val context = LocalContext.current
     val resources = LocalResources.current
     val scope = rememberCoroutineScope()
-    val appLockFlow = remember(context) { AppLockSettings.enabled(context) }
-    val appLockEnabled by appLockFlow.collectAsStateWithLifecycle(initialValue = false)
     val vaultEnabled by appSettingsViewModel.passwordManagerEnabled.collectAsStateWithLifecycle()
     val vaultAuthMethod by appSettingsViewModel.passwordAuthMethod.collectAsStateWithLifecycle()
     var step by remember { mutableStateOf(BackupStep.IDLE) }
@@ -129,56 +118,19 @@ internal fun ProtectionBackupHost(
         }
     }
 
-    fun toggleAppLock(enable: Boolean) {
-        val activity = context as? FragmentActivity ?: return
-        if (!canUseDeviceAuthentication(activity)) {
-            if (enable) {
-                onMessage(resources.getString(R.string.app_lock_requires_screen_lock), SnackbarType.Warning)
-            } else {
-                scope.launch { AppLockSettings.setEnabled(context, false) }
-            }
-            return
-        }
-        launchDeviceAuthentication(
-            activity = activity,
-            title = resources.getString(CoreUiR.string.app_lock_prompt_title),
-            subtitle = resources.getString(CoreUiR.string.app_lock_prompt_subtitle),
-            onSuccess = {
-                AppLockSession.unlock()
-                scope.launch { AppLockSettings.setEnabled(context, enable) }
-            },
-        )
-    }
-
     if (visible) {
         ButtonSheetScaffold(
-            title = stringResource(R.string.protection_backup_title),
+            title = stringResource(R.string.full_backup_title),
             onDismiss = onDismiss,
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    Column(Modifier.weight(1f)) {
-                        Text(stringResource(R.string.app_lock_setting_title), fontWeight = FontWeight.Bold)
-                        Text(
-                            stringResource(R.string.app_lock_setting_description),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
-                    SettingSwitch(checked = appLockEnabled, onCheckedChange = ::toggleAppLock)
-                }
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(stringResource(R.string.full_backup_title), fontWeight = FontWeight.Bold)
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(
                         stringResource(R.string.full_backup_description),
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     Button(

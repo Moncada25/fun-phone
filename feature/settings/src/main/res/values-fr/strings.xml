@@ -375,8 +375,7 @@
     <string name="vcard_import_title">Importer des contacts depuis une vCard</string>
     <string name="vcard_import_description">Ajoutez des contacts depuis un fichier .vcf en ignorant ceux que vous avez déjà.</string>
     <string name="contact_recycle_bin_description">Restaurez les contacts supprimés ou effacez-les définitivement.</string>
-    <string name="protection_backup_title">Verrouillage de l’appli et sauvegarde complète</string>
-    <string name="protection_backup_description">Verrouillez Fun Phone à l’ouverture et sauvegardez tout dans un seul fichier chiffré</string>
+    <string name="protection_backup_description">Sauvegardez tout dans un seul fichier chiffré</string>
     <string name="app_lock_setting_title">Verrouiller toute l’appli</string>
     <string name="app_lock_setting_description">Demande l’empreinte, le visage ou le verrouillage de l’écran à l’ouverture ou au retour dans Fun Phone. Les appels restent toujours accessibles.</string>
     <string name="app_lock_requires_screen_lock">Configurez d’abord un verrouillage d’écran sur cet appareil</string>
