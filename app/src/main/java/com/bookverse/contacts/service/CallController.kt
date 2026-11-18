@@ -53,9 +53,15 @@ object CallController {
     private fun getCallActionsById(callId: String?): TelecomCallActions? =
         getCallById(callId)?.let(::AndroidTelecomCallActions)
 
+    private fun stopRingingFor(callId: String?) {
+        val id = callId ?: DefaultCallRepository.activeCall.value?.id ?: return
+        CallRinger.stop(id)
+    }
+
     fun answer(callId: String? = null) {
         val call = getCallById(callId)
         DiagnosticLog.debug(DiagnosticEvent.CALL_ANSWER_REQUESTED)
+        stopRingingFor(callId)
         answerTelecomCall(call?.let(::AndroidTelecomCallActions))
     }
 
@@ -68,6 +74,7 @@ object CallController {
     fun reject(callId: String? = null) {
         val call = getCallById(callId)
         DiagnosticLog.debug(DiagnosticEvent.CALL_REJECT_REQUESTED)
+        stopRingingFor(callId)
         rejectTelecomCall(
             actions = call?.let(::AndroidTelecomCallActions),
             supportsDeclinedReason = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R,
@@ -77,6 +84,7 @@ object CallController {
     fun rejectWithMessage(callId: String?, message: String): Boolean {
         val call = getCallById(callId)
         DiagnosticLog.debug(DiagnosticEvent.CALL_REJECT_WITH_MESSAGE_REQUESTED)
+        stopRingingFor(callId)
         return rejectTelecomCallWithMessage(
             actions = call?.let(::AndroidTelecomCallActions),
             message = message,

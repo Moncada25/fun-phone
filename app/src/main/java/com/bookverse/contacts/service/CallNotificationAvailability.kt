@@ -67,7 +67,7 @@ internal fun resolveCallSurface(
 
 internal object CallNotificationChannels {
     const val INCOMING_CHANNEL_ID = "incoming_call_channel"
-    const val INCOMING_SILENT_CHANNEL_ID = "incoming_call_channel_silent"
+    private const val LEGACY_INCOMING_SILENT_CHANNEL_ID = "incoming_call_channel_silent"
     const val ONGOING_CHANNEL_ID = "ongoing_call_channel"
 
     fun ensureCreated(context: Context) {
@@ -86,18 +86,9 @@ internal object CallNotificationChannels {
                 setSound(null, null)
             },
         )
-        notificationManager.createNotificationChannel(
-            NotificationChannel(
-                INCOMING_SILENT_CHANNEL_ID,
-                localizedContext.getString(R.string.incoming_calls_silent_channel_name),
-                NotificationManager.IMPORTANCE_MIN,
-            ).apply {
-                description = localizedContext.getString(R.string.incoming_calls_silent_channel_description)
-                enableVibration(false)
-                setShowBadge(false)
-                setSound(null, null)
-            },
-        )
+        if (notificationManager.getNotificationChannel(LEGACY_INCOMING_SILENT_CHANNEL_ID) != null) {
+            notificationManager.deleteNotificationChannel(LEGACY_INCOMING_SILENT_CHANNEL_ID)
+        }
         notificationManager.createNotificationChannel(
             NotificationChannel(
                 ONGOING_CHANNEL_ID,

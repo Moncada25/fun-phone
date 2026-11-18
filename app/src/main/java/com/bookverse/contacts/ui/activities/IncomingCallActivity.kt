@@ -25,7 +25,6 @@ import com.bookverse.contacts.MainActivity
 import com.bookverse.contacts.domain.call.CallState
 import com.bookverse.contacts.service.CallController
 import com.bookverse.contacts.service.DefaultCallRepository
-import com.bookverse.contacts.service.IncomingCallService
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.screens.calls.IncomingCallScreen
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
@@ -114,13 +113,6 @@ class IncomingCallActivity : LocalizedAppCompatActivity() {
                             finishAndRemoveTask()
                         },
                         onDismiss = {
-                            val i = Intent(this, MainActivity::class.java).apply {
-                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                                putExtra("open_incoming", true)
-                                putExtra("incoming_call_id", callId)
-                            }
-                            startActivity(i)
                             finishAndRemoveTask()
                         },
                         onAutoMissed = {
@@ -130,6 +122,15 @@ class IncomingCallActivity : LocalizedAppCompatActivity() {
                         themeMode = themeMode,
                         appSettingsViewModel = appSettingsViewModel
                     )
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            DefaultCallRepository.calls.collect { calls ->
+                val trackedCallId = currentCallId ?: return@collect
+                if (calls.none { it.id == trackedCallId && it.state != CallState.DISCONNECTED }) {
+                    finishAndRemoveTask()
                 }
             }
         }
@@ -168,11 +169,6 @@ class IncomingCallActivity : LocalizedAppCompatActivity() {
         }
         @Suppress("DEPRECATION")
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        IncomingCallService.stop(this)
     }
 
     private fun attemptAnswerIncomingCall(): Boolean {

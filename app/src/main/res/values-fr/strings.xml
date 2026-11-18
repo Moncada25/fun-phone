@@ -1819,8 +1819,6 @@
     <string name="cd_play_recording">Lire l’enregistrement</string>
     <string name="incoming_calls_channel_name">Appels entrants</string>
     <string name="incoming_calls_channel_description">Notifications pour les appels entrants</string>
-    <string name="incoming_calls_silent_channel_name">Appels entrants (silencieux)</string>
-    <string name="incoming_calls_silent_channel_description">Prise en charge des appels sur l’écran verrouillé</string>
     <string name="ongoing_calls_channel_name">Appels en cours</string>
     <string name="ongoing_calls_channel_description">Notifications pour les appels en cours</string>
     <plurals name="reminder_advance_notification">
@@ -2254,5 +2252,12 @@
         <item quantity="one">Au moins %1$d caractère</item>
         <item quantity="many">Au moins %1$d de caractères</item>
         <item quantity="other">Au moins %1$d caractères</item>
+    </plurals>
+    <string name="missed_call_action_call_back">Rappeler</string>
+    <string name="missed_call_action_message">SMS</string>
+    <plurals name="missed_calls_count">
+        <item quantity="one">%1$d appel manqué</item>
+        <item quantity="many">%1$d appels manqués</item>
+        <item quantity="other">%1$d appels manqués</item>
     </plurals>
 </resources>

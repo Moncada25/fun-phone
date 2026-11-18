@@ -1802,8 +1802,6 @@
     <string name="cd_play_recording">Aufnahme abspielen</string>
     <string name="incoming_calls_channel_name">Eingehende Anrufe</string>
     <string name="incoming_calls_channel_description">Benachrichtigungen für eingehende Anrufe</string>
-    <string name="incoming_calls_silent_channel_name">Eingehende Anrufe (stumm)</string>
-    <string name="incoming_calls_silent_channel_description">Unterstützung für Anrufe auf dem Sperrbildschirm</string>
     <string name="ongoing_calls_channel_name">Laufende Anrufe</string>
     <string name="ongoing_calls_channel_description">Benachrichtigungen für laufende Anrufe</string>
     <plurals name="reminder_advance_notification">
@@ -2219,5 +2217,11 @@
     <plurals name="full_backup_passphrase_min">
         <item quantity="one">Mindestens %1$d Zeichen lang</item>
         <item quantity="other">Mindestens %1$d Zeichen</item>
+    </plurals>
+    <string name="missed_call_action_call_back">Zurückrufen</string>
+    <string name="missed_call_action_message">Nachricht</string>
+    <plurals name="missed_calls_count">
+        <item quantity="one">%1$d verpasster Anruf</item>
+        <item quantity="other">%1$d verpasste Anrufe</item>
     </plurals>
 </resources>
