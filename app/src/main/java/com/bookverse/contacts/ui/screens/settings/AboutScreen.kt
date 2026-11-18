@@ -130,11 +130,6 @@ private object AboutLinks {
 
 private const val PLAY_DISTRIBUTION = "play"
 
-private val SEMANTIC_VERSION = Regex("""^\d+(\.\d+)*""")
-
-internal fun displayVersion(versionName: String): String =
-    SEMANTIC_VERSION.find(versionName)?.value ?: versionName
-
 @Immutable
 private data class AboutLinkItem(
     val key: String,
@@ -542,7 +537,7 @@ private fun AboutHero(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Text(
-                            text = stringResource(R.string.about_version_short, displayVersion(version)),
+                            text = stringResource(R.string.about_version_short, version),
                             style = MaterialTheme.typography.labelLarge,
                         )
                         Icon(
