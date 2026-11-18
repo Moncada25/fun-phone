@@ -55,10 +55,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.theme.CallEndColor
 import com.bookverse.contacts.ui.theme.GradientScrimColor
 import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun InCallBackgroundPreviewDialog(
@@ -173,7 +174,7 @@ internal fun InCallBackgroundPreview(
                             AsyncImage(
                                 model = photoUri,
                                 contentDescription = stringResource(
-                                    R.string.contact_photo_description,
+                                    CoreUiR.string.contact_photo_description,
                                     displayName,
                                 ),
                                 modifier = Modifier.fillMaxSize(),
@@ -191,7 +192,7 @@ internal fun InCallBackgroundPreview(
                             Icon(
                                 imageVector = Icons.Default.Person,
                                 contentDescription = stringResource(
-                                    R.string.contact_no_photo_description,
+                                    CoreUiR.string.contact_no_photo_description,
                                     displayName,
                                 ),
                                 modifier = Modifier.fillMaxSize(0.64f),
@@ -223,7 +224,7 @@ internal fun InCallBackgroundPreview(
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = stringResource(R.string.in_call),
+                    text = stringResource(CoreUiR.string.in_call),
                     style = MaterialTheme.typography.bodyLarge,
                     color = secondaryTextColor,
                 )
@@ -249,25 +250,25 @@ internal fun InCallBackgroundPreview(
                 ) {
                     PreviewInCallButton(
                         icon = Icons.Default.Mic,
-                        label = stringResource(R.string.microphone_on),
+                        label = stringResource(CoreUiR.string.microphone_on),
                         textColor = primaryTextColor,
                         modifier = Modifier.weight(1f),
                     )
                     PreviewInCallButton(
                         icon = Icons.Default.PhoneInTalk,
-                        label = stringResource(R.string.earpiece),
+                        label = stringResource(CoreUiR.string.earpiece),
                         textColor = primaryTextColor,
                         modifier = Modifier.weight(1f),
                     )
                     PreviewInCallButton(
                         icon = Icons.Default.Dialpad,
-                        label = stringResource(R.string.dialer),
+                        label = stringResource(CoreUiR.string.dialer),
                         textColor = primaryTextColor,
                         modifier = Modifier.weight(1f),
                     )
                     PreviewInCallButton(
                         icon = Icons.Default.MoreHoriz,
-                        label = stringResource(R.string.more),
+                        label = stringResource(CoreUiR.string.more),
                         textColor = primaryTextColor,
                         modifier = Modifier.weight(1f),
                     )
@@ -275,7 +276,7 @@ internal fun InCallBackgroundPreview(
                 Spacer(modifier = Modifier.height(32.dp))
                 PreviewInCallButton(
                     icon = Icons.Default.CallEnd,
-                    label = stringResource(R.string.hang_up),
+                    label = stringResource(CoreUiR.string.hang_up),
                     textColor = primaryTextColor,
                     containerColor = CallEndColor,
                     isLarge = true,

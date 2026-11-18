@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.graphics.Bitmap
@@ -58,6 +59,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -86,7 +88,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.RecentType
@@ -445,10 +446,10 @@ fun ContactDetailsScreen(
                         }
 
                         ActionIcon(
-                            tooltip = stringResource(R.string.whatsapp_action),
+                            tooltip = stringResource(CoreUiR.string.whatsapp_action),
                             accentColor = accentColor,
                             icon = Icons.Default.Whatsapp,
-                            contentDescription = stringResource(R.string.whatsapp_action),
+                            contentDescription = stringResource(CoreUiR.string.whatsapp_action),
                             textColor = textColor
                         ) {
                             if (contact.phones.size > 1) {
@@ -499,10 +500,10 @@ fun ContactDetailsScreen(
                         }
 
                         ActionIcon(
-                            tooltip = stringResource(R.string.call),
+                            tooltip = stringResource(CoreUiR.string.call),
                             accentColor = accentColor,
                             icon = Icons.Outlined.Call,
-                            contentDescription = stringResource(R.string.call),
+                            contentDescription = stringResource(CoreUiR.string.call),
                             textColor = textColor
                         ) {
                             if (contact.phones.size > 1) {
@@ -825,7 +826,7 @@ fun ContactDetailsScreen(
                                                     fontSize = 16.sp
                                                 )
                                                 Text(
-                                                    text = stringResource(R.string.notes_title),
+                                                    text = stringResource(CoreUiR.string.notes_title),
                                                     color = secondaryTextColor,
                                                     fontSize = 12.sp
                                                 )
@@ -956,7 +957,7 @@ fun ContactDetailsScreen(
                                             Text(
                                                 text = SocialMediaType.getSocialMediaName(
                                                     socialNetworkUrl,
-                                                    stringResource(R.string.website),
+                                                    stringResource(CoreUiR.string.website),
                                                 ),
                                                 color = textColor,
                                                 fontSize = 16.sp
@@ -1091,7 +1092,7 @@ fun ContactDetailsScreen(
                                 )
                                 Spacer(modifier = Modifier.width(16.dp))
                                 Text(
-                                    text = stringResource(R.string.share),
+                                    text = stringResource(CoreUiR.string.share),
                                     color = textColor,
                                     fontSize = 16.sp
                                 )
@@ -1121,9 +1122,9 @@ fun ContactDetailsScreen(
                                     Spacer(modifier = Modifier.width(16.dp))
                                     Text(
                                         text = if (contact.isBlocked) {
-                                            stringResource(R.string.contact_unblock_action)
+                                            stringResource(CoreUiR.string.contact_unblock_action)
                                         } else {
-                                            stringResource(R.string.contact_block_action)
+                                            stringResource(CoreUiR.string.contact_block_action)
                                         },
                                         color = blockColor,
                                         fontSize = 16.sp
@@ -1144,7 +1145,7 @@ fun ContactDetailsScreen(
                                 )
                             } else if (contact.phones.isEmpty()) {
                                 Text(
-                                    text = stringResource(R.string.contact_block_no_numbers),
+                                    text = stringResource(CoreUiR.string.contact_block_no_numbers),
                                     color = secondaryTextColor,
                                     fontSize = 14.sp,
                                     modifier = Modifier.padding(
@@ -1172,7 +1173,7 @@ fun ContactDetailsScreen(
                                 )
                                 Spacer(modifier = Modifier.width(16.dp))
                                 Text(
-                                    text = stringResource(R.string.delete),
+                                    text = stringResource(CoreUiR.string.delete),
                                     color = MaterialTheme.colorScheme.error,
                                     fontSize = 16.sp
                                 )
@@ -1201,7 +1202,7 @@ fun ContactDetailsScreen(
                             if (contactAccounts.size == 1) {
                                 Text(
                                     text = if (contactAccounts.first().isLocal) {
-                                        stringResource(R.string.device)
+                                        stringResource(CoreUiR.string.device)
                                     } else {
                                         contactAccounts.first().displayName
                                     },
@@ -1293,7 +1294,7 @@ fun ContactDetailsScreen(
                                     Spacer(modifier = Modifier.width(16.dp))
                                     Text(
                                         text = if (account.isLocal) {
-                                            stringResource(R.string.device)
+                                            stringResource(CoreUiR.string.device)
                                         } else {
                                             account.displayName
                                         },
@@ -1315,7 +1316,7 @@ fun ContactDetailsScreen(
                 }
 
                 OptionsDialog(
-                    title = stringResource(R.string.select_phone_number),
+                    title = stringResource(CoreUiR.string.select_phone_number),
                     options = phoneOptions,
                     onOptionSelected = { index: Int ->
                         phoneAction(contact.phones[index].number)
@@ -1399,7 +1400,7 @@ fun ContactDetailsScreen(
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(
-                                            text = stringResource(R.string.share),
+                                            text = stringResource(CoreUiR.string.share),
                                             fontSize = 18.sp
                                         )
                                     }
@@ -1538,7 +1539,7 @@ fun ContactDetailsScreen(
                                 ButtonClick(
                                     onClick = { showAllRecent = false },
                                     modifier = Modifier.weight(1f),
-                                    text = stringResource(R.string.understood),
+                                    text = stringResource(CoreUiR.string.understood),
                                     fontSize = 18
                                 )
 
@@ -1552,7 +1553,7 @@ fun ContactDetailsScreen(
                                     shape = RoundedCornerShape(999.dp)
                                 ) {
                                     Text(
-                                        text = stringResource(R.string.delete),
+                                        text = stringResource(CoreUiR.string.delete),
                                         fontSize = 18.sp,
                                         fontWeight = FontWeight.Medium
                                     )

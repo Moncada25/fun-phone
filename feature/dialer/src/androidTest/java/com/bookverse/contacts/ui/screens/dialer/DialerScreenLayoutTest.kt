@@ -18,9 +18,9 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
+import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
@@ -28,6 +28,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class DialerScreenLayoutTest {
     @get:Rule
@@ -38,9 +39,9 @@ class DialerScreenLayoutTest {
     fun primaryActionsAreDisplayedAndMeetMinimumTouchTarget() {
         showLayout()
 
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.call))
+        composeRule.onNodeWithText(composeRule.activity.getString(CoreUiR.string.call))
             .assertIsDisplayed()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.recent_type_whatsapp))
+        composeRule.onNodeWithText(composeRule.activity.getString(CoreUiR.string.recent_type_whatsapp))
             .assertIsDisplayed()
 
         val minimumPixels = with(composeRule.density) { 48.dp.toPx() }
@@ -80,7 +81,7 @@ class DialerScreenLayoutTest {
         composeRule.onNodeWithText("Ada Lovelace").assertIsDisplayed()
         composeRule
             .onAllNodes(
-                hasContentDescription(composeRule.activity.getString(R.string.call)),
+                hasContentDescription(composeRule.activity.getString(CoreUiR.string.call)),
             )[0]
             .performClick()
 
@@ -123,7 +124,7 @@ class DialerScreenLayoutTest {
 
     @Test
     fun deleteButtonUsesDisabledStateWithoutNumber() {
-        val deleteLabel = composeRule.activity.getString(R.string.delete)
+        val deleteLabel = composeRule.activity.getString(CoreUiR.string.delete)
 
         showLayout()
         composeRule
@@ -146,7 +147,7 @@ class DialerScreenLayoutTest {
             countryName = "Colombia",
             contactName = "Maria Fernanda",
         )
-        val deleteLabel = composeRule.activity.getString(R.string.delete)
+        val deleteLabel = composeRule.activity.getString(CoreUiR.string.delete)
 
         listOf(AccentBarStyle.MINIMAL, AccentBarStyle.RETRO).forEach { style ->
             showLayout(dialedNumber = "3105550101", numberContext = context, accentBarStyle = style)
@@ -163,7 +164,7 @@ class DialerScreenLayoutTest {
 
     @Test
     fun numberContextDoesNotMoveTheKeypadActions() {
-        val callLabel = composeRule.activity.getString(R.string.call)
+        val callLabel = composeRule.activity.getString(CoreUiR.string.call)
 
         showLayout(dialedNumber = "3105550101")
         composeRule.onNodeWithTag(DIALER_NUMBER_CONTEXT_TAG).assertDoesNotExist()

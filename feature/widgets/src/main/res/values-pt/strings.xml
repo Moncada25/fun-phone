@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_no_favorites">Você não tem contatos favoritos</string>
+    <string name="notes_widget_empty">Nenhuma nota ainda</string>
+    <string name="notes_widget_no_content">Sem conteúdo</string>
+    <string name="notes_widget_locked_content">Toque para desbloquear</string>
+    <string name="notes_widget_new_note">Nova nota</string>
+    <string name="recent_calls_widget_empty">Nenhuma chamada recente</string>
+    <string name="recent_calls_widget_permission">Permita o acesso ao histórico de chamadas no Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Ligar para %1$s</string>
+    <string name="expenses_widget_income">Receitas</string>
+    <string name="expenses_widget_budget">%1$s de %2$s do orçamento</string>
+    <string name="expenses_widget_no_budget">Nenhum orçamento definido</string>
+    <string name="expenses_widget_locked">As despesas estão bloqueadas. Toque para abrir.</string>
+    <string name="notes_widget_locked_title">Nota protegida 🔐</string>
+</resources>

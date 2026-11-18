@@ -42,13 +42,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.annotation.StringRes
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
 import com.bookverse.contacts.domain.expenses.CategoryShare
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
 import com.bookverse.contacts.domain.expenses.MonthSummary
 import com.bookverse.contacts.domain.expenses.formatAsCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.settings.LocaleController
 import kotlin.math.min
 import kotlin.math.roundToInt

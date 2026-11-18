@@ -57,14 +57,15 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.ui.components.NumberKeypad
 import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.ui.theme.CallAcceptColor
 import com.bookverse.contacts.ui.theme.chromePolicy
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun DialerScreenLayout(
@@ -430,8 +431,8 @@ private fun DialerControlPanel(
                 DialerActionButton(
                     modifier = Modifier.weight(1f),
                     icon = Icons.Outlined.Whatsapp,
-                    label = stringResource(R.string.recent_type_whatsapp),
-                    iconContentDescription = stringResource(R.string.whatsapp_action),
+                    label = stringResource(CoreUiR.string.recent_type_whatsapp),
+                    iconContentDescription = stringResource(CoreUiR.string.whatsapp_action),
                     containerColor = if (isMinimal) {
                         colorScheme.surface
                     } else {
@@ -443,7 +444,7 @@ private fun DialerControlPanel(
                 DialerActionButton(
                     modifier = Modifier.weight(1f),
                     icon = Icons.Outlined.Call,
-                    label = stringResource(R.string.call),
+                    label = stringResource(CoreUiR.string.call),
                     containerColor = CallAcceptColor,
                     contentColor = contentColorFor(CallAcceptColor),
                     onClick = onCall,
@@ -716,7 +717,7 @@ private fun ContactGroupedItem(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Call,
-                        contentDescription = stringResource(R.string.call),
+                        contentDescription = stringResource(CoreUiR.string.call),
                         tint = accentColor,
                         modifier = Modifier.size(if (modern) 22.dp else 24.dp),
                     )
@@ -744,7 +745,7 @@ private fun ContactAvatar(
             Image(
                 bitmap = photoState!!.asImageBitmap(),
                 contentDescription = stringResource(
-                    R.string.contact_photo_description,
+                    CoreUiR.string.contact_photo_description,
                     contact.name,
                 ),
                 modifier = modifier.clip(CircleShape),

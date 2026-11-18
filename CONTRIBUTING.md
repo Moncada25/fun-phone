@@ -64,8 +64,9 @@ Convención de nombres:
 
 ### 3. Haz tus cambios
 - Sigue las [convenciones de código](#-convenciones-de-código).
-- Añade cada string nueva al baseline inglés (`values/strings.xml`) y a sus cuatro traducciones:
-  `values-es/strings.xml`, `values-de/strings.xml`, `values-fr/strings.xml` y `values-pt/strings.xml`.
+- Añade cada string nueva al baseline inglés (`values/strings.xml`) del módulo que la usa y a sus
+  cuatro traducciones: `values-es/strings.xml`, `values-de/strings.xml`, `values-fr/strings.xml` y
+  `values-pt/strings.xml`.
 - Escribe tests para lógica nueva cuando sea posible.
 
 ### 4. Verifica tu trabajo
@@ -121,12 +122,15 @@ release notes.
 - Usar tokens de color semánticos del tema — no hardcodear `Color(0xFF...)`.
 
 ### Localización
-- **Todas** las strings visibles al usuario deben ir en:
-  - `core/ui/src/main/res/values/strings.xml` (baseline en inglés)
-  - `core/ui/src/main/res/values-es/strings.xml` (Español)
-  - `core/ui/src/main/res/values-de/strings.xml` (Alemán)
-  - `core/ui/src/main/res/values-fr/strings.xml` (Francés)
-  - `core/ui/src/main/res/values-pt/strings.xml` (Portugués)
+- **Todas** las strings visibles al usuario van en el módulo que las usa:
+  `feature/<nombre>/src/main/res` si solo las usa esa feature, o `core/ui/src/main/res` si las
+  comparten varios módulos o `:app`. En ese directorio:
+  - `values/strings.xml` (baseline en inglés)
+  - `values-es/strings.xml` (Español)
+  - `values-de/strings.xml` (Alemán)
+  - `values-fr/strings.xml` (Francés)
+  - `values-pt/strings.xml` (Portugués)
+- Un mismo nombre de string no puede declararse en dos módulos.
 - Nunca hardcodear texto en Kotlin.
 - Usar formateadores localizados para fechas, números y monedas.
 - Ejecuta `./scripts/verify-localization.sh` antes de abrir el PR. Corrige cada referencia de

@@ -10,12 +10,13 @@ import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.tools.R
 import com.bookverse.contacts.settings.LocaleController
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.File
 import java.util.Locale
 import kotlin.coroutines.resume
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class SpeechUtils(private val context: Context) {
     private val localizedContext = LocaleController.localizedContext(context)
@@ -87,7 +88,7 @@ class SpeechUtils(private val context: Context) {
                     }
                     @Deprecated("Deprecated in API level 21")
                     override fun onError(utteranceId: String?) {
-                        onError(localizedContext.getString(R.string.tts_error_message, localizedContext.getString(R.string.unknown)))
+                        onError(localizedContext.getString(R.string.tts_error_message, localizedContext.getString(CoreUiR.string.unknown)))
                         if (cont.isActive) cont.resume(false)
                     }
                     @Deprecated("Deprecated in API level 21")
@@ -133,7 +134,7 @@ class SpeechUtils(private val context: Context) {
                     override fun onDone(utteranceId: String?) { onDone(); if (cont.isActive) cont.resume(true) }
                     @Deprecated("Deprecated in API level 21")
                     override fun onError(utteranceId: String?) {
-                        onError(localizedContext.getString(R.string.tts_error_message, localizedContext.getString(R.string.unknown)))
+                        onError(localizedContext.getString(R.string.tts_error_message, localizedContext.getString(CoreUiR.string.unknown)))
                         if (cont.isActive) cont.resume(false)
                     }
                     @Deprecated("Deprecated in API level 21")
@@ -202,7 +203,7 @@ class SpeechUtils(private val context: Context) {
                         SpeechRecognizer.ERROR_AUDIO -> if (retryCount < 2) null else localizedContext.getString(R.string.speech_recognition_unavailable)
                         SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> if (retryCount < 1) null else localizedContext.getString(R.string.speech_recognition_unavailable)
                         SpeechRecognizer.ERROR_CLIENT -> localizedContext.getString(R.string.speech_recognition_unavailable)
-                        SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> localizedContext.getString(R.string.microphone_permission_message)
+                        SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> localizedContext.getString(CoreUiR.string.microphone_permission_message)
                         SpeechRecognizer.ERROR_NETWORK -> localizedContext.getString(R.string.speech_recognition_unavailable)
                         SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> localizedContext.getString(R.string.speech_recognition_unavailable)
                         SpeechRecognizer.ERROR_NO_MATCH -> null

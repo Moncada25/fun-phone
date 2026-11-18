@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.graphics.Bitmap
@@ -47,6 +48,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -72,7 +74,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.data.model.SocialMediaType
@@ -173,7 +174,7 @@ fun ProfileScreen(
                 } else {
                     Toast.makeText(
                         context,
-                        resources.getString(R.string.qr_error_generating),
+                        resources.getString(CoreUiR.string.qr_error_generating),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -183,7 +184,7 @@ fun ProfileScreen(
                 showQrLoader = false
                 Toast.makeText(
                     context,
-                    resources.getString(R.string.qr_error_generating),
+                    resources.getString(CoreUiR.string.qr_error_generating),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -334,10 +335,10 @@ fun ProfileScreen(
                         }
 
                         ActionIcon(
-                            tooltip = stringResource(R.string.whatsapp_action),
+                            tooltip = stringResource(CoreUiR.string.whatsapp_action),
                             accentColor = accentColor,
                             icon = Icons.Default.Whatsapp,
-                            contentDescription = stringResource(R.string.whatsapp_action),
+                            contentDescription = stringResource(CoreUiR.string.whatsapp_action),
                             textColor = textColor
                         ) {
                             if (contact.phones.size > 1) {
@@ -362,10 +363,10 @@ fun ProfileScreen(
                         }
 
                         ActionIcon(
-                            tooltip = stringResource(R.string.call),
+                            tooltip = stringResource(CoreUiR.string.call),
                             accentColor = accentColor,
                             icon = Icons.Outlined.Call,
-                            contentDescription = stringResource(R.string.call),
+                            contentDescription = stringResource(CoreUiR.string.call),
                             textColor = textColor
                         ) {
                             if (contact.phones.size > 1) {
@@ -721,7 +722,7 @@ fun ProfileScreen(
                                             Text(
                                                 text = SocialMediaType.getSocialMediaName(
                                                     socialNetworkUrl,
-                                                    stringResource(R.string.website),
+                                                    stringResource(CoreUiR.string.website),
                                                 ),
                                                 color = textColor,
                                                 fontSize = 16.sp
@@ -768,7 +769,7 @@ fun ProfileScreen(
                                 )
                                 Spacer(modifier = Modifier.width(16.dp))
                                 Text(
-                                    text = stringResource(R.string.share),
+                                    text = stringResource(CoreUiR.string.share),
                                     color = textColor,
                                     fontSize = 16.sp
                                 )
@@ -791,7 +792,7 @@ fun ProfileScreen(
                                 )
                                 Spacer(modifier = Modifier.width(16.dp))
                                 Text(
-                                    text = stringResource(R.string.delete),
+                                    text = stringResource(CoreUiR.string.delete),
                                     color = MaterialTheme.colorScheme.error,
                                     fontSize = 16.sp
                                 )
@@ -810,7 +811,7 @@ fun ProfileScreen(
                         }
                     },
                     onDismiss = { showDeleteDialog = false },
-                    title = stringResource(R.string.delete),
+                    title = stringResource(CoreUiR.string.delete),
                     message = stringResource(R.string.delete_profile_confirm),
                     toastMessage = stringResource(R.string.profile_deleted),
                     appSettingsViewModel = appSettingsViewModel
@@ -823,7 +824,7 @@ fun ProfileScreen(
                 }
 
                 OptionsDialog(
-                    title = stringResource(R.string.select_phone_number),
+                    title = stringResource(CoreUiR.string.select_phone_number),
                     options = phoneOptions,
                     onOptionSelected = { index: Int ->
                         phoneAction(contact.phones[index].number)
@@ -907,7 +908,7 @@ fun ProfileScreen(
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(
-                                            text = stringResource(R.string.share),
+                                            text = stringResource(CoreUiR.string.share),
                                             fontSize = 18.sp
                                         )
                                     }

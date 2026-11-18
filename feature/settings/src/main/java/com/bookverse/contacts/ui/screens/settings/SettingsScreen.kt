@@ -1,6 +1,7 @@
 package com.bookverse.contacts.ui.screens.settings
 
 import com.bookverse.contacts.data.backup.AppBackupManager
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.navigation.AppEntryPoints
 import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
@@ -42,6 +43,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -87,7 +89,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.ui.auth.PasswordAuthDialogs
 import com.bookverse.contacts.ui.auth.rememberPasswordAuthState
@@ -209,74 +210,74 @@ fun SettingsScreen(
     val shortcutOptions = listOf(
         ShortcutOption(
             destination = HomeShortcutDestination.NOTES,
-            title = stringResource(R.string.notes_title),
-            description = stringResource(R.string.notes_description),
+            title = stringResource(CoreUiR.string.notes_title),
+            description = stringResource(CoreUiR.string.notes_description),
             icon = Icons.AutoMirrored.Filled.StickyNote2
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.PASSWORDS,
-            title = stringResource(R.string.passwords_item),
-            description = stringResource(R.string.password_manager_description),
+            title = stringResource(CoreUiR.string.passwords_item),
+            description = stringResource(CoreUiR.string.password_manager_description),
             icon = Lucide.KeySquare
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.GAMES,
-            title = stringResource(R.string.games_title),
-            description = stringResource(R.string.games_description),
+            title = stringResource(CoreUiR.string.games_title),
+            description = stringResource(CoreUiR.string.games_description),
             icon = Lucide.Gamepad
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.EXPENSES,
-            title = stringResource(R.string.expense_manager_item_title),
-            description = stringResource(R.string.expense_manager_item_description),
+            title = stringResource(CoreUiR.string.expense_manager_item_title),
+            description = stringResource(CoreUiR.string.expense_manager_item_description),
             icon = Lucide.PiggyBank
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.MENSTRUAL_CALENDAR,
-            title = stringResource(R.string.menstrual_calendar_item),
-            description = stringResource(R.string.menstrual_calendar_description),
+            title = stringResource(CoreUiR.string.menstrual_calendar_item),
+            description = stringResource(CoreUiR.string.menstrual_calendar_description),
             icon = Icons.Default.Favorite
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.HOLIDAYS,
-            title = stringResource(R.string.holidays_item),
-            description = stringResource(R.string.holidays_description),
+            title = stringResource(CoreUiR.string.holidays_item),
+            description = stringResource(CoreUiR.string.holidays_description),
             icon = Icons.Default.CalendarMonth
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.QR_SCANNER,
-            title = stringResource(R.string.read_qr),
-            description = stringResource(R.string.qr_scanner_description),
+            title = stringResource(CoreUiR.string.read_qr),
+            description = stringResource(CoreUiR.string.qr_scanner_description),
             icon = Lucide.ScanQrCode
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.QR_GENERATOR,
-            title = stringResource(R.string.generate_qr),
-            description = stringResource(R.string.qr_generator_description),
+            title = stringResource(CoreUiR.string.generate_qr),
+            description = stringResource(CoreUiR.string.qr_generator_description),
             icon = Lucide.QrCode
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.DIALER,
-            title = stringResource(R.string.dialer_shortcut_title),
+            title = stringResource(CoreUiR.string.dialer_shortcut_title),
             description = stringResource(R.string.dialer_shortcut_description),
             icon = Icons.Rounded.Phone
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.PAINT,
-            title = stringResource(R.string.paint_title),
-            description = stringResource(R.string.paint_description),
+            title = stringResource(CoreUiR.string.paint_title),
+            description = stringResource(CoreUiR.string.paint_description),
             icon = Icons.Default.Palette
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.VOICE_TOOLS,
-            title = stringResource(R.string.voice_utilities_item),
-            description = stringResource(R.string.voice_recognition_description),
+            title = stringResource(CoreUiR.string.voice_utilities_item),
+            description = stringResource(CoreUiR.string.voice_recognition_description),
             icon = Lucide.Mic
         ),
         ShortcutOption(
             destination = HomeShortcutDestination.POMODORO,
-            title = stringResource(R.string.pomodoro_title),
-            description = stringResource(R.string.pomodoro_description),
+            title = stringResource(CoreUiR.string.pomodoro_title),
+            description = stringResource(CoreUiR.string.pomodoro_description),
             icon = Icons.Default.Timer
         )
     )
@@ -477,7 +478,7 @@ fun SettingsScreen(
         ?.key
         ?: "blue"
     val defaultAccountValue = if (defaultAccount.type == ContactAccount.LOCAL_ACCOUNT.type) {
-        stringResource(R.string.device)
+        stringResource(CoreUiR.string.device)
     } else {
         defaultAccount.displayName
     }
@@ -626,7 +627,7 @@ fun SettingsScreen(
             },
             onExportVCard = {
                 if (contacts.isEmpty()) {
-                    snackbar.show(resources.getString(R.string.contacts_empty), SnackbarType.Info)
+                    snackbar.show(resources.getString(CoreUiR.string.contacts_empty), SnackbarType.Info)
                 } else {
                     val date = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ROOT).format(Date())
                     exportVCardLauncher.launch("Contacts_$date.vcf")
@@ -670,7 +671,7 @@ fun SettingsScreen(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SecondaryTopBar(
-                title = stringResource(R.string.settings),
+                title = stringResource(CoreUiR.string.settings),
                 expandable = true,
                 onBackClick = onBackClick,
                 searchAction = com.bookverse.contacts.ui.components.AppBarSearchAction(
@@ -691,7 +692,7 @@ fun SettingsScreen(
                                 searchActive = false
                             },
                             leadingContentDescription = stringResource(R.string.search_setting),
-                            clearContentDescription = stringResource(R.string.clear),
+                            clearContentDescription = stringResource(CoreUiR.string.clear),
                         )
                     }
                 } else null
@@ -731,7 +732,7 @@ fun SettingsScreen(
                                 )
                                 Spacer(modifier = Modifier.height(16.dp))
                                 Text(
-                                    text = stringResource(R.string.no_results),
+                                    text = stringResource(CoreUiR.string.no_results),
                                     style = MaterialTheme.typography.bodyLarge,
                                     color = textColor.copy(alpha = 0.6f),
                                 )
@@ -812,14 +813,14 @@ fun SettingsScreen(
     }
     if (isImporting) {
         LoaderDialog(
-            message = stringResource(R.string.importing_contacts),
+            message = stringResource(CoreUiR.string.importing_contacts),
         )
     }
     if (importResult != null && !isImporting) {
         MessageDialog(
-            title = stringResource(R.string.import_success),
+            title = stringResource(CoreUiR.string.import_success),
             message1 = pluralStringResource(
-                R.plurals.imported_count,
+                CoreUiR.plurals.imported_count,
                 importResult ?: 0,
                 importResult ?: 0,
             ),
@@ -1054,7 +1055,7 @@ fun SettingsScreen(
             optionKey = { account -> "${account.name}:${account.type}" },
             optionLabel = { account ->
                 if (account.type == ContactAccount.LOCAL_ACCOUNT.type) {
-                    stringResource(R.string.device)
+                    stringResource(CoreUiR.string.device)
                 } else {
                     account.displayName
                 }

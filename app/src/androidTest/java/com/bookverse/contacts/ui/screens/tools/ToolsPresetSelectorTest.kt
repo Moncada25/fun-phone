@@ -15,7 +15,6 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ToolsOrderConfig
 import com.bookverse.contacts.data.model.ToolsPreset
 import com.bookverse.contacts.testing.ComposeTestContent
@@ -24,6 +23,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.feature.tools.R as ToolsR
 
 class ToolsPresetSelectorTest {
     @get:Rule
@@ -35,7 +35,7 @@ class ToolsPresetSelectorTest {
         showSelector(onPresetSelected = selectedPreset::set)
 
         composeRule
-            .onNodeWithText(composeRule.activity.getString(R.string.tools_preset_everything))
+            .onNodeWithText(composeRule.activity.getString(ToolsR.string.tools_preset_everything))
             .performClick()
 
         assertEquals(ToolsPreset.EVERYTHING, selectedPreset.get())
@@ -68,9 +68,9 @@ class ToolsPresetSelectorTest {
         }
 
         listOf(
-            R.string.tools_preset_essential_phone,
-            R.string.tools_preset_phone_and_organize,
-            R.string.tools_preset_everything,
+            ToolsR.string.tools_preset_essential_phone,
+            ToolsR.string.tools_preset_phone_and_organize,
+            ToolsR.string.tools_preset_everything,
         ).forEach { title ->
             composeRule
                 .onNodeWithText(composeRule.activity.getString(title))
@@ -97,7 +97,7 @@ class ToolsPresetSelectorTest {
         }
 
         composeRule
-            .onNodeWithText(composeRule.activity.getString(R.string.tools_preset_custom))
+            .onNodeWithText(composeRule.activity.getString(ToolsR.string.tools_preset_custom))
             .assertIsDisplayed()
     }
 

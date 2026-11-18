@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recents_title">Meu histórico</string>
+    <string name="dialer_suggestions_title">Sugestões</string>
+    <string name="dialer_contacts_title">Seus contatos</string>
+    <string name="add_contact">Adicionar contato</string>
+    <string name="no_recent_operations">Nenhuma operação recente</string>
+    <string name="enter_a_number">Digite um número</string>
+    <string name="contact_avatar_placeholder">Inicial de %1$s</string>
+    <string name="delete_recents_title">Excluir histórico</string>
+    <string name="delete_recents_message">Tem certeza de que deseja excluir os registros selecionados?</string>
+    <string name="delete_contact_recents_title">Excluir histórico de %1$s</string>
+    <string name="delete_contact_recents_message">Tem certeza de que deseja excluir o histórico de %1$s nesta data?</string>
+    <string name="delete_unknown_recents_title">Excluir histórico deste número</string>
+    <string name="delete_unknown_recents_message">Tem certeza de que deseja excluir o histórico deste número nesta data?</string>
+    <string name="delete_recents_success">Registros excluídos</string>
+    <string name="number_already_exists">Este número já existe nos seus contatos</string>
+    <string name="profile_already_exists">Este número faz parte do seu perfil</string>
+    <string name="history_recent_operations_sheet_title">Detalhe do histórico</string>
+    <string name="speed_dial_not_configured">O número %1$d não tem discagem rápida configurada. Configure em Configurações</string>
+    <string name="speed_dial_contact_not_found">Contato de discagem rápida não encontrado</string>
+    <string name="history_empty_title">Sem histórico ainda</string>
+    <string name="history_empty_description">Seu histórico de chamadas e atividades aparecerá aqui assim que você começar a ligar ou abrir conversas</string>
+    <string name="history_loading_more">Carregando mais histórico…</string>
+    <string name="history_load_more_hint">Continue rolando para ver registros mais antigos</string>
+    <string name="history_filter_empty_title">Sem resultados para este filtro</string>
+    <string name="history_filter_empty_description">Tente outro tipo de histórico ou limpe os filtros para ver mais registros.</string>
+    <string name="search_history">Pesquisar no histórico</string>
+    <string name="filter_history">Filtrar histórico</string>
+    <string name="history_search_empty_title">Nenhum histórico correspondente</string>
+    <string name="history_search_empty_description">Tente outro nome ou número de telefone, ou limpe a pesquisa para ver todos os registros.</string>
+    <string name="dialer_calling_code_description">Código de discagem %1$s, %2$s</string>
+    <string name="dialer_matched_contact_description">Contato salvo: %1$s</string>
+</resources>

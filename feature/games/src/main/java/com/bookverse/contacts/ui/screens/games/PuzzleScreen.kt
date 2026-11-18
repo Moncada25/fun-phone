@@ -41,6 +41,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -78,7 +80,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.createBitmap
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.GameCompletion
 import com.bookverse.contacts.domain.games.GameId
 import com.bookverse.contacts.domain.games.GameOutcome
@@ -145,9 +146,9 @@ fun PuzzleScreen(
 
     val defaultImageRes = remember {
         listOf(
-            R.drawable.puzzle_sample1,
-            R.drawable.puzzle_sample2,
-            R.drawable.puzzle_sample3,
+            CoreUiR.drawable.puzzle_sample1,
+            CoreUiR.drawable.puzzle_sample2,
+            CoreUiR.drawable.puzzle_sample3,
         )
     }
 
@@ -617,7 +618,7 @@ fun PuzzleScreen(
                         )
                     ) {
                         Text(
-                            text = stringResource(R.string.reset_label),
+                            text = stringResource(CoreUiR.string.reset_label),
                             style = MaterialTheme.typography.labelLarge
                         )
                     }
@@ -743,9 +744,9 @@ fun PuzzleScreen(
                 stringResource(R.string.puzzle_preview_subtitle)
             }
             val buttonText = if (previewIsHint) {
-                stringResource(R.string.close)
+                stringResource(CoreUiR.string.close)
             } else {
-                stringResource(R.string.understood)
+                stringResource(CoreUiR.string.understood)
             }
 
             ImagePreviewDialog(
@@ -859,7 +860,7 @@ private fun createPuzzleCropOptions(
     context: Context
 ): UCrop.Options {
     return UCrop.Options().apply {
-        setToolbarTitle(context.getString(R.string.crop_image))
+        setToolbarTitle(context.getString(CoreUiR.string.crop_image))
         setToolbarColor(accentColor.toArgb())
         setStatusBarLight(true)
         setToolbarWidgetColor(textColor.toArgb())

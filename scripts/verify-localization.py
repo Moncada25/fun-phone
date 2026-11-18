@@ -13,8 +13,8 @@ from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 
 SUPPORTED_LOCALES = ("es", "de", "fr", "pt")
-RESOURCE_DIR = Path("core/ui/src/main/res")
-BASELINE_RELATIVE_PATH = RESOURCE_DIR / "values" / "strings.xml"
+SHARED_RESOURCE_DIR = Path("core/ui/src/main/res")
+MODULE_RESOURCE_GLOBS = ("app/src/main/res", "core/*/src/main/res", "feature/*/src/main/res")
 ARRAY_TAGS = {"string-array", "integer-array", "array"}
 ALL_LOCALES = frozenset(SUPPORTED_LOCALES)
 PLURAL_QUANTITIES_BY_LOCALE = {
@@ -586,17 +586,21 @@ def sort_issues(issues: Iterable[Issue]) -> List[Issue]:
     return sorted(issues, key=lambda issue: (issue.path, issue.line, issue.code, issue.key, issue.message))
 
 
-def main(argv: Sequence[str]) -> int:
-    root = Path(__file__).resolve().parent.parent
-    if len(argv) == 2 and argv[0] == "--root":
-        root = Path(argv[1]).resolve()
-    elif argv:
-        print("Usage: verify-localization.py [--root REPOSITORY_ROOT]", file=sys.stderr)
-        return 2
+def discover_resource_dirs(root: Path) -> List[Path]:
+    discovered: Set[Path] = {root / SHARED_RESOURCE_DIR}
+    for pattern in MODULE_RESOURCE_GLOBS:
+        for resource_dir in root.glob(pattern):
+            if resource_dir.is_dir() and any(resource_dir.glob("values*/strings.xml")):
+                discovered.add(resource_dir)
+    return sorted(discovered)
 
-    issues: List[Issue] = []
-    baseline_path = root / BASELINE_RELATIVE_PATH
-    resource_dir = root / RESOURCE_DIR
+
+def verify_module(
+    resource_dir: Path,
+    root: Path,
+    issues: List[Issue],
+) -> Tuple[Optional[ParsedFile], int]:
+    baseline_path = resource_dir / "values" / "strings.xml"
     if not baseline_path.is_file():
         issues.append(
             Issue(
@@ -638,10 +642,52 @@ def main(argv: Sequence[str]) -> int:
             if translated is not None:
                 compare_resources(parsed_baseline, translated, locale, root, issues)
 
+    return parsed_baseline, len(parsed_translations)
+
+
+def check_cross_module_duplicates(baselines: Sequence[ParsedFile], root: Path, issues: List[Issue]) -> None:
+    owners: Dict[str, ParsedFile] = {}
+    for baseline in baselines:
+        for name, resource in baseline.resources.items():
+            owner = owners.get(name)
+            if owner is None:
+                owners[name] = baseline
+                continue
+            issues.append(
+                Issue(
+                    relative_path(baseline.path, root),
+                    resource.line,
+                    name,
+                    "LOC-MODULE-DUPLICATE",
+                    f"resource name is already declared in {relative_path(owner.path, root)}; "
+                    "keep each string in one module",
+                )
+            )
+
+
+def main(argv: Sequence[str]) -> int:
+    root = Path(__file__).resolve().parent.parent
+    if len(argv) == 2 and argv[0] == "--root":
+        root = Path(argv[1]).resolve()
+    elif argv:
+        print("Usage: verify-localization.py [--root REPOSITORY_ROOT]", file=sys.stderr)
+        return 2
+
+    issues: List[Issue] = []
+    resource_dirs = discover_resource_dirs(root)
+    baselines: List[ParsedFile] = []
+    translation_count = 0
+    for resource_dir in resource_dirs:
+        baseline, translations = verify_module(resource_dir, root, issues)
+        translation_count += translations
+        if baseline is not None:
+            baselines.append(baseline)
+    check_cross_module_duplicates(baselines, root, issues)
+
     ordered_issues = sort_issues(issues)
-    baseline_display = relative_path(baseline_path, root)
     print(
-        f"Localization quality gate: baseline {baseline_display}; "
+        f"Localization quality gate: {len(resource_dirs)} module resource set(s) "
+        f"({', '.join(relative_path(path, root) for path in resource_dirs)}); "
         f"supported translations {', '.join(SUPPORTED_LOCALES)}"
     )
     if ordered_issues:
@@ -651,7 +697,7 @@ def main(argv: Sequence[str]) -> int:
         print("Fix each referenced resource, then rerun ./scripts/verify-localization.sh.")
         return 1
 
-    print(f"PASS: {len(parsed_translations)} translation file(s) match the English baseline.")
+    print(f"PASS: {translation_count} translation file(s) match their module's English baseline.")
     return 0
 
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="widget_no_favorites">You have no favorite contacts</string>
+    <string name="notes_widget_empty">No notes yet</string>
+    <string name="notes_widget_no_content">No content</string>
+    <string name="notes_widget_locked_title">Protected note 🔐</string>
+    <string name="notes_widget_locked_content">Tap to unlock</string>
+    <string name="notes_widget_new_note">New note</string>
+    <string name="recent_calls_widget_empty">No recent calls</string>
+    <string name="recent_calls_widget_permission">Allow call history access in Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Call %1$s</string>
+    <string name="expenses_widget_income">Income</string>
+    <string name="expenses_widget_budget">%1$s of %2$s budget</string>
+    <string name="expenses_widget_no_budget">No budget set</string>
+    <string name="expenses_widget_locked">Expenses are locked. Tap to open.</string>
+</resources>

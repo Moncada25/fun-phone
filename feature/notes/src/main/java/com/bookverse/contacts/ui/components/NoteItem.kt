@@ -50,7 +50,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.notes.R
 import com.bookverse.contacts.settings.ListDensity
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.utils.rememberHapticFeedback
@@ -58,6 +58,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Tags
 import java.text.SimpleDateFormat
 import java.util.Date
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -220,7 +221,7 @@ fun NoteItem(
                     ) {
                         Icon(
                             imageVector = Icons.Default.MoreVert,
-                            contentDescription = stringResource(R.string.more_options),
+                            contentDescription = stringResource(CoreUiR.string.more_options),
                             tint = textColor,
                             modifier = Modifier.size(24.dp)
                         )
@@ -264,14 +265,14 @@ fun NoteItem(
             },
             onSaveClick?.let { saveClick ->
                 OptionsDialogItem(
-                    label = stringResource(R.string.save),
+                    label = stringResource(CoreUiR.string.save),
                     icon = Icons.Default.Download,
                     onClick = saveClick,
                 )
             },
             onShareClick?.let { shareClick ->
                 OptionsDialogItem(
-                    label = stringResource(R.string.share),
+                    label = stringResource(CoreUiR.string.share),
                     icon = Icons.Default.Share,
                     onClick = shareClick,
                 )
@@ -285,7 +286,7 @@ fun NoteItem(
             },
             onTagsClick?.let { tagsClick ->
                 OptionsDialogItem(
-                    label = stringResource(R.string.tag_manager_title),
+                    label = stringResource(CoreUiR.string.tag_manager_title),
                     icon = Lucide.Tags,
                     onClick = tagsClick,
                 )
@@ -301,7 +302,7 @@ fun NoteItem(
             },
             if (!replaceDeleteWithCustom) {
                 OptionsDialogItem(
-                    label = stringResource(R.string.edit),
+                    label = stringResource(CoreUiR.string.edit),
                     icon = Icons.Default.EditNote,
                     onClick = onClick,
                 )
@@ -310,7 +311,7 @@ fun NoteItem(
             },
             if (!replaceDeleteWithCustom) {
                 OptionsDialogItem(
-                    label = stringResource(R.string.delete),
+                    label = stringResource(CoreUiR.string.delete),
                     icon = Icons.Default.Delete,
                     destructive = true,
                     onClick = onDeleteClick,
@@ -326,15 +327,15 @@ fun NoteItem(
                 null
             },
             OptionsDialogItem(
-                label = "${stringResource(R.string.created_label)}: $formattedCreatedDate $formattedCreatedTime",
+                label = "${stringResource(CoreUiR.string.created_label)}: $formattedCreatedDate $formattedCreatedTime",
                 icon = null,
-                description = "${stringResource(R.string.updated_label)}: $formattedUpdatedDate $formattedUpdatedTime",
+                description = "${stringResource(CoreUiR.string.updated_label)}: $formattedUpdatedDate $formattedUpdatedTime",
                 enabled = false,
                 onClick = {},
             ),
         )
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = options,
             onDismiss = { showOptionsSheet = false },
         )

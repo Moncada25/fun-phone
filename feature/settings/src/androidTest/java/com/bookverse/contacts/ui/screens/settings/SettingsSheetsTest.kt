@@ -1,6 +1,7 @@
 package com.bookverse.contacts.ui.screens.settings
 
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.settings.R
 import androidx.compose.material3.R as Material3R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,7 +29,6 @@ import androidx.compose.ui.test.swipeDown
 import androidx.compose.ui.test.swipeUp
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.theme.DarkModeStyle
 import com.bookverse.contacts.ui.theme.ThemeMode
 import org.junit.Assert.assertEquals
@@ -37,6 +37,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class SettingsSheetsTest {
     @get:Rule
@@ -257,9 +258,9 @@ class SettingsSheetsTest {
             }
         }
 
-        composeRule.onAllNodesWithText(text(R.string.apply)).assertCountEquals(0)
-        composeRule.onAllNodesWithText(text(R.string.cancel)).assertCountEquals(0)
-        composeRule.onAllNodesWithContentDescription(text(R.string.close)).assertCountEquals(0)
+        composeRule.onAllNodesWithText(text(CoreUiR.string.apply)).assertCountEquals(0)
+        composeRule.onAllNodesWithText(text(CoreUiR.string.cancel)).assertCountEquals(0)
+        composeRule.onAllNodesWithContentDescription(text(CoreUiR.string.close)).assertCountEquals(0)
     }
 
     @Test

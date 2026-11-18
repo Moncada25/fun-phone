@@ -29,6 +29,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.vault.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,7 +48,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.password.PasswordCredential
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ConfirmDialog
@@ -80,7 +81,7 @@ fun PasswordRecycleBinScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(R.string.recycle_bin_title),
+                title = stringResource(CoreUiR.string.recycle_bin_title),
                 count = deletedCredentials.size,
                 onBackClick = onBackClick,
                 onCountClick = { showStrengthSheet = true },
@@ -88,7 +89,7 @@ fun PasswordRecycleBinScreen(
                     if (deletedCredentials.isNotEmpty()) {
                         IconAction(
                             imageVector = Icons.Default.DeleteSweep,
-                            contentDescription = stringResource(R.string.empty_recycle_bin),
+                            contentDescription = stringResource(CoreUiR.string.empty_recycle_bin),
                             onClick = { showEmptyConfirmation = true },
                         )
                     }
@@ -110,7 +111,7 @@ fun PasswordRecycleBinScreen(
                 ) {
                     Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(120.dp), tint = accentColor.copy(alpha = 0.6f))
                     Spacer(Modifier.height(24.dp))
-                    Text(stringResource(R.string.recycle_bin_empty), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Medium)
+                    Text(stringResource(CoreUiR.string.recycle_bin_empty), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Medium)
                     Spacer(Modifier.height(12.dp))
                     Text(
                         stringResource(R.string.password_recycle_bin_empty_description),
@@ -150,10 +151,10 @@ fun PasswordRecycleBinScreen(
                                     }
                                 }
                                 IconButton(onClick = { credentialToRestore = credential }) {
-                                    Icon(Icons.Default.RestoreFromTrash, contentDescription = stringResource(R.string.restore), tint = accentColor)
+                                    Icon(Icons.Default.RestoreFromTrash, contentDescription = stringResource(CoreUiR.string.restore), tint = accentColor)
                                 }
                                 IconButton(onClick = { credentialToDelete = credential }) {
-                                    Icon(Icons.Default.DeleteForever, contentDescription = stringResource(R.string.delete_permanently), tint = MaterialTheme.colorScheme.error)
+                                    Icon(Icons.Default.DeleteForever, contentDescription = stringResource(CoreUiR.string.delete_permanently), tint = MaterialTheme.colorScheme.error)
                                 }
                             }
                         }
@@ -171,10 +172,10 @@ fun PasswordRecycleBinScreen(
                 credentialToRestore = null
                 snackbar.show(resources.getString(R.string.password_restored, credential.name), SnackbarType.Success)
             },
-            title = stringResource(R.string.restore),
-            message = stringResource(R.string.restore_confirm, credential.name),
+            title = stringResource(CoreUiR.string.restore),
+            message = stringResource(CoreUiR.string.restore_confirm, credential.name),
             toastMessage = null,
-            confirmButtonLabel = stringResource(R.string.restore),
+            confirmButtonLabel = stringResource(CoreUiR.string.restore),
             isDestructive = false,
             appSettingsViewModel = appSettingsViewModel,
         )
@@ -187,8 +188,8 @@ fun PasswordRecycleBinScreen(
                 credentialToDelete = null
                 snackbar.show(resources.getString(R.string.password_permanently_deleted, credential.name), SnackbarType.Success)
             },
-            title = stringResource(R.string.delete_permanently),
-            message = stringResource(R.string.delete_permanently_confirm, credential.name),
+            title = stringResource(CoreUiR.string.delete_permanently),
+            message = stringResource(CoreUiR.string.delete_permanently_confirm, credential.name),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel,
         )
@@ -199,10 +200,10 @@ fun PasswordRecycleBinScreen(
             onConfirm = {
                 deletedCredentials.forEach { passwordsViewModel.permanentlyDelete(it.id) }
                 showEmptyConfirmation = false
-                snackbar.show(resources.getString(R.string.recycle_bin_emptied), SnackbarType.Success)
+                snackbar.show(resources.getString(CoreUiR.string.recycle_bin_emptied), SnackbarType.Success)
             },
-            title = stringResource(R.string.empty_recycle_bin),
-            message = stringResource(R.string.empty_recycle_bin_confirm),
+            title = stringResource(CoreUiR.string.empty_recycle_bin),
+            message = stringResource(CoreUiR.string.empty_recycle_bin_confirm),
             toastMessage = null,
             appSettingsViewModel = appSettingsViewModel,
         )

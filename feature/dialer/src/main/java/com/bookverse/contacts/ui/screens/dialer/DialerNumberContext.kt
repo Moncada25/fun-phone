@@ -36,8 +36,9 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.dialer.R
 import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Immutable
 internal data class DialerNumberContext(
@@ -78,7 +79,7 @@ internal fun DialerNumberContextRow(
         ) {
             val callingCode = context.callingCode?.takeIf { it.isNotBlank() }
             if (callingCode != null || onCountryClick != null) {
-                val countrySelectorLabel = stringResource(R.string.country_selector)
+                val countrySelectorLabel = stringResource(CoreUiR.string.country_selector)
                 val codeDescription = if (callingCode != null) {
                     stringResource(
                         R.string.dialer_calling_code_description,
@@ -125,7 +126,7 @@ internal fun DialerNumberContextRow(
                     R.string.dialer_matched_contact_description,
                     contactName,
                 )
-                val callLabel = stringResource(R.string.call)
+                val callLabel = stringResource(CoreUiR.string.call)
                 Row(
                     modifier = Modifier
                         .weight(1f, fill = false)

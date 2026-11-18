@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicReference
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.expenses.R as ExpensesR
 
 class ExpenseHomeScreenTest {
     @get:Rule
@@ -33,11 +34,11 @@ class ExpenseHomeScreenTest {
     fun summaryShowsCurrencyAndMonthlyTotals() {
         showScreen()
 
-        composeRule.onNodeWithText(text(R.string.expense_home_summary_title, CURRENCY.code))
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_home_summary_title, CURRENCY.code))
             .assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.expense_summary_income)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.expense_summary_expense)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.expense_summary_balance)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_summary_income)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_summary_expense)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_summary_balance)).assertIsDisplayed()
     }
 
     @Test
@@ -72,15 +73,15 @@ class ExpenseHomeScreenTest {
         )
 
         composeRule.onNodeWithText(CATEGORY_NAME).performClick()
-        composeRule.onNodeWithText(text(R.string.expense_breakdown_title)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_breakdown_title)).assertIsDisplayed()
     }
 
     @Test
     fun emptyHomeShowsEmptyTransactionsAndChartStates() {
         showScreen(transactions = emptyList(), distribution = emptyList())
 
-        composeRule.onNodeWithText(text(R.string.expense_chart_empty)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.expense_transactions_empty)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_chart_empty)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_transactions_empty)).assertIsDisplayed()
     }
 
     @Test
@@ -101,7 +102,7 @@ class ExpenseHomeScreenTest {
 
         composeRule.onNodeWithContentDescription(text(R.string.more_options)).performClick()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
-        composeRule.onNodeWithText(text(R.string.expense_delete_transaction)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_delete_transaction)).assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
 
         assertEquals(TRANSACTION, deletedTransaction.get())
@@ -112,10 +113,10 @@ class ExpenseHomeScreenTest {
         showScreen(transactions = listOf(TRANSACTION.copy(isFixed = true)))
 
         composeRule.onNodeWithContentDescription(
-            text(R.string.expense_transaction_recurring_badge)
+            text(ExpensesR.string.expense_transaction_recurring_badge)
         ).assertIsDisplayed()
         composeRule.onNodeWithText(
-            text(R.string.expense_transaction_recurring_badge)
+            text(ExpensesR.string.expense_transaction_recurring_badge)
         ).assertDoesNotExist()
     }
 

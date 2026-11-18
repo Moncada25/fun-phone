@@ -39,7 +39,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 enum class BrushStyle {
     NORMAL,
@@ -144,13 +145,13 @@ fun BrushStyleDialog(
                 ),
                 shape = RoundedCornerShape(999.dp)
             ) {
-                Text(text = stringResource(R.string.apply), color = textColor)
+                Text(text = stringResource(CoreUiR.string.apply), color = textColor)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(
-                    text = stringResource(R.string.cancel),
+                    text = stringResource(CoreUiR.string.cancel),
                     color = accentColor
                 )
             }

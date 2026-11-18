@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.FileProvider
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.RecordingData
@@ -18,6 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 object NoteShareUtils {
 
@@ -168,7 +168,7 @@ object NoteShareUtils {
                 shareNoteLauncher.launch(
                     Intent.createChooser(
                         shareIntent,
-                        context.getString(R.string.share)
+                        context.getString(CoreUiR.string.share)
                     )
                 )
             }
@@ -215,7 +215,7 @@ object NoteShareUtils {
         shareNoteLauncher.launch(
             Intent.createChooser(
                 shareIntent,
-                context.getString(R.string.share)
+                context.getString(CoreUiR.string.share)
             )
         )
     }

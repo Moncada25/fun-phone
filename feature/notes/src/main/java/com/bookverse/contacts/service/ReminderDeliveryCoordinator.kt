@@ -8,14 +8,15 @@ import android.content.Intent
 import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.bookverse.contacts.feature.notes.R
 import com.bookverse.contacts.navigation.AppEntryPoints
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.notes.nextOccurrence
 import com.bookverse.contacts.data.notes.repeats
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.settings.LocaleController
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class ReminderDeliveryCoordinator(
     private val context: Context,
@@ -96,7 +97,7 @@ class ReminderDeliveryCoordinator(
             context,
             NotificationService.PERIODIC_CHANNEL_ID,
         )
-            .setSmallIcon(R.drawable.ic_notification_reminder)
+            .setSmallIcon(CoreUiR.drawable.ic_notification_reminder)
             .setContentTitle(title)
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
@@ -120,7 +121,7 @@ class ReminderDeliveryCoordinator(
             context,
             NotificationService.ALARM_CHANNEL_ID,
         )
-            .setSmallIcon(R.drawable.ic_notification_reminder)
+            .setSmallIcon(CoreUiR.drawable.ic_notification_reminder)
             .setContentTitle("🚨 $title")
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
@@ -145,7 +146,7 @@ class ReminderDeliveryCoordinator(
             context,
             NotificationService.ADVANCE_CHANNEL_ID,
         )
-            .setSmallIcon(R.drawable.ic_notification_reminder)
+            .setSmallIcon(CoreUiR.drawable.ic_notification_reminder)
             .setContentTitle("⏰ $title")
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))

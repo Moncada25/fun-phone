@@ -61,11 +61,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.CountBadge
 import com.bookverse.contacts.ui.components.TextField
@@ -74,6 +74,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Tags
 import com.composables.icons.lucide.TrendingDown
 import com.composables.icons.lucide.TrendingUp
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun ExpenseCategoriesScreen(
@@ -377,7 +378,7 @@ private fun LinkedCategoryTransactions(
                 IconButton(onClick = onBack) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResourceSafe(R.string.back),
+                        contentDescription = stringResourceSafe(CoreUiR.string.back),
                         tint = accentColor,
                     )
                 }
@@ -575,7 +576,7 @@ private fun CategoryCard(
                     ) {
                         Icon(
                             imageVector = Icons.Filled.MoreVert,
-                            contentDescription = stringResourceSafe(R.string.more_options),
+                            contentDescription = stringResourceSafe(CoreUiR.string.more_options),
                             tint = colorScheme.onSurface.copy(alpha = 0.78f),
                         )
                     }
@@ -588,7 +589,7 @@ private fun CategoryCard(
                         ),
                     ) {
                         DropdownMenuItem(
-                            text = { Text(stringResourceSafe(R.string.edit)) },
+                            text = { Text(stringResourceSafe(CoreUiR.string.edit)) },
                             onClick = {
                                 menuExpanded = false
                                 onEdit()
@@ -605,7 +606,7 @@ private fun CategoryCard(
                             ),
                         )
                         DropdownMenuItem(
-                            text = { Text(stringResourceSafe(R.string.delete)) },
+                            text = { Text(stringResourceSafe(CoreUiR.string.delete)) },
                             onClick = {
                                 menuExpanded = false
                                 onDelete()
@@ -767,7 +768,7 @@ private fun CategoryDialog(
                         colors = ButtonDefaults.outlinedButtonColors(contentColor = accentColor),
                         border = androidx.compose.foundation.BorderStroke(1.dp, accentColor),
                     ) {
-                        Text(text = stringResourceSafe(R.string.cancel))
+                        Text(text = stringResourceSafe(CoreUiR.string.cancel))
                     }
                     Button(
                         onClick = {
@@ -788,7 +789,7 @@ private fun CategoryDialog(
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(999.dp),
                     ) {
-                        Text(text = stringResourceSafe(R.string.save))
+                        Text(text = stringResourceSafe(CoreUiR.string.save))
                     }
                 }
             }

@@ -47,6 +47,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -78,7 +80,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.ui.components.AppSnackbarHost
@@ -399,9 +400,9 @@ fun VoiceScreen(
 
     if (showValidationDialog) {
         MessageDialog(
-            title = stringResource(R.string.error_title),
+            title = stringResource(CoreUiR.string.error_title),
             message1 = validationMessage,
-            buttonText = stringResource(R.string.understood),
+            buttonText = stringResource(CoreUiR.string.understood),
             onButtonClick = { showValidationDialog = false },
             onDismiss = { showValidationDialog = false },
         )
@@ -409,9 +410,9 @@ fun VoiceScreen(
 
     if (showPermissionDialog) {
         MessageDialog(
-            title = stringResource(R.string.permission_required),
-            message1 = stringResource(R.string.microphone_permission_message),
-            buttonText = stringResource(R.string.understood),
+            title = stringResource(CoreUiR.string.permission_required),
+            message1 = stringResource(CoreUiR.string.microphone_permission_message),
+            buttonText = stringResource(CoreUiR.string.understood),
             onButtonClick = { showPermissionDialog = false },
             onDismiss = { showPermissionDialog = false },
         )

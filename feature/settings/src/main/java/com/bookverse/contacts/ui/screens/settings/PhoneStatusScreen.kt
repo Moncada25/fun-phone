@@ -28,6 +28,8 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.settings.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,7 +48,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bookverse.contacts.ui.components.setupActionContainerColor
 import com.bookverse.contacts.ui.components.setupActionContentColor
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
@@ -144,7 +145,7 @@ fun PhoneStatusScreen(
                                 accentColor = accentColor
                             )
                             StatusChip(
-                                label = stringResource(R.string.tab_contacts),
+                                label = stringResource(CoreUiR.string.tab_contacts),
                                 check = uiState.hasContactsPermission,
                                 accentColor = accentColor
                             )
@@ -231,7 +232,7 @@ fun PhoneStatusScreen(
 private fun requirementTitle(requirement: PhoneStatusRequirement): String = when (requirement) {
     PhoneStatusRequirement.DEFAULT_DIALER -> stringResource(R.string.no_default_dialer)
     PhoneStatusRequirement.NOTIFICATIONS -> stringResource(R.string.call_notifications)
-    PhoneStatusRequirement.CONTACTS -> stringResource(R.string.tab_contacts)
+    PhoneStatusRequirement.CONTACTS -> stringResource(CoreUiR.string.tab_contacts)
     PhoneStatusRequirement.CALL_LOG -> stringResource(R.string.call_log)
     PhoneStatusRequirement.PHONE_STATE -> stringResource(R.string.phone_state)
     PhoneStatusRequirement.CALL_PHONE -> stringResource(R.string.calls)

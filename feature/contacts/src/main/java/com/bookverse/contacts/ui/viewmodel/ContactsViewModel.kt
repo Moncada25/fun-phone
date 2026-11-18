@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.viewmodel
 
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.screens.dialer.DialerDirectory
 import android.app.Application
 import android.content.ContentResolver
@@ -14,7 +15,6 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.contacts.ContactRecycleBin
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
@@ -83,6 +83,7 @@ import java.io.FileOutputStream
 import java.util.EnumMap
 import java.util.LinkedHashSet
 import kotlin.time.Duration.Companion.milliseconds
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 sealed interface ContactSaveResult {
     data class Success(val contact: Contact) : ContactSaveResult
@@ -1431,7 +1432,7 @@ class ContactsViewModel(
                     else -> RecentType.CALL_UNKNOWN
                 }
 
-                val resolvedNumber = number ?: localizedContext().getString(R.string.unknown)
+                val resolvedNumber = number ?: localizedContext().getString(CoreUiR.string.unknown)
                 val resolvedContact = number?.let {
                     lookupContactByNumber(
                         contactsSnapshot = contactsSnapshot,
@@ -1493,7 +1494,7 @@ class ContactsViewModel(
     private fun createUnknownContact(number: String): Contact {
         return Contact(
             id = "",
-            name = localizedContext().getString(R.string.unknown),
+            name = localizedContext().getString(CoreUiR.string.unknown),
             phones = listOf(ContactPhone(number, PhoneEntity.Type.MOBILE)),
             email = null,
             company = null,

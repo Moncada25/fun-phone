@@ -28,7 +28,6 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.expenses.ExpensesRepository
 import com.bookverse.contacts.domain.expenses.BudgetState
@@ -36,6 +35,7 @@ import com.bookverse.contacts.domain.expenses.ExpenseCurrencyProvider
 import com.bookverse.contacts.domain.expenses.MonthBudgetSummary
 import com.bookverse.contacts.domain.expenses.buildMonthBudgetSummary
 import com.bookverse.contacts.domain.expenses.transactionsForMonth
+import com.bookverse.contacts.feature.widgets.R
 import com.bookverse.contacts.settings.AppDataStore
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.navigation.DynamicShortcuts
@@ -48,6 +48,7 @@ import kotlinx.coroutines.withContext
 import java.text.NumberFormat
 import java.time.YearMonth
 import java.util.Currency
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal sealed interface ExpensesWidgetState {
     data object Locked : ExpensesWidgetState
@@ -115,12 +116,12 @@ class ExpensesWidget : GlanceAppWidget() {
 private fun ExpensesContent(context: Context, strings: Context, state: ExpensesWidgetState) {
     val openExpenses = actionStartActivity(DynamicShortcuts.launchIntent(context, HomeShortcutDestination.EXPENSES))
     WidgetSurface(modifier = GlanceModifier.clickable(openExpenses)) {
-        WidgetHeader(title = strings.getString(R.string.expenses_widget_title), onTitleClick = openExpenses)
+        WidgetHeader(title = strings.getString(CoreUiR.string.expenses_widget_title), onTitleClick = openExpenses)
         when (state) {
             ExpensesWidgetState.Locked -> WidgetMessage(
                 strings.getString(R.string.expenses_widget_locked),
                 openExpenses,
-                R.drawable.ic_widget_lock,
+                CoreUiR.drawable.ic_widget_lock,
             )
             is ExpensesWidgetState.Summary -> SummaryBody(strings, state)
         }
@@ -132,7 +133,7 @@ private fun SummaryBody(strings: Context, state: ExpensesWidgetState.Summary) {
     Column(modifier = GlanceModifier.fillMaxSize()) {
         Spacer(GlanceModifier.height(4.dp))
         Row(modifier = GlanceModifier.fillMaxWidth()) {
-            AmountBlock(state.spent, strings.getString(R.string.expenses_widget_spent), GlanceModifier.defaultWeight())
+            AmountBlock(state.spent, strings.getString(CoreUiR.string.expenses_widget_spent), GlanceModifier.defaultWeight())
             Spacer(GlanceModifier.width(8.dp))
             AmountBlock(state.income, strings.getString(R.string.expenses_widget_income), GlanceModifier.defaultWeight())
         }

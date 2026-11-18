@@ -49,6 +49,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -82,7 +84,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.domain.contacts.ContactRecycleBinPolicy
 import com.bookverse.contacts.domain.contacts.ContactSearchPolicy
@@ -302,8 +303,8 @@ fun ContactListScreen(
                 if (selectedContacts.isNotEmpty()) {
                     val count = selectedContacts.size
                     val label =
-                        if (count == 1) stringResource(R.string.selected_single) else stringResource(
-                            R.string.selected_plural
+                        if (count == 1) stringResource(CoreUiR.string.selected_single) else stringResource(
+                            CoreUiR.string.selected_plural
                         )
                     val isMinimalAccent =
                         accentBarStyle == AccentBarStyle.MINIMAL
@@ -353,7 +354,7 @@ fun ContactListScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Cancel,
-                                        contentDescription = stringResource(R.string.cancel),
+                                        contentDescription = stringResource(CoreUiR.string.cancel),
                                         modifier = Modifier.size(20.dp)
                                     )
                                 }
@@ -361,7 +362,7 @@ fun ContactListScreen(
                                 IconButton(onClick = { contactsViewModel.clearContactSelection() }) {
                                     Icon(
                                         Icons.Default.Cancel,
-                                        contentDescription = stringResource(R.string.cancel),
+                                        contentDescription = stringResource(CoreUiR.string.cancel),
                                         tint = selectionContentColor
                                     )
                                 }
@@ -389,8 +390,8 @@ fun ContactListScreen(
                                     ) {
                                         Icon(
                                             imageVector = if (allSelected) Icons.Default.Deselect else Icons.Default.SelectAll,
-                                            contentDescription = if (allSelected) stringResource(R.string.deselect_all) else stringResource(
-                                                R.string.select_all
+                                            contentDescription = if (allSelected) stringResource(CoreUiR.string.deselect_all) else stringResource(
+                                                CoreUiR.string.select_all
                                             ),
                                             modifier = Modifier.size(20.dp)
                                         )
@@ -402,7 +403,7 @@ fun ContactListScreen(
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.DeleteSweep,
-                                            contentDescription = stringResource(R.string.delete),
+                                            contentDescription = stringResource(CoreUiR.string.delete),
                                             modifier = Modifier.size(20.dp)
                                         )
                                     }
@@ -415,8 +416,8 @@ fun ContactListScreen(
                                 }) {
                                     Icon(
                                         imageVector = if (allSelected) Icons.Default.Deselect else Icons.Default.SelectAll,
-                                        contentDescription = if (allSelected) stringResource(R.string.deselect_all) else stringResource(
-                                            R.string.select_all
+                                        contentDescription = if (allSelected) stringResource(CoreUiR.string.deselect_all) else stringResource(
+                                            CoreUiR.string.select_all
                                         ),
                                         tint = selectionContentColor
                                     )
@@ -424,7 +425,7 @@ fun ContactListScreen(
                                 IconButton(onClick = { showDeleteConfirm = true }) {
                                     Icon(
                                         Icons.Default.DeleteSweep,
-                                        contentDescription = stringResource(R.string.delete),
+                                        contentDescription = stringResource(CoreUiR.string.delete),
                                         tint = selectionContentColor
                                     )
                                 }
@@ -455,7 +456,7 @@ fun ContactListScreen(
                                         isSearchActive = false
                                     },
                                     leadingContentDescription = stringResource(R.string.search_contacts),
-                                    clearContentDescription = stringResource(R.string.clear),
+                                    clearContentDescription = stringResource(CoreUiR.string.clear),
                                 )
                             }
                         } else null,
@@ -470,7 +471,7 @@ fun ContactListScreen(
                             if (toolsOrder.toolsMenuHidden) {
                                 IconAction(
                                     imageVector = Lucide.Settings,
-                                    contentDescription = stringResource(R.string.settings),
+                                    contentDescription = stringResource(CoreUiR.string.settings),
                                     onClick = onNavigateToSettings
                                 )
                             }
@@ -522,7 +523,7 @@ fun ContactListScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Text(
-                        text = stringResource(R.string.contacts_empty),
+                        text = stringResource(CoreUiR.string.contacts_empty),
                         color = textColor.copy(alpha = 0.8f),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Medium,
@@ -606,7 +607,7 @@ fun ContactListScreen(
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.extras_restore_contacts),
+                                    text = stringResource(CoreUiR.string.extras_restore_contacts),
                                     color = textColor,
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Medium,
@@ -620,7 +621,7 @@ fun ContactListScreen(
                 if (filteredContacts.isEmpty() && !isLimitedMode) {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Text(
-                            text = stringResource(R.string.no_contacts_found),
+                            text = stringResource(CoreUiR.string.no_contacts_found),
                             color = textColor.copy(alpha = 0.7f),
                             fontSize = 20.sp,
                             fontStyle = FontStyle.Italic
@@ -781,7 +782,7 @@ fun ContactListScreen(
                 contact.accounts.orEmpty().none { it.name in knownAccountIds }
             }
             val accountsSheetTitle = stringResource(R.string.contacts_accounts_sheet_title)
-            val localAccountLabel = stringResource(R.string.local_account)
+            val localAccountLabel = stringResource(CoreUiR.string.local_account)
             val systemContactsLabel = stringResource(R.string.system_contacts)
             CountBreakdownSheet(
                 title = accountsSheetTitle,
@@ -835,15 +836,15 @@ fun ContactListScreen(
 
         if (isImporting) {
             LoaderDialog(
-                message = stringResource(R.string.importing_contacts),
+                message = stringResource(CoreUiR.string.importing_contacts),
             )
         }
 
         if (importResult != null && !isImporting) {
             MessageDialog(
-                title = stringResource(R.string.import_success),
+                title = stringResource(CoreUiR.string.import_success),
                 message1 = pluralStringResource(
-                    R.plurals.imported_count,
+                    CoreUiR.plurals.imported_count,
                     importResult ?: 0,
                     importResult ?: 0,
                 ),

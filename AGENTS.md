@@ -168,8 +168,10 @@ Compose UI
 
 ### Recursos y localización
 
-- Añadir cada string visible al baseline `core/ui/src/main/res/values/strings.xml` y a `values-es`,
-  `values-de`, `values-fr` y `values-pt`.
+- Añadir cada string visible al baseline `values/strings.xml` del módulo que la usa
+  (`feature/<nombre>/src/main/res`, o `core/ui/src/main/res` si la comparten varios módulos) y a
+  `values-es`, `values-de`, `values-fr` y `values-pt` de ese mismo módulo. Un nombre de string vive
+  en un solo módulo.
 - Conservar nombres, placeholders, plurales y arrays exactamente alineados.
 - Usar formatters localizados para fecha, hora, números y moneda.
 - No ampliar allowlists de localización para ocultar traducciones ausentes.

@@ -26,13 +26,14 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.contacts.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class PhotoSelectorTest {
     @get:Rule
@@ -89,7 +90,7 @@ class PhotoSelectorTest {
         val backActions = AtomicInteger(0)
         showPicker(onBack = { backActions.incrementAndGet() })
 
-        composeRule.onNodeWithContentDescription(text(R.string.back))
+        composeRule.onNodeWithContentDescription(text(CoreUiR.string.back))
             .assertIsDisplayed()
             .performClick()
 

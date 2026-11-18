@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `:feature:games`, `:feature:expenses`, `:feature:notes`, `:feature:qr`, `:feature:vault` and
   `:feature:tools`, with shared Gradle setup in `build-logic` convention plugins. No user-visible
   change.
+- Each feature module now owns its strings and their Spanish, German, French and Portuguese
+  translations; `:core:ui` keeps only the strings that several modules share. The localization gate
+  checks every module and rejects a string name declared in two modules. No text changes.
 
 ### Fixed
 - Google Play hid the app from landscape-only devices because the photo crop screen is locked to

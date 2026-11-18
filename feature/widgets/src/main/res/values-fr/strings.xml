@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_no_favorites">Vous n\'avez pas de contact favori</string>
+    <string name="notes_widget_empty">Aucune note pour l\'instant</string>
+    <string name="notes_widget_no_content">Aucun contenu</string>
+    <string name="notes_widget_locked_content">Touchez pour déverrouiller</string>
+    <string name="notes_widget_new_note">Nouvelle note</string>
+    <string name="recent_calls_widget_empty">Aucun appel récent</string>
+    <string name="recent_calls_widget_permission">Autorisez l\'accès au journal d\'appels dans Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Appeler %1$s</string>
+    <string name="expenses_widget_income">Revenus</string>
+    <string name="expenses_widget_budget">%1$s sur %2$s de budget</string>
+    <string name="expenses_widget_no_budget">Aucun budget défini</string>
+    <string name="expenses_widget_locked">Les dépenses sont verrouillées. Touchez pour ouvrir.</string>
+    <string name="notes_widget_locked_title">Note protégée 🔐</string>
+</resources>

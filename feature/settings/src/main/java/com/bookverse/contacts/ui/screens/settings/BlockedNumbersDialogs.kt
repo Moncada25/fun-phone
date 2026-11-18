@@ -46,11 +46,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.repository.BlockedNumberInfo
 import com.bookverse.contacts.domain.contacts.BlockedNumberInputPolicy
 import com.bookverse.contacts.domain.contacts.BlockedNumberInputResult
+import com.bookverse.contacts.feature.settings.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun BlockedNumbersSheet(
@@ -131,7 +132,7 @@ internal fun BlockedNumbersSheet(
                         contentDescription = null,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(stringResource(R.string.contact_unblock_action))
+                    Text(stringResource(CoreUiR.string.contact_unblock_action))
                 }
             }
         } else if (blockedNumbers.isEmpty()) {
@@ -331,7 +332,7 @@ private fun BlockedNumberRow(
             ) {
                 Text(
                     text = info.contact?.name
-                        ?: stringResource(R.string.blocked_numbers_unknown),
+                        ?: stringResource(CoreUiR.string.blocked_numbers_unknown),
                     color = textColor,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 16.sp,
@@ -354,7 +355,7 @@ private fun BlockedNumberRow(
                 )
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    text = stringResource(R.string.contact_unblock_action),
+                    text = stringResource(CoreUiR.string.contact_unblock_action),
                     color = textColor,
                 )
             }

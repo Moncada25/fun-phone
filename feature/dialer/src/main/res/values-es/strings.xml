@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialer_suggestions_title">Sugerencias</string>
+    <string name="dialer_contacts_title">Tus contactos</string>
+    <string name="add_contact">Añadir contacto</string>
+    <string name="recents_title">Mi Historial</string>
+    <string name="no_recent_operations">Sin operaciones recientes</string>
+    <string name="delete_recents_title">Eliminar historial</string>
+    <string name="delete_recents_message">¿Estás seguro de eliminar los registros seleccionados?</string>
+    <string name="delete_contact_recents_title">Eliminar historial de %1$s</string>
+    <string name="delete_contact_recents_message">¿Estás seguro de eliminar el historial de %1$s para esta fecha?</string>
+    <string name="delete_unknown_recents_title">Eliminar historial de este número</string>
+    <string name="delete_unknown_recents_message">¿Estás seguro de eliminar el historial de este número para esta fecha?</string>
+    <string name="delete_recents_success">Registros eliminados</string>
+    <string name="enter_a_number">Ingresa un número</string>
+    <string name="contact_avatar_placeholder">Inicial de %1$s</string>
+    <string name="number_already_exists">Este número ya existe en tus contactos</string>
+    <string name="profile_already_exists">Este número hace parte de tu perfil</string>
+    <string name="history_recent_operations_sheet_title">Desglose de historial</string>
+    <string name="speed_dial_not_configured">El número %1$d no tiene llamada rápida configurada. Configúralo en Ajustes</string>
+    <string name="speed_dial_contact_not_found">No se encontró el contacto asignado a llamada rápida</string>
+    <string name="history_empty_title">Sin historial todavía</string>
+    <string name="history_empty_description">Tu historial de llamadas y actividades aparecerá aquí cuando empieces a realizar llamadas o abrir chats</string>
+    <string name="history_loading_more">Cargando más historial…</string>
+    <string name="history_load_more_hint">Continúa desplazándote para ver más registros</string>
+    <string name="history_filter_empty_title">Sin resultados para este filtro</string>
+    <string name="history_filter_empty_description">Prueba con otro tipo de historial o limpia los filtros para ver más registros.</string>
+    <string name="search_history">Buscar en el historial</string>
+    <string name="filter_history">Filtrar historial</string>
+    <string name="history_search_empty_title">Sin resultados en el historial</string>
+    <string name="history_search_empty_description">Prueba con otro nombre o número de teléfono, o limpia la búsqueda para ver todos los registros.</string>
+    <string name="dialer_calling_code_description">Prefijo %1$s, %2$s</string>
+    <string name="dialer_matched_contact_description">Contacto guardado: %1$s</string>
+</resources>

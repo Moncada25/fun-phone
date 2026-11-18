@@ -19,6 +19,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
+import com.bookverse.contacts.feature.qr.R
 import com.bookverse.contacts.integration.QrCodeDecoder
 import com.bookverse.contacts.integration.createQrCodeDecoder
 import androidx.compose.foundation.background
@@ -38,6 +39,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -67,7 +69,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.ContactPhone
@@ -103,7 +104,7 @@ fun QRScannerScreen(
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
     val accountToSaveContact by appSettingsViewModel.defaultContactAccount.collectAsStateWithLifecycle()
-    val successMessage = stringResource(R.string.add_contact_success)
+    val successMessage = stringResource(CoreUiR.string.add_contact_success)
     var hasCameraPermission by remember { mutableStateOf(false) }
     var showPermissionDialog by remember { mutableStateOf(false) }
     var scannedContent by remember { mutableStateOf<String?>(null) }
@@ -262,7 +263,7 @@ fun QRScannerScreen(
     Scaffold(
         topBar = {
             SecondaryTopBar(
-                title = stringResource(R.string.qr_scanner_title),
+                title = stringResource(CoreUiR.string.qr_scanner_title),
                 onBackClick = onBackClick,
                 actions = {
                     IconAction(
@@ -386,7 +387,7 @@ fun QRScannerScreen(
                     ) {
                         Spacer(modifier = Modifier.height(32.dp))
                         Text(
-                            text = stringResource(R.string.qr_scanner_permission_message),
+                            text = stringResource(CoreUiR.string.qr_scanner_permission_message),
                             color = textColor,
                             fontSize = 18.sp,
                             textAlign = TextAlign.Center
@@ -401,7 +402,7 @@ fun QRScannerScreen(
                             ),
                         ) {
                             Text(
-                                text = stringResource(R.string.grant_permission),
+                                text = stringResource(CoreUiR.string.grant_permission),
                                 color = textColor
                             )
                         }
@@ -411,19 +412,19 @@ fun QRScannerScreen(
             if (showPermissionDialog) {
                 AlertDialog(
                     onDismissRequest = { showPermissionDialog = false },
-                    title = { Text(stringResource(R.string.permission_required)) },
-                    text = { Text(stringResource(R.string.qr_scanner_permission_message)) },
+                    title = { Text(stringResource(CoreUiR.string.permission_required)) },
+                    text = { Text(stringResource(CoreUiR.string.qr_scanner_permission_message)) },
                     confirmButton = {
                         TextButton(onClick = {
                             cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
                             showPermissionDialog = false
                         }) {
-                            Text(stringResource(R.string.grant_permission))
+                            Text(stringResource(CoreUiR.string.grant_permission))
                         }
                     },
                     dismissButton = {
                         TextButton(onClick = { showPermissionDialog = false }) {
-                            Text(stringResource(R.string.cancel))
+                            Text(stringResource(CoreUiR.string.cancel))
                         }
                     }
                 )
@@ -558,7 +559,7 @@ fun QRCodeScanner(
                     ),
                 ) {
                     Text(
-                        text = stringResource(R.string.qr_scanner_retry),
+                        text = stringResource(CoreUiR.string.qr_scanner_retry),
                         color = textColor
                     )
                 }
@@ -722,7 +723,7 @@ fun QRContentDialog(
                     onSaveToHistory()
                     onDismiss()
                 }) {
-                    Text(text = stringResource(R.string.close), color = accentColor)
+                    Text(text = stringResource(CoreUiR.string.close), color = accentColor)
                 }
             }
         },

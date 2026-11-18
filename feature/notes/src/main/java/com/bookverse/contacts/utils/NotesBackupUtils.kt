@@ -3,13 +3,13 @@ package com.bookverse.contacts.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.NoteDao
 import com.bookverse.contacts.data.notes.NoteFolder
 import com.bookverse.contacts.data.notes.NoteImage
 import com.bookverse.contacts.data.notes.NoteTag
+import com.bookverse.contacts.feature.notes.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONArray

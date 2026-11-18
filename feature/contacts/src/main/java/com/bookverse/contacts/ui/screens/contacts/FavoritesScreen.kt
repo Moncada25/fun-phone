@@ -50,6 +50,8 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -80,7 +82,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ButtonSheetScaffold
@@ -744,7 +745,7 @@ fun ProfileFavoriteItem(
                 val iconSize = if (columns == 2) 80.dp else 60.dp
                 Icon(
                     imageVector = Icons.Outlined.PersonOutline,
-                    contentDescription = stringResource(R.string.profile_item),
+                    contentDescription = stringResource(CoreUiR.string.profile_item),
                     modifier = avatarTextModifier.size(iconSize),
                     tint = accentColor
                 )
@@ -753,7 +754,7 @@ fun ProfileFavoriteItem(
             val iconSize = if (columns == 2) 80.dp else 60.dp
             Icon(
                 imageVector = Icons.Outlined.PersonOutline,
-                contentDescription = stringResource(R.string.profile_item),
+                contentDescription = stringResource(CoreUiR.string.profile_item),
                 modifier = avatarTextModifier.size(iconSize),
                 tint = accentColor
             )

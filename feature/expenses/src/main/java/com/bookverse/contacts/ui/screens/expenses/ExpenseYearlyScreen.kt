@@ -26,12 +26,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
 import com.bookverse.contacts.domain.expenses.MonthSummary
 import com.bookverse.contacts.domain.expenses.buildYearlySummary
 import com.bookverse.contacts.domain.expenses.formatAsCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.settings.LocaleController
 import java.time.format.TextStyle
 import java.util.Locale

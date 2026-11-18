@@ -64,9 +64,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ToolsOrderConfig
 import com.bookverse.contacts.data.model.ToolsPreset
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.ui.components.SettingSwitch
 import com.bookverse.contacts.ui.components.setupActionContainerColor
 import com.bookverse.contacts.ui.components.setupActionContentColor
@@ -84,6 +84,7 @@ import com.composables.icons.lucide.Phone
 import com.composables.icons.lucide.ShieldCheck
 import com.composables.icons.lucide.Smartphone
 import com.composables.icons.lucide.Users
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun OnboardingContent(
@@ -242,7 +243,7 @@ private fun OnboardingHeader(
     ) {
         if (onBack != null) {
             IconButton(onClick = onBack, modifier = Modifier.size(48.dp)) {
-                Icon(Lucide.ArrowLeft, stringResource(R.string.back), tint = colors.onBackground)
+                Icon(Lucide.ArrowLeft, stringResource(CoreUiR.string.back), tint = colors.onBackground)
             }
         } else {
             Spacer(Modifier.width(8.dp))
@@ -354,7 +355,7 @@ private fun WelcomeAppIcon(size: Dp) {
     ) {
         Box(contentAlignment = Alignment.Center) {
             Image(
-                painterResource(R.drawable.ic_launcher_foreground),
+                painterResource(CoreUiR.drawable.ic_launcher_foreground),
                 stringResource(R.string.onboarding_app_icon_description),
                 modifier = Modifier.size(size * 0.81f),
             )
@@ -528,11 +529,11 @@ private fun OptionalToolsSection(
                                 verticalArrangement = Arrangement.spacedBy(4.dp),
                             ) {
                                 Text(
-                                    text = stringResource(R.string.tools_menu_visible_title),
+                                    text = stringResource(CoreUiR.string.tools_menu_visible_title),
                                     style = MaterialTheme.typography.titleSmall,
                                 )
                                 Text(
-                                    text = stringResource(R.string.tools_menu_visible_description),
+                                    text = stringResource(CoreUiR.string.tools_menu_visible_description),
                                     style = MaterialTheme.typography.bodySmall,
                                 )
                             }
@@ -644,7 +645,7 @@ private fun SetupButton(label: String, accentColor: Color, enabled: Boolean = tr
 internal fun requirementTitleRes(requirement: PhoneStatusRequirement): Int = when (requirement) {
     PhoneStatusRequirement.DEFAULT_DIALER -> R.string.onboarding_requirement_default
     PhoneStatusRequirement.NOTIFICATIONS -> R.string.call_notifications
-    PhoneStatusRequirement.CONTACTS -> R.string.tab_contacts
+    PhoneStatusRequirement.CONTACTS -> CoreUiR.string.tab_contacts
     PhoneStatusRequirement.CALL_LOG -> R.string.call_log
     PhoneStatusRequirement.PHONE_STATE -> R.string.phone_state
     PhoneStatusRequirement.CALL_PHONE -> R.string.calls
@@ -686,7 +687,7 @@ internal fun setupActionLabel(
     notificationsRequireSettings: Boolean = false,
 ): String = stringResource(
     when {
-        outcome == SetupOutcome.BLOCKED || (requirement == PhoneStatusRequirement.NOTIFICATIONS && notificationsRequireSettings) -> R.string.open_settings
+        outcome == SetupOutcome.BLOCKED || (requirement == PhoneStatusRequirement.NOTIFICATIONS && notificationsRequireSettings) -> CoreUiR.string.open_settings
         outcome == SetupOutcome.UNAVAILABLE || outcome == SetupOutcome.DENIED -> R.string.onboarding_retry
         else -> when (requirement) {
             PhoneStatusRequirement.DEFAULT_DIALER -> R.string.onboarding_allow_default

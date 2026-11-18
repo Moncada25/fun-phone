@@ -47,6 +47,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -73,7 +75,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.GameId
 import com.bookverse.contacts.domain.games.GameRecordKind
 import com.bookverse.contacts.domain.games.GameStatsRepository
@@ -126,61 +127,61 @@ fun GamesScreen(
             GameData(
                 id = GameId.FUN_BIRD,
                 title = resources.getString(R.string.fun_bird_title),
-                iconRes = R.drawable.game_fun_bird,
+                iconRes = CoreUiR.drawable.game_fun_bird,
                 onClick = onFunBirdClick
             ),
             GameData(
                 id = GameId.SNAKE,
                 title = resources.getString(R.string.snake_title),
-                iconRes = R.drawable.game_snake,
+                iconRes = CoreUiR.drawable.game_snake,
                 onClick = onSnakeClick
             ),
             GameData(
                 id = GameId.MINESWEEPER,
                 title = resources.getString(R.string.minesweeper_title),
-                iconRes = R.drawable.game_minesweeper,
+                iconRes = CoreUiR.drawable.game_minesweeper,
                 onClick = onMinesweeperClick
             ),
             GameData(
                 id = GameId.GAME_2048,
                 title = resources.getString(R.string.game_2048_title),
-                iconRes = R.drawable.game_2048,
+                iconRes = CoreUiR.drawable.game_2048,
                 onClick = on2048Click
             ),
             GameData(
                 id = GameId.PUZZLE,
                 title = resources.getString(R.string.puzzle_title),
-                iconRes = R.drawable.game_puzzle,
+                iconRes = CoreUiR.drawable.game_puzzle,
                 onClick = onPuzzleClick
             ),
             GameData(
                 id = GameId.TIC_TAC_TOE,
                 title = resources.getString(R.string.tic_tac_toe_title),
-                iconRes = R.drawable.game_tictactoe,
+                iconRes = CoreUiR.drawable.game_tictactoe,
                 onClick = onTicTacToeClick
             ),
             GameData(
                 id = GameId.HANGMAN,
                 title = resources.getString(R.string.hangman_title),
-                iconRes = R.drawable.game_hangman,
+                iconRes = CoreUiR.drawable.game_hangman,
                 onClick = onHangmanClick
             ),
             GameData(
                 id = GameId.BREAKOUT,
                 title = resources.getString(R.string.breakout_title),
-                iconRes = R.drawable.game_breakout,
+                iconRes = CoreUiR.drawable.game_breakout,
                 onClick = onBreakoutClick
             ),
             GameData(
                 id = GameId.SUDOKU,
                 title = resources.getString(R.string.sudoku_title),
-                iconRes = R.drawable.game_sudoku,
+                iconRes = CoreUiR.drawable.game_sudoku,
                 onClick = onSudokuClick
             ),
             GameData(
                 id = GameId.MEMORY,
                 title = resources.getString(R.string.memory_game_title),
-                iconRes = R.drawable.game_memory,
+                iconRes = CoreUiR.drawable.game_memory,
                 onClick = onMemoryGameClick
             )
         )
@@ -204,7 +205,7 @@ fun GamesScreen(
         topBar = {
             SecondaryTopBar(
                 expandable = true,
-                title = stringResource(R.string.games_title),
+                title = stringResource(CoreUiR.string.games_title),
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.QueryStats,

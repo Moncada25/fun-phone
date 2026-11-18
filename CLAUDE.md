@@ -87,13 +87,14 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 
 ## Localization
 
-All new user-facing strings must be added to the following resources:
-- `core/ui/src/main/res/values/strings.xml` (English baseline)
-- `core/ui/src/main/res/values-es/strings.xml`, `values-de/strings.xml`, `values-fr/strings.xml`, and
-  `values-pt/strings.xml` (supported translations)
+Each module owns its strings. A string used by one feature goes in that feature's
+`feature/<name>/src/main/res/values/strings.xml` (English baseline) and its `values-es`, `values-de`,
+`values-fr` and `values-pt` translations, referenced through `com.bookverse.contacts.feature.<name>.R`.
+A string used by several features or by `:app` goes in `core/ui/src/main/res/values*/strings.xml`.
+Never declare the same string name in two modules.
 
 Shared strings, drawables, avatars and fonts live in `:core:ui`; reference them through
-`com.bookverse.contacts.core.ui.R`. `:app` keeps only manifest-owned resources (theme, launcher
+`com.bookverse.contacts.core.ui.R` (imported as `CoreUiR` next to a feature `R`). `:app` keeps only manifest-owned resources (theme, launcher
 icon, widget previews and `xml/` configs). Never hardcode text in Kotlin. Use localized formatters for dates, numbers, currencies.
 Run `./scripts/verify-localization.sh` after changing localized resources.
 

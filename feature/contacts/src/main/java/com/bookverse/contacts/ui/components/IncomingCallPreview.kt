@@ -55,12 +55,12 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.view.WindowCompat
 import coil.compose.AsyncImage
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.theme.CallAcceptColor
 import com.bookverse.contacts.ui.theme.CallRejectColor
 import com.bookverse.contacts.ui.theme.GradientScrimColor
 import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun IncomingCallPreviewDialog(
@@ -119,7 +119,7 @@ internal fun IncomingCallPreview(
     }
     val secondaryTextColor = primaryTextColor.copy(alpha = 0.76f)
     val tertiaryTextColor = primaryTextColor.copy(alpha = 0.58f)
-    val callLabel = stringResource(R.string.recent_type_call_received)
+    val callLabel = stringResource(CoreUiR.string.recent_type_call_received)
     val isDarkTheme = when (themeMode) {
         ThemeMode.DARK -> true
         ThemeMode.LIGHT -> false
@@ -251,7 +251,7 @@ internal fun IncomingCallPreview(
                                 AsyncImage(
                                     model = photoUri,
                                     contentDescription = stringResource(
-                                        R.string.contact_photo_description,
+                                        CoreUiR.string.contact_photo_description,
                                         displayName,
                                     ),
                                     modifier = Modifier.fillMaxSize(),
@@ -269,7 +269,7 @@ internal fun IncomingCallPreview(
                                 Icon(
                                     imageVector = Icons.Default.Person,
                                     contentDescription = stringResource(
-                                        R.string.contact_no_photo_description,
+                                        CoreUiR.string.contact_no_photo_description,
                                         displayName,
                                     ),
                                     modifier = Modifier.fillMaxSize(0.64f),
@@ -320,13 +320,13 @@ internal fun IncomingCallPreview(
                 ) {
                     PreviewCallAction(
                         icon = Icons.Default.CallEnd,
-                        label = stringResource(R.string.reject),
+                        label = stringResource(CoreUiR.string.reject),
                         color = CallRejectColor,
                         textColor = primaryTextColor,
                     )
                     PreviewCallAction(
                         icon = Icons.Default.Call,
-                        label = stringResource(R.string.answer),
+                        label = stringResource(CoreUiR.string.answer),
                         color = CallAcceptColor,
                         textColor = primaryTextColor,
                     )
@@ -367,12 +367,12 @@ internal fun IncomingCallPreview(
                             horizontalArrangement = Arrangement.SpaceBetween,
                         ) {
                             Text(
-                                text = stringResource(R.string.reject),
+                                text = stringResource(CoreUiR.string.reject),
                                 color = onSurface,
                                 style = MaterialTheme.typography.bodyLarge,
                             )
                             Text(
-                                text = stringResource(R.string.answer),
+                                text = stringResource(CoreUiR.string.answer),
                                 color = onSurface,
                                 style = MaterialTheme.typography.bodyLarge,
                             )
@@ -389,7 +389,7 @@ internal fun IncomingCallPreview(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.PhoneCallback,
                                 contentDescription = stringResource(
-                                    R.string.slide_to_answer_or_reject,
+                                    CoreUiR.string.slide_to_answer_or_reject,
                                     displayName,
                                 ),
                                 tint = onSurface,

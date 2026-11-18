@@ -62,8 +62,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.components.ButtonClick
 import com.bookverse.contacts.ui.components.FastScroller
 import com.bookverse.contacts.ui.components.SearchFieldSurface
@@ -73,6 +73,7 @@ import com.bookverse.contacts.utils.avatarLabel
 import com.bookverse.contacts.utils.groupContactsAlphabetically
 import com.bookverse.contacts.utils.initialInfo
 import java.util.Locale
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -176,7 +177,7 @@ fun AddFavoritesDialog(
                     IconButton(onClick = onDismiss) {
                         Icon(
                             imageVector = Icons.Default.Cancel,
-                            contentDescription = stringResource(R.string.cancel),
+                            contentDescription = stringResource(CoreUiR.string.cancel),
                             tint = textColor,
                             modifier = Modifier.size(24.dp)
                         )
@@ -242,7 +243,7 @@ fun AddFavoritesDialog(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = stringResource(R.string.contacts_empty),
+                            text = stringResource(CoreUiR.string.contacts_empty),
                             color = textColor.copy(alpha = 0.6f),
                             fontSize = 16.sp,
                             textAlign = TextAlign.Center
@@ -256,7 +257,7 @@ fun AddFavoritesDialog(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = stringResource(R.string.no_contacts_found),
+                            text = stringResource(CoreUiR.string.no_contacts_found),
                             color = textColor.copy(alpha = 0.6f),
                             fontSize = 16.sp,
                             textAlign = TextAlign.Center
@@ -312,7 +313,7 @@ fun AddFavoritesDialog(
                     ButtonClick(
                         onClick = onDismiss,
                         modifier = Modifier.weight(1f),
-                        text = stringResource(R.string.cancel),
+                        text = stringResource(CoreUiR.string.cancel),
                         fontSize = 18
                     )
 
@@ -329,7 +330,7 @@ fun AddFavoritesDialog(
                         shape = RoundedCornerShape(999.dp)
                     ) {
                         Text(
-                            text = stringResource(R.string.apply),
+                            text = stringResource(CoreUiR.string.apply),
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Medium
                         )

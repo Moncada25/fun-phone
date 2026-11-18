@@ -37,6 +37,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -82,7 +84,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.games.SNAKE_BOARD_HEIGHT
 import com.bookverse.contacts.domain.games.SNAKE_BOARD_WIDTH
 import com.bookverse.contacts.domain.games.SnakeBoundaryMode
@@ -716,7 +717,7 @@ private fun SnakeSetupDialog(
                             contentColor = MaterialTheme.colorScheme.onSurface,
                         ),
                     ) {
-                        Text(stringResource(R.string.cancel))
+                        Text(stringResource(CoreUiR.string.cancel))
                     }
                     Button(
                         onClick = { onStart(selectedMode) },

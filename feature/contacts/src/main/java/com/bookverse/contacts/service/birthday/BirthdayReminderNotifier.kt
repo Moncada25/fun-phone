@@ -12,10 +12,11 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.birthday.BirthdayReminder
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.navigation.AppEntryPoints
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class BirthdayReminderNotifier(context: Context) {
     private val appContext = context.applicationContext
@@ -54,7 +55,7 @@ class BirthdayReminderNotifier(context: Context) {
             else -> R.string.birthday_notification_in_two_days_title to R.string.birthday_notification_in_two_days_text
         }
         return NotificationCompat.Builder(appContext, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification_reminder)
+            .setSmallIcon(CoreUiR.drawable.ic_notification_reminder)
             .setContentTitle(localizedContext.getString(titleId, reminder.contact.name))
             .setContentText(localizedContext.getString(textId))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -73,7 +74,7 @@ class BirthdayReminderNotifier(context: Context) {
             reminders.size,
         )
         return NotificationCompat.Builder(appContext, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification_reminder)
+            .setSmallIcon(CoreUiR.drawable.ic_notification_reminder)
             .setContentTitle(title)
             .setContentText(localizedContext.getString(R.string.birthday_notification_summary_text))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

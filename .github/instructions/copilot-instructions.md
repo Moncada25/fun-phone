@@ -105,8 +105,9 @@ class MyViewModel(
 - CalendarContract for calendar integration
 
 ## Localization
-- All new strings must go to `app/src/main/res/values/strings.xml`
-- Provide translations in `values-en/strings.xml`
+- New strings go to `values/strings.xml` of the module that uses them (`feature/<name>/src/main/res`,
+  or `core/ui/src/main/res` when several modules share them)
+- Provide translations in `values-es`, `values-de`, `values-fr` and `values-pt` of the same module
 - Never hardcode text in Kotlin except for temporary debugging
 - Use localized formatters for dates, numbers, and currencies
 

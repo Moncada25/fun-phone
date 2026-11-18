@@ -45,6 +45,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -78,7 +80,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.ChecklistItem
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.integration.NotesViewModelFactory
@@ -296,7 +297,7 @@ fun ChecklistScreen(
                     }
                     IconAction(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showMoreOptions = true },
                         feedback = true
                     )
@@ -315,8 +316,8 @@ fun ChecklistScreen(
                                 focusManager.clearFocus(force = true)
                                 searchActive = false
                             },
-                            leadingContentDescription = stringResource(R.string.search),
-                            clearContentDescription = stringResource(R.string.clear),
+                            leadingContentDescription = stringResource(CoreUiR.string.search),
+                            clearContentDescription = stringResource(CoreUiR.string.clear),
                         )
                     }
                 } else null
@@ -583,7 +584,7 @@ fun ChecklistScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Edit,
-                                        contentDescription = stringResource(R.string.edit),
+                                        contentDescription = stringResource(CoreUiR.string.edit),
                                         tint = textColor
                                     )
                                 }
@@ -594,7 +595,7 @@ fun ChecklistScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Delete,
-                                        contentDescription = stringResource(R.string.delete),
+                                        contentDescription = stringResource(CoreUiR.string.delete),
                                         tint = MaterialTheme.colorScheme.error
                                     )
                                 }
@@ -624,7 +625,7 @@ fun ChecklistScreen(
             MessageDialog(
                 title = stringResource(R.string.reminder_validation_error_title),
                 message1 = validationMessage,
-                buttonText = stringResource(R.string.understood),
+                buttonText = stringResource(CoreUiR.string.understood),
                 onButtonClick = { showValidationDialog = false },
                 onDismiss = { showValidationDialog = false },
             )
@@ -663,10 +664,10 @@ fun ChecklistScreen(
 
         if (showMoreOptions) {
             OptionsDialog(
-                title = stringResource(R.string.more_options),
+                title = stringResource(CoreUiR.string.more_options),
                 options = listOf(
                     OptionsDialogItem(
-                        label = stringResource(R.string.save),
+                        label = stringResource(CoreUiR.string.save),
                         icon = Icons.Default.Check,
                         onClick = { showMoreOptions = false; handleSave() }
                     ),

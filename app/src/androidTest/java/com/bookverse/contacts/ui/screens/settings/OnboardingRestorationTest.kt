@@ -16,13 +16,13 @@ import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.DarkModeStyle
 import com.bookverse.contacts.ui.theme.ThemeMode
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.settings.R as SettingsR
 
 class OnboardingRestorationTest {
     @get:Rule
@@ -36,12 +36,12 @@ class OnboardingRestorationTest {
                 OnboardingFlowScreen(onFinish = { _, _ -> }, settingsViewModel = remember { AppSettingsViewModel() })
             }
         }
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.onboarding_get_started))
+        composeRule.onNodeWithText(composeRule.activity.getString(SettingsR.string.onboarding_get_started))
             .performScrollTo().performClick()
         restoration.emulateSavedInstanceStateRestore()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.onboarding_setup_title)).assertIsDisplayed()
+        composeRule.onNodeWithText(composeRule.activity.getString(SettingsR.string.onboarding_setup_title)).assertIsDisplayed()
         composeRule.runOnUiThread { composeRule.activity.onBackPressedDispatcher.onBackPressed() }
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.onboarding_welcome_title)).assertIsDisplayed()
+        composeRule.onNodeWithText(composeRule.activity.getString(SettingsR.string.onboarding_welcome_title)).assertIsDisplayed()
     }
     @Test
     fun cancelingAndroidRoleDialogReturnsToSetupAndCanFinishInLimitedMode() {
@@ -54,9 +54,9 @@ class OnboardingRestorationTest {
                 OnboardingFlowScreen(onFinish = { limited, review -> finished.set(limited to review) }, settingsViewModel = remember { AppSettingsViewModel() })
             }
         }
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.onboarding_get_started))
+        composeRule.onNodeWithText(composeRule.activity.getString(SettingsR.string.onboarding_get_started))
             .performScrollTo().performClick()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.onboarding_allow_default))
+        composeRule.onNodeWithText(composeRule.activity.getString(SettingsR.string.onboarding_allow_default))
             .performScrollTo().performClick()
         val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
         composeRule.waitUntil(timeoutMillis = 5_000) {
@@ -64,10 +64,10 @@ class OnboardingRestorationTest {
         }
         automation.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
         composeRule.waitUntil(timeoutMillis = 5_000) {
-            composeRule.onAllNodes(androidx.compose.ui.test.hasText(composeRule.activity.getString(R.string.onboarding_retry)))
+            composeRule.onAllNodes(androidx.compose.ui.test.hasText(composeRule.activity.getString(SettingsR.string.onboarding_retry)))
                 .fetchSemanticsNodes().isNotEmpty()
         }
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.onboarding_continue_later))
+        composeRule.onNodeWithText(composeRule.activity.getString(SettingsR.string.onboarding_continue_later))
             .performScrollTo().performClick()
         assertEquals(true to false, finished.get())
     }

@@ -35,6 +35,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,7 +63,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.data.notes.RecordingData
 import com.bookverse.contacts.integration.NotesViewModelFactory
@@ -371,7 +372,7 @@ fun RecordingScreen(
                     }
                     IconAction(
                         imageVector = Icons.Default.Check,
-                        contentDescription = stringResource(R.string.save),
+                        contentDescription = stringResource(CoreUiR.string.save),
                         onClick = { handleSaveLogic() }
                     )
                 },
@@ -578,9 +579,9 @@ fun RecordingScreen(
 
     if (showValidationDialog) {
         MessageDialog(
-            title = stringResource(R.string.error_title),
+            title = stringResource(CoreUiR.string.error_title),
             message1 = validationMessage,
-            buttonText = stringResource(R.string.understood),
+            buttonText = stringResource(CoreUiR.string.understood),
             onButtonClick = { showValidationDialog = false },
             onDismiss = { showValidationDialog = false },
         )
@@ -588,9 +589,9 @@ fun RecordingScreen(
 
     if (showPermissionDialog) {
         MessageDialog(
-            title = stringResource(R.string.permission_required),
-            message1 = stringResource(R.string.microphone_permission_message),
-            buttonText = stringResource(R.string.understood),
+            title = stringResource(CoreUiR.string.permission_required),
+            message1 = stringResource(CoreUiR.string.microphone_permission_message),
+            buttonText = stringResource(CoreUiR.string.understood),
             onButtonClick = { showPermissionDialog = false },
             onDismiss = { showPermissionDialog = false },
         )

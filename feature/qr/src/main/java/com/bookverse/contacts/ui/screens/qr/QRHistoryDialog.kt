@@ -63,9 +63,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.qr.QRHistoryEntity
 import com.bookverse.contacts.data.qr.QRType
+import com.bookverse.contacts.feature.qr.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
@@ -84,6 +84,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.EnumMap
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -163,7 +164,7 @@ fun QRHistoryDialog(
                         IconButton(onClick = onDismiss) {
                             Icon(
                                 imageVector = Icons.Default.Cancel,
-                                contentDescription = stringResource(R.string.cancel),
+                                contentDescription = stringResource(CoreUiR.string.cancel),
                                 tint = textColor,
                                 modifier = Modifier.size(24.dp)
                             )
@@ -247,7 +248,7 @@ fun QRHistoryDialog(
             title = stringResource(R.string.qr_history_clear_title),
             message = stringResource(R.string.qr_history_clear_message),
             appSettingsViewModel = appSettingsViewModel,
-            confirmButtonLabel = stringResource(R.string.delete)
+            confirmButtonLabel = stringResource(CoreUiR.string.delete)
         )
     }
 
@@ -345,7 +346,7 @@ fun QRHistoryItem(
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = stringResource(R.string.delete),
+                    contentDescription = stringResource(CoreUiR.string.delete),
                     tint = MaterialTheme.colorScheme.error,
                     modifier = Modifier.size(20.dp)
                 )
@@ -417,7 +418,7 @@ fun QRViewDialog(
                     IconButton(onClick = onDismiss) {
                         Icon(
                             imageVector = Icons.Default.Cancel,
-                            contentDescription = stringResource(R.string.cancel),
+                            contentDescription = stringResource(CoreUiR.string.cancel),
                             tint = textColor
                         )
                     }
@@ -495,7 +496,7 @@ fun QRViewDialog(
                                 modifier = Modifier.weight(1f),
                                 shape = RoundedCornerShape(999.dp)
                             ) {
-                                Text(text = stringResource(R.string.share))
+                                Text(text = stringResource(CoreUiR.string.share))
                             }
 
                             OutlinedButton(
@@ -523,7 +524,7 @@ fun QRViewDialog(
                             modifier = Modifier.weight(1f),
                             shape = RoundedCornerShape(999.dp)
                         ) {
-                            Text(text = stringResource(R.string.share))
+                            Text(text = stringResource(CoreUiR.string.share))
                         }
 
                         OutlinedButton(

@@ -44,11 +44,11 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.ui.components.ConfirmDialog
 import com.bookverse.contacts.ui.components.DatePickerDialog
 import com.bookverse.contacts.ui.components.SelectBottomSheet
@@ -63,6 +63,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -367,7 +368,7 @@ fun AddTransactionScreen(
                                 ),
                                 border = BorderStroke(1.dp, accentColor),
                             ) {
-                                Text(text = stringResource(R.string.cancel))
+                                Text(text = stringResource(CoreUiR.string.cancel))
                             }
                             Button(
                                 onClick = ::handleSave,
@@ -380,7 +381,7 @@ fun AddTransactionScreen(
                                 shape = RoundedCornerShape(999.dp),
                             ) {
                                 Text(
-                                    text = stringResource(R.string.save),
+                                    text = stringResource(CoreUiR.string.save),
                                     fontWeight = FontWeight.Bold,
                                 )
                             }

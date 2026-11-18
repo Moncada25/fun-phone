@@ -43,13 +43,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import com.bookverse.contacts.feature.expenses.R
 import com.bookverse.contacts.ui.theme.BudgetOkColor
 import com.bookverse.contacts.ui.theme.BudgetWarningColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.expenses.ExpenseCategory
 import com.bookverse.contacts.data.expenses.ExpenseTransaction
 import com.bookverse.contacts.data.expenses.ExpenseType
@@ -66,6 +66,7 @@ import com.composables.icons.lucide.TrendingUp
 import java.time.YearMonth
 import java.time.format.TextStyle
 import androidx.core.graphics.toColorInt
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun ExpenseMonthSelector(
@@ -97,7 +98,7 @@ fun ExpenseMonthSelector(
         ) {
             MonthNavigationButton(
                 icon = Icons.Rounded.ChevronLeft,
-                contentDescription = stringResource(R.string.cd_previous_month),
+                contentDescription = stringResource(CoreUiR.string.cd_previous_month),
                 onClick = onPrev,
                 accentColor = accentColor
             )
@@ -124,7 +125,7 @@ fun ExpenseMonthSelector(
             }
             MonthNavigationButton(
                 icon = Icons.Rounded.ChevronRight,
-                contentDescription = stringResource(R.string.cd_next_month),
+                contentDescription = stringResource(CoreUiR.string.cd_next_month),
                 onClick = onNext,
                 accentColor = accentColor
             )
@@ -324,7 +325,7 @@ fun ExpenseTransactionCard(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.MoreVert,
-                                contentDescription = stringResource(R.string.more_options),
+                                contentDescription = stringResource(CoreUiR.string.more_options),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.78f),
                             )
                         }
@@ -337,7 +338,7 @@ fun ExpenseTransactionCard(
                             ),
                         ) {
                             DropdownMenuItem(
-                                text = { Text(stringResource(R.string.edit)) },
+                                text = { Text(stringResource(CoreUiR.string.edit)) },
                                 onClick = {
                                     menuExpanded = false
                                     onEdit(transaction)
@@ -354,7 +355,7 @@ fun ExpenseTransactionCard(
                                 ),
                             )
                             DropdownMenuItem(
-                                text = { Text(stringResource(R.string.delete)) },
+                                text = { Text(stringResource(CoreUiR.string.delete)) },
                                 onClick = {
                                     menuExpanded = false
                                     onDelete(transaction)
@@ -466,7 +467,7 @@ fun BudgetStatusCard(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.MoreVert,
-                                contentDescription = stringResource(R.string.more_options),
+                                contentDescription = stringResource(CoreUiR.string.more_options),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.78f),
                             )
                         }
@@ -479,7 +480,7 @@ fun BudgetStatusCard(
                             ),
                         ) {
                             DropdownMenuItem(
-                                text = { Text(stringResource(R.string.edit)) },
+                                text = { Text(stringResource(CoreUiR.string.edit)) },
                                 onClick = {
                                     menuExpanded = false
                                     onEdit()
@@ -496,7 +497,7 @@ fun BudgetStatusCard(
                                 ),
                             )
                             DropdownMenuItem(
-                                text = { Text(stringResource(R.string.delete)) },
+                                text = { Text(stringResource(CoreUiR.string.delete)) },
                                 onClick = {
                                     menuExpanded = false
                                     onDelete()

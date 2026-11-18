@@ -28,7 +28,7 @@ import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.material.icons.outlined.PersonOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.settings.R
 import com.composables.icons.lucide.AArrowUp
 import com.composables.icons.lucide.AlignJustify
 import com.composables.icons.lucide.ArchiveRestore
@@ -48,6 +48,7 @@ import com.composables.icons.lucide.Upload
 import com.composables.icons.lucide.UsersRound
 import com.composables.icons.lucide.Vibrate
 import com.composables.icons.lucide.Volume2
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal data class SettingsSectionsState(
     val hasContactsPermission: Boolean,
@@ -181,12 +182,12 @@ internal fun buildSettingsSections(
             SettingsItemModel(
                 key = "tools_visible",
                 icon = Icons.Default.AppBlocking,
-                title = stringResource(R.string.tools_menu_visible_title),
-                description = stringResource(R.string.tools_menu_visible_description),
+                title = stringResource(CoreUiR.string.tools_menu_visible_title),
+                description = stringResource(CoreUiR.string.tools_menu_visible_description),
                 onClick = {},
                 toggle = SettingsToggleModel(state.toolsMenuVisible, actions.onToolsMenuVisibleChanged),
             ),
-            SettingsItemModel("tools_customize", Icons.Default.Tune, stringResource(R.string.tools_customize_title), stringResource(R.string.tools_customize_description), actions.onCustomizeTools),
+            SettingsItemModel("tools_customize", Icons.Default.Tune, stringResource(CoreUiR.string.tools_customize_title), stringResource(R.string.tools_customize_description), actions.onCustomizeTools),
         ),
     ),
     SettingsSectionModel(
@@ -195,12 +196,12 @@ internal fun buildSettingsSections(
         description = stringResource(R.string.contacts_accounts_section_description),
         items = buildList {
             if (state.hasContactsPermission) {
-                add(SettingsItemModel("profile", Icons.Outlined.PersonOutline, stringResource(R.string.profile_item), stringResource(R.string.profile_description), actions.onProfile))
+                add(SettingsItemModel("profile", Icons.Outlined.PersonOutline, stringResource(CoreUiR.string.profile_item), stringResource(R.string.profile_description), actions.onProfile))
             }
             add(SettingsItemModel("default_account", Icons.Default.ManageAccounts, stringResource(R.string.default_account_title), stringResource(R.string.default_account_description), actions.onDefaultAccount, state.defaultAccountValue))
-            add(SettingsItemModel("tags", Lucide.Tags, stringResource(R.string.tag_manager_title), stringResource(R.string.tag_manager_description), actions.onTagManager))
-            add(SettingsItemModel("duplicates", Lucide.UsersRound, stringResource(R.string.duplicate_contacts_title), stringResource(R.string.duplicate_contacts_description), actions.onDuplicateContacts))
-            add(SettingsItemModel("contact_recycle_bin", Lucide.ArchiveRestore, stringResource(R.string.contact_recycle_bin_title), stringResource(R.string.contact_recycle_bin_description), actions.onContactRecycleBin))
+            add(SettingsItemModel("tags", Lucide.Tags, stringResource(CoreUiR.string.tag_manager_title), stringResource(R.string.tag_manager_description), actions.onTagManager))
+            add(SettingsItemModel("duplicates", Lucide.UsersRound, stringResource(CoreUiR.string.duplicate_contacts_title), stringResource(R.string.duplicate_contacts_description), actions.onDuplicateContacts))
+            add(SettingsItemModel("contact_recycle_bin", Lucide.ArchiveRestore, stringResource(CoreUiR.string.contact_recycle_bin_title), stringResource(R.string.contact_recycle_bin_description), actions.onContactRecycleBin))
             add(SettingsItemModel("blocked", Icons.Default.AppBlocking, stringResource(R.string.blocked_numbers_title), stringResource(R.string.blocked_numbers_description), actions.onBlockedNumbers, state.blockedNumbersValue))
         },
     ),
@@ -227,10 +228,10 @@ internal fun buildSettingsSections(
         description = stringResource(R.string.home_shortcuts_section_description),
         items = listOf(
             SettingsItemModel("shortcuts", Icons.AutoMirrored.Filled.AddToHomeScreen, stringResource(R.string.home_shortcuts_card_title), stringResource(R.string.home_shortcuts_card_description), actions.onHomeShortcuts),
-            SettingsItemModel("favorites_widget", Icons.Default.Widgets, stringResource(R.string.home_widget_card_title), stringResource(R.string.home_widget_card_description), actions.onFavoritesWidget),
-            SettingsItemModel("notes_widget", Icons.AutoMirrored.Filled.NoteAdd, stringResource(R.string.notes_widget_card_title), stringResource(R.string.notes_widget_card_description), actions.onNotesWidget),
-            SettingsItemModel("recent_calls_widget", Icons.Default.History, stringResource(R.string.recent_calls_widget_card_title), stringResource(R.string.recent_calls_widget_card_description), actions.onRecentCallsWidget),
-            SettingsItemModel("expenses_widget", Icons.Default.Savings, stringResource(R.string.expenses_widget_card_title), stringResource(R.string.expenses_widget_card_description), actions.onExpensesWidget),
+            SettingsItemModel("favorites_widget", Icons.Default.Widgets, stringResource(CoreUiR.string.home_widget_card_title), stringResource(R.string.home_widget_card_description), actions.onFavoritesWidget),
+            SettingsItemModel("notes_widget", Icons.AutoMirrored.Filled.NoteAdd, stringResource(CoreUiR.string.notes_widget_card_title), stringResource(R.string.notes_widget_card_description), actions.onNotesWidget),
+            SettingsItemModel("recent_calls_widget", Icons.Default.History, stringResource(CoreUiR.string.recent_calls_widget_card_title), stringResource(R.string.recent_calls_widget_card_description), actions.onRecentCallsWidget),
+            SettingsItemModel("expenses_widget", Icons.Default.Savings, stringResource(CoreUiR.string.expenses_widget_card_title), stringResource(R.string.expenses_widget_card_description), actions.onExpensesWidget),
         ),
     ),
     SettingsSectionModel(
@@ -238,8 +239,8 @@ internal fun buildSettingsSections(
         title = stringResource(R.string.security_settings),
         description = stringResource(R.string.security_settings_description),
         items = listOf(
-            SettingsItemModel("biometrics", Icons.Default.Fingerprint, stringResource(R.string.security_biometrics), stringResource(R.string.biometrics_protection), {}, toggle = SettingsToggleModel(state.passwordAuthEnabled, actions.onPasswordAuthChanged)),
-            SettingsItemModel("passwords", Lucide.KeyRound, stringResource(R.string.passwords_item), stringResource(R.string.password_manager_switch), {}, toggle = SettingsToggleModel(state.passwordManagerEnabled, actions.onPasswordManagerChanged)),
+            SettingsItemModel("biometrics", Icons.Default.Fingerprint, stringResource(CoreUiR.string.security_biometrics), stringResource(R.string.biometrics_protection), {}, toggle = SettingsToggleModel(state.passwordAuthEnabled, actions.onPasswordAuthChanged)),
+            SettingsItemModel("passwords", Lucide.KeyRound, stringResource(CoreUiR.string.passwords_item), stringResource(R.string.password_manager_switch), {}, toggle = SettingsToggleModel(state.passwordManagerEnabled, actions.onPasswordManagerChanged)),
             SettingsItemModel("sensitive_lock", Lucide.ShieldCheck, stringResource(R.string.expenses_lock_title), stringResource(R.string.expenses_lock_description), {}, toggle = SettingsToggleModel(state.sensitiveSectionsLockEnabled, actions.onSensitiveSectionsLockChanged)),
         ),
     ),
@@ -250,7 +251,7 @@ internal fun buildSettingsSections(
         items = listOf(
             SettingsItemModel("save_contacts", Lucide.SaveAll, stringResource(R.string.extras_save_contacts), stringResource(R.string.save_contacts_description), actions.onSaveContacts),
             SettingsItemModel("share_contacts", Icons.Default.Share, stringResource(R.string.extras_share_contacts), stringResource(R.string.share_contacts_description), actions.onShareContacts),
-            SettingsItemModel("restore_contacts", Icons.Default.SettingsBackupRestore, stringResource(R.string.extras_restore_contacts), stringResource(R.string.restore_contacts_description), actions.onRestoreContacts),
+            SettingsItemModel("restore_contacts", Icons.Default.SettingsBackupRestore, stringResource(CoreUiR.string.extras_restore_contacts), stringResource(R.string.restore_contacts_description), actions.onRestoreContacts),
             SettingsItemModel("export_vcard", Lucide.FileOutput, stringResource(R.string.vcard_export_title), stringResource(R.string.vcard_export_description), actions.onExportVCard),
             SettingsItemModel("import_vcard", Lucide.FileInput, stringResource(R.string.vcard_import_title), stringResource(R.string.vcard_import_description), actions.onImportVCard),
             SettingsItemModel("save_settings", Lucide.Download, stringResource(R.string.save_settings_title), stringResource(R.string.save_settings_description), actions.onSaveSettings),

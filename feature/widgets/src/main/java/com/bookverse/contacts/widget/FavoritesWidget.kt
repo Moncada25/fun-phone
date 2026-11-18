@@ -1,5 +1,6 @@
 package com.bookverse.contacts.widget
 
+import com.bookverse.contacts.feature.widgets.R
 import com.bookverse.contacts.navigation.AppEntryPoints
 import android.content.Context
 import android.content.Intent
@@ -42,7 +43,6 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.utils.ContactUtils
 import kotlinx.coroutines.Dispatchers

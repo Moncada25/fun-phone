@@ -9,8 +9,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.settings.Countries
 import com.bookverse.contacts.ui.components.ContactFormScreen
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel

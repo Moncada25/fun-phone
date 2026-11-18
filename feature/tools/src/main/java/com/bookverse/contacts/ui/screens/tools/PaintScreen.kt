@@ -50,6 +50,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -89,7 +91,6 @@ import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.ui.components.AppSnackbarHost
@@ -331,7 +332,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
             title = stringResource(R.string.save_options),
             options = listOf(
                 stringResource(R.string.save_locally),
-                stringResource(R.string.share)
+                stringResource(CoreUiR.string.share)
             ),
             onOptionSelected = { index ->
                 val bounds = canvasBounds
@@ -360,7 +361,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
 
     if (showMoreOptions) {
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = listOf(
                 OptionsDialogItem(
                     label = stringResource(R.string.paint_import_image),
@@ -539,7 +540,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
     Scaffold(
         topBar = {
             SecondaryTopBar(
-                title = stringResource(R.string.paint_title),
+                title = stringResource(CoreUiR.string.paint_title),
                 onBackClick = handleBack,
                 actions = {
                     IconAction(
@@ -550,7 +551,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                     )
                     IconAction(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showMoreOptions = true },
                         enabled = !state.isBlurProcessing,
                     )
@@ -652,7 +653,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                                             contentDescription = stringResource(R.string.paint_cancel_image)
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text(text = stringResource(R.string.cancel))
+                                        Text(text = stringResource(CoreUiR.string.cancel))
                                     }
                                     Button(
                                         onClick = {
@@ -669,7 +670,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                                             contentDescription = stringResource(R.string.paint_confirm_image)
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text(text = stringResource(R.string.action_continue))
+                                        Text(text = stringResource(CoreUiR.string.action_continue))
                                     }
                                 }
                             }
@@ -712,7 +713,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                                             contentDescription = stringResource(R.string.paint_cancel_shape)
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text(text = stringResource(R.string.cancel))
+                                        Text(text = stringResource(CoreUiR.string.cancel))
                                     }
                                     Button(
                                         onClick = {
@@ -729,7 +730,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                                             contentDescription = stringResource(R.string.paint_confirm_shape)
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text(text = stringResource(R.string.action_continue))
+                                        Text(text = stringResource(CoreUiR.string.action_continue))
                                     }
                                 }
                             }
@@ -786,7 +787,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                                             contentDescription = stringResource(R.string.paint_cancel_text)
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text(text = stringResource(R.string.cancel))
+                                        Text(text = stringResource(CoreUiR.string.cancel))
                                     }
                                     Button(
                                         onClick = {
@@ -817,7 +818,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                                             contentDescription = stringResource(R.string.paint_confirm_text)
                                         )
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text(text = stringResource(R.string.action_continue))
+                                        Text(text = stringResource(CoreUiR.string.action_continue))
                                     }
                                 }
                             }
@@ -977,7 +978,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                     ),
                     shape = RoundedCornerShape(999.dp)
                 ) {
-                    Text(text = stringResource(R.string.apply), color = onSurface)
+                    Text(text = stringResource(CoreUiR.string.apply), color = onSurface)
                 }
             },
             dismissButton = {
@@ -986,7 +987,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                     textToAdd = ""
                 }) {
                     Text(
-                        text = stringResource(R.string.cancel),
+                        text = stringResource(CoreUiR.string.cancel),
                         color = accentColor
                     )
                 }

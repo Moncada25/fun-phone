@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Build
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.ContactPhone
@@ -46,6 +45,7 @@ import contacts.permissions.queryWithPermission
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import contacts.core.entities.Contact as ContactsCoreContact
 import java.util.Locale
 
@@ -84,7 +84,7 @@ class ContactRepository(private val context: Context) {
 
         val mappedContacts = allContactsRaw.mapNotNull { rawContact ->
             rawContact.toAppContact(
-                unknownName = context.getString(R.string.unknown),
+                unknownName = context.getString(CoreUiR.string.unknown),
                 resolvedPhotoUri = contactPhotoStore.resolveContactPhoto(
                     lookupKey = rawContact.lookupKey,
                     providerUri = rawContact.photoUri,

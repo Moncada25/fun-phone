@@ -22,6 +22,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
@@ -44,7 +46,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.components.CollageCellTransform
 import com.bookverse.contacts.ui.components.CollageLayout
 import com.bookverse.contacts.ui.components.SecondaryTopBar
@@ -225,7 +226,7 @@ fun CollageEditorScreen(
                     ),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = accentColor),
                 ) {
-                    Text(text = stringResource(R.string.cancel))
+                    Text(text = stringResource(CoreUiR.string.cancel))
                 }
                 Button(
                     onClick = { onConfirm(transforms) },

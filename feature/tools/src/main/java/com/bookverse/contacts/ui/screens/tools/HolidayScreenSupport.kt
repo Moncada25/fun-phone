@@ -14,11 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.CalendarEvent
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.PublicHoliday
 import com.bookverse.contacts.domain.holidays.BirthdayAgendaEntry
+import com.bookverse.contacts.feature.tools.R
 import com.bookverse.contacts.ui.state.HolidaysUiError
 import java.time.LocalDate
 import java.time.YearMonth

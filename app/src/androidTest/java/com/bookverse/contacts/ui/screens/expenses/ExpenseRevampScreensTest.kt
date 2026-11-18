@@ -43,6 +43,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import com.bookverse.contacts.feature.expenses.R as ExpensesR
 
 class ExpenseRevampScreensTest {
     @get:Rule
@@ -69,7 +70,7 @@ class ExpenseRevampScreensTest {
             }
         }
 
-        composeRule.onNodeWithText(text(R.string.add)).performClick()
+        composeRule.onNodeWithText(text(ExpensesR.string.add)).performClick()
         composeRule.onAllNodesWithContentDescription(text(R.string.more_options))[1].performClick()
         composeRule.onNodeWithText(text(R.string.edit)).performClick()
 
@@ -105,11 +106,11 @@ class ExpenseRevampScreensTest {
             }
         }
 
-        composeRule.onNodeWithText(text(R.string.expense_budget_all_categories_used))
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_budget_all_categories_used))
             .assertIsDisplayed()
         composeRule.onAllNodesWithContentDescription(text(R.string.more_options))[0].performClick()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
-        composeRule.onNodeWithText(text(R.string.expense_budget_delete_title)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_budget_delete_title)).assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
 
         assertEquals(budget, deletedBudget.get())
@@ -134,8 +135,8 @@ class ExpenseRevampScreensTest {
             }
         }
 
-        composeRule.onNodeWithText(text(R.string.expense_delete_transaction)).performClick()
-        composeRule.onNodeWithText(text(R.string.expense_delete_transaction_confirm))
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_delete_transaction)).performClick()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_delete_transaction_confirm))
             .assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.delete)).performClick()
 
@@ -172,7 +173,7 @@ class ExpenseRevampScreensTest {
         }
 
         composeRule.onNodeWithText(text(R.string.save)).performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.expense_delete_transaction))
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_delete_transaction))
             .performScrollTo()
             .assertIsDisplayed()
     }
@@ -199,9 +200,9 @@ class ExpenseRevampScreensTest {
             }
         }
 
-        composeRule.onNodeWithText(text(R.string.expense_category_create)).performClick()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_category_create)).performClick()
         composeRule.onNodeWithText(text(R.string.cancel)).assertIsDisplayed().performClick()
-        composeRule.onAllNodesWithText(text(R.string.expense_category_create)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(text(ExpensesR.string.expense_category_create)).assertCountEquals(1)
     }
 
     @Test
@@ -220,10 +221,10 @@ class ExpenseRevampScreensTest {
         }
 
         composeRule.onNodeWithContentDescription(text(R.string.more_options)).performClick()
-        composeRule.onNodeWithText(text(R.string.expense_nav_categories)).performClick()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_nav_categories)).performClick()
         composeRule.onNodeWithContentDescription(text(R.string.back)).performClick()
 
-        composeRule.onNodeWithText(text(R.string.expense_home_summary_title, CURRENCY.code))
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_home_summary_title, CURRENCY.code))
             .assertIsDisplayed()
         assertTrue(!exited.get())
 

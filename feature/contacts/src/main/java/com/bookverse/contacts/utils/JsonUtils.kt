@@ -6,12 +6,12 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.FileProvider
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.domain.contacts.ContactImportPolicy
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken

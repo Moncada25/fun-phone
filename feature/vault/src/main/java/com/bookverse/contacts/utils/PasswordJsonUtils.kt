@@ -6,12 +6,12 @@ import android.net.Uri
 import android.util.Base64
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.password.PasswordCredential
 import com.bookverse.contacts.data.password.PasswordFolder
 import com.bookverse.contacts.domain.passwords.PasswordImportPolicy
 import com.bookverse.contacts.domain.passwords.Totp
 import com.bookverse.contacts.domain.passwords.PasswordImportResult
+import com.bookverse.contacts.feature.vault.R
 import com.bookverse.contacts.security.CryptoManager
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 import com.google.gson.GsonBuilder

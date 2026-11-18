@@ -1,6 +1,7 @@
 package com.bookverse.contacts.ui.screens.tools
 
 import com.bookverse.contacts.data.model.Contact
+import com.bookverse.contacts.feature.tools.R
 import kotlinx.coroutines.flow.StateFlow
 import android.Manifest
 import android.app.Activity
@@ -41,6 +42,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -73,7 +75,6 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.CalendarEvent
 import com.bookverse.contacts.data.model.PublicHoliday
 import com.bookverse.contacts.domain.holidays.BirthdayAgendaEntry
@@ -375,7 +376,7 @@ fun HolidaysScreen(
             title = stringResource(R.string.holidays_network_disclosure_title),
             message1 = stringResource(R.string.holidays_network_disclosure_message),
             message2 = stringResource(R.string.holidays_network_disclosure_detail),
-            buttonText = stringResource(R.string.action_continue),
+            buttonText = stringResource(CoreUiR.string.action_continue),
             onButtonClick = viewModel::acceptNetworkDisclosure,
             secondaryButtonText = stringResource(R.string.action_not_now),
             onSecondaryButtonClick = onBackClick,
@@ -400,12 +401,12 @@ fun HolidaysScreen(
         MessageDialog(
             title = stringResource(R.string.holidays_calendar_permission_denied_title),
             message1 = stringResource(R.string.holidays_calendar_permission_denied_message),
-            buttonText = stringResource(R.string.open_settings),
+            buttonText = stringResource(CoreUiR.string.open_settings),
             onButtonClick = {
                 showCalendarSettings = false
                 PermissionUtils.openAppSettings(context)
             },
-            secondaryButtonText = stringResource(R.string.cancel),
+            secondaryButtonText = stringResource(CoreUiR.string.cancel),
             onSecondaryButtonClick = {
                 showCalendarSettings = false
             },
@@ -461,7 +462,7 @@ private fun MonthControls(
                 IconButton(onClick = onPrevious) {
                     Icon(
                         imageVector = Icons.Default.ChevronLeft,
-                        contentDescription = stringResource(R.string.cd_previous_month),
+                        contentDescription = stringResource(CoreUiR.string.cd_previous_month),
                     )
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -488,7 +489,7 @@ private fun MonthControls(
                 IconButton(onClick = onNext) {
                     Icon(
                         imageVector = Icons.Default.ChevronRight,
-                        contentDescription = stringResource(R.string.cd_next_month),
+                        contentDescription = stringResource(CoreUiR.string.cd_next_month),
                     )
                 }
             }
@@ -497,7 +498,7 @@ private fun MonthControls(
                     onClick = onToday,
                     colors = ButtonDefaults.textButtonColors(contentColor = accentColor),
                 ) {
-                    Text(stringResource(R.string.today))
+                    Text(stringResource(CoreUiR.string.today))
                 }
             }
         }
@@ -1029,7 +1030,7 @@ private fun InlineErrorCard(
                 color = MaterialTheme.colorScheme.onErrorContainer,
             )
             TextButton(onClick = onRetry) {
-                Text(stringResource(R.string.qr_scanner_retry), color = accentColor)
+                Text(stringResource(CoreUiR.string.qr_scanner_retry), color = accentColor)
             }
         }
     }

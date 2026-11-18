@@ -51,6 +51,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuDefaults
+import com.bookverse.contacts.feature.notes.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -92,7 +94,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isUnspecified
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.notes.Note
 import com.bookverse.contacts.integration.NotesViewModelFactory
 import com.bookverse.contacts.ui.components.AppSnackbarHost
@@ -153,7 +154,7 @@ fun NoteScreen(
     val isAlignRight = editorState.currentParagraphStyle.textAlign == TextAlign.End
     val isLink = editorState.isLink
 
-    val normalHeadingLabel = stringResource(R.string.normal)
+    val normalHeadingLabel = stringResource(CoreUiR.string.normal)
     val headingOptions = remember(normalHeadingLabel) {
         listOf(
             HeadingOption(
@@ -370,7 +371,7 @@ fun NoteScreen(
                     }
                     IconAction(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = stringResource(R.string.more_options),
+                        contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showMoreOptions = true },
                         feedback = true
                     )
@@ -483,7 +484,7 @@ fun NoteScreen(
                                         {
                                             Icon(
                                                 imageVector = Icons.Filled.Check,
-                                                contentDescription = stringResource(R.string.selected_single),
+                                                contentDescription = stringResource(CoreUiR.string.selected_single),
                                                 tint = accentColor
                                             )
                                         }
@@ -657,7 +658,7 @@ fun NoteScreen(
                                 contentColor = backgroundColor
                             ),
                             shape = RoundedCornerShape(999.dp)
-                        ) { Text(stringResource(R.string.apply), color = textColor) }
+                        ) { Text(stringResource(CoreUiR.string.apply), color = textColor) }
                     },
                     dismissButton = {
                         TextButton(onClick = {
@@ -672,7 +673,7 @@ fun NoteScreen(
                 MessageDialog(
                     title = stringResource(R.string.reminder_validation_error_title),
                     message1 = validationMessage,
-                    buttonText = stringResource(R.string.understood),
+                    buttonText = stringResource(CoreUiR.string.understood),
                     onButtonClick = { showValidationDialog = false },
                     onDismiss = { showValidationDialog = false },
                 )
@@ -818,7 +819,7 @@ fun NoteScreen(
             },
             if (isEditing) {
                 OptionsDialogItem(
-                    label = stringResource(R.string.save),
+                    label = stringResource(CoreUiR.string.save),
                     icon = Icons.Default.Check,
                     onClick = { performSave() }
                 )
@@ -836,7 +837,7 @@ fun NoteScreen(
             }
         )
         OptionsDialog(
-            title = stringResource(R.string.more_options),
+            title = stringResource(CoreUiR.string.more_options),
             options = options,
             onDismiss = { showMoreOptions = false },
         )

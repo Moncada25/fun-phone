@@ -1,5 +1,6 @@
 package com.bookverse.contacts.widget
 
+import com.bookverse.contacts.feature.widgets.R
 import com.bookverse.contacts.navigation.AppEntryPoints
 import android.Manifest
 import android.content.Context
@@ -43,7 +44,6 @@ import androidx.glance.layout.width
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.LocaleController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -51,6 +51,7 @@ import java.text.DateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal enum class RecentCallKind { INCOMING, OUTGOING, MISSED }
 
@@ -144,13 +145,13 @@ private fun callIntent(number: String): Intent =
 private fun RecentCallsContent(context: Context, strings: Context, state: RecentCallsState, canCall: Boolean) {
     val openRecents = actionStartActivity(recentsIntent(context))
     WidgetSurface {
-        WidgetHeader(title = strings.getString(R.string.recent_calls_widget_title), onTitleClick = openRecents)
+        WidgetHeader(title = strings.getString(CoreUiR.string.recent_calls_widget_title), onTitleClick = openRecents)
         Spacer(GlanceModifier.height(4.dp))
         when (state) {
             RecentCallsState.NoPermission -> WidgetMessage(
                 strings.getString(R.string.recent_calls_widget_permission),
                 openRecents,
-                R.drawable.ic_widget_lock,
+                CoreUiR.drawable.ic_widget_lock,
             )
             is RecentCallsState.Calls -> if (state.calls.isEmpty()) {
                 WidgetMessage(strings.getString(R.string.recent_calls_widget_empty), openRecents)
@@ -171,9 +172,9 @@ private fun RecentCallRow(context: Context, strings: Context, call: RecentCallEn
     val label = call.name ?: call.number
     val missed = call.kind == RecentCallKind.MISSED
     val icon = when (call.kind) {
-        RecentCallKind.INCOMING -> R.drawable.ic_widget_call_incoming
-        RecentCallKind.OUTGOING -> R.drawable.ic_widget_call_outgoing
-        RecentCallKind.MISSED -> R.drawable.ic_widget_call_missed
+        RecentCallKind.INCOMING -> CoreUiR.drawable.ic_widget_call_incoming
+        RecentCallKind.OUTGOING -> CoreUiR.drawable.ic_widget_call_outgoing
+        RecentCallKind.MISSED -> CoreUiR.drawable.ic_widget_call_missed
     }
     val time = relativeCallTime(call.date, now, LocaleController.effectiveLocale(context))
     Row(
@@ -217,7 +218,7 @@ private fun RecentCallRow(context: Context, strings: Context, call: RecentCallEn
             contentAlignment = Alignment.Center,
         ) {
             Image(
-                provider = ImageProvider(R.drawable.ic_widget_call),
+                provider = ImageProvider(CoreUiR.drawable.ic_widget_call),
                 contentDescription = strings.getString(R.string.recent_calls_widget_call_back, label),
                 modifier = GlanceModifier.size(18.dp),
                 colorFilter = ColorFilter.tint(GlanceTheme.colors.onPrimaryContainer),

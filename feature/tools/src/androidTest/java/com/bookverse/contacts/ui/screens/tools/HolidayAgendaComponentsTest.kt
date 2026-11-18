@@ -10,14 +10,15 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.holidays.BirthdayAgendaEntry
 import com.bookverse.contacts.domain.holidays.CalendarSource
+import com.bookverse.contacts.feature.tools.R
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import java.time.LocalDate
 import java.util.concurrent.atomic.AtomicBoolean
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 class HolidayAgendaComponentsTest {
     @get:Rule
@@ -107,7 +108,7 @@ class HolidayAgendaComponentsTest {
         }
 
         composeRule.onNodeWithText(
-            composeRule.activity.getString(R.string.cancel),
+            composeRule.activity.getString(CoreUiR.string.cancel),
         ).assertIsDisplayed().performClick()
         assertTrue(dismissed.get())
     }

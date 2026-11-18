@@ -16,8 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 /** The main dialer and appearance preview share the same style-specific rendering. */
 @Composable
@@ -26,7 +26,7 @@ fun DialerFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val description = stringResource(R.string.dialer)
+    val description = stringResource(CoreUiR.string.dialer)
     val scheme = MaterialTheme.colorScheme
     when (style) {
         AccentBarStyle.MODERN -> ModernFloatingActionButton(

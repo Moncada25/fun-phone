@@ -52,9 +52,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.games.R
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 fun retroGameDialogBlur(isVisible: Boolean): Dp {
@@ -154,7 +155,7 @@ fun RetroGameInstructionsDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(R.string.close),
+                                contentDescription = stringResource(CoreUiR.string.close),
                                 tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
@@ -205,7 +206,7 @@ fun RetroGameInstructionsDialog(
                                     )
                                 ) {
                                     Text(
-                                        text = stringResource(R.string.cancel),
+                                        text = stringResource(CoreUiR.string.cancel),
                                         fontWeight = FontWeight.SemiBold
                                     )
                                 }

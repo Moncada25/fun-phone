@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.feature.settings.R
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.theme.DarkBackgroundColor
 import com.bookverse.contacts.ui.theme.DarkGrayBackgroundColor

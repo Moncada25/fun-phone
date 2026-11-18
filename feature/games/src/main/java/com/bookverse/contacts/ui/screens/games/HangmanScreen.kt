@@ -48,6 +48,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import com.bookverse.contacts.feature.games.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -89,7 +91,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.hangman.HangmanWords
 import com.bookverse.contacts.domain.games.GameCompletion
 import com.bookverse.contacts.domain.games.GameId
@@ -1158,7 +1159,7 @@ private fun HangmanCustomWordDialog(
                 onClick = onDismiss,
                 colors = ButtonDefaults.textButtonColors(contentColor = accentColor),
             ) {
-                Text(text = stringResource(R.string.cancel))
+                Text(text = stringResource(CoreUiR.string.cancel))
             }
         },
     )

@@ -41,8 +41,9 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.holidays.CalendarSource
+import com.bookverse.contacts.feature.tools.R
+import com.bookverse.contacts.core.ui.R as CoreUiR
 
 @Composable
 internal fun CalendarPermissionDialog(
@@ -59,7 +60,7 @@ internal fun CalendarPermissionDialog(
                 onClick = onContinue,
                 colors = ButtonDefaults.buttonColors(containerColor = accentColor),
             ) {
-                Text(stringResource(R.string.action_continue))
+                Text(stringResource(CoreUiR.string.action_continue))
             }
         },
         dismissButton = {
@@ -158,7 +159,7 @@ internal fun CalendarSelectorSheet(
                     groupedCalendars.forEach { (account, accountCalendars) ->
                         item(key = "account_$account") {
                             Text(
-                                text = account.ifBlank { stringResource(R.string.local_account) },
+                                text = account.ifBlank { stringResource(CoreUiR.string.local_account) },
                                 modifier = Modifier.padding(top = 12.dp, bottom = 4.dp),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = MaterialTheme.colorScheme.onSurface,
@@ -207,7 +208,7 @@ internal fun CalendarSelectorSheet(
                         contentColor = MaterialTheme.colorScheme.onSurface,
                     ),
                 ) {
-                    Text(stringResource(R.string.cancel))
+                    Text(stringResource(CoreUiR.string.cancel))
                 }
                 Button(
                     onClick = {
@@ -222,7 +223,7 @@ internal fun CalendarSelectorSheet(
                         disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
                     ),
                 ) {
-                    Text(stringResource(R.string.apply))
+                    Text(stringResource(CoreUiR.string.apply))
                 }
             }
         }

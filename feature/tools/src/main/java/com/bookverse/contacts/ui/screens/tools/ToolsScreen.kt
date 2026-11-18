@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.ExperimentalMaterial3Api
+import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ToolAction
 import com.bookverse.contacts.ui.auth.PasswordAuthDialogs
 import com.bookverse.contacts.ui.auth.rememberPasswordAuthState
@@ -113,18 +113,18 @@ fun ToolsScreen(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             MainTopBar(
-                title = stringResource(R.string.tab_extras),
+                title = stringResource(CoreUiR.string.tab_extras),
                 appSettingsViewModel = appSettingsViewModel,
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconAction(
                         imageVector = Icons.Default.Tune,
-                        contentDescription = stringResource(R.string.tools_customize_title),
+                        contentDescription = stringResource(CoreUiR.string.tools_customize_title),
                         onClick = onNavigateToToolsReorder
                     )
                     IconAction(
                         imageVector = Icons.Default.Settings,
-                        contentDescription = stringResource(R.string.settings),
+                        contentDescription = stringResource(CoreUiR.string.settings),
                         onClick = onNavigateToSettings
                     )
                 }
