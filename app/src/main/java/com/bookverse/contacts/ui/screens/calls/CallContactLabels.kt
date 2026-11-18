@@ -1,7 +1,7 @@
 package com.bookverse.contacts.ui.screens.calls
 
 import androidx.annotation.StringRes
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.domain.call.CallPhoneType
 
 @StringRes

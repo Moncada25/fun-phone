@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.settings.LocaleController
@@ -109,7 +109,7 @@ fun HistoryItem(
                 )
             }
 
-            val duration = if (operation.time != null) operation.time.toInt() else 0
+            val duration = operation.time?.toInt() ?: 0
 
             Text(
                 text = ContactUtils.formatSeconds(context, duration),

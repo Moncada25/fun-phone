@@ -31,7 +31,7 @@ import com.bookverse.contacts.ui.screens.calls.IncomingCallScreen
 import com.bookverse.contacts.ui.screens.contacts.ContactDetailsScreen
 import com.bookverse.contacts.ui.screens.contacts.CreateContactScreen
 import com.bookverse.contacts.ui.screens.contacts.CreateProfileScreen
-import com.bookverse.contacts.ui.screens.contacts.DialerScreen
+import com.bookverse.contacts.ui.screens.dialer.DialerScreen
 import com.bookverse.contacts.ui.screens.contacts.ContactRecycleBinScreen
 import com.bookverse.contacts.ui.screens.contacts.DuplicateContactsScreen
 import com.bookverse.contacts.ui.screens.contacts.FavoritesReorderScreen
@@ -73,7 +73,7 @@ import com.bookverse.contacts.ui.viewmodel.HolidaysViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 import com.bookverse.contacts.ui.viewmodel.PomodoroViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -137,7 +137,7 @@ fun SecondaryScreenContent(
         SecondaryScreen.DIALER -> DialerScreen(
             onBack = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
-            contactsViewModel = contactsViewModel,
+            directory = contactsViewModel,
             phoneNumber = dialerPhoneNumber,
             onPhoneNumberChange = { onDialerPhoneNumberChange(it) },
             onAddContactClick = { phone, country ->
@@ -169,7 +169,8 @@ fun SecondaryScreenContent(
 
         SecondaryScreen.TOOLS_ORDER -> com.bookverse.contacts.ui.screens.tools.ToolsReorderScreen(
             appSettingsViewModel = appSettingsViewModel,
-            onBackClick = { navigationViewModel.navigateBack() }
+            onBackClick = { navigationViewModel.navigateBack() },
+            onPresetSelected = { preset -> appContainer.funnelTelemetry.toolsPresetSelected(preset) },
         )
 
         SecondaryScreen.GAMES -> GamesScreen(
@@ -384,7 +385,13 @@ fun SecondaryScreenContent(
         SecondaryScreen.QR_SCANNER -> QRScannerScreen(
             onBackClick = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
-            contactsViewModel = contactsViewModel,
+            onCreateContact = { contact, successMessage, account ->
+                contactsViewModel.createContact(
+                    contact = contact,
+                    successMessage = successMessage,
+                    account = account,
+                )
+            },
             qrHistoryViewModel = qrHistoryViewModel,
             onContactSaved = {
                 onSelectedContactChange(it); navigationViewModel.openSecondary(
@@ -486,7 +493,8 @@ fun SecondaryScreenContent(
         SecondaryScreen.HOLIDAYS -> HolidaysScreen(
             onBackClick = { navigationViewModel.navigateBack() },
             appSettingsViewModel = appSettingsViewModel,
-            contactsViewModel = contactsViewModel,
+            contactsFlow = contactsViewModel.contacts,
+            profileFlow = contactsViewModel.profile,
             viewModel = holidaysViewModel,
         )
 

@@ -46,7 +46,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.DeletedContact
 import com.bookverse.contacts.domain.contacts.ContactRecycleBinPolicy
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold

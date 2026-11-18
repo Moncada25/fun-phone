@@ -67,7 +67,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bookverse.contacts.App
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.expenses.ExpenseBudgetEntity
 import com.bookverse.contacts.data.expenses.ExpenseCategoryEntity
@@ -102,7 +102,7 @@ import com.bookverse.contacts.ui.navigation.NavigationItem
 import com.bookverse.contacts.ui.screens.calls.IncomingCallScreen
 import com.bookverse.contacts.ui.screens.calls.RejectWithMessageSheet
 import com.bookverse.contacts.ui.screens.contacts.ContactListScreen
-import com.bookverse.contacts.ui.screens.contacts.DialerScreen
+import com.bookverse.contacts.ui.screens.dialer.DialerScreen
 import com.bookverse.contacts.ui.screens.contacts.FavoritesScreen
 import com.bookverse.contacts.ui.screens.expenses.ExpenseManagerScreen
 import com.bookverse.contacts.ui.screens.games.GamesScreen
@@ -116,16 +116,16 @@ import com.bookverse.contacts.ui.screens.tools.ToolsScreen
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.theme.accentPalette
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
-import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
+import com.bookverse.contacts.ui.theme.DarkModeStyle
 import com.bookverse.contacts.ui.viewmodel.ExpensesViewModel
 import com.bookverse.contacts.ui.viewmodel.NotesViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

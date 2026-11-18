@@ -122,11 +122,11 @@ release notes.
 
 ### Localización
 - **Todas** las strings visibles al usuario deben ir en:
-  - `app/src/main/res/values/strings.xml` (baseline en inglés)
-  - `app/src/main/res/values-es/strings.xml` (Español)
-  - `app/src/main/res/values-de/strings.xml` (Alemán)
-  - `app/src/main/res/values-fr/strings.xml` (Francés)
-  - `app/src/main/res/values-pt/strings.xml` (Portugués)
+  - `core/ui/src/main/res/values/strings.xml` (baseline en inglés)
+  - `core/ui/src/main/res/values-es/strings.xml` (Español)
+  - `core/ui/src/main/res/values-de/strings.xml` (Alemán)
+  - `core/ui/src/main/res/values-fr/strings.xml` (Francés)
+  - `core/ui/src/main/res/values-pt/strings.xml` (Portugués)
 - Nunca hardcodear texto en Kotlin.
 - Usar formateadores localizados para fechas, números y monedas.
 - Ejecuta `./scripts/verify-localization.sh` antes de abrir el PR. Corrige cada referencia de

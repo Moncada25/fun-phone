@@ -1,5 +1,6 @@
 package com.bookverse.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
@@ -52,7 +53,7 @@ import com.bookverse.contacts.ui.system.updateStatusBarContrast
 import com.bookverse.contacts.ui.screens.calls.SimSelectionHost
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import com.bookverse.contacts.ui.theme.accentPalette
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
@@ -61,7 +62,6 @@ import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
 import com.bookverse.contacts.ui.viewmodel.PomodoroViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
 import com.bookverse.contacts.utils.AppVisibility
-import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.PermissionUtils
 import com.bookverse.contacts.utils.SecondaryScreen
 import kotlinx.coroutines.Dispatchers
@@ -178,7 +178,7 @@ class MainActivity : LocalizedAppCompatActivity() {
         checkOnboardingStatus()
         installSplashScreen().setKeepOnScreenCondition { !isDataLoaded }
         super.onCreate(savedInstanceState)
-        ContactUtils.setupCallPermissionLauncher(this)
+        PhoneActions.setupCallPermissionLauncher(this)
         readCallExtras(intent)
         if (savedInstanceState == null) handleMissedCallExtras(intent)
         readDialerExtras(intent, initialLaunch = true)
@@ -456,9 +456,9 @@ class MainActivity : LocalizedAppCompatActivity() {
         intent.removeExtra(CallNotificationManager.EXTRA_MISSED_CALL_ACTION)
         if (number.isNullOrBlank()) return
         when (action) {
-            CallNotificationManager.MISSED_ACTION_CALL -> ContactUtils.callPhoneNumber(this, number)
+            CallNotificationManager.MISSED_ACTION_CALL -> PhoneActions.callPhoneNumber(this, number)
             CallNotificationManager.MISSED_ACTION_MESSAGE ->
-                runCatching { ContactUtils.openSmsApp(this, number) }
+                runCatching { PhoneActions.openSmsApp(this, number) }
         }
     }
 

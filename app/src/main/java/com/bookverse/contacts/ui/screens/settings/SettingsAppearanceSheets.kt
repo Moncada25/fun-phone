@@ -26,14 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.theme.DarkBackgroundColor
 import com.bookverse.contacts.ui.theme.DarkGrayBackgroundColor
 import com.bookverse.contacts.ui.theme.DimBackgroundColor
 import com.bookverse.contacts.ui.theme.createAccentPalette
-import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.DarkModeStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
 
 @Composable
 internal fun SettingsColorSheet(

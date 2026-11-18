@@ -196,12 +196,6 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.androidx.baselineprofile)
     id("kotlin-parcelize")
-    id("com.google.devtools.ksp") version "2.3.9"
-    id("androidx.room") version "2.8.4" apply true
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
 }
 
 baselineProfile {
@@ -244,14 +238,6 @@ android {
         versionName = appVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true"
-                )
-            }
-        }
     }
 
     signingConfigs {
@@ -346,6 +332,7 @@ android {
 
     lint {
         abortOnError = true
+        checkDependencies = true
         // Dependency freshness checks are advisory and vary with external repository state.
         // Dependency updates remain reviewable through the version catalog.
         disable += "AndroidGradlePluginVersion"
@@ -424,12 +411,19 @@ configurations.matching { it.name.contains("AndroidTest", ignoreCase = true) }.c
     )
 }
 
-ksp {
-    arg("room.incremental", "true")
-}
-
 dependencies {
-    ksp(libs.androidx.room.compiler)
+    implementation(project(":core:common"))
+    implementation(project(":core:database"))
+    implementation(project(":core:datastore"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:security"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:expenses"))
+    implementation(project(":feature:games"))
+    implementation(project(":feature:notes"))
+    implementation(project(":feature:qr"))
+    implementation(project(":feature:tools"))
+    implementation(project(":feature:vault"))
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
@@ -444,8 +438,6 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.material.icons.extended)
 
     implementation(libs.google.zxing.core)

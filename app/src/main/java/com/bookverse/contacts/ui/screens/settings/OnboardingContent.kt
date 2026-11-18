@@ -1,5 +1,11 @@
 package com.bookverse.contacts.ui.screens.settings
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -8,18 +14,23 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -31,13 +42,16 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
@@ -46,8 +60,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.bookverse.contacts.R
+import androidx.compose.ui.unit.sp
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ToolsOrderConfig
 import com.bookverse.contacts.data.model.ToolsPreset
 import com.bookverse.contacts.ui.components.SettingSwitch
@@ -55,13 +71,15 @@ import com.bookverse.contacts.ui.components.setupActionContainerColor
 import com.bookverse.contacts.ui.components.setupActionContentColor
 import com.bookverse.contacts.ui.screens.tools.ToolsPresetSelector
 import com.bookverse.contacts.utils.ToolsRegistry
+import com.composables.icons.lucide.AlarmClock
 import com.composables.icons.lucide.ArrowLeft
 import com.composables.icons.lucide.Bell
 import com.composables.icons.lucide.Check
+import com.composables.icons.lucide.CodeXml
 import com.composables.icons.lucide.History
 import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Palette
 import com.composables.icons.lucide.Phone
-import com.composables.icons.lucide.AlarmClock
 import com.composables.icons.lucide.ShieldCheck
 import com.composables.icons.lucide.Smartphone
 import com.composables.icons.lucide.Users
@@ -85,57 +103,67 @@ internal fun OnboardingContent(
     val welcome = step == OnboardingStep.WELCOME
     val next = setupState.phoneStatus.nextRequirement
     BoxWithConstraints(
-        modifier = Modifier.fillMaxSize().background(colors.background)
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+        modifier = Modifier.fillMaxSize().background(colors.background),
         contentAlignment = Alignment.TopCenter,
     ) {
         val footerMaxHeight = maxHeight * 0.45f
-        Column(Modifier.widthIn(max = 560.dp).fillMaxSize()) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                if (!welcome) {
-                    IconButton(onClick = onBack, modifier = Modifier.size(48.dp)) {
-                        Icon(Lucide.ArrowLeft, stringResource(R.string.back), tint = colors.onBackground)
-                    }
-                }
-                Text(
-                    stringResource(R.string.onboarding_step_count, if (welcome) 1 else 2, 2),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = colors.onBackground,
-                    modifier = Modifier.padding(horizontal = 8.dp),
-                )
-            }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(maxHeight * 0.5f)
+                .background(
+                    Brush.verticalGradient(
+                        listOf(accentColor.copy(alpha = 0.14f), accentColor.copy(alpha = 0.04f), Color.Transparent),
+                    ),
+                ),
+        )
+        Column(
+            Modifier
+                .windowInsetsPadding(WindowInsets.safeDrawing)
+                .widthIn(max = 560.dp)
+                .fillMaxSize(),
+        ) {
+            OnboardingHeader(
+                currentStep = if (welcome) 1 else 2,
+                totalSteps = 2,
+                accentColor = accentColor,
+                onBack = if (welcome) null else onBack,
+            )
             LazyColumn(
+                state = key(step) { rememberLazyListState() },
                 modifier = Modifier.weight(1f).fillMaxWidth().testTag("onboarding_body"),
                 contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(if (welcome) 24.dp else 12.dp),
             ) {
-                item(key = "heading") {
-                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        if (welcome) {
-                            Image(
-                                painterResource(R.drawable.ic_launcher_foreground),
-                                stringResource(R.string.onboarding_app_icon_description),
-                                modifier = Modifier.size(72.dp),
-                                colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(accentColor),
+                if (welcome) {
+                    item(key = "heading") {
+                        WelcomeHero(accentColor = accentColor)
+                    }
+                    item(key = "optional_tools") {
+                        OptionalToolsSection(
+                            toolsOrder = toolsOrder,
+                            passwordManagerEnabled = passwordManagerEnabled,
+                            accentColor = accentColor,
+                            onPresetSelected = onPresetSelected,
+                            onToolHiddenChanged = onToolHiddenChanged,
+                            onToolsMenuHiddenChanged = onToolsMenuHiddenChanged,
+                        )
+                    }
+                } else {
+                    item(key = "heading") {
+                        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Text(
+                                stringResource(R.string.onboarding_setup_title),
+                                style = MaterialTheme.typography.headlineMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = colors.onBackground,
+                                modifier = Modifier.semantics { heading() },
                             )
-                            Text(stringResource(R.string.app_name), style = MaterialTheme.typography.labelLarge, color = colors.onBackground)
-                        }
-                        Text(
-                            stringResource(if (welcome) R.string.onboarding_welcome_title else R.string.onboarding_setup_title),
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = colors.onBackground,
-                            modifier = Modifier.semantics { heading() },
-                        )
-                        Text(
-                            stringResource(if (welcome) R.string.onboarding_welcome_subtitle else R.string.onboarding_setup_subtitle),
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = colors.onBackground,
-                        )
-                        if (!welcome) {
+                            Text(
+                                stringResource(R.string.onboarding_setup_subtitle),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = colors.onBackground,
+                            )
                             Text(
                                 stringResource(
                                     R.string.onboarding_requirements_count,
@@ -147,28 +175,6 @@ internal fun OnboardingContent(
                             )
                         }
                     }
-                }
-                if (welcome) {
-                    item(key = "optional_tools") {
-                        OptionalToolsSection(
-                            toolsOrder = toolsOrder,
-                            passwordManagerEnabled = passwordManagerEnabled,
-                            accentColor = accentColor,
-                            onPresetSelected = onPresetSelected,
-                            onToolHiddenChanged = onToolHiddenChanged,
-                            onToolsMenuHiddenChanged = onToolsMenuHiddenChanged,
-                        )
-                    }
-                    item(key = "privacy") {
-                        PrivacyNote(accentColor)
-                    }
-                    items(
-                        listOf(PhoneStatusRequirement.CONTACTS, PhoneStatusRequirement.CALL_PHONE, PhoneStatusRequirement.CALL_LOG),
-                        key = { it.name },
-                    ) { requirement ->
-                        BenefitRow(requirement, accentColor)
-                    }
-                } else {
                     item(key = "privacy") {
                         PrivacyNote(accentColor)
                     }
@@ -176,7 +182,6 @@ internal fun OnboardingContent(
                         SetupRequirementRow(requirement, setupState, accentColor)
                     }
                 }
-
             }
             Column(
                 modifier = Modifier.fillMaxWidth().heightIn(max = footerMaxHeight)
@@ -190,6 +195,15 @@ internal fun OnboardingContent(
                         accentColor = accentColor,
                         onClick = if (welcome) onNext else onFinish,
                     )
+                    if (welcome) {
+                        Text(
+                            text = stringResource(R.string.onboarding_footer_note),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = colors.onSurfaceVariant,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                        )
+                    }
                 } else {
                     SetupButton(
                         label = setupActionLabel(next, setupState.outcome(next), setupState.phoneStatus.notificationsRequireSettings),
@@ -207,6 +221,179 @@ internal fun OnboardingContent(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun OnboardingHeader(
+    currentStep: Int,
+    totalSteps: Int,
+    accentColor: Color,
+    onBack: (() -> Unit)?,
+) {
+    val colors = MaterialTheme.colorScheme
+    Row(
+        modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp).padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        if (onBack != null) {
+            IconButton(onClick = onBack, modifier = Modifier.size(48.dp)) {
+                Icon(Lucide.ArrowLeft, stringResource(R.string.back), tint = colors.onBackground)
+            }
+        } else {
+            Spacer(Modifier.width(8.dp))
+        }
+        Row(
+            modifier = Modifier.weight(1f),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            repeat(totalSteps) { index ->
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(4.dp)
+                        .clip(CircleShape)
+                        .background(
+                            if (index < currentStep) accentColor else colors.onBackground.copy(alpha = 0.12f),
+                        ),
+                )
+            }
+        }
+        Text(
+            stringResource(R.string.onboarding_step_count, currentStep, totalSteps),
+            style = MaterialTheme.typography.labelMedium,
+            color = colors.onSurfaceVariant,
+            modifier = Modifier.padding(end = 8.dp),
+        )
+    }
+}
+
+@Composable
+private fun WelcomeHero(accentColor: Color) {
+    val colors = MaterialTheme.colorScheme
+    val entrance = remember { MutableTransitionState(false).apply { targetState = true } }
+    AnimatedVisibility(
+        visibleState = entrance,
+        enter = fadeIn(tween(durationMillis = 450)) +
+            slideInVertically(tween(durationMillis = 450)) { it / 16 },
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Surface(
+                modifier = Modifier.size(96.dp),
+                shape = RoundedCornerShape(28.dp),
+                shadowElevation = 12.dp,
+                color = Color.White,
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Image(
+                        painterResource(R.drawable.ic_launcher_foreground),
+                        stringResource(R.string.onboarding_app_icon_description),
+                        modifier = Modifier.size(78.dp),
+                    )
+                }
+            }
+            Surface(
+                modifier = Modifier.padding(top = 28.dp),
+                shape = CircleShape,
+                color = accentColor.copy(alpha = 0.12f),
+                contentColor = colors.onBackground,
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Icon(Lucide.CodeXml, null, tint = accentColor, modifier = Modifier.size(14.dp))
+                    Text(
+                        stringResource(R.string.onboarding_badge_open_source),
+                        style = MaterialTheme.typography.labelMedium,
+                    )
+                }
+            }
+            Text(
+                stringResource(R.string.onboarding_welcome_title),
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = (-0.5).sp,
+                ),
+                color = colors.onBackground,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 16.dp).semantics { heading() },
+            )
+            Text(
+                stringResource(R.string.onboarding_welcome_subtitle),
+                style = MaterialTheme.typography.bodyLarge,
+                color = colors.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 12.dp, start = 8.dp, end = 8.dp),
+            )
+            Column(
+                modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+            ) {
+                WelcomeValueRow(
+                    icon = Lucide.ShieldCheck,
+                    title = stringResource(R.string.onboarding_value_private_title),
+                    body = stringResource(R.string.onboarding_value_private_body),
+                    accentColor = accentColor,
+                )
+                WelcomeValueRow(
+                    icon = Lucide.Phone,
+                    title = stringResource(R.string.onboarding_value_calls_title),
+                    body = stringResource(R.string.onboarding_value_calls_body),
+                    accentColor = accentColor,
+                )
+                WelcomeValueRow(
+                    icon = Lucide.Palette,
+                    title = stringResource(R.string.onboarding_value_personal_title),
+                    body = stringResource(R.string.onboarding_value_personal_body),
+                    accentColor = accentColor,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun WelcomeValueRow(
+    icon: ImageVector,
+    title: String,
+    body: String,
+    accentColor: Color,
+) {
+    val colors = MaterialTheme.colorScheme
+    Row(
+        modifier = Modifier.fillMaxWidth().semantics(mergeDescendants = true) {},
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.Top,
+    ) {
+        Box(
+            modifier = Modifier
+                .size(44.dp)
+                .background(accentColor.copy(alpha = 0.12f), RoundedCornerShape(14.dp)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(icon, null, tint = accentColor, modifier = Modifier.size(22.dp))
+        }
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(2.dp),
+        ) {
+            Text(
+                title,
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+                color = colors.onBackground,
+            )
+            Text(
+                body,
+                style = MaterialTheme.typography.bodyMedium,
+                color = colors.onSurfaceVariant,
+            )
         }
     }
 }
@@ -248,9 +435,10 @@ private fun OptionalToolsSection(
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(22.dp),
+        shape = RoundedCornerShape(24.dp),
         color = colors.surface,
         contentColor = colors.onSurface,
+        border = BorderStroke(1.dp, colors.outlineVariant.copy(alpha = 0.6f)),
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(20.dp),
@@ -258,12 +446,15 @@ private fun OptionalToolsSection(
         ) {
             Text(
                 text = stringResource(R.string.onboarding_optional_tools_title),
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = accentColor,
+                modifier = Modifier.semantics { heading() },
             )
             Text(
                 text = stringResource(R.string.onboarding_optional_tools_description),
                 style = MaterialTheme.typography.bodyMedium,
+                color = colors.onSurfaceVariant,
             )
             ToolsPresetSelector(
                 toolsOrder = toolsOrder,
@@ -353,26 +544,6 @@ private fun OptionalToolsSection(
 }
 
 @Composable
-private fun BenefitRow(requirement: PhoneStatusRequirement, accentColor: Color) {
-    Surface(shape = RoundedCornerShape(22.dp), color = MaterialTheme.colorScheme.surface) {
-        Row(Modifier.fillMaxWidth().padding(20.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            SetupIcon(requirementIcon(requirement), accentColor)
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(stringResource(requirementTitleRes(requirement)), style = MaterialTheme.typography.titleMedium)
-                Text(
-                    stringResource(when (requirement) {
-                        PhoneStatusRequirement.CONTACTS -> R.string.onboarding_benefit_contacts
-                        PhoneStatusRequirement.CALL_LOG -> R.string.onboarding_benefit_recents
-                        else -> R.string.onboarding_benefit_calls
-                    }),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-        }
-    }
-}
-
-@Composable
 private fun SetupRequirementRow(requirement: PhoneStatusRequirement, state: PhoneSetupUiState, accentColor: Color) {
     val outcome = state.outcome(requirement)
     val active = requirement == state.phoneStatus.nextRequirement
@@ -380,7 +551,7 @@ private fun SetupRequirementRow(requirement: PhoneStatusRequirement, state: Phon
     Surface(
         modifier = Modifier.fillMaxWidth().semantics(mergeDescendants = true) {},
         shape = RoundedCornerShape(22.dp),
-        border = if (active) androidx.compose.foundation.BorderStroke(1.dp, accentColor.copy(alpha = 0.55f)) else null,
+        border = if (active) BorderStroke(1.dp, accentColor.copy(alpha = 0.55f)) else null,
         color = if (active) colors.onBackground.copy(alpha = 0.07f) else colors.background,
         contentColor = colors.onSurface,
     ) {
@@ -420,8 +591,8 @@ private fun SetupButton(label: String, accentColor: Color, enabled: Boolean = tr
         onClick = onClick,
         enabled = enabled,
         modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp),
-        shape = RoundedCornerShape(20.dp),
-        border = androidx.compose.foundation.BorderStroke(1.dp, accentColor),
+        shape = RoundedCornerShape(18.dp),
+        border = BorderStroke(1.dp, accentColor),
         colors = ButtonDefaults.buttonColors(
             containerColor = setupActionContainerColor(accentColor),
             contentColor = setupActionContentColor(accentColor),

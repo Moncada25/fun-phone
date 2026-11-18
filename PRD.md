@@ -305,7 +305,7 @@ repository/data boundaries.
 - **SettingsStore**: DataStore keys for theme, accent, transitions, vibration, favorites, password options.
 
 ### 8.2 Data Storage & Sync
-- Room (`AppDatabase` v31) with exported schemas under `app/schemas/` and auto-migrations.
+- Room (`AppDatabase` v31) with exported schemas under `core/database/schemas/` and auto-migrations.
 - DataStore Preferences (`AppSettingsViewModel`) for global settings; DataStore for game statistics and settings; existing SharedPreferences integrations remain limited.
 - Private local photo files and user-selected exports; no remote storage paths.
 - JSON/ZIP exports saved via FileProvider; `NotesBackupUtils` handles serialization/deserialization.

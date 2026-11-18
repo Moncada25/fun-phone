@@ -6,6 +6,7 @@
 .agents/
 /.idea/
 /.kotlin
+/build-logic/.kotlin
 /.claude
 /.agents
 /.rules

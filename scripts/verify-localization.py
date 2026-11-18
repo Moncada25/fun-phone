@@ -13,7 +13,7 @@ from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 
 SUPPORTED_LOCALES = ("es", "de", "fr", "pt")
-RESOURCE_DIR = Path("app/src/main/res")
+RESOURCE_DIR = Path("core/ui/src/main/res")
 BASELINE_RELATIVE_PATH = RESOURCE_DIR / "values" / "strings.xml"
 ARRAY_TAGS = {"string-array", "integer-array", "array"}
 ALL_LOCALES = frozenset(SUPPORTED_LOCALES)

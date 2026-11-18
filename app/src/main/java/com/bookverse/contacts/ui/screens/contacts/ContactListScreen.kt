@@ -82,7 +82,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.domain.contacts.ContactRecycleBinPolicy
 import com.bookverse.contacts.domain.contacts.ContactSearchPolicy
@@ -109,7 +109,7 @@ import com.bookverse.contacts.ui.components.topBarColors
 import com.bookverse.contacts.settings.ListDensity
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.utils.ContactUtils
@@ -778,7 +778,7 @@ fun ContactListScreen(
 
             val knownAccountIds = accounts.map { it.name }.toSet()
             val unknownContactsCount = filteredContacts.count { contact ->
-                contact.accounts.isNullOrEmpty() || contact.accounts.none { it.name in knownAccountIds }
+                contact.accounts.orEmpty().none { it.name in knownAccountIds }
             }
             val accountsSheetTitle = stringResource(R.string.contacts_accounts_sheet_title)
             val localAccountLabel = stringResource(R.string.local_account)

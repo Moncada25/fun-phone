@@ -19,7 +19,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.AppSettingsStore
 import com.bookverse.contacts.ui.components.AppBarStateRegistry
 import com.bookverse.contacts.ui.components.LocalAppBarRoute
@@ -27,9 +27,9 @@ import com.bookverse.contacts.ui.components.LocalAppBarStateRegistry
 import com.bookverse.contacts.ui.components.LocalBackdropAllowed
 import com.bookverse.contacts.ui.components.rememberAppBarStateRegistry
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -122,7 +122,7 @@ class ToolsReorderScreenTest {
                     LocalAppBarRoute provides "tools-order",
                     LocalBackdropAllowed provides false,
                 ) {
-                    ToolsReorderScreen(settings, {})
+                    ToolsReorderScreen(settings, {}, {})
                 }
             }
         }

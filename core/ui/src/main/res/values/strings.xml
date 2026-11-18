@@ -1,0 +1,2281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Fun Phone</string>
+    <string name="game_2048_title" translatable="false">2048</string>
+    <string name="about_copyright" translatable="false">© Bookverse 2026</string>
+    <string name="onboarding_tagline">Your private dialer with intuitive contact management and useful tools.</string>
+    <string name="onboarding_get_started">Get started</string>
+    <string name="whatsapp_action">Open in WhatsApp</string>
+    <string name="contact_details_title">Contact details</string>
+    <string name="contact_block_action">Block</string>
+    <string name="contact_unblock_action">Unblock</string>
+    <string name="contact_block_success">%1$s was blocked</string>
+    <string name="contact_unblock_success">%1$s was unblocked</string>
+    <string name="contact_block_error">Could not block the contact</string>
+    <string name="contact_unblock_error">Could not unblock the contact</string>
+    <string name="contact_block_no_numbers">This contact has no numbers to block.</string>
+    <string name="contact_blocked_badge">Blocked contact</string>
+    <string name="contact_block_not_supported">Contact blocking is not available on this device.</string>
+    <string name="blocked_numbers_title">Blocked numbers</string>
+    <string name="blocked_numbers_description">Manage the numbers you block through Fun Phone.</string>
+    <plurals name="blocked_numbers_title_count">
+        <item quantity="one">Blocked number (%d)</item>
+        <item quantity="other">Blocked numbers (%d)</item>
+    </plurals>
+    <string name="blocked_numbers_empty_title">No blocked numbers</string>
+    <string name="blocked_numbers_empty_subtitle">When you block someone, their number will appear here.</string>
+    <string name="blocked_numbers_unknown">Unknown</string>
+    <string name="blocked_number_unblocked">Number unblocked</string>
+    <string name="blocked_number_unblock_error">Could not unblock the number</string>
+    <string name="blocked_numbers_unblock_confirmation_title">Unblock number</string>
+    <string name="blocked_numbers_unblock_confirmation_message">Do you want to unblock %1$s?</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="recording_duration">Duration: %1$s</string>
+    <string name="interval_list">Every %1$s</string>
+    <string name="mic_on">Turn on microphone</string>
+    <string name="mic_off">Mute</string>
+    <string name="microphone_permission_message">Microphone access is required to record audio. Please grant the permission in the app settings.</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
+    <string name="contacts_empty">Contact list is empty</string>
+    <string name="contacts_empty_description">Start by adding contacts or import your existing list</string>
+    <string name="no_contacts_found">No contacts found</string>
+
+    <string name="favorites_settings_title">Favorites options</string>
+    <string name="favorites_large_cards">Large favorites</string>
+    <string name="favorites_large_cards_description">Shows wide cards in two columns.</string>
+    <string name="favorites_show_profile">Show profile</string>
+    <string name="favorites_show_profile_description">Add your profile as quick access in favorites.</string>
+    <string name="favorites_size_section_title">Cards</string>
+    <string name="favorites_shape_section_title">Card shape</string>
+    <string name="favorites_shape_round">Round favorites</string>
+    <string name="favorites_shape_round_description">Show favorites as circles; off keeps square cards.</string>
+    <string name="favorites_order_section_title">Order</string>
+    <string name="favorites_order_alphabetical">Alphabetical order</string>
+    <string name="favorites_order_alphabetical_description">Automatically organizes by name.</string>
+    <string name="favorites_order_custom">Custom order</string>
+    <string name="favorites_order_custom_description">Drag and drop to manually reorder.</string>
+    <string name="favorites_order_title">Sort Favorites</string>
+    <string name="favorites_order_instructions">Hold a card and drag it to change its position.</string>
+    <string name="favorites_order_empty_title">No favorites to sort</string>
+    <string name="favorites_order_empty_description">Add contacts to favorites to set a custom order.</string>
+    <string name="favorites_settings_action">Favorites settings</string>
+    <string name="notes_save_success">File saved to device</string>
+    <string name="notes_save_error">Could not save file</string>
+    <string name="notes_share_error">Could not share note</string>
+    <string name="favorites_title">My Favorites</string>
+    <string name="contacts_title">My Contacts</string>
+
+    <!-- New strings for footer -->
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_contacts">Contacts</string>
+    <string name="tab_history">History</string>
+    <string name="recents_title">My History</string>
+    <string name="tab_extras">Tools</string>
+    <string name="transition_speed">Animation speed</string>
+    <string name="transition_type">Transition style</string>
+    <string name="transition_scale">Scale</string>
+    <string name="transition_slide">Slide</string>
+    <string name="transition_fade">Fade</string>
+    <string name="transition_flip">Flip</string>
+    <string name="transition_shrink">Shrink</string>
+    <string name="transition_expand">Expand</string>
+    <string name="transition_elastic">Elastic</string>
+    <string name="transition_circle_reveal">Reveal</string>
+    <string name="transition_rotate">Rotate</string>
+    <string name="transition_zoom_blur">Zoom</string>
+    <string name="transition_wave">Wave</string>
+    <string name="phone_status_title">Device Status</string>
+    <!-- New strings for search -->
+    <string name="search_contacts">Search contacts</string>
+    <string name="search_checklist_items">Search items</string>
+    <string name="search">Search</string>
+    <string name="search_close">Close search</string>
+    <string name="checklist_no_results_subtitle">Tap the button to create this item.</string>
+    <string name="checklist_add_search_item">Add \"%1$s\" to the list</string>
+    <string name="loading_contacts">Loading contacts…</string>
+    <string name="checklist_no_results">No checklist items found</string>
+    <string name="no_results">No results found</string>
+    <string name="settings_results">Settings found</string>
+    <string name="all_settings">All settings</string>
+    <string name="search_setting">Search settings</string>
+
+    <string name="use_avatar">Use avatar</string>
+    <string name="avatar_selector_title">Choose an avatar</string>
+    <string name="avatar_category_people">People</string>
+    <string name="avatar_category_professions">Professions</string>
+    <string name="avatar_category_interests">Interests</string>
+    <string name="avatar_category_fantasy">Fantasy</string>
+    <string name="avatar_generation_error_title">Avatar not available</string>
+    <string name="avatar_generation_error_message">We couldn’t prepare the selected avatar.</string>
+    <string name="avatar_label_person_blue">Blue portrait</string>
+    <string name="avatar_label_person_green">Green portrait</string>
+    <string name="avatar_label_person_orange">Orange portrait</string>
+    <string name="avatar_label_person_violet">Violet portrait</string>
+    <string name="avatar_label_person_gray">Gray portrait</string>
+    <string name="avatar_label_person_pink">Pink portrait</string>
+    <string name="avatar_label_person_teal">Teal portrait</string>
+    <string name="avatar_label_person_yellow">Yellow portrait</string>
+    <string name="avatar_label_person_red">Red portrait</string>
+    <string name="avatar_label_doctor">Doctor</string>
+    <string name="avatar_label_teacher">Teacher</string>
+    <string name="avatar_label_engineer">Engineer</string>
+    <string name="avatar_label_designer">Designer</string>
+    <string name="avatar_label_business">Business</string>
+    <string name="avatar_label_chef">Chef</string>
+    <string name="avatar_label_scientist">Scientist</string>
+    <string name="avatar_label_photographer">Photographer</string>
+    <string name="avatar_label_firefighter">Firefighter</string>
+    <string name="avatar_label_artist">Artist</string>
+    <string name="avatar_label_musician">Musician</string>
+    <string name="avatar_label_gamer">Gamer</string>
+    <string name="avatar_label_reader">Reader</string>
+    <string name="avatar_label_pet_lover">Pet lover</string>
+    <string name="avatar_label_traveler">Traveler</string>
+    <string name="avatar_label_gardener">Gardener</string>
+    <string name="avatar_label_cyclist">Cyclist</string>
+    <string name="avatar_label_cinema">Movie fan</string>
+    <string name="avatar_label_robot">Friendly robot</string>
+    <string name="avatar_label_astronaut">Astronaut</string>
+    <string name="avatar_label_cat">Playful cat</string>
+    <string name="avatar_label_superhero">Superhero</string>
+    <string name="avatar_label_emoji">Happy emoji</string>
+    <string name="avatar_label_alien">Alien</string>
+    <string name="avatar_label_wizard">Wizard</string>
+    <string name="avatar_label_dragon">Dragon</string>
+    <string name="avatar_label_fox">Fox</string>
+
+    <!-- New strings for dialer -->
+    <string name="dialer">Dialer</string>
+    <string name="dialer_suggestions_title">Suggestions</string>
+    <string name="dialer_contacts_title">Your contacts</string>
+    <string name="add_contact">Add contact</string>
+    <string name="add_contact_title">New Contact</string>
+    <string name="name_placeholder">Name</string>
+    <string name="phone_placeholder">Phone</string>
+    <string name="email_placeholder">Email</string>
+    <string name="company_placeholder">Company or profession</string>
+    <string name="add_birthday">Select birthday</string>
+    <string name="edit_birthday">Birthday</string>
+    <string name="edit_notes">Notes</string>
+    <string name="contact_form_section_phone_numbers">Phone numbers</string>
+    <string name="contact_form_section_personal_details">Personal details</string>
+    <string name="contact_form_section_preferences">Contact preferences</string>
+    <string name="contact_form_section_account">Contact account</string>
+    <string name="select_birthday">Select birthday</string>
+    <string name="ringtone">Ringtone</string>
+    <string name="select_ringtone">Select ringtone</string>
+    <string name="open_settings">Open settings</string>
+    <string name="clear">Clear</string>
+    <string name="call">Call</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="voicemail_call_error">Couldn\'t call voicemail</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="send_email">Send email</string>
+    <string name="country_selector">Country 🌍</string>
+    <string name="country_code_selector">Country Code</string>
+    <string name="no_country_code">No country code</string>
+    <string name="country_section_popular">Most used</string>
+    <string name="country_section_other">Other countries</string>
+    <string name="event_attendees_title">Attendees</string>
+    <string name="event_attendee_unknown">Guest</string>
+    <string name="event_attendee_role_organizer">Organizer</string>
+    <string name="event_attendee_status_accepted">Accepted</string>
+    <string name="event_attendee_status_declined">Declined</string>
+    <string name="event_attendee_status_invited">Invited</string>
+    <string name="event_attendee_status_tentative">Tentative</string>
+    <string name="event_attendee_status_none">No response</string>
+    <string name="event_attendee_status_unknown">Unknown status</string>
+    <string name="add_contact_success">Contact created successfully</string>
+    <string name="add_profile_success">Profile created successfully</string>
+    <string name="add_contact_error">Error adding contact</string>
+    <string name="edit_contact_title">Edit Contact</string>
+    <string name="edit_contact_success">Contact edited successfully</string>
+    <string name="edit_contact_error">Couldn\'t update the contact. Please try again.</string>
+
+    <string name="permission_banner_title">Make yourself at home</string>
+    <string name="permission_banner_description">Finish phone setup to use contacts and calls, or choose optional tools in Settings.</string>
+    <string name="permission_banner_cta">Finish setup</string>
+
+    <string name="perm_privacy_note">Your contacts and calls are managed on this device. No ads or analytics.</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_not_now">Not now</string>
+
+    <!-- New strings for extras -->
+    <string name="recycle_bin_title">Recycle Bin</string>
+    <string name="recycle_bin_item">Recycle bin</string>
+    <string name="recycle_bin_empty">No deleted items</string>
+    <string name="recycle_bin_empty_description">Deleted items will appear here and you can restore them or delete them permanently.</string>
+    <string name="delete_permanently">Delete permanently</string>
+    <string name="note_restored">Note restored</string>
+    <string name="checklist_restored">Checklist restored</string>
+    <string name="reminder_restored">Reminder restored</string>
+    <string name="recording_restored">Recording restored</string>
+    <string name="note_permanently_deleted">Note permanently deleted</string>
+    <string name="checklist_permanently_deleted">Checklist permanently deleted</string>
+    <string name="reminder_permanently_deleted">Reminder permanently deleted</string>
+    <string name="recording_permanently_deleted">Recording permanently deleted</string>
+    <string name="delete_permanently_confirm">Permanently delete item %1$s? This action cannot be undone.</string>
+    <string name="restore_confirm">Are you sure you want to restore %1$s?</string>
+    <string name="empty_recycle_bin">Empty recycle bin</string>
+    <string name="empty_recycle_bin_confirm">Permanently delete all items in the recycle bin? This action cannot be undone.</string>
+    <string name="recycle_bin_emptied">Recycle bin emptied</string>
+    <string name="recycle_bin_auth_failed">Authentication required to access the recycle bin</string>
+    <string name="extras_restore_contacts">Restore contacts</string>
+    <string name="delete_photo">Delete photo</string>
+
+    <!-- New strings for settings -->
+    <string name="settings">Settings</string>
+    <string name="appearance">Personalization</string>
+    <string name="appearance_description">Themes, colors, fonts, and list density</string>
+    <string name="accent_usage_title">Theme style</string>
+    <string name="accent_usage_description">Defines the style of the TopBars, system bars, and some interface elements.</string>
+    <string name="accent_usage_minimal">Minimalist</string>
+    <string name="accent_usage_retro">Retro</string>
+    <string name="animations_vibration_section">Animations &amp; vibration</string>
+    <string name="animations_vibration_section_description">Speed, transition styles, and haptic feedback</string>
+    <string name="contacts_accounts_section">Contacts &amp; accounts</string>
+    <string name="contacts_accounts_section_description">Profile, accounts, tags, and blocked numbers</string>
+    <string name="calls_section">Calls</string>
+    <string name="calls_section_description">Answer style, speed dial, and call options</string>
+    <string name="general_section">General</string>
+    <string name="general_section_description">Startup screen, language, and app info</string>
+    <string name="background_color">Background color</string>
+    <string name="accent_color">Accent color</string>
+    <string name="green">Green</string>
+    <string name="red">Red</string>
+    <string name="orange">Orange</string>
+    <string name="purple">Purple</string>
+    <string name="purple_light">Light Purple</string>
+    <string name="pink">Pink</string>
+    <string name="pink_light">Light Pink</string>
+    <string name="yellow">Yellow</string>
+    <string name="blue_dark">Dark Blue</string>
+    <string name="green_dark">Dark Green</string>
+    <string name="blue_light">Light Blue</string>
+    <string name="blue">Blue</string>
+    <string name="green_light">Light Green</string>
+    <string name="red_dark">Dark Red</string>
+    <string name="red_light">Light Red</string>
+    <string name="orange_dark">Dark Orange</string>
+    <string name="orange_light">Light Orange</string>
+    <string name="amber">Amber</string>
+    <string name="purple_dark">Dark Purple</string>
+    <string name="pink_dark">Dark Pink</string>
+    <string name="teal">Teal</string>
+    <string name="teal_dark">Dark Teal</string>
+    <string name="teal_light">Light Teal</string>
+    <string name="cyan">Cyan</string>
+    <string name="cyan_light">Light Cyan</string>
+    <string name="indigo">Indigo</string>
+    <string name="blue_grey">Blue Grey</string>
+    <string name="font_type">Font type</string>
+    <string name="font_default">Default</string>
+    <string name="font_serif">Serif</string>
+    <string name="font_monospace">Monospace</string>
+    <string name="apply">Apply</string>
+    <string name="font_lato">Lato</string>
+    <string name="font_playfair">Playfair Display</string>
+    <string name="font_playpen">Playpen Sans Thai</string>
+    <!-- Playwrite is the registered font family name. -->
+    <string name="font_playwrite" tools:ignore="Typos">Playwrite HU</string>
+    <string name="font_yellowtail">Yellowtail</string>
+    <string name="font_henny_penny">Henny Penny</string>
+    <string name="doto">Doto</string>
+    <string name="font_inter">Inter</string>
+    <string name="font_roboto">Roboto</string>
+    <string name="font_roboto_condensed">Roboto Condensed</string>
+    <string name="font_roboto_serif">Roboto Serif</string>
+    <string name="font_noto_sans">Noto Sans</string>
+    <string name="font_noto_serif">Noto Serif</string>
+    <string name="font_manrope">Manrope</string>
+    <string name="font_rubik">Rubik</string>
+    <string name="font_urbanist">Urbanist</string>
+    <string name="font_nunito">Nunito</string>
+    <string name="font_jetbrains_mono">JetBrains Mono</string>
+    <string name="font_caveat">Caveat</string>
+    <string name="font_lobster">Lobster</string>
+    <string name="font_pacifico">Pacifico</string>
+    <string name="font_great_vibes">Great Vibes</string>
+    <string name="font_pixelify_sans">Pixelify Sans</string>
+    <string name="color_default">Default</string>
+    <string name="expand">Expand</string>
+    <string name="collapse">Collapse</string>
+
+    <string name="fast">Fast</string>
+    <string name="normal">Normal</string>
+    <string name="slow">Slow</string>
+    <string name="off">Off</string>
+
+    <!-- Theme settings -->
+    <string name="theme">Theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System</string>
+
+    <!-- New strings for permissions screen -->
+    <string name="status_resume">Permissions status</string>
+    <string name="no_default_dialer">No default yet</string>
+    <string name="dialer_role_granted">Fun Phone is now your default dialer!</string>
+    <string name="dialer_role_not_granted">Dialer role was not granted.</string>
+    <string name="grant_permission">Grant permissions</string>
+    <string name="phone_status_current_state">Current state: %1$s</string>
+    <string name="phone_status_state_ready">Ready</string>
+    <string name="phone_status_ready_title">Phone setup complete</string>
+    <string name="phone_status_ready_description">Fun Phone has the role and core permissions needed for contacts and calls.</string>
+    <string name="phone_status_reason_default_dialer">Required so Fun Phone can handle incoming and outgoing calls through Android’s protected dialer role.</string>
+    <string name="call_notifications">Call notifications</string>
+    <string name="phone_status_reason_notifications">Required to answer or reject incoming calls and return to an ongoing call after leaving Fun Phone.</string>
+    <string name="phone_status_reason_contacts">Required to display, search, and edit your device contacts.</string>
+    <string name="phone_status_reason_call_log">Required to show recent calls and keep missed-call state accurate.</string>
+    <string name="phone_status_reason_phone_state">Required to react safely to call state changes.</string>
+    <string name="phone_status_reason_call_phone">Required when you start a phone call from Fun Phone.</string>
+    <string name="phone_status_reason_exact_alarms">Required to deliver birthday reminders at the right time.</string>
+    <string name="delete">Delete</string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="delete_contact">Delete contact</string>
+    <string name="delete_profile_confirm">Are you sure you want to delete your profile?</string>
+    <string name="delete_contact_confirm">Are you sure you want to delete the contact %1$s?</string>
+    <string name="delete_confirm_note">Are you sure you want to delete the item %1$s?</string>
+    <string name="contact_deleted">%1$s was deleted from your contacts</string>
+    <string name="delete_contact_error">Couldn\'t delete the contact. Please try again.</string>
+    <string name="profile_deleted">Profile deleted</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="checklist_deleted">Checklist deleted</string>
+    <string name="reminder_deleted">Reminder deleted</string>
+    <string name="note_folders_title">Folders</string>
+    <string name="note_folders_create">New folder</string>
+    <string name="note_folders_empty_title">No folders yet</string>
+    <string name="note_folders_empty_description">Organize your notes by creating personalized folders.</string>
+    <string name="note_folders_form_title_add">Create folder</string>
+    <string name="note_folders_form_title_edit">Edit folder</string>
+    <string name="note_folders_name_label">Folder name</string>
+    <string name="note_folders_description_label">Description (optional)</string>
+    <string name="note_folders_color_label">Color</string>
+    <string name="note_folders_delete_title">Delete folder</string>
+    <string name="note_folders_delete_message">Notes will remain without a folder. Delete "%1$s"?</string>
+    <string name="note_folder_created">Folder "%1$s" created</string>
+    <string name="note_folder_updated">Folder "%1$s" updated</string>
+    <string name="note_folder_deleted">Folder "%1$s" deleted</string>
+    <string name="note_move_to_folder">Move to folder</string>
+    <string name="note_move_to_folder_none">No folder</string>
+    <string name="note_move_to_folder_success">Note moved to "%1$s"</string>
+    <string name="note_move_to_folder_removed">Note moved out of its folder</string>
+    <string name="note_folders_filter_all">Others</string>
+    <string name="note_folder_empty_title">No notes in "%1$s"</string>
+    <string name="note_folder_empty_description">Move existing notes here or create new ones.</string>
+    <string name="note_folder_empty_add_button">Add note</string>
+    <string name="note_folder_empty_view_all">View all notes</string>
+    <string name="note_folder_empty_hint">Use the "Move to folder" action on any note to send it here.</string>
+    <string name="note_folder_empty_select_note_title">Pick a note to move into "%1$s"</string>
+    <string name="note_folder_empty_no_notes">There are no notes available to move.</string>
+    <string name="note_without_title">Untitled note</string>
+    <string name="note_folder_picker_title">Save in</string>
+    <string name="note_folder_action_description">Choose folder</string>
+    <plurals name="note_folder_note_count">
+        <item quantity="one">%d note</item>
+        <item quantity="other">%d notes</item>
+    </plurals>
+
+    <!-- New strings for DialerScreen and ExtrasScreen -->
+    <string name="close">Close</string>
+    <string name="search_username">Search user</string>
+    <string name="json_saved_success">JSON saved successfully</string>
+    <string name="json_saved_error">Error saving JSON</string>
+    <string name="json_share_chooser">Share contacts JSON</string>
+    <string name="json_import_error">Error importing JSON</string>
+    <string name="extras_save_contacts">Save contacts</string>
+    <string name="extras_share_contacts">Share contacts</string>
+    <string name="share_contact">Share contact</string>
+
+    <string name="json_include_photos_title">Include photos in backup?</string>
+    <string name="json_with_photos">With photos</string>
+    <string name="json_without_photos">Without photos</string>
+
+    <!-- New strings for RecentsScreen (EN) -->
+    <string name="no_recent_operations">No recent operations</string>
+
+    <!-- New strings for social media -->
+    <string name="unknown">Unknown</string>
+
+    <!-- Phone number selection dialog -->
+    <string name="select_phone_number">Select Number</string>
+
+    <string name="no_notes">No notes yet</string>
+    <string name="no_notes_description">Create new notes or restore your saved ones</string>
+    <!-- New strings for loader and import -->
+    <string name="importing_contacts">Importing contacts…</string>
+    <string name="import_success">Contacts imported</string>
+    <plurals name="imported_count">
+        <item quantity="one">%1$d new contact</item>
+        <item quantity="other">%1$d new contacts</item>
+    </plurals>
+    <string name="deleting_contacts">Deleting contacts…</string>
+
+    <!-- ContactsScreen strings -->
+    <string name="selected_single">selected</string>
+    <string name="selected_plural">selected</string>
+    <string name="delete_contacts_title">Delete contacts?</string>
+    <string name="delete_contacts_error">Couldn\'t delete the selected contacts. Please try again.</string>
+    <plurals name="delete_success">
+        <item quantity="one">%1$d contact deleted</item>
+        <item quantity="other">%1$d contacts deleted</item>
+    </plurals>
+    <string name="select_all">Select all</string>
+    <string name="deselect_all">Deselect all</string>
+
+    <string name="games_title">Games</string>
+    <string name="games_dashboard_action">Game statistics</string>
+    <string name="games_dashboard_title">Games Dashboard</string>
+    <string name="games_dashboard_summary">Overview</string>
+    <string name="games_dashboard_total_played">Games played</string>
+    <string name="games_dashboard_completed">Games completed</string>
+    <string name="games_dashboard_favorite_game">Favorite game</string>
+    <string name="games_dashboard_best_streak">Best streak</string>
+    <string name="games_dashboard_games_tried">Games tried</string>
+    <string name="games_dashboard_no_data">You haven\'t played yet. Start playing to see your stats!</string>
+    <string name="games_dashboard_records_title">Records by Game</string>
+    <string name="games_dashboard_no_favorite">None</string>
+    <string name="games_featured_section">Recent Games</string>
+    <string name="games_all_games_section">All Games</string>
+    <string name="games_play_now">PLAY NOW</string>
+    <string name="play_game">PLAY</string>
+    <string name="tic_tac_toe_title">Tic Tac Toe</string>
+    <string name="tic_tac_toe_turn">Turn of %1$s</string>
+    <string name="restart_game">Reset game</string>
+    <string name="cd_restart_game">Reset game</string>
+    <string name="puzzle_title">Puzzle</string>
+    <string name="play_again">Play again</string>
+    <string name="puzzle_win_message">You solved the puzzle!</string>
+    <string name="time_label">Time</string>
+    <string name="puzzle_views_label">Views</string>
+    <string name="puzzle_time">Time: %1$s</string>
+    <string name="puzzle_mode_numbers">Numbered tiles</string>
+    <string name="puzzle_mode_numbers_description">Order tiles 1 to 15 with the fewest moves.</string>
+    <string name="puzzle_mode_image">Image</string>
+    <string name="puzzle_mode_image_description">Rebuild the full picture by sliding tiles.</string>
+    <string name="puzzle_image_source_title">Image</string>
+    <string name="puzzle_choose_from_device">Choose from device</string>
+    <string name="puzzle_use_default_image">Use default image %1$d</string>
+    <string name="puzzle_image_error_title">We couldn\'t load the image</string>
+    <string name="puzzle_image_error_message">Please try again with a different image or crop it once more.</string>
+    <string name="puzzle_image_error_retry">Try again</string>
+    <string name="puzzle_preview_title">Image preview</string>
+    <string name="puzzle_preview_subtitle">This is what the completed puzzle looks like.</string>
+    <string name="puzzle_preview_hint_title">Hint</string>
+    <string name="puzzle_preview_hint_subtitle">This is what the completed puzzle looks like.</string>
+    <string name="puzzle_start_game">Start game</string>
+    <string name="puzzle_hint_button">Show hint</string>
+    <string name="enter_a_number">Enter a number</string>
+
+    <string name="uploading_photos">Uploading photos…</string>
+    <string name="creating_qr">Creating QR</string>
+
+    <!-- NotesScreen -->
+    <string name="notes_title">Notes</string>
+    <string name="notes_type_sheet_title">Notes created</string>
+    <string name="notes_export_success">Exported %1$s and %2$s</string>
+    <plurals name="notes_backup_note_count">
+        <item quantity="one">%1$d note</item>
+        <item quantity="other">%1$d notes</item>
+    </plurals>
+    <plurals name="notes_backup_checklist_count">
+        <item quantity="one">%1$d checklist</item>
+        <item quantity="other">%1$d checklists</item>
+    </plurals>
+    <string name="notes_export_error">Could not export your notes</string>
+    <string name="notes_export_empty">No notes or checklists to export</string>
+    <string name="notes_import_success">Imported %1$s and %2$s</string>
+    <string name="notes_import_error">Could not import notes</string>
+    <string name="notes_import_error_invalid">The selected file is not a valid backup</string>
+    <string name="notes_backup_in_progress">Processing backup…</string>
+    <string name="create_note">Create Note</string>
+    <string name="create_checklist">Create Checklist</string>
+    <string name="edit_checklist">Edit Checklist</string>
+    <string name="edit_checklist_item">Edit checklist item</string>
+    <string name="checklist_item_content">Item content</string>
+    <string name="checklist_mark_complete">Mark as complete</string>
+    <string name="checklist_mark_incomplete">Mark as incomplete</string>
+    <string name="checklist_copy_item">Copy content</string>
+    <string name="note">Note</string>
+    <string name="checklist">Checklist</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="contact_photo_description">%1$s photo</string>
+    <string name="contact_no_photo_description">No profile photo for %1$s</string>
+    <string name="slide_to_answer_or_reject">Incoming call from %1$s, slide to answer or reject</string>
+    <string name="contact_avatar_placeholder">%1$s initial</string>
+    <string name="note_format_bold">Bold</string>
+    <string name="note_format_italic">Italic</string>
+    <string name="note_format_underline">Underline</string>
+    <string name="note_format_heading">Heading size</string>
+    <string name="note_format_color">Text color</string>
+    <string name="note_format_align_left">Align left</string>
+    <string name="note_format_align_center">Align center</string>
+    <string name="note_format_align_right">Align right</string>
+    <string name="note_format_ordered_list">Numbered list</string>
+    <string name="note_format_unordered_list">Bulleted list</string>
+    <string name="note_format_link">Add or edit link</string>
+    <string name="notes_search_open">Search notes</string>
+    <string name="notes_search_close">Close search</string>
+    <string name="notes_empty_create">Create note</string>
+    <string name="checklist_no_results_icon">No results</string>
+    <string name="password_generate_new">Generate password</string>
+    <string name="passwords_search_open">Search passwords</string>
+    <string name="passwords_search_close">Close search</string>
+    <string name="passwords_empty_icon">No saved passwords</string>
+    <string name="password_item_icon_description">%1$s credential</string>
+    <string name="password_copy_action">Copy password</string>
+    <string name="password_copied">Password copied</string>
+    <string name="qr_flash_on">Turn on flash</string>
+    <string name="qr_flash_off">Turn off flash</string>
+    <string name="qr_share_code">Share QR code</string>
+    <string name="qr_save_code">Save QR code</string>
+    <string name="qr_empty_state_icon">No QR code generated</string>
+    <string name="qr_link_preview_icon">Website icon</string>
+    <string name="minesweeper_flagged">Flagged cell</string>
+    <string name="puzzle_preview">Puzzle image preview</string>
+    <string name="holidays_add_calendars">Add calendars</string>
+    <string name="holidays_event_icon">Calendar event</string>
+    <string name="settings_blocked_empty_icon">No blocked numbers</string>
+    <string name="settings_unblock_number_icon">Unblock number</string>
+    <string name="about_app_icon_description">Fun Phone logo</string>
+    <string name="onboarding_app_icon_description">Fun Phone logo</string>
+    <string name="title">Title</string>
+    <string name="add_item">Add item</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="what_type_note">Create note</string>
+    <string name="reminder">Reminder</string>
+    <string name="create_reminder">Create Reminder</string>
+    <string name="reminder_in_progress">Reminder in Progress</string>
+    <string name="reminder_expired">Reminder Expired</string>
+    <string name="creation_date">Creation Date</string>
+    <string name="expiration_date">Expiration Date</string>
+    <string name="select_date">Date</string>
+    <string name="select_expiration_date">Select expiration date</string>
+    <string name="select_expiration_time">Select expiration time</string>
+    <string name="interval">Interval</string>
+    <string name="custom_interval_seconds">Custom interval (seconds)</string>
+    <string name="message">Message</string>
+    <string name="notification_message">Notification message (optional)</string>
+    <string name="minimum_value">Minimum value: 60 seconds (1 minute)</string>
+    <string name="font_cursive">Cursiva</string>
+    <!-- New strings for HangmanScreen -->
+    <string name="hangman_title">Hangman</string>
+    <string name="hangman_select_category">Category</string>
+    <string name="hangman_win_title">You won! 🎉</string>
+    <string name="hangman_win_msg">You guessed the word %1$s!</string>
+    <string name="lose_title">You lost 🥺</string>
+    <string name="hangman_lose_msg">The word was: %1$s</string>
+    <string name="hangman_attempts_label">Attempts</string>
+    <string name="hangman_attempts_value">%1$d of %2$d</string>
+    <string name="hangman_wins_label">Wins</string>
+    <string name="hangman_attempts_description">Remaining attempts: %1$d of %2$d</string>
+    <string name="hangman_drawing_description" tools:ignore="PluralsCandidate">Hangman drawing: %1$d of %2$d mistakes</string>
+    <string name="hangman_word_label">Word</string>
+    <string name="hangman_word_description">Word to guess: %1$s</string>
+    <string name="hangman_keyboard_label">Letters</string>
+    <string name="hangman_keyboard_letter_description">Letter %1$s, %2$s</string>
+    <string name="hangman_letter_available">Available</string>
+    <string name="hangman_letter_correct">Correct</string>
+    <string name="hangman_letter_incorrect">Incorrect</string>
+    <string name="hangman_letter_used_state">Used, %1$s</string>
+    <string name="hangman_feedback_correct">Good guess!</string>
+    <string name="hangman_feedback_incorrect">That letter is not in the word.</string>
+    <string name="hangman_feedback_duplicate">You already tried that letter.</string>
+    <string name="hangman_category_label">Category</string>
+    <string name="hangman_category_animals">Animals 😺</string>
+    <string name="hangman_category_colors">Colors 🎨</string>
+    <string name="hangman_category_countries">Countries 🇨🇴</string>
+    <string name="hangman_category_fruits">Fruits 🍑</string>
+    <string name="hangman_category_professions">Professions 👩‍🏫</string>
+    <string name="hangman_category_sports">Sports 🚴‍♂️</string>
+    <string name="hangman_category_custom">Custom 💬</string>
+    <string name="hangman_level_label">Level</string>
+    <string name="hangman_level_easy">Easy</string>
+    <string name="hangman_level_hard">Hard</string>
+    <string name="hangman_custom_word_title">Enter your custom word</string>
+    <string name="hangman_custom_word_label">Word or phrase (max. 20)</string>
+    <string name="hangman_custom_word_hint">Example: fun phone</string>
+    <string name="hangman_custom_word_description">Letters A-Z and spaces only. You can use multiple words.</string>
+    <string name="hangman_custom_word_error_empty">Type at least one letter.</string>
+    <string name="hangman_custom_word_error_length">The word cannot be longer than 20 characters.</string>
+    <string name="hangman_custom_word_confirm">Play</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="take_photo">Take photo</string>
+
+    <string name="paint_title">Paint</string>
+    <string name="paint_tool_pencil">Pencil</string>
+    <string name="paint_tool_eraser">Eraser</string>
+    <string name="paint_tool_blur">Blur</string>
+    <string name="paint_tool_text">Text</string>
+    <string name="paint_tool_shapes">Shapes</string>
+    <string name="paint_tool_canvas">Canvas</string>
+    <string name="paint_blur_size">Blur size</string>
+    <string name="paint_blur_intensity">Intensity</string>
+    <string name="paint_blur_low">Low</string>
+    <string name="paint_blur_medium">Medium</string>
+    <string name="paint_blur_high">High</string>
+    <string name="paint_blur_error">We couldn\'t blur that part of the canvas.</string>
+    <string name="paint_collapse_controls">Collapse tool controls</string>
+    <string name="paint_expand_controls">Expand tool controls</string>
+    <string name="paint_add_shape">Add shape</string>
+    <string name="cd_redo">Redo</string>
+    <string name="paint_import_image">Import image</string>
+    <string name="paint_import_unavailable">The canvas is still getting ready, try again in a moment.</string>
+    <string name="paint_import_error">We couldn\'t load the selected image.</string>
+    <string name="contact_photo_save_warning">The contact was saved, but its photo could not be updated.</string>
+    <string name="incoming_call_background_title">Incoming call background</string>
+    <string name="incoming_call_background_description">Shown only when this contact calls you.</string>
+    <string name="incoming_call_background_configured">Background selected</string>
+    <string name="incoming_call_background_not_configured">No background selected</string>
+    <string name="incoming_call_background_remove">Remove call background</string>
+    <string name="incoming_call_background_camera_permission">Camera permission is required to take an incoming call background photo.</string>
+    <string name="incoming_call_background_save_warning">The contact was saved, but its incoming call background could not be updated.</string>
+    <string name="incoming_call_background_too_large">The contact was saved, but the incoming call background exceeds 50 MB.</string>
+    <string name="incoming_call_background_invalid">The contact was saved, but the selected incoming call background is not a valid image.</string>
+    <string name="incoming_call_preview_title">Preview incoming call</string>
+    <string name="in_call_background_title">Ongoing call background</string>
+    <string name="in_call_background_description">Shown only during the active call with this contact.</string>
+    <string name="in_call_background_configured">Background selected</string>
+    <string name="in_call_background_not_configured">No background selected</string>
+    <string name="in_call_background_remove">Remove call background</string>
+    <string name="in_call_background_camera_permission">Camera permission is required to take an ongoing call background photo.</string>
+    <string name="in_call_background_save_warning">The contact was saved, but its ongoing call background could not be updated.</string>
+    <string name="in_call_background_too_large">The contact was saved, but the ongoing call background exceeds 50 MB.</string>
+    <string name="in_call_background_invalid">The contact was saved, but the selected ongoing call background is not a valid image.</string>
+    <string name="in_call_preview_title">Preview active call</string>
+    <string name="paint_image_adjust_hint">Drag to move, pinch to resize, and rotate with two fingers. Tap Continue when you\'re ready.</string>
+    <string name="paint_cancel_image">Cancel image</string>
+    <string name="paint_confirm_image">Confirm image</string>
+    <string name="paint_shape_adjust_hint">Drag to move, pinch to resize, and rotate the shape with two fingers. Tap Continue when you\'re ready.</string>
+    <string name="paint_cancel_shape">Cancel shape</string>
+    <string name="paint_confirm_shape">Confirm shape</string>
+    <string name="paint_text_adjust_hint">Drag to move, pinch to resize, and rotate the text with two fingers. Tap Continue when you\'re ready.</string>
+    <string name="paint_cancel_text">Cancel text</string>
+    <string name="paint_confirm_text">Confirm text</string>
+    <string name="paint_add_text_label">Type the text to add</string>
+    <string name="paint_text_color">Text color</string>
+    <string name="paint_text_background">Background</string>
+    <string name="paint_text_background_color">Background color</string>
+    <string name="paint_fill_canvas">Fill entire canvas</string>
+    <string name="paint_collage">Collage</string>
+    <string name="paint_collage_title">Collage style</string>
+    <plurals name="paint_collage_not_enough_photos">
+        <item quantity="one">You need at least %1$d photo for this collage</item>
+        <item quantity="other">You need at least %1$d photos for this collage</item>
+    </plurals>
+    <string name="paint_collage_error">Couldn\'t create the collage</string>
+    <string name="paint_collage_editor_title">Edit collage photos</string>
+    <string name="paint_collage_editor_hint">Select a cell, then drag to frame the photo, pinch to zoom, or rotate with two fingers.</string>
+    <string name="paint_collage_insert">Insert collage</string>
+    <string name="collage_two_horizontal">2 horizontal</string>
+    <string name="collage_two_vertical">2 vertical</string>
+    <string name="collage_three_left_big">1 big + 2</string>
+    <string name="collage_three_columns">3 columns</string>
+    <string name="collage_four_grid">2×2 grid</string>
+    <string name="collage_four_left_big">1 big + 3</string>
+    <string name="brush_size">Brush size</string>
+    <string name="brush_color">Brush color</string>
+    <string name="brush_style">Brush style</string>
+    <string name="brush_style_normal">Normal</string>
+    <string name="brush_style_dashed">Dashed</string>
+    <string name="brush_style_dotted">Dotted</string>
+    <string name="brush_style_calligraphy">Calligraphy</string>
+    <string name="brush_style_marker">Marker</string>
+    <string name="brush_style_spray">Spray</string>
+    <string name="brush_style_sketch">Sketch</string>
+    <string name="brush_style_glow">Glow</string>
+    <string name="fill_shape">Fill shape</string>
+    <string name="erase">Clear Canvas</string>
+    <string name="save_drawing">Save Drawing</string>
+    <string name="drawing_saved_success">Image saved successfully in Pictures folder</string>
+    <string name="drawing_saved_error">Error saving drawing</string>
+    <string name="save_options">Save Options</string>
+    <string name="save_locally">Save to gallery</string>
+    <string name="select_color">Select color</string>
+    <string name="predefined_color">Predefined colors</string>
+    <string name="brightness">Brightness</string>
+
+    <string name="delete_recents_title">Delete history</string>
+    <string name="delete_recents_message">Are you sure you want to delete the records selected?</string>
+    <string name="delete_contact_recents_title">Delete history of %1$s</string>
+    <string name="delete_contact_recents_message">Are you sure you want to delete the history of %1$s for this date?</string>
+    <string name="delete_unknown_recents_title">Delete history for this number</string>
+    <string name="delete_unknown_recents_message">Are you sure you want to delete the history for this number for this date?</string>
+    <string name="delete_recents_success">Records deleted</string>
+
+    <!-- Drawing shapes and text -->
+    <string name="shape_circle">Circle</string>
+    <string name="shape_square">Square</string>
+    <string name="shape_rectangle">Rectangle</string>
+    <string name="shape_triangle">Triangle</string>
+    <string name="shape_heart">Heart</string>
+    <string name="shape_star">Star</string>
+    <string name="select_shape">Select shape</string>
+    <string name="add_text">Add text</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="backup_section">Backup &amp; restore</string>
+    <string name="backup_section_description">Save, share, and recover your contacts and settings</string>
+    <string name="home_shortcuts_section_title">Shortcuts &amp; widgets</string>
+    <string name="home_shortcuts_section_description">Add shortcuts and widgets to your home screen</string>
+    <string name="home_shortcuts_card_title">Tools</string>
+    <string name="home_shortcuts_card_description">Create shortcuts to notes, passwords, dialer, finances, games, and more.</string>
+    <string name="home_shortcuts_sheet_title">Add shortcut</string>
+    <string name="home_shortcuts_sheet_subtitle">Choose a screen to pin to your launcher for instant access.</string>
+    <string name="home_shortcuts_add_button">Pin</string>
+    <string name="home_shortcuts_not_supported">Your launcher does not support pinned shortcuts.</string>
+    <string name="home_shortcuts_created">%1$s shortcut pinned</string>
+    <string name="home_shortcuts_request_failed">Couldn\'t create the %1$s shortcut</string>
+    <string name="home_widget_card_title">Favorite contacts</string>
+    <string name="home_widget_card_description">Add the favorites widget so your preferred contacts stay visible on the home screen.</string>
+    <string name="notes_widget_card_title">Quick notes</string>
+    <string name="notes_widget_card_description">Add the notes widget to view and create notes from your home screen.</string>
+    <string name="widget_pin_not_supported">Your launcher does not allow adding pinned widgets.</string>
+    <string name="dialer_shortcut_title">Dialer</string>
+    <string name="dialer_shortcut_description">Open the keypad to dial, paste numbers, or start calls instantly.</string>
+
+    <string name="call_log">Call log</string>
+    <string name="phone_state">Phone state</string>
+    <string name="calls">Calls</string>
+
+    <!-- Game instructions modals -->
+    <string name="instructions_title">Instructions</string>
+    <string name="hangman_instructions_text">Guess the word letter by letter. You have 7 attempts before the hangman is completed. Good luck!</string>
+    <string name="puzzle_instructions_numbers">Sort the tiles from 1 to 15, starting from the top left corner and going horizontally. You can only move tiles adjacent to the empty space. Solve the puzzle as quickly and with as few moves as possible!</string>
+    <string name="puzzle_instructions_image">Pick a photo, crop it to a square, and then slide the tiles around the empty space until the full picture is restored with the fewest moves and in the shortest time you can.</string>
+    <string name="tictactoe_instructions_text">Place your pieces on the board to form a horizontal, vertical, or diagonal line before your opponent. After placing your three pieces, you must move the existing ones to form the line. Good luck!</string>
+    <string name="understood">Got it</string>
+
+    <string name="tictactoe_mode_two_players">Player vs. Player</string>
+    <string name="tictactoe_mode_two_players_description">Two players take turns on this device.</string>
+    <string name="tictactoe_mode_vs_cpu">Player vs. AI</string>
+    <string name="tictactoe_mode_vs_cpu_description">Play as X against the AI playing as O.</string>
+    <string name="tictactoe_player_turn">Your turn</string>
+    <string name="tictactoe_cpu_thinking">AI is thinking…</string>
+
+    <string name="vibration_duration">Vibration duration</string>
+    <string name="vibration_duration_value">%1$d ms</string>
+    <string name="vibration_pattern">Vibration pattern</string>
+    <string name="vibration_pattern_simple">Simple</string>
+    <string name="vibration_pattern_double">Double</string>
+    <string name="vibration_pattern_triple">Triple</string>
+    <string name="about_app_title">About Fun Phone</string>
+    <string name="about_title_item">About</string>
+    <string name="holidays_item">Holidays calendar</string>
+    <string name="holidays_title">Holidays Calendar</string>
+    <string name="holidays_select_country">Select country</string>
+    <string name="holidays_agenda_title">Agenda</string>
+    <string name="holidays_loading">Loading public holidays…</string>
+    <string name="holidays_loading_events">Loading calendar events…</string>
+    <string name="holidays_loading_calendars">Loading calendars…</string>
+    <string name="holidays_empty_agenda">No holidays or events this month.</string>
+    <string name="holidays_public_badge">Holiday</string>
+    <string name="holidays_all_day">All day</string>
+    <string name="holidays_untitled_event">Untitled event</string>
+    <string name="holidays_select_calendars">Choose calendars</string>
+    <string name="holidays_no_calendars">No visible calendars were found on this device.</string>
+    <string name="holidays_calendar_permission_hint">Connect device calendars to see their events alongside public holidays.</string>
+    <string name="holidays_calendar_permission_title">Calendar access</string>
+    <string name="holidays_calendar_permission_message">Allow read-only calendar access to show events from the calendars you choose. Calendar data stays on this device and is never sent to the holiday service.</string>
+    <string name="holidays_calendar_permission_denied_title">Calendar access disabled</string>
+    <string name="holidays_calendar_permission_denied_message">Enable calendar permission in system settings to connect your calendars.</string>
+    <string name="holidays_calendar_load_error">Calendar events could not be loaded. Try again.</string>
+    <plurals name="calendar_title">
+        <item quantity="one">%1$s has %2$d holiday 🎉</item>
+        <item quantity="other">%1$s has %2$d holidays 🎉</item>
+    </plurals>
+    <string name="national_holiday">National Holiday</string>
+    <string name="manage_calendars">Manage calendars (%1$d)</string>
+    <!-- Menstrual calendar -->
+    <string name="menstrual_calendar_item">Cycle calendar</string>
+    <string name="menstrual_calendar_description">Track cycle predictions, fertile windows, and quick tips.</string>
+    <string name="menstrual_calendar_title">Menstrual Calendar</string>
+    <string name="menstrual_calendar_intro">Enter the first day of your cycle and get an estimated view of each phase. This tool is for information only and does not replace medical advice.</string>
+    <string name="menstrual_calendar_form_title">Cycle settings</string>
+    <string name="menstrual_calendar_form_hint">Fine tune your typical cycle length and luteal phase to personalize the results.</string>
+    <string name="menstrual_calendar_previous_month">Previous month</string>
+    <string name="menstrual_calendar_next_month">Next month</string>
+    <string name="menstrual_calendar_month_counter">Month %1$d of %2$d</string>
+    <string name="menstrual_start_date_label">First day of the cycle</string>
+    <string name="menstrual_start_date_placeholder">Pick a date</string>
+    <string name="menstrual_start_date_hint">Use the first day of bleeding</string>
+    <string name="menstrual_start_date_error">Select a start date to calculate your cycle.</string>
+    <string name="menstrual_start_date_error_future">Choose today or an earlier date.</string>
+    <string name="menstrual_loading">Loading your cycle</string>
+    <string name="menstrual_setup_title">Your private cycle space</string>
+    <string name="menstrual_setup_body">Set up your typical cycle to see calm, estimated guidance for each day.</string>
+    <string name="menstrual_local_only">Stored only on this device.</string>
+    <string name="menstrual_setup_action">Set up my cycle</string>
+    <string name="menstrual_settings_title">Cycle settings</string>
+    <string name="menstrual_edit_cycle">Edit cycle settings</string>
+    <string name="menstrual_reset_action">Reset cycle</string>
+    <string name="menstrual_reset_title">Reset cycle?</string>
+    <string name="menstrual_reset_message">This removes your cycle settings from this device. You can set them up again at any time.</string>
+    <string name="menstrual_reset_confirm">Reset cycle</string>
+    <string name="menstrual_today_title">Today’s estimate</string>
+    <string name="menstrual_today_phase_summary">Day %1$d of %2$d in this phase</string>
+    <string name="menstrual_today_tip_title">Wellbeing tip</string>
+    <string name="menstrual_calendar_today">Today</string>
+    <string name="menstrual_today_marker">Today</string>
+    <string name="menstrual_selected_marker">Selected</string>
+    <string name="menstrual_today_selected_marker">Today, selected</string>
+    <string name="menstrual_estimated_label">Estimated</string>
+    <string name="menstrual_calendar_day_description">%1$s. %2$s. %3$s.</string>
+    <string name="menstrual_cycle_guide_title">Cycle guide</string>
+    <string name="menstrual_day_detail_title">Day estimate</string>
+    <string name="menstrual_day_detail_phase_range">Estimated phase dates: %1$s</string>
+    <string name="menstrual_day_detail_subtitle">This prediction uses your saved cycle settings and is not a clinical record.</string>
+    <string name="menstrual_cycle_length_label">Cycle length (days)</string>
+    <string name="menstrual_luteal_length_label">Luteal phase (days)</string>
+    <string name="menstrual_save_button">Save &amp; calculate</string>
+    <string name="menstrual_timeline_title">Current cycle overview</string>
+    <string name="menstrual_timeline_subtitle">Estimated %1$d-day cycle</string>
+    <string name="menstrual_ovulation_label">Ovulation estimate</string>
+    <string name="menstrual_next_cycle_label">Next cycle</string>
+    <string name="menstrual_phase_menstruation">Menstrual phase</string>
+    <string name="menstrual_phase_follicular">Follicular phase</string>
+    <string name="menstrual_phase_ovulation">Ovulation</string>
+    <string name="menstrual_phase_luteal">Luteal phase</string>
+    <plurals name="menstrual_phase_duration">
+        <item quantity="one">%1$d estimated day</item>
+        <item quantity="other">%1$d estimated days</item>
+    </plurals>
+    <string name="menstrual_tip_menstruation">Listen to your body, add gentle movement, warm meals and hydration.</string>
+    <string name="menstrual_tip_follicular">Energy usually rises: plan workouts, brainstorms or new goals.</string>
+    <string name="menstrual_tip_ovulation">Peak fertility and focus. Great moment for key conversations or social plans.</string>
+    <string name="menstrual_tip_luteal">PMS can appear: prioritize sleep, magnesium-rich snacks and mindful pauses.</string>
+    <string-array name="menstrual_tips_menstruation">
+        <item>Listen to your body and reserve real downtime blocks.</item>
+        <item>Apply heat on your lower belly or back to relax cramps.</item>
+        <item>Favor soups, teas and warm drinks to support circulation.</item>
+        <item>Stick to gentle moves like restorative yoga or light stretching.</item>
+        <item>Use 4–4–6 breathing to calm the nervous system.</item>
+        <item>Log your moods and energy to detect cycle patterns.</item>
+        <item>Add iron-rich foods and omega-3s to aid recovery.</item>
+        <item>Keep protein and healthy fat snacks handy to avoid energy dips.</item>
+        <item>Scale back demanding plans and opt for comforting rituals.</item>
+        <item>Share how you feel with your support network to coordinate help.</item>
+    </string-array>
+    <string-array name="menstrual_tips_follicular">
+        <item>Ride the energy boost to map creative projects.</item>
+        <item>Increase workout intensity gradually.</item>
+        <item>Schedule strategy meetings or brainstorms.</item>
+        <item>Test new habits; your brain is primed for learning.</item>
+        <item>Fuel with greens, folate-rich foods and quality protein.</item>
+        <item>Anchor your morning routine with early natural light.</item>
+        <item>Declutter physical and digital spaces while motivation is high.</item>
+        <item>Connect with others; communication usually feels easy.</item>
+        <item>Break down goals into achievable steps.</item>
+        <item>Use activating breaths or short meditations to focus energy.</item>
+    </string-array>
+    <string-array name="menstrual_tips_ovulation">
+        <item>Great moment for presentations, negotiations or key dates.</item>
+        <item>If trying to conceive, have intercourse during this fertile window.</item>
+        <item>Track signs like stretchy cervical mucus or a basal temp rise.</item>
+        <item>Hydrate generously and add electrolytes for intense activity.</item>
+        <item>Go for high-intensity workouts only if your body wants it.</item>
+        <item>Load up on antioxidants through colorful fruits, green tea or cacao.</item>
+        <item>Plan difficult conversations while mental clarity is high.</item>
+        <item>Channel your drive into collaborations that need leadership.</item>
+        <item>Practice deep breathing to balance adrenaline spikes.</item>
+        <item>Review quarterly goals while motivation feels sky high.</item>
+    </string-array>
+    <string-array name="menstrual_tips_luteal">
+        <item>Protect deep sleep with calming night routines.</item>
+        <item>Reduce caffeine if breasts feel tender or mood shifts.</item>
+        <item>Prioritize complex carbs and magnesium to steady your mood.</item>
+        <item>Triage tasks by priority and avoid overbooking.</item>
+        <item>Book massages, warm baths or compresses to release tension.</item>
+        <item>Journal PMS symptoms to spot early trends.</item>
+        <item>Prep tryptophan-rich snacks like oats, banana or seeds.</item>
+        <item>Add gentle stretching or slow walks to move fluids.</item>
+        <item>Keep a self-care kit ready with tea, blanket and mellow music.</item>
+        <item>Express your needs and let trusted people support you.</item>
+    </string-array>
+    <string name="menstrual_info_disclaimer">These insights are approximate and for educational purposes only. Reach out to a health professional for personalized guidance.</string>
+    <string name="menstrual_calendar_calendar_title">Cycle calendar</string>
+    <string name="menstrual_calendar_cycle_range">%1$s - %2$s</string>
+    <string name="menstrual_cycle_length_error_invalid">Enter a valid duration.</string>
+    <string name="menstrual_cycle_length_error_short">Cycles should be at least 21 days.</string>
+    <string name="menstrual_cycle_length_error_long">Cycles shouldn’t exceed 40 days.</string>
+    <string name="menstrual_luteal_error_invalid">Enter a valid duration.</string>
+    <string name="menstrual_luteal_error_short">The luteal phase is typically at least 8 days.</string>
+    <string name="menstrual_luteal_error_long">The luteal phase shouldn’t go beyond 16 days.</string>
+    <string name="menstrual_luteal_error_cycle">The luteal phase must be shorter than the cycle length.</string>
+    <!-- Snake game strings -->
+    <string name="snake_title">Snake</string>
+    <string name="snake_instructions_text">Swipe on the board or use the direction pad to eat the apples and grow. Avoid your own tail and follow the selected border rule.</string>
+    <string name="snake_setup_title">Choose how to play</string>
+    <string name="snake_mode_label">Mode</string>
+    <string name="snake_mode_walls_title">Classic walls</string>
+    <string name="snake_mode_walls_description">Touching an edge ends the game.</string>
+    <string name="snake_mode_wrap_title">Wraparound</string>
+    <string name="snake_mode_wrap_description">Leave through one edge and return through the opposite edge.</string>
+    <string name="snake_change_mode">Change mode</string>
+    <string name="snake_victory_title">Board complete!</string>
+    <string name="snake_phase_ready">Ready</string>
+    <string name="snake_phase_running">Playing</string>
+    <string name="snake_phase_paused">Paused</string>
+    <string name="snake_phase_game_over">Game over</string>
+    <string name="snake_phase_won">Board complete</string>
+    <string name="snake_food_above">above</string>
+    <string name="snake_food_below">below</string>
+    <string name="snake_food_same_row">on the same row</string>
+    <string name="snake_food_left">to the left</string>
+    <string name="snake_food_right">to the right</string>
+    <string name="snake_food_same_column">in the same column</string>
+    <string name="snake_food_none">no food</string>
+    <string name="snake_board_description">Snake board. %1$s. Score %2$d. %3$s. Food %4$s and %5$s.</string>
+    <string name="game_over_message">Your score: %1$d</string>
+    <string name="snake_up">Up</string>
+    <string name="snake_down">Down</string>
+    <string name="snake_left">Left</string>
+    <string name="snake_right">Right</string>
+    <string name="cd_pause_game">Pause game</string>
+    <string name="cd_resume_game">Resume game</string>
+    <string name="periodic_reminders">Periodic Reminders</string>
+    <string name="periodic_reminders_description">Regular notifications that repeat according to the configured interval</string>
+    <string name="alarm_reminders">Event Alarms</string>
+    <string name="alarm_reminders_description">Intense alarms for important one-time events</string>
+    <string name="advance_notifications">Advance Notifications</string>
+    <string name="advance_notifications_description">Reminders before the main event</string>
+    <string name="no_advance_notification">No advance notification</string>
+    <string name="reminder_type">Reminder type</string>
+    <string name="one_event_type">One-time event</string>
+    <string name="one_event_description">One time with alarm</string>
+    <string name="multiple_event_description">Repeats by interval</string>
+    <string name="multiple_event_type">Periodic</string>
+    <string name="with_notification">Advance notification</string>
+    <string name="advance_5_min">5 min before</string>
+    <string name="advance_10_min">10 min before</string>
+    <string name="advance_15_min">15 min before</string>
+    <string name="advance_30_min">30 min before</string>
+    <string name="advance_1_hour">1 hour before</string>
+    <string name="advance_custom">Custom</string>
+    <string name="advance_custom_minutes">Minutes before</string>
+    <string name="advance_notification_suffix">min before</string>
+
+    <!-- TicTacToe scoring strings -->
+    <string name="score_label">Score</string>
+    <string name="tictactoe_score_title">Score %1$s</string>
+    <string name="tictactoe_player_x">X</string>
+    <string name="tictactoe_player_o">O</string>
+    <string name="tictactoe_player">You</string>
+    <string name="tictactoe_ai">AI</string>
+    <string name="tictactoe_round_won">%1$s wins this round!</string>
+
+    <!-- QR Code strings -->
+    <string name="read_qr">Read QR</string>
+    <string name="generate_qr">Create QR</string>
+    <string name="qr_scanner_title">QR Scanner</string>
+    <string name="qr_generator_title">QR Generator</string>
+    <string name="qr_scanner_permission_message">Camera permission is required to scan QR codes</string>
+    <string name="contact_photo_permission_message">Camera permission is required to take contact photos</string>
+    <string name="qr_generator_instructions">Enter text to generate a QR code</string>
+    <string name="qr_generator_hint">Enter text or URL</string>
+    <string name="qr_generator_button">Create QR Code</string>
+    <string name="qr_empty_state_message">Your code will appear here</string>
+    <string name="qr_content_text">Text content</string>
+    <string name="qr_content_link">Link detected</string>
+    <string name="qr_open_link">Open link</string>
+    <string name="qr_copy_text">Copy text</string>
+    <string name="qr_text_copied">Text copied to clipboard</string>
+    <string name="user_copied">User copied to clipboard</string>
+    <string name="phone_copied">Phone copied to clipboard</string>
+    <string name="email_copied">Email copied to clipboard</string>
+    <string name="company_copied">Company copied to clipboard</string>
+    <string name="website_copied">Website copied to clipboard</string>
+    <string name="note_lock_action_lock">Lock</string>
+    <string name="note_lock_action_unlock">Unlock</string>
+    <string name="note_pin">Pin</string>
+    <string name="note_unpin">Unpin</string>
+    <string name="note_markdown_preview">Markdown preview</string>
+    <string name="note_close_without_saving">Close without saving</string>
+    <string name="note_transform_to_audio">Transform to audio</string>
+    <string name="note_imported_to_voice">Note imported for audio playback</string>
+    <string name="note_empty_content">The note is empty</string>
+    <string name="note_lock_enabled_note">Note locked</string>
+    <string name="note_lock_enabled_checklist">Checklist locked</string>
+    <string name="note_lock_enabled_reminder">Reminder locked</string>
+    <string name="note_lock_enabled_recording">Recording locked</string>
+    <string name="note_lock_disabled_note">Note unlocked</string>
+    <string name="note_lock_disabled_checklist">Checklist unlocked</string>
+    <string name="note_lock_disabled_reminder">Reminder unlocked</string>
+    <string name="note_lock_disabled_recording">Recording unlocked</string>
+    <string name="note_lock_setup_required">Set up a security method to protect your notes.</string>
+    <string name="note_lock_open_prompt_note">This note is protected. Authenticate to continue.</string>
+    <string name="note_lock_open_prompt_checklist">This checklist is protected. Authenticate to continue.</string>
+    <string name="note_lock_open_prompt_reminder">This reminder is protected. Authenticate to continue.</string>
+    <string name="note_lock_open_prompt_recording">This recording is protected. Authenticate to continue.</string>
+    <string name="note_locked_badge">Protected 🔐</string>
+    <string name="user_copy_text">Copy user</string>
+    <string name="toggle_reveal">Reveal</string>
+    <string name="toggle_hide">Hide</string>
+    <string name="password_copy_text">Password copied to clipboard</string>
+    <string name="qr_error_generating">Error generating QR code</string>
+    <string name="qr_error_scanning">Error scanning QR code</string>
+    <string name="qr_scanner_error_title">QR reader unavailable</string>
+    <string name="qr_scanner_error_message">The QR reader could not be initialized. Please try again.</string>
+    <string name="qr_scanner_retry">Retry</string>
+    <string name="holidays_internet_error">Unable to load holidays because no internet connection was detected</string>
+    <string name="holidays_network_disclosure_title">Online holiday data</string>
+    <string name="holidays_network_disclosure_message">To download public holidays, Fun Phone connects to Nager.Date only after you open this tool and continue. It sends the selected country and year. Contacts, calls and calendar entries are never sent.</string>
+    <string name="holidays_network_disclosure_detail">The service necessarily sees your IP address during the encrypted HTTPS request. Fun Phone uses no ads or analytics.</string>
+    <string name="holidays_request_error">We couldn\'t load the public holidays. Check the selected country and try again. Code: %1$d</string>
+    <string name="holidays_service_error">The public holidays service is temporarily unavailable. Please try again later. Code: %1$d</string>
+    <string name="holidays_unknown_error">An unexpected error occurred while loading the public holidays.</string>
+    <string name="share">Share</string>
+    <string name="save">Save</string>
+    <string name="qr_saved_success">QR code saved successfully</string>
+    <string name="qr_share_ready">Code ready to share</string>
+    <string name="qr_share_error">Could not open the share menu</string>
+    <string name="qr_saved_error">Error saving QR code</string>
+    <string name="qr_share_title">Share QR code</string>
+    <string name="share_vcard">By vCard</string>
+    <string name="share_qr">By QR code</string>
+    <string name="qr_pick_image">Pick image from gallery</string>
+    <string name="crop_image">Crop image</string>
+    <string name="share_vcard_with_photo">vCard with photo</string>
+    <string name="share_vcard_without_photo">vCard without photo</string>
+    <string name="share_vcard_include_photo_title">Include photo in the vCard?</string>
+
+    <!-- Profile strings -->
+    <string name="profile_title">Your profile</string>
+    <string name="profile_item">Profile</string>
+    <string name="my_profile">My profile</string>
+    <string name="share_profile">Share Profile</string>
+    <string name="contact_qr_error">Error reading contact from QR code</string>
+
+    <!-- Breakout game strings -->
+    <string name="breakout_title">Breakout</string>
+    <string name="breakout_instructions_text">Hold the left and right arrows to move the paddle. Bounce the ball to break the blocks. Every five paddle hits, a new row appears at the top and the ball speeds up. If the blocks reach the paddle or the ball falls below, it\'s game over. Try to score as many points as possible!</string>
+    <string name="breakout_arena_description">Breakout arena. %1$s. Score %2$d. Best %3$d.</string>
+    <string name="breakout_phase_ready">Ready</string>
+    <string name="breakout_phase_running">Playing</string>
+    <string name="breakout_phase_paused">Paused</string>
+    <string name="breakout_phase_game_over">Game over</string>
+
+    <!-- New strings for AlertDialog links -->
+    <string name="dialog_link_title">Add/Edit link</string>
+    <string name="dialog_link_label">URL</string>
+    <string name="dialog_link_remove">Remove link</string>
+
+    <string name="memory_game_title">Memory Cards</string>
+    <string name="moves_label">Moves</string>
+    <string name="moves_count">Moves: %1$d</string>
+    <string name="memory_pairs_label">Pairs matched</string>
+    <string name="memory_pairs_value">%1$d / %2$d</string>
+    <string name="memory_win_message">Congratulations! You found all pairs!</string>
+    <string name="memory_theme_selection_title">Card style</string>
+    <string name="memory_theme_emoji">Emoji 🚀</string>
+    <string name="memory_theme_animals">Animals 😺</string>
+    <string name="memory_theme_food">Food 🍓</string>
+    <string name="memory_theme_sports">Sports 🏀</string>
+    <string name="memory_theme_nature">Nature ☀️</string>
+    <string name="memory_board_size_title">Board size</string>
+    <string name="memory_board_size_4x4">4×4 (16 cards)</string>
+    <string name="memory_board_size_4x4_description">8 pairs. Quick game, ideal for a short round.</string>
+    <string name="memory_board_size_6x4">6×6 (36 cards)</string>
+    <string name="memory_board_size_6x4_description">18 pairs. Bigger challenge with more cards to remember.</string>
+    <string name="memory_style_label">Style</string>
+    <string name="best_moves_label">Best moves</string>
+    <string name="memory_board_size_short_label">Board</string>
+    <string name="memory_stage_kicker">MEMORY DECK</string>
+    <string name="memory_stage_title">Find the matching pairs</string>
+    <string name="memory_progress_label">Match progress</string>
+    <string name="memory_progress_description" tools:ignore="PluralsCandidate">Memory progress: %1$d of %2$d pairs matched.</string>
+    <string name="memory_rules_label">How to play</string>
+    <string name="memory_board_description" tools:ignore="PluralsCandidate">Memory board. %1$d of %2$d pairs matched.</string>
+    <string name="memory_card_reveal_action">Reveal card</string>
+    <string name="memory_card_state_hidden">Hidden</string>
+    <string name="memory_card_state_revealed">Revealed</string>
+    <string name="memory_card_state_matched">Matched</string>
+    <string name="memory_card_hidden_description">Hidden card. Reveal it to look for a pair.</string>
+    <string name="memory_card_revealed_description">Card %1$s.</string>
+    <string name="memory_card_matched_description">Matched card %1$s.</string>
+
+    <string name="minesweeper_title">Minesweeper</string>
+    <string name="minesweeper_instructions_text">Uncover all cells without hitting a mine. Numbers show how many mines are nearby. Long press to flag a mine. Try to uncover all safe cells!</string>
+    <string name="minesweeper_mines_label">Mines</string>
+    <string name="minesweeper_mines_value">%1$d of %2$d</string>
+    <string name="minesweeper_win_message">Congratulations! You found all the mines!</string>
+    <string name="minesweeper_game_over">Boom! You hit a mine</string>
+
+    <string name="sudoku_title">Sudoku</string>
+    <string name="sudoku_instructions_text">Fill the board with numbers from 1 to 9 without repeating them in rows, columns, or 3x3 blocks. Use the grid to select a cell and the bottom panel to enter numbers. You can clear a cell if you make a mistake. Good luck!</string>
+    <string name="sudoku_select_difficulty">Difficulty</string>
+    <string name="sudoku_difficulty_easy">Easy</string>
+    <string name="sudoku_difficulty_medium">Medium</string>
+    <string name="sudoku_difficulty_hard">Hard</string>
+    <string name="sudoku_difficulty_easy_description">More given numbers for a relaxed game.</string>
+    <string name="sudoku_difficulty_medium_description">A balanced challenge.</string>
+    <string name="sudoku_difficulty_hard_description">Few given numbers for experts.</string>
+    <string name="sudoku_setup_title">Choose how to play</string>
+    <string name="sudoku_difficulty_label">Difficulty</string>
+    <string name="sudoku_errors_label">Errors</string>
+    <string name="sudoku_clear_cell">Clear</string>
+    <string name="sudoku_victory_title">Board complete!</string>
+    <plurals name="sudoku_victory_message">
+        <item quantity="one">You solved the Sudoku in %1$s with %2$d mistake.</item>
+        <item quantity="other">You solved the Sudoku in %1$s with %2$d mistakes.</item>
+    </plurals>
+    <string name="games_fun_facts_title">Fun facts about mini games</string>
+    <string name="fun_bird_title">Fun Bird</string>
+    <string name="fun_bird_ready_message">Ready for takeoff</string>
+    <string name="fun_bird_tap_hint">Tap the screen to flap and stay between the pipes.</string>
+    <string name="fun_bird_paused_title">Game paused</string>
+    <string name="fun_bird_resume_hint">Tap or press resume to keep flying.</string>
+    <string name="fun_bird_game_over_title">Collision detected</string>
+    <string name="fun_bird_game_over">Looks like the bird needed more space. Try again.</string>
+    <string name="fun_bird_final_score">Final score: %1$d</string>
+    <string name="play_label">Play</string>
+    <string name="pause_label">Pause</string>
+    <string name="resume_label">Resume</string>
+    <string name="reset_label">Reset</string>
+    <string name="best_score_label">Best</string>
+    <string name="fun_bird_instructions">Tap the screen to make Fun Bird flap and stay in the air. Avoid hitting the pipes or the ground. You can pause with the main button and resume anytime.</string>
+    <string name="game_fact_fun_bird">Dong Nguyen released Flappy Bird in 2013; its viral difficulty redefined casual games for touch screens.</string>
+    <string name="game_fact_snake">Snake became world-famous on the Nokia 6110 in 1997, proving phones could be gaming platforms.</string>
+    <string name="game_fact_breakout">Atari released Breakout in 1976 as an evolution of Pong; its development inspired Steve Wozniak to create an ultra-efficient board.</string>
+    <string name="game_fact_memory">The modern memory card game was marketed as Concentration in 1959, adapting a traditional children\'s pastime.</string>
+    <string name="game_fact_minesweeper">Minesweeper came with Windows in 1990 to teach mouse usage, becoming an office addiction worldwide.</string>
+    <string name="game_fact_tictactoe">In 1952, the OXO project at Cambridge University brought Tic-Tac-Toe to a computer, one of the first video games with graphics.</string>
+    <string name="game_fact_puzzle">The sliding puzzle 15 Puzzle sparked a craze in 1874, challenging players to arrange tiles by moving only the empty space.</string>
+    <string name="game_fact_hangman">The 1894 dictionary already described Hangman as a popular school game, decades before it appeared in children\'s books.</string>
+    <string name="game_fact_2048">Gabriele Cirulli created 2048 in 2014 as an open source experiment; within days it became a global logic puzzle phenomenon.</string>
+    <string name="game_fact_sudoku">Howard Garns popularized Sudoku in 1979 under the name Number Place, before Japan renamed and exported it worldwide.</string>
+    <string name="memory_instructions_text">Find the matching pairs of cards. Tap to flip them and remember their positions to match all pairs!</string>
+
+    <string name="game_2048_instructions_text">Swipe inside the board to move the tiles. Merge equal numbers to add up. 5×5 board. A new tile appears with each move. Reach the highest score you can.</string>
+
+    <string name="toast_press_back_again_to_exit">Press back again to exit</string>
+    <string name="select_time">Time</string>
+
+    <string name="game_mode_selection_title">Game Mode</string>
+    <string name="hangman_mode_easy">Easy 🥱</string>
+    <string name="hangman_mode_hard">Hard 💪</string>
+    <string name="hangman_mode_easy_description">Repeating a letter is free.</string>
+    <string name="hangman_mode_hard_description">Repeating a letter costs an attempt.</string>
+    <string name="hangman_setup_title">Choose how to play</string>
+
+    <!-- Reminder validation strings -->
+    <string name="reminder_validation_error_title">Validation Error</string>
+    <string name="reminder_validation_past_date_message">Cannot create a reminder with an expiration date in the past. Please select a future date.</string>
+    <string name="reminder_validation_empty_fields_message">Please fill in the title and select an interval.</string>
+
+    <!-- Note validation strings -->
+    <string name="note_validation_empty_content_message">Please add content to the note.</string>
+    <string name="checklist_validation_empty_title_message">Please enter a title for the checklist.</string>
+    <string name="checklist_validation_empty_items_message">Please add at least one item to the checklist.</string>
+    <string name="widget_description">Shows your favorite contacts on the home screen</string>
+    <string name="widget_no_favorites">You have no favorite contacts</string>
+    <string name="widget_contact_not_found">We couldn’t load this contact</string>
+
+    <string name="notes_widget_description">Create quick notes or view your recent notes</string>
+    <string name="notes_widget_recent_title">Recent notes</string>
+    <string name="notes_widget_empty">No notes yet</string>
+    <string name="notes_widget_no_content">No content</string>
+    <string name="notes_widget_locked_title">Protected note 🔐</string>
+    <string name="notes_widget_locked_content">Tap to unlock</string>
+    <string name="notes_widget_new_note">New note</string>
+    <string name="recent_calls_widget_title">Recent calls</string>
+    <string name="recent_calls_widget_description">See your latest calls and call back with one tap</string>
+    <string name="recent_calls_widget_empty">No recent calls</string>
+    <string name="recent_calls_widget_permission">Allow call history access in Fun Phone</string>
+    <string name="recent_calls_widget_call_back">Call %1$s</string>
+    <string name="expenses_widget_title">This month</string>
+    <string name="expenses_widget_description">Track this month\'s spending against your budget</string>
+    <string name="expenses_widget_spent">Spent</string>
+    <string name="expenses_widget_income">Income</string>
+    <string name="expenses_widget_budget">%1$s of %2$s budget</string>
+    <string name="expenses_widget_no_budget">No budget set</string>
+    <string name="expenses_widget_locked">Expenses are locked. Tap to open.</string>
+    <string name="recent_calls_widget_card_title">Recent calls</string>
+    <string name="recent_calls_widget_card_description">Add the recent calls widget to call back from your home screen.</string>
+    <string name="expenses_widget_card_title">Monthly expenses</string>
+    <string name="expenses_widget_card_description">Add the expenses widget to follow this month\'s budget from your home screen.</string>
+    <string name="widget_preview_note_1_title">Grocery list</string>
+    <string name="widget_preview_note_1_body">Milk, eggs and coffee</string>
+    <string name="widget_preview_note_2_title">Trip ideas</string>
+    <string name="widget_preview_note_2_body">Book the cabin for June</string>
+    <string name="widget_preview_call_time_1">10 min ago</string>
+    <string name="widget_preview_call_time_2">Yesterday</string>
+    <string name="widget_preview_name_1" translatable="false">Ana Rivera</string>
+    <string name="widget_preview_name_2" translatable="false">Leo Martín</string>
+    <string name="widget_preview_name_3" translatable="false">Emma Wilson</string>
+    <string name="widget_preview_name_4" translatable="false">Daniel Costa</string>
+    <string name="widget_preview_initial_1" translatable="false">A</string>
+    <string name="widget_preview_initial_2" translatable="false">L</string>
+    <string name="widget_preview_initial_3" translatable="false">E</string>
+    <string name="widget_preview_initial_4" translatable="false">D</string>
+    <string name="widget_preview_amount" translatable="false">$1,240</string>
+
+    <string name="local_account">Local Account</string>
+    <string name="device">Device</string>
+    <string name="contact_info">Contact info from</string>
+    <string name="contact_info_title">Contact info</string>
+    <string name="about_contact_title">About %1$s</string>
+    <plurals name="multiple_account">
+        <item quantity="one">%1$d contact linked</item>
+        <item quantity="other">%1$d contacts linked</item>
+    </plurals>
+    <string name="multiple_account_title">Contacts linked</string>
+    <string name="contacts_accounts_sheet_title">Accounts with contacts</string>
+    <string name="system_contacts">System contacts</string>
+
+    <string name="update_profile_title">Edit Profile</string>
+    <string name="profile_updated_success">Profile updated successfully</string>
+    <string name="create_profile_title">Create Profile</string>
+
+    <string name="settings_title">Settings</string>
+
+    <string name="phone_type_mobile">Mobile</string>
+    <string name="phone_type_work">Work</string>
+    <string name="phone_type_home">Home</string>
+    <string name="phone_type_main">Main</string>
+
+    <string name="number_already_exists">This number already exists in your contacts</string>
+    <string name="profile_already_exists">This number is part of your profile</string>
+
+    <string name="recent_type_whatsapp">WhatsApp</string>
+    <string name="recent_type_call_sent">Outgoing call</string>
+    <string name="recent_type_call_received">Incoming call</string>
+    <string name="recent_type_call_missed">Missed call</string>
+    <string name="recent_type_call_rejected">Rejected call</string>
+    <string name="recent_type_call_blocked">Blocked call</string>
+    <string name="recent_type_call_unknown">Unknown call</string>
+    <string name="history_recent_operations_sheet_title">History breakdown</string>
+    <string name="add_phone_number">Add phone number</string>
+    <string name="add_tag">Add a tag</string>
+
+
+    <string name="websites">Websites</string>
+    <string name="website">Website</string>
+    <string name="add_website">Add website</string>
+    <string name="delete_social_media">Are you sure you want to delete this account of %1$s?</string>
+    <string name="delete_social_media_title">Delete social media</string>
+
+    <string name="remove_from_favorites">Remove %1$s from favorites</string>
+    <string name="add_to_favorites">Add %1$s to favorites</string>
+    <string name="removed_from_favorites">%1$s was removed from favorites</string>
+    <string name="added_to_favorites">%1$s was added to favorites</string>
+    <string name="no_favorites">No favorites</string>
+    <string name="no_favorites_description">Tap the heart next to any contact to add them to your favorites</string>
+    <string name="add_favorites_cta">Add favorite contacts</string>
+    <plurals name="add_favorites_count">
+        <item quantity="one">%1$d favorite selected</item>
+        <item quantity="other">%1$d favorites selected</item>
+    </plurals>
+    <string name="multiple_contacts_modified">Favorites list updated</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+
+    <string name="about_features_title">Phone &amp; contacts</string>
+    <string name="about_feature_contacts">Organize contacts with clear details and quick actions</string>
+    <string name="about_feature_dialer">Make and receive calls from a complete Android dialer</string>
+    <string name="about_feature_t9_search">Find contacts quickly with name and number T9 search</string>
+    <string name="about_feature_call_controls">Clear controls for incoming and active calls</string>
+    <string name="about_feature_call_history">Recents, missed calls, and call history in one place</string>
+    <string name="about_feature_favorites">Keep important contacts one tap away</string>
+    <string name="about_feature_dual_sim">Choose the SIM for each call on supported devices</string>
+    <string name="about_feature_default_phone">Set Fun Phone as your default calling app</string>
+    <string name="about_feature_local_privacy">Contacts and call data stay on your device</string>
+    <string name="about_feature_import_export">Import, export, and share contacts with standard formats</string>
+    <string name="about_feature_duplicates">Find and merge duplicate contacts</string>
+    <string name="about_feature_accessibility">Large text and screen-reader-friendly navigation</string>
+    <string name="about_feature_optional_tools">Optional tools can be enabled or hidden anytime</string>
+    <string name="about_feature_customization">Full customization with themes, colors, and fonts</string>
+    <string name="about_feature_widgets">Customizable widgets for quick access to favorites</string>
+    <string name="about_feature_shortcuts">Dynamic shortcuts for frequent calls and actions</string>
+    <string name="about_developer_title">Developer</string>
+    <string name="easter_egg_toast">Thank you for using Fun Phone! 🎉</string>
+
+    <!-- Strings for voice recording notes -->
+    <string name="recording">Recording</string>
+    <string name="create_recording">Create Recording</string>
+    <string name="edit_recording">Edit Recording</string>
+    <string name="recording_in_progress">Recording…</string>
+    <string name="voice_placeholder">Text to convert to audio</string>
+    <string name="select_voice">Select voice</string>
+    <string name="recording_deleted">Recording deleted</string>
+
+    <string name="recording_error_start">Error starting recording</string>
+    <string name="recording_error_stop">Error stopping recording</string>
+    <string name="recording_error_play">Error playing recording</string>
+    <string name="recording_empty_title">Title cannot be empty</string>
+    <string name="recording_empty_audio">You must record audio before saving</string>
+    <string name="recording_tap_to_start">Tap the microphone to start recording</string>
+
+    <string name="voice_utilities_title">Voice Tools</string>
+    <string name="voice_utilities_item">Voice tools</string>
+    <string name="voice_title">Text to speech</string>
+    <string name="speech_recognition_title">Speech to text</string>
+    <string name="listening_status">Listening…</string>
+    <string name="tap_to_listen">Tap to start listening</string>
+    <string name="transcription_result">Transcription result</string>
+
+    <string name="call_in_progress">Call in progress</string>
+    <string name="call_ended">Call ended</string>
+    <string name="connecting">Connecting…</string>
+    <string name="on_hold">On hold</string>
+    <string name="calling">Calling…</string>
+    <string name="ringing">Ringing…</string>
+    <string name="in_call">In call</string>
+    <string name="banner_incoming_call">Incoming call</string>
+    <string name="banner_on_hold">On hold</string>
+    <string name="microphone_off">Microphone off</string>
+    <string name="microphone_on">Microphone on</string>
+    <string name="microphone">Microphone</string>
+    <string name="speaker">Speaker</string>
+    <string name="earpiece">Earpiece</string>
+    <string name="wired">Wired</string>
+    <string name="select_route">Select audio</string>
+    <string name="hold">Hold</string>
+    <string name="resume">Resume</string>
+    <string name="add_call">Add call</string>
+    <string name="swap">Swap</string>
+    <string name="hang_up">Hang up</string>
+
+    <!-- New strings for swipe up to answer and swipe down to reject -->
+    <string name="answer">Answer</string>
+    <string name="reject">Reject</string>
+
+    <string name="call_answer_style_title">Call answer style</string>
+    <string name="call_answer_style_description">Choose how to answer or reject calls</string>
+    <string name="call_answer_style_swipe">Swipe</string>
+    <string name="call_answer_style_buttons">Buttons</string>
+    <string name="incoming_call_immersive_title">Immersive incoming call</string>
+    <string name="incoming_call_immersive_description">Always open the Incoming Call screen full-screen without notifications.</string>
+    <string name="answer_with_volume_title">Answer with volume</string>
+    <string name="answer_with_volume_description">Allows answering the call with the volume up key.</string>
+    <string name="dtmf_tones_title">Dial tones</string>
+    <string name="dtmf_tones_description">Sound when dialing numbers</string>
+    <string name="speed_dial_title">Speed dial</string>
+    <string name="speed_dial_description">Set up contacts to call by long-pressing a number</string>
+    <string name="speed_dial_assign_contact">Assign contact</string>
+    <string name="speed_dial_remove_contact">Remove assignment</string>
+    <string name="speed_dial_voicemail_reserved">Reserved for voicemail</string>
+    <string name="speed_dial_not_assigned">Not assigned</string>
+    <string name="speed_dial_configure">Configure speed dial</string>
+    <!-- %1$d is a dial-pad key, not a quantity. -->
+    <string name="speed_dial_not_configured" tools:ignore="PluralsCandidate">Number %1$d has no speed dial configured. Set it up in Settings</string>
+    <string name="speed_dial_contact_not_found">Speed dial contact not found</string>
+
+    <string name="account">Account</string>
+    <string name="more">More</string>
+    <string name="more_options">More options</string>
+    <string name="show_incomplete_only">Show incomplete only</string>
+    <string name="show_all">Show all</string>
+    <string name="created_label">Created</string>
+    <string name="updated_label">Updated</string>
+
+    <!-- Setting descriptions -->
+    <string name="app_language_title">App language</string>
+    <string name="app_language_description">Choose the language Fun Phone uses.</string>
+    <string name="app_language_system">System</string>
+    <string name="app_language_english">English</string>
+    <string name="app_language_spanish">Spanish</string>
+    <string name="app_language_portuguese">Portuguese</string>
+    <string name="app_language_french">French</string>
+    <string name="app_language_german">German</string>
+    <string name="theme_description">Switch between light, dark, or follow the system automatically.</string>
+    <string name="dark_mode_style_label">Dark style</string>
+    <string name="dark_style_amoled">AMOLED</string>
+    <string name="dark_style_amoled_desc">Pure black, ideal for OLED screens</string>
+    <string name="dark_style_dark_gray">Dark gray</string>
+    <string name="dark_style_dark_gray_desc">Soft tones, less eye strain</string>
+    <string name="dark_style_dim">Dim</string>
+    <string name="dark_style_dim_desc">Low contrast, greater visual comfort</string>
+    <string name="theme_mode_label">Mode</string>
+    <string name="accent_color_description">Choose a signature color used selectively for primary actions and active states.</string>
+    <string name="font_type_description">Change the typeface used across the interface.</string>
+    <string name="transition_speed_description">Control how fast or smooth the navigation animations feel.</string>
+    <string name="transition_type_description">Choose the animation that runs when moving between screens.</string>
+    <string name="vibration_duration_description">Decide how long the phone vibrates while dialing.</string>
+    <string name="vibration_pattern_description">Pick the vibration sequence you feel on the dialer.</string>
+    <string name="font_scale">Font size</string>
+    <string name="font_scale_description">Adjust the text size throughout the app.</string>
+    <string name="font_scale_value">%d%%</string>
+    <string name="font_scale_decrease">Decrease font size</string>
+    <string name="font_scale_increase">Increase font size</string>
+    <string name="list_density">List density</string>
+    <string name="list_density_description">Adjust the spacing and size of list items.</string>
+    <string name="list_density_compact">Compact</string>
+    <string name="list_density_normal">Normal</string>
+    <string name="list_density_spacious">Spacious</string>
+    <string name="list_density_custom_value">Custom · %1$d</string>
+    <string name="list_density_decrease">Less spacing</string>
+    <string name="list_density_increase">More spacing</string>
+    <string name="glass_effects">Glass effects</string>
+    <string name="glass_effects_description">Blur and refraction on Modern bars. Automatic adjusts them to what your device can handle.</string>
+    <string name="glass_effects_auto">Automatic</string>
+    <string name="glass_effects_on">On</string>
+    <string name="glass_effects_off">Off</string>
+    <string name="save_contacts_description">Create a JSON backup with all your contacts.</string>
+    <string name="share_contacts_description">Share that JSON backup with another app or device.</string>
+    <string name="restore_contacts_description">Import contacts from an existing JSON backup.</string>
+    <string name="phone_status_description">Review critical permissions and confirm Fun Phone is the default dialer.</string>
+
+    <!-- Extras descriptions -->
+    <string name="profile_description">Manage your personal information within Fun Phone.</string>
+    <string name="notes_description">Organize notes, checklists, reminders, and voice memos with encrypted backup.</string>
+    <string name="games_description">Play retro mini games, puzzles, and casual challenges.</string>
+    <string name="paint_description">Sketch or create digital art with expressive brushes and quick export.</string>
+    <string name="holidays_description">Explore holidays by country and connect events from your Google calendar.</string>
+    <string name="voice_recognition_description">Transcribe speech instantly, pick TTS voices, and share the output.</string>
+    <string name="qr_scanner_description">Scan live or gallery QR codes to import contacts, Wi-Fi, and more.</string>
+    <string name="qr_generator_description">Create QR codes for contacts, text, Wi-Fi, or backups ready to share.</string>
+    <string name="pomodoro_title">Pomodoro</string>
+    <string name="pomodoro_description">25–5 productivity timer with sounds and customization.</string>
+    <string name="pomodoro_work_session">Work session</string>
+    <string name="pomodoro_break_session">Break</string>
+    <string name="pomodoro_ready">Ready to start</string>
+    <string name="pomodoro_start_work">Start work</string>
+    <string name="pomodoro_start_break">Start break</string>
+    <string name="pomodoro_completed_sessions">Completed sessions</string>
+    <!-- The value is a position in the cycle; the sentence has no countable noun. -->
+    <string name="pomodoro_until_long_break_label">Until long break</string>
+    <string name="pomodoro_skip">Skip</string>
+    <string name="pomodoro_settings_title">Pomodoro Settings</string>
+    <string name="pomodoro_work_minutes">Work minutes</string>
+    <string name="pomodoro_break_minutes">Break minutes</string>
+    <string name="pomodoro_long_break_minutes">Long break (minutes)</string>
+    <string name="pomodoro_sessions_until_long_break">Sessions until long break</string>
+    <string name="pomodoro_notification_channel">Pomodoro Timer</string>
+    <string name="pomodoro_notification_channel_desc">Notifications for Pomodoro timer</string>
+    <string name="pomodoro_fgs_explanation">The Pomodoro service keeps your productivity timer running even when the screen is locked, so you don\'t lose track of your work and break sessions.</string>
+    <string name="about_description">App information and developer contact.</string>
+
+    <string name="search_website">Search website</string>
+    <string name="create_contact_cta">Create contact</string>
+
+    <string name="history_empty_title">No history yet</string>
+    <string name="history_empty_description">Your call and activity history will appear here once you start making calls or opening chats</string>
+    <string name="history_loading_more">Loading more history…</string>
+    <string name="history_load_more_hint">Keep scrolling to see older records</string>
+    <string name="history_filter_empty_title">No results for this filter</string>
+    <string name="history_filter_empty_description">Try selecting another history type or clear the filters to see more records.</string>
+    <string name="search_history">Search history</string>
+    <string name="filter_history">Filter history</string>
+    <string name="history_search_empty_title">No matching history</string>
+    <string name="history_search_empty_description">Try another name or phone number, or clear the search to see all records.</string>
+
+    <string name="passwords_item">Password manager</string>
+    <string name="passwords_title">Passwords</string>
+    <string name="password_new">New Password</string>
+    <string name="password_username">User</string>
+    <string name="password_password">Password</string>
+    <string name="password_notes">Note</string>
+    <string name="password_strength">Strength</string>
+    <string name="password_strength_sheet_title">Password strength</string>
+    <string name="password_manager_description">Securely store, generate, and protect your keys locally.</string>
+    <string name="password_manager_switch">Show or hide the encrypted password manager.</string>
+    <string name="security_settings">Security &amp; privacy</string>
+    <string name="security_settings_description">Biometrics, passwords, and section locks</string>
+    <string name="security_biometrics">Lock with biometrics</string>
+    <string name="biometrics_disabled_snackbar">Biometric protection disabled. Locked notes were unlocked.</string>
+    <string name="password_no_results">No passwords found</string>
+    <string name="user_home">User: %1$s</string>
+    <string name="password_home">Password: %1$s</string>
+    <string name="note_home">Note: %1$s</string>
+    <string name="search_password">Search password</string>
+
+    <!-- New password edit related strings and strength labels (English). -->
+    <string name="password_edit">Edit Password</string>
+    <string name="basic_data_title">Account data</string>
+    <string name="security_section_title">Security</string>
+    <string name="expense_category_food">Food</string>
+    <string name="expense_category_transport">Transport</string>
+    <string name="expense_category_entertainment">Fun</string>
+    <string name="expense_category_home">Home</string>
+    <string name="expense_category_shopping">Shopping</string>
+    <string name="expense_category_health">Health</string>
+    <string name="expense_category_education">Education</string>
+    <string name="expense_category_travel">Travel</string>
+    <string name="expense_category_salary">Salary</string>
+    <string name="expense_category_bonus">Bonus</string>
+    <string name="expense_category_freelance">Freelance</string>
+    <string name="expenses_lock_title">Expense manager lock</string>
+    <string name="expenses_lock_description">Protect section by requiring a PIN or biometrics before access.</string>
+    <string name="expense_manager_item_title">Expense manager</string>
+    <string name="expense_manager_item_description">Track transactions, budgets, and stats from a single dashboard.</string>
+    <string name="selection_placeholder">Pick an option</string>
+    <string name="expense_manager_title">Expense Manager</string>
+    <string name="expense_nav_home">Home</string>
+    <string name="expense_nav_categories">Categories</string>
+    <string name="expense_nav_budgets">Budgets</string>
+    <string name="expense_home_summary_title">Monthly summary (%1$s)</string>
+    <string name="expense_distribution_title">Income and spending distribution</string>
+    <string name="expense_budgets_empty">No budgets configured yet.</string>
+    <string name="expense_recent_transactions_title">Recent transactions</string>
+    <string name="expense_transaction_recurring_badge">Recurring</string>
+    <string name="expense_transactions_empty">No transactions recorded for this period.</string>
+    <string name="expense_add_transaction">Add transaction</string>
+    <string name="expense_add_transaction_title">New transaction</string>
+    <string name="expense_edit_transaction_title">Edit transaction</string>
+    <string name="expense_type_income">Income</string>
+    <string name="expense_type_expense">Expense</string>
+    <string name="expense_amount_label">Amount</string>
+    <string name="expense_category_label">Category</string>
+    <string name="expense_category_placeholder">Select category</string>
+    <string name="expense_date_label">Date</string>
+    <string name="expense_note_label">Note</string>
+    <string name="expense_delete_transaction">Delete transaction</string>
+    <string name="expense_delete_transaction_confirm">Do you want to delete this transaction?</string>
+    <string name="expense_no_categories_for_type">Create a category for this type before registering transactions.</string>
+    <string name="expense_category_picker_title">Choose a category</string>
+    <string name="expense_summary_income">Income</string>
+    <string name="expense_summary_expense">Expenses</string>
+    <string name="expense_summary_balance">Balance</string>
+    <string name="expense_categories_title">Categories</string>
+    <string name="expense_category_create">Create category</string>
+    <string name="expense_category_edit">Edit category</string>
+    <string name="expense_category_delete_title">Delete category?</string>
+    <string name="expense_category_delete_message">The category "%1$s" will be permanently deleted.</string>
+    <string name="expense_category_delete_blocked_title">Cannot delete</string>
+    <plurals name="expense_category_delete_blocked_message">
+        <item quantity="one">%1$s is used by %2$d transaction. Reassign it before deleting.</item>
+        <item quantity="other">%1$s is used by %2$d transactions. Reassign them before deleting.</item>
+    </plurals>
+    <string name="expense_category_linked_transactions_title">Transactions in %1$s</string>
+    <string name="expense_category_linked_transactions_empty">There are no linked transactions left. You can delete the category now.</string>
+    <string name="expense_category_delete_action">Delete category</string>
+    <string name="expense_category_default_badge">Default</string>
+    <string name="expense_category_custom_badge">Custom</string>
+    <string name="expense_category_name_label">Category name</string>
+    <string name="expense_category_color_label">Color</string>
+    <string name="expense_category_color_option">Category color %1$d</string>
+    <string name="expense_category_generic">Uncategorized</string>
+    <string name="expense_category_type_label">Category type</string>
+    <string name="expense_category_type_income">Income</string>
+    <string name="expense_category_type_expense">Expense</string>
+    <string name="expense_budget_spent">Spent</string>
+    <string name="expense_budget_state_ok">On track</string>
+    <string name="expense_budget_state_warning">Warning</string>
+    <string name="expense_budget_state_exceeded">Exceeded</string>
+    <string name="expense_chart_empty">Not enough data yet.</string>
+    <string name="expense_categories_empty">You have no categories yet.</string>
+    <string name="expense_budgets_title">Budgets</string>
+    <string name="expense_budgets_description">Set monthly spending limits by category and track your progress.</string>
+    <string name="expense_budget_new">New budget</string>
+    <string name="expense_budget_edit">Edit budget</string>
+    <string name="expense_budget_delete_title">Delete budget?</string>
+    <string name="expense_delete_budget_confirm">This limit will no longer apply to your spending for this category.</string>
+    <string name="expense_budget_amount_label">Monthly limit</string>
+    <string name="expense_budget_no_categories">Create an expense category to assign it to your budgets.</string>
+    <string name="expense_budget_all_categories_used">All expense categories already have a budget.</string>
+    <string name="expense_fixed_transactions_title">Recurring transactions</string>
+    <string name="expense_fixed_description">These amounts are automatically added to every monthly summary.</string>
+    <string name="expense_fixed_hint">This transaction will be applied to every month automatically. Use it for salaries, subscriptions, or any repeating payment.</string>
+    <string name="expense_fixed_empty">No recurring transactions yet.</string>
+    <plurals name="expense_fixed_export_success">
+        <item quantity="one">Exported %1$d recurring transaction</item>
+        <item quantity="other">Exported %1$d recurring transactions</item>
+    </plurals>
+    <string name="expense_fixed_export_error">Failed to export recurring transactions</string>
+    <string name="expense_fixed_export_empty">No recurring transactions to export</string>
+    <plurals name="expense_fixed_import_success">
+        <item quantity="one">Imported %1$d recurring transaction</item>
+        <item quantity="other">Imported %1$d recurring transactions</item>
+    </plurals>
+    <string name="expense_fixed_import_error">Failed to import recurring transactions</string>
+    <string name="expense_fixed_import_error_invalid">The selected file is not a valid recurring transactions backup</string>
+    <string name="expense_currency_settings">Currency</string>
+    <string name="expense_currency_dialog_title">Choose your currency</string>
+    <string name="strength_prohibited">Prohibited</string>
+    <string name="strength_very_weak">Very weak</string>
+    <string name="strength_weak">Weak</string>
+    <string name="strength_fair">Fair</string>
+    <string name="strength_medium">Medium</string>
+    <string name="strength_good">Good</string>
+    <string name="strength_strong">Strong</string>
+    <string name="strength_very_strong">Very strong</string>
+    <string name="strength_excellent">Excellent</string>
+    <string name="loading">Loading…</string>
+    <string name="qr_history_load_error">Could not load QR history.</string>
+    <string name="qr_history_operation_error">Could not update QR history.</string>
+
+    <string name="auth_method_choose">Authentication method</string>
+    <string name="auth_method_biometric">Fingerprint</string>
+    <string name="auth_method_pin">PIN</string>
+    <string name="auth_set_pin">Create PIN</string>
+    <string name="auth_enter_pin">Enter your PIN</string>
+    <string name="auth_confirm_pin">Confirm your PIN</string>
+    <string name="auth_pin_mismatch">PINs do not match</string>
+    <string name="auth_pin_invalid">Invalid PIN</string>
+    <string name="auth_required">Authentication required</string>
+    <string name="auth_failed_title">Authentication failed</string>
+    <string name="auth_failed_message">Could not authenticate. Please try again.</string>
+    <string name="biometrics_protection">Protect passwords and notes with fingerprint or PIN unlock.</string>
+    <string name="delete_password_confirm">Are you sure you want to delete the password for %1$s?</string>
+    <string name="password_deleted">The password for %1$s has been deleted</string>
+    <string name="delete_password">Delete password</string>
+    <string name="save_password">Save password</string>
+    <string name="passwords_json_saved_success">Passwords saved</string>
+    <string name="passwords_json_saved_error">Error saving passwords</string>
+    <string name="passwords_json_import_error">Error importing passwords</string>
+    <string name="password_share_chooser">Share password</string>
+    <string name="action_create_short">Create</string>
+    <string name="action_export_short">Export</string>
+    <string name="recent_activity_title">Recent activity</string>
+    <string name="show_full_history">View all history</string>
+    <plurals name="full_history">
+        <item quantity="one">%1$d record with %2$s</item>
+        <item quantity="other">%1$d records with %2$s</item>
+    </plurals>
+    <string name="search_note">Search notes</string>
+    <string name="notes_no_results">No notes found</string>
+    <string name="speech_recognition_unavailable">Speech recognition is not available on this device</string>
+    <string name="tts_error_message">Text to speech error: %1$s</string>
+    <string name="error_title">Error</string>
+    <string name="share_audio">Share</string>
+    <string name="label_transcribed_text">Transcribed text</string>
+    <string name="select_language">Select language</string>
+    <string name="recognition_language">Recognition language</string>
+    <string name="error_sharing_audio">Error sharing audio</string>
+    <string name="audio_generate_error">Error generating audio: %1$s</string>
+    <string name="audio_file_create_error">Error creating audio file</string>
+    <string name="speech_prompt">Speak now…</string>
+    <string name="cd_stop_synthesis">Stop synthesis</string>
+    <string name="cd_play_text">Play text</string>
+    <string name="cd_copy_text">Copy text</string>
+    <string name="cd_hide_transcription">Hide transcription</string>
+    <string name="cd_show_transcription">Show transcription</string>
+    <string name="cd_stop_listening">Stop listening</string>
+    <string name="cd_start_listening">Start listening</string>
+
+    <string name="passwords_empty">Password list is empty</string>
+    <string name="passwords_empty_description">Start by creating secure passwords or import your existing list</string>
+
+    <string name="password_created_success">Password created</string>
+    <string name="password_updated_success">Password updated</string>
+
+    <string name="delete_contact_full_history_title">Delete full history</string>
+    <string name="delete_contact_full_history_message">Are you sure you want to delete all activity with %1$s?</string>
+    <string name="delete_contact_full_history_success">History deleted</string>
+    <string name="default_account_title">Default account</string>
+    <string name="default_account_description">Choose which account stores new contacts and imports.</string>
+    <string name="restore">Restore</string>
+
+    <!-- New strings for AboutScreen -->
+    <string name="about_features_description">Core calling and contact features, with optional extras</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_version_copied">Version information copied</string>
+    <string name="about_share_message">Meet Fun Phone: a private, customizable Android dialer and contacts app with optional tools. Download it here: https://play.google.com/store/apps/details?id=com.bookverse.contacts</string>
+    <string name="about_share_title">Share Fun Phone</string>
+    <string name="about_footer_title">Crafted with care</string>
+    <string name="about_footer_message">Thanks for using Fun Phone and supporting Bookverse.</string>
+
+    <!-- Tools Order -->
+    <string name="tools_order_title">Tool Order</string>
+    <string name="tools_order_instructions">Long press and drag to reorder. Use the switch to show or hide each tool.</string>
+
+    <!-- Tools Visibility -->
+    <string name="tools_menu_visible_title">Show tools menu</string>
+    <string name="tools_menu_visible_description">Enable or disable the tools tab in the navigation bar</string>
+    <string name="tools_section_title">Tools</string>
+    <string name="tools_section_description">Configure the visibility and order of extra tools</string>
+    <string name="tools_customize_title">Customize tools</string>
+    <string name="tools_customize_description">Reorder and select which tools to show</string>
+    <string name="tools_presets_title">Choose a tools preset</string>
+    <string name="tools_presets_description">You can fine-tune every tool afterwards.</string>
+    <string name="tools_preset_essential_phone">Essential phone</string>
+    <string name="tools_preset_essential_phone_description">Keep the dialer and contacts focused. Extra tools stay hidden.</string>
+    <string name="tools_preset_phone_and_organize">Phone + organize</string>
+    <string name="tools_preset_phone_and_organize_description">Show practical phone and organization tools.</string>
+    <string name="tools_preset_everything">Everything</string>
+    <string name="tools_preset_everything_description">Show every available tool.</string>
+    <string name="tools_preset_custom">Custom</string>
+    <string name="tools_preset_custom_description">You chose which tools to show.</string>
+    <string name="reminder_notification_permission_title">Allow reminder notifications</string>
+    <string name="reminder_notification_permission_message">Fun Phone needs notification permission to alert you at the time you choose.</string>
+    <string name="reminder_notification_settings_title">Enable reminder notifications</string>
+    <string name="reminder_notification_settings_message">Fun Phone reminder channels are disabled or muted. Enable their alerts in Android settings to receive reminder notifications.</string>
+    <string name="reminder_exact_alarm_permission_title">Allow exact reminders</string>
+    <string name="reminder_exact_alarm_permission_message">Android needs permission to deliver this reminder at its selected time.</string>
+
+    <!-- Onboarding Steps -->
+    <string name="startup_screen_title">Startup screen</string>
+    <string name="startup_screen_description">Set the screen that will be shown when opening the app.</string>
+
+    <!-- Settings Backup & Restore -->
+    <string name="save_settings_title">Save settings</string>
+    <string name="save_settings_description">Export all app settings to a JSON file</string>
+    <string name="restore_settings_title">Restore settings</string>
+    <string name="restore_settings_description">Import and apply settings from a JSON file</string>
+    <string name="settings_exported_successfully">Settings exported successfully</string>
+    <string name="settings_imported_successfully">Settings restored successfully</string>
+    <string name="settings_export_error">Error exporting settings</string>
+    <string name="settings_import_error">Error importing settings</string>
+
+    <!-- QR History -->
+    <string name="qr_history_title">QR History</string>
+    <string name="qr_history_empty">You don\'t have any QRs in the history yet</string>
+    <string name="qr_history_clear">Clear history</string>
+    <string name="qr_history_clear_title">Clear all history</string>
+    <string name="qr_history_clear_message">Are you sure you want to delete all QR history?</string>
+    <string name="qr_history_generated">Generated</string>
+    <string name="qr_history_scanned">Scanned</string>
+
+    <!-- Accessibility Content Descriptions -->
+    <string name="cd_record">Record</string>
+    <string name="cd_stop_recording">Stop recording</string>
+    <string name="cd_delete_recording">Delete recording</string>
+    <string name="cd_previous_month">Previous month</string>
+    <string name="cd_next_month">Next month</string>
+    <string name="cd_move_left">Move left</string>
+    <string name="cd_move_right">Move right</string>
+    <string name="cd_selected">Selected</string>
+    <string name="cd_remove_phone">Remove phone</string>
+    <string name="cd_qr_code">QR code</string>
+    <string name="cd_undo">Undo</string>
+    <string name="cd_contact_photo">Contact photo</string>
+
+    <!-- Expense Breakdown -->
+    <string name="expense_transaction_single">transaction</string>
+    <string name="expense_transaction_plural">transactions</string>
+    <string name="expense_total">Total</string>
+    <string name="expense_percentage">Percentage</string>
+    <string name="expense_breakdown_title">Breakdown</string>
+
+    <!-- Tags -->
+    <string name="tags_title">Tags</string>
+
+    <string name="tag_manager_title">Tags</string>
+    <string name="tag_manager_description">Manage tags to organize your contacts</string>
+    <string name="create_tag">Create tag</string>
+    <string name="edit_tag">Edit tag</string>
+    <string name="delete_tag">Delete tag</string>
+    <string name="delete_tag_confirmation">Delete tag \"%1$s\"? It will be unlinked from all contacts.</string>
+    <string name="tag_name">Tag name</string>
+    <string name="tag_color">Color</string>
+    <string name="tags_empty">No tags created</string>
+    <string name="tags_empty_hint">Create tags to organize your contacts</string>
+    <plurals name="tags_selected_count">
+        <item quantity="one">%1$d tag selected</item>
+        <item quantity="other">%1$d tags selected</item>
+    </plurals>
+    <string name="no_tags_available">No tags available</string>
+    <string name="no_tags_found">No tags found</string>
+    <string name="search_tags">Search tags</string>
+    <string name="all_filter">All</string>
+
+    <string name="duplicate_contacts_title">Duplicates</string>
+    <string name="duplicate_contacts_description">Find and merge duplicate contacts</string>
+    <string name="scan_duplicates">Scan for duplicates</string>
+    <string name="scanning_duplicates">Searching for duplicates…</string>
+    <string name="no_duplicates_found">No duplicates found!</string>
+    <string name="no_duplicates_hint">All your contacts are unique</string>
+    <string name="merge_contacts">Merge</string>
+    <string name="ignore_duplicates">Ignore</string>
+    <string name="select_primary_contact">Select primary contact</string>
+    <string name="merge_explanation">Data will be merged into the selected contact</string>
+    <string name="match_exact_name">Exact name</string>
+    <string name="match_similar_name">Similar name</string>
+    <string name="match_phone">Phone number</string>
+    <string name="match_name_and_phone">Name and phone</string>
+    <string name="confidence_label">Confidence: %1$d%%</string>
+    <string name="merge_success">Contacts merged successfully</string>
+    <string name="merge_error">Error merging contacts</string>
+    <plurals name="duplicates_found_count">
+        <item quantity="one">Found %1$d duplicate group</item>
+        <item quantity="other">Found %1$d duplicate groups</item>
+    </plurals>
+    <string name="ignored_duplicate_success">Duplicate group ignored</string>
+    <string name="scan_no_duplicates">No duplicates found!</string>
+
+    <!-- Shared user-facing copy kept outside feature code -->
+    <string name="call_permission_required">Call permission is required</string>
+    <string name="call_failed">Could not place the call</string>
+    <string name="call_initialization_error">Could not initialize the call</string>
+    <string name="device_info_open_error">Could not open device information</string>
+    <string name="call_execution_error">Error while placing the call</string>
+    <string name="url_open_error">Could not open the URL</string>
+    <string name="profile_create_error">Could not create the profile</string>
+    <string name="profile_create_failed">Error creating the profile</string>
+    <string name="error_sharing_qr">Error sharing QR code</string>
+    <string name="contact_edit_not_found">Could not find the contact to edit</string>
+    <string name="contact_update_error">Could not update the contact</string>
+    <string name="imported_note_title">Imported note</string>
+    <string name="imported_checklist_title">Imported checklist</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="font_preview_text">Fun Phone preview</string>
+    <string name="font_sample_glyphs" translatable="false">Aa</string>
+    <string name="holiday_event_start">Start: %1$s</string>
+    <string name="holiday_event_end">End: %1$s</string>
+    <string name="holiday_event_description">Description:</string>
+    <string name="holiday_event_location">Location:</string>
+    <string name="holiday_event_calendar">Calendar: %1$s</string>
+    <string name="holiday_event_account">Account: %1$s</string>
+    <string name="hex_code">Hex code</string>
+    <string name="remove_tag">Remove tag</string>
+    <string name="brush_size_value">Size: %1$d</string>
+    <string name="snackbar_ok">OK</string>
+    <string name="cd_pause_recording">Pause recording</string>
+    <string name="cd_play_recording">Play recording</string>
+    <string name="incoming_calls_channel_name">Incoming calls</string>
+    <string name="incoming_calls_channel_description">Notifications for incoming calls</string>
+    <string name="ongoing_calls_channel_name">Ongoing calls</string>
+    <string name="ongoing_calls_channel_description">Notifications for ongoing calls</string>
+    <plurals name="reminder_advance_notification">
+        <item quantity="one">%1$s (%2$d minute before)</item>
+        <item quantity="other">%1$s (%2$d minutes before)</item>
+    </plurals>
+    <!-- Call duration selects these resources explicitly for both minute and second counts. -->
+    <string name="call_duration_minute_second" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minute_seconds" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minutes_second" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minutes_seconds" tools:ignore="PluralsCandidate">%1$d min %2$d sec</string>
+    <string name="call_duration_minute" tools:ignore="PluralsCandidate">%1$d min</string>
+    <string name="call_duration_minutes" tools:ignore="PluralsCandidate">%1$d min</string>
+    <string name="call_duration_second" tools:ignore="PluralsCandidate">%1$d sec</string>
+    <string name="call_duration_seconds" tools:ignore="PluralsCandidate">%1$d sec</string>
+    <string name="birthday_reminders_channel_name">Birthday reminders</string>
+    <string name="birthday_reminders_channel_description">Alerts two days before, one day before, and on each contact’s birthday</string>
+    <string name="birthday_notification_today_title">%1$s’s birthday is today</string>
+    <string name="birthday_notification_today_text">Wish them a happy birthday.</string>
+    <string name="birthday_notification_tomorrow_title">%1$s’s birthday is tomorrow</string>
+    <string name="birthday_notification_tomorrow_text">Get ready to celebrate tomorrow.</string>
+    <string name="birthday_notification_in_two_days_title">%1$s’s birthday is in two days</string>
+    <string name="birthday_notification_in_two_days_text">Their birthday is coming up.</string>
+    <plurals name="birthday_notification_summary_title">
+        <item quantity="one">%1$d birthday reminder</item>
+        <item quantity="other">%1$d birthday reminders</item>
+    </plurals>
+    <string name="birthday_notification_summary_text">You have upcoming birthdays.</string>
+    <string name="birthday_reminders_active">Reminders active · 2 days, 1 day and today</string>
+    <string name="birthday_reminders_enable">Enable birthday reminders</string>
+    <string name="reminder_silent_channel_title">Reminder sound is off</string>
+    <string name="reminder_silent_channel_message">The reminder will still appear, but it may not make a sound. You can save it now or change notification sound settings.</string>
+    <string name="reminder_save_without_alarm">Save without scheduling</string>
+    <plurals name="settings_assigned_count">
+        <item quantity="one">%d assigned</item>
+        <item quantity="other">%d assigned</item>
+    </plurals>
+    <plurals name="settings_blocked_count">
+        <item quantity="one">%d blocked</item>
+        <item quantity="other">%d blocked</item>
+    </plurals>
+    <string name="calendar_event_recurring_notice">This event repeats.</string>
+    <string name="holidays_birthday_badge">Birthday</string>
+    <string name="holidays_calendar_day">Day %1$d</string>
+    <string name="holidays_calendar_day_event">Day %1$d, calendar event</string>
+    <string name="holidays_calendar_day_birthday">Day %1$d, birthday</string>
+    <string name="holidays_calendar_day_birthday_event">Day %1$d, birthday and calendar event</string>
+    <string name="holidays_contacts_permission_hint">Allow contact access to show birthdays in this agenda.</string>
+    <string name="holidays_show_past_agenda">Show earlier this month (%1$d)</string>
+    <string name="holidays_hide_past_agenda">Hide earlier this month</string>
+    <string name="holidays_past_agenda_title">Earlier this month</string>
+    <string name="holidays_no_upcoming_agenda">There are no upcoming events this month.</string>
+
+    <string name="onboarding_welcome_title">Your phone, made simpler</string>
+    <string name="onboarding_welcome_subtitle">A clean, private dialer and contacts app made for everyday use.</string>
+    <string name="onboarding_optional_tools_title">Optional tools</string>
+    <string name="onboarding_optional_tools_description">Choose which extras appear in Fun Phone. You can change this later in Settings.</string>
+    <string name="onboarding_customize_tools">Customize tools</string>
+    <string name="onboarding_setup_title">Set up your phone</string>
+    <string name="onboarding_setup_subtitle">Enable what you need. You can finish setting up later.</string>
+    <string name="onboarding_step_count">Step %1$d of %2$d</string>
+    <string name="onboarding_requirements_count" tools:ignore="PluralsCandidate">%1$d of %2$d requirements ready</string>
+    <string name="onboarding_enter">Enter Fun Phone</string>
+    <string name="onboarding_continue_later">Continue for now</string>
+    <string name="onboarding_choose_tools">Choose tools</string>
+    <string name="onboarding_requirement_default">Default phone app</string>
+    <string name="onboarding_reason_default">Choose Fun Phone to handle incoming and outgoing calls.</string>
+    <string name="onboarding_reason_notifications">See incoming calls and return to an ongoing call.</string>
+    <string name="onboarding_reason_contacts">Read, organize and edit contacts in your device accounts.</string>
+    <string name="onboarding_reason_history">See recent calls and keep track of missed calls.</string>
+    <string name="onboarding_reason_phone_state">Keep the call screen up to date when a call changes.</string>
+    <string name="onboarding_reason_calls">Start calls from your contacts or the dial pad.</string>
+    <string name="onboarding_requirement_exact_alarms">Birthday reminders</string>
+    <string name="onboarding_reason_exact_alarms">Receive birthday reminders at the right time.</string>
+    <string name="onboarding_status_ready">Ready</string>
+    <string name="onboarding_status_pending">Not set up yet</string>
+    <string name="onboarding_status_denied">Not allowed</string>
+    <string name="onboarding_status_blocked">Manage in Android settings</string>
+    <string name="onboarding_status_unavailable">Unavailable on this device</string>
+    <string name="onboarding_denied_help">You can try again or continue and set this up later.</string>
+    <string name="onboarding_blocked_help">Android no longer shows this request. You can change access in Settings or continue for now.</string>
+    <string name="onboarding_unavailable_help">Android could not open this action. You can retry or continue without it.</string>
+    <string name="onboarding_allow_default">Use Fun Phone for calls</string>
+    <string name="onboarding_allow_notifications">Enable call notifications</string>
+    <string name="onboarding_allow_contacts">Allow contacts</string>
+    <string name="onboarding_allow_history">Allow call history</string>
+    <string name="onboarding_allow_phone_state">Allow phone state</string>
+    <string name="onboarding_allow_calls">Allow calls</string>
+    <string name="onboarding_allow_exact_alarms">Enable birthday reminders</string>
+    <string name="onboarding_retry">Try again</string>
+    <string name="password_folders_empty_title">No password folders yet</string>
+    <string name="password_folders_empty_description">Organize your passwords with personalized folders.</string>
+    <string name="password_folders_delete_message">Passwords will remain without a folder. Delete "%1$s"?</string>
+    <string name="password_folder_created">Folder "%1$s" created</string>
+    <string name="password_folder_updated">Folder "%1$s" updated</string>
+    <string name="password_folder_deleted">Folder "%1$s" deleted</string>
+    <plurals name="password_folder_password_count"><item quantity="one">%1$d password</item><item quantity="other">%1$d passwords</item></plurals>
+    <string name="password_folders_filter_all">Others</string>
+    <string name="password_folder_empty_title">No passwords in "%1$s"</string>
+    <string name="password_folder_empty_description">Move an existing password here to keep your vault organized.</string>
+    <string name="password_folder_empty_add_button">Add password</string>
+    <string name="password_folder_empty_view_all">View others</string>
+    <string name="password_folder_empty_hint">Create a password first, then add it to this folder.</string>
+    <string name="password_folder_empty_select_title">Add a password to "%1$s"</string>
+    <string name="password_folder_action_description">Choose folder</string>
+    <string name="password_folder_picker_title">Save password in</string>
+    <string name="password_move_to_folder">Move to folder</string>
+    <string name="password_move_to_folder_none">No folder</string>
+    <string name="password_move_to_folder_success">Password moved to "%1$s"</string>
+    <string name="password_move_to_folder_removed">Password moved out of its folder</string>
+    <string name="password_recycle_bin_empty_description">Deleted passwords will appear here so you can restore or permanently delete them.</string>
+    <string name="password_restored">Password "%1$s" restored</string>
+    <string name="password_permanently_deleted">Password "%1$s" permanently deleted</string>
+    <string name="password_generate_action">Generate secure password</string>
+    <string name="password_account_required">Enter an account name</string>
+    <string name="password_username_required">Enter a username</string>
+    <string name="password_value_required">Enter a password</string>
+    <string name="password_editor_intro">Your credentials stay encrypted on this device.</string>
+    <string name="passwords_json_import_success">%1$d passwords imported</string>
+    <string name="passwords_json_import_summary">Imported: %1$d · Already in the vault (skipped): %2$d</string>
+    <string name="passwords_export_unencrypted_title">Unencrypted backup</string>
+    <string name="passwords_export_unencrypted_message">This backup is not encrypted. The file will contain every password, username and note as plain text, and anyone who opens it can read them. Save it only in a place you trust and delete it when you no longer need it.</string>
+    <string name="passwords_export_unencrypted_confirm">Export without encryption</string>
+    <string name="social_preview_external">Open in browser</string>
+    <string name="social_preview_unavailable">This page could not be displayed here. Try again or open it in your browser.</string>
+    <string name="social_preview_invalid_url">Enter an HTTPS website or a profile from the selected network.</string>
+    <string name="social_preview_retry">Try again</string>
+    <string name="auth_verifying">Verifying…</string>
+    <string name="vault_load_failed">Could not load the vault. Try again; do not delete your saved data.</string>
+    <string name="protected_draft_error">Draft recovery failed. Check the content before saving.</string>
+    <plurals name="auth_pin_wait">
+        <item quantity="one">Too many attempts. Try again in %1$d second.</item>
+        <item quantity="other">Too many attempts. Try again in %1$d seconds.</item>
+    </plurals>
+
+    <!-- Modern appearance -->
+    <string name="accent_usage_modern">Modern</string>
+    <string name="accent_usage_modern_description">Collapsing titles, soft blur and a floating dock.</string>
+    <string name="font_category_recommended">Recommended</string>
+    <string name="font_category_sans">Sans serif</string>
+    <string name="font_category_serif">Serif</string>
+    <string name="font_category_monospace">Monospace and pixel</string>
+    <string name="font_category_expressive">Expressive</string>
+    <string name="color_sage">Sage</string>
+    <string name="color_petrol">Petrol</string>
+    <string name="color_terracotta">Terracotta</string>
+    <string name="color_mauve">Mauve</string>
+    <string name="color_sand">Sand</string>
+    <string name="color_graphite">Graphite</string>
+    <string name="sim_chooser_title">Choose a SIM for this call</string>
+    <string name="sim_chooser_remember">Always use this SIM</string>
+    <string name="sim_chooser_remember_description">You can change it later in Settings, under Calls.</string>
+    <string name="call_sim_title">SIM for calls</string>
+    <string name="call_sim_description">Choose which SIM places your calls</string>
+    <string name="call_sim_sheet_subtitle">Pick a default SIM or decide on every call.</string>
+    <string name="call_sim_ask_every_time">Ask every time</string>
+    <string name="call_sim_ask_every_time_description">Choose the SIM when you place each call</string>
+    <string name="spam_filter_title">Spam filter</string>
+    <string name="spam_filter_description">Silently block unwanted incoming calls</string>
+    <string name="spam_filter_sheet_subtitle">Rules run only on this device. No number is ever looked up online.</string>
+    <string name="spam_filter_value_off">Off</string>
+    <plurals name="spam_filter_rules_active">
+        <item quantity="one">%d rule on</item>
+        <item quantity="other">%d rules on</item>
+    </plurals>
+    <string name="spam_filter_blocked_list_title">Blocked numbers in any format</string>
+    <string name="spam_filter_blocked_list_description">Also block a blocked number when it calls with or without its country code. Android always blocks exact matches.</string>
+    <string name="spam_filter_hidden_title">Hidden numbers</string>
+    <string name="spam_filter_hidden_description">Block calls that hide their caller ID (private or unknown).</string>
+    <string name="spam_filter_unknown_title">Numbers not in contacts</string>
+    <string name="spam_filter_unknown_description">Block calls from visible numbers that are not saved in your contacts.</string>
+    <string name="spam_filter_history_note">Filtered calls do not ring and appear in History as blocked.</string>
+    <string name="call_screening_title">Call screening</string>
+    <string name="call_screening_active">Active</string>
+    <string name="call_screening_inactive">Not enabled</string>
+    <string name="call_screening_active_description">Android lets Fun Phone check incoming calls before they ring, so the spam filter is working.</string>
+    <string name="call_screening_inactive_description">Fun Phone is not the default phone app. Let it screen calls so the spam filter can check them before they ring.</string>
+    <string name="call_screening_unavailable_description">This device does not offer the call screening role.</string>
+    <string name="call_screening_enable_action">Enable call screening</string>
+    <string name="blocked_numbers_add_title">Block a number</string>
+    <string name="blocked_numbers_add_action">Add number</string>
+    <string name="blocked_numbers_add_description">Calls from this number will be blocked.</string>
+    <string name="blocked_numbers_add_label">Phone number</string>
+    <string name="blocked_numbers_add_confirm">Block number</string>
+    <string name="blocked_numbers_add_error_empty">Enter a phone number.</string>
+    <string name="blocked_numbers_add_error_invalid">Use only digits, spaces and an optional leading +.</string>
+    <string name="blocked_numbers_add_error_short">Too short. Minimum digits: %1$d.</string>
+    <string name="blocked_numbers_add_error_long">Too long. Maximum digits: %1$d.</string>
+    <string name="blocked_numbers_add_error_duplicate">This number is already blocked.</string>
+    <string name="blocked_number_added">Number blocked</string>
+    <string name="blocked_number_add_error">Could not block the number</string>
+    <string name="reject_with_message">Reply with message</string>
+    <string name="reject_with_message_subtitle">The call is declined and the caller receives your text.</string>
+    <string name="reject_message_quick_busy">I can’t talk right now.</string>
+    <string name="reject_message_quick_call_back">I’ll call you back shortly.</string>
+    <string name="reject_message_quick_meeting">I’m in a meeting. I’ll call you later.</string>
+    <string name="reject_message_quick_driving">I’m driving. I’ll call you back.</string>
+    <string name="reject_message_custom_label">Custom message</string>
+    <string name="reject_message_send">Send message</string>
+    <string name="conference_call">Conference call</string>
+    <plurals name="conference_participants">
+        <item quantity="one">%d participant</item>
+        <item quantity="other">%d participants</item>
+    </plurals>
+    <string name="merge_calls">Merge</string>
+    <string name="dialer_calling_code_description">Calling code %1$s, %2$s</string>
+    <string name="dialer_matched_contact_description">Saved contact: %1$s</string>
+    <string name="sim_slot_label" translatable="false">SIM %1$d</string>
+    <string name="reject_message_counter" translatable="false">%1$d/%2$d</string>
+
+    <!-- Contacts: vCard, sorting and recycle bin -->
+    <string name="vcard_export_title">Export contacts as vCard</string>
+    <string name="vcard_export_description">Save all your contacts to a .vcf file that other apps can open.</string>
+    <string name="vcard_import_title">Import contacts from vCard</string>
+    <string name="vcard_import_description">Add contacts from a .vcf file and skip the ones you already have.</string>
+    <string name="vcard_import_result_title">vCard import finished</string>
+    <plurals name="vcard_import_imported">
+        <item quantity="one">%1$d contact imported</item>
+        <item quantity="other">%1$d contacts imported</item>
+    </plurals>
+    <plurals name="vcard_import_skipped">
+        <item quantity="one">%1$d duplicate skipped</item>
+        <item quantity="other">%1$d duplicates skipped</item>
+    </plurals>
+    <plurals name="vcard_import_failed">
+        <item quantity="one">%1$d contact could not be imported</item>
+        <item quantity="other">%1$d contacts could not be imported</item>
+    </plurals>
+    <string name="vcard_import_error">No contacts could be read from this vCard file.</string>
+    <plurals name="vcard_export_success">
+        <item quantity="one">%1$d contact exported to vCard</item>
+        <item quantity="other">%1$d contacts exported to vCard</item>
+    </plurals>
+    <string name="vcard_export_error">Couldn\'t save the vCard file. Please try again.</string>
+    <string name="contact_sort_title">Sort contacts</string>
+    <string name="contact_sort_first_name">First name</string>
+    <string name="contact_sort_last_name">Last name</string>
+    <string name="contact_sort_recently_added">Recently added</string>
+    <string name="contact_recycle_bin_title">Contacts recycle bin</string>
+    <string name="contact_recycle_bin_description">Restore deleted contacts or remove them permanently.</string>
+    <plurals name="contact_recycle_bin_empty_description">
+        <item quantity="one">Deleted contacts stay here for %1$d day so you can restore them.</item>
+        <item quantity="other">Deleted contacts stay here for %1$d days so you can restore them.</item>
+    </plurals>
+    <plurals name="contact_recycle_bin_days_left">
+        <item quantity="one">Permanently deleted in %1$d day</item>
+        <item quantity="other">Permanently deleted in %1$d days</item>
+    </plurals>
+    <string name="contact_restored">%1$s was restored to your contacts</string>
+    <string name="contact_restored_without_photo">%1$s was restored, but the photo could not be recovered</string>
+    <string name="contact_restore_error">Couldn\'t restore %1$s. Please try again.</string>
+    <string name="contact_permanently_deleted">%1$s was permanently deleted</string>
+    <string name="contact_recycle_bin_error">Couldn\'t update the recycle bin. Please try again.</string>
+    <plurals name="delete_contacts_to_bin_message">
+        <item quantity="one">Move %1$d contact to the recycle bin? You can restore it for %2$d days.</item>
+        <item quantity="other">Move %1$d contacts to the recycle bin? You can restore them for %2$d days.</item>
+    </plurals>
+    <string name="password_website">Website</string>
+    <string name="password_website_hint">Used to suggest this entry when autofilling</string>
+    <string name="password_service_picker_action">Choose a common service</string>
+    <string name="password_service_picker_title">Choose a service</string>
+    <string name="password_service_picker_subtitle">Fills in the website. You can still type any address.</string>
+    <string name="password_service_search">Search services</string>
+    <string name="password_service_empty">No services match your search</string>
+    <string name="password_service_category_streaming">Streaming</string>
+    <string name="password_service_category_social">Email &amp; social</string>
+    <string name="password_service_category_shopping">Shopping &amp; payments</string>
+    <string name="password_service_category_more">Gaming, developer &amp; more</string>
+    <string name="password_website_home">Website: %1$s</string>
+    <string name="password_linked_app_home">Linked app: %1$s</string>
+    <string name="password_open_website">Open website</string>
+    <string name="password_open_website_error">This website could not be opened</string>
+    <string name="password_totp_section_title">Two-step verification</string>
+    <string name="password_totp_field_label">Setup key or otpauth:// link</string>
+    <string name="password_totp_invalid">This is not a valid TOTP key or link</string>
+    <string name="password_totp_scan">Scan setup QR code</string>
+    <string name="password_totp_scan_invalid">That QR code does not contain a TOTP setup</string>
+    <string name="password_totp_scan_success">Verification code added</string>
+    <string name="password_totp_copy">Copy verification code</string>
+    <string name="password_totp_copied">Verification code copied</string>
+    <string name="password_totp_remove">Remove verification key</string>
+    <plurals name="password_totp_seconds_left">
+        <item quantity="one">%1$d second left</item>
+        <item quantity="other">%1$d seconds left</item>
+    </plurals>
+    <string name="password_reused_label">Reused</string>
+    <string name="password_reused_count_label">Reused passwords</string>
+    <string name="password_reused_warning">This password is already used by another entry. Use a unique password for each account.</string>
+    <string name="autofill_service_label">Fun Phone vault</string>
+    <string name="autofill_option_title">Autofill service</string>
+    <string name="autofill_option_enabled">On: Fun Phone fills sign-in forms after you unlock the vault</string>
+    <string name="autofill_option_disabled">Off: tap to choose Fun Phone in system settings</string>
+    <string name="autofill_option_unsupported">This device does not support autofill services</string>
+    <string name="autofill_unlock_prompt">Unlock Fun Phone to fill</string>
+    <string name="autofill_picker_title">Choose a saved login</string>
+    <string name="autofill_picker_target">Filling in %1$s</string>
+    <string name="autofill_picker_matches">Suggested for this site or app</string>
+    <string name="autofill_picker_others">Other saved logins</string>
+    <string name="autofill_picker_other_warning">Only fill a login from this list if you trust %1$s.</string>
+    <string name="autofill_picker_empty">The vault has no saved logins yet</string>
+    <string name="autofill_save_title">Save this login in the vault?</string>
+    <string name="autofill_save_update_title">Update the saved password?</string>
+    <string name="autofill_save_done">Login saved in the vault</string>
+    <string name="autofill_save_failed">The login could not be saved</string>
+    <string name="autofill_save_unavailable">Set up the Fun Phone vault before saving logins</string>
+    <string name="qr_wifi_security_wpa" translatable="false">WPA/WPA2/WPA3</string>
+    <string name="qr_wifi_security_wep" translatable="false">WEP</string>
+    <string name="qr_template_text">Text or link</string>
+    <string name="qr_template_wifi">Wi-Fi network</string>
+    <string name="qr_template_email">Email</string>
+    <string name="qr_template_phone">Phone</string>
+    <string name="qr_template_incomplete">Complete the required fields first</string>
+    <string name="qr_wifi_ssid">Network name (SSID)</string>
+    <string name="qr_wifi_password">Network password</string>
+    <string name="qr_wifi_password_rule">WPA passwords need 8 to 63 characters</string>
+    <string name="qr_wifi_security">Security type</string>
+    <string name="qr_wifi_security_open">No password</string>
+    <string name="qr_wifi_hidden">Hidden network</string>
+    <string name="qr_wifi_history_note">Wi-Fi codes are not kept in the history because they contain the network password.</string>
+    <string name="qr_email_address">Email address</string>
+    <string name="qr_email_subject">Subject (optional)</string>
+    <string name="qr_email_body">Message (optional)</string>
+    <string name="qr_phone_number">Phone number</string>
+    <string name="expense_yearly_title">Yearly summary</string>
+    <string name="expense_yearly_previous_year">Previous year</string>
+    <string name="expense_yearly_next_year">Next year</string>
+    <string name="expense_yearly_empty">No transactions recorded in %1$s.</string>
+    <string name="expense_yearly_months_title">Monthly totals</string>
+    <string name="expense_yearly_month_income">Income: %1$s</string>
+    <string name="expense_yearly_month_expense">Expenses: %1$s</string>
+    <string name="expense_search_title">Search transactions</string>
+    <string name="expense_search_placeholder">Search by note or category</string>
+    <string name="expense_search_no_transactions">No transactions recorded yet.</string>
+    <plurals name="expense_search_result_count">
+        <item quantity="one">%1$d transaction</item>
+        <item quantity="other">%1$d transactions</item>
+    </plurals>
+    <string name="expense_filters_title">Filters</string>
+    <string name="expense_filters_active_count">Filters (%1$d)</string>
+    <string name="expense_filters_clear_all">Clear all</string>
+    <string name="expense_filter_chip_text">Search: %1$s</string>
+    <string name="expense_filter_chip_from">From %1$s</string>
+    <string name="expense_filter_chip_until">Until %1$s</string>
+    <string name="expense_filter_chip_min">At least %1$s</string>
+    <string name="expense_filter_chip_max">At most %1$s</string>
+    <string name="expense_filter_remove">Remove filter</string>
+    <string name="expense_filter_type_label">Transaction type</string>
+    <string name="expense_filter_any">Any</string>
+    <string name="expense_filter_date_range_label">Date range</string>
+    <string name="expense_filter_date_from">From</string>
+    <string name="expense_filter_date_to">To</string>
+    <string name="expense_filter_clear_dates">Clear dates</string>
+    <string name="expense_filter_amount_range_label">Amount range (%1$s)</string>
+    <string name="expense_filter_amount_min">Minimum amount</string>
+    <string name="expense_filter_amount_max">Maximum amount</string>
+    <string name="expense_filter_amount_range_error">The minimum amount is greater than the maximum.</string>
+    <string name="expense_csv_export_action">Export transactions (CSV)</string>
+    <plurals name="expense_csv_export_success">
+        <item quantity="one">Exported %1$d transaction</item>
+        <item quantity="other">Exported %1$d transactions</item>
+    </plurals>
+    <string name="expense_csv_export_error">Failed to export transactions</string>
+    <string name="expense_csv_export_empty">No transactions to export</string>
+    <string name="shortcut_new_note">New note</string>
+    <string name="app_lock_prompt_title">Unlock Fun Phone</string>
+    <string name="app_lock_prompt_subtitle">Use your fingerprint, face or screen lock</string>
+    <string name="app_lock_locked_title">Fun Phone is locked</string>
+    <string name="app_lock_locked_message">Calls stay available. Unlock to see everything else.</string>
+    <string name="app_lock_unlock_action">Unlock</string>
+    <string name="app_lock_return_to_call">Return to call</string>
+    <string name="reminder_repeat">Repeat</string>
+    <string name="reminder_repeat_none">Does not repeat</string>
+    <string name="reminder_repeat_daily">Every day</string>
+    <string name="reminder_repeat_weekly">Every week</string>
+    <string name="reminder_repeat_monthly">Every month</string>
+    <string name="reminder_repeat_hint">The reminder fires at the chosen date and time and then repeats at the same local time. In shorter months a monthly reminder fires on the last day.</string>
+    <string name="reminder_first_occurrence">First occurrence</string>
+    <string name="reminder_next_occurrence">Next occurrence</string>
+    <string name="reminder_repeat_list">%1$s • next %2$s</string>
+    <string name="note_tags_more" translatable="false">+%1$d</string>
+    <string name="note_tags_manager_description">Create, rename, recolor and delete the tags used on your notes</string>
+    <string name="note_tag_delete_confirmation">Delete tag \"%1$s\"? It will be removed from all notes.</string>
+    <string name="note_tag_name_exists">A tag with that name already exists</string>
+    <string name="note_image_add">Add image</string>
+    <string name="note_image_remove">Remove image</string>
+    <string name="note_image_open">View image</string>
+    <string name="note_image_description">Note image</string>
+    <string name="note_image_unavailable">Image unavailable</string>
+    <string name="note_image_import_error">Some images could not be added</string>
+    <string name="notes_search_all_folders">Results from all folders</string>
+    <string name="notes_search_in_folder">Folder: %1$s</string>
+    <string name="protection_backup_title">App lock and full backup</string>
+    <string name="protection_backup_description">Lock Fun Phone on open and back up everything into one encrypted file</string>
+    <string name="app_lock_setting_title">Lock the whole app</string>
+    <string name="app_lock_setting_description">Ask for fingerprint, face or screen lock when opening Fun Phone or returning to it. Calls can always be answered.</string>
+    <string name="app_lock_requires_screen_lock">Set up a screen lock on this device first</string>
+    <string name="full_backup_title">Full backup</string>
+    <string name="full_backup_description">One file with passwords, notes, reminders, recordings, expenses, QR history, game statistics and cycle data, encrypted with a passphrase you choose. Contacts and app settings keep their own backups. Restoring adds what is missing; game statistics and cycle data are replaced.</string>
+    <string name="full_backup_create">Create encrypted backup</string>
+    <string name="full_backup_restore">Restore from backup</string>
+    <string name="full_backup_passphrase_new_title">Choose a passphrase</string>
+    <string name="full_backup_passphrase_new_message">The backup can only be opened with this passphrase. It is not stored anywhere and cannot be recovered.</string>
+    <string name="full_backup_passphrase_enter_title">Enter the backup passphrase</string>
+    <string name="full_backup_restore_message">Items already on this device are kept and duplicates are skipped where they can be detected.</string>
+    <string name="full_backup_passphrase_label">Passphrase</string>
+    <string name="full_backup_passphrase_repeat">Repeat the passphrase</string>
+    <string name="full_backup_working">Working on the backup…</string>
+    <string name="full_backup_export_done_title">Backup created</string>
+    <string name="full_backup_restore_done_title">Backup restored</string>
+    <string name="full_backup_summary">Passwords: %1$d · Notes and lists: %2$d · Reminders and recordings: %3$d · Transactions: %4$d · QR codes: %5$d</string>
+    <string name="full_backup_without_vault">The password vault was not included because it is turned off.</string>
+    <string name="full_backup_wrong_passphrase">Wrong passphrase or damaged backup file</string>
+    <string name="full_backup_not_a_backup">This file is not a Fun Phone full backup</string>
+    <string name="full_backup_export_failed">The backup could not be created</string>
+    <string name="full_backup_restore_failed">The backup could not be restored</string>
+    <plurals name="full_backup_passphrase_min">
+        <item quantity="one">At least %1$d character</item>
+        <item quantity="other">At least %1$d characters</item>
+    </plurals>
+    <string name="missed_call_action_call_back">Call back</string>
+    <string name="missed_call_action_message">Message</string>
+    <plurals name="missed_calls_count">
+        <item quantity="one">%1$d missed call</item>
+        <item quantity="other">%1$d missed calls</item>
+    </plurals>
+    <string name="about_version_short" translatable="false">v%1$s</string>
+    <string name="about_license_short" translatable="false">GPL-3.0</string>
+    <string name="about_repository_path" translatable="false">github.com/Moncada25/fun-phone</string>
+    <string name="about_website_host" translatable="false">moncada25.github.io/fun-phone-web</string>
+    <string name="about_developer_name" translatable="false">Santiago Moncada</string>
+    <string name="about_badge_no_ads">No ads</string>
+    <string name="about_badge_no_trackers">No trackers</string>
+    <string name="about_open_source_title">Open source</string>
+    <string name="about_open_source_description">Free software built in the open. Read the code, follow progress, and help shape what comes next.</string>
+    <string name="about_source_code">Source code</string>
+    <string name="about_report_issue">Report an issue</string>
+    <string name="about_report_issue_summary">Found a bug or have an idea? Open an issue on GitHub.</string>
+    <string name="about_releases">Releases and changelog</string>
+    <string name="about_releases_summary">See what changed in every version.</string>
+    <string name="about_contribute">Contribute</string>
+    <string name="about_contribute_summary">Read the guide and send your first pull request.</string>
+    <string name="about_license">License</string>
+    <string name="about_license_summary">GNU General Public License v3.0</string>
+    <string name="about_star_repository">Star on GitHub</string>
+    <string name="about_support_title">Support the project</string>
+    <string name="about_support_description">Spread the word and help more people discover a private, open source dialer.</string>
+    <string name="about_share_summary">Recommend Fun Phone to friends and family.</string>
+    <string name="about_rate_play">Rate on Google Play</string>
+    <string name="about_rate_play_summary">Your review helps others discover the app.</string>
+    <string name="about_developer_role">Creator and maintainer</string>
+    <string name="about_developer_description">Questions, ideas, or want to collaborate? Get in touch.</string>
+    <string name="about_footer_legal">%1$s · Licensed under %2$s</string>
+    <string name="onboarding_badge_open_source">Free and open source</string>
+    <string name="onboarding_value_private_title">Private by design</string>
+    <string name="onboarding_value_private_body">Contacts and calls stay on your device. No ads, no analytics.</string>
+    <string name="onboarding_value_calls_title">Calling, refined</string>
+    <string name="onboarding_value_calls_body">A fast dialer with T9 search, recents and dual SIM support.</string>
+    <string name="onboarding_value_personal_title">Make it yours</string>
+    <string name="onboarding_value_personal_body">Themes, fonts and optional tools you can turn on anytime.</string>
+    <string name="onboarding_footer_note">No account needed. You can change everything later.</string>
+</resources>

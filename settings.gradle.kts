@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -23,4 +24,16 @@ dependencyResolutionManagement {
 
 rootProject.name = "fun-phone"
 include(":app")
+include(":core:common")
+include(":core:database")
+include(":core:datastore")
+include(":core:designsystem")
+include(":core:security")
+include(":core:ui")
+include(":feature:expenses")
+include(":feature:games")
+include(":feature:notes")
+include(":feature:qr")
+include(":feature:tools")
+include(":feature:vault")
 include(":baselineprofile")

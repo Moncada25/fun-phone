@@ -8,17 +8,6 @@ import java.text.CollationKey
 import java.text.Collator
 import java.util.Locale
 
-enum class ContactSortOrder {
-    FIRST_NAME,
-    LAST_NAME,
-    RECENTLY_ADDED;
-
-    companion object {
-        fun fromName(name: String?): ContactSortOrder =
-            entries.firstOrNull { it.name == name } ?: FIRST_NAME
-    }
-}
-
 object ContactSortPolicy {
     const val UNNAMED_SECTION_LABEL = "#"
     private const val NAMED_BY_LETTER = 0

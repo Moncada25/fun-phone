@@ -5,15 +5,15 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.AnimationSpeed
 import com.bookverse.contacts.settings.GlassEffects
 import com.bookverse.contacts.settings.ListDensity
 import com.bookverse.contacts.settings.TransitionType
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppLanguage
-import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.DarkModeStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
 
 internal enum class SettingsPreferenceSheet {
     ANIMATION_SPEED,

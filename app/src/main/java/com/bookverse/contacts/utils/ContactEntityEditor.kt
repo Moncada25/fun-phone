@@ -45,17 +45,18 @@ internal fun MutableContact.applyEditableFields(contact: Contact) {
         company = contact.company?.takeIf(String::isNotBlank)
     }
 
-    if (contact.birthday != null) {
+    val contactBirthday = contact.birthday
+    if (contactBirthday != null) {
         val eventsList = events().toList()
         if (eventsList.isEmpty()) {
             addEvent {
                 type = EventEntity.Type.BIRTHDAY
-                date = ContactUtils.longToEventDate(contact.birthday)
+                date = ContactUtils.longToEventDate(contactBirthday)
             }
         } else {
             eventsList.first().apply {
                 type = EventEntity.Type.BIRTHDAY
-                date = ContactUtils.longToEventDate(contact.birthday)
+                date = ContactUtils.longToEventDate(contactBirthday)
             }
         }
     }

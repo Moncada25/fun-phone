@@ -4,7 +4,7 @@ import android.app.Application
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.LruCache
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.repository.ContactRepository
 import com.bookverse.contacts.data.repository.ContactPhotoWriter
 import com.bookverse.contacts.data.repository.InCallBackgroundChange

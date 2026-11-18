@@ -1,7 +1,7 @@
 package com.bookverse.contacts.settings
 
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.viewmodel.AppLanguage
 import org.junit.Assert.assertNotEquals

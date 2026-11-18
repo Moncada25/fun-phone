@@ -3,6 +3,24 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ui_root="$repo_root/app/src/main/java/com/bookverse/contacts/ui"
+shopt -s nullglob
+ui_roots=("$ui_root")
+for module_ui_root in "$repo_root"/core/*/src/main/java/com/bookverse/contacts/ui "$repo_root"/feature/*/src/main/java/com/bookverse/contacts/ui; do
+  ui_roots+=("$module_ui_root")
+done
+shopt -u nullglob
+
+ui_file() {
+  local root
+  for root in "${ui_roots[@]}"; do
+    if [[ -f "$root/$1" ]]; then
+      printf '%s\n' "$root/$1"
+      return
+    fi
+  done
+  echo "Accent contract source is missing: $1" >&2
+  exit 1
+}
 
 while IFS= read -r raw_seed_consumer; do
   case "$raw_seed_consumer" in
@@ -12,7 +30,7 @@ while IFS= read -r raw_seed_consumer; do
       exit 1
       ;;
   esac
-done < <(grep -rn -F '.accentColor.collectAsStateWithLifecycle()' "$ui_root" --include='*.kt' || true)
+done < <(grep -rn -F '.accentColor.collectAsStateWithLifecycle()' "${ui_roots[@]}" --include='*.kt' || true)
 
 while IFS= read -r seed_consumer; do
   case "$seed_consumer" in
@@ -28,10 +46,10 @@ while IFS= read -r seed_consumer; do
       exit 1
       ;;
   esac
-done < <(grep -rln -E '(accentPalette|preview)\.seed' "$ui_root" --include='*.kt' | grep -v '/theme/' || true)
+done < <(grep -rln -E '(accentPalette|preview)\.seed' "${ui_roots[@]}" --include='*.kt' | grep -v '/theme/' || true)
 
-theme_file="$ui_root/theme/ContactsAppTheme.kt"
-palette_file="$ui_root/theme/AccentPalette.kt"
+theme_file=$(ui_file theme/ContactsAppTheme.kt)
+palette_file=$(ui_file theme/AccentPalette.kt)
 grep -Fq 'surfaceTint = Color.Transparent' "$palette_file" || {
   echo "ContactsAppTheme must keep accent surface tint disabled."
   exit 1
@@ -49,16 +67,17 @@ grep -Fq 'val accentSeed = MaterialTheme.accentPalette.seed' "$settings_screen" 
   echo "The accent picker must receive the exact selected seed, not the derived primary role."
   exit 1
 }
-search_field="$ui_root/components/TopBarSearchField.kt"
-search_surface="$ui_root/components/SearchFieldSurface.kt"
-glass_surface="$ui_root/components/LiquidGlassSurface.kt"
+search_field=$(ui_file components/TopBarSearchField.kt)
+search_surface=$(ui_file components/SearchFieldSurface.kt)
+glass_surface=$(ui_file components/LiquidGlassSurface.kt)
+search_action=$(ui_file components/AppBarSearchAction.kt)
 grep -Fq 'contentColor.copy(alpha = 0.15f)' "$search_field" || {
   echo "Minimal and Retro search fields must retain their translucent search container."
   exit 1
 }
 grep -Fq 'LocalAppChromeStyle.current == AccentBarStyle.MODERN' "$search_field" &&
   grep -Fq 'SearchFieldSurface(' "$search_field" &&
-  grep -Fq 'SearchFieldSurface(' "$ui_root/components/AppBarSearchAction.kt" &&
+  grep -Fq 'SearchFieldSurface(' "$search_action" &&
   grep -Fq 'LocalAppChromeStyle.current == AccentBarStyle.MODERN' "$search_surface" &&
   grep -Fq 'LiquidGlassSurface(modifier)' "$search_surface" &&
   grep -Fq 'allowBackdrop && LocalBackdropAllowed.current' "$search_surface" &&
@@ -130,7 +149,8 @@ theme_owned_components=(
   "screens/tools/ToolsPresetSelector.kt"
 )
 for relative_path in "${theme_owned_components[@]}"; do
-  if grep -Fq 'accentColor: Color' "$ui_root/$relative_path"; then
+  source_file=$(ui_file "$relative_path")
+  if grep -Fq 'accentColor: Color' "$source_file"; then
     echo "$relative_path must consume accent roles from MaterialTheme."
     exit 1
   fi
@@ -154,7 +174,8 @@ theme_owned_view_model_free_components=(
   "screens/contacts/SocialMediaSearchDialog.kt"
 )
 for relative_path in "${theme_owned_view_model_free_components[@]}"; do
-  if grep -Fq 'appSettingsViewModel: AppSettingsViewModel' "$ui_root/$relative_path"; then
+  source_file=$(ui_file "$relative_path")
+  if grep -Fq 'appSettingsViewModel: AppSettingsViewModel' "$source_file"; then
     echo "$relative_path must read accent roles from MaterialTheme without settings prop drilling."
     exit 1
   fi

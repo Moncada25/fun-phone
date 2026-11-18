@@ -13,7 +13,7 @@ import android.telecom.PhoneAccountHandle
 import android.telephony.PhoneNumberUtils
 import androidx.annotation.RequiresApi
 import androidx.core.os.BundleCompat
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.data.model.RecentOperation

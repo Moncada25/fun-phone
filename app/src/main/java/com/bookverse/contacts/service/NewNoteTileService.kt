@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.navigation.DynamicShortcuts
 import com.bookverse.contacts.ui.navigation.HomeShortcutDestination

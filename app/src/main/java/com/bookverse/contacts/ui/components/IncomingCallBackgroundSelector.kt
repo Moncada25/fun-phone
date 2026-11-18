@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import java.io.File
 
 @Composable

@@ -1,7 +1,7 @@
 package com.bookverse.contacts.domain.call
 
 import android.content.Context
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 
 enum class AudioRoute {
     EARPIECE,

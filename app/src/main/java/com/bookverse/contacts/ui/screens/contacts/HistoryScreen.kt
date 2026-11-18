@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.utils.PhoneActions
 import com.bookverse.contacts.ui.theme.SecondaryTextAlpha
 import android.Manifest
 import android.content.pm.PackageManager
@@ -83,7 +84,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.data.model.historyKey
@@ -102,7 +103,7 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.topBarBackground
 import com.bookverse.contacts.ui.components.topBarColors
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
 import com.bookverse.contacts.settings.LocaleController
@@ -933,7 +934,7 @@ fun HistoryScreen(
                                                     type = RecentType.WHATSAPP_OPEN,
                                                     target = phoneNumber
                                                 )
-                                                ContactUtils.openWhatsApp(context, phoneNumber)
+                                                PhoneActions.openWhatsApp(context, phoneNumber)
                                             }
                                             recentContact = contact
                                             showPhoneSelectionDialog = true
@@ -942,7 +943,7 @@ fun HistoryScreen(
                                                 contact = contact,
                                                 type = RecentType.WHATSAPP_OPEN,
                                                 target = contact.phones.first().number
-                                            ); ContactUtils.openWhatsApp(
+                                            ); PhoneActions.openWhatsApp(
                                                 context,
                                                 contact.phones.first().number
                                             )

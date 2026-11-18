@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.ContactPhone
@@ -304,10 +304,11 @@ class ContactRepository(private val context: Context) {
                 }
             }
 
-            if (contact.birthday != null) {
+            val contactBirthday = contact.birthday
+            if (contactBirthday != null) {
                 addEvent {
                     type = EventEntity.Type.BIRTHDAY
-                    date = ContactUtils.longToEventDate(contact.birthday)
+                    date = ContactUtils.longToEventDate(contactBirthday)
                 }
             }
 

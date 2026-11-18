@@ -17,8 +17,8 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.test.platform.app.InstrumentationRegistry
-import com.bookverse.contacts.R
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.ui.theme.ThemeMode
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test

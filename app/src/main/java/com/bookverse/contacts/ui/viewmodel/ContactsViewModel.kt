@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.viewmodel
 
+import com.bookverse.contacts.ui.screens.dialer.DialerDirectory
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
@@ -13,7 +14,7 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.createBitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.contacts.ContactRecycleBin
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactAccount
@@ -103,7 +104,7 @@ class ContactsViewModel(
     contactVCardRepository: ContactVCardRepository,
     private val contactUsageRepository: ContactUsageRepository,
     private val funnelTelemetry: FunnelTelemetry,
-) : AndroidViewModel(application) {
+) : AndroidViewModel(application), DialerDirectory {
 
     private val application = getApplication<Application>()
     private val contactPhotoUpdateResolver = ContactPhotoUpdateResolver(
@@ -114,10 +115,10 @@ class ContactsViewModel(
     private fun localizedContext(): Context = LocaleController.localizedContext(application)
 
     private val _contacts = MutableStateFlow<List<Contact>>(emptyList())
-    val contacts: StateFlow<List<Contact>> = _contacts.asStateFlow()
+    override val contacts: StateFlow<List<Contact>> = _contacts.asStateFlow()
 
     private val _profile = MutableStateFlow<Contact?>(null)
-    val profile: StateFlow<Contact?> = _profile.asStateFlow()
+    override val profile: StateFlow<Contact?> = _profile.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
 
@@ -131,13 +132,13 @@ class ContactsViewModel(
     val isDeleting: StateFlow<Boolean> = _isDeleting.asStateFlow()
 
     private val _localOperations = MutableStateFlow<List<RecentOperation>>(emptyList())
-    val localOperations: StateFlow<List<RecentOperation>> = _localOperations.asStateFlow()
+    override val localOperations: StateFlow<List<RecentOperation>> = _localOperations.asStateFlow()
 
     private val _callLogs = MutableStateFlow<List<RecentOperation>>(emptyList())
-    val callLogs: StateFlow<List<RecentOperation>> = _callLogs.asStateFlow()
+    override val callLogs: StateFlow<List<RecentOperation>> = _callLogs.asStateFlow()
     private val _isRefreshingCallLogs = MutableStateFlow(false)
 
-    val topUsedContacts = contactUsageRepository.getTopUsedContacts(10)
+    override val topUsedContacts = contactUsageRepository.getTopUsedContacts(10)
 
     private val _isLoadingMoreCallLogs = MutableStateFlow(false)
     val isLoadingMoreCallLogs: StateFlow<Boolean> = _isLoadingMoreCallLogs.asStateFlow()
@@ -510,10 +511,11 @@ class ContactsViewModel(
                             }
                         }
 
-                        if (sanitizedContact.birthday != null) {
+                        val contactBirthday = sanitizedContact.birthday
+                        if (contactBirthday != null) {
                             addEvent {
                                 type = EventEntity.Type.BIRTHDAY
-                                date = ContactUtils.longToEventDate(sanitizedContact.birthday)
+                                date = ContactUtils.longToEventDate(contactBirthday)
                             }
                         }
 
@@ -591,7 +593,7 @@ class ContactsViewModel(
 
     fun uriToBitmap(uri: Uri): Bitmap? = contactMediaCoordinator.uriToBitmap(uri)
 
-    suspend fun loadContactPhoto(uri: Uri): Bitmap? = contactMediaCoordinator.loadContactPhoto(uri)
+    override suspend fun loadContactPhoto(uri: Uri): Bitmap? = contactMediaCoordinator.loadContactPhoto(uri)
 
     suspend fun getIncomingCallBackgroundUri(contactId: String): Uri? = contactMediaCoordinator.getIncomingCallBackgroundUri(contactId)
     fun updateIncomingCallBackground(contactId: String, change: IncomingCallBackgroundChange, onResult: (Boolean) -> Unit) =
@@ -600,7 +602,7 @@ class ContactsViewModel(
     fun updateInCallBackground(contactId: String, change: InCallBackgroundChange, onResult: (Boolean) -> Unit) =
         contactMediaCoordinator.updateInCallBackground(contactId, change, onResult)
 
-    fun addRecentOperation(contact: Contact, type: RecentType, target: String) {
+    override fun addRecentOperation(contact: Contact, type: RecentType, target: String) {
         viewModelScope.launch {
             recentOperationsRepository.addRecentOperation(
                 RecentOperation(
@@ -637,7 +639,7 @@ class ContactsViewModel(
         }
     }
 
-    fun fetchAllRecentOperations() {
+    override fun fetchAllRecentOperations() {
         DiagnosticLog.debug(DiagnosticEvent.CONTACT_RECENTS_REFRESHED)
         if (!PermissionUtils.hasCallLogPermission(application)) {
             callLogCache.clear()
@@ -1123,7 +1125,7 @@ class ContactsViewModel(
         _selectedRecentOperations.value = list.map { it.historyKey }.toSet()
     }
 
-    suspend fun findContactByPhoneNumber(phoneNumber: String): Contact? {
+    override suspend fun findContactByPhoneNumber(phoneNumber: String): Contact? {
         val allContacts = ArrayList(contacts.value)
         profile.value?.let { allContacts.add(0, it) }
         return contactRepository.findContactByPhoneNumber(allContacts, phoneNumber)
@@ -1680,7 +1682,7 @@ class ContactsViewModel(
         )
     }
 
-    fun recordCallUsage(phoneNumber: String, duration: Long = 0) {
+    override fun recordCallUsage(phoneNumber: String, duration: Long) {
         viewModelScope.launch {
             contactUsageRepository.recordCall(phoneNumber, duration)
         }

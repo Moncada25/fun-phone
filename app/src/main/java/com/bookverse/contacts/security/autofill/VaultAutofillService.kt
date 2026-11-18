@@ -16,7 +16,7 @@ import android.service.autofill.SaveInfo
 import android.service.autofill.SaveRequest
 import android.view.autofill.AutofillId
 import android.widget.RemoteViews
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.security.CryptoManager
 import com.bookverse.contacts.settings.LocaleController
 import kotlinx.coroutines.CancellationException

@@ -86,7 +86,7 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bookverse.contacts.MainActivity
-import com.bookverse.contacts.R
+import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.ui.auth.PasswordAuthDialogs
 import com.bookverse.contacts.ui.auth.rememberPasswordAuthState
@@ -464,7 +464,7 @@ fun SettingsScreen(
     }
 
     val themeModeValue = stringResource(themeModeLabelRes(themeMode))
-    val themeValue = if (themeMode == com.bookverse.contacts.ui.viewmodel.ThemeMode.LIGHT) {
+    val themeValue = if (themeMode == com.bookverse.contacts.ui.theme.ThemeMode.LIGHT) {
         themeModeValue
     } else {
         "$themeModeValue · ${stringResource(darkModeStyleLabelRes(darkModeStyle))}"
