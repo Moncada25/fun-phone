@@ -34,7 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.R
 import com.bookverse.contacts.ui.theme.accentPalette
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

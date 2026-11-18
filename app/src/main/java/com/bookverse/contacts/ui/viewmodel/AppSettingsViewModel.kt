@@ -25,6 +25,9 @@ import com.bookverse.contacts.settings.DataStoreAppSettingsStore
 import com.bookverse.contacts.settings.ListDensity
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.settings.TransitionType
+import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.ui.theme.DarkModeStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,34 +35,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import com.bookverse.contacts.security.PinAuthenticator
 import com.bookverse.contacts.security.PinResult
-
-enum class ThemeMode {
-    LIGHT, DARK, SYSTEM;
-
-    companion object {
-        fun fromName(name: String?): ThemeMode {
-            return when (name) {
-                "LIGHT" -> LIGHT
-                "DARK" -> DARK
-                else -> SYSTEM
-            }
-        }
-    }
-}
-
-enum class DarkModeStyle {
-    AMOLED, DARK_GRAY, DIM;
-
-    companion object {
-        fun fromName(name: String?): DarkModeStyle {
-            return when (name) {
-                "DARK_GRAY" -> DARK_GRAY
-                "DIM" -> DIM
-                else -> AMOLED
-            }
-        }
-    }
-}
 
 enum class PasswordAuthMethod {
     BIOMETRIC, PIN;
@@ -121,18 +96,6 @@ enum class AppLanguage(
 
     fun toLocaleList(): LocaleListCompat {
         return LocaleController.localeListFor(this)
-    }
-}
-
-enum class AccentBarStyle {
-    MODERN,
-    MINIMAL,
-    RETRO;
-
-    companion object {
-        fun fromName(value: String?): AccentBarStyle {
-            return entries.firstOrNull { it.name == value } ?: MODERN
-        }
     }
 }
 

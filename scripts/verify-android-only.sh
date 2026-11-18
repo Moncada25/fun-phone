@@ -32,14 +32,24 @@ if ! grep -Eq '^include\(":app"\)[[:space:]]*$' settings.gradle.kts; then
 fi
 
 unexpected_includes=$(grep -E '^[[:space:]]*include\(' settings.gradle.kts |
-    grep -Ev '^include\(":(app|baselineprofile)"\)[[:space:]]*$' || true)
+    grep -Ev '^include\(":(app|baselineprofile|core:[a-z]+)"\)[[:space:]]*$' || true)
 if [ -n "$unexpected_includes" ]; then
-    fail "settings.gradle.kts includes modules other than :app and the Android :baselineprofile test module: $unexpected_includes"
+    fail "settings.gradle.kts includes modules other than :app, :core:* Android libraries and the Android :baselineprofile test module: $unexpected_includes"
 fi
+
+core_modules=$(sed -nE 's/^include\(":core:([a-z]+)"\)[[:space:]]*$/\1/p' settings.gradle.kts)
+for core_module in $core_modules; do
+    core_build_file="core/$core_module/build.gradle.kts"
+    if [ ! -f "$core_build_file" ]; then
+        fail ":core:$core_module has no $core_build_file"
+    elif ! grep -Eq 'libs\.plugins\.funphone\.android\.library' "$core_build_file"; then
+        fail ":core:$core_module must apply the funphone.android.library convention plugin"
+    fi
+done
 
 kmp_pattern='org\.jetbrains\.kotlin\.multiplatform|kotlin[[:space:]]*\([[:space:]]*"multiplatform"|iosArm64|iosX64|iosSimulatorArm64|iosTarget|macosX64|cocoapods|uikit'
 kmp_matches=$(git grep -IlE "$kmp_pattern" -- \
-    '*.gradle' '*.gradle.kts' '*.toml' \
+    '*.gradle' '*.gradle.kts' '*.toml' 'build-logic/*.kt' \
     ':!scripts/verify-android-only.sh' \
     ':!FUN_PHONE_EVOLUTION_SPEC.md' || true)
 if [ -n "$kmp_matches" ]; then

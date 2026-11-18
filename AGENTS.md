@@ -38,9 +38,9 @@ la inconsistencia si está dentro del alcance.
 | versión, `minSdk` y `targetSdk` | `release.properties` |
 | `compileSdk`, flavors, build types, signing y tareas | `app/build.gradle.kts` |
 | versiones de dependencias y plugins | `gradle/libs.versions.toml` |
-| módulos y repositorios Gradle | `settings.gradle.kts` |
+| módulos y repositorios Gradle | `settings.gradle.kts` y convention plugins en `build-logic/` |
 | permisos, components y entry points Android | `app/src/main/AndroidManifest.xml` |
-| esquema Room y migraciones activas | `AppDatabase.kt` y `app/schemas/` |
+| esquema Room y migraciones activas | `AppDatabase.kt` y `core/database/schemas/` (`:core:database`) |
 | navegación principal y secundaria | `NavigationItem`, `SecondaryScreen` y `MainTabsScaffold` |
 | UI/UX, componentes y accesibilidad | [DESIGN.md](DESIGN.md) |
 | contratos de calidad y evidencia | [QUALITY_RELEASE_GATES.md](QUALITY_RELEASE_GATES.md) |
@@ -88,7 +88,8 @@ Compose UI
 
 ### UI y presentación
 
-- Las pantallas viven en `ui/screens/<feature>/`; los elementos compartidos en `ui/components/`.
+- Las pantallas viven en `ui/screens/<feature>/`; los elementos compartidos en `ui/components/`
+  (genéricos sin strings de la app en `:core:designsystem`, el resto en `:app`).
 - Aplicar [DESIGN.md](DESIGN.md): tokens semánticos, componentes existentes, estados completos,
   accesibilidad y layouts adaptables.
 - Recoger flujos en Compose con `collectAsStateWithLifecycle()`.
@@ -196,7 +197,7 @@ Compose UI
 
 1. Cambiar entidad, DAO y `AppDatabase` de forma atómica.
 2. Incrementar versión y añadir auto-migration o migración manual explícita.
-3. Compilar para exportar el nuevo schema en `app/schemas/`.
+3. Compilar para exportar el nuevo schema en `core/database/schemas/`.
 4. Añadir pruebas que migren desde las versiones relevantes y preserven datos.
 5. Revisar backup/import/export y workers que lean las tablas afectadas.
 

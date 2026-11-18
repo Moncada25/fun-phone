@@ -37,7 +37,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.R
 import com.bookverse.contacts.data.notes.ChecklistItem
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

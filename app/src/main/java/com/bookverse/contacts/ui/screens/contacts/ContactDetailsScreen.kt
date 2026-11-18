@@ -347,10 +347,11 @@ fun ContactDetailsScreen(
                                 .clip(CircleShape),
                             contentAlignment = Alignment.Center
                         ) {
-                            if (contact.photoUri != null) {
+                            val contactPhotoUri = contact.photoUri
+                            if (contactPhotoUri != null) {
 
                                 val bmp = remember(contact.photoUri) {
-                                    contactsViewModel.uriToBitmap(contact.photoUri)
+                                    contactsViewModel.uriToBitmap(contactPhotoUri)
                                 }
 
                                 if (bmp != null) {
@@ -613,7 +614,8 @@ fun ContactDetailsScreen(
                                 }
                             }
 
-                            if (!contact.email.isNullOrBlank()) {
+                            val contactEmail = contact.email
+                            if (!contactEmail.isNullOrBlank()) {
                                 val emailCopied = stringResource(R.string.email_copied)
                                 Column(
                                     modifier = Modifier
@@ -623,7 +625,7 @@ fun ContactDetailsScreen(
                                                 onLongPress = {
                                                     ContactUtils.copyToClipboard(
                                                         context,
-                                                        contact.email,
+                                                        contactEmail,
                                                         toast = false
                                                     )
                                                     snackbar.show(
@@ -652,7 +654,7 @@ fun ContactDetailsScreen(
                                         Spacer(modifier = Modifier.width(16.dp))
                                         Column {
                                             Text(
-                                                text = contact.email,
+                                                text = contactEmail,
                                                 color = textColor,
                                                 fontSize = 16.sp,
                                                 maxLines = 1,
@@ -696,7 +698,8 @@ fun ContactDetailsScreen(
                                     modifier = Modifier.padding(bottom = 16.dp)
                                 )
 
-                                if (!contact.company.isNullOrBlank()) {
+                                val contactCompany = contact.company
+                                if (!contactCompany.isNullOrBlank()) {
                                     val companyCopied = stringResource(R.string.company_copied)
                                     Column(
                                         modifier = Modifier
@@ -706,7 +709,7 @@ fun ContactDetailsScreen(
                                                     onLongPress = {
                                                         ContactUtils.copyToClipboard(
                                                             context,
-                                                            contact.company,
+                                                            contactCompany,
                                                             toast = false
                                                         )
                                                         snackbar.show(
@@ -735,7 +738,7 @@ fun ContactDetailsScreen(
                                             Spacer(modifier = Modifier.width(16.dp))
                                             Column {
                                                 Text(
-                                                    text = contact.company,
+                                                    text = contactCompany,
                                                     color = textColor,
                                                     fontSize = 16.sp,
                                                     maxLines = 1,
@@ -751,7 +754,8 @@ fun ContactDetailsScreen(
                                     }
                                 }
 
-                                if (contact.birthday != null) {
+                                val contactBirthday = contact.birthday
+                                if (contactBirthday != null) {
                                     Column(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -774,7 +778,7 @@ fun ContactDetailsScreen(
                                                             "MMMM dd",
                                                             LocaleController.effectiveLocale(LocalContext.current)
                                                         ).format(
-                                                            Date(contact.birthday)
+                                                            Date(contactBirthday)
                                                         )
                                                     ),
                                                     color = textColor,
@@ -795,7 +799,8 @@ fun ContactDetailsScreen(
                                     }
                                 }
 
-                                if (!contact.notes.isNullOrBlank()) {
+                                val contactNotes = contact.notes
+                                if (!contactNotes.isNullOrBlank()) {
                                     Column(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -813,7 +818,7 @@ fun ContactDetailsScreen(
                                             Spacer(modifier = Modifier.width(16.dp))
                                             Column {
                                                 Text(
-                                                    text = contact.notes,
+                                                    text = contactNotes,
                                                     color = textColor,
                                                     fontSize = 16.sp
                                                 )

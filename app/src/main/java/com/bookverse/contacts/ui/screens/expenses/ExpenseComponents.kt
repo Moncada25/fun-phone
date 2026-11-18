@@ -293,9 +293,10 @@ fun ExpenseTransactionCard(
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
-                    if (!transaction.note.isNullOrBlank()) {
+                    val transactionNote = transaction.note
+                    if (!transactionNote.isNullOrBlank()) {
                         Text(
-                            text = transaction.note,
+                            text = transactionNote,
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.72f),
                             maxLines = 1,

@@ -35,10 +35,10 @@ import com.bookverse.contacts.R
 import com.bookverse.contacts.ui.components.AppScreenScaffold
 import com.bookverse.contacts.ui.theme.contrastRatio
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
-import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
+import com.bookverse.contacts.ui.theme.DarkModeStyle
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule

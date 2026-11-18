@@ -32,8 +32,8 @@ import com.bookverse.contacts.ui.theme.DarkBackgroundColor
 import com.bookverse.contacts.ui.theme.DarkGrayBackgroundColor
 import com.bookverse.contacts.ui.theme.DimBackgroundColor
 import com.bookverse.contacts.ui.theme.createAccentPalette
-import com.bookverse.contacts.ui.viewmodel.DarkModeStyle
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.DarkModeStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
 
 @Composable
 internal fun SettingsColorSheet(

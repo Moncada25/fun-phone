@@ -96,7 +96,7 @@ import com.bookverse.contacts.domain.call.CallContactPresentation
 import com.bookverse.contacts.domain.call.CallState
 import com.bookverse.contacts.service.CallController
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.ui.viewmodel.calls.IncomingCallViewModel
 import com.bookverse.contacts.utils.ContactUtils
 import kotlin.math.abs

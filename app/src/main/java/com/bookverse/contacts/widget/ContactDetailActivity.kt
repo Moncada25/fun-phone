@@ -49,7 +49,7 @@ import com.bookverse.contacts.ui.screens.contacts.UpdateContactScreen
 import com.bookverse.contacts.ui.system.configureTransparentSystemBars
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import com.bookverse.contacts.ui.theme.accentPalette
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 

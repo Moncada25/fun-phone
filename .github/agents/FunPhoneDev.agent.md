@@ -353,7 +353,7 @@ private fun MyScreenContent(
 - DAOs con Flow para observación reactiva
 - Suspend functions para operaciones one-shot
 - Auto-migrations cuando sea posible
-- Export schemas a `app/schemas/`
+- Export schemas a `core/database/schemas/`
 - Versionar database correctamente
 
 ### Coroutines & Flow
@@ -587,7 +587,7 @@ Antes de entregar cualquier solución, verifica:
 - Nueva feature completa → Crear package en `ui/screens/`
 - Nuevo ViewModel → En `ui/viewmodel/`
 - Nuevo Repository → En `repository/`
-- Nueva Entity de Room → En `data/db/`
+- Nueva Entity de Room → En `:core:database` (`data/db/` o el paquete `data/<feature>/` de la entidad)
 - Nuevo Util → En `utils/`
 - Nuevo Worker → En `data/worker/`
 

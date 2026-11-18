@@ -2,7 +2,7 @@ package com.bookverse.contacts.settings
 
 import androidx.datastore.preferences.core.mutablePreferencesOf
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

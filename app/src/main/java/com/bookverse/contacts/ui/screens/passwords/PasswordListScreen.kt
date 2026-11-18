@@ -358,7 +358,7 @@ fun PasswordListScreen(
         },
         snackbarHost = { AppSnackbarHost(snackHost.hostState) }
     ) { pv ->
-        val modern = accentBarStyle == com.bookverse.contacts.ui.viewmodel.AccentBarStyle.MODERN
+        val modern = accentBarStyle == com.bookverse.contacts.ui.theme.AccentBarStyle.MODERN
         val contentTopPadding = if (modern) pv.calculateTopPadding() else 0.dp
         Box(
             modifier = Modifier.fillMaxSize()

@@ -304,10 +304,11 @@ class ContactRepository(private val context: Context) {
                 }
             }
 
-            if (contact.birthday != null) {
+            val contactBirthday = contact.birthday
+            if (contactBirthday != null) {
                 addEvent {
                     type = EventEntity.Type.BIRTHDAY
-                    date = ContactUtils.longToEventDate(contact.birthday)
+                    date = ContactUtils.longToEventDate(contactBirthday)
                 }
             }
 

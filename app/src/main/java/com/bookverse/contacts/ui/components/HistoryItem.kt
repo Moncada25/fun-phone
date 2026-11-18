@@ -109,7 +109,7 @@ fun HistoryItem(
                 )
             }
 
-            val duration = if (operation.time != null) operation.time.toInt() else 0
+            val duration = operation.time?.toInt() ?: 0
 
             Text(
                 text = ContactUtils.formatSeconds(context, duration),

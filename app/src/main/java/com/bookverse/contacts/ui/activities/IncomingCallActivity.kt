@@ -31,7 +31,7 @@ import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import com.bookverse.contacts.ui.system.configureTransparentSystemBars
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import kotlinx.coroutines.launch
 
 class IncomingCallActivity : LocalizedAppCompatActivity() {

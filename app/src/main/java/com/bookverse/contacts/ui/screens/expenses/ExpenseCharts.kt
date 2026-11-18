@@ -466,9 +466,10 @@ private fun TransactionBreakdownItem(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
-            if (!transaction.note.isNullOrBlank()) {
+            val transactionNote = transaction.note
+            if (!transactionNote.isNullOrBlank()) {
                 Text(
-                    text = transaction.note,
+                    text = transactionNote,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,

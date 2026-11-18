@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.theme.accentPalette
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Search

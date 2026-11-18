@@ -64,7 +64,7 @@ SELECT * FROM contacts LIMIT 10;
 ### Export Schema
 ```bash
 ./gradlew assembleDebug
-ls app/schemas/com.bookverse.contacts.data.db.AppDatabase/
+ls core/database/schemas/com.bookverse.contacts.data.db.AppDatabase/
 ```
 
 ## 🔥 Firebase

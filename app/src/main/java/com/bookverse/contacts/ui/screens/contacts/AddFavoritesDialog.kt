@@ -370,9 +370,10 @@ fun AddFavoriteContactItem(
                     .clip(CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                if (contact.photoUri != null) {
+                val contactPhotoUri = contact.photoUri
+                if (contactPhotoUri != null) {
                     val bmp = remember(contact.photoUri) {
-                        contactsViewModel.uriToBitmap(contact.photoUri)
+                        contactsViewModel.uriToBitmap(contactPhotoUri)
                     }
                     if (bmp != null) {
                         Image(

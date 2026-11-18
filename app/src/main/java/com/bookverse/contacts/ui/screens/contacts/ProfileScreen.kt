@@ -459,7 +459,8 @@ fun ProfileScreen(
                                 }
                             }
 
-                            if (!contact.email.isNullOrBlank()) {
+                            val contactEmail = contact.email
+                            if (!contactEmail.isNullOrBlank()) {
                                 val emailCopied = stringResource(R.string.email_copied)
                                 Column(
                                     modifier = Modifier
@@ -469,7 +470,7 @@ fun ProfileScreen(
                                                 onLongPress = {
                                                     ContactUtils.copyToClipboard(
                                                         context,
-                                                        contact.email,
+                                                        contactEmail,
                                                         toast = false
                                                     )
                                                     snackbar.show(
@@ -498,7 +499,7 @@ fun ProfileScreen(
                                         Spacer(modifier = Modifier.width(16.dp))
                                         Column {
                                             Text(
-                                                text = contact.email,
+                                                text = contactEmail,
                                                 color = textColor,
                                                 fontSize = 16.sp,
                                                 maxLines = 1,
@@ -540,7 +541,8 @@ fun ProfileScreen(
                                     modifier = Modifier.padding(bottom = 16.dp)
                                 )
 
-                                if (!contact.company.isNullOrBlank()) {
+                                val contactCompany = contact.company
+                                if (!contactCompany.isNullOrBlank()) {
                                     val companyCopied = stringResource(R.string.company_copied)
                                     Column(
                                         modifier = Modifier
@@ -550,7 +552,7 @@ fun ProfileScreen(
                                                     onLongPress = {
                                                         ContactUtils.copyToClipboard(
                                                             context,
-                                                            contact.company,
+                                                            contactCompany,
                                                             toast = false
                                                         )
                                                         snackbar.show(
@@ -579,7 +581,7 @@ fun ProfileScreen(
                                             Spacer(modifier = Modifier.width(16.dp))
                                             Column {
                                                 Text(
-                                                    text = contact.company,
+                                                    text = contactCompany,
                                                     color = textColor,
                                                     fontSize = 16.sp,
                                                     maxLines = 1,
@@ -595,7 +597,8 @@ fun ProfileScreen(
                                     }
                                 }
 
-                                if (contact.birthday != null) {
+                                val contactBirthday = contact.birthday
+                                if (contactBirthday != null) {
                                     Column(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -618,7 +621,7 @@ fun ProfileScreen(
                                                             "MMMM dd",
                                                             LocaleController.effectiveLocale(LocalContext.current)
                                                         ).format(
-                                                            Date(contact.birthday)
+                                                            Date(contactBirthday)
                                                         )
                                                     ),
                                                     color = textColor,

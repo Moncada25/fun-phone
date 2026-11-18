@@ -22,7 +22,7 @@ failures=0
 while IFS= read -r file; do
     [ -f "$file" ] || continue
     case "$file" in
-        app/schemas/*|*.png|*.jpg|*.jpeg|*.webp|*.ttf|*.keystore|*.jks)
+        core/database/schemas/*|*.png|*.jpg|*.jpeg|*.webp|*.ttf|*.keystore|*.jks)
             continue
             ;;
         *.kt|*.kts|*.xml|*.md|*.yml|*.yaml|*.json|*.sh|*.properties|*.toml)

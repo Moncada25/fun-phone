@@ -9,7 +9,10 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - **Min SDK 29** | **Target/Compile SDK 37** | **JVM Target 25**
 - **UI**: 100% Jetpack Compose + Material 3 — no XML layouts or fragments
 - **Architecture**: MVVM + Repository, manual DI (no Hilt)
-- **Modules**: `:app` plus the `:baselineprofile` test module (Baseline Profile generator and macrobenchmarks)
+- **Modules**: `:app`, the Android libraries `:core:designsystem` (theme and generic Compose components)
+  and `:core:database` (Room), plus the `:baselineprofile` test module (Baseline Profile generator and
+  macrobenchmarks). Shared Gradle setup lives in the `build-logic` convention plugins
+  (`funphone.android.library`, `funphone.android.library.compose`, `funphone.android.room`)
 - **Localization**: English baseline in `values/`, with Spanish, German, French, and Portuguese
   translations in `values-es/`, `values-de/`, `values-fr/`, and `values-pt/`
 
@@ -36,10 +39,12 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 
 - **`ui/viewmodel/`** — ViewModels extend `AndroidViewModel`, expose `StateFlow` via `MutableStateFlow` + `.asStateFlow()`. Use `viewModelScope` for coroutines. Manual factories via companion `provideFactory()`. Collect in Compose with `collectAsStateWithLifecycle()`.
 - **`ui/screens/`** — Feature screens organized by domain (contacts, calls, notes, games, qr, passwords, expenses, tools, settings)
-- **`ui/components/`** — ~58 reusable Compose components (dialogs, form fields, top bars, etc.)
+- **`ui/components/`** — reusable Compose components. Generic ones that need no app strings live in
+  `:core:designsystem`; components that use app strings or feature types stay in `:app`
 - **`ui/navigation/`** — `SecondaryScreen` enum + `SecondaryScreenContent` composable for routing. `NavigationViewModel` manages navigation state via `NavigationUiState` StateFlow.
-- **`ui/theme/`** — `ContactsAppTheme` with light/dark schemes and semantic color tokens (`CallAcceptColor`, `CallRejectColor`, `BadgeColor`, `BudgetOkColor`, etc.)
-- **`data/db/`** — Room `AppDatabase` with auto-migrations, DAOs, entities. Schemas exported to `app/schemas/`
+- **`ui/theme/`** (`:core:designsystem`) — `ContactsAppTheme`, `ThemeMode`, `DarkModeStyle`, `AccentBarStyle` with light/dark schemes and semantic color tokens (`CallAcceptColor`, `CallRejectColor`, `BadgeColor`, `BudgetOkColor`, etc.)
+- **`data/db/`** (`:core:database`) — Room `AppDatabase` with auto-migrations, DAOs, converters and the
+  entities of every feature. Schemas exported to `core/database/schemas/`
 - **`data/notes/`, `data/expenses/`, `data/password/`, `data/qr/`** — Feature-specific Room entities and domain models annotated with `@Immutable` for Compose stability
 - **`data/repository/`** — Repository implementations for contacts and the bounded HTTPS holidays source.
 - **`service/`** — Android services: `FunPhoneInCallService`, `IncomingCallService`, `OngoingCallService`, `NotificationService`, `CallNotificationManager`
@@ -66,7 +71,7 @@ Fun Phone is an Android app (package `com.bookverse.contacts`) — a personal hu
 - Use `collectAsStateWithLifecycle()` (not `collectAsState()`) for all StateFlow collection
 - LazyList `items()` must include `key` parameter for stable identity
 - Data classes used as Composable parameters should have `@Immutable` annotation
-- Use semantic color tokens from `ui/theme/ContactsAppTheme.kt` — avoid hardcoded `Color(0xFF...)` values
+- Use semantic color tokens from `ui/theme/ContactsAppTheme.kt` in `:core:designsystem` — avoid hardcoded `Color(0xFF...)` values
 - Avoid `runBlocking` and `coroutineScope.launch` inside Composables — use `LaunchedEffect` with appropriate keys
 - `LaunchedEffect(Unit)` should only be used for genuinely one-time effects (animations, SharedFlow collectors). For effects that depend on a value, use that value as key.
 
@@ -83,8 +88,8 @@ Run `./scripts/verify-localization.sh` after changing localized resources.
 ## Room Database Changes
 
 When modifying Room entities:
-1. Update entity classes + DAO + `AppDatabase`
-2. Run `./gradlew assembleDebug` to export updated schemas to `app/schemas/`
+1. Update entity classes + DAO + `AppDatabase` in `:core:database`
+2. Run `./gradlew assembleDebug` to export updated schemas to `core/database/schemas/`
 3. Auto-migrations handle schema evolution
 
 ## Release Signing

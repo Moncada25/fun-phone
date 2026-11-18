@@ -27,9 +27,9 @@ import com.bookverse.contacts.ui.components.LocalAppBarStateRegistry
 import com.bookverse.contacts.ui.components.LocalBackdropAllowed
 import com.bookverse.contacts.ui.components.rememberAppBarStateRegistry
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

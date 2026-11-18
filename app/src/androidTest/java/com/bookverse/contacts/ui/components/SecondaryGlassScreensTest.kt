@@ -29,12 +29,12 @@ import com.bookverse.contacts.ui.screens.notes.NoteListScreen
 import com.bookverse.contacts.ui.screens.passwords.PasswordBackupActions
 import com.bookverse.contacts.ui.screens.passwords.PasswordListScreen
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ExpensesViewModel
 import com.bookverse.contacts.ui.viewmodel.NotesViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.utils.SecondaryScreen
 import org.junit.After
 import org.junit.Assert.assertEquals

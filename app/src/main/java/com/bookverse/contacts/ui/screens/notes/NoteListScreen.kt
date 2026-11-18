@@ -702,7 +702,7 @@ fun NoteListScreen(
         },
         snackbarHost = { AppSnackbarHost(snackbar.hostState) })
     { padding ->
-        val modern = accentBarStyle == com.bookverse.contacts.ui.viewmodel.AccentBarStyle.MODERN
+        val modern = accentBarStyle == com.bookverse.contacts.ui.theme.AccentBarStyle.MODERN
         val contentTopPadding = if (modern) padding.calculateTopPadding() else 0.dp
         Box(
             modifier = Modifier

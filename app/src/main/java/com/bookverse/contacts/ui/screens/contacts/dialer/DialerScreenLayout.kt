@@ -63,7 +63,7 @@ import com.bookverse.contacts.ui.components.NumberKeypad
 import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.ui.theme.CallAcceptColor
 import com.bookverse.contacts.ui.theme.chromePolicy
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.utils.ContactUtils
 
 @Composable

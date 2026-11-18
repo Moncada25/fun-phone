@@ -2,7 +2,7 @@ package com.bookverse.contacts.settings
 
 import com.bookverse.contacts.data.model.AppSettingsBackup
 import com.bookverse.contacts.data.model.ToolsOrderConfig
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.google.gson.JsonParser
 import org.junit.Assert.assertEquals
 import org.junit.Test

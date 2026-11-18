@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.settings.Fonts
 import com.bookverse.contacts.ui.theme.chromePolicy
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.utils.VibrationUtils
 
 @Composable

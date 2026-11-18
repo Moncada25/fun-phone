@@ -21,8 +21,8 @@ import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
 import dev.chrisbanes.haze.HazeState
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

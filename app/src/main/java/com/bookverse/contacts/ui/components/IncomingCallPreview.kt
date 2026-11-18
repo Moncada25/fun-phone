@@ -59,7 +59,7 @@ import com.bookverse.contacts.R
 import com.bookverse.contacts.ui.theme.CallAcceptColor
 import com.bookverse.contacts.ui.theme.CallRejectColor
 import com.bookverse.contacts.ui.theme.GradientScrimColor
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.utils.ContactUtils
 
 @Composable

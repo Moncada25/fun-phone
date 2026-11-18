@@ -69,7 +69,7 @@ import com.bookverse.contacts.ui.screens.contacts.dialer.resolveDialerAction
 import com.bookverse.contacts.ui.screens.contacts.dialer.sanitizeDialerText
 import com.bookverse.contacts.ui.screens.contacts.dialer.sanitizePastedDialerText
 import com.bookverse.contacts.settings.AppDataStore
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.utils.ContactUtils

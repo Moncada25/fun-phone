@@ -56,7 +56,7 @@ pure_settings_components=(
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsAppearanceSheets.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/screens/settings/SettingsPreferenceSheets.kt"
   "$repo_root/app/src/main/java/com/bookverse/contacts/ui/components/SelectBottomSheet.kt"
-  "$repo_root/app/src/main/java/com/bookverse/contacts/ui/components/SettingSwitch.kt"
+  "$repo_root/core/designsystem/src/main/java/com/bookverse/contacts/ui/components/SettingSwitch.kt"
 )
 for component in "${pure_settings_components[@]}"; do
   if grep -Fq "AppSettingsViewModel" "$component"; then
@@ -74,7 +74,7 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactSortPolicyTest.kt"
   "app/src/test/java/com/bookverse/contacts/domain/contacts/ContactRecycleBinPolicyTest.kt"
   "app/src/test/java/com/bookverse/contacts/domain/contacts/vcard/VCardCodecTest.kt"
-  "app/src/test/java/com/bookverse/contacts/data/db/DeletedContactsMigrationSqlTest.kt"
+  "core/database/src/test/java/com/bookverse/contacts/data/db/DeletedContactsMigrationSqlTest.kt"
   "app/src/test/java/com/bookverse/contacts/domain/telemetry/FunnelTelemetryTest.kt"
   "app/src/test/java/com/bookverse/contacts/service/TelecomCallActionsTest.kt"
   "app/src/test/java/com/bookverse/contacts/service/ReminderDeliveryActionTest.kt"
@@ -97,8 +97,8 @@ required_tests=(
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/NavigationViewModelTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/screens/contacts/dialer/SpeedDialResolverTest.kt"
   "app/src/test/java/com/bookverse/contacts/ui/viewmodel/PasswordAuthMethodContractTest.kt"
-  "app/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt"
-  "app/src/main/java/com/bookverse/contacts/data/db/LegacyDatabaseMigrations.kt"
+  "core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt"
+  "core/database/src/main/java/com/bookverse/contacts/data/db/LegacyDatabaseMigrations.kt"
   "app/src/androidTest/java/com/bookverse/contacts/security/CryptoManagerTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/service/ReminderSchedulingPerformanceTest.kt"
   "app/src/androidTest/java/com/bookverse/contacts/ui/auth/PasswordAuthDialogsTest.kt"
@@ -157,12 +157,12 @@ grep -Fq 'PREPARE_SYNTHETIC_CONTACTS' "$repo_root/scripts/measure-core-performan
   exit 1
 }
 grep -Fq 'ALL_MANUAL_MIGRATIONS' \
-  "$repo_root/app/src/main/java/com/bookverse/contacts/data/db/AppDatabase.kt" || {
+  "$repo_root/core/database/src/main/java/com/bookverse/contacts/data/db/AppDatabase.kt" || {
   echo "The production database builder must register every manual migration."
   exit 1
 }
 
-room_database="$repo_root/app/src/main/java/com/bookverse/contacts/data/db/AppDatabase.kt"
+room_database="$repo_root/core/database/src/main/java/com/bookverse/contacts/data/db/AppDatabase.kt"
 grep -Fq 'version = 32' "$room_database" || {
   echo "Room database version must remain frozen at 32."
   exit 1
@@ -172,30 +172,30 @@ if grep -Eq 'version[[:space:]]*=[[:space:]]*(3[3-9]|[4-9][0-9])' "$room_databas
   exit 1
 fi
 grep -Fq 'migrateEveryLegacySchema2Through7To29PreservesAvailableUserData' \
-  "$repo_root/app/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
+  "$repo_root/core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
   echo "Legacy Room migration fixtures must remain as compatibility evidence."
   exit 1
 }
 grep -Fq 'migrateRealSchema29To30PreservesEncryptedPasswordsAndAddsFolders' \
-  "$repo_root/app/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
+  "$repo_root/core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
   echo "Password folder migration evidence must preserve encrypted credential data."
   exit 1
 }
 grep -Fq 'migrateRealSchema30To31AddsContactRecycleBinAndPreservesUserData' \
-  "$repo_root/app/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
+  "$repo_root/core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
   echo "Contact recycle bin migration evidence must preserve existing user data."
   exit 1
 }
-[[ -f "$repo_root/app/schemas/com.bookverse.contacts.data.db.AppDatabase/31.json" ]] || {
+[[ -f "$repo_root/core/database/schemas/com.bookverse.contacts.data.db.AppDatabase/31.json" ]] || {
   echo "Missing exported Room schema 31."
   exit 1
 }
 grep -Fq 'migrateRealSchema31To32PreservesVaultAndReminderDataAndAddsNoteTables' \
-  "$repo_root/app/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
+  "$repo_root/core/database/src/androidTest/java/com/bookverse/contacts/data/db/AppDatabaseMigrationTest.kt" || {
   echo "Vault and notes migration evidence must preserve encrypted credentials and reminders."
   exit 1
 }
-[[ -f "$repo_root/app/schemas/com.bookverse.contacts.data.db.AppDatabase/32.json" ]] || {
+[[ -f "$repo_root/core/database/schemas/com.bookverse.contacts.data.db.AppDatabase/32.json" ]] || {
   echo "Missing exported Room schema 32."
   exit 1
 }

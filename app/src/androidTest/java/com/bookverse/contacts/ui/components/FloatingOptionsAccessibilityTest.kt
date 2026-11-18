@@ -19,8 +19,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.bookverse.contacts.R
 import com.bookverse.contacts.settings.AnimationSpeed
 import com.bookverse.contacts.settings.AnimationSpeed.Companion.LocalAnimationSpeed
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import org.junit.Assert.assertEquals
 import org.junit.Rule

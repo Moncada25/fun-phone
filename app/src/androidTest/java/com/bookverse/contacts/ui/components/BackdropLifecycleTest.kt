@@ -26,9 +26,9 @@ import com.bookverse.contacts.ui.auth.ProtectedScreenHost
 import com.bookverse.contacts.ui.auth.rememberPasswordAuthState
 import com.bookverse.contacts.ui.navigation.allowsBackdrop
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.utils.SecondaryScreen
 import dev.chrisbanes.haze.HazeState
 import org.junit.After

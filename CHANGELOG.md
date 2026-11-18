@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- The theme, generic Compose components and Room database now live in the `:core:designsystem`
+  and `:core:database` Android library modules, with shared Gradle setup in `build-logic`
+  convention plugins. No user-visible change.
+
 ### Fixed
 - Google Play hid the app from landscape-only devices because the photo crop screen is locked to
   portrait. The app now declares portrait screens as optional.

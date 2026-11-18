@@ -76,7 +76,7 @@ import com.bookverse.contacts.ui.components.LiquidGlassSurface
 import com.bookverse.contacts.ui.components.NumberKeypad
 import com.bookverse.contacts.ui.theme.AppChrome
 import com.bookverse.contacts.ui.theme.CallAcceptColor
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 
 private val SheetContentMaxWidth = 480.dp
 private val SheetHorizontalPadding = 16.dp

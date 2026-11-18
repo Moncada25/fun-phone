@@ -7,11 +7,15 @@ repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || {
     exit 1
 }
 
-python3 - "$repo_root/app/src/main/java/com/bookverse/contacts" <<'PY'
+python3 - \
+    "$repo_root/app/src/main/java/com/bookverse/contacts" \
+    "$repo_root/core/database/src/main/java/com/bookverse/contacts" \
+    "$repo_root/core/designsystem/src/main/java/com/bookverse/contacts" <<'PY'
 from pathlib import Path
 import sys
 
 source_root = Path(sys.argv[1])
+source_roots = [Path(argument) for argument in sys.argv[1:]]
 failures = []
 
 
@@ -46,19 +50,20 @@ owned_apis = {
 }
 
 for owner, roots in feature_roots.items():
-    for relative_root in roots:
-        path = source_root / relative_root
-        if not path.exists():
-            continue
-        for file, line_number, imported in imports_for(path):
-            for target, prefixes in owned_apis.items():
-                if target == owner:
-                    continue
-                if any(imported == prefix or imported.startswith(prefix + ".") for prefix in prefixes):
-                    failures.append(
-                        f"{file.relative_to(source_root)}:{line_number}: "
-                        f"{owner} imports {target} internals ({imported})"
-                    )
+    for root in source_roots:
+        for relative_root in roots:
+            path = root / relative_root
+            if not path.exists():
+                continue
+            for file, line_number, imported in imports_for(path):
+                for target, prefixes in owned_apis.items():
+                    if target == owner:
+                        continue
+                    if any(imported == prefix or imported.startswith(prefix + ".") for prefix in prefixes):
+                        failures.append(
+                            f"{file.relative_to(root)}:{line_number}: "
+                            f"{owner} imports {target} internals ({imported})"
+                        )
 
 dialer_roots = (
     source_root / "ui/screens/calls",

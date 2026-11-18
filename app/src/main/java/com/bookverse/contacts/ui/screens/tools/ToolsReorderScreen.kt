@@ -50,7 +50,7 @@ import com.bookverse.contacts.ui.components.SettingSwitch
 import com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior
 import com.bookverse.contacts.ui.components.rememberDestinationListState
 import com.bookverse.contacts.ui.theme.LocalAppChromeStyle
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.utils.ToolsRegistry
 

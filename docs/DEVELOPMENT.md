@@ -17,12 +17,14 @@ Release signing is optional for development and described in [SETUP.md](../SETUP
 
 ## Architecture
 
-- **Modules:** `:app` (the application, package `com.bookverse.contacts`) and `:baselineprofile`
-  (Baseline Profile generator and macrobenchmarks).
+- **Modules:** `:app` (the application, package `com.bookverse.contacts`), the Android libraries
+  `:core:designsystem` (theme and generic Compose components) and `:core:database` (Room), and
+  `:baselineprofile` (Baseline Profile generator and macrobenchmarks). Shared Gradle configuration
+  lives in the convention plugins under `build-logic/`.
 - **UI:** 100% Jetpack Compose and Material 3. No XML layouts or fragments.
 - **Pattern:** MVVM with repositories and manual dependency injection. ViewModels expose `StateFlow`,
   collected with `collectAsStateWithLifecycle()`.
-- **Data:** Room (KSP, exported schemas in `app/schemas/`) and DataStore for settings.
+- **Data:** Room (KSP, exported schemas in `core/database/schemas/`) and DataStore for settings.
 - **Async:** Kotlin coroutines and Flow, WorkManager and AlarmManager for reminders.
 - **Telephony:** `InCallService` based default dialer with foreground call services.
 - **Security:** Google Tink with the Android Keystore, AndroidX Biometric with PIN fallback.

@@ -464,7 +464,7 @@ fun SettingsScreen(
     }
 
     val themeModeValue = stringResource(themeModeLabelRes(themeMode))
-    val themeValue = if (themeMode == com.bookverse.contacts.ui.viewmodel.ThemeMode.LIGHT) {
+    val themeValue = if (themeMode == com.bookverse.contacts.ui.theme.ThemeMode.LIGHT) {
         themeModeValue
     } else {
         "$themeModeValue · ${stringResource(darkModeStyleLabelRes(darkModeStyle))}"

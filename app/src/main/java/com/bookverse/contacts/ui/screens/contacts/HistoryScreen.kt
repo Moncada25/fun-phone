@@ -102,7 +102,7 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.topBarBackground
 import com.bookverse.contacts.ui.components.topBarColors
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
 import com.bookverse.contacts.ui.viewmodel.NavigationViewModel
 import com.bookverse.contacts.settings.LocaleController

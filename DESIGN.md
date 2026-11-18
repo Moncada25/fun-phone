@@ -108,7 +108,7 @@ flowchart LR
 ## 3. Fundamentos visuales
 
 La implementación canónica vive en
-`app/src/main/java/com/bookverse/contacts/ui/theme/ContactsAppTheme.kt`. Los nombres y valores de
+`core/designsystem/src/main/java/com/bookverse/contacts/ui/theme/ContactsAppTheme.kt`. Los nombres y valores de
 este documento describen esa implementación; el código sigue siendo la fuente de verdad ejecutable.
 
 ### Color

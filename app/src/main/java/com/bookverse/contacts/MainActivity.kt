@@ -52,7 +52,7 @@ import com.bookverse.contacts.ui.system.updateStatusBarContrast
 import com.bookverse.contacts.ui.screens.calls.SimSelectionHost
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
 import com.bookverse.contacts.ui.theme.accentPalette
-import com.bookverse.contacts.ui.viewmodel.AccentBarStyle
+import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactsViewModel

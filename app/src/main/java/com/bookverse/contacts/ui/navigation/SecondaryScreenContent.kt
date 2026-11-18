@@ -73,7 +73,7 @@ import com.bookverse.contacts.ui.viewmodel.HolidaysViewModel
 import com.bookverse.contacts.ui.viewmodel.PasswordsViewModel
 import com.bookverse.contacts.ui.viewmodel.PomodoroViewModel
 import com.bookverse.contacts.ui.viewmodel.QRHistoryViewModel
-import com.bookverse.contacts.ui.viewmodel.ThemeMode
+import com.bookverse.contacts.ui.theme.ThemeMode
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable

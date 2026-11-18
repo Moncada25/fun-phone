@@ -72,7 +72,7 @@ class MyViewModel(
 ### Data Persistence
 - Room Database (schema version 29 with retained legacy migrations)
 - Update entities + DAO + `AppDatabase` for new tables
-- Sync schema JSONs in `app/schemas/` after migrations
+- Sync schema JSONs in `core/database/schemas/` after migrations
 - DataStore for app settings via `AppSettingsViewModel`
 - SharedPreferences only for game stats (legacy)
 

@@ -454,7 +454,7 @@ fun ExpenseManagerScreen(
                     transactionReturnSection = ExpenseSection.HOME
                     currentSection = ExpenseSection.ADD
                 }
-                if (accentBarStyle == com.bookverse.contacts.ui.viewmodel.AccentBarStyle.MODERN) {
+                if (accentBarStyle == com.bookverse.contacts.ui.theme.AccentBarStyle.MODERN) {
                     com.bookverse.contacts.ui.components.ModernFloatingActionButton(
                         icon = Icons.Default.AttachMoney,
                         contentDescription = stringResource(R.string.expense_add_transaction),
@@ -497,7 +497,7 @@ fun ExpenseManagerScreen(
         },
         containerColor = MaterialTheme.colorScheme.background
     ) { paddingValues ->
-        val modern = accentBarStyle == com.bookverse.contacts.ui.viewmodel.AccentBarStyle.MODERN
+        val modern = accentBarStyle == com.bookverse.contacts.ui.theme.AccentBarStyle.MODERN
         val contentTopPadding = if (modern) paddingValues.calculateTopPadding() else 0.dp
         Column(
             modifier = Modifier
