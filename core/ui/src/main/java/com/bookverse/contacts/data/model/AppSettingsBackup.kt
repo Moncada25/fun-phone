@@ -27,6 +27,7 @@ data class AppSettingsBackup(
     val dtmfTonesEnabled: String = "disabled",
     val immersiveIncomingCalls: Boolean = false,
     val answerWithVolumeUp: Boolean = false,
+    val declineWithVolumeDown: Boolean = false,
     val fontScale: Float = 1.0f,
     val listDensity: String = "NORMAL",
     val favoritesCardShape: String = "SQUARE",
@@ -58,6 +59,10 @@ data class AppSettingsBackup(
                     false
                 }
 
+                val declineWithVolumeDown = jsonObject.get("declineWithVolumeDown")
+                    ?.let { runCatching { it.asBoolean }.getOrNull() }
+                    ?: false
+
                 val favoritesCardShape = jsonObject.get("favoritesCardShape")
                     ?.takeIf { it.isJsonPrimitive }
                     ?.asString
@@ -66,6 +71,7 @@ data class AppSettingsBackup(
                 backup.copy(
                     dtmfTonesEnabled = dtmfValue,
                     answerWithVolumeUp = answerWithVolumeUp,
+                    declineWithVolumeDown = declineWithVolumeDown,
                     favoritesCardShape = favoritesCardShape,
                     darkModeStyle = jsonObject.get("darkModeStyle")?.asString ?: "AMOLED",
                 )

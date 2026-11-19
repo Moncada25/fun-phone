@@ -3,6 +3,7 @@ package com.bookverse.contacts.ui.screens.settings
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.AddToHomeScreen
 import androidx.compose.material.icons.automirrored.filled.NoteAdd
+import androidx.compose.material.icons.automirrored.filled.VolumeDown
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.AppBlocking
 import androidx.compose.material.icons.filled.BlurOn
@@ -77,6 +78,7 @@ internal data class SettingsSectionsState(
     val toolsMenuVisible: Boolean,
     val immersiveIncomingCallsEnabled: Boolean,
     val answerWithVolumeUpEnabled: Boolean,
+    val declineWithVolumeDownEnabled: Boolean,
     val dtmfTonesEnabled: Boolean,
     val passwordAuthEnabled: Boolean,
     val passwordManagerEnabled: Boolean,
@@ -110,6 +112,7 @@ internal data class SettingsSectionsActions(
     val onPhoneStatus: () -> Unit,
     val onImmersiveIncomingCallsChanged: (Boolean) -> Unit,
     val onAnswerWithVolumeChanged: (Boolean) -> Unit,
+    val onDeclineWithVolumeChanged: (Boolean) -> Unit,
     val onDtmfTonesChanged: (Boolean) -> Unit,
     val onHomeShortcuts: () -> Unit,
     val onFavoritesWidget: () -> Unit,
@@ -223,6 +226,7 @@ internal fun buildSettingsSections(
             add(SettingsItemModel("phone_status", Icons.Default.SecurityUpdateGood, stringResource(R.string.status_resume), stringResource(R.string.phone_status_description), actions.onPhoneStatus))
             add(SettingsItemModel("immersive_calls", Icons.Default.Fullscreen, stringResource(R.string.incoming_call_immersive_title), stringResource(R.string.incoming_call_immersive_description), {}, toggle = SettingsToggleModel(state.immersiveIncomingCallsEnabled, actions.onImmersiveIncomingCallsChanged)))
             add(SettingsItemModel("volume_answer", Icons.AutoMirrored.Filled.VolumeUp, stringResource(R.string.answer_with_volume_title), stringResource(R.string.answer_with_volume_description), {}, toggle = SettingsToggleModel(state.answerWithVolumeUpEnabled, actions.onAnswerWithVolumeChanged)))
+            add(SettingsItemModel("volume_decline", Icons.AutoMirrored.Filled.VolumeDown, stringResource(R.string.decline_with_volume_title), stringResource(R.string.decline_with_volume_description), {}, toggle = SettingsToggleModel(state.declineWithVolumeDownEnabled, actions.onDeclineWithVolumeChanged)))
             add(SettingsItemModel("dtmf", Lucide.Volume2, stringResource(R.string.dtmf_tones_title), stringResource(R.string.dtmf_tones_description), {}, toggle = SettingsToggleModel(state.dtmfTonesEnabled, actions.onDtmfTonesChanged)))
         },
     ),

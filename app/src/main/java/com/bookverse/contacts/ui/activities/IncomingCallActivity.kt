@@ -23,6 +23,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bookverse.contacts.App
 import com.bookverse.contacts.MainActivity
 import com.bookverse.contacts.domain.call.CallState
+import com.bookverse.contacts.domain.call.IncomingCallKeyAction
+import com.bookverse.contacts.domain.call.IncomingCallKeyPolicy
 import com.bookverse.contacts.service.CallController
 import com.bookverse.contacts.service.DefaultCallRepository
 import com.bookverse.contacts.settings.Fonts
@@ -46,6 +48,7 @@ class IncomingCallActivity : LocalizedAppCompatActivity() {
         appContainer.appSettingsViewModelFactory
     }
     private var answerWithVolumeUpEnabled = false
+    private var declineWithVolumeDownEnabled = false
     private var currentCallId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,17 +145,17 @@ class IncomingCallActivity : LocalizedAppCompatActivity() {
                         answerWithVolumeUpEnabled = enabled
                     }
                 }
+                launch {
+                    appSettingsViewModel.declineWithVolumeDownEnabled.collect { enabled ->
+                        declineWithVolumeDownEnabled = enabled
+                    }
+                }
             }
         }
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP &&
-            answerWithVolumeUpEnabled &&
-            attemptAnswerIncomingCall()
-        ) {
-            return true
-        }
+        if (handleIncomingCallKey(keyCode)) return true
         return super.onKeyUp(keyCode, event)
     }
 
@@ -171,16 +174,23 @@ class IncomingCallActivity : LocalizedAppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
-    private fun attemptAnswerIncomingCall(): Boolean {
+    private fun handleIncomingCallKey(keyCode: Int): Boolean {
+        val action = IncomingCallKeyPolicy.actionFor(
+            keyCode = keyCode,
+            answerWithVolumeUp = answerWithVolumeUpEnabled,
+            declineWithVolumeDown = declineWithVolumeDownEnabled,
+        ) ?: return false
         val call = DefaultCallRepository.activeCall.value
-        return if (call != null && call.state == CallState.RINGING) {
-            CallController.answer(call.id)
-            true
-        } else if (call == null && currentCallId != null) {
-            CallController.answer(currentCallId)
-            true
-        } else {
-            false
+        val trackedCallId = currentCallId
+        val callId = when {
+            call != null && call.state == CallState.RINGING -> call.id
+            call == null && trackedCallId != null -> trackedCallId
+            else -> return false
         }
+        when (action) {
+            IncomingCallKeyAction.ANSWER -> CallController.answer(callId)
+            IncomingCallKeyAction.DECLINE -> CallController.reject(callId)
+        }
+        return true
     }
 }

@@ -232,6 +232,8 @@
     <string name="incoming_call_immersive_description">Muestra siempre la pantalla de llamada a pantalla completa, sin notificaciones.</string>
     <string name="answer_with_volume_title">Responder con volumen</string>
     <string name="answer_with_volume_description">Permite contestar la llamada con la tecla de subir volumen.</string>
+    <string name="decline_with_volume_title">Rechazar con volumen</string>
+    <string name="decline_with_volume_description">Permite rechazar la llamada con la tecla de bajar volumen.</string>
     <string name="dtmf_tones_title">Tonos de marcación</string>
     <string name="dtmf_tones_description">Sonido al marcar números</string>
     <string name="speed_dial_title">Llamada rápida</string>

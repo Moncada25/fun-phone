@@ -48,8 +48,8 @@ signed off without the matching hardware/carrier setup.
 | --- | --- | --- |
 | TEL-M01 | Default-dialer role grant, revoke, and re-grant | Phone Status reflects each transition; outgoing and incoming handling recover after re-grant |
 | TEL-M02 | Outgoing call and remote hang-up | Correct number/state, in-call UI, duration, recents entry, and cleanup |
-| TEL-M03 | Incoming answer from unlocked and locked screen | Ringing UI/notification appears once; answer reaches active audio call |
-| TEL-M04 | Incoming reject and unanswered/missed call | Reject does not answer; missed notification and recents are correct with no duplicate system alert |
+| TEL-M03 | Incoming answer from unlocked and locked screen, including volume up when enabled | Ringing UI/notification appears once; answer reaches active audio call |
+| TEL-M04 | Incoming reject, including volume down when enabled, and unanswered/missed call | Reject does not answer; volume keys only act while ringing and only when their setting is on; missed notification and recents are correct with no duplicate system alert |
 | TEL-M05 | Hold/unhold and two-call swap | Active/held states and controls match the carrier; swap changes the audible call |
 | TEL-M06 | DTMF against a real IVR | Digits `0-9`, `*`, and `#` are received once and in order |
 | TEL-M07 | Earpiece, speaker, wired, and Bluetooth routing | Selected route becomes audible, survives mute changes, and falls back safely on disconnect |

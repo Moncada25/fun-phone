@@ -168,6 +168,8 @@
     <string name="incoming_call_immersive_description">Sempre abre a tela de chamada recebida em tela cheia, sem notificações.</string>
     <string name="answer_with_volume_title">Atender com volume</string>
     <string name="answer_with_volume_description">Permite atender a chamada com a tecla de aumentar volume.</string>
+    <string name="decline_with_volume_title">Recusar com volume</string>
+    <string name="decline_with_volume_description">Permite recusar a chamada com a tecla de diminuir volume.</string>
     <string name="dtmf_tones_title">Tons de discagem</string>
     <string name="dtmf_tones_description">Som ao discar números</string>
     <string name="speed_dial_title">Discagem rápida</string>
