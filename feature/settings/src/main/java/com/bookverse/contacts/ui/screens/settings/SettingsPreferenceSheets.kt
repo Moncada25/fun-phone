@@ -115,9 +115,7 @@ internal fun SettingsPreferenceSheets(
             onDismiss = onDismiss,
             optionKey = AccentBarStyle::name,
             optionLabel = { style -> stringResource(accentStyleLabelRes(style)) },
-            optionSupportingText = { style ->
-                if (style == AccentBarStyle.MODERN) stringResource(R.string.accent_usage_modern_description) else null
-            },
+            optionSupportingText = { style -> stringResource(accentStyleDescriptionRes(style)) },
         )
 
         SettingsPreferenceSheet.COLOR -> SettingsColorSheet(
@@ -229,6 +227,13 @@ internal fun accentStyleLabelRes(style: AccentBarStyle): Int = when (style) {
     AccentBarStyle.MODERN -> R.string.accent_usage_modern
     AccentBarStyle.MINIMAL -> R.string.accent_usage_minimal
     AccentBarStyle.RETRO -> R.string.accent_usage_retro
+}
+
+@StringRes
+internal fun accentStyleDescriptionRes(style: AccentBarStyle): Int = when (style) {
+    AccentBarStyle.MODERN -> R.string.accent_usage_modern_description
+    AccentBarStyle.MINIMAL -> R.string.accent_usage_minimal_description
+    AccentBarStyle.RETRO -> R.string.accent_usage_retro_description
 }
 
 @StringRes

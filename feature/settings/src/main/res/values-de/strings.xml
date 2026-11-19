@@ -320,6 +320,8 @@
     <string name="onboarding_retry">Erneut versuchen</string>
     <string name="accent_usage_modern">Modernes Design</string>
     <string name="accent_usage_modern_description">Flexible Titel, dezente Unschärfe und schwebende Navigation.</string>
+    <string name="accent_usage_minimal_description">Kleine Titel, neutrale Leisten und feste Navigation.</string>
+    <string name="accent_usage_retro_description">Leisten in deiner Akzentfarbe, farbige Schaltflächen und feste Navigation.</string>
     <string name="font_category_recommended">Empfohlen</string>
     <string name="font_category_sans">Serifenlos</string>
     <string name="font_category_serif">Serifenschriften</string>

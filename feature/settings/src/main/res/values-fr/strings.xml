@@ -323,6 +323,8 @@
     <string name="onboarding_retry">Réessayer</string>
     <string name="accent_usage_modern">Moderne</string>
     <string name="accent_usage_modern_description">Titres adaptatifs, flou discret et navigation flottante.</string>
+    <string name="accent_usage_minimal_description">Titres compacts, barres neutres et navigation fixe.</string>
+    <string name="accent_usage_retro_description">Barres à votre couleur d\'accent, boutons colorés et navigation fixe.</string>
     <string name="font_category_recommended">Recommandées</string>
     <string name="font_category_sans">Sans empattement</string>
     <string name="font_category_serif">Avec empattement</string>

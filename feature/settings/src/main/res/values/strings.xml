@@ -322,6 +322,8 @@
     <string name="onboarding_retry">Try again</string>
     <string name="accent_usage_modern">Modern</string>
     <string name="accent_usage_modern_description">Collapsing titles, soft blur and a floating dock.</string>
+    <string name="accent_usage_minimal_description">Small titles, neutral bars and a fixed navigation bar.</string>
+    <string name="accent_usage_retro_description">Bars in your accent color, colored buttons and a fixed navigation bar.</string>
     <string name="font_category_recommended">Recommended</string>
     <string name="font_category_sans">Sans serif</string>
     <string name="font_category_serif">Serif</string>
