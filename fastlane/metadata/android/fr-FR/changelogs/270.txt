@@ -1,0 +1,6 @@
+• Créer ou modifier un contact reprend le design épuré de la fiche contact.
+• Pomodoro passe à un minuteur plus simple, avec un anneau fin et des commandes claires.
+• Votre profil suit désormais le design de la fiche contact.
+• Quitter l’éditeur de mots de passe sans enregistrer ne conserve plus les modifications.
+• Le tableau des scores affiche votre jeu favori.
+• Les étiquettes des contacts sont plus lisibles.
