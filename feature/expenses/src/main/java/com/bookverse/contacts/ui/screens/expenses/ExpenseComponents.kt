@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.expenses
 
+import com.bookverse.contacts.ui.utils.rememberHapticClick
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
@@ -320,7 +321,7 @@ fun ExpenseTransactionCard(
                     )
                     Box {
                         IconButton(
-                            onClick = { menuExpanded = true },
+                            onClick = rememberHapticClick({ menuExpanded = true }),
                             modifier = Modifier.size(48.dp),
                         ) {
                             Icon(
@@ -462,7 +463,7 @@ fun BudgetStatusCard(
                     )
                     Box {
                         IconButton(
-                            onClick = { menuExpanded = true },
+                            onClick = rememberHapticClick({ menuExpanded = true }),
                             modifier = Modifier.size(48.dp),
                         ) {
                             Icon(

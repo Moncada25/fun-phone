@@ -553,6 +553,7 @@ fun PaintScreen(onBackClick: () -> Unit, appSettingsViewModel: AppSettingsViewMo
                         contentDescription = stringResource(CoreUiR.string.more_options),
                         onClick = { showMoreOptions = true },
                         enabled = !state.isBlurProcessing,
+                        feedback = true,
                     )
                 },
             )
