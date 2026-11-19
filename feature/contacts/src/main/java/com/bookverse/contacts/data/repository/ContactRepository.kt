@@ -1,8 +1,10 @@
 package com.bookverse.contacts.data.repository
 
+import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.os.Build
+import android.provider.ContactsContract
 import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import com.bookverse.contacts.data.model.Contact
@@ -11,6 +13,8 @@ import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.domain.contacts.BlockedNumberMatchPolicy
+import com.bookverse.contacts.domain.contacts.ContactAccountPolicy
+import com.bookverse.contacts.domain.contacts.ContactSyncAdapter
 import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.ImageProcessor
 import contacts.core.Contacts
@@ -57,18 +61,56 @@ class ContactRepository(private val context: Context) {
     private val inCallBackgroundStore = InCallBackgroundStore(context)
 
     suspend fun getAccounts(): List<ContactAccount> = withContext(Dispatchers.IO) {
-        val accounts = Contacts(context).accounts().queryWithPermission().find().toList()
-
-        val contactAccounts = mutableListOf<ContactAccount>()
-        contactAccounts.add(ContactAccount.LOCAL_ACCOUNT)
-        contactAccounts.addAll(accounts.map {
-            ContactAccount.fromAccount(it)
-        }.filterNot { ContactAccount.ACCOUNTS_BLACKLIST.contains(it.name) })
-
+        val contactAccounts = queryWritableAccounts(Contacts(context))
         DiagnosticLog.debug(DiagnosticEvent.CONTACT_ACCOUNTS_LOADED)
-
         contactAccounts
     }
+
+    private suspend fun queryWritableAccounts(api: Contacts): List<ContactAccount> {
+        val systemAccounts = api.accounts().queryWithPermission().find()
+            .map(ContactAccount::fromAccount)
+        val providerAccounts = if (api.permissions.canQuery()) {
+            queryProviderAccounts(ContactsContract.Settings.CONTENT_URI, selection = null) +
+                queryProviderAccounts(
+                    ContactsContract.RawContacts.CONTENT_URI,
+                    selection = "${ContactsContract.RawContacts.DELETED} = 0",
+                )
+        } else {
+            emptyList()
+        }
+        return ContactAccountPolicy.writableAccounts(
+            systemAccounts = systemAccounts,
+            providerAccounts = providerAccounts,
+            contactSyncAdapters = queryContactSyncAdapters(),
+        )
+    }
+
+    private fun queryProviderAccounts(uri: Uri, selection: String?): List<ContactAccount> = runCatching {
+        val projection = arrayOf(
+            ContactsContract.RawContacts.ACCOUNT_NAME,
+            ContactsContract.RawContacts.ACCOUNT_TYPE,
+        )
+        context.contentResolver.query(uri, projection, selection, null, null)?.use { cursor ->
+            val accounts = linkedSetOf<ContactAccount>()
+            while (cursor.moveToNext()) {
+                val name = cursor.getString(0)
+                val type = cursor.getString(1)
+                if (!name.isNullOrBlank() && !type.isNullOrBlank()) {
+                    accounts += ContactAccount(name = name, type = type)
+                }
+            }
+            accounts.toList()
+        }.orEmpty()
+    }.getOrElse { error ->
+        if (error is CancellationException) throw error
+        emptyList()
+    }
+
+    private fun queryContactSyncAdapters(): List<ContactSyncAdapter> = runCatching {
+        ContentResolver.getSyncAdapterTypes()
+            .filter { it.authority == ContactsContract.AUTHORITY }
+            .map { ContactSyncAdapter(it.accountType, it.supportsUploading()) }
+    }.getOrElse { emptyList() }
 
     suspend fun getContacts(): List<Contact> = withContext(Dispatchers.IO) {
         val contactsApi = Contacts(context)
@@ -238,7 +280,9 @@ class ContactRepository(private val context: Context) {
         favorite: Boolean?,
         additionalEmails: List<String> = emptyList(),
     ): Boolean = withContext(Dispatchers.IO) {
-        commitNewContact(Contacts(context), contact, account, favorite, additionalEmails).isSuccessful
+        val api = Contacts(context)
+        commitNewContact(api, contact, writableAccountFor(api, account), favorite, additionalEmails)
+            .isSuccessful
     }
 
     suspend fun insertContactWithPhoto(
@@ -252,7 +296,8 @@ class ContactRepository(private val context: Context) {
         val preparedPhoto = photoUri?.let { uri ->
             ImageProcessor.prepareContactPhoto(context, uri).getOrNull()
         }
-        val result = commitNewContact(api, contact, account, favorite, additionalEmails)
+        val target = writableAccountFor(api, account)
+        val result = commitNewContact(api, contact, target, favorite, additionalEmails)
         if (!result.isSuccessful) return@withContext ContactInsertResult.FAILED
         if (photoUri == null) return@withContext ContactInsertResult.INSERTED
         val inserted = result.contacts(api).firstOrNull()
@@ -268,6 +313,7 @@ class ContactRepository(private val context: Context) {
         favorite: Boolean?,
         additionalEmails: List<String>,
     ): Insert.Result = api.insert()
+        .validateAccounts(false)
         .rawContact {
             setName {
                 displayName = contact.name
@@ -354,16 +400,26 @@ class ContactRepository(private val context: Context) {
 
     suspend fun resolveWritableAccount(preferred: List<ContactAccount>): ContactAccount =
         withContext(Dispatchers.IO) {
-            val candidates = preferred.filterNot { account ->
-                account.isLocal || ContactAccount.ACCOUNTS_BLACKLIST.contains(account.name)
-            }
-            if (candidates.isEmpty()) return@withContext ContactAccount.LOCAL_ACCOUNT
-            val available = runCatching {
-                Contacts(context).accounts().query().find().map { it.name to it.type }.toSet()
-            }.getOrElse { emptySet() }
-            candidates.firstOrNull { (it.name to it.type) in available }
-                ?: ContactAccount.LOCAL_ACCOUNT
+            resolveWritableAccount(Contacts(context), preferred)
         }
+
+    private suspend fun writableAccountFor(api: Contacts, account: ContactAccount): ContactAccount =
+        if (account.isLocal) account else resolveWritableAccount(api, listOf(account))
+
+    private suspend fun resolveWritableAccount(
+        api: Contacts,
+        preferred: List<ContactAccount>,
+    ): ContactAccount {
+        if (preferred.all { it.isLocal }) return ContactAccount.LOCAL_ACCOUNT
+        val writable = try {
+            queryWritableAccounts(api)
+        } catch (error: CancellationException) {
+            throw error
+        } catch (_: Exception) {
+            listOf(ContactAccount.LOCAL_ACCOUNT)
+        }
+        return ContactAccountPolicy.resolveWritable(preferred, writable)
+    }
 
     suspend fun getIncomingCallBackgroundUri(contactId: String): Uri? =
         withContext(Dispatchers.IO) {

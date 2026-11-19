@@ -47,6 +47,9 @@
         <intent>
             <action android:name="android.intent.action.RINGTONE_PICKER" />
         </intent>
+        <intent>
+            <action android:name="android.content.SyncAdapter" />
+        </intent>
     </queries>
 
     <!-- localeConfig is ignored below only because minSdk 29 predates the API 33 attribute. -->
