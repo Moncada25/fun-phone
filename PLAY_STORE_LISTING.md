@@ -1,7 +1,7 @@
 # Google Play listing source
 
-**Listing copy candidate:** current 3.21.0/269 behavior; not yet uploaded
-**Release notes candidate below:** 3.21.0 (269)
+**Listing copy:** 3.21.1/270 behavior; saved in Play Console on 2026-11-19
+**Release notes candidate below:** 3.21.1 (270)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -232,52 +232,52 @@ Privado por natureza: contatos, chamadas, notas e senhas são processados no apa
 
 Para começar, abra Status do dispositivo após instalar, conceda as permissões e escolha o Fun Phone como app de telefone padrão. Alguns recursos dependem do aparelho e da versão do Android.
 
-## What's new — 3.21.0
+## What's new — 3.21.1
 
 ### English
 
-• Contact details get a cleaner look with quick actions to call, message, WhatsApp, email or favorite.
-• Games turn into a retro arcade with your records and a scoreboard.
-• Simpler paint tools and a tidier tools list.
-• Redesigned About and welcome screens.
-• "Lock the whole app" now lives in Security & privacy.
-• Fixed the dialer suggesting the wrong contact for short numbers.
+• Adding or editing a contact now has the same clean look as contact details.
+• Pomodoro gets a simpler timer with a thin ring and clear controls.
+• Your profile matches the contact details design.
+• Leaving the password editor without saving no longer keeps your edits.
+• The games scoreboard shows your favorite game.
+• Contact tags are easier to read.
 
 ### Español
 
-• Detalles del contacto más limpios, con accesos para llamar, escribir, WhatsApp, correo o favorito.
-• Los juegos se vuelven un arcade retro con tus récords y tabla de puntajes.
-• Herramientas de dibujo más simples y una lista de herramientas más ordenada.
-• Nuevas pantallas de Acerca de y bienvenida.
-• "Bloquear toda la app" ahora está en Seguridad y privacidad.
-• El marcador ya no sugiere un contacto equivocado con números cortos.
+• Crear o editar un contacto tiene el mismo diseño limpio de los detalles del contacto.
+• Pomodoro estrena un temporizador más simple, con anillo fino y controles claros.
+• Tu perfil sigue el diseño de los detalles del contacto.
+• Salir del editor de contraseñas sin guardar ya no conserva los cambios.
+• La tabla de puntajes muestra tu juego favorito.
+• Las etiquetas de los contactos se leen mejor.
 
 ### Deutsch
 
-• Kontaktdetails wirken aufgeräumter, mit Schnellaktionen für Anruf, Nachricht, WhatsApp, E-Mail und Favorit.
-• Spiele werden zur Retro-Arcade mit Rekorden und Anzeigetafel.
-• Einfachere Malwerkzeuge und eine übersichtlichere Tool-Liste.
-• Neue Info- und Willkommensseiten.
-• „Ganze App sperren“ ist jetzt unter Sicherheit und Datenschutz.
-• Der Wählblock schlägt bei kurzen Nummern keinen falschen Kontakt mehr vor.
+• Kontakte anlegen und bearbeiten im gleichen klaren Design wie die Kontaktdetails.
+• Pomodoro mit schlichterem Timer, dünnem Ring und klaren Bedienelementen.
+• Dein Profil passt jetzt zum Design der Kontaktdetails.
+• Verlässt du den Passworteditor ohne zu speichern, werden die Änderungen verworfen.
+• Die Anzeigetafel der Spiele zeigt dein Lieblingsspiel.
+• Schlagwörter bei Kontakten sind besser lesbar.
 
 ### Français
 
-• Fiche contact épurée, avec des actions rapides : appel, message, WhatsApp, e-mail ou favori.
-• Les jeux deviennent une salle d'arcade rétro avec vos records et un tableau des scores.
-• Outils de dessin simplifiés et liste d'outils plus claire.
-• Écrans À propos et d'accueil repensés.
-• « Verrouiller toute l’appli » se trouve dans Sécurité et confidentialité.
-• Le clavier ne propose plus un mauvais contact pour les numéros courts.
+• Créer ou modifier un contact reprend le design épuré de la fiche contact.
+• Pomodoro passe à un minuteur plus simple, avec un anneau fin et des commandes claires.
+• Votre profil suit désormais le design de la fiche contact.
+• Quitter l’éditeur de mots de passe sans enregistrer ne conserve plus les modifications.
+• Le tableau des scores affiche votre jeu favori.
+• Les étiquettes des contacts sont plus lisibles.
 
 ### Português
 
-• Detalhes do contato mais limpos, com atalhos para ligar, mensagem, WhatsApp, e-mail ou favorito.
-• Os jogos viram um fliperama retrô com seus recordes e placar.
-• Ferramentas de desenho mais simples e lista de ferramentas mais organizada.
-• Novas telas de Sobre e boas-vindas.
-• "Bloquear o app inteiro" agora fica em Segurança e privacidade.
-• O discador não sugere mais o contato errado para números curtos.
+• Criar ou editar um contato agora tem o mesmo visual limpo dos detalhes do contato.
+• O Pomodoro ganha um timer mais simples, com anel fino e controles claros.
+• Seu perfil segue o design dos detalhes do contato.
+• Sair do editor de senhas sem salvar não mantém mais as alterações.
+• O placar dos jogos mostra seu jogo favorito.
+• As etiquetas dos contatos ficam mais legíveis.
 
 ## Screenshot order
 
@@ -364,7 +364,7 @@ The guard checks title/short/full limits, export freshness, native fixture cover
 set for every language. Limits are 30, 80 and 4,000 characters respectively, per
 [Google Play product-detail guidance](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en).
 The full descriptions consistently disclose optional social previews, holiday requests, Android
-speech providers and account-managed contact synchronization. The 3.21.0 release notes above are ready for this local candidate; generating text does not upload it.
+speech providers and account-managed contact synchronization. The 3.21.1 release notes above are ready for this local candidate; generating text does not upload it.
 
 ## Custom listing drafts — publish only after source publication
 

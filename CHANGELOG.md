@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.21.1] - 2026-11-19
+
+### Changed
+- The add and edit contact form follows the contact details design: neutral icons beside each
+  field, dividers with section headers, pickers as detail rows, an Add/Change photo text button and
+  a fixed Cancel/Save bar. The name error only shows after the name is edited.
+- Pomodoro drops its cards for a thin ring with tabular digits, a cycle indicator, inline metrics
+  and labelled round controls.
+- The profile screen matches contact details: the shared header, labelled quick actions for call,
+  WhatsApp and email, and divided list rows with long press to copy.
+- The games scoreboard shows the favorite game instead of the best streak, which did not say which
+  game it belonged to.
+- Every more options button gives haptic feedback.
+- The Google Play short and full descriptions are rewritten in all five languages to list the
+  current features, with the privacy disclosures in one closing paragraph.
+- Pull request checks run only for the Gradle modules a change affects, and CI now runs the unit
+  tests of every library module. No user-visible change.
+
+### Fixed
+- Leaving the password editor with back kept the unsaved edits and restored them on the next visit.
+  Going back now discards the draft; only Save writes the entry.
+- Read-only contact tags looked disabled and sat below the tag icon. They now use full-contrast text
+  and line up with the other detail rows.
+
 ## [3.21.0] - 2026-11-18
 
 ### Changed

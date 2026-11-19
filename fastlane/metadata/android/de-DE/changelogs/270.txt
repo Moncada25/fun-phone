@@ -1,0 +1,6 @@
+• Kontakte anlegen und bearbeiten im gleichen klaren Design wie die Kontaktdetails.
+• Pomodoro mit schlichterem Timer, dünnem Ring und klaren Bedienelementen.
+• Dein Profil passt jetzt zum Design der Kontaktdetails.
+• Verlässt du den Passworteditor ohne zu speichern, werden die Änderungen verworfen.
+• Die Anzeigetafel der Spiele zeigt dein Lieblingsspiel.
+• Schlagwörter bei Kontakten sind besser lesbar.
