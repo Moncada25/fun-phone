@@ -30,10 +30,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/media/dialer-es.gif" width="200" alt="Marcador T9 con el prefijo del país y un contacto coincidente">
-  <img src="docs/media/styles-es.gif" width="200" alt="Cambio de estilos, colores y efectos de cristal">
-  <img src="docs/media/vault-es.gif" width="200" alt="Bóveda de contraseñas cifrada">
-  <img src="docs/media/games-es.gif" width="200" alt="Lista de minijuegos">
+  <img src="docs/media/dialer-es.gif" width="200" alt="Al marcar unos dígitos aparece Emma Wilson y la llamada activa el altavoz">
+  <img src="docs/media/vault-es.gif" width="200" alt="La bóveda de contraseñas se abre con el PIN y muestra un código de dos pasos">
+  <img src="docs/media/styles-es.gif" width="200" alt="Favoritos en el estilo Moderno, claro y oscuro, y después en los estilos Minimalista y Retro">
+  <img src="docs/media/games-es.gif" width="200" alt="Recorrido por los 10 minijuegos">
 </p>
 
 ---
@@ -47,6 +47,11 @@
 - **Software libre.** GPL-3.0-or-later, con una versión community sin librerías de Google y con build reproducible.
 
 ## Capturas
+
+<p align="center">
+  <a href="https://moncada25.github.io/fun-phone-web/#video"><img src="docs/media/promo-es.jpg" width="560" alt="Video promocional de Fun Phone: un marcador privado para Android"></a><br>
+  <a href="https://moncada25.github.io/fun-phone-web/#video">▶ Mira el recorrido de 38 segundos</a>
+</p>
 
 | Marcador | Favoritos | Llamadas | Notas |
 |:---:|:---:|:---:|:---:|
@@ -97,6 +102,7 @@ Todas las capturas usan datos de demostración ficticios.
 <summary><b>Tus datos</b></summary>
 
 - Copia de seguridad completa y cifrada que exportas y guardas tú, y bloqueo de la app.
+- Widgets en la pantalla de inicio para favoritos, llamadas recientes, notas y gastos.
 - Accesos directos a favoritos, recientes y el marcador.
 
 </details>
@@ -146,7 +152,17 @@ cd fun-phone
 ./gradlew assembleCommunityDebug
 ```
 
-La arquitectura, las tareas de Gradle, los controles de calidad y el CI están en
+El proyecto está dividido en módulos de Gradle:
+
+| Módulo | Contenido |
+|---|---|
+| `:app` | La aplicación: navegación, `AppContainer` (inyección de dependencias manual), pantallas de llamada, servicios de Telecom, autocompletado y el manifest. |
+| `:core:*` | `common`, `database` (Room), `datastore`, `designsystem` (tema y componentes genéricos), `security` (Tink, PIN y bloqueo de la app) y `ui` (strings y componentes compartidos). |
+| `:feature:*` | `contacts`, `dialer`, `notes`, `vault`, `expenses`, `qr`, `tools`, `games`, `settings` y `widgets`, cada uno con sus pantallas, ViewModels y strings traducidos. |
+| `:baselineprofile` | Generador del Baseline Profile y macrobenchmarks. |
+
+La configuración compartida de Gradle está en los convention plugins de `build-logic/`. La
+arquitectura, las tareas de Gradle, los controles de calidad y el CI están en
 [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md). La firma de versiones release está en [SETUP.md](SETUP.md).
 
 ## Contribuir

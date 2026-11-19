@@ -30,10 +30,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/media/dialer-en.gif" width="200" alt="T9 dialer showing the country code and a matching contact">
-  <img src="docs/media/styles-en.gif" width="200" alt="Switching visual styles, accent colors and glass effects">
-  <img src="docs/media/vault-en.gif" width="200" alt="Encrypted password vault">
-  <img src="docs/media/games-en.gif" width="200" alt="Mini games list">
+  <img src="docs/media/dialer-en.gif" width="200" alt="Typing digits in the dialer finds Emma Wilson, then the call screen turns on the speaker">
+  <img src="docs/media/vault-en.gif" width="200" alt="Unlocking the password vault with a PIN and showing a two-step code">
+  <img src="docs/media/styles-en.gif" width="200" alt="Favorites in the Modern style, light and dark, then in the Minimal and Retro styles">
+  <img src="docs/media/games-en.gif" width="200" alt="Scrolling through the 10 mini games">
 </p>
 
 ---
@@ -47,6 +47,11 @@
 - **Free software.** GPL-3.0-or-later, with a community build that contains no Google libraries and builds reproducibly.
 
 ## Screenshots
+
+<p align="center">
+  <a href="https://moncada25.github.io/fun-phone-web/#video"><img src="docs/media/promo-en.jpg" width="560" alt="Fun Phone promo video: a private dialer for Android"></a><br>
+  <a href="https://moncada25.github.io/fun-phone-web/#video">▶ Watch the 38-second tour</a>
+</p>
 
 | Dialer | Favorites | Calls | Notes |
 |:---:|:---:|:---:|:---:|
@@ -97,6 +102,7 @@ All screenshots use fictional demo data.
 <summary><b>Your data</b></summary>
 
 - Encrypted full backup that you export and keep, plus an app lock.
+- Home screen widgets for favorites, recent calls, notes and expenses.
 - App shortcuts for favorites, recents and the dialer.
 
 </details>
@@ -146,8 +152,18 @@ cd fun-phone
 ./gradlew assembleCommunityDebug
 ```
 
-Architecture, Gradle tasks, quality checks and CI are described in
-[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md). Release signing is in [SETUP.md](SETUP.md).
+The project is split into Gradle modules:
+
+| Module | Contents |
+|---|---|
+| `:app` | The application: navigation, `AppContainer` (manual dependency injection), call screens, Telecom services, autofill and the manifest. |
+| `:core:*` | `common`, `database` (Room), `datastore`, `designsystem` (theme and generic components), `security` (Tink, PIN and app lock) and `ui` (shared strings and components). |
+| `:feature:*` | `contacts`, `dialer`, `notes`, `vault`, `expenses`, `qr`, `tools`, `games`, `settings` and `widgets`, each with its own screens, ViewModels and translated strings. |
+| `:baselineprofile` | Baseline Profile generator and macrobenchmarks. |
+
+Shared Gradle setup lives in the convention plugins under `build-logic/`. Architecture, Gradle
+tasks, quality checks and CI are described in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md). Release
+signing is in [SETUP.md](SETUP.md).
 
 ## Contributing
 
