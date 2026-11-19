@@ -17,13 +17,12 @@ Release signing is optional for development and described in [SETUP.md](../SETUP
 
 ## Architecture
 
-- **Modules:** `:app` (the application, package `com.bookverse.contacts`), the Android libraries
-  `:core:designsystem` (theme and generic Compose components), `:core:database` (Room),
-  `:core:datastore` (app settings DataStore), `:core:security` (encryption, PIN and app lock),
-  `:core:ui` (shared strings, drawables and fonts) and `:core:common` (diagnostics and generic
-  utilities), and
-  `:baselineprofile` (Baseline Profile generator and macrobenchmarks). Shared Gradle configuration
-  lives in the convention plugins under `build-logic/`.
+- **Modules:** `:app` (the application, package `com.bookverse.contacts`), six `:core` libraries,
+  ten `:feature` libraries and `:baselineprofile`. Each feature module owns its screens,
+  ViewModels, data and strings, and depends on `:core:ui`, which exposes the other `:core` modules.
+  `:feature:settings` and `:feature:widgets` build on the features they configure or show, and
+  `:feature:vault` reuses the scanner from `:feature:qr`. `:app` wires everything together in
+  `AppContainer`. Shared Gradle configuration lives in the convention plugins under `build-logic/`.
 - **UI:** 100% Jetpack Compose and Material 3. No XML layouts or fragments.
 - **Pattern:** MVVM with repositories and manual dependency injection. ViewModels expose `StateFlow`,
   collected with `collectAsStateWithLifecycle()`.
@@ -31,7 +30,7 @@ Release signing is optional for development and described in [SETUP.md](../SETUP
 - **Async:** Kotlin coroutines and Flow, WorkManager and AlarmManager for reminders.
 - **Telephony:** `InCallService` based default dialer with foreground call services.
 - **Security:** Google Tink with the Android Keystore, AndroidX Biometric with PIN fallback.
-- **Images and widgets:** Coil, and Glance for the notes widget.
+- **Images and widgets:** Coil, and Glance for the favorites, recent calls, notes and expenses widgets.
 
 ### Distribution flavors
 
@@ -46,21 +45,34 @@ Neither flavor contains Firebase, ads or analytics. `scripts/verify-zero-collect
 <summary>Source layout</summary>
 
 ```
-app/src/
-├── main/java/com/bookverse/contacts/
-│   ├── data/          # Room database, DAOs, entities and repositories
-│   ├── domain/        # Use cases and domain models
-│   ├── integration/   # App container and flavor seams (QR decoder, review prompt)
-│   ├── security/      # CryptoManager, app lock and the vault autofill service
-│   ├── service/       # In-call, incoming and ongoing call services
-│   ├── settings/      # App settings, fonts, locales
-│   ├── ui/            # screens, components, navigation, theme, viewmodels
-│   ├── utils/         # ContactUtils, NoteShareUtils, NotesBackupUtils, ...
-│   └── widget/        # Notes Glance widget
-├── community/         # community-only implementations
-├── play/              # play-only implementations
-└── test/, testCommunity/, androidTest/
+fun-phone/
+├── app/                # :app: MainActivity, AppContainer, navigation, in-call UI,
+│   │                   #   Telecom services, call screening and vault autofill
+│   └── src/            # main, community, play, debug, benchmark, test, androidTest
+├── core/
+│   ├── common/         # diagnostics, SecondaryScreen, AppEntryPoints, generic utilities
+│   ├── database/       # AppDatabase, DAOs, entities; schemas/ holds the exported Room schemas
+│   ├── datastore/      # the single app settings DataStore
+│   ├── designsystem/   # ContactsAppTheme, semantic color tokens, generic Compose components
+│   ├── security/       # CryptoManager (Tink + Android Keystore), PIN and app lock
+│   └── ui/             # shared strings, drawables, fonts, AppSettingsViewModel, protected-action UI
+├── feature/
+│   ├── contacts/       # contacts, favorites, details, profile, tags, duplicates, recycle bin
+│   ├── dialer/         # keypad and call history
+│   ├── notes/          # notes, checklists, reminders and voice memos
+│   ├── vault/          # encrypted password manager and two-step codes
+│   ├── expenses/       # transactions, budgets and reports
+│   ├── qr/             # QR scanner (ML Kit in play, ZXing in community) and generator
+│   ├── tools/          # tools hub, voice, holidays, Pomodoro, cycle tracking, paint
+│   ├── games/          # the 10 mini games and their scoreboard
+│   ├── settings/       # settings, onboarding, device status, backup, About
+│   └── widgets/        # Glance home screen widgets
+├── baselineprofile/    # Baseline Profile generator and macrobenchmarks
+└── build-logic/        # convention plugins shared by every module
 ```
+
+Strings live in the module that uses them (`src/main/res/values*`), or in `:core:ui` when several
+modules share them.
 
 </details>
 
@@ -90,7 +102,7 @@ app/src/
 - Kotlin official style: 4 spaces and trailing commas in multiline constructs.
 - No comments in code unless they are needed to explain something non-obvious.
 - Every user-visible string goes into the five locales (`values`, `values-es`, `values-de`,
-  `values-fr`, `values-pt`). Never hardcode text in Kotlin.
+  `values-fr`, `values-pt`) of the module that uses it. Never hardcode text in Kotlin.
 - LazyList `items()` use stable keys. Data classes passed to composables are `@Immutable`.
 - Use semantic color tokens from the theme instead of hardcoded colors.
 - After changing Room entities, build once to export the updated schema.
@@ -123,8 +135,9 @@ pull requests are squash-merged.
 
 ## Releases
 
-Every version ships to Google Play (AAB) and GitHub Releases (signed, reproducible community APK),
-and F-Droid builds it from the tag. Follow [RELEASING.md](../RELEASING.md).
+Every version ships to Google Play (AAB) and GitHub Releases (signed, reproducible community APK).
+Fun Phone is not on F-Droid yet; the release process already keeps every tag ready for it. Follow
+[RELEASING.md](../RELEASING.md).
 
 ## Project documents
 
