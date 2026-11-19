@@ -492,7 +492,7 @@ Moderno la cuadrícula se desplaza por detrás del encabezado de cristal.
   barra corta bajo los títulos de diálogo y las viñetas de sección; no se usan filas de puntos.
   La máquina completa es un único botón con etiqueta de acción localizada; el título conserva su
   forma original para TalkBack.
-- El marcador superior resume partidas, mejor racha y juegos probados, y abre el dashboard.
+- El marcador superior resume partidas, juego favorito y juegos probados, y abre el dashboard.
   Recientes es un carrusel de máquinas horizontales con indicador de nivel decorativo.
 - La cuadrícula usa columnas adaptables de 156 dp mínimo; marquesinas de dos líneas mantienen la
   misma altura por fila con texto grande, en landscape compacto y en ventanas divididas.

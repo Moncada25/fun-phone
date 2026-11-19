@@ -44,6 +44,7 @@ class GamesScreenTest {
         )
         setGamesScreen(snapshot)
 
+        composeRule.onNodeWithText(text(R.string.games_dashboard_favorite_game)).assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.games_arcade_view_records)).performClick()
 
         composeRule.onNodeWithText(text(R.string.games_dashboard_title)).assertIsDisplayed()

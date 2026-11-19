@@ -7,7 +7,6 @@
     <string name="games_dashboard_total_played">Games played</string>
     <string name="games_dashboard_completed">Games completed</string>
     <string name="games_dashboard_favorite_game">Favorite game</string>
-    <string name="games_dashboard_best_streak">Best streak</string>
     <string name="games_dashboard_games_tried">Games tried</string>
     <string name="games_dashboard_no_data">You haven\'t played yet. Start playing to see your stats!</string>
     <string name="games_dashboard_records_title">Records by Game</string>

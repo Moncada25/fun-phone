@@ -443,10 +443,7 @@ private fun DashboardContent(
 
     ArcadeSectionHeader(text = stringResource(R.string.games_dashboard_summary))
 
-    val favoriteTitle = stats.favoriteGame
-        ?.let { catalogById.getValue(it).titleRes }
-        ?.let { stringResource(it) }
-        ?: stringResource(R.string.games_dashboard_no_favorite)
+    val favoriteTitle = favoriteGameTitle(stats)
     val dashboardEntries = listOf(
         DashboardEntry(
             stringResource(R.string.games_dashboard_total_played),
@@ -459,10 +456,6 @@ private fun DashboardContent(
         DashboardEntry(
             stringResource(R.string.games_dashboard_games_tried),
             "${numberFormat.format(stats.gamesTried)}/${numberFormat.format(GameId.entries.size)}",
-        ),
-        DashboardEntry(
-            stringResource(R.string.games_dashboard_best_streak),
-            numberFormat.format(stats.bestWinStreak),
         ),
         DashboardEntry(
             stringResource(R.string.games_dashboard_favorite_game),
@@ -627,9 +620,10 @@ private fun ArcadeScoreboard(
                 )
                 VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 ScoreboardStat(
-                    value = numberFormat.format(stats.bestWinStreak),
-                    label = stringResource(R.string.games_dashboard_best_streak),
+                    value = favoriteGameTitle(stats),
+                    label = stringResource(R.string.games_dashboard_favorite_game),
                     modifier = Modifier.weight(1f),
+                    compactValue = true,
                 )
                 VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                 ScoreboardStat(
@@ -643,22 +637,47 @@ private fun ArcadeScoreboard(
 }
 
 @Composable
+private fun favoriteGameTitle(stats: GameStatsSnapshot): String =
+    stats.favoriteGame
+        ?.let { catalogById.getValue(it).titleRes }
+        ?.let { stringResource(it) }
+        ?: stringResource(R.string.games_dashboard_no_favorite)
+
+@Composable
 private fun ScoreboardStat(
     value: String,
     label: String,
     modifier: Modifier = Modifier,
+    compactValue: Boolean = false,
 ) {
     Column(
         modifier = modifier.padding(horizontal = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
-        Text(
-            text = value,
-            style = arcadeScoreStyle,
-            color = MaterialTheme.colorScheme.onSurface,
-            maxLines = 1,
-        )
+        if (compactValue) {
+            val scoreLineHeight = with(LocalDensity.current) { arcadeScoreStyle.lineHeight.toDp() }
+            Box(
+                modifier = Modifier.heightIn(min = scoreLineHeight),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    text = value,
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+        } else {
+            Text(
+                text = value,
+                style = arcadeScoreStyle,
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+            )
+        }
         Text(
             text = label,
             style = MaterialTheme.typography.labelSmall,
