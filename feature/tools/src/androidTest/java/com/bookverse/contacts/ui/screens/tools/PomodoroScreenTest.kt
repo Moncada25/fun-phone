@@ -2,7 +2,6 @@ package com.bookverse.contacts.ui.screens.tools
 
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -28,7 +27,6 @@ class PomodoroScreenTest {
                 timeLeftSeconds = 25 * 60,
                 totalSeconds = 25 * 60,
                 timerState = PomodoroTimerState.IDLE,
-                accentColor = Color(0xFF6750A4),
             )
         }
 
@@ -45,7 +43,6 @@ class PomodoroScreenTest {
         showContent {
             ControlButtons(
                 timerState = PomodoroTimerState.IDLE,
-                accentColor = Color(0xFF6750A4),
                 onStartWork = { workCount.incrementAndGet() },
                 onStartBreak = { breakCount.incrementAndGet() },
                 onPause = {},
@@ -75,7 +72,6 @@ class PomodoroScreenTest {
         showContent {
             ControlButtons(
                 timerState = PomodoroTimerState.WORK,
-                accentColor = Color(0xFF6750A4),
                 onStartWork = {},
                 onStartBreak = {},
                 onPause = { pauseCount.incrementAndGet() },
@@ -113,7 +109,6 @@ class PomodoroScreenTest {
         showContent {
             PomodoroSettingsSheet(
                 settings = settings,
-                accentColor = Color(0xFF6750A4),
                 onDismiss = {},
                 onSave = savedSettings::set,
             )

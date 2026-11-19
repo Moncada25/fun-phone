@@ -84,10 +84,11 @@
     <string name="add_birthday">Geburtstag auswählen</string>
     <string name="edit_birthday">Geburtstag</string>
     <string name="edit_notes">Notizen</string>
-    <string name="contact_form_section_phone_numbers">Telefonnummern</string>
     <string name="contact_form_section_personal_details">Persönliche Angaben</string>
     <string name="contact_form_section_preferences">Kontakteinstellungen</string>
     <string name="contact_form_section_account">Kontaktkonto</string>
+    <string name="contact_form_add_photo">Foto hinzufügen</string>
+    <string name="contact_form_change_photo">Foto ändern</string>
     <string name="select_birthday">Geburtstag auswählen</string>
     <string name="ringtone">Klingelton</string>
     <string name="select_ringtone">Klingelton wählen</string>

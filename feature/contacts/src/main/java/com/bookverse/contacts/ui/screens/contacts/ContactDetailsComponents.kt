@@ -51,8 +51,8 @@ import com.bookverse.contacts.ui.theme.BadgeBackgroundColor
 import com.bookverse.contacts.ui.theme.BadgeColor
 
 internal val DetailHorizontalPadding = 24.dp
-private val DetailIconSize = 24.dp
-private val DetailIconGap = 20.dp
+internal val DetailIconSize = 24.dp
+internal val DetailIconGap = 20.dp
 internal val DetailContentInset: Dp = DetailHorizontalPadding + DetailIconSize + DetailIconGap
 
 @Composable

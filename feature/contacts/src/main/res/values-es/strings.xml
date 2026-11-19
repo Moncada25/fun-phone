@@ -111,10 +111,11 @@
     <string name="add_birthday">Seleccionar cumpleaños</string>
     <string name="edit_birthday">Cumpleaños</string>
     <string name="edit_notes">Notas</string>
-    <string name="contact_form_section_phone_numbers">Números de teléfono</string>
     <string name="contact_form_section_personal_details">Información personal</string>
     <string name="contact_form_section_preferences">Preferencias del contacto</string>
     <string name="contact_form_section_account">Cuenta de contacto</string>
+    <string name="contact_form_add_photo">Añadir foto</string>
+    <string name="contact_form_change_photo">Cambiar foto</string>
     <string name="select_birthday">Seleccionar cumpleaños</string>
     <string name="ringtone">Tono de llamada</string>
     <string name="select_ringtone">Seleccionar tono</string>

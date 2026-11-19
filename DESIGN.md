@@ -503,3 +503,18 @@ Moderno la cuadrícula se desplaza por detrás del encabezado de cristal.
   `primaryContainer`; no se crean containers con `primary.copy(alpha = ...)`.
 - El negro del bisel y las scanlines pertenecen al arte de las pantallas CRT, que siempre es oscuro;
   no se propagan como color de superficie a otras pantallas.
+
+## Contrato de formularios y herramientas planas — 2026-11-19
+
+El formulario de contacto/perfil y Pomodoro siguen el lenguaje del detalle de contacto: sin cards
+por sección ni containers teñidos. Las secciones se separan con `DetailSectionDivider` y
+`DetailSectionHeader`; los campos llevan un icono neutro en el gutter de 24 dp (`DetailRow` y sus
+medidas) y las acciones de selección son filas `DetailRow` con título y valor.
+
+- El formulario muestra el avatar con un botón de texto Añadir/Cambiar foto y una barra inferior
+  fija con Cancelar (contorno) y Guardar (`primary`/`onPrimary`). El error de nombre aparece tras
+  editar el campo, no al abrir un formulario vacío.
+- `TextField` usa `outline` y `onSurfaceVariant` sin foco y no rellena el estado de error.
+- Pomodoro usa un anillo fino (`primary` sobre `outlineVariant`) con cifras tabulares, un indicador
+  del ciclo hasta el descanso largo, métricas separadas por un divisor y controles circulares con
+  etiqueta visible: Pausar/Reanudar en `primary` y Reiniciar/Saltar en superficie neutra.

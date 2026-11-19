@@ -1,6 +1,5 @@
 package com.bookverse.contacts.ui.components
 
-import com.bookverse.contacts.utils.ContactDisplay
 import android.app.Activity
 import android.content.Intent
 import android.media.RingtoneManager
@@ -10,7 +9,6 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +22,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -36,32 +35,34 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.AddAPhoto
+import androidx.compose.material.icons.automirrored.outlined.Notes
 import androidx.compose.material.icons.filled.Android
-import androidx.compose.material.icons.filled.Cake
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Image
-import androidx.compose.material.icons.filled.MusicNote
-import androidx.compose.material.icons.filled.PhoneAndroid
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.AddAPhoto
+import androidx.compose.material.icons.outlined.Cake
+import androidx.compose.material.icons.outlined.Call
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Image
+import androidx.compose.material.icons.outlined.MusicNote
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.PhoneAndroid
+import androidx.compose.material.icons.outlined.Wallpaper
+import androidx.compose.material.icons.outlined.WorkOutline
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
-import com.bookverse.contacts.feature.contacts.R
-import com.bookverse.contacts.core.ui.R as CoreUiR
-import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -71,8 +72,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -81,32 +84,41 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.ContactPhone
 import com.bookverse.contacts.data.repository.InCallBackgroundChange
 import com.bookverse.contacts.data.repository.IncomingCallBackgroundChange
+import com.bookverse.contacts.feature.contacts.R
 import com.bookverse.contacts.settings.Countries
-import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.settings.Country
+import com.bookverse.contacts.settings.LocaleController
+import com.bookverse.contacts.ui.screens.contacts.DetailContentInset
+import com.bookverse.contacts.ui.screens.contacts.DetailHorizontalPadding
+import com.bookverse.contacts.ui.screens.contacts.DetailIconGap
+import com.bookverse.contacts.ui.screens.contacts.DetailIconSize
+import com.bookverse.contacts.ui.screens.contacts.DetailRow
+import com.bookverse.contacts.ui.screens.contacts.DetailSectionDivider
+import com.bookverse.contacts.ui.screens.contacts.DetailSectionHeader
 import com.bookverse.contacts.ui.screens.contacts.SocialMediaSearchDialog
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
-import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
-import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
 import com.bookverse.contacts.ui.viewmodel.ContactSaveResult
+import com.bookverse.contacts.ui.viewmodel.ContactTagViewModel
+import com.bookverse.contacts.ui.viewmodel.ContactsViewModel
+import com.bookverse.contacts.utils.ContactDisplay
+import com.bookverse.contacts.utils.ContactUtils.isValidEmail
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Tags
-import com.bookverse.contacts.utils.ContactUtils.isValidEmail
 import contacts.core.entities.PhoneEntity
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
+import com.bookverse.contacts.core.ui.R as CoreUiR
+import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -124,7 +136,6 @@ fun ContactFormScreen(
     contactTagViewModel: ContactTagViewModel? = null
 ) {
     val backgroundColor = MaterialTheme.colorScheme.background
-    val textColor = MaterialTheme.colorScheme.onBackground
     val isEditMode = contactToEdit != null
     val accentColor = MaterialTheme.colorScheme.primary
     val callAnswerStyle by appSettingsViewModel.callAnswerStyle.collectAsStateWithLifecycle()
@@ -134,6 +145,7 @@ fun ContactFormScreen(
     val formKey = remember { "form_${contactToEdit?.id ?: "new"}_${System.currentTimeMillis()}" }
 
     var name by remember(formKey) { mutableStateOf(contactToEdit?.name ?: "") }
+    var nameEdited by remember(formKey) { mutableStateOf(isEditMode) }
     var email by remember(formKey) { mutableStateOf(contactToEdit?.email ?: "") }
     var company by remember(formKey) { mutableStateOf(contactToEdit?.company ?: "") }
     var notes by remember(formKey) { mutableStateOf(contactToEdit?.notes ?: "") }
@@ -370,6 +382,15 @@ fun ContactFormScreen(
                 .fillMaxSize()
                 .background(backgroundColor)
         ) {
+            val personIcon = rememberVectorPainter(Icons.Outlined.Person)
+            val callIcon = rememberVectorPainter(Icons.Outlined.Call)
+            val emailIcon = rememberVectorPainter(Icons.Outlined.Email)
+            val companyIcon = rememberVectorPainter(Icons.Outlined.WorkOutline)
+            val notesIcon = rememberVectorPainter(Icons.AutoMirrored.Outlined.Notes)
+            val birthdayIcon = rememberVectorPainter(Icons.Outlined.Cake)
+            val ringtoneIcon = rememberVectorPainter(Icons.Outlined.MusicNote)
+            val tagsIcon = rememberVectorPainter(Lucide.Tags)
+
             LazyColumn(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -377,126 +398,107 @@ fun ContactFormScreen(
                     .fillMaxSize()
                     .padding(paddingValues)
                     .imePadding(),
-                contentPadding = PaddingValues(
-                    start = 16.dp,
-                    end = 16.dp,
-                    top = 20.dp,
-                    bottom = 128.dp
-                ),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                contentPadding = PaddingValues(top = 16.dp, bottom = 128.dp),
             ) {
                 item(key = "identity_${formKey}_$photoUpdateKey") {
-                    val photoDescription = stringResource(R.string.cd_contact_photo)
-
-                    ContactFormSection(title = stringResource(R.string.contact_info_title)) {
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .size(128.dp)
-                                .clip(CircleShape)
-                                .background(accentColor)
-                                .clickable(role = Role.Button) { showSheet = true }
-                                .semantics {
-                                    contentDescription = photoDescription
-                                },
-                            contentAlignment = Alignment.Center
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        ContactFormPhoto(
+                            photoUri = photoUri,
+                            contentDescription = stringResource(R.string.cd_contact_photo),
+                            onClick = { showSheet = true },
+                        )
+                        TextButton(
+                            onClick = { showSheet = true },
+                            modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
                         ) {
-                            if (photoUri != null) {
-                                AsyncImage(
-                                    model = photoUri,
-                                    contentDescription = null,
-                                    modifier = Modifier.fillMaxSize(),
-                                    contentScale = ContentScale.Crop,
-                                    placeholder = ColorPainter(accentColor),
-                                    error = ColorPainter(accentColor)
-                                )
-                            } else {
-                                Icon(
-                                    imageVector = Icons.Default.AddAPhoto,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(48.dp),
-                                    tint = contentColorFor(accentColor)
-                                )
-                            }
-
-                            Surface(
-                                modifier = Modifier
-                                    .align(Alignment.BottomEnd)
-                                    .size(36.dp),
-                                shape = CircleShape,
-                                color = MaterialTheme.colorScheme.surface,
-                                tonalElevation = 4.dp
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.AddAPhoto,
-                                    contentDescription = null,
-                                    tint = accentColor,
-                                    modifier = Modifier.padding(9.dp)
-                                )
-                            }
+                            Text(
+                                text = stringResource(
+                                    if (photoUri != null) {
+                                        R.string.contact_form_change_photo
+                                    } else {
+                                        R.string.contact_form_add_photo
+                                    },
+                                ),
+                            )
                         }
-
-                        TextField(
-                            value = name,
-                            isError = name.isBlank(),
-                            onValueChange = { name = it },
-                            label = stringResource(R.string.name_placeholder),
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-
-                        TextField(
-                            value = email,
-                            isError = email.isNotBlank() && !email.isValidEmail(),
-                            keyboardType = KeyboardType.Email,
-                            onValueChange = { email = it },
-                            label = stringResource(R.string.email_placeholder),
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-
-                        TextField(
-                            value = company,
-                            onValueChange = { company = it },
-                            label = stringResource(R.string.company_placeholder),
-                            modifier = Modifier.fillMaxWidth(),
-                        )
                     }
                 }
 
-                item(key = "phones_$formKey") {
-                    ContactFormSection(title = stringResource(R.string.contact_form_section_phone_numbers)) {
-                        PhoneNumbersField(
-                            phones = phones,
-                            onPhonesChange = { newPhones ->
-                                updatePhoneCountries(newPhones)
-                                phones = newPhones
-                            },
-                            countrySelected = selectedCountry,
-                            onCountrySelected = { newCountry ->
-                                selectedCountry = newCountry
-                            }
-                        )
+                item(key = "contact_info_$formKey") {
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        ContactFormFieldRow(icon = personIcon) {
+                            TextField(
+                                value = name,
+                                isError = nameEdited && name.isBlank(),
+                                onValueChange = {
+                                    name = it
+                                    nameEdited = true
+                                },
+                                label = stringResource(R.string.name_placeholder),
+                                imeAction = ImeAction.Next,
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
+
+                        ContactFormFieldRow(icon = callIcon) {
+                            PhoneNumbersField(
+                                phones = phones,
+                                onPhonesChange = { newPhones ->
+                                    updatePhoneCountries(newPhones)
+                                    phones = newPhones
+                                },
+                                countrySelected = selectedCountry,
+                                onCountrySelected = { newCountry ->
+                                    selectedCountry = newCountry
+                                }
+                            )
+                        }
+
+                        ContactFormFieldRow(icon = emailIcon) {
+                            TextField(
+                                value = email,
+                                isError = email.isNotBlank() && !email.isValidEmail(),
+                                keyboardType = KeyboardType.Email,
+                                onValueChange = { email = it },
+                                label = stringResource(R.string.email_placeholder),
+                                imeAction = ImeAction.Next,
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
+
+                        ContactFormFieldRow(icon = companyIcon) {
+                            TextField(
+                                value = company,
+                                onValueChange = { company = it },
+                                label = stringResource(R.string.company_placeholder),
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                        }
                     }
                 }
 
                 item(key = "personal_$formKey") {
-                    ContactFormSection(title = stringResource(R.string.contact_form_section_personal_details)) {
-                        val birthdayCopy = if (birthday != null) {
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        DetailSectionDivider()
+                        DetailSectionHeader(stringResource(R.string.contact_form_section_personal_details))
+
+                        val birthdayCopy = birthday?.let { date ->
                             ContactDisplay.capitalizeFirstLetter(
                                 SimpleDateFormat(
                                     "MMMM dd",
                                     LocaleController.effectiveLocale(context)
-                                ).format(Date(birthday!!))
+                                ).format(Date(date))
                             )
-                        } else {
-                            stringResource(R.string.add_birthday)
-                        }
+                        } ?: stringResource(R.string.add_birthday)
 
-                        ContactFormActionRow(
-                            icon = Icons.Default.Cake,
-                            title = stringResource(R.string.edit_birthday),
-                            value = birthdayCopy,
-                            accentColor = accentColor,
-                            onClick = { showBirthdayPicker = true }
+                        DetailRow(
+                            icon = birthdayIcon,
+                            headline = stringResource(R.string.edit_birthday),
+                            supporting = birthdayCopy,
+                            onClick = { showBirthdayPicker = true },
                         )
 
                         SocialMediaField(
@@ -506,56 +508,62 @@ fun ContactFormScreen(
                         )
 
                         if (!isProfileEdit) {
-                            TextField(
-                                value = notes,
-                                onValueChange = { notes = it },
-                                label = stringResource(R.string.edit_notes),
-                                keyboardType = KeyboardType.Text,
-                                modifier = Modifier.fillMaxWidth(),
-                                singleLine = false
-                            )
+                            ContactFormFieldRow(icon = notesIcon) {
+                                TextField(
+                                    value = notes,
+                                    onValueChange = { notes = it },
+                                    label = stringResource(R.string.edit_notes),
+                                    keyboardType = KeyboardType.Text,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    singleLine = false
+                                )
+                            }
                         }
                     }
                 }
 
                 if (!isProfileEdit) {
                     item(key = "preferences_$formKey") {
-                        ContactFormSection(title = stringResource(R.string.contact_form_section_preferences)) {
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.contact_form_section_preferences))
+
                             IncomingCallBackgroundField(
                                 backgroundUri = effectiveIncomingCallBackgroundUri,
                                 isLoading = isIncomingCallBackgroundLoading,
-                                accentColor = accentColor,
                                 onClick = { showIncomingCallBackgroundSheet = true },
                             )
 
                             IncomingCallBackgroundField(
                                 backgroundUri = effectiveInCallBackgroundUri,
                                 isLoading = isInCallBackgroundLoading,
-                                accentColor = accentColor,
                                 onClick = { showInCallBackgroundSheet = true },
+                                icon = Icons.Outlined.Wallpaper,
                                 titleRes = R.string.in_call_background_title,
-                                descriptionRes = R.string.in_call_background_description,
                                 configuredRes = R.string.in_call_background_configured,
                                 notConfiguredRes = R.string.in_call_background_not_configured,
                             )
 
-                            val ringtoneName =
-                                if (ringtoneUri != null && ringtoneUri.toString() != "null") {
-                                    try {
-                                        val ringtone = RingtoneManager.getRingtone(context, ringtoneUri)
-                                        ringtone.getTitle(context)
-                                    } catch (_: Exception) {
-                                        stringResource(R.string.ringtone)
-                                    }
+                            val hasRingtone = ringtoneUri != null && ringtoneUri.toString() != "null"
+                            val ringtoneTitle = remember(ringtoneUri) {
+                                if (hasRingtone) {
+                                    runCatching {
+                                        RingtoneManager.getRingtone(context, ringtoneUri)?.getTitle(context)
+                                    }.getOrNull()
                                 } else {
-                                    stringResource(R.string.select_ringtone)
+                                    null
                                 }
+                            }
+                            val ringtoneName = when {
+                                !hasRingtone -> stringResource(R.string.select_ringtone)
+                                ringtoneTitle != null -> ringtoneTitle
+                                else -> stringResource(R.string.ringtone)
+                            }
 
-                            ContactFormActionRow(
-                                icon = Icons.Default.MusicNote,
-                                title = stringResource(R.string.ringtone),
-                                value = ringtoneName,
-                                accentColor = accentColor,
+                            DetailRow(
+                                icon = ringtoneIcon,
+                                headline = stringResource(R.string.ringtone),
+                                supporting = ringtoneName,
                                 onClick = {
                                     val intent =
                                         Intent(RingtoneManager.ACTION_RINGTONE_PICKER).apply {
@@ -582,37 +590,42 @@ fun ContactFormScreen(
                                         }
                                     ringtoneLauncher.launch(intent)
                                 },
-                                trailingContent = if (ringtoneUri != null && ringtoneUri.toString() != "null") {
+                                trailing = if (hasRingtone) {
                                     {
                                         IconButton(onClick = { ringtoneUri = null }) {
                                             Icon(
                                                 imageVector = Icons.Default.Close,
                                                 contentDescription = stringResource(CoreUiR.string.delete),
-                                                tint = accentColor
+                                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                             )
                                         }
                                     }
                                 } else {
                                     null
-                                }
+                                },
                             )
 
                             if (contactTagViewModel != null) {
-                                ContactFormActionRow(
-                                    icon = Lucide.Tags,
-                                    title = stringResource(R.string.tags_title),
-                                    value = if (currentContactTags.isEmpty()) {
+                                DetailRow(
+                                    icon = tagsIcon,
+                                    headline = stringResource(R.string.tags_title),
+                                    supporting = if (currentContactTags.isEmpty()) {
                                         stringResource(R.string.add_tag)
                                     } else {
-                                        currentContactTags.joinToString { it.name }
+                                        null
                                     },
-                                    accentColor = accentColor,
-                                    onClick = { showTagDialog = true }
+                                    onClick = { showTagDialog = true },
                                 )
 
                                 if (currentContactTags.isNotEmpty()) {
                                     FlowRow(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(
+                                                start = DetailContentInset,
+                                                end = DetailHorizontalPadding,
+                                                bottom = 8.dp,
+                                            ),
                                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                                         verticalArrangement = Arrangement.spacedBy(8.dp)
                                     ) {
@@ -620,7 +633,7 @@ fun ContactFormScreen(
                                             TagChip(
                                                 tag = tag,
                                                 onRemove = {
-                                                    if (isEditMode && contactToEdit.id.isNotBlank() == true) {
+                                                    if (isEditMode && contactToEdit.id.isNotBlank()) {
                                                         contactTagViewModel.removeTagFromContact(contactToEdit.id, tag.id)
                                                     } else {
                                                         pendingTagIds = pendingTagIds - tag.id
@@ -644,47 +657,48 @@ fun ContactFormScreen(
                                 selectedAccount.displayName
                             }
 
-                        ContactFormSection(title = stringResource(R.string.contact_form_section_account)) {
-                            ContactFormActionRow(
-                                icon = getAccountIcon(selectedAccount.type),
-                                title = stringResource(CoreUiR.string.account),
-                                value = accountLabel,
-                                accentColor = accentColor,
-                                onClick = { showAccountSelector = true }
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.contact_form_section_account))
+                            DetailRow(
+                                icon = rememberVectorPainter(getAccountIcon(selectedAccount.type)),
+                                headline = stringResource(CoreUiR.string.account),
+                                supporting = accountLabel,
+                                onClick = { showAccountSelector = true },
                             )
                         }
                     }
                 }
             }
 
-            Surface(
+            Column(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .fillMaxWidth(),
-                color = backgroundColor,
-                tonalElevation = 2.dp
+                    .fillMaxWidth()
+                    .background(backgroundColor)
+                    .windowInsetsPadding(WindowInsets.ime)
+                    .navigationBarsPadding()
             ) {
-                Column(
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                Row(
                     modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .widthIn(max = 760.dp)
                         .fillMaxWidth()
-                        .windowInsetsPadding(WindowInsets.ime)
-                        .navigationBarsPadding()
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Row(
+                    OutlinedButton(
+                        onClick = ::cancelForm,
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 12.dp),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                            .weight(1f)
+                            .heightIn(min = 52.dp),
                     ) {
-                        ButtonClick(
-                            onClick = ::cancelForm,
-                            modifier = Modifier.weight(1f),
-                            text = stringResource(CoreUiR.string.cancel),
-                            fontSize = 18
-                        )
+                        Text(text = stringResource(CoreUiR.string.cancel))
+                    }
 
-                        Button(
-                            onClick = {
+                    Button(
+                        onClick = {
                             val localUri = photoUri
 
                             val phonesWithCountryCode = phones
@@ -824,25 +838,20 @@ fun ContactFormScreen(
                                     )
                                 }
                             }
-                            },
-                            enabled = readyToSave,
-                            colors = ButtonDefaults.buttonColors(containerColor = accentColor),
-                            modifier = Modifier.weight(1f),
-                            shape = RoundedCornerShape(999.dp)
-                        ) {
-                            if (isSaving) {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.size(22.dp),
-                                    color = textColor,
-                                    strokeWidth = 2.dp,
-                                )
-                            } else {
-                                Text(
-                                    text = stringResource(CoreUiR.string.save),
-                                    color = textColor,
-                                    fontSize = 18.sp,
-                                )
-                            }
+                        },
+                        enabled = readyToSave,
+                        modifier = Modifier
+                            .weight(1f)
+                            .heightIn(min = 52.dp),
+                    ) {
+                        if (isSaving) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(22.dp),
+                                color = LocalContentColor.current,
+                                strokeWidth = 2.dp,
+                            )
+                        } else {
+                            Text(text = stringResource(CoreUiR.string.save))
                         }
                     }
                 }
@@ -1031,13 +1040,80 @@ private fun incomingCallPreviewPhoneTypeLabel(type: PhoneEntity.Type?): Int = wh
 }
 
 @Composable
+private fun ContactFormPhoto(
+    photoUri: Uri?,
+    contentDescription: String,
+    onClick: () -> Unit,
+) {
+    val placeholderColor = MaterialTheme.colorScheme.surfaceContainerHigh
+    Box(
+        modifier = Modifier
+            .size(112.dp)
+            .clip(CircleShape)
+            .background(placeholderColor)
+            .clickable(role = Role.Button, onClick = onClick)
+            .semantics { this.contentDescription = contentDescription },
+        contentAlignment = Alignment.Center,
+    ) {
+        if (photoUri != null) {
+            AsyncImage(
+                model = photoUri,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                placeholder = ColorPainter(placeholderColor),
+                error = ColorPainter(placeholderColor),
+            )
+        } else {
+            Icon(
+                imageVector = Icons.Outlined.AddAPhoto,
+                contentDescription = null,
+                modifier = Modifier.size(36.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+@Composable
+private fun ContactFormFieldRow(
+    icon: Painter?,
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = DetailHorizontalPadding, vertical = 4.dp),
+        verticalAlignment = Alignment.Top,
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .size(DetailIconSize),
+        ) {
+            if (icon != null) {
+                Icon(
+                    painter = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        Spacer(modifier = Modifier.width(DetailIconGap))
+        Column(
+            modifier = Modifier.weight(1f),
+            content = content,
+        )
+    }
+}
+
+@Composable
 internal fun IncomingCallBackgroundField(
     backgroundUri: Uri?,
     isLoading: Boolean,
-    accentColor: Color,
     onClick: () -> Unit,
+    icon: ImageVector = Icons.Outlined.Image,
     titleRes: Int = R.string.incoming_call_background_title,
-    descriptionRes: Int = R.string.incoming_call_background_description,
     configuredRes: Int = R.string.incoming_call_background_configured,
     notConfiguredRes: Int = R.string.incoming_call_background_not_configured,
 ) {
@@ -1047,7 +1123,7 @@ internal fun IncomingCallBackgroundField(
         backgroundUri != null -> stringResource(configuredRes)
         else -> stringResource(notConfiguredRes)
     }
-    Surface(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(
@@ -1055,162 +1131,55 @@ internal fun IncomingCallBackgroundField(
                 role = Role.Button,
                 onClick = onClick,
             )
-            .semantics { contentDescription = "$title. $status" },
-        shape = RoundedCornerShape(16.dp),
-        color = accentColor.copy(alpha = 0.12f),
-        contentColor = accentColor,
+            .semantics { contentDescription = "$title. $status" }
+            .heightIn(min = 56.dp)
+            .padding(
+                start = DetailHorizontalPadding,
+                end = DetailHorizontalPadding,
+                top = 10.dp,
+                bottom = 10.dp,
+            ),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Box(
-                modifier = Modifier
-                    .width(64.dp)
-                    .height(88.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(MaterialTheme.colorScheme.background)
-                    .border(
-                        width = 1.dp,
-                        color = accentColor.copy(alpha = 0.45f),
-                        shape = RoundedCornerShape(12.dp),
-                    ),
-                contentAlignment = Alignment.Center,
-            ) {
-                when {
-                    isLoading -> CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
-                        color = accentColor,
-                        strokeWidth = 2.dp,
-                    )
-
-                    backgroundUri != null -> AsyncImage(
-                        model = backgroundUri,
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop,
-                    )
-
-                    else -> Icon(
-                        imageVector = Icons.Default.Image,
-                        contentDescription = null,
-                        modifier = Modifier.size(30.dp),
-                        tint = accentColor,
-                    )
-                }
-            }
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    color = accentColor,
-                )
-                Text(
-                    text = stringResource(descriptionRes),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                Text(
-                    text = status,
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                )
-            }
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null,
-                tint = accentColor,
-            )
-        }
-    }
-}
-
-@Composable
-private fun ContactFormSection(
-    title: String,
-    modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit
-) {
-    Surface(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
-        color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 1.dp
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(DetailIconSize),
+        )
+        Spacer(modifier = Modifier.width(DetailIconGap))
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurface
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface,
             )
-            content()
+            Text(
+                text = status,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
-    }
-}
-
-@Composable
-internal fun ContactFormActionRow(
-    icon: ImageVector,
-    title: String,
-    value: String,
-    accentColor: Color,
-    onClick: () -> Unit,
-    trailingContent: (@Composable (() -> Unit))? = null
-) {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(role = Role.Button, onClick = onClick),
-        shape = RoundedCornerShape(16.dp),
-        color = accentColor.copy(alpha = 0.12f),
-        contentColor = accentColor
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(22.dp)
-            )
-            Spacer(modifier = Modifier.width(12.dp))
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(2.dp)
-            ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    color = accentColor
-                )
-                Text(
-                    text = value,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSurface
+        when {
+            isLoading -> {
+                Spacer(modifier = Modifier.width(12.dp))
+                CircularProgressIndicator(
+                    modifier = Modifier.size(20.dp),
+                    strokeWidth = 2.dp,
                 )
             }
-            if (trailingContent != null) {
-                trailingContent()
-            } else {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+
+            backgroundUri != null -> {
+                Spacer(modifier = Modifier.width(12.dp))
+                AsyncImage(
+                    model = backgroundUri,
                     contentDescription = null,
-                    tint = accentColor
+                    modifier = Modifier
+                        .width(36.dp)
+                        .height(52.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(MaterialTheme.colorScheme.surfaceContainerHigh),
+                    contentScale = ContentScale.Crop,
                 )
             }
         }
@@ -1228,6 +1197,6 @@ private fun Intent.getRingtoneUriCompat(): Uri? {
 
 private fun getAccountIcon(accountType: String) = when (accountType) {
     "com.google" -> Icons.Default.Android
-    "com.android.local" -> Icons.Default.PhoneAndroid
-    else -> Icons.Default.AccountCircle
+    "com.android.local" -> Icons.Outlined.PhoneAndroid
+    else -> Icons.Outlined.AccountCircle
 }

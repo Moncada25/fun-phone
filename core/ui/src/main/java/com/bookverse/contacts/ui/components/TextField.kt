@@ -101,12 +101,13 @@ fun TextField(
         modifier = modifier,
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = accentColor,
-            unfocusedIndicatorColor = textColor,
+            unfocusedIndicatorColor = MaterialTheme.colorScheme.outline,
             focusedLabelColor = accentColor,
-            unfocusedLabelColor = textColor,
+            unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
             cursorColor = accentColor,
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,
+            errorContainerColor = Color.Transparent,
             selectionColors = TextSelectionColors(
                 handleColor = accentColor,
                 backgroundColor = MaterialTheme.colorScheme.primaryContainer,
