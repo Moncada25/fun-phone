@@ -53,9 +53,11 @@ jobs:
 
     - name: Run Kotlin checks, build, tests and lint
       run: |
+        plan=$(./scripts/ci-affected-modules.py --full)
+        read -ra tasks <<< "$(sed -n 's/^tasks=//p' <<< "$plan")"
         rm -f app/build/reports/lint-results-communityDebug.xml app/build/reports/lint-results-playRelease.xml
         lint_run_started_at=$(date +%s)
-        ./gradlew :app:generateReleaseManifest ktlintCheck assembleCommunityDebug testCommunityDebugUnitTest lintCommunityDebug lintPlayRelease --stacktrace
+        ./gradlew :app:generateReleaseManifest "${tasks[@]}" --stacktrace
         LINT_RUN_STARTED_AT="$lint_run_started_at" ./scripts/verify-lint-ratchet.sh communityDebug playRelease
 
     - name: Verify release metadata
@@ -77,7 +79,7 @@ jobs:
       if: ${{ failure() }}
       with:
         name: test-results-failure
-        path: app/build/test-results/
+        path: '**/build/test-results/'
         retention-days: 1
 
     - name: Upload lint report

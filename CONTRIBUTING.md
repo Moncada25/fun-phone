@@ -72,7 +72,7 @@ Convención de nombres:
 ### 4. Verifica tu trabajo
 ```bash
 ./gradlew assembleCommunityDebug          # Compilación sin Firebase
-./gradlew testCommunityDebugUnitTest      # Tests unitarios
+./gradlew testCommunityDebugUnitTest testDebugUnitTest  # Tests unitarios de todos los módulos
 ./gradlew lintCommunityDebug              # Lint
 ./scripts/verify-lint-ratchet.sh          # Ratchet de deuda conocida
 ./scripts/verify-android-only.sh           # Guard Android-only

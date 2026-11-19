@@ -14,13 +14,28 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Select affected Gradle modules
+      id: plan
+      env:
+        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        HEAD_REF: ${{ github.head_ref }}
+      run: |
+        set -o pipefail
+        if [[ "$HEAD_REF" == release/* ]]; then
+          ./scripts/ci-affected-modules.py --full | tee -a "$GITHUB_OUTPUT"
+        else
+          ./scripts/ci-affected-modules.py --base "$BASE_SHA" | tee -a "$GITHUB_OUTPUT"
+        fi
+
     - name: Set up JDK 25
+      if: steps.plan.outputs.mode != 'none'
       uses: actions/setup-java@v5
       with:
         java-version: '25'
         distribution: 'temurin'
 
     - name: Setup Gradle
+      if: steps.plan.outputs.mode != 'none'
       uses: gradle/actions/setup-gradle@v6
 
     - name: Grant execute permission for gradlew
@@ -54,17 +69,33 @@ jobs:
       run: ./scripts/verify-public-ready.sh --current-only
 
     - name: Run Kotlin checks, build, tests and lint
+      if: steps.plan.outputs.mode != 'none'
+      env:
+        GRADLE_TASKS: ${{ steps.plan.outputs.tasks }}
+        LINT_VARIANTS: ${{ steps.plan.outputs.lint_variants }}
       run: |
-        rm -f app/build/reports/lint-results-communityDebug.xml app/build/reports/lint-results-playRelease.xml
+        read -ra tasks <<< "$GRADLE_TASKS"
+        read -ra lint_variants <<< "$LINT_VARIANTS"
+        if (( ${#tasks[@]} == 0 )); then
+          echo "The Gradle plan has no tasks." >&2
+          exit 1
+        fi
+        for variant in "${lint_variants[@]}"; do
+          rm -f "app/build/reports/lint-results-$variant.xml"
+        done
         lint_run_started_at=$(date +%s)
-        ./gradlew ktlintCheck assembleCommunityDebug testCommunityDebugUnitTest lintCommunityDebug lintPlayRelease --stacktrace
-        LINT_RUN_STARTED_AT="$lint_run_started_at" ./scripts/verify-lint-ratchet.sh communityDebug playRelease
+        ./gradlew "${tasks[@]}" --stacktrace
+        if (( ${#lint_variants[@]} > 0 )); then
+          LINT_RUN_STARTED_AT="$lint_run_started_at" ./scripts/verify-lint-ratchet.sh "${lint_variants[@]}"
+        else
+          echo "Lint ratchet skipped: :app is not affected, so its lint did not run."
+        fi
 
     - name: Comment PR with test results
       uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
+      if: always() && steps.plan.outputs.mode != 'none'
       with:
-        files: app/build/test-results/**/*.xml
+        files: '**/build/test-results/**/*.xml'
         check_name: Unit Test Results
         comment_mode: off
       continue-on-error: true
@@ -78,6 +109,6 @@ jobs:
         name: pr-check-diagnostics
         path: |
           app/build/outputs/apk/community/debug/*.apk
-          app/build/reports/
-          app/build/test-results/
+          **/build/reports/
+          **/build/test-results/
         retention-days: 1

@@ -114,7 +114,7 @@ Community usa nombre y `applicationId` distintos, por lo que puede convivir con 
 ### Ejecutar tests
 
 ```bash
-./gradlew testCommunityDebugUnitTest   # Tests unitarios
+./gradlew testCommunityDebugUnitTest testDebugUnitTest   # Tests unitarios de todos los módulos
 ./gradlew connectedCommunityDebugAndroidTest  # Tests instrumentados
 ```
 
