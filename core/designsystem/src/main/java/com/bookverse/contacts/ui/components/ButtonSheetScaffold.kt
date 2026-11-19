@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,6 +44,9 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
+import com.bookverse.contacts.ui.theme.LocalThemeRevealState
+import com.bookverse.contacts.ui.theme.rememberThemeRevealSurface
+import com.bookverse.contacts.ui.theme.themeRevealSurface
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,71 +101,83 @@ fun ButtonSheetScaffold(
     val headerColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.06f)
     val headerContentColor = MaterialTheme.colorScheme.onSurface
 
+    val sheetColor = MaterialTheme.colorScheme.surface
+    val revealState = LocalThemeRevealState.current
+    val revealSurface = rememberThemeRevealSurface(revealState)
+
     ModalBottomSheet(
         onDismissRequest = requestDismiss,
         sheetState = sheetState,
         sheetGesturesEnabled = true,
         tonalElevation = 0.dp,
         dragHandle = null,
-        containerColor = MaterialTheme.colorScheme.surface,
-        contentWindowInsets = { WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom) },
+        containerColor = sheetColor,
+        contentWindowInsets = { WindowInsets(0, 0, 0, 0) },
     ) {
-        Column(
-            modifier = modifier
-                // Keep boundary flings inside scrollable content while preserving header drags.
-                .nestedScroll(contentScrollBarrier)
+        Box(
+            modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(max = maxSheetHeight)
-                .imePadding()
-                .navigationBarsPadding()
-                .padding(horizontal = 20.dp),
+                .themeRevealSurface(revealState, revealSurface)
+                .background(sheetColor)
+                .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom)),
         ) {
-            BottomSheetDefaults.DragHandle(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(bottom = 8.dp),
-            )
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                color = headerColor,
-                contentColor = headerContentColor,
+            Column(
+                modifier = modifier
+                    // Keep boundary flings inside scrollable content while preserving header drags.
+                    .nestedScroll(contentScrollBarrier)
+                    .fillMaxWidth()
+                    .heightIn(max = maxSheetHeight)
+                    .imePadding()
+                    .navigationBarsPadding()
+                    .padding(horizontal = 20.dp),
             ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 18.dp, vertical = 14.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                BottomSheetDefaults.DragHandle(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(bottom = 8.dp),
+                )
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
+                    color = headerColor,
+                    contentColor = headerContentColor,
                 ) {
-                    if (navigationIcon != null) {
-                        Box(
-                            modifier = Modifier.size(48.dp),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            navigationIcon()
-                        }
-                    }
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                    Row(
+                        modifier = Modifier.padding(horizontal = 18.dp, vertical = 14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
-                        Text(
-                            text = title,
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.SemiBold,
-                        )
-                        subtitle?.takeIf(String::isNotBlank)?.let { supportingText ->
+                        if (navigationIcon != null) {
+                            Box(
+                                modifier = Modifier.size(48.dp),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                navigationIcon()
+                            }
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                        ) {
                             Text(
-                                text = supportingText,
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = headerContentColor.copy(alpha = 0.78f),
+                                text = title,
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.SemiBold,
                             )
+                            subtitle?.takeIf(String::isNotBlank)?.let { supportingText ->
+                                Text(
+                                    text = supportingText,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = headerContentColor.copy(alpha = 0.78f),
+                                )
+                            }
                         }
                     }
                 }
+                Spacer(modifier = Modifier.height(14.dp))
+                content()
+                Spacer(modifier = Modifier.height(16.dp))
             }
-            Spacer(modifier = Modifier.height(14.dp))
-            content()
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

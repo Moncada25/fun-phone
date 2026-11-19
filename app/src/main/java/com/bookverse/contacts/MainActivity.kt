@@ -54,6 +54,8 @@ import com.bookverse.contacts.ui.system.configureTransparentSystemBars
 import com.bookverse.contacts.ui.system.updateStatusBarContrast
 import com.bookverse.contacts.ui.screens.calls.SimSelectionHost
 import com.bookverse.contacts.ui.theme.ContactsAppTheme
+import com.bookverse.contacts.ui.theme.ThemeRevealHost
+import com.bookverse.contacts.ui.theme.themeRevealDurationMs
 import com.bookverse.contacts.ui.theme.accentPalette
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
@@ -277,117 +279,123 @@ class MainActivity : LocalizedAppCompatActivity() {
                 val fontFamily = remember(fontType) { Fonts.getFontFamily(fontType) }
                 val fontScale by settingsViewModel.fontScale.collectAsStateWithLifecycle()
                 val glassEffects by settingsViewModel.glassEffects.collectAsStateWithLifecycle()
-                ContactsAppTheme(
-                    accentSeed = accentColor,
-                    fontFamily = fontFamily,
-                    fontScale = fontScale,
-                    themeMode = themeMode,
-                    darkModeStyle = darkModeStyle,
-                    accentBarStyle = accentBarStyle,
-                    glassEffects = glassEffects,
-                ) {
-                    val backgroundColor = MaterialTheme.colorScheme.background
-                    val isIncomingCall = secondaryScreen == SecondaryScreen.INCOMING_CALL
-                    val retroStatusBarColor = MaterialTheme.accentPalette.seed.takeIf {
-                        accentBarStyle == AccentBarStyle.RETRO &&
-                            !isIncomingCall && secondaryScreen != SecondaryScreen.IN_CALL
-                    }
-                    val statusBarBackground = retroStatusBarColor ?: backgroundColor
-                    val systemBarsReady = isDataLoaded && hasCompletedOnboarding
-                    LaunchedEffect(systemBarsReady, backgroundColor) {
-                        if (systemBarsReady) {
-                            configureTransparentSystemBars(backgroundColor, statusBarBackground)
-                        }
-                    }
-                    LaunchedEffect(systemBarsReady, statusBarBackground, isIncomingCall) {
-                        if (systemBarsReady && !isIncomingCall) {
-                            updateStatusBarContrast(statusBarBackground)
-                        }
-                    }
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
+                ThemeRevealHost(
+                    target = themeMode to darkModeStyle,
+                    durationMs = themeRevealDurationMs(animationSpeed.durationMs),
+                    modifier = Modifier.fillMaxSize(),
+                ) { appearance ->
+                    ContactsAppTheme(
+                        accentSeed = accentColor,
+                        fontFamily = fontFamily,
+                        fontScale = fontScale,
+                        themeMode = appearance.first,
+                        darkModeStyle = appearance.second,
+                        accentBarStyle = accentBarStyle,
+                        glassEffects = glassEffects,
                     ) {
-                        when {
-                            // A shortcut must not mistake unloaded auth settings for an unconfigured PIN.
-                            !isDataLoaded -> Unit
-                            !hasCompletedOnboarding -> {
-                                OnboardingFlowScreen(onFinish = { limited, reviewPhoneStatus ->
-                                    isLimitedMode = limited
-                                    hasCompletedOnboarding = true
-                                    saveOnboardingCompleted()
-                                    if (reviewPhoneStatus) {
-                                        navigationViewModel.openSecondary(
-                                            SecondaryScreen.PHONE_STATUS
-                                        )
-                                    }
-                                    if (!limited) {
-                                        contactsViewModel.loadContacts()
-                                        scheduleContactSync()
-                                    }
-                                }, settingsViewModel = settingsViewModel)
-                            }
-
-                            else -> {
-                                MainScreen(
-                                    appSettingsViewModel = settingsViewModel,
-                                    navigationViewModel = navigationViewModel,
-                                    openFavorites = openFavorites,
-                                    openContactDetails = openContactDetails,
-                                    contactId = contactId,
-                                    contactsViewModel = contactsViewModel,
-                                    callContactLookup = callContactLookup,
-                                    holidaysViewModel = holidaysViewModel,
-                                    contactTagViewModel = contactTagViewModel,
-                                    qrHistoryViewModel = qrHistoryViewModel,
-                                    pomodoroViewModel = pomodoroViewModel,
-                                    noteLookup = noteLookup,
-                                    retroStatusBarColor = retroStatusBarColor,
-                                    isLimitedMode = isLimitedMode,
-                                    openIncoming = openIncoming,
-                                    incomingCallId = incomingCallId,
-                                    openInCall = openInCall,
-                                    inCallCallId = inCallCallId,
-                                    inCallNumber = inCallNumber,
-                                    onFavoriteShortcutConsumed = {
-                                        openFavoritesShortcut = false
-                                    },
-                                    onContactShortcutConsumed = {
-                                        openContactDetailsShortcut = false; widgetContactId =
-                                        null
-                                    },
-                                    homeShortcutDestination = homeShortcutDestination,
-                                    onHomeShortcutConsumed = { homeShortcutDestination = null },
-                                    onOpenInCallConsumed = { openInCall = false },
-                                    openNoteId = openNoteId,
-                                    onNoteOpenConsumed = { openNoteId = null },
-                                    openNotesList = openNotesList,
-                                    onNotesListConsumed = { openNotesList = false },
-                                )
-                                val lockScopedCall by DefaultCallRepository.activeCall.collectAsStateWithLifecycle()
-                                val vaultShortcutEnabled by settingsViewModel.passwordManagerEnabled.collectAsStateWithLifecycle()
-                                LaunchedEffect(vaultShortcutEnabled) {
-                                    withContext(Dispatchers.IO) {
-                                        DynamicShortcuts.publish(this@MainActivity, vaultShortcutEnabled)
-                                    }
-                                }
-                                AppLockGate(
-                                    onCallScreen = secondaryScreen == SecondaryScreen.INCOMING_CALL ||
-                                        secondaryScreen == SecondaryScreen.IN_CALL,
-                                    callActive = shouldShowCallWhileLocked(lockScopedCall),
-                                    onReturnToCall = {
-                                        navigationViewModel.openSecondary(
-                                            if (lockScopedCall?.state == CallState.RINGING) {
-                                                SecondaryScreen.INCOMING_CALL
-                                            } else {
-                                                SecondaryScreen.IN_CALL
-                                            },
-                                        )
-                                    },
-                                )
+                        val backgroundColor = MaterialTheme.colorScheme.background
+                        val isIncomingCall = secondaryScreen == SecondaryScreen.INCOMING_CALL
+                        val retroStatusBarColor = MaterialTheme.accentPalette.seed.takeIf {
+                            accentBarStyle == AccentBarStyle.RETRO &&
+                                !isIncomingCall && secondaryScreen != SecondaryScreen.IN_CALL
+                        }
+                        val statusBarBackground = retroStatusBarColor ?: backgroundColor
+                        val systemBarsReady = isDataLoaded && hasCompletedOnboarding
+                        LaunchedEffect(systemBarsReady, backgroundColor) {
+                            if (systemBarsReady) {
+                                configureTransparentSystemBars(backgroundColor, statusBarBackground)
                             }
                         }
-                        SimSelectionHost()
+                        LaunchedEffect(systemBarsReady, statusBarBackground, isIncomingCall) {
+                            if (systemBarsReady && !isIncomingCall) {
+                                updateStatusBarContrast(statusBarBackground)
+                            }
+                        }
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = MaterialTheme.colorScheme.background
+                        ) {
+                            when {
+                                // A shortcut must not mistake unloaded auth settings for an unconfigured PIN.
+                                !isDataLoaded -> Unit
+                                !hasCompletedOnboarding -> {
+                                    OnboardingFlowScreen(onFinish = { limited, reviewPhoneStatus ->
+                                        isLimitedMode = limited
+                                        hasCompletedOnboarding = true
+                                        saveOnboardingCompleted()
+                                        if (reviewPhoneStatus) {
+                                            navigationViewModel.openSecondary(
+                                                SecondaryScreen.PHONE_STATUS
+                                            )
+                                        }
+                                        if (!limited) {
+                                            contactsViewModel.loadContacts()
+                                            scheduleContactSync()
+                                        }
+                                    }, settingsViewModel = settingsViewModel)
+                                }
+
+                                else -> {
+                                    MainScreen(
+                                        appSettingsViewModel = settingsViewModel,
+                                        navigationViewModel = navigationViewModel,
+                                        openFavorites = openFavorites,
+                                        openContactDetails = openContactDetails,
+                                        contactId = contactId,
+                                        contactsViewModel = contactsViewModel,
+                                        callContactLookup = callContactLookup,
+                                        holidaysViewModel = holidaysViewModel,
+                                        contactTagViewModel = contactTagViewModel,
+                                        qrHistoryViewModel = qrHistoryViewModel,
+                                        pomodoroViewModel = pomodoroViewModel,
+                                        noteLookup = noteLookup,
+                                        retroStatusBarColor = retroStatusBarColor,
+                                        isLimitedMode = isLimitedMode,
+                                        openIncoming = openIncoming,
+                                        incomingCallId = incomingCallId,
+                                        openInCall = openInCall,
+                                        inCallCallId = inCallCallId,
+                                        inCallNumber = inCallNumber,
+                                        onFavoriteShortcutConsumed = {
+                                            openFavoritesShortcut = false
+                                        },
+                                        onContactShortcutConsumed = {
+                                            openContactDetailsShortcut = false; widgetContactId =
+                                            null
+                                        },
+                                        homeShortcutDestination = homeShortcutDestination,
+                                        onHomeShortcutConsumed = { homeShortcutDestination = null },
+                                        onOpenInCallConsumed = { openInCall = false },
+                                        openNoteId = openNoteId,
+                                        onNoteOpenConsumed = { openNoteId = null },
+                                        openNotesList = openNotesList,
+                                        onNotesListConsumed = { openNotesList = false },
+                                    )
+                                    val lockScopedCall by DefaultCallRepository.activeCall.collectAsStateWithLifecycle()
+                                    val vaultShortcutEnabled by settingsViewModel.passwordManagerEnabled.collectAsStateWithLifecycle()
+                                    LaunchedEffect(vaultShortcutEnabled) {
+                                        withContext(Dispatchers.IO) {
+                                            DynamicShortcuts.publish(this@MainActivity, vaultShortcutEnabled)
+                                        }
+                                    }
+                                    AppLockGate(
+                                        onCallScreen = secondaryScreen == SecondaryScreen.INCOMING_CALL ||
+                                            secondaryScreen == SecondaryScreen.IN_CALL,
+                                        callActive = shouldShowCallWhileLocked(lockScopedCall),
+                                        onReturnToCall = {
+                                            navigationViewModel.openSecondary(
+                                                if (lockScopedCall?.state == CallState.RINGING) {
+                                                    SecondaryScreen.INCOMING_CALL
+                                                } else {
+                                                    SecondaryScreen.IN_CALL
+                                                },
+                                            )
+                                        },
+                                    )
+                                }
+                            }
+                            SimSelectionHost()
+                        }
                     }
                 }
             }
