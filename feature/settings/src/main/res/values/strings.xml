@@ -405,8 +405,6 @@
     <string name="about_repository_path" translatable="false">github.com/Moncada25/fun-phone</string>
     <string name="about_website_host" translatable="false">moncada25.github.io/fun-phone-web</string>
     <string name="about_developer_name" translatable="false">Santiago Moncada</string>
-    <string name="about_badge_no_ads">No ads</string>
-    <string name="about_badge_no_trackers">No trackers</string>
     <string name="about_open_source_title">Open source</string>
     <string name="about_open_source_description">Free software built in the open. Read the code, follow progress, and help shape what comes next.</string>
     <string name="about_source_code">Source code</string>

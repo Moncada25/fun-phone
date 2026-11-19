@@ -403,8 +403,6 @@
         <item quantity="many">Pelo menos %1$d de caracteres</item>
         <item quantity="other">Pelo menos %1$d caracteres</item>
     </plurals>
-    <string name="about_badge_no_ads">Sem anúncios</string>
-    <string name="about_badge_no_trackers">Sem rastreadores</string>
     <string name="about_open_source_title">Código aberto</string>
     <string name="about_open_source_description">Software livre desenvolvido de forma aberta. Leia o código, acompanhe o progresso e ajude a definir o que vem a seguir.</string>
     <string name="about_source_code">Código-fonte</string>
