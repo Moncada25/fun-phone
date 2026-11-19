@@ -300,7 +300,7 @@ Ejecuta desde la raíz y selecciona como mínimo las filas que correspondan al c
 | Cambio | Validación mínima |
 | --- | --- |
 | documentación | `git diff --check` y revisión de enlaces/rutas |
-| Kotlin o lógica de dominio | `./gradlew testCommunityDebugUnitTest` |
+| Kotlin o lógica de dominio | `./gradlew testCommunityDebugUnitTest testDebugUnitTest` (o las tareas del módulo afectado) |
 | UI/Compose | unit tests aplicables, `./gradlew assembleCommunityDebug` y Compose tests relevantes |
 | strings/recursos localizados | `./scripts/verify-localization.sh` |
 | arquitectura o archivos de alto riesgo | `./scripts/verify-quality-contract.sh` |
@@ -318,7 +318,7 @@ Comandos de referencia habituales:
 ./gradlew assembleCommunityDebug
 ./gradlew assembleRelease
 ./gradlew installDebug
-./gradlew testCommunityDebugUnitTest
+./gradlew testCommunityDebugUnitTest testDebugUnitTest
 ./gradlew testDebugUnitTest --tests "com.bookverse.contacts.SomeTest"
 ./gradlew lintCommunityDebug
 ./gradlew connectedCommunityDebugAndroidTest

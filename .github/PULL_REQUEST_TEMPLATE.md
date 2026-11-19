@@ -22,7 +22,7 @@
 ## Checklist
 - [ ] Mi código sigue las [convenciones del proyecto](../CONTRIBUTING.md)
 - [ ] Los textos nuevos están en `values/strings.xml` (inglés) y en `values-es`, `values-de`, `values-fr` y `values-pt`
-- [ ] `./gradlew ktlintCheck assembleCommunityDebug testCommunityDebugUnitTest lintCommunityDebug` pasa
+- [ ] `./gradlew ktlintCheck assembleCommunityDebug testCommunityDebugUnitTest testDebugUnitTest lintCommunityDebug` pasa
 - [ ] Probé el cambio en un dispositivo o emulador (si toca UI o llamadas)
 - [ ] Actualicé la documentación si era necesario
 - [ ] No incluí datos personales reales (contactos, números, contraseñas) en código, tests ni capturas

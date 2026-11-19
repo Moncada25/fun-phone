@@ -70,7 +70,7 @@ app/src/
 |---------|---------|
 | `./gradlew assembleCommunityDebug` | Build the community debug APK. |
 | `./gradlew assemblePlayDebug` | Build the Play debug APK. |
-| `./gradlew testCommunityDebugUnitTest` | Run JVM unit tests. |
+| `./gradlew testCommunityDebugUnitTest testDebugUnitTest` | Run the JVM unit tests of every module. |
 | `./gradlew connectedCommunityDebugAndroidTest` | Run instrumented tests on a connected device. |
 | `./gradlew ktlintCheck` / `ktlintFormat` | Check or fix Kotlin style. |
 | `./gradlew lintCommunityDebug lintPlayRelease` | Android lint for both flavors. |
@@ -102,9 +102,21 @@ More detail lives in [AGENTS.md](../AGENTS.md), [DESIGN.md](../DESIGN.md) and
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| [`pr-checks.yml`](../.github/workflows/pr-checks.yml) (`validate`) | Pull requests to `main` | Guards, ktlint, build, unit tests, lint and the lint ratchet. |
+| [`pr-checks.yml`](../.github/workflows/pr-checks.yml) (`validate`) | Pull requests to `main` | Guards, then ktlint, build, unit tests, lint and the lint ratchet for the affected modules. |
 | [`secrets.yml`](../.github/workflows/secrets.yml) (`gitleaks`) | Pushes and pull requests to `main` | Scans for leaked secrets. |
 | [`android.yml`](../.github/workflows/android.yml) | Pushes to `main` | Full community build, tests, lint and release metadata checks. |
+
+`validate` runs only the Gradle work a pull request needs. `scripts/ci-affected-modules.py` diffs
+the pull request against its base, maps each changed file to its Gradle module and adds every
+module that depends on it. ktlint and unit tests run for those modules. When `:app` is affected,
+its Community Debug build and its Community Debug and Play Release lint run too; lint keeps
+`checkDependencies`, so the ratchet still counts every module, and the analysis of unchanged
+modules comes from the build cache that `android.yml` fills on `main`. Root build files,
+`build-logic/`, `gradle/`, `release.properties`, `.editorconfig`, the workflow, the selection script,
+the lint ratchet, any file outside a known area and `release/*` branches run everything. Pull
+requests that only touch docs, listings, screenshots, fastlane, other workflows or scripts skip
+Gradle and still run the guards. Run `./scripts/ci-affected-modules.py --base origin/main` to see
+the plan for a local branch.
 
 `main` is protected: changes land through pull requests, `validate` and `gitleaks` must pass, and
 pull requests are squash-merged.
