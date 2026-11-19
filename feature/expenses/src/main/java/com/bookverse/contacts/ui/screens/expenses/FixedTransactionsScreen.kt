@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.expenses
 
+import com.bookverse.contacts.ui.utils.rememberHapticClick
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -190,7 +191,7 @@ private fun RecurringTransactionsHeader(
                     isMinimal = true,
                 )
                 IconButton(
-                    onClick = onShowOptions,
+                    onClick = rememberHapticClick(onShowOptions),
                     modifier = Modifier.size(48.dp),
                 ) {
                     Icon(

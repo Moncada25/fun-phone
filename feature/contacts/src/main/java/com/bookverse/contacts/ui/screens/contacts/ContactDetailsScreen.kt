@@ -625,8 +625,8 @@ fun ContactDetailsScreen(
                                     .padding(
                                         start = DetailHorizontalPadding,
                                         end = DetailHorizontalPadding,
-                                        top = 8.dp,
-                                        bottom = 8.dp,
+                                        top = 12.dp,
+                                        bottom = 12.dp,
                                     ),
                             ) {
                                 Icon(

@@ -146,7 +146,11 @@ fun PasswordEditScreen(
     val totpCopiedMessage = stringResource(R.string.password_totp_copied)
     val totpScanInvalidMessage = stringResource(R.string.password_totp_scan_invalid)
     val totpScanSuccessMessage = stringResource(R.string.password_totp_scan_success)
-    BackHandler { onBackClick() }
+    fun discardAndExit() {
+        draft.clear()
+        onBackClick()
+    }
+    BackHandler { discardAndExit() }
 
     fun copyPassword() {
         if (password.isBlank()) return
@@ -183,7 +187,7 @@ fun PasswordEditScreen(
         topBar = {
             SecondaryTopBar(
                 title = stringResource(if (id == null) R.string.password_new else R.string.password_edit),
-                onBackClick = onBackClick,
+                onBackClick = ::discardAndExit,
                 actions = {
                     if (id == null && folders.isNotEmpty()) {
                         IconAction(

@@ -6,7 +6,6 @@
     <string name="games_dashboard_total_played">Parties jouées</string>
     <string name="games_dashboard_completed">Parties terminées</string>
     <string name="games_dashboard_favorite_game">Jeu favori</string>
-    <string name="games_dashboard_best_streak">Meilleure série</string>
     <string name="games_dashboard_games_tried">Jeux essayés</string>
     <string name="games_dashboard_no_data">Vous n\'avez pas encore joué. Lancez une partie pour voir vos stats !</string>
     <string name="games_dashboard_records_title">Records par jeu</string>

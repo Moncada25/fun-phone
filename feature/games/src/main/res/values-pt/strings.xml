@@ -6,7 +6,6 @@
     <string name="games_dashboard_total_played">Jogos disputados</string>
     <string name="games_dashboard_completed">Partidas concluídas</string>
     <string name="games_dashboard_favorite_game">Jogo favorito</string>
-    <string name="games_dashboard_best_streak">Melhor sequência</string>
     <string name="games_dashboard_games_tried">Jogos experimentados</string>
     <string name="games_dashboard_no_data">Você ainda não jogou. Comece a jogar para ver suas estatísticas!</string>
     <string name="games_dashboard_records_title">Recordes por jogo</string>

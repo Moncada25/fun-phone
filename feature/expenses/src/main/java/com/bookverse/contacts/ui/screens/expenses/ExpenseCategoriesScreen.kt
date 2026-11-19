@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.expenses
 
+import com.bookverse.contacts.ui.utils.rememberHapticClick
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -566,7 +567,7 @@ private fun CategoryCard(
                 }
                 Box {
                     IconButton(
-                        onClick = { menuExpanded = true },
+                        onClick = rememberHapticClick({ menuExpanded = true }),
                         modifier = Modifier.size(48.dp),
                     ) {
                         Icon(
