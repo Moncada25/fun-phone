@@ -323,6 +323,8 @@
     <string name="onboarding_retry">Reintentar</string>
     <string name="accent_usage_modern">Moderno</string>
     <string name="accent_usage_modern_description">Títulos adaptables, desenfoque suave y navegación flotante.</string>
+    <string name="accent_usage_minimal_description">Títulos pequeños, barras neutras y navegación fija.</string>
+    <string name="accent_usage_retro_description">Barras con tu color de acento, botones de color y navegación fija.</string>
     <string name="font_category_recommended">Recomendadas</string>
     <string name="font_category_sans">Sin remates</string>
     <string name="font_category_serif">Con remates</string>
