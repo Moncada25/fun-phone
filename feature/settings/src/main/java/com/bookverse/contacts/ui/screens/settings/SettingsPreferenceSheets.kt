@@ -49,7 +49,6 @@ internal data class SettingsPreferenceSheetState(
     val fontScale: Float,
     val listDensity: ListDensity,
     val glassEffects: GlassEffects,
-    val animationOptions: List<AnimationSpeed>,
     val languageOptions: List<AppLanguage>,
     val availableColors: Map<String, Color>,
     val vibrationDurations: List<Int>,
@@ -81,14 +80,10 @@ internal fun SettingsPreferenceSheets(
     onTransitionSelected: (TransitionType) -> Unit,
 ) {
     when (activeSheet) {
-        SettingsPreferenceSheet.ANIMATION_SPEED -> SettingsSelectionSheet(
-            title = stringResource(R.string.transition_speed),
-            options = state.animationOptions,
-            selectedOption = state.animationSpeed,
-            onSelected = onAnimationSpeedSelected,
+        SettingsPreferenceSheet.ANIMATION_SPEED -> SettingsAnimationSpeedSheet(
+            speed = state.animationSpeed,
+            onSpeedSelected = onAnimationSpeedSelected,
             onDismiss = onDismiss,
-            optionKey = AnimationSpeed::name,
-            optionLabel = { speed -> stringResource(animationSpeedLabelRes(speed)) },
         )
 
         SettingsPreferenceSheet.LANGUAGE -> SettingsSelectionSheet(
@@ -215,12 +210,18 @@ private val STARTUP_SCREEN_OPTIONS = listOf("favorites", "contacts", "history", 
 private val CALL_ANSWER_STYLE_OPTIONS = listOf("swipe", "buttons")
 
 @StringRes
-internal fun animationSpeedLabelRes(speed: AnimationSpeed): Int = when (speed) {
+internal fun animationSpeedPresetLabelRes(speed: AnimationSpeed): Int? = when (speed) {
     AnimationSpeed.FAST -> R.string.fast
     AnimationSpeed.NORMAL -> CoreUiR.string.normal
     AnimationSpeed.SLOW -> R.string.slow
     AnimationSpeed.OFF -> R.string.off
+    else -> null
 }
+
+@Composable
+internal fun animationSpeedLabel(speed: AnimationSpeed): String =
+    animationSpeedPresetLabelRes(speed)?.let { stringResource(it) }
+        ?: stringResource(R.string.animation_speed_custom_value, speed.durationMs)
 
 @StringRes
 internal fun accentStyleLabelRes(style: AccentBarStyle): Int = when (style) {

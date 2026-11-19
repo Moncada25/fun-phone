@@ -517,7 +517,7 @@ fun SettingsScreen(
             fontScaleValue = stringResource(R.string.font_scale_value, fontScalePercent(fontScale)),
             listDensityValue = listDensityLabel(listDensity),
             glassEffectsValue = stringResource(glassEffectsLabelRes(glassEffects)),
-            animationSpeedValue = stringResource(animationSpeedLabelRes(animationSpeed)),
+            animationSpeedValue = animationSpeedLabel(animationSpeed),
             transitionValue = stringResource(transitionTypeLabelRes(transitionType)),
             vibrationDurationValue = stringResource(
                 R.string.vibration_duration_value,
@@ -866,7 +866,6 @@ fun SettingsScreen(
             fontScale = fontScale,
             listDensity = listDensity,
             glassEffects = glassEffects,
-            animationOptions = appSettingsViewModel.animationOptions,
             languageOptions = appSettingsViewModel.appLanguageOptions,
             availableColors = appSettingsViewModel.availableColors,
             vibrationDurations = appSettingsViewModel.vibrationDurations,

@@ -87,6 +87,7 @@ EXACT_VALUE_ALLOWLIST: Dict[str, Tuple[str, Set[str], str]] = {
     "url_label": ("URL", ALL_LOCALES, "web acronym"),
     "doto": ("Doto", ALL_LOCALES, "font family name"),
     "font_scale_value": ("%d%%", ALL_LOCALES, "placeholder-only template"),
+    "animation_speed_custom_value": ("%1$d ms", ALL_LOCALES, "unit-only template"),
     "vibration_duration_value": ("%1$d ms", ALL_LOCALES, "unit-only template"),
     "vibration_pattern_double": ("Double", ALL_LOCALES, "vibration pattern value"),
     "vibration_pattern_simple": ("Simple", ALL_LOCALES, "vibration pattern value"),
