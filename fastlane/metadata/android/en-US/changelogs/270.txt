@@ -1,6 +1,5 @@
-• Adding or editing a contact now has the same clean look as contact details.
-• Pomodoro gets a simpler timer with a thin ring and clear controls.
-• Your profile matches the contact details design.
-• Leaving the password editor without saving no longer keeps your edits.
-• The games scoreboard shows your favorite game.
-• Contact tags are easier to read.
+• Contacts look cleaner: details, the add/edit form and your profile share one design, with quick actions to call, message, WhatsApp, email or favorite.
+• Games become a retro arcade with records and a scoreboard showing your favorite game.
+• Simpler Pomodoro, paint tools and tools list.
+• New About and welcome screens; "Lock the whole app" is now in Security & privacy.
+• Fixed: unsaved password edits surviving back, and wrong contact suggestions for short numbers.

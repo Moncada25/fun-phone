@@ -236,48 +236,43 @@ Para começar, abra Status do dispositivo após instalar, conceda as permissões
 
 ### English
 
-• Adding or editing a contact now has the same clean look as contact details.
-• Pomodoro gets a simpler timer with a thin ring and clear controls.
-• Your profile matches the contact details design.
-• Leaving the password editor without saving no longer keeps your edits.
-• The games scoreboard shows your favorite game.
-• Contact tags are easier to read.
+• Contacts look cleaner: details, the add/edit form and your profile share one design, with quick actions to call, message, WhatsApp, email or favorite.
+• Games become a retro arcade with records and a scoreboard showing your favorite game.
+• Simpler Pomodoro, paint tools and tools list.
+• New About and welcome screens; "Lock the whole app" is now in Security & privacy.
+• Fixed: unsaved password edits surviving back, and wrong contact suggestions for short numbers.
 
 ### Español
 
-• Crear o editar un contacto tiene el mismo diseño limpio de los detalles del contacto.
-• Pomodoro estrena un temporizador más simple, con anillo fino y controles claros.
-• Tu perfil sigue el diseño de los detalles del contacto.
-• Salir del editor de contraseñas sin guardar ya no conserva los cambios.
-• La tabla de puntajes muestra tu juego favorito.
-• Las etiquetas de los contactos se leen mejor.
+• Contactos más limpios: detalles, formulario y perfil comparten diseño, con accesos para llamar, escribir, WhatsApp, correo o favorito.
+• Los juegos son un arcade retro con récords y tabla de puntajes con tu juego favorito.
+• Pomodoro, dibujo y lista de herramientas más simples.
+• Nuevas pantallas de Acerca de y bienvenida; "Bloquear toda la app" está en Seguridad y privacidad.
+• Corregido: cambios de contraseña sin guardar y contactos equivocados con números cortos.
 
 ### Deutsch
 
-• Kontakte anlegen und bearbeiten im gleichen klaren Design wie die Kontaktdetails.
-• Pomodoro mit schlichterem Timer, dünnem Ring und klaren Bedienelementen.
-• Dein Profil passt jetzt zum Design der Kontaktdetails.
-• Verlässt du den Passworteditor ohne zu speichern, werden die Änderungen verworfen.
-• Die Anzeigetafel der Spiele zeigt dein Lieblingsspiel.
-• Schlagwörter bei Kontakten sind besser lesbar.
+• Aufgeräumte Kontakte: Details, Formular und Profil im gleichen Design, mit Schnellaktionen für Anruf, Nachricht, WhatsApp, E-Mail und Favorit.
+• Spiele als Retro-Arcade mit Rekorden und Anzeigetafel samt Lieblingsspiel.
+• Einfacheres Pomodoro, Malen und Tool-Liste.
+• Neue Info- und Willkommensseiten; „Ganze App sperren“ ist unter Sicherheit und Datenschutz.
+• Behoben: ungespeicherte Passwortänderungen und falsche Kontakte bei kurzen Nummern.
 
 ### Français
 
-• Créer ou modifier un contact reprend le design épuré de la fiche contact.
-• Pomodoro passe à un minuteur plus simple, avec un anneau fin et des commandes claires.
-• Votre profil suit désormais le design de la fiche contact.
-• Quitter l’éditeur de mots de passe sans enregistrer ne conserve plus les modifications.
-• Le tableau des scores affiche votre jeu favori.
-• Les étiquettes des contacts sont plus lisibles.
+• Contacts épurés : fiche, formulaire et profil partagent un design, avec appel, message, WhatsApp, e-mail ou favori.
+• Jeux en arcade rétro avec records et tableau des scores avec votre jeu favori.
+• Pomodoro, dessin et liste d’outils simplifiés.
+• Écrans À propos et d’accueil repensés ; « Verrouiller toute l’appli » est dans Sécurité et confidentialité.
+• Corrigé : modifications de mot de passe non enregistrées et mauvais contact pour les numéros courts.
 
 ### Português
 
-• Criar ou editar um contato agora tem o mesmo visual limpo dos detalhes do contato.
-• O Pomodoro ganha um timer mais simples, com anel fino e controles claros.
-• Seu perfil segue o design dos detalhes do contato.
-• Sair do editor de senhas sem salvar não mantém mais as alterações.
-• O placar dos jogos mostra seu jogo favorito.
-• As etiquetas dos contatos ficam mais legíveis.
+• Contatos mais limpos: detalhes, formulário e perfil com o mesmo visual e atalhos para ligar, mensagem, WhatsApp, e-mail ou favorito.
+• Os jogos viram um fliperama retrô com recordes e placar com seu jogo favorito.
+• Pomodoro, desenho e lista de ferramentas mais simples.
+• Novas telas de Sobre e boas-vindas; "Bloquear o app inteiro" fica em Segurança e privacidade.
+• Corrigido: alterações de senha não salvas e contato errado em números curtos.
 
 ## Screenshot order
 

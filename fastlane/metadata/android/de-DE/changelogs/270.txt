@@ -1,6 +1,5 @@
-• Kontakte anlegen und bearbeiten im gleichen klaren Design wie die Kontaktdetails.
-• Pomodoro mit schlichterem Timer, dünnem Ring und klaren Bedienelementen.
-• Dein Profil passt jetzt zum Design der Kontaktdetails.
-• Verlässt du den Passworteditor ohne zu speichern, werden die Änderungen verworfen.
-• Die Anzeigetafel der Spiele zeigt dein Lieblingsspiel.
-• Schlagwörter bei Kontakten sind besser lesbar.
+• Aufgeräumte Kontakte: Details, Formular und Profil im gleichen Design, mit Schnellaktionen für Anruf, Nachricht, WhatsApp, E-Mail und Favorit.
+• Spiele als Retro-Arcade mit Rekorden und Anzeigetafel samt Lieblingsspiel.
+• Einfacheres Pomodoro, Malen und Tool-Liste.
+• Neue Info- und Willkommensseiten; „Ganze App sperren“ ist unter Sicherheit und Datenschutz.
+• Behoben: ungespeicherte Passwortänderungen und falsche Kontakte bei kurzen Nummern.
