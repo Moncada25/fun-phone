@@ -42,14 +42,15 @@ repository/data boundaries across feature and core Gradle modules.
   and all core permissions. Exact-alarm access is optional for the phone surface, so declining it
   does not hide contacts or enter limited mode. Birthday reminders do not open a separate
   permission prompt after onboarding.
-- Call features: SIM choice, conference calls, hold/swap, keypad tones, speaker/Bluetooth/wired
+- Call features: SIM choice, conference calls, hold/swap, DTMF tones, speaker/Bluetooth/wired
   routing, reply with a message, and on-device call screening with spam filtering and blocked numbers.
 - Contacts: Android-account contacts with alphabetical index, tags, favorites, vCard/JSON import and
   export, a duplicates finder, a recycle bin and contact QR codes.
 - Notes with rich text, checklists, folders, tags, images, global search, repeating reminders, voice
   recordings, a recycle bin and a Quick Settings tile for new notes.
-- Password vault with Tink + Android Keystore, PIN/biometric unlock, folders, a recycle bin,
-  generator, TOTP codes, reused-password warnings and system autofill (`VaultAutofillService`).
+- Password vault encrypted with Tink and the Android Keystore, unlocked with PIN or biometrics,
+  with folders, a recycle bin, generator, TOTP codes, reused-password warnings and system autofill
+  (`VaultAutofillService`).
 - Expense Manager with income/expense transactions, categories, per-category budgets, fixed
   (recurring) transactions, monthly and yearly views, filters and CSV export.
 - Public Holidays explorer powered by the Nager.Date API (opt-in) plus contact birthdays and
