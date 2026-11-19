@@ -1,0 +1,5 @@
+• Recuse uma chamada recebida com a tecla de diminuir volume (Configurações > Chamadas).
+• A tela de chamada e o teclado se ajustam à horizontal.
+• Salve novos contatos em agendas CardDAV como o DAVx5.
+• Histórico de chamadas mais limpo, agrupado por dia e com fotos.
+• A velocidade das animações agora é um controle deslizante e o tema muda em círculo.

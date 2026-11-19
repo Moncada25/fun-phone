@@ -1,0 +1,5 @@
+• Rechaza una llamada entrante con la tecla de bajar volumen (Configuración > Llamadas).
+• La pantalla de llamada y el teclado se adaptan a horizontal.
+• Guarda contactos nuevos en libretas CardDAV como DAVx5.
+• Historial de llamadas más limpio, agrupado por día y con fotos.
+• La velocidad de animación ahora es un deslizador y el tema cambia con un círculo.

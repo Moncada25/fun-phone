@@ -1,0 +1,5 @@
+• Decline a ringing call with the volume down key (Settings > Calls).
+• The in-call screen and keypad now fit landscape.
+• Save new contacts to CardDAV address books such as DAVx5.
+• Cleaner call history, grouped by day with contact photos.
+• Animation speed is now a slider, and theme changes reveal in a circle.
