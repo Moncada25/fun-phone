@@ -23,14 +23,15 @@ import androidx.compose.material.icons.automirrored.filled.CallMade
 import androidx.compose.material.icons.automirrored.filled.CallMissed
 import androidx.compose.material.icons.automirrored.filled.CallMissedOutgoing
 import androidx.compose.material.icons.automirrored.filled.CallReceived
-import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DeviceUnknown
 import androidx.compose.material.icons.filled.HideSource
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Whatsapp
+import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -39,13 +40,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.settings.LocaleController
@@ -69,82 +70,98 @@ fun RecentOperationItem(
 ) {
     val context = LocalContext.current
     val timeFormat = SimpleDateFormat("HH:mm", LocaleController.effectiveLocale(context))
+    val hasSavedContact = operation.contact.id.isNotBlank()
+    val contactName = if (hasSavedContact) {
+        operation.contact.name.ifBlank { stringResource(CoreUiR.string.unknown) }
+    } else {
+        val fallbackNumber = operation.contact.phones.firstOrNull()?.number.orEmpty()
+        operation.target.ifBlank { fallbackNumber }
+            .ifBlank { stringResource(CoreUiR.string.unknown) }
+    }
+    val (typeIcon, typeLabel) = recentTypePresentation(operation.type)
+    val isMissed = operation.type == RecentType.CALL_MISSED
+    val phoneType = remember(operation.contact.phones, operation.target) {
+        operation.contact.phones.firstOrNull { phone ->
+            recentNumbersMatch(phone.number, operation.target)
+        }?.type ?: operation.contact.phones.firstOrNull()?.type
+    }
+    val phoneTypeLabel = getPhoneTypeLabel(phoneType)
+    val timeLabel = timeFormat.format(Date(operation.date))
+    val phoneNumber = remember(operation.target, operation.contact.phones) {
+        operation.target.ifBlank {
+            operation.contact.phones.firstOrNull()?.number.orEmpty()
+        }
+    }
+    val errorColor = MaterialTheme.colorScheme.error
+    val selectionColor = if (isSelected) MaterialTheme.colorScheme.secondaryContainer else Color.Transparent
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(selectionColor)
             .combinedClickable(
                 onClick = onOperationClick,
                 onLongClick = onLongPress,
             )
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(start = 16.dp, end = 8.dp, top = 10.dp, bottom = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        RecentOperationAvatar(operation, isSelected, accentColor, textColor, callHistory)
+        RecentOperationAvatar(
+            operation = operation,
+            hasSavedContact = hasSavedContact,
+            isSelected = isSelected,
+            accentColor = accentColor,
+            callHistory = callHistory,
+        )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
-            val hasSavedContact = operation.contact.id.isNotBlank()
-            val contactName = if (hasSavedContact) {
-                operation.contact.name.ifBlank { stringResource(CoreUiR.string.unknown) }
-            } else {
-                val fallbackNumber = operation.contact.phones.firstOrNull()?.number.orEmpty()
-                operation.target.ifBlank { fallbackNumber }
-                    .ifBlank { stringResource(CoreUiR.string.unknown) }
-            }
-            val (typeIcon, typeLabel) = recentTypePresentation(operation.type)
-            val phoneType = remember(operation.contact.phones, operation.target) {
-                operation.contact.phones.firstOrNull { phone ->
-                    recentNumbersMatch(phone.number, operation.target)
-                }?.type ?: operation.contact.phones.firstOrNull()?.type
-            }
-            val phoneTypeLabel = getPhoneTypeLabel(phoneType)
-            val timeLabel = timeFormat.format(Date(operation.date))
             Text(
                 text = contactName,
-                color = textColor,
-                fontWeight = FontWeight.Bold,
+                color = if (isMissed) errorColor else textColor,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Spacer(modifier = Modifier.height(2.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = typeIcon,
                     contentDescription = typeLabel,
-                    tint = secondaryTextColor,
+                    tint = if (isMissed) errorColor else secondaryTextColor,
                     modifier = Modifier.size(16.dp),
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
-                    text = "$phoneTypeLabel • $timeLabel",
+                    text = phoneTypeLabel,
                     color = secondaryTextColor,
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f, fill = false),
                 )
             }
         }
-        Spacer(modifier = Modifier.width(8.dp))
-        val phoneNumber = remember(operation.target, operation.contact.phones) {
-            operation.target.ifBlank {
-                operation.contact.phones.firstOrNull()?.number.orEmpty()
-            }
-        }
+        Spacer(modifier = Modifier.width(12.dp))
+        Text(
+            text = timeLabel,
+            color = secondaryTextColor,
+            style = MaterialTheme.typography.labelLarge,
+            maxLines = 1,
+        )
         IconButton(
             onClick = {
                 if (phoneNumber.isNotBlank()) {
                     phoneActions.callPhoneNumber(context, phoneNumber)
                 }
             },
-            modifier = Modifier.size(44.dp),
+            enabled = phoneNumber.isNotBlank(),
+            modifier = Modifier.size(48.dp),
         ) {
             Icon(
-                imageVector = Icons.Default.Call,
+                imageVector = Icons.Outlined.Call,
                 contentDescription = stringResource(CoreUiR.string.call),
-                tint = accentColor,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.size(22.dp),
             )
         }
@@ -154,13 +171,15 @@ fun RecentOperationItem(
 @Composable
 private fun RecentOperationAvatar(
     operation: RecentOperation,
+    hasSavedContact: Boolean,
     isSelected: Boolean,
     accentColor: Color,
-    textColor: Color,
     callHistory: CallHistoryDirectory,
 ) {
     Box(
-        modifier = Modifier.size(45.dp),
+        modifier = Modifier
+            .size(HistoryAvatarSize)
+            .clip(CircleShape),
         contentAlignment = Alignment.Center,
     ) {
         if (isSelected) {
@@ -176,33 +195,57 @@ private fun RecentOperationAvatar(
         val bitmap = remember(photoUri) {
             photoUri?.let(callHistory::uriToBitmap)
         }
-        if (bitmap != null) {
-            Image(
+        val initials = remember(operation.contact.name) { historyInitials(operation.contact.name) }
+        when {
+            bitmap != null -> Image(
                 bitmap = bitmap.asImageBitmap(),
                 contentDescription = null,
-                modifier = Modifier
-                    .size(45.dp)
-                    .clip(CircleShape),
+                modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
             )
-        } else {
-            Box(
+
+            hasSavedContact && initials != null -> {
+                val avatarColor = ContactDisplay.getRandomColor(operation.contact.name)
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(avatarColor),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = initials,
+                        color = if (avatarColor.luminance() > 0.5f) Color.Black else Color.White,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                }
+            }
+
+            else -> Box(
                 modifier = Modifier
-                    .size(45.dp)
-                    .clip(CircleShape)
-                    .background(ContactDisplay.getRandomColor(operation.contact.name)),
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     imageVector = Icons.Default.Person,
                     contentDescription = null,
-                    modifier = Modifier.size(30.dp),
-                    tint = textColor.copy(alpha = 0.5f),
+                    modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
     }
 }
+
+internal val HistoryAvatarSize = 44.dp
+
+internal fun historyInitials(name: String): String? =
+    name.split(' ')
+        .mapNotNull { word -> word.firstOrNull(Char::isLetter)?.uppercaseChar() }
+        .take(2)
+        .joinToString("")
+        .ifEmpty { null }
 
 @Composable
 private fun recentTypePresentation(type: RecentType) = when (type) {

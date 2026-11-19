@@ -200,6 +200,9 @@
     <string name="list_density_spacious">Espaçoso</string>
     <string name="list_density_custom_value">Personalizada · %1$d</string>
     <string name="list_density_decrease">Menos espaçamento</string>
+    <string name="animation_speed_custom_value">%1$d ms</string>
+    <string name="animation_speed_slower">Mais lenta</string>
+    <string name="animation_speed_faster">Mais rápida</string>
     <string name="list_density_increase">Mais espaçamento</string>
     <string name="glass_effects">Efeitos de vidro</string>
     <string name="glass_effects_description">Desfoque e refração nas barras do estilo Moderno. No modo Automático, eles se adaptam ao que o seu aparelho consegue processar.</string>

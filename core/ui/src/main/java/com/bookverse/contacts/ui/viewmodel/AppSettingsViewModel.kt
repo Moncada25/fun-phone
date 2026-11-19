@@ -280,13 +280,6 @@ class AppSettingsViewModel(
 
     private val localeController = LocaleController(settingsStore)
 
-    val animationOptions = listOf(
-        AnimationSpeed.FAST,
-        AnimationSpeed.NORMAL,
-        AnimationSpeed.SLOW,
-        AnimationSpeed.OFF
-    )
-
     val vibrationDurations = listOf(20, 30, 50, 80, 120)
     val vibrationPatterns = listOf("off", "simple", "double", "triple")
     val themeModes = listOf(ThemeMode.LIGHT, ThemeMode.DARK, ThemeMode.SYSTEM)
@@ -969,11 +962,7 @@ class AppSettingsViewModel(
 
                 _darkModeStyle.value = DarkModeStyle.fromName(backup.darkModeStyle)
                 _fontType.value = backup.fontType
-                try {
-                    _animationSpeed.value = AnimationSpeed.valueOf(backup.animationSpeed)
-                } catch (_: Exception) {
-                    _animationSpeed.value = AnimationSpeed.NORMAL
-                }
+                _animationSpeed.value = AnimationSpeed.fromName(backup.animationSpeed)
                 _vibrationDuration.value = backup.vibrationDuration
                 _vibrationPattern.value = backup.vibrationPattern
                 try {

@@ -199,6 +199,9 @@
     <string name="list_density_spacious">Großzügig</string>
     <string name="list_density_custom_value">Benutzerdefiniert · %1$d</string>
     <string name="list_density_decrease">Weniger Abstand</string>
+    <string name="animation_speed_custom_value">%1$d ms</string>
+    <string name="animation_speed_slower">Langsamer</string>
+    <string name="animation_speed_faster">Schneller</string>
     <string name="list_density_increase">Mehr Abstand</string>
     <string name="glass_effects">Glaseffekte</string>
     <string name="glass_effects_description">Unschärfe und Lichtbrechung in den Leisten des Modern-Stils. Automatisch passt sie an die Leistung deines Geräts an.</string>

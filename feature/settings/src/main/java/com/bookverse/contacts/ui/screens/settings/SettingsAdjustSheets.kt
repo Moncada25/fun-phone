@@ -4,6 +4,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -38,6 +40,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.feature.settings.R
+import com.bookverse.contacts.settings.AnimationSpeed
 import com.bookverse.contacts.settings.FONT_SCALE_DEFAULT_PERCENT
 import com.bookverse.contacts.settings.FONT_SCALE_MAX_PERCENT
 import com.bookverse.contacts.settings.FONT_SCALE_MIN_PERCENT
@@ -128,6 +131,51 @@ internal fun SettingsFontScaleSheet(
         )
     }
 }
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun SettingsAnimationSpeedSheet(
+    speed: AnimationSpeed,
+    onSpeedSelected: (AnimationSpeed) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    SettingsSheetScaffold(title = stringResource(R.string.transition_speed), onDismiss = onDismiss) {
+        SettingsStepSlider(
+            label = stringResource(R.string.transition_speed),
+            appliedValue = animationSpeedSliderValue(speed),
+            valueLabel = { animationSpeedLabel(animationSpeedFromSliderValue(it)) },
+            range = AnimationSpeed.MIN_STEP..AnimationSpeed.MAX_STEP,
+            defaultValue = animationSpeedSliderValue(AnimationSpeed.NORMAL),
+            decreaseLabel = stringResource(R.string.animation_speed_slower),
+            increaseLabel = stringResource(R.string.animation_speed_faster),
+            onCommit = { onSpeedSelected(animationSpeedFromSliderValue(it)) },
+        ) {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                ANIMATION_SPEED_PRESETS.forEach { preset ->
+                    FilterChip(
+                        selected = speed == preset,
+                        onClick = { onSpeedSelected(preset) },
+                        label = { Text(animationSpeedLabel(preset), maxLines = 1) },
+                    )
+                }
+            }
+        }
+    }
+}
+
+internal fun animationSpeedSliderValue(speed: AnimationSpeed): Int = AnimationSpeed.MAX_STEP - speed.step
+
+internal fun animationSpeedFromSliderValue(value: Int): AnimationSpeed =
+    AnimationSpeed.ofStep(AnimationSpeed.MAX_STEP - value)
+
+private val ANIMATION_SPEED_PRESETS = listOf(
+    AnimationSpeed.SLOW,
+    AnimationSpeed.NORMAL,
+    AnimationSpeed.FAST,
+    AnimationSpeed.OFF,
+)
 
 @Composable
 internal fun SettingsListDensitySheet(

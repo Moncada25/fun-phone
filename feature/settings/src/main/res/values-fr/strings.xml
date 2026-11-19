@@ -200,6 +200,9 @@
     <string name="list_density_spacious">Aérée</string>
     <string name="list_density_custom_value">Personnalisée · %1$d</string>
     <string name="list_density_decrease">Moins d\'espacement</string>
+    <string name="animation_speed_custom_value">%1$d ms</string>
+    <string name="animation_speed_slower">Plus lente</string>
+    <string name="animation_speed_faster">Plus rapide</string>
     <string name="list_density_increase">Plus d\'espacement</string>
     <string name="glass_effects">Effets de verre</string>
     <string name="glass_effects_description">Flou et réfraction sur les barres du style Moderne. Automatique les adapte aux capacités de votre appareil.</string>

@@ -146,6 +146,7 @@ fun ContactsAppTheme(
         target = baseColorScheme.withAccentPalette(accentPalette),
         key = listOf(dynamicColor, darkTheme, darkModeStyle, accentSeed),
         durationMs = LocalAnimationSpeed.current.durationMs,
+        snapKey = if (LocalThemeRevealState.current != null) listOf(dynamicColor, darkTheme, darkModeStyle) else null,
     )
 
     val defaults = Typography()

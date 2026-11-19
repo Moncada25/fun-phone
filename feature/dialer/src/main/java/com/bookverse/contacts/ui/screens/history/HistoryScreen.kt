@@ -82,6 +82,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -710,79 +712,70 @@ fun HistoryScreen(
                         contentPadding = PaddingValues(top = paddingValues.calculateTopPadding(), bottom = com.bookverse.contacts.ui.components.LocalMainContentBottomPadding.current),
                     ) {
                     groupedOperations.forEach { (date, operations) ->
-                        item { Spacer(modifier = Modifier.height(6.dp)) }
+                        item { Spacer(modifier = Modifier.height(12.dp)) }
                         item {
-                            Box(
-                                modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.5f)
-                                        .background(
-                                            color = accentColor.copy(alpha = 0.3f),
-                                            shape = RoundedCornerShape(4.dp)
-                                        ),
-                                    horizontalArrangement = Arrangement.Center
-                                ) {
-                                    Text(
-                                        text = ContactDisplay.capitalizeFirstLetter(
-                                            date.toRelativeDate(context)
-                                        ),
-                                        color = textColor.copy(alpha = 0.8f),
-                                        fontSize = 12.sp,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                            }
+                            Text(
+                                text = ContactDisplay.capitalizeFirstLetter(
+                                    date.toRelativeDate(context)
+                                ),
+                                color = secondaryTextColor,
+                                style = MaterialTheme.typography.titleSmall,
+                                fontWeight = FontWeight.SemiBold,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 28.dp, end = 28.dp, bottom = 8.dp)
+                                    .semantics { heading() },
+                            )
                         }
-                        val hasMultiple = operations.size > 1
                         itemsIndexed(operations, key = { _, op -> op.historyKey }) { index, op ->
                             val isSelected = selectedOperations.contains(op.historyKey)
                             val isFirst = index == 0
                             val isLast = index == operations.lastIndex
                             val shape = RoundedCornerShape(
-                                topStart = if (isFirst) 20.dp else 0.dp,
-                                topEnd = if (isFirst) 20.dp else 0.dp,
-                                bottomStart = if (isLast) 20.dp else 0.dp,
-                                bottomEnd = if (isLast) 20.dp else 0.dp
+                                topStart = if (isFirst) 24.dp else 0.dp,
+                                topEnd = if (isFirst) 24.dp else 0.dp,
+                                bottomStart = if (isLast) 24.dp else 0.dp,
+                                bottomEnd = if (isLast) 24.dp else 0.dp
                             )
                             Surface(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(
-                                        start = 16.dp,
-                                        end = 16.dp,
-                                        top = if (isFirst) 6.dp else 0.dp,
-                                        bottom = if (isLast || hasMultiple) 2.dp else 0.dp
-                                    ),
+                                    .padding(horizontal = 16.dp),
                                 shape = shape,
                                 color = MaterialTheme.colorScheme.surface
                             ) {
-                                RecentOperationItem(
-                                    operation = op,
-                                    textColor = textColor,
-                                    isSelected = isSelected,
-                                    accentColor = accentColor,
-                                    onOperationClick = {
-                                        if (selectedOperations.isNotEmpty()) {
+                                Column {
+                                    if (!isFirst) {
+                                        HorizontalDivider(
+                                            modifier = Modifier.padding(start = 76.dp, end = 16.dp),
+                                            thickness = 0.5.dp,
+                                            color = MaterialTheme.colorScheme.outlineVariant,
+                                        )
+                                    }
+                                    RecentOperationItem(
+                                        operation = op,
+                                        textColor = textColor,
+                                        isSelected = isSelected,
+                                        accentColor = accentColor,
+                                        onOperationClick = {
+                                            if (selectedOperations.isNotEmpty()) {
+                                                callHistory.toggleRecentOperationSelection(op)
+                                            } else {
+                                                selectedContactId = op.contact.id
+                                                selectedPhoneNumber =
+                                                    op.contact.phones.firstOrNull()?.number ?: ""
+                                                selectedDate = date
+                                                showBottomSheet = true
+                                            }
+                                        },
+                                        onLongPress = {
                                             callHistory.toggleRecentOperationSelection(op)
-                                        } else {
-                                            selectedContactId = op.contact.id
-                                            selectedPhoneNumber =
-                                                op.contact.phones.firstOrNull()?.number ?: ""
-                                            selectedDate = date
-                                            showBottomSheet = true
-                                        }
-                                    },
-                                    onLongPress = {
-                                        callHistory.toggleRecentOperationSelection(op)
-                                    },
-                                    callHistory = callHistory,
-                                    secondaryTextColor = secondaryTextColor,
-                                    phoneActions = phoneActions,
-                                )
+                                        },
+                                        callHistory = callHistory,
+                                        secondaryTextColor = secondaryTextColor,
+                                        phoneActions = phoneActions,
+                                    )
+                                }
                             }
                         }
                     }

@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
@@ -33,7 +34,9 @@ import com.bookverse.contacts.ui.theme.DarkGrayBackgroundColor
 import com.bookverse.contacts.ui.theme.DimBackgroundColor
 import com.bookverse.contacts.ui.theme.createAccentPalette
 import com.bookverse.contacts.ui.theme.DarkModeStyle
+import com.bookverse.contacts.ui.theme.LocalThemeRevealState
 import com.bookverse.contacts.ui.theme.ThemeMode
+import com.bookverse.contacts.ui.theme.themeRevealOrigin
 
 @Composable
 internal fun SettingsColorSheet(
@@ -98,6 +101,7 @@ internal fun SettingsThemeSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .themeRevealOrigin(LocalThemeRevealState.current)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
@@ -116,8 +120,12 @@ internal fun SettingsThemeSheet(
                 )
             }
 
-            if (selectedMode != ThemeMode.LIGHT) {
-                Spacer(modifier = Modifier.height(8.dp))
+            val darkStylesEnabled = selectedMode != ThemeMode.LIGHT
+            Spacer(modifier = Modifier.height(8.dp))
+            Column(
+                modifier = Modifier.alpha(if (darkStylesEnabled) 1f else DISABLED_SECTION_ALPHA),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 Text(
                     text = stringResource(R.string.dark_mode_style_label),
                     modifier = Modifier.padding(horizontal = 4.dp),
@@ -130,6 +138,7 @@ internal fun SettingsThemeSheet(
                         supportingText = stringResource(darkModeStyleDescriptionRes(style)),
                         selected = style == selectedDarkStyle,
                         onClick = { onDarkModeStyleSelected(style) },
+                        enabled = darkStylesEnabled,
                         leadingContent = { DarkStyleSwatch(style) },
                     )
                 }
@@ -272,3 +281,5 @@ private val COLOR_NAME_RES = mapOf(
     "indigo" to R.string.indigo,
     "blue_grey" to R.string.blue_grey,
 )
+
+private const val DISABLED_SECTION_ALPHA = 0.38f

@@ -11,15 +11,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.lerp
 
 @Composable
-fun rememberAnimatedColorScheme(target: ColorScheme, key: Any, durationMs: Int): ColorScheme {
+fun rememberAnimatedColorScheme(
+    target: ColorScheme,
+    key: Any,
+    durationMs: Int,
+    snapKey: Any? = null,
+): ColorScheme {
     val progress = remember { Animatable(1f) }
     val from = remember { mutableStateOf(target) }
     val to = remember { mutableStateOf(target) }
     val appliedKey = remember { mutableStateOf(key) }
+    val appliedSnapKey = remember { mutableStateOf(snapKey) }
     LaunchedEffect(key) {
         if (appliedKey.value == key) return@LaunchedEffect
         appliedKey.value = key
-        if (durationMs <= 0) {
+        val snap = snapKey != null && appliedSnapKey.value != snapKey
+        appliedSnapKey.value = snapKey
+        if (durationMs <= 0 || snap) {
             from.value = target
             to.value = target
             progress.snapTo(1f)
