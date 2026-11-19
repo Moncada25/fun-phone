@@ -2,5 +2,5 @@
 • Spiele werden zur Retro-Arcade mit Rekorden und Anzeigetafel.
 • Einfachere Malwerkzeuge und eine übersichtlichere Tool-Liste.
 • Neue Info- und Willkommensseiten.
-• „Ganze App sperren" ist jetzt unter Sicherheit und Datenschutz.
+• „Ganze App sperren“ ist jetzt unter Sicherheit und Datenschutz.
 • Der Wählblock schlägt bei kurzen Nummern keinen falschen Kontakt mehr vor.
