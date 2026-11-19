@@ -1,6 +1,5 @@
-• Crear o editar un contacto tiene el mismo diseño limpio de los detalles del contacto.
-• Pomodoro estrena un temporizador más simple, con anillo fino y controles claros.
-• Tu perfil sigue el diseño de los detalles del contacto.
-• Salir del editor de contraseñas sin guardar ya no conserva los cambios.
-• La tabla de puntajes muestra tu juego favorito.
-• Las etiquetas de los contactos se leen mejor.
+• Contactos más limpios: detalles, formulario y perfil comparten diseño, con accesos para llamar, escribir, WhatsApp, correo o favorito.
+• Los juegos son un arcade retro con récords y tabla de puntajes con tu juego favorito.
+• Pomodoro, dibujo y lista de herramientas más simples.
+• Nuevas pantallas de Acerca de y bienvenida; "Bloquear toda la app" está en Seguridad y privacidad.
+• Corregido: cambios de contraseña sin guardar y contactos equivocados con números cortos.

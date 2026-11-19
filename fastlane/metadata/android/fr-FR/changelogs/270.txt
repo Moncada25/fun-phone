@@ -1,6 +1,5 @@
-• Créer ou modifier un contact reprend le design épuré de la fiche contact.
-• Pomodoro passe à un minuteur plus simple, avec un anneau fin et des commandes claires.
-• Votre profil suit désormais le design de la fiche contact.
-• Quitter l’éditeur de mots de passe sans enregistrer ne conserve plus les modifications.
-• Le tableau des scores affiche votre jeu favori.
-• Les étiquettes des contacts sont plus lisibles.
+• Contacts épurés : fiche, formulaire et profil partagent un design, avec appel, message, WhatsApp, e-mail ou favori.
+• Jeux en arcade rétro avec records et tableau des scores avec votre jeu favori.
+• Pomodoro, dessin et liste d’outils simplifiés.
+• Écrans À propos et d’accueil repensés ; « Verrouiller toute l’appli » est dans Sécurité et confidentialité.
+• Corrigé : modifications de mot de passe non enregistrées et mauvais contact pour les numéros courts.

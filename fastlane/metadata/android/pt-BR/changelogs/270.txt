@@ -1,6 +1,5 @@
-• Criar ou editar um contato agora tem o mesmo visual limpo dos detalhes do contato.
-• O Pomodoro ganha um timer mais simples, com anel fino e controles claros.
-• Seu perfil segue o design dos detalhes do contato.
-• Sair do editor de senhas sem salvar não mantém mais as alterações.
-• O placar dos jogos mostra seu jogo favorito.
-• As etiquetas dos contatos ficam mais legíveis.
+• Contatos mais limpos: detalhes, formulário e perfil com o mesmo visual e atalhos para ligar, mensagem, WhatsApp, e-mail ou favorito.
+• Os jogos viram um fliperama retrô com recordes e placar com seu jogo favorito.
+• Pomodoro, desenho e lista de ferramentas mais simples.
+• Novas telas de Sobre e boas-vindas; "Bloquear o app inteiro" fica em Segurança e privacidade.
+• Corrigido: alterações de senha não salvas e contato errado em números curtos.
