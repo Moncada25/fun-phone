@@ -1,1 +1,1 @@
-Private Android dialer with fast T9 search, favorites and local contacts
+Private dialer, no ads: fast T9, contacts, widgets and optional tools

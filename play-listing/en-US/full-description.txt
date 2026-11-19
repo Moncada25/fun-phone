@@ -1,24 +1,34 @@
-Make calls your way with a private Android dialer built around speed, clarity and control.
+A fast, private phone app for Android: dialer and contacts in one place, with no ads, no analytics and no sign-up.
 
-Find contacts with T9 search, call from favorites or recents, and manage incoming, outgoing and missed calls with clear controls. Fun Phone can replace your default phone app. Device Status helps you review permissions and the default dialer role.
+Calls
+• T9 search by name or number
+• Favorites, recents and missed calls at a glance
+• Clear incoming and in-call screens; answer with a swipe or buttons
+• Pick a default SIM or choose one for every call
+• On-device spam filter: block hidden numbers or callers not in your contacts, and catch blocked numbers with or without the country code
+• A custom call background for the people you choose
 
-Fun Phone processes contacts and call data on your device. Connected accounts may sync contacts under their own settings. The app has no ads, analytics, cloud account or developer-operated cloud. Contact photos are shared as local files through Android Sharesheet when you choose to share them.
+Contacts
+• Quick actions to call, message, WhatsApp, email or favorite
+• Tags, duplicate merging and a recycle bin to restore deleted contacts
+• vCard import and export, plus an encrypted backup file
 
-Two optional features connect directly to the internet. Public holidays uses Nager.Date after your approval, requesting the selected country and year. Opening a website or social preview contacts the selected site, which receives the URL, IP address, cookies and technical request data under its own policy. Speech tools use your configured Android speech provider, whose processing may require a connection.
+Optional tools: turn on only what you use
+• Notes, checklists, reminders and voice notes, organized in folders
+• Password vault with PIN or biometrics, two-step verification codes and autofill
+• Expenses and budgets with a yearly summary
+• QR scanner and generator, text to speech and speech to text
+• Pomodoro, menstrual calendar, holidays calendar and paint
+• A retro arcade with records and a scoreboard: Sudoku, Minesweeper, 2048, Snake, Breakout, Memory Cards, Hangman, Tic Tac Toe, Puzzle and Fun Bird
 
-Personalize themes, colors, fonts, layouts and text size. Compact and large-text options help the app fit different screens, with labels and navigation designed for Android accessibility services and screen readers.
+Make it yours
+• Modern, Minimalist or Retro style
+• Light or dark theme: AMOLED, dark gray or dim
+• Accent colors, fonts and adjustable text size
+• Home screen widgets for favorites, recent calls, notes and expenses
+• Labels and navigation built for TalkBack and other accessibility services
+• Lock the whole app with PIN or biometrics
 
-Calls and contacts come first. Enable only the extra tools you want: notes, checklists, reminders, expenses and budgets, QR utilities, voice tools, a local password vault with PIN or biometrics, Pomodoro, wellbeing, paint and games.
+Private by design: contacts, calls, notes and passwords are processed on your device. Accounts you connect, such as Google, may sync contacts under their own settings. Only two optional features go online: the holidays calendar asks Nager.Date for the country and year you choose, after your approval, and website or social previews load the site you open, which receives the request under its own policy. Speech tools use your Android speech provider, which may need a connection.
 
-Highlights:
-• T9 contact search
-• Favorites, recents and missed calls
-• Incoming and active-call controls
-• Contact import, export and duplicate tools
-• Themes, colors, fonts and adjustable text size
-• Screen-reader-friendly labels and navigation
-• Optional tools you can enable or hide
-• Local password vault with PIN or biometrics
-• No ads, analytics or developer-operated cloud
-
-Android capabilities vary by device and version. After installation, open Device Status to complete permissions and choose Fun Phone as your default dialer.
+To get started, open Device Status after installing, grant the permissions and set Fun Phone as your default phone app. Some features depend on your device and Android version.

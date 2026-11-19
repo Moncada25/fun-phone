@@ -1,24 +1,34 @@
-Telefoniere auf deine Art: mit einem privaten Android-Dialer für schnelle Suche, klare Bedienung und mehr Kontrolle.
+Eine schnelle, private Telefon-App für Android: Dialer und Kontakte an einem Ort, ohne Werbung, ohne Analytik und ohne Registrierung.
 
-Finde Kontakte per T9, rufe über Favoriten oder die Anrufliste an und verwalte eingehende, ausgehende und verpasste Anrufe mit übersichtlichen Steuerelementen. Fun Phone kann deine Standard-Telefon-App ersetzen. Im Gerätestatus prüfst du Berechtigungen und die Rolle als Standard-Dialer.
+Anrufe
+• T9-Suche nach Name oder Nummer
+• Favoriten, Anrufliste und verpasste Anrufe auf einen Blick
+• Übersichtliche Bildschirme für eingehende und aktive Anrufe; annehmen per Wischen oder Tasten
+• Standard-SIM festlegen oder bei jedem Anruf wählen
+• Spamfilter direkt auf dem Gerät: blockiert unterdrückte Nummern oder Anrufer, die nicht in deinen Kontakten sind, und erkennt blockierte Nummern mit oder ohne Ländervorwahl
+• Eigener Anrufhintergrund für ausgewählte Kontakte
 
-Fun Phone verarbeitet Kontakte und Anrufdaten auf deinem Gerät. Verbundene Konten können Kontakte nach ihren eigenen Einstellungen synchronisieren. Die App enthält keine Werbung, Analytik, Cloud-Konten oder Entwickler-Cloud. Kontaktfotos werden nur auf deinen Wunsch als lokale Dateien über das Android-Teilen-Menü weitergegeben.
+Kontakte
+• Schnellaktionen zum Anrufen, Schreiben, für WhatsApp, E-Mail oder Favoriten
+• Schlagwörter, Zusammenführen von Duplikaten und Papierkorb zum Wiederherstellen gelöschter Kontakte
+• vCard-Import und -Export sowie eine verschlüsselte Sicherungsdatei
 
-Zwei optionale Funktionen verbinden sich direkt mit dem Internet. Das Feiertagswerkzeug fragt nach deiner Zustimmung das gewählte Land und Jahr bei Nager.Date ab. Wenn du eine Website- oder Social-Media-Vorschau öffnest, erhält die gewählte Website URL, IP-Adresse, Cookies und technische Anfragedaten gemäß ihrer eigenen Richtlinie. Sprachwerkzeuge nutzen deinen Android-Sprachanbieter, dessen Verarbeitung eine Verbindung benötigen kann.
+Optionale Werkzeuge: aktiviere nur, was du nutzt
+• Notizen, Checklisten, Erinnerungen und Sprachnotizen, sortiert in Ordnern
+• Passworttresor mit PIN oder Biometrie, Codes für die Bestätigung in zwei Schritten und Autofill
+• Ausgaben und Budgets mit Jahresübersicht
+• QR-Scanner und -Generator, Text-zu-Sprache und Sprache-zu-Text
+• Pomodoro, Menstruationskalender, Feiertagskalender und Malen
+• Retro-Arcade mit Rekorden und Bestenliste: Sudoku, Minensuchspiel, 2048, Snake, Breakout, Memory-Karten, Galgenraten, Drei gewinnt, Puzzle und Fun Bird
 
-Passe Designs, Farben, Schriften, Layouts und Textgröße an. Kompakte Ansichten und große Schrift passen sich verschiedenen Bildschirmen an. Beschriftungen und Navigation sind auf Android-Bedienungshilfen und Screenreader ausgelegt.
+Ganz nach deinem Stil
+• Stil Modernes Design, Minimalistisch oder Retro
+• Helles oder dunkles Design: AMOLED, Dunkelgrau oder Gedämpft
+• Akzentfarben, Schriften und anpassbare Textgröße
+• Widgets für Favoriten, letzte Anrufe, Notizen und Ausgaben
+• Beschriftungen und Navigation für TalkBack und andere Bedienungshilfen
+• Sperre für die gesamte App mit PIN oder Biometrie
 
-Anrufe und Kontakte stehen im Mittelpunkt. Aktiviere nur die Extras, die du möchtest: Notizen, Checklisten, Erinnerungen, Ausgaben und Budgets, QR- und Sprachwerkzeuge, einen lokalen Passworttresor mit PIN oder Biometrie, Pomodoro, Wohlbefinden, Malen und Spiele.
+Privat von Grund auf: Kontakte, Anrufe, Notizen und Passwörter werden auf deinem Gerät verarbeitet. Verbundene Konten wie Google können Kontakte nach ihren eigenen Einstellungen synchronisieren. Nur zwei optionale Funktionen gehen online: Der Feiertagskalender fragt nach deiner Zustimmung das gewählte Land und Jahr bei Nager.Date ab, und Website- oder Social-Media-Vorschauen laden die geöffnete Seite, die deine Anfrage gemäß ihrer eigenen Richtlinie erhält. Sprachwerkzeuge nutzen deinen Android-Sprachanbieter, der eine Verbindung benötigen kann.
 
-Funktionen im Überblick:
-• Kontaktsuche per T9
-• Favoriten, Anrufliste und verpasste Anrufe
-• Steuerung eingehender und aktiver Anrufe
-• Kontaktimport, Export und Verwaltung von Duplikaten
-• Designs, Farben, Schriften und anpassbare Textgröße
-• Beschriftungen und Navigation für Screenreader
-• Optionale Werkzeuge zum Ein- und Ausblenden
-• Lokaler Passworttresor mit PIN oder Biometrie
-• Keine Werbung, Analytik oder Entwickler-Cloud
-
-Android-Funktionen hängen vom Gerät und der Version ab. Öffne nach der Installation den Gerätestatus, um Berechtigungen einzurichten und Fun Phone als Standard-Dialer auszuwählen.
+Öffne zum Start nach der Installation den Gerätestatus, erteile die Berechtigungen und wähle Fun Phone als Standard-Telefon-App. Einige Funktionen hängen von Gerät und Android-Version ab.

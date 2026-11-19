@@ -1,24 +1,34 @@
-Faça chamadas do seu jeito com um discador Android privado, pensado para oferecer agilidade, clareza e controle.
+Um app de telefone rápido e privado para Android: discador e contatos no mesmo lugar, sem anúncios, sem análises e sem cadastro.
 
-Encontre contatos com a busca T9, ligue pelos favoritos ou recentes e gerencie chamadas recebidas, realizadas e perdidas com controles claros. O Fun Phone pode substituir o app de telefone padrão. Em Status do dispositivo, você confere as permissões e a função de discador padrão.
+Chamadas
+• Busca T9 por nome ou número
+• Favoritos, recentes e chamadas perdidas à vista
+• Telas claras para chamadas recebidas e em andamento; atenda deslizando ou com botões
+• Escolha um chip padrão ou decida a cada chamada
+• Filtro de spam no próprio aparelho: bloqueie números ocultos ou fora dos seus contatos e reconheça números bloqueados com ou sem o código do país
+• Fundo de chamada personalizado para quem você escolher
 
-O Fun Phone processa contatos e dados de chamadas no aparelho. Contas conectadas podem sincronizar contatos conforme suas próprias configurações. O app não tem anúncios, análises, conta na nuvem nem nuvem operada pelo desenvolvedor. Fotos de contatos são compartilhadas como arquivos locais pelo menu de compartilhamento do Android quando você escolhe compartilhá-las.
+Contatos
+• Atalhos para ligar, enviar mensagem, WhatsApp, e-mail ou favoritar
+• Etiquetas, união de duplicados e lixeira para recuperar contatos excluídos
+• Importação e exportação vCard e arquivo de backup criptografado
 
-Duas funções opcionais se conectam diretamente à internet. A ferramenta de feriados consulta o Nager.Date com o país e o ano escolhidos, após sua aprovação. Ao abrir a prévia de um site ou de uma rede social, o site escolhido recebe a URL, o endereço IP, cookies e dados técnicos da solicitação conforme sua própria política. As ferramentas de voz usam o provedor configurado no Android, cujo processamento pode precisar de conexão.
+Ferramentas opcionais: ative só o que você usa
+• Notas, listas de tarefas, lembretes e notas de voz, organizadas em pastas
+• Cofre de senhas com PIN ou biometria, códigos de verificação em duas etapas e preenchimento automático
+• Gastos e orçamentos com resumo anual
+• Leitor e gerador de QR, texto para fala e fala para texto
+• Pomodoro, calendário menstrual, calendário de feriados e pintura
+• Arcade retrô com recordes e placar: Sudoku, Campo minado, 2048, Cobrinha, Breakout, Jogo da memória, Forca, Jogo da velha, Quebra-cabeça e Fun Bird
 
-Personalize temas, cores, fontes, layouts e tamanho do texto. As opções compactas e de texto grande se adaptam a diferentes telas, com rótulos e navegação pensados para os serviços de acessibilidade e leitores de tela do Android.
+Do seu jeito
+• Estilo Moderno, Minimalista ou Retro
+• Tema claro ou escuro: AMOLED, cinza escuro ou escuro suave
+• Cores de destaque, fontes e tamanho do texto ajustável
+• Widgets de favoritos, chamadas recentes, notas e gastos
+• Rótulos e navegação pensados para o TalkBack e outros serviços de acessibilidade
+• Bloqueio do app inteiro com PIN ou biometria
 
-Chamadas e contatos vêm primeiro. Ative apenas os extras que quiser: notas, listas de tarefas, lembretes, gastos e orçamentos, ferramentas QR e de voz, cofre local de senhas com PIN ou biometria, Pomodoro, bem-estar, pintura e jogos.
+Privado por natureza: contatos, chamadas, notas e senhas são processados no aparelho. Contas conectadas, como o Google, podem sincronizar contatos conforme suas próprias configurações. Só duas funções opcionais usam a internet: o calendário de feriados consulta o Nager.Date com o país e o ano escolhidos, após sua aprovação, e a prévia de sites ou redes sociais carrega o site que você abre, que recebe a solicitação conforme sua própria política. As ferramentas de voz usam o provedor de voz do Android, que pode precisar de conexão.
 
-Destaques:
-• Busca T9 de contatos
-• Favoritos, recentes e chamadas perdidas
-• Controles de chamadas recebidas e em andamento
-• Importação, exportação e gerenciamento de duplicados
-• Temas, cores, fontes e tamanho do texto ajustável
-• Rótulos e navegação compatíveis com leitores de tela
-• Ferramentas opcionais para ativar ou ocultar
-• Cofre local de senhas com PIN ou biometria
-• Sem anúncios, análises nem nuvem operada pelo desenvolvedor
-
-Os recursos do Android variam conforme o aparelho e a versão. Após instalar, abra Status do dispositivo para concluir as permissões e escolher o Fun Phone como discador padrão.
+Para começar, abra Status do dispositivo após instalar, conceda as permissões e escolha o Fun Phone como app de telefone padrão. Alguns recursos dependem do aparelho e da versão do Android.
