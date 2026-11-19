@@ -172,6 +172,7 @@ fun SettingsScreen(
     val dtmfTonesEnabled by appSettingsViewModel.dtmfTonesEnabled.collectAsStateWithLifecycle()
     val immersiveIncomingCallsEnabled by appSettingsViewModel.immersiveIncomingCalls.collectAsStateWithLifecycle()
     val answerWithVolumeUpEnabled by appSettingsViewModel.answerWithVolumeUpEnabled.collectAsStateWithLifecycle()
+    val declineWithVolumeDownEnabled by appSettingsViewModel.declineWithVolumeDownEnabled.collectAsStateWithLifecycle()
     val speedDialContacts by appSettingsViewModel.speedDialContacts.collectAsStateWithLifecycle()
     val shortcutContainerColor = MaterialTheme.colorScheme.background
     val shortcutIconColor = MaterialTheme.colorScheme.onBackground
@@ -535,6 +536,7 @@ fun SettingsScreen(
             toolsMenuVisible = !toolsOrder.toolsMenuHidden,
             immersiveIncomingCallsEnabled = immersiveIncomingCallsEnabled,
             answerWithVolumeUpEnabled = answerWithVolumeUpEnabled,
+            declineWithVolumeDownEnabled = declineWithVolumeDownEnabled,
             dtmfTonesEnabled = dtmfTonesEnabled == "enabled",
             passwordAuthEnabled = passwordAuthMethod != null,
             passwordManagerEnabled = passwordManagerEnabled,
@@ -580,6 +582,9 @@ fun SettingsScreen(
             },
             onAnswerWithVolumeChanged = { enabled ->
                 appSettingsViewModel.setAnswerWithVolumeUpEnabled(context, enabled)
+            },
+            onDeclineWithVolumeChanged = { enabled ->
+                appSettingsViewModel.setDeclineWithVolumeDownEnabled(context, enabled)
             },
             onDtmfTonesChanged = { enabled ->
                 appSettingsViewModel.setDtmfTonesEnabled(

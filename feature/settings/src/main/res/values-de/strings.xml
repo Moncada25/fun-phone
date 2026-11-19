@@ -167,6 +167,8 @@
     <string name="incoming_call_immersive_description">Den Anrufbildschirm immer als Vollbild öffnen, ohne Benachrichtigungen.</string>
     <string name="answer_with_volume_title">Mit Lautstärketaste annehmen</string>
     <string name="answer_with_volume_description">Erlaubt das Annehmen mit der Lauter-Taste.</string>
+    <string name="decline_with_volume_title">Mit Lautstärketaste ablehnen</string>
+    <string name="decline_with_volume_description">Erlaubt das Ablehnen mit der Leiser-Taste.</string>
     <string name="dtmf_tones_title">Wähltöne</string>
     <string name="dtmf_tones_description">Ton beim Wählen von Nummern</string>
     <string name="speed_dial_title">Kurzwahl</string>

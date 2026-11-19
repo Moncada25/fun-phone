@@ -168,6 +168,8 @@
     <string name="incoming_call_immersive_description">Toujours ouvrir l\'écran d\'appel entrant en plein écran, sans notification.</string>
     <string name="answer_with_volume_title">Répondre avec le volume</string>
     <string name="answer_with_volume_description">Permet de répondre avec la touche volume haut.</string>
+    <string name="decline_with_volume_title">Refuser avec le volume</string>
+    <string name="decline_with_volume_description">Permet de refuser avec la touche volume bas.</string>
     <string name="dtmf_tones_title">Tons de numérotation</string>
     <string name="dtmf_tones_description">Son lors de la numérotation</string>
     <string name="speed_dial_title">Numérotation rapide</string>

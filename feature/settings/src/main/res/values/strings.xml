@@ -191,6 +191,8 @@
     <string name="incoming_call_immersive_description">Always open the Incoming Call screen full-screen without notifications.</string>
     <string name="answer_with_volume_title">Answer with volume</string>
     <string name="answer_with_volume_description">Allows answering the call with the volume up key.</string>
+    <string name="decline_with_volume_title">Decline with volume</string>
+    <string name="decline_with_volume_description">Allows declining the call with the volume down key.</string>
     <string name="dtmf_tones_title">Dial tones</string>
     <string name="dtmf_tones_description">Sound when dialing numbers</string>
     <string name="speed_dial_title">Speed dial</string>

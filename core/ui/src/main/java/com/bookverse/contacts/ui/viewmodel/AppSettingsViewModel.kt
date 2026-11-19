@@ -147,6 +147,7 @@ class AppSettingsViewModel(
     private val callAnswerStyleKey = stringPreferencesKey("call_answer_style")
     private val dtmfTonesEnabledKey = stringPreferencesKey("dtmf_tones_enabled")
     private val answerWithVolumeUpKey = booleanPreferencesKey("answer_with_volume_up")
+    private val declineWithVolumeDownKey = booleanPreferencesKey("decline_with_volume_down")
     private val showProfileInFavoritesKey = booleanPreferencesKey("show_profile_in_favorites")
     private val speedDialKey = stringPreferencesKey("speed_dial_contacts")
     private val fontScaleKey = stringPreferencesKey("font_scale")
@@ -254,6 +255,9 @@ class AppSettingsViewModel(
 
     private val _answerWithVolumeUpEnabled = MutableStateFlow(false)
     val answerWithVolumeUpEnabled: StateFlow<Boolean> = _answerWithVolumeUpEnabled.asStateFlow()
+
+    private val _declineWithVolumeDownEnabled = MutableStateFlow(false)
+    val declineWithVolumeDownEnabled: StateFlow<Boolean> = _declineWithVolumeDownEnabled.asStateFlow()
 
     private val _showProfileInFavorites = MutableStateFlow(false)
     val showProfileInFavorites: StateFlow<Boolean> = _showProfileInFavorites.asStateFlow()
@@ -709,6 +713,15 @@ class AppSettingsViewModel(
         }
     }
 
+    fun setDeclineWithVolumeDownEnabled(context: Context, enabled: Boolean) {
+        _declineWithVolumeDownEnabled.value = enabled
+        viewModelScope.launch {
+            settingsStore.dataStore(context).edit { prefs ->
+                prefs[declineWithVolumeDownKey] = enabled
+            }
+        }
+    }
+
     fun setDtmfTonesEnabled(context: Context, enabled: String) {
         _dtmfTonesEnabled.value = enabled
         viewModelScope.launch {
@@ -849,6 +862,7 @@ class AppSettingsViewModel(
             _dtmfTonesEnabled.value = prefs[dtmfTonesEnabledKey] ?: "disabled"
             _immersiveIncomingCalls.value = prefs[immersiveIncomingCallsKey] ?: false
             _answerWithVolumeUpEnabled.value = prefs[answerWithVolumeUpKey] ?: false
+            _declineWithVolumeDownEnabled.value = prefs[declineWithVolumeDownKey] ?: false
             _showProfileInFavorites.value = prefs[showProfileInFavoritesKey] ?: false
             _profileId.value = prefs[profileIdKey]
 
@@ -896,6 +910,7 @@ class AppSettingsViewModel(
             dtmfTonesEnabled = _dtmfTonesEnabled.value,
             immersiveIncomingCalls = _immersiveIncomingCalls.value,
             answerWithVolumeUp = _answerWithVolumeUpEnabled.value,
+            declineWithVolumeDown = _declineWithVolumeDownEnabled.value,
             fontScale = _fontScale.value,
             listDensity = _listDensity.value.name,
             darkModeStyle = _darkModeStyle.value.name,
@@ -942,6 +957,7 @@ class AppSettingsViewModel(
                     prefs[dtmfTonesEnabledKey] = backup.dtmfTonesEnabled
                     prefs[immersiveIncomingCallsKey] = backup.immersiveIncomingCalls
                     prefs[answerWithVolumeUpKey] = backup.answerWithVolumeUp
+                    prefs[declineWithVolumeDownKey] = backup.declineWithVolumeDown
                     prefs[accentColorNameKey] = _accentColorName.value
                     prefs[accentColorKey] = colorValue.value.toString()
                     prefs[darkModeStyleKey] = DarkModeStyle.fromName(backup.darkModeStyle).name
@@ -1001,6 +1017,7 @@ class AppSettingsViewModel(
                 _dtmfTonesEnabled.value = backup.dtmfTonesEnabled
                 _immersiveIncomingCalls.value = backup.immersiveIncomingCalls
                 _answerWithVolumeUpEnabled.value = backup.answerWithVolumeUp
+                _declineWithVolumeDownEnabled.value = backup.declineWithVolumeDown
                 _fontScale.value = backup.fontScale
                 _listDensity.value = ListDensity.fromName(backup.listDensity)
             }

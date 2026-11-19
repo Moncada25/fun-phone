@@ -30,6 +30,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bookverse.contacts.data.service.ContactSyncWorker
 import com.bookverse.contacts.domain.call.CallState
+import com.bookverse.contacts.domain.call.IncomingCallKeyAction
+import com.bookverse.contacts.domain.call.IncomingCallKeyPolicy
 import com.bookverse.contacts.domain.call.UiCall
 import com.bookverse.contacts.domain.review.ReviewEligibilityStore
 import com.bookverse.contacts.integration.RoomNotesRepository
@@ -115,6 +117,7 @@ class MainActivity : LocalizedAppCompatActivity() {
 
     private var lockScreenModeEnabled = false
     private var answerWithVolumeUpEnabled = false
+    private var declineWithVolumeDownEnabled = false
     private var hadActiveCallForReview = false
     private var reviewPromptInFlight = false
 
@@ -408,6 +411,11 @@ class MainActivity : LocalizedAppCompatActivity() {
                         answerWithVolumeUpEnabled = enabled
                     }
                 }
+                launch {
+                    settingsViewModel.declineWithVolumeDownEnabled.collect { enabled ->
+                        declineWithVolumeDownEnabled = enabled
+                    }
+                }
             }
         }
     }
@@ -426,9 +434,7 @@ class MainActivity : LocalizedAppCompatActivity() {
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP && attemptAnswerIncomingCall()) {
-            return true
-        }
+        if (handleIncomingCallKey(keyCode)) return true
         return super.onKeyUp(keyCode, event)
     }
 
@@ -549,18 +555,24 @@ class MainActivity : LocalizedAppCompatActivity() {
         }
     }
 
-    private fun attemptAnswerIncomingCall(): Boolean {
-        if (!answerWithVolumeUpEnabled) return false
+    private fun handleIncomingCallKey(keyCode: Int): Boolean {
+        val action = IncomingCallKeyPolicy.actionFor(
+            keyCode = keyCode,
+            answerWithVolumeUp = answerWithVolumeUpEnabled,
+            declineWithVolumeDown = declineWithVolumeDownEnabled,
+        ) ?: return false
         val call = DefaultCallRepository.activeCall.value
-        return if (call != null && call.state == CallState.RINGING) {
-            CallController.answer(call.id)
-            true
-        } else if (openIncoming && incomingCallId != null) {
-            CallController.answer(incomingCallId)
-            true
-        } else {
-            false
+        val pendingIncomingId = incomingCallId
+        val callId = when {
+            call != null && call.state == CallState.RINGING -> call.id
+            openIncoming && pendingIncomingId != null -> pendingIncomingId
+            else -> return false
         }
+        when (action) {
+            IncomingCallKeyAction.ANSWER -> CallController.answer(callId)
+            IncomingCallKeyAction.DECLINE -> CallController.reject(callId)
+        }
+        return true
     }
 
     private fun updateLockScreenBehavior(enable: Boolean) {
