@@ -45,9 +45,9 @@ class TopControlsBarTest {
             }
         }
 
-        composeRule.onNodeWithText(text(R.string.paint_tool_blur)).performClick()
+        composeRule.onNodeWithContentDescription(text(R.string.paint_tool_blur)).performClick()
 
-        composeRule.onNodeWithText(text(R.string.paint_blur_size)).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(text(R.string.paint_blur_size)).assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.paint_blur_intensity)).assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.paint_blur_medium)).assertIsDisplayed()
     }
@@ -66,7 +66,7 @@ class TopControlsBarTest {
         }
 
         composeRule.onNodeWithText(text(R.string.brush_style_normal)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.brush_color)).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(text(R.string.brush_color)).assertIsDisplayed()
     }
 
     @Test
@@ -84,10 +84,10 @@ class TopControlsBarTest {
 
         composeRule.onNodeWithContentDescription(text(R.string.paint_collapse_controls)).performClick()
         composeRule.waitForIdle()
-        composeRule.onNodeWithText(text(R.string.brush_color)).assertDoesNotExist()
+        composeRule.onNodeWithContentDescription(text(R.string.brush_color)).assertDoesNotExist()
 
         composeRule.onNodeWithContentDescription(text(R.string.paint_expand_controls)).performClick()
-        composeRule.onNodeWithText(text(R.string.brush_color)).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(text(R.string.brush_color)).assertIsDisplayed()
     }
 
     @Test
@@ -106,12 +106,12 @@ class TopControlsBarTest {
         composeRule.onNodeWithTag(PAINT_CONTROLS_HEADER_TAG)
             .performTouchInput { swipeDown() }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText(text(R.string.brush_color)).assertDoesNotExist()
+        composeRule.onNodeWithContentDescription(text(R.string.brush_color)).assertDoesNotExist()
 
         composeRule.onNodeWithTag(PAINT_CONTROLS_HEADER_TAG)
             .performTouchInput { swipeUp() }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText(text(R.string.brush_color)).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(text(R.string.brush_color)).assertIsDisplayed()
     }
 
     @Test
@@ -132,7 +132,7 @@ class TopControlsBarTest {
             }
         }
 
-        composeRule.onNodeWithText(text(R.string.paint_tool_text)).performClick()
+        composeRule.onNodeWithContentDescription(text(R.string.paint_tool_text)).performClick()
 
         assertEquals(PaintToolCategory.TEXT, selectedCategory)
         composeRule.onNodeWithText(text(R.string.add_text)).assertDoesNotExist()
@@ -147,7 +147,6 @@ class TopControlsBarTest {
         blurIntensity = BlurIntensity.MEDIUM,
         selectedShape = PathType.CIRCLE,
         shapeFilled = false,
-        accentColor = Color(0xFFFF5722),
         enabled = true,
     )
 

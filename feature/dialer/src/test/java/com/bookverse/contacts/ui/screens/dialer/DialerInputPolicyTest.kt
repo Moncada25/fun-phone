@@ -141,6 +141,17 @@ class DialerInputPolicyTest {
         assertEquals("Service", findExactDialerContact("123", contacts, codes)?.name)
     }
 
+    @Test
+    fun aCallingCodeIsNeverStrippedFromAShortNumber() {
+        val codes = setOf("57", "30")
+        val contacts = listOf(dialerContact("Service", "122"))
+
+        assertEquals(null, findExactDialerContact("30122", contacts, codes))
+        assertEquals(null, findExactDialerContact("+30122", contacts, codes))
+        assertEquals(false, areDialerNumbersEquivalent("57122", "122", codes))
+        assertEquals("Service", findExactDialerContact("122", contacts, codes)?.name)
+    }
+
     private fun dialerContact(name: String, number: String) = Contact(
         id = name,
         name = name,

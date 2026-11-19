@@ -291,4 +291,6 @@
         <item quantity="one">%1$d Kontakt in den Papierkorb verschieben? Du kannst ihn %2$d Tage lang wiederherstellen.</item>
         <item quantity="other">%1$d Kontakte in den Papierkorb verschieben? Du kannst sie %2$d Tage lang wiederherstellen.</item>
     </plurals>
+    <string name="contact_action_message">Nachricht</string>
+    <string name="contact_action_favorite">Favorit</string>
 </resources>

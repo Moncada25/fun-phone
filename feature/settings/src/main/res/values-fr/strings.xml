@@ -403,8 +403,6 @@
         <item quantity="many">Au moins %1$d de caractères</item>
         <item quantity="other">Au moins %1$d caractères</item>
     </plurals>
-    <string name="about_badge_no_ads">Sans publicité</string>
-    <string name="about_badge_no_trackers">Sans traqueurs</string>
     <string name="about_open_source_title">Logiciel libre</string>
     <string name="about_open_source_description">Un logiciel libre développé en public. Lisez le code, suivez les progrès et aidez à façonner la suite.</string>
     <string name="about_source_code">Code source</string>

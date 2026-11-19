@@ -8,8 +8,6 @@ import android.graphics.Bitmap
 import android.media.RingtoneManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,7 +15,6 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,22 +26,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.automirrored.outlined.StickyNote2
-import androidx.compose.material.icons.filled.Block
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.PhoneAndroid
-import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Whatsapp
-import androidx.compose.material.icons.filled.WorkOutline
 import androidx.compose.material.icons.outlined.Cake
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material.icons.outlined.Delete
@@ -55,7 +46,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -69,23 +59,19 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -95,7 +81,6 @@ import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.data.model.SocialMediaType
 import com.bookverse.contacts.data.model.historyKey
 import com.bookverse.contacts.settings.Countries
-import com.bookverse.contacts.ui.components.ActionIcon
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ButtonClick
 import com.bookverse.contacts.ui.components.ConfirmDialog
@@ -117,6 +102,15 @@ import com.bookverse.contacts.utils.avatarLabel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
+import androidx.compose.material.icons.automirrored.outlined.Label
+import androidx.compose.material.icons.automirrored.outlined.Message
+import androidx.compose.material.icons.outlined.Block
+import androidx.compose.material.icons.outlined.MusicNote
+import androidx.compose.material.icons.outlined.Public
+import androidx.compose.material.icons.outlined.WorkOutline
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -321,686 +315,336 @@ fun ContactDetailsScreen(
                 .fillMaxSize()
                 .background(backgroundColor)
         ) {
+            val photoBitmap = remember(contact.photoUri) {
+                contact.photoUri?.let { contactsViewModel.uriToBitmap(it) }?.asImageBitmap()
+            }
+            val firstName = ContactDisplay.getFirstName(contact.name)
+            val favoriteMessage = if (isFavorite) {
+                stringResource(R.string.removed_from_favorites, firstName)
+            } else {
+                stringResource(R.string.added_to_favorites, firstName)
+            }
+            val favoriteDescription = if (isFavorite) {
+                stringResource(R.string.remove_from_favorites, firstName)
+            } else {
+                stringResource(R.string.add_to_favorites, firstName)
+            }
+            val phoneCopied = stringResource(R.string.phone_copied)
+            val emailCopied = stringResource(R.string.email_copied)
+            val companyCopied = stringResource(R.string.company_copied)
+            val websiteCopied = stringResource(R.string.website_copied)
+            val websiteFallback = stringResource(CoreUiR.string.website)
+            val ringtoneFallback = stringResource(R.string.ringtone)
+            val locale = LocaleController.effectiveLocale(context)
+
+            fun copyValue(value: String, message: String) {
+                ContactUtils.copyToClipboard(context, value, toast = false)
+                snackbar.show(message = message, type = SnackbarType.Success)
+                VibrationUtils.vibrate(context, vibrationDuration, vibrationPattern)
+            }
+
+            fun runPhoneAction(action: (String) -> Unit) {
+                if (contact.phones.size > 1) {
+                    phoneAction = action
+                    showPhoneSelectionDialog = true
+                } else {
+                    action(contact.phones.firstOrNull()?.number ?: "")
+                }
+            }
+
+            val openWhatsApp: (String) -> Unit = { phoneNumber ->
+                phoneActions.openWhatsApp(context, phoneNumber)
+                contactsViewModel.addRecentOperation(
+                    contact = contact,
+                    type = RecentType.WHATSAPP_OPEN,
+                    target = phoneNumber,
+                )
+            }
+
+            val contactEmail = contact.email?.takeIf { it.isNotBlank() }
+            val contactCompany = contact.company?.takeIf { it.isNotBlank() }
+            val contactNotes = contact.notes?.takeIf { it.isNotBlank() }
+            val contactBirthday = contact.birthday
+            val hasRingtone = contact.ringtone.toString() != "null"
+            val ringtoneName = if (hasRingtone) {
+                remember(contact.ringtone) {
+                    runCatching {
+                        RingtoneManager.getRingtone(context, contact.ringtone)?.getTitle(context)
+                    }.getOrNull()
+                } ?: ringtoneFallback
+            } else {
+                null
+            }
+
+            val callIcon = rememberVectorPainter(Icons.Outlined.Call)
+            val messageIcon = rememberVectorPainter(Icons.AutoMirrored.Outlined.Message)
+            val whatsappIcon = rememberVectorPainter(Icons.Default.Whatsapp)
+            val emailIcon = rememberVectorPainter(Icons.Outlined.Email)
+            val favoriteIcon = rememberVectorPainter(
+                if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+            )
+            val companyIcon = rememberVectorPainter(Icons.Outlined.WorkOutline)
+            val birthdayIcon = rememberVectorPainter(Icons.Outlined.Cake)
+            val notesIcon = rememberVectorPainter(Icons.AutoMirrored.Outlined.StickyNote2)
+            val ringtoneIcon = rememberVectorPainter(Icons.Outlined.MusicNote)
+            val websiteIcon = rememberVectorPainter(Icons.Outlined.Public)
+            val tagsIcon = rememberVectorPainter(Icons.AutoMirrored.Outlined.Label)
+            val shareIcon = rememberVectorPainter(Icons.Outlined.Share)
+            val blockIcon = rememberVectorPainter(Icons.Outlined.Block)
+            val deleteIcon = rememberVectorPainter(Icons.Outlined.Delete)
+
+            DiagnosticLog.debug(DiagnosticEvent.CONTACT_DETAILS_LOADED)
+
             LazyColumn(
                 state = com.bookverse.contacts.ui.components.rememberDestinationListState(),
                 modifier = Modifier
                     .fillMaxSize()
                     .navigationBarsPadding(),
                 contentPadding = PaddingValues(
-                    top = paddingValues.calculateTopPadding() + 24.dp,
-                    bottom = 24.dp,
-                    start = 24.dp,
-                    end = 24.dp
+                    top = paddingValues.calculateTopPadding() + 16.dp,
+                    bottom = 32.dp,
                 ),
-                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                item {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxSize(0.55f)
-                            .aspectRatio(1f),
-                        shape = CircleShape,
-                        elevation = CardDefaults.cardElevation(
-                            defaultElevation = 8.dp
-                        )
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .clip(CircleShape),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            val contactPhotoUri = contact.photoUri
-                            if (contactPhotoUri != null) {
-
-                                val bmp = remember(contact.photoUri) {
-                                    contactsViewModel.uriToBitmap(contactPhotoUri)
-                                }
-
-                                if (bmp != null) {
-                                    Image(
-                                        bitmap = bmp.asImageBitmap(),
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxSize()
-                                            .clickable { showFullImage = true },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                } else {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxSize()
-                                            .background(ContactDisplay.getRandomColor(contact.name)),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            text = contact.avatarLabel(),
-                                            color = textColor,
-                                            fontSize = 100.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            textAlign = TextAlign.Center
-                                        )
-                                    }
-                                }
-                            } else {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(ContactDisplay.getRandomColor(contact.name)),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = contact.avatarLabel(),
-                                        color = textColor,
-                                        fontSize = 100.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-
-                item { Spacer(modifier = Modifier.height(16.dp)) }
-
-                item {
+                item(key = "hero") {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = DetailHorizontalPadding),
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
+                        ContactDetailsAvatar(
+                            photo = photoBitmap,
+                            initials = contact.avatarLabel(),
+                            fallbackColor = ContactDisplay.getRandomColor(contact.name),
+                            initialsColor = textColor,
+                            onPhotoClick = { showFullImage = true },
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
                         Text(
                             text = contact.name,
-                            style = MaterialTheme.typography.headlineLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.SemiBold,
                             textAlign = TextAlign.Center,
-                            color = textColor
+                            color = textColor,
                         )
+                        if (contactCompany != null) {
+                            Text(
+                                text = contactCompany,
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center,
+                                color = secondaryTextColor,
+                                modifier = Modifier.padding(top = 2.dp),
+                            )
+                        }
                         if (contact.isBlocked) {
-                            Spacer(modifier = Modifier.height(8.dp))
+                            Spacer(modifier = Modifier.height(10.dp))
                             BlockedBadge()
                         }
-                    }
-                }
-
-                item { Spacer(modifier = Modifier.height(24.dp)) }
-
-                item {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        if (!contact.email.isNullOrBlank()) {
-                            ActionIcon(
-                                tooltip = stringResource(R.string.send_email),
-                                accentColor = accentColor,
-                                icon = Icons.Default.Email,
-                                contentDescription = stringResource(R.string.send_email),
-                                textColor = textColor
-                            ) {
-                                ContactUtils.openUrl(
-                                    context,
-                                    "mailto:${contact.email}"
-                                )
-                            }
-                        }
-
-                        ActionIcon(
-                            tooltip = stringResource(CoreUiR.string.whatsapp_action),
-                            accentColor = accentColor,
-                            icon = Icons.Default.Whatsapp,
-                            contentDescription = stringResource(CoreUiR.string.whatsapp_action),
-                            textColor = textColor
-                        ) {
-                            if (contact.phones.size > 1) {
-                                phoneAction = { phoneNumber ->
-                                    phoneActions.openWhatsApp(context, phoneNumber)
-                                    contactsViewModel.addRecentOperation(
-                                        contact = contact,
-                                        type = RecentType.WHATSAPP_OPEN,
-                                        target = phoneNumber
-                                    )
-                                }
-                                showPhoneSelectionDialog = true
-                            } else {
-                                val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                phoneActions.openWhatsApp(context, primaryPhone)
-                                contactsViewModel.addRecentOperation(
-                                    contact = contact,
-                                    type = RecentType.WHATSAPP_OPEN,
-                                    target = primaryPhone
-                                )
-                            }
-                        }
-
-                        val firstName = ContactDisplay.getFirstName(contact.name)
-                        val message = if (isFavorite) {
-                            stringResource(
-                                R.string.removed_from_favorites, firstName
-                            )
-                        } else {
-                            stringResource(
-                                R.string.added_to_favorites, firstName
-                            )
-                        }
-                        val tooltip = if (isFavorite) {
-                            stringResource(R.string.remove_from_favorites, firstName)
-                        } else {
-                            stringResource(R.string.add_to_favorites, firstName)
-                        }
-
-                        ActionIcon(
-                            tooltip = tooltip,
-                            accentColor = accentColor,
-                            icon = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                            contentDescription = stringResource(R.string.favorites_title),
-                            textColor = textColor
-                        ) {
-                            contactsViewModel.toggleFavorite(contact.id, message)
-                        }
-
-                        ActionIcon(
-                            tooltip = stringResource(CoreUiR.string.call),
-                            accentColor = accentColor,
-                            icon = Icons.Outlined.Call,
-                            contentDescription = stringResource(CoreUiR.string.call),
-                            textColor = textColor
-                        ) {
-                            if (contact.phones.size > 1) {
-                                phoneAction = { phoneNumber ->
-                                    phoneActions.callPhoneNumber(context, phoneNumber)
-                                }
-                                showPhoneSelectionDialog = true
-                            } else {
-                                val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                phoneActions.callPhoneNumber(context, primaryPhone)
-                            }
-                        }
-
-                        ActionIcon(
-                            tooltip = stringResource(R.string.send_sms),
-                            accentColor = accentColor,
-                            icon = Icons.AutoMirrored.Filled.Message,
-                            contentDescription = stringResource(R.string.send_sms),
-                            textColor = textColor
-                        ) {
-                            if (contact.phones.size > 1) {
-                                phoneAction = { phoneNumber ->
-                                    phoneActions.openSmsApp(context, phoneNumber)
-                                }
-                                showPhoneSelectionDialog = true
-                            } else {
-                                val primaryPhone = contact.phones.firstOrNull()?.number ?: ""
-                                phoneActions.openSmsApp(context, primaryPhone)
-                            }
-                        }
-                    }
-                }
-
-                item { Spacer(modifier = Modifier.height(32.dp)) }
-
-                item {
-                    ElevatedCard(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                        shape = RoundedCornerShape(16.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(20.dp)
-                        ) {
-                            Text(
-                                text = stringResource(R.string.contact_info_title),
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = textColor,
-                                modifier = Modifier.padding(bottom = 16.dp)
-                            )
-
-                            val phoneCopied = stringResource(R.string.phone_copied)
-
-                            contact.phones.forEachIndexed { index, phone ->
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .pointerInput(Unit) {
-                                            detectTapGestures(
-                                                onLongPress = {
-                                                    ContactUtils.copyToClipboard(
-                                                        context,
-                                                        phone.number,
-                                                        toast = false
-                                                    )
-                                                    snackbar.show(
-                                                        message = phoneCopied,
-                                                        type = SnackbarType.Success
-                                                    )
-                                                    VibrationUtils.vibrate(
-                                                        context, vibrationDuration, vibrationPattern
-                                                    )
-                                                }
-                                            )
-                                        }
-                                        .padding(vertical = 8.dp)
-                                ) {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        if (index == 0) {
-                                            Icon(
-                                                imageVector = Icons.Outlined.Call,
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(24.dp)
-                                            )
-                                        } else {
-                                            Spacer(modifier = Modifier.width(24.dp))
-                                        }
-                                        Spacer(modifier = Modifier.width(16.dp))
-                                        Column {
-                                            val phoneCountry =
-                                                Countries.detectCountryFromPhoneNumber(
-                                                    phone.number
-                                                )?.flag ?: "🌍"
-
-                                            Text(
-                                                text = "${phone.number} $phoneCountry",
-                                                color = textColor,
-                                                fontSize = 16.sp
-                                            )
-                                            Text(
-                                                text = getPhoneTypeLabel(phone.type),
-                                                color = secondaryTextColor,
-                                                fontSize = 12.sp
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-
-                            val contactEmail = contact.email
-                            if (!contactEmail.isNullOrBlank()) {
-                                val emailCopied = stringResource(R.string.email_copied)
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .pointerInput(Unit) {
-                                            detectTapGestures(
-                                                onLongPress = {
-                                                    ContactUtils.copyToClipboard(
-                                                        context,
-                                                        contactEmail,
-                                                        toast = false
-                                                    )
-                                                    snackbar.show(
-                                                        message = emailCopied,
-                                                        type = SnackbarType.Success
-                                                    )
-                                                    VibrationUtils.vibrate(
-                                                        context,
-                                                        vibrationDuration,
-                                                        vibrationPattern
-                                                    )
-                                                }
-                                            )
-                                        }
-                                        .padding(vertical = 8.dp)
-                                ) {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Outlined.Email,
-                                            contentDescription = null,
-                                            tint = accentColor,
-                                            modifier = Modifier.size(24.dp)
-                                        )
-                                        Spacer(modifier = Modifier.width(16.dp))
-                                        Column {
-                                            Text(
-                                                text = contactEmail,
-                                                color = textColor,
-                                                fontSize = 16.sp,
-                                                maxLines = 1,
-                                                overflow = TextOverflow.Ellipsis
-                                            )
-                                            Text(
-                                                text = stringResource(R.string.email_placeholder),
-                                                color = secondaryTextColor,
-                                                fontSize = 12.sp
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                DiagnosticLog.debug(DiagnosticEvent.CONTACT_DETAILS_LOADED)
-
-                if (!contact.company.isNullOrBlank() || contact.birthday != null || !contact.notes.isNullOrBlank() || contact.ringtone.toString() != "null") {
-                    item { Spacer(modifier = Modifier.height(16.dp)) }
-
-                    item {
-                        ElevatedCard(
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Row(
                             modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                            shape = RoundedCornerShape(16.dp)
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
                         ) {
-                            Column(
-                                modifier = Modifier.padding(20.dp)
-                            ) {
-                                Text(
-                                    text = stringResource(
-                                        R.string.about_contact_title,
-                                        ContactDisplay.getFirstName(contact.name)
-                                    ),
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = textColor,
-                                    modifier = Modifier.padding(bottom = 16.dp)
+                            ContactQuickAction(
+                                icon = callIcon,
+                                label = stringResource(CoreUiR.string.call),
+                                contentDescription = stringResource(CoreUiR.string.call),
+                                emphasized = true,
+                                modifier = Modifier.weight(1f),
+                                onClick = {
+                                    runPhoneAction { phoneActions.callPhoneNumber(context, it) }
+                                },
+                            )
+                            ContactQuickAction(
+                                icon = messageIcon,
+                                label = stringResource(R.string.contact_action_message),
+                                contentDescription = stringResource(R.string.send_sms),
+                                modifier = Modifier.weight(1f),
+                                onClick = {
+                                    runPhoneAction { phoneActions.openSmsApp(context, it) }
+                                },
+                            )
+                            ContactQuickAction(
+                                icon = whatsappIcon,
+                                label = stringResource(CoreUiR.string.recent_type_whatsapp),
+                                contentDescription = stringResource(CoreUiR.string.whatsapp_action),
+                                modifier = Modifier.weight(1f),
+                                onClick = { runPhoneAction(openWhatsApp) },
+                            )
+                            if (contactEmail != null) {
+                                ContactQuickAction(
+                                    icon = emailIcon,
+                                    label = stringResource(R.string.email_placeholder),
+                                    contentDescription = stringResource(R.string.send_email),
+                                    modifier = Modifier.weight(1f),
+                                    onClick = {
+                                        ContactUtils.openUrl(context, "mailto:$contactEmail")
+                                    },
                                 )
+                            }
+                            ContactQuickAction(
+                                icon = favoriteIcon,
+                                label = stringResource(R.string.contact_action_favorite),
+                                contentDescription = favoriteDescription,
+                                selected = isFavorite,
+                                modifier = Modifier.weight(1f),
+                                onClick = {
+                                    contactsViewModel.toggleFavorite(contact.id, favoriteMessage)
+                                },
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+                }
 
-                                val contactCompany = contact.company
-                                if (!contactCompany.isNullOrBlank()) {
-                                    val companyCopied = stringResource(R.string.company_copied)
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .pointerInput(Unit) {
-                                                detectTapGestures(
-                                                    onLongPress = {
-                                                        ContactUtils.copyToClipboard(
-                                                            context,
-                                                            contactCompany,
-                                                            toast = false
-                                                        )
-                                                        snackbar.show(
-                                                            message = companyCopied,
-                                                            type = SnackbarType.Success
-                                                        )
-                                                        VibrationUtils.vibrate(
-                                                            context,
-                                                            vibrationDuration,
-                                                            vibrationPattern
-                                                        )
-                                                    }
-                                                )
-                                            }
-                                            .padding(vertical = 8.dp)
-                                    ) {
-                                        Row(
-                                            verticalAlignment = Alignment.CenterVertically
+                if (contact.phones.isNotEmpty() || contactEmail != null) {
+                    item(key = "contact_info") {
+                        Column {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.contact_info_title))
+                            contact.phones.forEachIndexed { index, phone ->
+                                val phoneCountry =
+                                    Countries.detectCountryFromPhoneNumber(phone.number)?.flag ?: "🌍"
+                                DetailRow(
+                                    icon = if (index == 0) callIcon else null,
+                                    headline = "${phone.number} $phoneCountry",
+                                    supporting = getPhoneTypeLabel(phone.type),
+                                    onClick = { phoneActions.callPhoneNumber(context, phone.number) },
+                                    onLongClick = { copyValue(phone.number, phoneCopied) },
+                                    trailing = {
+                                        IconButton(
+                                            onClick = { phoneActions.openSmsApp(context, phone.number) },
                                         ) {
                                             Icon(
-                                                imageVector = Icons.Default.WorkOutline,
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(24.dp)
+                                                painter = messageIcon,
+                                                contentDescription = stringResource(R.string.send_sms),
+                                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                             )
-                                            Spacer(modifier = Modifier.width(16.dp))
-                                            Column {
-                                                Text(
-                                                    text = contactCompany,
-                                                    color = textColor,
-                                                    fontSize = 16.sp,
-                                                    maxLines = 1,
-                                                    overflow = TextOverflow.Ellipsis
-                                                )
-                                                Text(
-                                                    text = stringResource(R.string.company_placeholder),
-                                                    color = secondaryTextColor,
-                                                    fontSize = 12.sp
-                                                )
-                                            }
                                         }
-                                    }
-                                }
+                                    },
+                                )
+                            }
+                            if (contactEmail != null) {
+                                DetailRow(
+                                    icon = emailIcon,
+                                    headline = contactEmail,
+                                    supporting = stringResource(R.string.email_placeholder),
+                                    headlineMaxLines = 1,
+                                    onClick = { ContactUtils.openUrl(context, "mailto:$contactEmail") },
+                                    onLongClick = { copyValue(contactEmail, emailCopied) },
+                                )
+                            }
+                        }
+                    }
+                }
 
-                                val contactBirthday = contact.birthday
-                                if (contactBirthday != null) {
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(vertical = 8.dp)
-                                    ) {
-                                        Row(
-                                            verticalAlignment = Alignment.CenterVertically
-                                        ) {
-                                            Icon(
-                                                imageVector = Icons.Outlined.Cake,
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(24.dp)
-                                            )
-                                            Spacer(modifier = Modifier.width(16.dp))
-                                            Column {
-                                                Text(
-                                                    text = ContactDisplay.capitalizeFirstLetter(
-                                                        SimpleDateFormat(
-                                                            "MMMM dd",
-                                                            LocaleController.effectiveLocale(LocalContext.current)
-                                                        ).format(
-                                                            Date(contactBirthday)
-                                                        )
-                                                    ),
-                                                    color = textColor,
-                                                    fontSize = 16.sp
-                                                )
-                                                Text(
-                                                    text = stringResource(R.string.edit_birthday),
-                                                    color = secondaryTextColor,
-                                                    fontSize = 12.sp
-                                                )
-                                            }
-                                        }
-                                        Spacer(modifier = Modifier.height(10.dp))
-                                        BirthdayReminderBadge(
-                                            accentColor = accentColor,
-                                            modifier = Modifier.fillMaxWidth(),
-                                        )
-                                    }
-                                }
-
-                                val contactNotes = contact.notes
-                                if (!contactNotes.isNullOrBlank()) {
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(vertical = 8.dp)
-                                    ) {
-                                        Row(
-                                            verticalAlignment = Alignment.CenterVertically
-                                        ) {
-                                            Icon(
-                                                imageVector = Icons.AutoMirrored.Outlined.StickyNote2,
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(24.dp)
-                                            )
-                                            Spacer(modifier = Modifier.width(16.dp))
-                                            Column {
-                                                Text(
-                                                    text = contactNotes,
-                                                    color = textColor,
-                                                    fontSize = 16.sp
-                                                )
-                                                Text(
-                                                    text = stringResource(CoreUiR.string.notes_title),
-                                                    color = secondaryTextColor,
-                                                    fontSize = 12.sp
-                                                )
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (contact.ringtone.toString() != "null") {
-                                    val ringtoneName = try {
-                                        val ringtone =
-                                            RingtoneManager.getRingtone(context, contact.ringtone)
-                                        ringtone.getTitle(context)
-                                    } catch (_: Exception) {
-                                        stringResource(R.string.ringtone)
-                                    }
-
-                                    Column(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(vertical = 8.dp)
-                                    ) {
-                                        Row(
-                                            verticalAlignment = Alignment.CenterVertically
-                                        ) {
-                                            Icon(
-                                                imageVector = Icons.Default.MusicNote,
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(24.dp)
-                                            )
-                                            Spacer(modifier = Modifier.width(16.dp))
-                                            Column {
-                                                Text(
-                                                    text = stringResource(R.string.ringtone),
-                                                    color = textColor,
-                                                    fontSize = 16.sp
-                                                )
-                                                Text(
-                                                    text = ringtoneName,
-                                                    color = secondaryTextColor,
-                                                    fontSize = 12.sp
-                                                )
-                                            }
-                                        }
-                                    }
-                                }
+                if (contactCompany != null || contactBirthday != null || contactNotes != null || hasRingtone) {
+                    item(key = "about") {
+                        Column {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.about_contact_title, firstName))
+                            if (contactCompany != null) {
+                                DetailRow(
+                                    icon = companyIcon,
+                                    headline = contactCompany,
+                                    supporting = stringResource(R.string.company_placeholder),
+                                    headlineMaxLines = 1,
+                                    onLongClick = { copyValue(contactCompany, companyCopied) },
+                                )
+                            }
+                            if (contactBirthday != null) {
+                                DetailRow(
+                                    icon = birthdayIcon,
+                                    headline = ContactDisplay.capitalizeFirstLetter(
+                                        SimpleDateFormat("MMMM dd", locale).format(Date(contactBirthday)),
+                                    ),
+                                    supporting = stringResource(R.string.edit_birthday),
+                                )
+                                BirthdayReminderBadge(
+                                    accentColor = accentColor,
+                                    modifier = Modifier.padding(
+                                        start = DetailContentInset,
+                                        end = DetailHorizontalPadding,
+                                        bottom = 8.dp,
+                                    ),
+                                )
+                            }
+                            if (contactNotes != null) {
+                                DetailRow(
+                                    icon = notesIcon,
+                                    headline = contactNotes,
+                                    supporting = stringResource(CoreUiR.string.notes_title),
+                                )
+                            }
+                            if (ringtoneName != null) {
+                                DetailRow(
+                                    icon = ringtoneIcon,
+                                    headline = ringtoneName,
+                                    supporting = ringtoneFallback,
+                                    headlineMaxLines = 1,
+                                )
                             }
                         }
                     }
                 }
 
                 if (contact.socialMedia.isNotEmpty()) {
-                    item {
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
-                    item {
-                        ElevatedCard(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                            shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.padding(20.dp)
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.websites),
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = textColor,
-                                    modifier = Modifier.padding(bottom = 16.dp)
+                    item(key = "websites") {
+                        Column {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.websites))
+                            contact.socialMedia.forEach { socialNetworkUrl ->
+                                val iconRes = SocialMediaType.getSocialMediaIcon(socialNetworkUrl)
+                                DetailRow(
+                                    icon = if (iconRes == SocialMediaType.WEBSITE_ICON) {
+                                        websiteIcon
+                                    } else {
+                                        painterResource(id = iconRes)
+                                    },
+                                    headline = SocialMediaType.getSocialMediaName(
+                                        socialNetworkUrl,
+                                        websiteFallback,
+                                    ),
+                                    supporting = socialNetworkUrl,
+                                    onClick = { ContactUtils.openUrl(context, socialNetworkUrl) },
+                                    onLongClick = { copyValue(socialNetworkUrl, websiteCopied) },
                                 )
-
-                                val websiteCopied = stringResource(R.string.website_copied)
-
-                                contact.socialMedia.forEach { socialNetworkUrl ->
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .pointerInput(Unit) {
-                                                detectTapGestures(
-                                                    onLongPress = {
-                                                        ContactUtils.copyToClipboard(
-                                                            context,
-                                                            socialNetworkUrl,
-                                                            toast = false
-                                                        )
-                                                        snackbar.show(
-                                                            message = websiteCopied,
-                                                            type = SnackbarType.Success
-                                                        )
-                                                        VibrationUtils.vibrate(
-                                                            context,
-                                                            vibrationDuration,
-                                                            vibrationPattern
-                                                        )
-                                                    },
-                                                    onTap = {
-                                                        ContactUtils.openUrl(
-                                                            context,
-                                                            socialNetworkUrl
-                                                        )
-                                                    }
-                                                )
-                                            }
-                                            .padding(vertical = 8.dp),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        val iconRes =
-                                            SocialMediaType.getSocialMediaIcon(socialNetworkUrl)
-                                        if (iconRes == SocialMediaType.WEBSITE_ICON) {
-                                            Icon(
-                                                imageVector = Icons.Default.Public,
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(28.dp)
-                                            )
-                                        } else {
-                                            Icon(
-                                                painter = androidx.compose.ui.res.painterResource(id = iconRes),
-                                                contentDescription = null,
-                                                tint = accentColor,
-                                                modifier = Modifier.size(28.dp)
-                                            )
-                                        }
-                                        Spacer(modifier = Modifier.width(16.dp))
-                                        Column(modifier = Modifier.weight(1f)) {
-                                            Text(
-                                                text = SocialMediaType.getSocialMediaName(
-                                                    socialNetworkUrl,
-                                                    stringResource(CoreUiR.string.website),
-                                                ),
-                                                color = textColor,
-                                                fontSize = 16.sp
-                                            )
-                                        }
-                                    }
-                                }
                             }
                         }
                     }
                 }
 
                 if (currentContactTags.isNotEmpty()) {
-                    item { Spacer(modifier = Modifier.height(16.dp)) }
-
-                    item {
-                        ElevatedCard(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                            shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.padding(20.dp)
+                    item(key = "tags") {
+                        Column {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.tags_title))
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(
+                                        start = DetailHorizontalPadding,
+                                        end = DetailHorizontalPadding,
+                                        top = 8.dp,
+                                        bottom = 8.dp,
+                                    ),
                             ) {
-                                Text(
-                                    text = stringResource(R.string.tags_title),
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = textColor
+                                Icon(
+                                    painter = tagsIcon,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier
+                                        .padding(top = 4.dp)
+                                        .size(24.dp),
                                 )
-
-                                Spacer(modifier = Modifier.height(8.dp))
-
+                                Spacer(modifier = Modifier.width(20.dp))
                                 FlowRow(
-                                    modifier = Modifier.fillMaxWidth(),
+                                    modifier = Modifier.weight(1f),
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                                    verticalArrangement = Arrangement.spacedBy(8.dp),
                                 ) {
                                     currentContactTags.forEach { tag ->
-                                        TagChip(
-                                            tag = tag,
-                                            onRemove = null
-                                        )
+                                        TagChip(tag = tag, onRemove = null)
                                     }
                                 }
                             }
@@ -1009,192 +653,92 @@ fun ContactDetailsScreen(
                 }
 
                 if (contactRecentOperations.isNotEmpty()) {
-                    item { Spacer(modifier = Modifier.height(16.dp)) }
-                    item {
-                        ElevatedCard(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                            shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Column(modifier = Modifier.padding(20.dp)) {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Text(
-                                        text = stringResource(R.string.recent_activity_title),
-                                        fontSize = 18.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = textColor,
-                                        modifier = Modifier.padding(bottom = 16.dp)
-                                    )
-                                }
-
+                    item(key = "recent") {
+                        Column {
+                            DetailSectionDivider()
+                            DetailSectionHeader(stringResource(R.string.recent_activity_title))
+                            Column(modifier = Modifier.padding(horizontal = DetailHorizontalPadding)) {
                                 contactRecentOperations.take(3).forEach { op ->
                                     HistoryItem(
                                         operation = op,
                                         textColor = textColor,
-                                        secondaryTextColor = secondaryTextColor
+                                        secondaryTextColor = secondaryTextColor,
                                     )
                                 }
-
-                                if (contactRecentOperations.size > 3) {
-                                    Button(
-                                        onClick = { showAllRecent = true },
-                                        modifier = Modifier.fillMaxWidth(),
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = accentColor.copy(alpha = 0.5f)
-                                        ),
-                                    ) {
-                                        Text(
-                                            text = stringResource(R.string.show_full_history),
-                                            color = textColor
-                                        )
-                                    }
-                                }
                             }
-                        }
-                    }
-                }
-
-                item { Spacer(modifier = Modifier.height(16.dp)) }
-
-                item {
-                    ElevatedCard(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                        shape = RoundedCornerShape(16.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(20.dp)
-                        ) {
-                            Text(
-                                text = stringResource(R.string.settings_title),
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = textColor,
-                                modifier = Modifier.padding(bottom = 16.dp)
-                            )
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable { showShareOptionsDialog = true }
-                                    .padding(vertical = 8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.Share,
-                                    contentDescription = null,
-                                    tint = accentColor,
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Spacer(modifier = Modifier.width(16.dp))
-                                Text(
-                                    text = stringResource(CoreUiR.string.share),
-                                    color = textColor,
-                                    fontSize = 16.sp
-                                )
-                            }
-
-                            if (contact.phones.isNotEmpty() && blockedNumbersSupported) {
-                                val errorColor = MaterialTheme.colorScheme.error
-                                val blockColor =
-                                    if (contact.isBlocked) errorColor else textColor
-                                val iconColor =
-                                    if (contact.isBlocked) errorColor else accentColor
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-                                            triggerBlockToggle()
-                                        }
-                                        .padding(vertical = 8.dp),
-                                    verticalAlignment = Alignment.CenterVertically
+                            if (contactRecentOperations.size > 3) {
+                                TextButton(
+                                    onClick = { showAllRecent = true },
+                                    modifier = Modifier.padding(horizontal = 12.dp),
                                 ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Block,
-                                        contentDescription = null,
-                                        tint = iconColor,
-                                        modifier = Modifier.size(24.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(16.dp))
-                                    Text(
-                                        text = if (contact.isBlocked) {
-                                            stringResource(CoreUiR.string.contact_unblock_action)
-                                        } else {
-                                            stringResource(CoreUiR.string.contact_block_action)
-                                        },
-                                        color = blockColor,
-                                        fontSize = 16.sp
-                                    )
+                                    Text(text = stringResource(R.string.show_full_history))
                                 }
-                            }
-
-                            if (contact.phones.isNotEmpty() && !blockedNumbersSupported) {
-                                Text(
-                                    text = stringResource(R.string.contact_block_not_supported),
-                                    color = secondaryTextColor,
-                                    fontSize = 14.sp,
-                                    modifier = Modifier.padding(
-                                        start = 40.dp,
-                                        top = 4.dp,
-                                        bottom = 4.dp
-                                    )
-                                )
-                            } else if (contact.phones.isEmpty()) {
-                                Text(
-                                    text = stringResource(CoreUiR.string.contact_block_no_numbers),
-                                    color = secondaryTextColor,
-                                    fontSize = 14.sp,
-                                    modifier = Modifier.padding(
-                                        start = 40.dp,
-                                        top = 4.dp,
-                                        bottom = 4.dp
-                                    )
-                                )
-                            }
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable {
-                                        showDeleteDialog = true
-                                    }
-                                    .padding(vertical = 8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.Delete,
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.error,
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Spacer(modifier = Modifier.width(16.dp))
-                                Text(
-                                    text = stringResource(CoreUiR.string.delete),
-                                    color = MaterialTheme.colorScheme.error,
-                                    fontSize = 16.sp
-                                )
                             }
                         }
                     }
                 }
 
-                item { Spacer(modifier = Modifier.height(24.dp)) }
+                item(key = "actions") {
+                    Column {
+                        DetailSectionDivider()
+                        DetailRow(
+                            icon = shareIcon,
+                            headline = stringResource(CoreUiR.string.share),
+                            onClick = { showShareOptionsDialog = true },
+                        )
+                        if (contact.phones.isNotEmpty() && blockedNumbersSupported) {
+                            val errorColor = MaterialTheme.colorScheme.error
+                            DetailRow(
+                                icon = blockIcon,
+                                headline = if (contact.isBlocked) {
+                                    stringResource(CoreUiR.string.contact_unblock_action)
+                                } else {
+                                    stringResource(CoreUiR.string.contact_block_action)
+                                },
+                                headlineColor = if (contact.isBlocked) errorColor else textColor,
+                                iconTint = if (contact.isBlocked) {
+                                    errorColor
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
+                                },
+                                onClick = { triggerBlockToggle() },
+                            )
+                        }
+                        if (contact.phones.isNotEmpty() && !blockedNumbersSupported) {
+                            DetailRow(
+                                icon = blockIcon,
+                                headline = stringResource(R.string.contact_block_not_supported),
+                                headlineColor = secondaryTextColor,
+                            )
+                        } else if (contact.phones.isEmpty()) {
+                            DetailRow(
+                                icon = blockIcon,
+                                headline = stringResource(CoreUiR.string.contact_block_no_numbers),
+                                headlineColor = secondaryTextColor,
+                            )
+                        }
+                        DetailRow(
+                            icon = deleteIcon,
+                            headline = stringResource(CoreUiR.string.delete),
+                            headlineColor = MaterialTheme.colorScheme.error,
+                            iconTint = MaterialTheme.colorScheme.error,
+                            onClick = { showDeleteDialog = true },
+                        )
+                    }
+                }
 
                 if (contactAccounts.isNotEmpty()) {
-                    item {
+                    item(key = "accounts") {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .align(Alignment.BottomCenter),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                                .padding(top = 24.dp, start = DetailHorizontalPadding, end = DetailHorizontalPadding),
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
                                 text = stringResource(R.string.contact_info),
-                                color = textColor
+                                style = MaterialTheme.typography.bodySmall,
+                                color = secondaryTextColor,
                             )
 
                             DiagnosticLog.debug(DiagnosticEvent.CONTACT_ACCOUNT_SELECTION_RESOLVED)
@@ -1206,22 +750,19 @@ fun ContactDetailsScreen(
                                     } else {
                                         contactAccounts.first().displayName
                                     },
-                                    color = secondaryTextColor,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = textColor,
                                 )
                             } else {
-                                TextButton(
-                                    onClick = { showAccountsDialog = true },
-                                    content = {
-                                        Text(
-                                            text = pluralStringResource(
-                                                R.plurals.multiple_account,
-                                                contactAccounts.size,
-                                                contactAccounts.size,
-                                            ),
-                                            color = accentColor
-                                        )
-                                    }
-                                )
+                                TextButton(onClick = { showAccountsDialog = true }) {
+                                    Text(
+                                        text = pluralStringResource(
+                                            R.plurals.multiple_account,
+                                            contactAccounts.size,
+                                            contactAccounts.size,
+                                        ),
+                                    )
+                                }
                             }
                         }
                     }

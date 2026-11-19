@@ -110,7 +110,8 @@ internal fun areDialerNumbersEquivalent(
     } else {
         normalizedTarget to normalizedCandidate
     }
-    if (shorter.isEmpty() || longer.length == shorter.length || !longer.endsWith(shorter)) return false
+    if (shorter.length < MIN_DIGITS_FOR_CALLING_CODE) return false
+    if (longer.length == shorter.length || !longer.endsWith(shorter)) return false
     return longer.dropLast(shorter.length) in countryCallingCodeDigits
 }
 

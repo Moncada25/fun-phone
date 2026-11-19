@@ -13,8 +13,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -77,13 +75,11 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.utils.ContactUtils
 import com.composables.icons.lucide.Accessibility
 import com.composables.icons.lucide.ArrowUpRight
-import com.composables.icons.lucide.Ban
 import com.composables.icons.lucide.Bug
 import com.composables.icons.lucide.CheckCheck
 import com.composables.icons.lucide.CodeXml
 import com.composables.icons.lucide.ContactRound
 import com.composables.icons.lucide.Copy
-import com.composables.icons.lucide.EyeOff
 import com.composables.icons.lucide.GitPullRequest
 import com.composables.icons.lucide.Globe
 import com.composables.icons.lucide.Heart
@@ -135,12 +131,6 @@ private data class AboutLinkItem(
     val summary: String,
     val icon: ImageVector,
     val onClick: () -> Unit,
-)
-
-@Immutable
-private data class AboutBadge(
-    val label: String,
-    val icon: ImageVector,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -245,11 +235,6 @@ fun AboutScreen(
         }
     }
 
-    val badges = listOf(
-        AboutBadge(stringResource(R.string.about_badge_no_ads), Lucide.Ban),
-        AboutBadge(stringResource(R.string.about_badge_no_trackers), Lucide.EyeOff),
-    )
-
     val openSourceLinks = listOf(
         AboutLinkItem(
             key = "source",
@@ -353,7 +338,6 @@ fun AboutScreen(
                 item(key = "hero") {
                     AboutHero(
                         version = version,
-                        badges = badges,
                         scale = scaleAnimation.value,
                         onNameTapped = { handleNameTap() },
                         onCopyVersion = { copyVersion() },
@@ -444,11 +428,9 @@ fun AboutScreen(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun AboutHero(
     version: String,
-    badges: List<AboutBadge>,
     scale: Float,
     onNameTapped: () -> Unit,
     onCopyVersion: () -> Unit,
@@ -472,7 +454,7 @@ private fun AboutHero(
                         ),
                     ),
                 )
-                .padding(horizontal = 24.dp, vertical = 32.dp),
+                .padding(horizontal = 24.dp, vertical = 28.dp),
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -545,48 +527,7 @@ private fun AboutHero(
                         )
                     }
                 }
-
-                FlowRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    badges.forEach { badge ->
-                        AboutBadgePill(badge = badge)
-                    }
-                }
             }
-        }
-    }
-}
-
-@Composable
-private fun AboutBadgePill(badge: AboutBadge) {
-    val colorScheme = MaterialTheme.colorScheme
-
-    Surface(
-        shape = CircleShape,
-        color = colorScheme.surface.copy(alpha = 0.7f),
-        contentColor = colorScheme.onSurface,
-        border = BorderStroke(1.dp, colorScheme.outlineVariant),
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            Icon(
-                imageVector = badge.icon,
-                contentDescription = null,
-                tint = colorScheme.primary,
-                modifier = Modifier.size(14.dp),
-            )
-            Text(
-                text = badge.label,
-                style = MaterialTheme.typography.labelMedium,
-            )
         }
     }
 }

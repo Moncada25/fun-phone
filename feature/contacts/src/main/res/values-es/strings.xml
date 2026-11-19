@@ -304,4 +304,6 @@
         <item quantity="many">¿Mover %1$d contactos a la papelera? Podrás restaurarlos durante %2$d días.</item>
         <item quantity="other">¿Mover %1$d contactos a la papelera? Podrás restaurarlos durante %2$d días.</item>
     </plurals>
+    <string name="contact_action_message">Mensaje</string>
+    <string name="contact_action_favorite">Favorito</string>
 </resources>

@@ -291,4 +291,6 @@
         <item quantity="one">Move %1$d contact to the recycle bin? You can restore it for %2$d days.</item>
         <item quantity="other">Move %1$d contacts to the recycle bin? You can restore them for %2$d days.</item>
     </plurals>
+    <string name="contact_action_message">Text</string>
+    <string name="contact_action_favorite">Favorite</string>
 </resources>
