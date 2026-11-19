@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.21.0] - 2026-11-18
+
 ### Changed
+- Contact details drop the stacked cards for a flat list. The header shows the photo, name, company
+  and labelled quick actions (Call, Message, WhatsApp, Email, Favorite); contact info, about,
+  websites, tags and recent activity follow as sections, and Share, Block and Delete close the list.
+  Tapping a number calls it, each number has a message shortcut and long press still copies.
+- The games catalog looks like a retro arcade: each game is an arcade cabinet card with its art and
+  record, a scoreboard shows games played, best streak and games tried, and recent games come first
+  in a carousel. Instructions, setup and options dialogs share the arcade header. The same ten games
+  and saved stats are kept.
+- The About screen is redesigned around the open source project, with links to the repository,
+  issues, releases, contributing guide and license, and a shorter version card. The onboarding
+  welcome step has a new hero, three value propositions and a note that no account is needed.
+- The tools list is one outlined card with monochrome icons, and the paint controls fit in a single
+  row of tool icons that open their options.
+- The "Lock the whole app" switch moves from the backup sheet to Security and privacy.
 - The theme, generic Compose components, Room database, settings DataStore, encryption and PIN code,
   shared resources and generic utilities now live in the `:core:designsystem`, `:core:database`,
   `:core:datastore`, `:core:security`, `:core:ui` and `:core:common` Android library modules, and
@@ -26,6 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Google Play hid the app from landscape-only devices because the photo crop screen is locked to
   portrait. The app now declares portrait screens as optional.
+- The dialer suggested a contact for a short number by treating its first digits as a calling code:
+  typing 30122 showed a contact saved as 122. Calling codes are now only stripped when at least seven
+  digits remain.
 
 ## [3.20.8] - 2026-11-18
 

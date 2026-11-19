@@ -1,0 +1,6 @@
+• Contact details get a cleaner look with quick actions to call, message, WhatsApp, email or favorite.
+• Games turn into a retro arcade with your records and a scoreboard.
+• Simpler paint tools and a tidier tools list.
+• Redesigned About and welcome screens.
+• "Lock the whole app" now lives in Security & privacy.
+• Fixed the dialer suggesting the wrong contact for short numbers.

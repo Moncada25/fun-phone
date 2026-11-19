@@ -1,0 +1,6 @@
+• Fiche contact épurée, avec des actions rapides : appel, message, WhatsApp, e-mail ou favori.
+• Les jeux deviennent une salle d'arcade rétro avec vos records et un tableau des scores.
+• Outils de dessin simplifiés et liste d'outils plus claire.
+• Écrans À propos et d'accueil repensés.
+• « Verrouiller toute l’appli » se trouve dans Sécurité et confidentialité.
+• Le clavier ne propose plus un mauvais contact pour les numéros courts.

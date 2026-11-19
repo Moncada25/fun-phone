@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy candidate:** current 3.20.2/262 behavior; not yet uploaded
-**Release notes candidate below:** 3.20.8 (268)
+**Release notes candidate below:** 3.21.0 (269)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -182,47 +182,52 @@ Destaques:
 
 Os recursos do Android variam conforme o aparelho e a versão. Após instalar, abra Status do dispositivo para concluir as permissões e escolher o Fun Phone como discador padrão.
 
-## What's new — 3.20.8
+## What's new — 3.21.0
 
 ### English
 
-• Calls: only Fun Phone's missed call notification shows, ringing stops as soon as a call ends, and the incoming call stays reachable until you answer or decline.
-• New Recent calls and Monthly expenses widgets; all widgets follow your colors.
-• Password manager: pick common services for the website field.
-• Personalization changes apply instantly again.
-• Fixed widgets and background tasks that stopped working.
+• Contact details get a cleaner look with quick actions to call, message, WhatsApp, email or favorite.
+• Games turn into a retro arcade with your records and a scoreboard.
+• Simpler paint tools and a tidier tools list.
+• Redesigned About and welcome screens.
+• "Lock the whole app" now lives in Security & privacy.
+• Fixed the dialer suggesting the wrong contact for short numbers.
 
 ### Español
 
-• Llamadas: solo aparece la notificación de llamada perdida de Fun Phone, el timbre se detiene al terminar la llamada y la entrante sigue a mano hasta contestar o rechazar.
-• Nuevos widgets de llamadas recientes y gastos del mes; todos siguen tus colores.
-• Gestor de contraseñas: elige servicios comunes en el sitio web.
-• La personalización vuelve a aplicarse al instante.
-• Corregimos widgets y tareas en segundo plano que no funcionaban.
+• Detalles del contacto más limpios, con accesos para llamar, escribir, WhatsApp, correo o favorito.
+• Los juegos se vuelven un arcade retro con tus récords y tabla de puntajes.
+• Herramientas de dibujo más simples y una lista de herramientas más ordenada.
+• Nuevas pantallas de Acerca de y bienvenida.
+• "Bloquear toda la app" ahora está en Seguridad y privacidad.
+• El marcador ya no sugiere un contacto equivocado con números cortos.
 
 ### Deutsch
 
-• Anrufe: Es erscheint nur noch die Benachrichtigung von Fun Phone für verpasste Anrufe, das Klingeln endet mit dem Anruf und der eingehende Anruf bleibt bis zum Annehmen oder Ablehnen erreichbar.
-• Neue Widgets für letzte Anrufe und Monatsausgaben, alle in deinen Farben.
-• Passwortmanager: gängige Dienste für die Website auswählen.
-• Personalisierung wirkt wieder sofort.
-• Widgets und Hintergrundaufgaben funktionieren wieder.
+• Kontaktdetails wirken aufgeräumter, mit Schnellaktionen für Anruf, Nachricht, WhatsApp, E-Mail und Favorit.
+• Spiele werden zur Retro-Arcade mit Rekorden und Anzeigetafel.
+• Einfachere Malwerkzeuge und eine übersichtlichere Tool-Liste.
+• Neue Info- und Willkommensseiten.
+• „Ganze App sperren“ ist jetzt unter Sicherheit und Datenschutz.
+• Der Wählblock schlägt bei kurzen Nummern keinen falschen Kontakt mehr vor.
 
 ### Français
 
-• Appels : seule la notification d'appel manqué de Fun Phone s'affiche, la sonnerie s'arrête dès la fin de l'appel et l'appel entrant reste accessible jusqu'à la réponse ou au refus.
-• Nouveaux widgets Appels récents et Dépenses du mois, aux couleurs de votre thème.
-• Mots de passe : choisissez un service courant pour le site web.
-• La personnalisation s'applique de nouveau tout de suite.
-• Widgets et tâches en arrière-plan réparés.
+• Fiche contact épurée, avec des actions rapides : appel, message, WhatsApp, e-mail ou favori.
+• Les jeux deviennent une salle d'arcade rétro avec vos records et un tableau des scores.
+• Outils de dessin simplifiés et liste d'outils plus claire.
+• Écrans À propos et d'accueil repensés.
+• « Verrouiller toute l’appli » se trouve dans Sécurité et confidentialité.
+• Le clavier ne propose plus un mauvais contact pour les numéros courts.
 
 ### Português
 
-• Chamadas: só aparece a notificação de chamada perdida do Fun Phone, o toque para assim que a chamada termina e a chamada recebida fica acessível até atender ou recusar.
-• Novos widgets de chamadas recentes e gastos do mês, nas suas cores.
-• Gerenciador de senhas: escolha serviços comuns no campo de site.
-• A personalização volta a ser aplicada na hora.
-• Corrigimos widgets e tarefas em segundo plano que não funcionavam.
+• Detalhes do contato mais limpos, com atalhos para ligar, mensagem, WhatsApp, e-mail ou favorito.
+• Os jogos viram um fliperama retrô com seus recordes e placar.
+• Ferramentas de desenho mais simples e lista de ferramentas mais organizada.
+• Novas telas de Sobre e boas-vindas.
+• "Bloquear o app inteiro" agora fica em Segurança e privacidade.
+• O discador não sugere mais o contato errado para números curtos.
 
 ## Screenshot order
 
@@ -309,7 +314,7 @@ The guard checks title/short/full limits, export freshness, native fixture cover
 set for every language. Limits are 30, 80 and 4,000 characters respectively, per
 [Google Play product-detail guidance](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en).
 The full descriptions consistently disclose optional social previews, holiday requests, Android
-speech providers and account-managed contact synchronization. The 3.20.7 release notes above are ready for this local candidate; generating text does not upload it.
+speech providers and account-managed contact synchronization. The 3.21.0 release notes above are ready for this local candidate; generating text does not upload it.
 
 ## Custom listing drafts — publish only after source publication
 
