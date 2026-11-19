@@ -11,7 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddIcCall
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material3.Button
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -54,10 +54,7 @@ fun PhoneNumbersField(
     countrySelected: Country?,
     onCountrySelected: ((Country?) -> Unit)? = null
 ) {
-    val accentColor = MaterialTheme.colorScheme.primary
     val context = LocalContext.current
-    val textColor = MaterialTheme.colorScheme.onBackground
-    val backgroundColor = MaterialTheme.colorScheme.background
 
     var phoneStates by remember {
         mutableStateOf(
@@ -149,7 +146,7 @@ fun PhoneNumbersField(
                             Icon(
                                 imageVector = Icons.Default.Remove,
                                 contentDescription = stringResource(R.string.cd_remove_phone),
-                                tint = MaterialTheme.colorScheme.error
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     }
@@ -173,15 +170,15 @@ fun PhoneNumbersField(
                             .menuAnchor(MenuAnchorType.PrimaryNotEditable)
                             .fillMaxWidth(),
                         colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(
-                            focusedBorderColor = accentColor,
-                            unfocusedBorderColor = textColor
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.outline,
                         ),
                         shape = RoundedCornerShape(12.dp)
                     )
                     ExposedDropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
-                        containerColor = backgroundColor,
+                        containerColor = MaterialTheme.colorScheme.surfaceContainer,
                         tonalElevation = 4.dp,
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -211,9 +208,9 @@ fun PhoneNumbersField(
         }
 
         if (phoneStates.size < 5) {
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
-            Button(
+            TextButton(
                 onClick = {
                     phoneStates = phoneStates + PhoneFieldState(
                         ContactPhone("", PhoneEntity.Type.MOBILE, countrySelected?.code),
@@ -221,12 +218,7 @@ fun PhoneNumbersField(
                     )
                     updatePhones()
                 },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = accentColor.copy(alpha = 0.2f),
-                    contentColor = accentColor
-                ),
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.fillMaxWidth()
+                contentPadding = ButtonDefaults.TextButtonWithIconContentPadding,
             ) {
                 Icon(
                     imageVector = Icons.Default.AddIcCall,

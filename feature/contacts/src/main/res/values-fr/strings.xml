@@ -84,10 +84,11 @@
     <string name="add_birthday">Choisir un anniversaire</string>
     <string name="edit_birthday">Anniversaire</string>
     <string name="edit_notes">Modifier les notes</string>
-    <string name="contact_form_section_phone_numbers">Numéros de téléphone</string>
     <string name="contact_form_section_personal_details">Informations personnelles</string>
     <string name="contact_form_section_preferences">Préférences du contact</string>
     <string name="contact_form_section_account">Compte du contact</string>
+    <string name="contact_form_add_photo">Ajouter une photo</string>
+    <string name="contact_form_change_photo">Changer la photo</string>
     <string name="select_birthday">Choisir un anniversaire</string>
     <string name="ringtone">Sonnerie</string>
     <string name="select_ringtone">Choisir la sonnerie</string>

@@ -38,8 +38,6 @@ class IncomingCallBackgroundFieldTest {
             .assertIsDisplayed()
             .assertHasClickAction()
             .performClick()
-        composeRule.onNodeWithText(text(R.string.incoming_call_background_description))
-            .assertIsDisplayed()
         composeRule.onNodeWithText(text(R.string.incoming_call_background_not_configured))
             .assertIsDisplayed()
 
@@ -107,7 +105,6 @@ class IncomingCallBackgroundFieldTest {
                         IncomingCallBackgroundField(
                             backgroundUri = backgroundUri,
                             isLoading = false,
-                            accentColor = Color(0xFF3367D6),
                             onClick = onClick,
                         )
                     }
