@@ -1,0 +1,5 @@
+• Novas regras privadas contra spam: números falsificados, números parecidos com o seu e toque silencioso para desconhecidos.
+• Atenda ou recuse com as teclas de volume mesmo com outro app aberto.
+• As chamadas ficam no Android Auto e kits do carro em vez de irem para o fone.
+• Após uma chamada vinda de outro app, você volta para ele.
+• Ligue para endereços SIP dos contatos pelos seus apps SIP.

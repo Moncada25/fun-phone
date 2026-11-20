@@ -7,11 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.21.3] - 2026-11-20
+
 ### Added
 - Contact details list the contact's SIP addresses. Tapping one places a `sip:` call through a
   calling account that supports SIP, such as one registered by a SIP app that works with the system
   dialer; with several such accounts the account picker opens, and with none a message explains
   that no account supports SIP. Fun Phone still has no SIP stack of its own.
+- The spam filter has new rules, all off by default and evaluated only on the device: block spoofed
+  numbers whose caller ID fails the carrier's verification (Android 11 and later), block numbers
+  that match one in the profile except for the last four digits (saved contacts still ring), and,
+  for numbers not in contacts, ring silently instead of rejecting, allow numbers called in the last
+  30 days and allow a number that calls again within 15 minutes.
+
+### Changed
+- When a call brought Fun Phone up from another app, the app moves to the background once no call
+  is left, so the user returns to where they were. Calls started from Fun Phone keep returning to it.
+- Tool descriptions in the Tools tab and the About links use the same text style and monochrome
+  icons as Settings.
+- Lint warnings are cleared and the lint ratchet allows at most 10 warnings. No user-visible change.
+
+### Fixed
+- With answering or declining with the volume keys on, a call ringing while another app was open
+  only showed the heads-up notification and the key went to that app. The full-screen incoming
+  call screen now opens in that case, so the key reaches Fun Phone.
+- Every `+1` number was labelled as Canada. North American numbers now resolve by area code and
+  other shared dial codes resolve to their main country, and the phone field no longer flips back
+  to Canada while editing.
+- Cancelling the profile creation form reopened it. The form now replaces the profile screen, and
+  cancelling returns to where the profile was opened.
+- With Android Auto or a Bluetooth car kit connected, calls moved back to the earpiece shortly after
+  Telecom routed them to the car. The app no longer forces a default route, and routes picked on
+  the car, a headset or the system are kept.
 
 ## [3.21.2] - 2026-11-19
 

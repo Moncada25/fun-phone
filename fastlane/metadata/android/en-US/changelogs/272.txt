@@ -1,0 +1,5 @@
+• New private spam rules: spoofed numbers, numbers that look like yours, and silent ringing for unknown callers.
+• Answer or decline with the volume keys even while another app is open.
+• Calls stay on Android Auto and car kits instead of jumping to the earpiece.
+• After a call from another app, you return to that app.
+• Call contacts' SIP addresses through your SIP apps.

@@ -1,0 +1,5 @@
+• Nouvelles règles anti-spam privées : numéros usurpés, numéros proches du vôtre et sonnerie silencieuse pour les inconnus.
+• Répondez ou refusez avec les touches de volume même si une autre app est ouverte.
+• Les appels restent sur Android Auto et les kits voiture au lieu de passer à l’écouteur.
+• Après un appel depuis une autre app, vous y revenez.
+• Appelez les adresses SIP de vos contacts via vos apps SIP.
