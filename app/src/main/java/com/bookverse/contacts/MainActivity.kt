@@ -71,6 +71,8 @@ import com.bookverse.contacts.utils.SecondaryScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.time.Duration.Companion.milliseconds
@@ -121,6 +123,8 @@ class MainActivity : LocalizedAppCompatActivity() {
     private var answerWithVolumeUpEnabled = false
     private var declineWithVolumeDownEnabled = false
     private var hadActiveCallForReview = false
+    private var leaveAfterCall = false
+    private var visibleBeforeNewIntent = false
     private var reviewPromptInFlight = false
 
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
@@ -151,6 +155,7 @@ class MainActivity : LocalizedAppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        visibleBeforeNewIntent = true
         refreshPhoneSetup()
         maybeLaunchInAppReview()
     }
@@ -170,6 +175,7 @@ class MainActivity : LocalizedAppCompatActivity() {
     override fun onStop() {
         super.onStop()
         AppVisibility.isForeground = false
+        visibleBeforeNewIntent = false
         val c = DefaultCallRepository.activeCall.value
         if (c != null && (c.state == CallState.ACTIVE || c.state == CallState.DIALING || c.state == CallState.ON_HOLD)) {
             CallNotificationManager.showOngoing(this, c.id, c.number)
@@ -185,6 +191,9 @@ class MainActivity : LocalizedAppCompatActivity() {
         super.onCreate(savedInstanceState)
         PhoneActions.setupCallPermissionLauncher(this)
         readCallExtras(intent)
+        if (savedInstanceState != null) {
+            leaveAfterCall = savedInstanceState.getBoolean(STATE_LEAVE_AFTER_CALL)
+        }
         if (savedInstanceState == null) handleMissedCallExtras(intent)
         readDialerExtras(intent, initialLaunch = true)
         readWidgetExtras(intent)
@@ -402,6 +411,19 @@ class MainActivity : LocalizedAppCompatActivity() {
         }
 
         lifecycleScope.launch {
+            DefaultCallRepository.calls
+                .map { calls -> calls.any { it.state != CallState.DISCONNECTED } }
+                .distinctUntilChanged()
+                .collect { hasOngoingCall ->
+                    val started = lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)
+                    if (shouldLeaveAfterCallEnds(leaveAfterCall, hasOngoingCall, started)) {
+                        moveTaskToBack(true)
+                    }
+                    if (!hasOngoingCall) leaveAfterCall = false
+                }
+        }
+
+        lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     DefaultCallRepository.activeCall.collect { call ->
@@ -426,6 +448,11 @@ class MainActivity : LocalizedAppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(STATE_LEAVE_AFTER_CALL, leaveAfterCall)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -455,6 +482,7 @@ class MainActivity : LocalizedAppCompatActivity() {
             openInCall = intent.getBooleanExtra("open_incall", false)
             inCallCallId = intent.getStringExtra("incall_call_id")
             inCallNumber = intent.getStringExtra("incall_number")
+            if (isCallOpenedFromOutside(openInCall, visibleBeforeNewIntent)) leaveAfterCall = true
         }
         if (intent.hasExtra("open_recents")) {
             openRecents = intent.getBooleanExtra("open_recents", false)
@@ -615,3 +643,14 @@ internal fun resolveCallRestoreTarget(call: UiCall?): CallRestoreTarget = when (
     CallState.DIALING, CallState.ACTIVE, CallState.ON_HOLD -> CallRestoreTarget.IN_CALL
     CallState.DISCONNECTED, null -> CallRestoreTarget.NONE
 }
+
+private const val STATE_LEAVE_AFTER_CALL = "leave_after_call"
+
+internal fun isCallOpenedFromOutside(openInCall: Boolean, appWasVisible: Boolean): Boolean =
+    openInCall && !appWasVisible
+
+internal fun shouldLeaveAfterCallEnds(
+    leaveAfterCall: Boolean,
+    hasOngoingCall: Boolean,
+    activityStarted: Boolean,
+): Boolean = leaveAfterCall && !hasOngoingCall && activityStarted
