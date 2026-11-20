@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy:** 3.21.1/270 behavior; saved in Play Console on 2026-11-19
-**Release notes candidate below:** 3.21.1 (270)
+**Release notes candidate below:** 3.21.2 (271)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -232,47 +232,47 @@ Privado por natureza: contatos, chamadas, notas e senhas são processados no apa
 
 Para começar, abra Status do dispositivo após instalar, conceda as permissões e escolha o Fun Phone como app de telefone padrão. Alguns recursos dependem do aparelho e da versão do Android.
 
-## What's new — 3.21.1
+## What's new — 3.21.2
 
 ### English
 
-• Contacts look cleaner: details, the add/edit form and your profile share one design, with quick actions to call, message, WhatsApp, email or favorite.
-• Games become a retro arcade with records and a scoreboard showing your favorite game.
-• Simpler Pomodoro, paint tools and tools list.
-• New About and welcome screens; "Lock the whole app" is now in Security & privacy.
-• Fixed: unsaved password edits surviving back, and wrong contact suggestions for short numbers.
+• Decline a ringing call with the volume down key (Settings > Calls).
+• The in-call screen and keypad now fit landscape.
+• Save new contacts to CardDAV address books such as DAVx5.
+• Cleaner call history, grouped by day with contact photos.
+• Animation speed is now a slider, and theme changes reveal in a circle.
 
 ### Español
 
-• Contactos más limpios: detalles, formulario y perfil comparten diseño, con accesos para llamar, escribir, WhatsApp, correo o favorito.
-• Los juegos son un arcade retro con récords y tabla de puntajes con tu juego favorito.
-• Pomodoro, dibujo y lista de herramientas más simples.
-• Nuevas pantallas de Acerca de y bienvenida; "Bloquear toda la app" está en Seguridad y privacidad.
-• Corregido: cambios de contraseña sin guardar y contactos equivocados con números cortos.
+• Rechaza una llamada entrante con la tecla de bajar volumen (Configuración > Llamadas).
+• La pantalla de llamada y el teclado se adaptan a horizontal.
+• Guarda contactos nuevos en libretas CardDAV como DAVx5.
+• Historial de llamadas más limpio, agrupado por día y con fotos.
+• La velocidad de animación ahora es un deslizador y el tema cambia con un círculo.
 
 ### Deutsch
 
-• Aufgeräumte Kontakte: Details, Formular und Profil im gleichen Design, mit Schnellaktionen für Anruf, Nachricht, WhatsApp, E-Mail und Favorit.
-• Spiele als Retro-Arcade mit Rekorden und Anzeigetafel samt Lieblingsspiel.
-• Einfacheres Pomodoro, Malen und Tool-Liste.
-• Neue Info- und Willkommensseiten; „Ganze App sperren“ ist unter Sicherheit und Datenschutz.
-• Behoben: ungespeicherte Passwortänderungen und falsche Kontakte bei kurzen Nummern.
+• Eingehende Anrufe mit der Leiser-Taste ablehnen (Einstellungen > Anrufe).
+• Anrufbildschirm und Tastenfeld passen jetzt ins Querformat.
+• Neue Kontakte in CardDAV-Adressbüchern wie DAVx5 speichern.
+• Übersichtlichere Anrufliste, nach Tagen gruppiert und mit Kontaktfotos.
+• Animationstempo jetzt per Schieberegler; Designwechsel erscheinen als Kreis.
 
 ### Français
 
-• Contacts épurés : fiche, formulaire et profil partagent un design, avec appel, message, WhatsApp, e-mail ou favori.
-• Jeux en arcade rétro avec records et tableau des scores avec votre jeu favori.
-• Pomodoro, dessin et liste d’outils simplifiés.
-• Écrans À propos et d’accueil repensés ; « Verrouiller toute l’appli » est dans Sécurité et confidentialité.
-• Corrigé : modifications de mot de passe non enregistrées et mauvais contact pour les numéros courts.
+• Refusez un appel entrant avec la touche volume bas (Paramètres > Appels).
+• L’écran d’appel et le clavier s’adaptent au mode paysage.
+• Enregistrez vos nouveaux contacts dans des carnets CardDAV comme DAVx5.
+• Historique des appels plus clair, groupé par jour avec photos.
+• Vitesse des animations réglable par curseur ; le thème change en cercle.
 
 ### Português
 
-• Contatos mais limpos: detalhes, formulário e perfil com o mesmo visual e atalhos para ligar, mensagem, WhatsApp, e-mail ou favorito.
-• Os jogos viram um fliperama retrô com recordes e placar com seu jogo favorito.
-• Pomodoro, desenho e lista de ferramentas mais simples.
-• Novas telas de Sobre e boas-vindas; "Bloquear o app inteiro" fica em Segurança e privacidade.
-• Corrigido: alterações de senha não salvas e contato errado em números curtos.
+• Recuse uma chamada recebida com a tecla de diminuir volume (Configurações > Chamadas).
+• A tela de chamada e o teclado se ajustam à horizontal.
+• Salve novos contatos em agendas CardDAV como o DAVx5.
+• Histórico de chamadas mais limpo, agrupado por dia e com fotos.
+• A velocidade das animações agora é um controle deslizante e o tema muda em círculo.
 
 ## Screenshot order
 

@@ -1,0 +1,5 @@
+• Eingehende Anrufe mit der Leiser-Taste ablehnen (Einstellungen > Anrufe).
+• Anrufbildschirm und Tastenfeld passen jetzt ins Querformat.
+• Neue Kontakte in CardDAV-Adressbüchern wie DAVx5 speichern.
+• Übersichtlichere Anrufliste, nach Tagen gruppiert und mit Kontaktfotos.
+• Animationstempo jetzt per Schieberegler; Designwechsel erscheinen als Kreis.

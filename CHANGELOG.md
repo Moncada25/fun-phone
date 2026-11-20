@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.21.2] - 2026-11-19
+
+### Added
+- An opt-in Calls setting, next to answering with volume up, declines a ringing call when the
+  volume down key is released. Both keys only act while a call is ringing and their setting is on,
+  and the setting is part of the settings backup; older backups keep it off.
+- Creating a contact offers CardDAV address books such as DAVx5 besides the local account. Accounts
+  are also read from the contacts provider and only kept when their sync adapter supports uploading,
+  so read-only accounts such as Signal or WhatsApp stay out.
+
+### Changed
+- Animation speed is a slider in 50 ms steps from off to 1200 ms, with quick presets. Existing
+  Fast, Normal, Slow and Off settings and backups keep their durations.
+- Changing the theme mode or dark style reveals the new theme in a circle from the tapped option,
+  across the main window and any open sheet. It follows the animation speed and is off when
+  animations are off.
+- The call history groups each day's calls in one card under a left-aligned day title. Saved
+  contacts show their photo or initials, unknown numbers a neutral avatar, missed calls use the
+  error color, the time moves to the trailing edge and the call button has a 48 dp target.
+- Tool names in the Tools tab are semi-bold, and the Minimalist and Retro theme styles now have a
+  description in the style picker.
+- The PRD describes the current module layout, locales and features. No user-visible change.
+
+### Fixed
+- In landscape the in-call avatar covered the name, number and timer, and the keypad cut off the
+  `* 0 #` row. Landscape now shows the caller on the left and the controls on the right, short
+  windows open the keypad, More and audio route sheets fully expanded and scrollable, and side
+  cutouts and navigation bars are respected.
+- The contacts library turned contacts saved to an account it could not see into local contacts.
+  Inserts now go to the chosen writable account and fall back to local only for a stale default.
+
 ## [3.21.1] - 2026-11-19
 
 ### Changed

@@ -1,0 +1,5 @@
+• Refusez un appel entrant avec la touche volume bas (Paramètres > Appels).
+• L’écran d’appel et le clavier s’adaptent au mode paysage.
+• Enregistrez vos nouveaux contacts dans des carnets CardDAV comme DAVx5.
+• Historique des appels plus clair, groupé par jour avec photos.
+• Vitesse des animations réglable par curseur ; le thème change en cercle.
