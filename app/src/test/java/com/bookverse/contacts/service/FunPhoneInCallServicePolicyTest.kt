@@ -135,4 +135,30 @@ class FunPhoneInCallServicePolicyTest {
             ),
         )
     }
+
+    @Test
+    fun shouldLaunchIncomingActivity_whenVolumeKeyActionEnabledAndUnlockedInBackground() {
+        assertTrue(
+            shouldLaunchIncomingCallActivity(
+                immersive = false,
+                deviceLocked = false,
+                appInForeground = false,
+                notificationShown = true,
+                volumeKeyActionEnabled = true,
+            ),
+        )
+    }
+
+    @Test
+    fun shouldKeepInAppSurface_whenVolumeKeyActionEnabledAndAppInForeground() {
+        assertFalse(
+            shouldLaunchIncomingCallActivity(
+                immersive = false,
+                deviceLocked = false,
+                appInForeground = true,
+                notificationShown = true,
+                volumeKeyActionEnabled = true,
+            ),
+        )
+    }
 }
