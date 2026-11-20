@@ -91,7 +91,6 @@ class FunPhoneInCallService : InCallService() {
 
                 Call.STATE_RINGING -> {
                     incomingCallIds.add(id)
-                    CallController.initializeDefaultAudioRoute()
                     if (handledIncomingCallIds.add(id)) {
                         handleIncomingCall(call, id, number)
                     }
@@ -248,7 +247,6 @@ class FunPhoneInCallService : InCallService() {
         super.onCallAdded(call)
         DiagnosticLog.debug(DiagnosticEvent.CALL_ADDED)
         CallController.onNewCallStarted()
-        CallController.initializeDefaultAudioRoute()
         call.registerCallback(callback)
         val currentState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             call.details.state

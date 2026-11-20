@@ -23,8 +23,8 @@ import java.lang.ref.WeakReference
 object CallController {
     private var serviceRef: WeakReference<InCallService>? = null
     private val cachedBluetoothNames = mutableSetOf<String>()
-    private var preferredRoute: AudioRoute = AudioRoute.EARPIECE
-    private var preferredEndpoint: AudioEndpoint? = null
+    private var requestedRoute: AudioRoute? = null
+    private var requestedEndpoint: AudioEndpoint? = null
     private var lastReportedMuted: Boolean = false
 
     fun attach(svc: InCallService) {
@@ -156,24 +156,23 @@ object CallController {
         changeAudioRoute(targetRoute, updatePreference = true)
     }
 
-    fun initializeDefaultAudioRoute() {
-        preferredRoute = AudioRoute.EARPIECE
-        preferredEndpoint = null
-        applyPreferredRoute()
-    }
-
     fun onSystemAudioStateChanged(route: AudioRoute, isMuted: Boolean = lastReportedMuted) {
         val muteChanged = isMuted != lastReportedMuted
         lastReportedMuted = isMuted
         if (muteChanged) {
             return
         }
-        val matchesPreference = when {
-            preferredRoute == AudioRoute.BLUETOOTH && preferredEndpoint != null -> route == AudioRoute.BLUETOOTH
-            else -> route == preferredRoute
-        }
-        if (!matchesPreference) {
-            applyPreferredRoute()
+        val retryRoute = requestedRoute
+        val retryEndpoint = requestedEndpoint
+        when (reactToReportedAudioRoute(retryRoute, route)) {
+            AudioRouteReaction.FOLLOW_SYSTEM -> Unit
+            AudioRouteReaction.SETTLE -> resetAudioPreferences()
+            AudioRouteReaction.RETRY_ONCE -> {
+                resetAudioPreferences()
+                retryEndpoint?.let {
+                    changeAudioEndpoint(it, updatePreference = false)
+                } ?: retryRoute?.let { changeAudioRoute(it, updatePreference = false) }
+            }
         }
     }
 
@@ -185,25 +184,22 @@ object CallController {
         lastReportedMuted = false
     }
 
+    @androidx.annotation.VisibleForTesting
+    fun getRequestedAudioRouteForTest(): AudioRoute? = requestedRoute
+
     fun onNewCallStarted() {
         resetAudioPreferences()
     }
 
     private fun resetAudioPreferences() {
-        preferredRoute = AudioRoute.EARPIECE
-        preferredEndpoint = null
-    }
-
-    private fun applyPreferredRoute() {
-        preferredEndpoint?.let {
-            changeAudioEndpoint(it, updatePreference = false)
-        } ?: changeAudioRoute(preferredRoute, updatePreference = false)
+        requestedRoute = null
+        requestedEndpoint = null
     }
 
     private fun changeAudioRoute(targetRoute: AudioRoute, updatePreference: Boolean) {
         if (updatePreference) {
-            preferredRoute = targetRoute
-            preferredEndpoint = null
+            requestedRoute = targetRoute
+            requestedEndpoint = null
         }
         val svc = serviceRef?.get() as? FunPhoneInCallService ?: return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
@@ -222,10 +218,8 @@ object CallController {
 
                         override fun onError(_error: android.telecom.CallEndpointException) {
                             DiagnosticLog.error(DiagnosticEvent.CALL_AUDIO_ROUTE_CHANGE_FAILED)
-                            resetPreferenceToCurrentState(svc)
+                            resetAudioPreferences()
                             if (legacySetAudioRoute(svc, targetRoute)) {
-                                preferredRoute = targetRoute
-                                preferredEndpoint = null
                                 DefaultCallRepository.setAudioRoute(targetRoute)
                             }
                         }
@@ -323,26 +317,14 @@ object CallController {
         }.getOrDefault(false)
     }
 
-    private fun resetPreferenceToCurrentState(svc: InCallService) {
-        val currentRoute = audioRouteFromState(
-            @Suppress("DEPRECATION")
-            svc.callAudioState
-        )
-        preferredRoute = currentRoute
-        preferredEndpoint = null
-    }
-
-    private fun audioRouteFromState(state: CallAudioState?): AudioRoute =
-        audioRouteFromPlatform(state?.route)
-
     fun setAudioEndpoint(endpoint: AudioEndpoint) {
         changeAudioEndpoint(endpoint, updatePreference = true)
     }
 
     private fun changeAudioEndpoint(endpoint: AudioEndpoint, updatePreference: Boolean) {
         if (updatePreference) {
-            preferredRoute = endpoint.route
-            preferredEndpoint = endpoint
+            requestedRoute = endpoint.route
+            requestedEndpoint = endpoint
         }
         val svc = serviceRef?.get() as? FunPhoneInCallService ?: return
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
@@ -363,14 +345,14 @@ object CallController {
 
                         override fun onError(_error: android.telecom.CallEndpointException) {
                             DiagnosticLog.error(DiagnosticEvent.CALL_AUDIO_ENDPOINT_CHANGE_FAILED)
-                            resetPreferenceToCurrentState(svc)
+                            resetAudioPreferences()
                         }
                     }
                 )
             } else {
                 DiagnosticLog.warning(DiagnosticEvent.CALL_AUDIO_ENDPOINT_STALE)
                 if (updatePreference) {
-                    preferredEndpoint = null
+                    requestedEndpoint = null
                 }
                 changeAudioRoute(endpoint.route, updatePreference = false)
             }

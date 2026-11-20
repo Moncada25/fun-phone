@@ -37,6 +37,7 @@ app testing.
 | TEL-A06 | Answer/reject/end/hold/unhold/DTMF/swap invoke the intended platform `Call` operations | `TelecomCallActionsTest` exercises the production seam, including legacy reject fallback and ordered DTMF | `DONE` |
 | TEL-A07 | Android 14+ endpoint selection and legacy audio-route fallback preserve the selected route | `TelecomCallActionsTest` covers every legacy route and modern endpoint mapping; hardware behavior remains TEL-M07 | `DONE` |
 | TEL-A08 | Incoming notification appears and Telecom cleans up a cancelled synthetic call | `scripts/smoke-emulator-incoming-call.sh` refuses physical devices, temporarily assigns the role, simulates GSM, asserts notification/cleanup, and restores the previous dialer | `DONE` on Android 17 emulator; full-screen policy/actions remain device-only TEL-M08/M09 |
+| TEL-A09 | The app never forces a default route: system routing (car/Android Auto, Bluetooth, wired) wins, and an in-app pick is retried at most once until the system confirms it | `AudioRouteRequestPolicyTest` | `DONE` |
 
 ## Manual scenario matrix
 
@@ -52,7 +53,7 @@ signed off without the matching hardware/carrier setup.
 | TEL-M04 | Incoming reject, including volume down when enabled, and unanswered/missed call | Reject does not answer; volume keys only act while ringing and only when their setting is on; missed notification and recents are correct with no duplicate system alert |
 | TEL-M05 | Hold/unhold and two-call swap | Active/held states and controls match the carrier; swap changes the audible call |
 | TEL-M06 | DTMF against a real IVR | Digits `0-9`, `*`, and `#` are received once and in order |
-| TEL-M07 | Earpiece, speaker, wired, and Bluetooth routing | Selected route becomes audible, survives mute changes, and falls back safely on disconnect |
+| TEL-M07 | Earpiece, speaker, wired, and Bluetooth routing | Selected route becomes audible, survives mute changes, and falls back safely on disconnect; with a car/Android Auto connected the call stays on the car and a route picked on the car screen sticks |
 | TEL-M08 | Full-screen incoming call while locked/backgrounded | UI appears under allowed system policy; otherwise notification fallback is actionable |
 | TEL-M09 | Notification answer/reject/end actions | Each action affects only the intended call and clears stale notifications |
 | TEL-M10 | Recents, contact name, missed-call fallback, and process return | Call log is correct; unavailable contact lookup falls back to number; reopening shows no ghost call |
