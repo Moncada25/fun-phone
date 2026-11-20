@@ -344,6 +344,7 @@
     <string name="tools_menu_visible_title">Afficher le menu Outils</string>
     <string name="call_permission_required">L’autorisation d’appel est nécessaire</string>
     <string name="call_failed">Impossible de passer l’appel</string>
+    <string name="sip_account_unavailable">Aucun compte d’appel ne prend en charge SIP</string>
     <string name="call_initialization_error">Impossible d’initialiser l’appel</string>
     <string name="device_info_open_error">Impossible d’ouvrir les informations de l’appareil</string>
     <string name="call_execution_error">Erreur lors de l’appel</string>

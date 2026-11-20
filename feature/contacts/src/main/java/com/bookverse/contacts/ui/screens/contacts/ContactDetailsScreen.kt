@@ -59,6 +59,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -80,6 +81,7 @@ import com.bookverse.contacts.data.model.ContactAccount
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.data.model.SocialMediaType
 import com.bookverse.contacts.data.model.historyKey
+import com.bookverse.contacts.domain.call.SipAddressPolicy
 import com.bookverse.contacts.settings.Countries
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ButtonClick
@@ -209,6 +211,10 @@ fun ContactDetailsScreen(
         contactTagViewModel?.loadTagsForContacts(listOf(contact.id))
     }
 
+    val sipAddresses by produceState(initialValue = emptyList<String>(), contact.id) {
+        value = if (contact.id.isNotBlank()) contactsViewModel.getSipAddresses(contact.id) else emptyList()
+    }
+
     val localOperations by contactsViewModel.localOperations.collectAsStateWithLifecycle()
     val callLogs by contactsViewModel.callLogs.collectAsStateWithLifecycle()
     val contactRecentOperations = remember(localOperations, callLogs, contact) {
@@ -330,6 +336,7 @@ fun ContactDetailsScreen(
                 stringResource(R.string.add_to_favorites, firstName)
             }
             val phoneCopied = stringResource(R.string.phone_copied)
+            val sipAddressCopied = stringResource(R.string.sip_address_copied)
             val emailCopied = stringResource(R.string.email_copied)
             val companyCopied = stringResource(R.string.company_copied)
             val websiteCopied = stringResource(R.string.website_copied)
@@ -497,7 +504,7 @@ fun ContactDetailsScreen(
                     }
                 }
 
-                if (contact.phones.isNotEmpty() || contactEmail != null) {
+                if (contact.phones.isNotEmpty() || sipAddresses.isNotEmpty() || contactEmail != null) {
                     item(key = "contact_info") {
                         Column {
                             DetailSectionDivider()
@@ -522,6 +529,21 @@ fun ContactDetailsScreen(
                                             )
                                         }
                                     },
+                                )
+                            }
+                            sipAddresses.forEachIndexed { index, sipAddress ->
+                                DetailRow(
+                                    icon = if (index == 0 && contact.phones.isEmpty()) callIcon else null,
+                                    headline = sipAddress,
+                                    supporting = stringResource(R.string.sip_address_label),
+                                    headlineMaxLines = 1,
+                                    onClick = {
+                                        phoneActions.callPhoneNumber(
+                                            context,
+                                            SipAddressPolicy.dialTarget(sipAddress),
+                                        )
+                                    },
+                                    onLongClick = { copyValue(sipAddress, sipAddressCopied) },
                                 )
                             }
                             if (contactEmail != null) {

@@ -11,6 +11,7 @@ import com.bookverse.contacts.diagnostics.DiagnosticEvent
 import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.domain.call.SimAccount
 import com.bookverse.contacts.domain.call.SimPreference
+import com.bookverse.contacts.domain.call.SipAddressPolicy
 import com.bookverse.contacts.settings.CallPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,14 +27,30 @@ object PhoneAccountDirectory {
     fun accountId(handle: PhoneAccountHandle): String =
         "${handle.componentName.flattenToShortString()}#${handle.id}"
 
+    fun schemeFor(target: String): String =
+        if (SipAddressPolicy.isSipAddress(target)) PhoneAccount.SCHEME_SIP else PhoneAccount.SCHEME_TEL
+
+    fun callCapableHandles(
+        context: Context,
+        scheme: String = PhoneAccount.SCHEME_TEL,
+    ): List<PhoneAccountHandle> = enabledHandles(context) { it.supportsUriScheme(scheme) }
+
+    fun callCapableAccounts(
+        context: Context,
+        scheme: String = PhoneAccount.SCHEME_TEL,
+    ): List<SimAccount> = describe(context, callCapableHandles(context, scheme))
+
     @SuppressLint("MissingPermission")
-    fun callCapableHandles(context: Context): List<PhoneAccountHandle> {
+    private fun enabledHandles(
+        context: Context,
+        accepts: (PhoneAccount) -> Boolean,
+    ): List<PhoneAccountHandle> {
         val telecomManager = context.getSystemService(Context.TELECOM_SERVICE) as? TelecomManager
             ?: return emptyList()
         return try {
             telecomManager.callCapablePhoneAccounts.orEmpty().filter { handle ->
                 telecomManager.getPhoneAccount(handle)?.let { account ->
-                    account.isEnabled && account.supportsUriScheme(PhoneAccount.SCHEME_TEL)
+                    account.isEnabled && accepts(account)
                 } == true
             }
         } catch (_: SecurityException) {
@@ -41,9 +58,6 @@ object PhoneAccountDirectory {
             emptyList()
         }
     }
-
-    fun callCapableAccounts(context: Context): List<SimAccount> =
-        describe(context, callCapableHandles(context))
 
     fun describe(context: Context, handles: List<PhoneAccountHandle>): List<SimAccount> {
         val telecomManager = context.getSystemService(Context.TELECOM_SERVICE) as? TelecomManager
@@ -62,7 +76,7 @@ object PhoneAccountDirectory {
     }
 
     fun handleFor(context: Context, accountId: String): PhoneAccountHandle? =
-        callCapableHandles(context).firstOrNull { accountId(it) == accountId }
+        enabledHandles(context) { true }.firstOrNull { accountId(it) == accountId }
 
     fun isEmergencyNumber(context: Context, number: String): Boolean {
         val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as? TelephonyManager

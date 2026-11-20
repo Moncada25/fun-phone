@@ -9,6 +9,7 @@ import android.telecom.CallAudioState
 import android.telecom.CallEndpoint
 import android.telecom.DisconnectCause
 import android.telecom.InCallService
+import android.telecom.PhoneAccount
 import android.telecom.PhoneAccountHandle
 import android.telephony.PhoneNumberUtils
 import androidx.annotation.RequiresApi
@@ -356,7 +357,12 @@ class FunPhoneInCallService : InCallService() {
                 Call.AVAILABLE_PHONE_ACCOUNTS,
                 PhoneAccountHandle::class.java,
             )
-        }.orEmpty().ifEmpty { PhoneAccountDirectory.callCapableHandles(this) }
+        }.orEmpty().ifEmpty {
+            PhoneAccountDirectory.callCapableHandles(
+                this,
+                call.details.handle?.scheme ?: PhoneAccount.SCHEME_TEL,
+            )
+        }
         val accounts = PhoneAccountDirectory.describe(this, handles)
         if (accounts.isEmpty()) {
             call.disconnect()

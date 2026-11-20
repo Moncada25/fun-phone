@@ -344,6 +344,7 @@
     <string name="tools_menu_visible_title">Mostrar menu de ferramentas</string>
     <string name="call_permission_required">A permissão para chamadas é necessária</string>
     <string name="call_failed">Não foi possível realizar a chamada</string>
+    <string name="sip_account_unavailable">Nenhuma conta de chamadas suporta SIP</string>
     <string name="call_initialization_error">Não foi possível iniciar a chamada</string>
     <string name="device_info_open_error">Não foi possível abrir as informações do dispositivo</string>
     <string name="call_execution_error">Erro ao realizar a chamada</string>

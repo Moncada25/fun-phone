@@ -409,6 +409,7 @@
     <!-- Shared user-facing copy kept outside feature code -->
     <string name="call_permission_required">Call permission is required</string>
     <string name="call_failed">Could not place the call</string>
+    <string name="sip_account_unavailable">No calling account on this phone supports SIP</string>
     <string name="call_initialization_error">Could not initialize the call</string>
     <string name="device_info_open_error">Could not open device information</string>
     <string name="call_execution_error">Error while placing the call</string>

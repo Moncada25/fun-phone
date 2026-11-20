@@ -146,6 +146,8 @@
     <string name="in_call_preview_title">Aperçu de l’appel en cours</string>
     <string name="contact_photo_permission_message">L\'autorisation caméra est requise pour prendre des photos de contact</string>
     <string name="phone_copied">Téléphone copié dans le presse-papiers</string>
+    <string name="sip_address_label">Adresse SIP</string>
+    <string name="sip_address_copied">Adresse SIP copiée dans le presse-papiers</string>
     <string name="email_copied">E-mail copié dans le presse-papiers</string>
     <string name="company_copied">Entreprise copiée dans le presse-papiers</string>
     <string name="website_copied">Site copié dans le presse-papiers</string>
