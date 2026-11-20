@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy:** 3.21.1/270 behavior; saved in Play Console on 2026-11-19
-**Release notes candidate below:** 3.21.2 (271)
+**Release notes candidate below:** 3.21.3 (272)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -232,47 +232,47 @@ Privado por natureza: contatos, chamadas, notas e senhas são processados no apa
 
 Para começar, abra Status do dispositivo após instalar, conceda as permissões e escolha o Fun Phone como app de telefone padrão. Alguns recursos dependem do aparelho e da versão do Android.
 
-## What's new — 3.21.2
+## What's new — 3.21.3
 
 ### English
 
-• Decline a ringing call with the volume down key (Settings > Calls).
-• The in-call screen and keypad now fit landscape.
-• Save new contacts to CardDAV address books such as DAVx5.
-• Cleaner call history, grouped by day with contact photos.
-• Animation speed is now a slider, and theme changes reveal in a circle.
+• New private spam rules: spoofed numbers, numbers that look like yours, and silent ringing for unknown callers.
+• Answer or decline with the volume keys even while another app is open.
+• Calls stay on Android Auto and car kits instead of jumping to the earpiece.
+• After a call from another app, you return to that app.
+• Call contacts' SIP addresses through your SIP apps.
 
 ### Español
 
-• Rechaza una llamada entrante con la tecla de bajar volumen (Configuración > Llamadas).
-• La pantalla de llamada y el teclado se adaptan a horizontal.
-• Guarda contactos nuevos en libretas CardDAV como DAVx5.
-• Historial de llamadas más limpio, agrupado por día y con fotos.
-• La velocidad de animación ahora es un deslizador y el tema cambia con un círculo.
+• Nuevas reglas privadas contra spam: números falsificados, números parecidos al tuyo y timbre silencioso para desconocidos.
+• Contesta o rechaza con las teclas de volumen aunque haya otra app abierta.
+• Las llamadas se mantienen en Android Auto y kits de auto en vez de pasar al auricular.
+• Tras una llamada desde otra app, vuelves a esa app.
+• Llama a direcciones SIP de tus contactos con tus apps SIP.
 
 ### Deutsch
 
-• Eingehende Anrufe mit der Leiser-Taste ablehnen (Einstellungen > Anrufe).
-• Anrufbildschirm und Tastenfeld passen jetzt ins Querformat.
-• Neue Kontakte in CardDAV-Adressbüchern wie DAVx5 speichern.
-• Übersichtlichere Anrufliste, nach Tagen gruppiert und mit Kontaktfotos.
-• Animationstempo jetzt per Schieberegler; Designwechsel erscheinen als Kreis.
+• Neue private Spam-Regeln: gefälschte Nummern, Nummern ähnlich deiner eigenen und stilles Klingeln bei Unbekannten.
+• Mit den Lautstärketasten annehmen oder ablehnen, auch wenn eine andere App offen ist.
+• Anrufe bleiben bei Android Auto und Freisprechanlagen statt zur Hörmuschel zu springen.
+• Nach einem Anruf aus einer anderen App kehrst du zu ihr zurück.
+• SIP-Adressen von Kontakten über deine SIP-Apps anrufen.
 
 ### Français
 
-• Refusez un appel entrant avec la touche volume bas (Paramètres > Appels).
-• L’écran d’appel et le clavier s’adaptent au mode paysage.
-• Enregistrez vos nouveaux contacts dans des carnets CardDAV comme DAVx5.
-• Historique des appels plus clair, groupé par jour avec photos.
-• Vitesse des animations réglable par curseur ; le thème change en cercle.
+• Nouvelles règles anti-spam privées : numéros usurpés, numéros proches du vôtre et sonnerie silencieuse pour les inconnus.
+• Répondez ou refusez avec les touches de volume même si une autre app est ouverte.
+• Les appels restent sur Android Auto et les kits voiture au lieu de passer à l’écouteur.
+• Après un appel depuis une autre app, vous y revenez.
+• Appelez les adresses SIP de vos contacts via vos apps SIP.
 
 ### Português
 
-• Recuse uma chamada recebida com a tecla de diminuir volume (Configurações > Chamadas).
-• A tela de chamada e o teclado se ajustam à horizontal.
-• Salve novos contatos em agendas CardDAV como o DAVx5.
-• Histórico de chamadas mais limpo, agrupado por dia e com fotos.
-• A velocidade das animações agora é um controle deslizante e o tema muda em círculo.
+• Novas regras privadas contra spam: números falsificados, números parecidos com o seu e toque silencioso para desconhecidos.
+• Atenda ou recuse com as teclas de volume mesmo com outro app aberto.
+• As chamadas ficam no Android Auto e kits do carro em vez de irem para o fone.
+• Após uma chamada vinda de outro app, você volta para ele.
+• Ligue para endereços SIP dos contatos pelos seus apps SIP.
 
 ## Screenshot order
 

@@ -1,0 +1,5 @@
+• Nuevas reglas privadas contra spam: números falsificados, números parecidos al tuyo y timbre silencioso para desconocidos.
+• Contesta o rechaza con las teclas de volumen aunque haya otra app abierta.
+• Las llamadas se mantienen en Android Auto y kits de auto en vez de pasar al auricular.
+• Tras una llamada desde otra app, vuelves a esa app.
+• Llama a direcciones SIP de tus contactos con tus apps SIP.

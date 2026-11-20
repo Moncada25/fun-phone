@@ -1,0 +1,5 @@
+• Neue private Spam-Regeln: gefälschte Nummern, Nummern ähnlich deiner eigenen und stilles Klingeln bei Unbekannten.
+• Mit den Lautstärketasten annehmen oder ablehnen, auch wenn eine andere App offen ist.
+• Anrufe bleiben bei Android Auto und Freisprechanlagen statt zur Hörmuschel zu springen.
+• Nach einem Anruf aus einer anderen App kehrst du zu ihr zurück.
+• SIP-Adressen von Kontakten über deine SIP-Apps anrufen.
