@@ -446,8 +446,11 @@ class FunPhoneInCallService : InCallService() {
             val immersiveIncomingCallsEnabled = AppSettingsViewModel.isImmersiveIncomingCallsEnabled(
                 applicationContext
             )
+            val volumeKeyActionEnabled = AppSettingsViewModel.isIncomingCallVolumeKeyActionEnabled(
+                applicationContext
+            )
             withContext(Dispatchers.Main) {
-                presentIncomingCall(id, number, immersiveIncomingCallsEnabled)
+                presentIncomingCall(id, number, immersiveIncomingCallsEnabled, volumeKeyActionEnabled)
             }
 
             val displayContact = withContext(Dispatchers.IO) {
@@ -486,7 +489,12 @@ class FunPhoneInCallService : InCallService() {
 
     private fun isStillRinging(id: String): Boolean = previousStates[id] == Call.STATE_RINGING
 
-    private fun presentIncomingCall(id: String, number: String, immersive: Boolean) {
+    private fun presentIncomingCall(
+        id: String,
+        number: String,
+        immersive: Boolean,
+        volumeKeyActionEnabled: Boolean,
+    ) {
         if (!isStillRinging(id)) return
         val callWaiting = DefaultCallRepository.calls.value.any { other ->
             other.id != id && other.state != CallState.RINGING && other.state != CallState.DISCONNECTED
@@ -500,6 +508,7 @@ class FunPhoneInCallService : InCallService() {
         val deviceLocked = keyguardManager?.isKeyguardLocked == true
         val launchActivity = shouldLaunchIncomingCallActivity(
             immersive = immersive,
+            volumeKeyActionEnabled = volumeKeyActionEnabled,
             deviceLocked = deviceLocked,
             appInForeground = AppVisibility.isForeground,
             notificationShown = notificationShown,
@@ -578,4 +587,7 @@ internal fun shouldLaunchIncomingCallActivity(
     deviceLocked: Boolean,
     appInForeground: Boolean,
     notificationShown: Boolean,
-): Boolean = immersive || deviceLocked || (!appInForeground && !notificationShown)
+    volumeKeyActionEnabled: Boolean = false,
+): Boolean = immersive ||
+    deviceLocked ||
+    (!appInForeground && (volumeKeyActionEnabled || !notificationShown))

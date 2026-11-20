@@ -108,11 +108,20 @@ class AppSettingsViewModel(
         const val IMMERSIVE_INCOMING_CALLS_KEY_NAME = "immersive_incoming_calls"
 
         private val immersiveIncomingCallsKey = booleanPreferencesKey(IMMERSIVE_INCOMING_CALLS_KEY_NAME)
+        private val answerWithVolumeUpKey = booleanPreferencesKey("answer_with_volume_up")
+        private val declineWithVolumeDownKey = booleanPreferencesKey("decline_with_volume_down")
 
         suspend fun isImmersiveIncomingCallsEnabled(context: Context): Boolean {
             return runCatching {
                 val prefs = AppDataStore.getDataStore(context).data.first()
                 prefs[immersiveIncomingCallsKey] ?: false
+            }.getOrDefault(false)
+        }
+
+        suspend fun isIncomingCallVolumeKeyActionEnabled(context: Context): Boolean {
+            return runCatching {
+                val prefs = AppDataStore.getDataStore(context).data.first()
+                prefs[answerWithVolumeUpKey] == true || prefs[declineWithVolumeDownKey] == true
             }.getOrDefault(false)
         }
     }
@@ -146,8 +155,6 @@ class AppSettingsViewModel(
     private val startupScreenKey = stringPreferencesKey("startup_screen")
     private val callAnswerStyleKey = stringPreferencesKey("call_answer_style")
     private val dtmfTonesEnabledKey = stringPreferencesKey("dtmf_tones_enabled")
-    private val answerWithVolumeUpKey = booleanPreferencesKey("answer_with_volume_up")
-    private val declineWithVolumeDownKey = booleanPreferencesKey("decline_with_volume_down")
     private val showProfileInFavoritesKey = booleanPreferencesKey("show_profile_in_favorites")
     private val speedDialKey = stringPreferencesKey("speed_dial_contacts")
     private val fontScaleKey = stringPreferencesKey("font_scale")
