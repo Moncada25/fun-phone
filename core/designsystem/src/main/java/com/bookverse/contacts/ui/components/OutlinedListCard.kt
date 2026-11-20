@@ -96,8 +96,8 @@ fun OutlinedListRow(
             )
             Text(
                 text = summary,
-                style = MaterialTheme.typography.bodyMedium,
-                color = colorScheme.onSurfaceVariant,
+                style = MaterialTheme.typography.bodySmall,
+                color = colorScheme.onSurface,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )

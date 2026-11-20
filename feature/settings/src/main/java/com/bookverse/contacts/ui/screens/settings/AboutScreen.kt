@@ -604,13 +604,13 @@ private fun AboutLinkRow(item: AboutLinkItem) {
         Box(
             modifier = Modifier
                 .size(40.dp)
-                .background(colorScheme.primary.copy(alpha = 0.12f), RoundedCornerShape(12.dp)),
+                .background(colorScheme.onSurface.copy(alpha = 0.08f), RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
                 imageVector = item.icon,
                 contentDescription = null,
-                tint = colorScheme.primary,
+                tint = colorScheme.onSurface,
                 modifier = Modifier.size(20.dp),
             )
         }
@@ -622,12 +622,13 @@ private fun AboutLinkRow(item: AboutLinkItem) {
             Text(
                 text = item.title,
                 style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
                 color = colorScheme.onSurface,
             )
             Text(
                 text = item.summary,
                 style = MaterialTheme.typography.bodySmall,
-                color = colorScheme.onSurfaceVariant,
+                color = colorScheme.onSurface,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
