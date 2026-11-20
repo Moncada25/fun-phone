@@ -76,14 +76,37 @@ class Countries {
             }
         }
 
-        fun detectCountryFromPhoneNumber(phoneNumber: String): Country? {
+        fun detectCountryFromPhoneNumber(phoneNumber: String, context: Context? = null): Country? {
             val cleanNumber = phoneNumber.replace(Regex("[^+\\d]"), "")
             if (!cleanNumber.startsWith("+")) return null
 
-            val countries = getCountryList()
-            return countries
-                .sortedByDescending { it.code.length }
-                .firstOrNull { cleanNumber.startsWith(it.code) }
+            val countries = getCountryList(context)
+            val dialCode = countries
+                .map { it.code }
+                .filter { cleanNumber.startsWith(it) }
+                .maxByOrNull { it.length }
+                ?: return null
+            return countryForDialCode(dialCode, cleanNumber.removePrefix(dialCode), countries)
+        }
+
+        fun findCountryForDialCode(
+            dialCode: String,
+            nationalNumber: String = "",
+            context: Context? = null,
+        ): Country? = countryForDialCode(
+            dialCode = dialCode,
+            nationalDigits = nationalNumber.filter(Char::isDigit),
+            countries = getCountryList(context),
+        )
+
+        private fun countryForDialCode(
+            dialCode: String,
+            nationalDigits: String,
+            countries: List<Country>,
+        ): Country? {
+            val sharedIso = SHARED_DIAL_CODES[dialCode]?.resolve(nationalDigits)
+            return sharedIso?.let { iso -> countries.firstOrNull { it.countryCode == iso } }
+                ?: countries.firstOrNull { it.code == dialCode }
         }
 
         private fun TelephonyManager?.safeCountryIso(reader: TelephonyManager.() -> String?): String? {
@@ -135,6 +158,51 @@ class Countries {
             val iso: String,
             val dialCode: String,
             val defaultName: String
+        )
+
+        private class SharedDialCode(
+            val mainIso: String,
+            val isoByLeadingDigits: Map<String, String> = emptyMap(),
+        ) {
+            fun resolve(nationalDigits: String): String = isoByLeadingDigits.entries
+                .filter { nationalDigits.startsWith(it.key) }
+                .maxByOrNull { it.key.length }
+                ?.value
+                ?: mainIso
+        }
+
+        private val CANADIAN_AREA_CODES = listOf(
+            "204", "226", "236", "249", "250", "257", "263", "273", "289",
+            "306", "343", "354", "365", "367", "368", "382",
+            "403", "416", "418", "428", "431", "437", "438", "450", "468", "474",
+            "506", "514", "519", "548", "579", "581", "584", "587",
+            "600", "604", "613", "622", "633", "639", "647", "672", "683",
+            "705", "709", "742", "753", "778", "780", "782",
+            "807", "819", "825", "867", "873", "879",
+            "902", "905", "942",
+        )
+
+        private val NORTH_AMERICAN_AREA_CODES = CANADIAN_AREA_CODES.associateWith { "CA" } + mapOf(
+            "809" to "DO",
+            "829" to "DO",
+            "849" to "DO",
+            "787" to "PR",
+            "939" to "PR",
+            "658" to "JM",
+        )
+
+        private val SHARED_DIAL_CODES = mapOf(
+            "+1" to SharedDialCode("US", NORTH_AMERICAN_AREA_CODES),
+            "+7" to SharedDialCode("RU", mapOf("7" to "KZ")),
+            "+44" to SharedDialCode("GB"),
+            "+47" to SharedDialCode("NO", mapOf("79" to "SJ")),
+            "+61" to SharedDialCode("AU"),
+            "+212" to SharedDialCode("MA"),
+            "+262" to SharedDialCode("RE"),
+            "+358" to SharedDialCode("FI", mapOf("18" to "AX")),
+            "+590" to SharedDialCode("GP"),
+            "+599" to SharedDialCode("CW", mapOf("3" to "BQ", "4" to "BQ", "7" to "BQ")),
+            "+672" to SharedDialCode("NF"),
         )
 
         private val POPULAR_COUNTRY_CODES = listOf(

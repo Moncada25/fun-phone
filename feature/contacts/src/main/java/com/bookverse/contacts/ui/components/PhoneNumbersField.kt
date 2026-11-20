@@ -67,11 +67,10 @@ fun PhoneNumbersField(
                 )
             } else {
                 phones.map { phone ->
-                    val phoneCountry = if (phone.countryCode != null) {
-                        Countries.getCountryList(context).find { it.code == phone.countryCode }
-                    } else {
-                        null
-                    }
+                    val phoneCountry = Countries.detectCountryFromPhoneNumber(phone.number, context)
+                        ?: phone.countryCode?.let { code ->
+                            Countries.findCountryForDialCode(code, phone.number, context)
+                        }
                     PhoneFieldState(phone, phoneCountry ?: countrySelected)
                 }
             }
