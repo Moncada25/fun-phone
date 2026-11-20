@@ -363,9 +363,15 @@
     <string name="spam_filter_unknown_silence_title">Stattdessen lautlos klingeln</string>
     <string name="spam_filter_unknown_silence_description">Unbekannte Nummern erreichen dich weiterhin, aber ohne Ton und Vibration. Nimmst du nicht ab, erscheinen sie als verpasst.</string>
     <string name="spam_filter_unknown_allow_recent_title">Angerufene Nummern erlauben</string>
-    <string name="spam_filter_unknown_allow_recent_description">Lässt Nummern durch, die du in den letzten %1$d Tagen angerufen hast.</string>
+    <plurals name="spam_filter_unknown_allow_recent_description">
+        <item quantity="one">Lässt Nummern durch, die du am letzten %1$d Tag angerufen hast.</item>
+        <item quantity="other">Lässt Nummern durch, die du in den letzten %1$d Tagen angerufen hast.</item>
+    </plurals>
     <string name="spam_filter_unknown_allow_repeated_title">Wiederholte Anrufe erlauben</string>
-    <string name="spam_filter_unknown_allow_repeated_description">Lässt eine Nummer durch, die innerhalb von %1$d Minuten erneut anruft.</string>
+    <plurals name="spam_filter_unknown_allow_repeated_description">
+        <item quantity="one">Lässt eine Nummer durch, die innerhalb von %1$d Minute erneut anruft.</item>
+        <item quantity="other">Lässt eine Nummer durch, die innerhalb von %1$d Minuten erneut anruft.</item>
+    </plurals>
     <string name="spam_filter_history_note">Gefilterte Anrufe klingeln nicht und erscheinen im Verlauf als blockiert.</string>
     <string name="call_screening_title">Anruffilterung</string>
     <string name="call_screening_active">Aktiv</string>

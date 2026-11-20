@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
@@ -213,8 +214,9 @@ private fun UnknownCallerOptions(
         )
         CallScreeningRuleRow(
             title = stringResource(R.string.spam_filter_unknown_allow_recent_title),
-            description = stringResource(
-                R.string.spam_filter_unknown_allow_recent_description,
+            description = pluralStringResource(
+                R.plurals.spam_filter_unknown_allow_recent_description,
+                CallScreeningPolicy.RECENTLY_DIALED_DAYS,
                 CallScreeningPolicy.RECENTLY_DIALED_DAYS,
             ),
             checked = settings.allowRecentlyDialed,
@@ -223,8 +225,9 @@ private fun UnknownCallerOptions(
         )
         CallScreeningRuleRow(
             title = stringResource(R.string.spam_filter_unknown_allow_repeated_title),
-            description = stringResource(
-                R.string.spam_filter_unknown_allow_repeated_description,
+            description = pluralStringResource(
+                R.plurals.spam_filter_unknown_allow_repeated_description,
+                CallScreeningPolicy.REPEATED_CALL_MINUTES,
                 CallScreeningPolicy.REPEATED_CALL_MINUTES,
             ),
             checked = settings.allowRepeatedCalls,

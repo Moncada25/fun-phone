@@ -367,9 +367,17 @@
     <string name="spam_filter_unknown_silence_title">Sonner en silence</string>
     <string name="spam_filter_unknown_silence_description">Les numéros inconnus vous parviennent toujours, sans son ni vibration, et apparaissent comme manqués si vous ne répondez pas.</string>
     <string name="spam_filter_unknown_allow_recent_title">Autoriser les numéros appelés</string>
-    <string name="spam_filter_unknown_allow_recent_description">Laisse passer les numéros que vous avez appelés au cours des %1$d derniers jours.</string>
+    <plurals name="spam_filter_unknown_allow_recent_description">
+        <item quantity="one">Laisse passer les numéros que vous avez appelés au cours du dernier %1$d jour.</item>
+        <item quantity="many">Laisse passer les numéros que vous avez appelés au cours des %1$d derniers jours.</item>
+        <item quantity="other">Laisse passer les numéros que vous avez appelés au cours des %1$d derniers jours.</item>
+    </plurals>
     <string name="spam_filter_unknown_allow_repeated_title">Autoriser les appels répétés</string>
-    <string name="spam_filter_unknown_allow_repeated_description">Laisse passer un numéro qui rappelle dans les %1$d minutes.</string>
+    <plurals name="spam_filter_unknown_allow_repeated_description">
+        <item quantity="one">Laisse passer un numéro qui rappelle dans la %1$d minute.</item>
+        <item quantity="many">Laisse passer un numéro qui rappelle dans les %1$d minutes.</item>
+        <item quantity="other">Laisse passer un numéro qui rappelle dans les %1$d minutes.</item>
+    </plurals>
     <string name="spam_filter_history_note">Les appels filtrés ne sonnent pas et apparaissent comme bloqués dans l’historique.</string>
     <string name="call_screening_title">Filtrage des appels</string>
     <string name="call_screening_active">Actif</string>

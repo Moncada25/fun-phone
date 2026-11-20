@@ -365,9 +365,15 @@
     <string name="spam_filter_unknown_silence_title">Ring silently instead</string>
     <string name="spam_filter_unknown_silence_description">Unknown numbers still reach you without sound or vibration, and show as missed if you do not answer.</string>
     <string name="spam_filter_unknown_allow_recent_title">Allow numbers you called</string>
-    <string name="spam_filter_unknown_allow_recent_description">Let through numbers you called in the last %1$d days.</string>
+    <plurals name="spam_filter_unknown_allow_recent_description">
+        <item quantity="one">Let through numbers you called in the last %1$d day.</item>
+        <item quantity="other">Let through numbers you called in the last %1$d days.</item>
+    </plurals>
     <string name="spam_filter_unknown_allow_repeated_title">Allow repeated calls</string>
-    <string name="spam_filter_unknown_allow_repeated_description">Let through a number that calls again within %1$d minutes.</string>
+    <plurals name="spam_filter_unknown_allow_repeated_description">
+        <item quantity="one">Let through a number that calls again within %1$d minute.</item>
+        <item quantity="other">Let through a number that calls again within %1$d minutes.</item>
+    </plurals>
     <string name="spam_filter_history_note">Filtered calls do not ring and appear in History as blocked.</string>
     <string name="call_screening_title">Call screening</string>
     <string name="call_screening_active">Active</string>
