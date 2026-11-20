@@ -5,6 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.bookverse.contacts.data.repository.ProfilePhoneNumbers
+import com.bookverse.contacts.domain.call.CallScreeningOption
 import com.bookverse.contacts.domain.call.CallScreeningSettings
 import com.bookverse.contacts.domain.call.SimAccount
 import com.bookverse.contacts.domain.call.SimPreference
@@ -26,6 +28,7 @@ data class CallSettingsUiState(
     val screeningSettings: CallScreeningSettings = CallScreeningSettings(),
     val screeningRoleActive: Boolean = false,
     val screeningRoleAvailable: Boolean = false,
+    val hasProfileNumber: Boolean = false,
 ) {
     val hasMultipleSims: Boolean
         get() = simAccounts.size > 1
@@ -58,6 +61,9 @@ class CallSettingsViewModel(application: Application) : AndroidViewModel(applica
             val accounts = withContext(Dispatchers.IO) {
                 PhoneAccountDirectory.callCapableAccounts(context)
             }
+            val hasProfileNumber = withContext(Dispatchers.IO) {
+                ProfilePhoneNumbers.read(context).isNotEmpty()
+            }
             val roleActive = CallScreeningRole.isActive(context)
             val roleAvailable = CallScreeningRole.isRoleAvailable(context)
             _uiState.update {
@@ -65,6 +71,7 @@ class CallSettingsViewModel(application: Application) : AndroidViewModel(applica
                     simAccounts = accounts,
                     screeningRoleActive = roleActive,
                     screeningRoleAvailable = roleAvailable,
+                    hasProfileNumber = hasProfileNumber,
                 )
             }
         }
@@ -74,18 +81,8 @@ class CallSettingsViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch { CallPreferences.setSimPreference(getApplication(), preference) }
     }
 
-    fun setBlockListedNumbers(enabled: Boolean) {
-        viewModelScope.launch { CallPreferences.setBlockListedNumbers(getApplication(), enabled) }
-    }
-
-    fun setBlockHiddenNumbers(enabled: Boolean) {
-        viewModelScope.launch { CallPreferences.setBlockHiddenNumbers(getApplication(), enabled) }
-    }
-
-    fun setBlockNumbersNotInContacts(enabled: Boolean) {
-        viewModelScope.launch {
-            CallPreferences.setBlockNumbersNotInContacts(getApplication(), enabled)
-        }
+    fun setScreeningOption(option: CallScreeningOption, enabled: Boolean) {
+        viewModelScope.launch { CallPreferences.setScreeningOption(getApplication(), option, enabled) }
     }
 
     companion object {

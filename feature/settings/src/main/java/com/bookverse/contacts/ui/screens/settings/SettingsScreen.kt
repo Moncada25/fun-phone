@@ -976,9 +976,8 @@ fun SettingsScreen(
             settings = callSettings.screeningSettings,
             roleActive = callSettings.screeningRoleActive,
             roleAvailable = callSettings.screeningRoleAvailable,
-            onBlockListedChanged = callSettingsViewModel::setBlockListedNumbers,
-            onBlockHiddenChanged = callSettingsViewModel::setBlockHiddenNumbers,
-            onBlockNotInContactsChanged = callSettingsViewModel::setBlockNumbersNotInContacts,
+            hasProfileNumber = callSettings.hasProfileNumber,
+            onOptionChanged = callSettingsViewModel::setScreeningOption,
             onRequestRole = requestCallScreeningRole,
             onDismiss = { showSpamFilterSheet = false },
         )

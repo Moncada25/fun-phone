@@ -359,6 +359,17 @@
     <string name="spam_filter_hidden_description">Bloqueia chamadas que ocultam o número (privado ou desconhecido).</string>
     <string name="spam_filter_unknown_title">Números fora dos contatos</string>
     <string name="spam_filter_unknown_description">Bloqueia chamadas de números visíveis que não estão salvos nos seus contatos.</string>
+    <string name="spam_filter_spoofed_title">Números falsificados</string>
+    <string name="spam_filter_spoofed_description">Bloqueia chamadas que falham na verificação de número da sua operadora. Funciona apenas onde a operadora verifica os números.</string>
+    <string name="spam_filter_neighbor_title">Números parecidos com o seu</string>
+    <string name="spam_filter_neighbor_description">Bloqueia chamadas de números quase idênticos aos do seu perfil, um truque comum de spam. Seus contatos salvos continuam tocando.</string>
+    <string name="spam_filter_neighbor_needs_profile">Adicione seu número de telefone ao seu perfil para usar esta regra. A comparação é feita apenas neste dispositivo.</string>
+    <string name="spam_filter_unknown_silence_title">Tocar em silêncio</string>
+    <string name="spam_filter_unknown_silence_description">Números desconhecidos continuam chegando até você, sem som nem vibração, e aparecem como perdidas se você não atender.</string>
+    <string name="spam_filter_unknown_allow_recent_title">Permitir números para os quais você ligou</string>
+    <string name="spam_filter_unknown_allow_recent_description">Deixa passar números para os quais você ligou nos últimos %1$d dias.</string>
+    <string name="spam_filter_unknown_allow_repeated_title">Permitir chamadas repetidas</string>
+    <string name="spam_filter_unknown_allow_repeated_description">Deixa passar um número que liga de novo em até %1$d minutos.</string>
     <string name="spam_filter_history_note">As chamadas filtradas não tocam e aparecem no histórico como bloqueadas.</string>
     <string name="call_screening_title">Filtragem de chamadas</string>
     <string name="call_screening_active">Ativo</string>

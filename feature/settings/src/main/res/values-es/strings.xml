@@ -359,6 +359,17 @@
     <string name="spam_filter_hidden_description">Bloquea las llamadas que ocultan su número (privado o desconocido).</string>
     <string name="spam_filter_unknown_title">Números que no están en contactos</string>
     <string name="spam_filter_unknown_description">Bloquea las llamadas de números visibles que no tienes guardados en contactos.</string>
+    <string name="spam_filter_spoofed_title">Números suplantados</string>
+    <string name="spam_filter_spoofed_description">Bloquea las llamadas que tu operador marca como fallidas en la verificación del número. Solo funciona donde el operador verifica los números.</string>
+    <string name="spam_filter_neighbor_title">Números parecidos al tuyo</string>
+    <string name="spam_filter_neighbor_description">Bloquea las llamadas de números casi idénticos a los de tu perfil, un truco habitual del spam. Tus contactos guardados siguen sonando.</string>
+    <string name="spam_filter_neighbor_needs_profile">Agrega tu número de teléfono a tu perfil para usar esta regla. Solo se compara en este dispositivo.</string>
+    <string name="spam_filter_unknown_silence_title">Sonar en silencio</string>
+    <string name="spam_filter_unknown_silence_description">Los números desconocidos te siguen llegando sin sonido ni vibración, y aparecen como perdidas si no contestas.</string>
+    <string name="spam_filter_unknown_allow_recent_title">Permitir números a los que llamaste</string>
+    <string name="spam_filter_unknown_allow_recent_description">Deja pasar los números a los que llamaste en los últimos %1$d días.</string>
+    <string name="spam_filter_unknown_allow_repeated_title">Permitir llamadas repetidas</string>
+    <string name="spam_filter_unknown_allow_repeated_description">Deja pasar un número que vuelve a llamar en menos de %1$d minutos.</string>
     <string name="spam_filter_history_note">Las llamadas filtradas no suenan y aparecen en el historial como bloqueadas.</string>
     <string name="call_screening_title">Filtrado de llamadas</string>
     <string name="call_screening_active">Activo</string>

@@ -355,6 +355,17 @@
     <string name="spam_filter_hidden_description">Blockiert Anrufe mit unterdrückter Rufnummer (privat oder unbekannt).</string>
     <string name="spam_filter_unknown_title">Nummern außerhalb der Kontakte</string>
     <string name="spam_filter_unknown_description">Blockiert Anrufe von sichtbaren Nummern, die nicht in deinen Kontakten gespeichert sind.</string>
+    <string name="spam_filter_spoofed_title">Gefälschte Nummern</string>
+    <string name="spam_filter_spoofed_description">Blockiert Anrufe, deren Rufnummernprüfung bei deinem Mobilfunkanbieter fehlschlägt. Funktioniert nur, wo der Anbieter Nummern prüft.</string>
+    <string name="spam_filter_neighbor_title">Nummern, die deiner ähneln</string>
+    <string name="spam_filter_neighbor_description">Blockiert Anrufe von Nummern, die fast mit denen in deinem Profil übereinstimmen – ein häufiger Spam-Trick. Gespeicherte Kontakte klingeln weiterhin.</string>
+    <string name="spam_filter_neighbor_needs_profile">Füge deinem Profil deine Telefonnummer hinzu, um diese Regel zu nutzen. Der Vergleich findet nur auf diesem Gerät statt.</string>
+    <string name="spam_filter_unknown_silence_title">Stattdessen lautlos klingeln</string>
+    <string name="spam_filter_unknown_silence_description">Unbekannte Nummern erreichen dich weiterhin, aber ohne Ton und Vibration. Nimmst du nicht ab, erscheinen sie als verpasst.</string>
+    <string name="spam_filter_unknown_allow_recent_title">Angerufene Nummern erlauben</string>
+    <string name="spam_filter_unknown_allow_recent_description">Lässt Nummern durch, die du in den letzten %1$d Tagen angerufen hast.</string>
+    <string name="spam_filter_unknown_allow_repeated_title">Wiederholte Anrufe erlauben</string>
+    <string name="spam_filter_unknown_allow_repeated_description">Lässt eine Nummer durch, die innerhalb von %1$d Minuten erneut anruft.</string>
     <string name="spam_filter_history_note">Gefilterte Anrufe klingeln nicht und erscheinen im Verlauf als blockiert.</string>
     <string name="call_screening_title">Anruffilterung</string>
     <string name="call_screening_active">Aktiv</string>

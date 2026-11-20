@@ -357,6 +357,17 @@
     <string name="spam_filter_hidden_description">Block calls that hide their caller ID (private or unknown).</string>
     <string name="spam_filter_unknown_title">Numbers not in contacts</string>
     <string name="spam_filter_unknown_description">Block calls from visible numbers that are not saved in your contacts.</string>
+    <string name="spam_filter_spoofed_title">Spoofed numbers</string>
+    <string name="spam_filter_spoofed_description">Block calls that your carrier flags as failing caller ID verification. Works only where the carrier verifies numbers.</string>
+    <string name="spam_filter_neighbor_title">Numbers that look like yours</string>
+    <string name="spam_filter_neighbor_description">Block calls from numbers almost identical to the ones in your profile, a common spam trick. Saved contacts still ring.</string>
+    <string name="spam_filter_neighbor_needs_profile">Add your phone number to your profile to use this rule. It is only compared on this device.</string>
+    <string name="spam_filter_unknown_silence_title">Ring silently instead</string>
+    <string name="spam_filter_unknown_silence_description">Unknown numbers still reach you without sound or vibration, and show as missed if you do not answer.</string>
+    <string name="spam_filter_unknown_allow_recent_title">Allow numbers you called</string>
+    <string name="spam_filter_unknown_allow_recent_description">Let through numbers you called in the last %1$d days.</string>
+    <string name="spam_filter_unknown_allow_repeated_title">Allow repeated calls</string>
+    <string name="spam_filter_unknown_allow_repeated_description">Let through a number that calls again within %1$d minutes.</string>
     <string name="spam_filter_history_note">Filtered calls do not ring and appear in History as blocked.</string>
     <string name="call_screening_title">Call screening</string>
     <string name="call_screening_active">Active</string>
