@@ -173,7 +173,6 @@
     <string name="update_profile_title">Editar Perfil</string>
     <string name="profile_updated_success">Perfil actualizado exitosamente</string>
     <string name="create_profile_title">Crear Perfil</string>
-    <string name="settings_title">Configuración</string>
     <string name="add_phone_number">Agregar número de teléfono</string>
     <string name="add_tag">Agregar etiqueta</string>
     <string name="websites">Sitios web</string>

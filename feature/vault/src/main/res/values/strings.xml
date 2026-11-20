@@ -72,7 +72,10 @@
     <string name="password_username_required">Enter a username</string>
     <string name="password_value_required">Enter a password</string>
     <string name="password_editor_intro">Your credentials stay encrypted on this device.</string>
-    <string name="passwords_json_import_success">%1$d passwords imported</string>
+    <plurals name="passwords_json_import_success">
+        <item quantity="one">%1$d password imported</item>
+        <item quantity="other">%1$d passwords imported</item>
+    </plurals>
     <string name="passwords_json_import_summary">Imported: %1$d · Already in the vault (skipped): %2$d</string>
     <string name="passwords_export_unencrypted_title">Unencrypted backup</string>
     <string name="passwords_export_unencrypted_message">This backup is not encrypted. The file will contain every password, username and note as plain text, and anyone who opens it can read them. Save it only in a place you trust and delete it when you no longer need it.</string>

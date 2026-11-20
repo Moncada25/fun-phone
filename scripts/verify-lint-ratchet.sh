@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 readonly max_errors=0
-readonly max_warnings=${LINT_MAX_WARNINGS:-20}
+readonly max_warnings=${LINT_MAX_WARNINGS:-10}
 readonly lint_run_started_at=${LINT_RUN_STARTED_AT:-}
 readonly report_dir="app/build/reports"
 

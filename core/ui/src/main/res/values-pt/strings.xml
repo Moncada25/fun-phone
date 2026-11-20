@@ -20,7 +20,6 @@
     <string name="tab_extras">Ferramentas</string>
 
     <string name="search">Pesquisar</string>
-    <string name="search_close">Fechar pesquisa</string>
     <string name="no_results">Nenhum resultado encontrado</string>
 
     <string name="dialer">Discador</string>
@@ -91,14 +90,11 @@
     <string name="deselect_all">Desmarcar tudo</string>
 
     <string name="games_title">Jogos</string>
-    <string name="puzzle_start_game">Iniciar jogo</string>
 
     <string name="notes_title">Notas</string>
     <string name="contact_photo_description">Foto de %1$s</string>
     <string name="contact_no_photo_description">Sem foto de perfil para %1$s</string>
     <string name="slide_to_answer_or_reject">Chamada recebida de %1$s, deslize para atender ou recusar</string>
-    <string name="notes_search_close">Fechar pesquisa</string>
-    <string name="passwords_search_close">Fechar pesquisa</string>
     <string name="edit">Editar</string>
     <string name="select_date">Data</string>
 
@@ -118,59 +114,6 @@
 
     <string name="menstrual_calendar_item">Calendário menstrual</string>
     <string name="menstrual_calendar_description">Acompanhe previsões do ciclo, janelas férteis e dicas rápidas.</string>
-    <string name="menstrual_calendar_intro">Digite o primeiro dia do seu ciclo e obtenha uma estimativa de cada fase. Esta ferramenta é apenas informativa e não substitui orientação médica.</string>
-    <string name="menstrual_calendar_form_title">Configurações do ciclo</string>
-    <string name="menstrual_calendar_month_counter">Mês %1$d de %2$d</string>
-    <string name="menstrual_timeline_title">Visão geral do ciclo atual</string>
-    <string-array name="menstrual_tips_menstruation">
-        <item>Ouça seu corpo e reserve blocos reais de descanso.</item>
-        <item>Aplique calor na parte inferior da barriga ou nas costas para relaxar as cólicas.</item>
-        <item>Prefira sopas, chás e bebidas quentes para apoiar a circulação.</item>
-        <item>Mantenha movimentos suaves como ioga restaurativa ou alongamentos leves.</item>
-        <item>Use a respiração 4–4–6 para acalmar o sistema nervoso.</item>
-        <item>Anote seu humor e energia para detectar padrões de ciclo.</item>
-        <item>Adicione alimentos ricos em ferro e ômega-3 para ajudar na recuperação.</item>
-        <item>Mantenha lanches com proteína e gorduras boas por perto para evitar quedas de energia.</item>
-        <item>Reduza planos exigentes e opte por rituais reconfortantes.</item>
-        <item>Compartilhe como se sente com sua rede de apoio para coordenar ajuda.</item>
-    </string-array>
-    <string-array name="menstrual_tips_follicular">
-        <item>Aproveite o aumento de energia para planejar projetos criativos.</item>
-        <item>Aumente gradualmente a intensidade dos treinos.</item>
-        <item>Agende reuniões de estratégia ou sessões de ideias.</item>
-        <item>Teste novos hábitos; seu cérebro está pronto para aprender.</item>
-        <item>Alimente-se com verduras, alimentos ricos em folato e proteína de qualidade.</item>
-        <item>Comece sua rotina matinal com luz natural cedo.</item>
-        <item>Desapegue de espaços físicos e digitais enquanto a motivação está alta.</item>
-        <item>Conecte-se com outras pessoas; a comunicação costuma fluir fácil.</item>
-        <item>Divida metas em passos alcançáveis.</item>
-        <item>Use respirações ativas ou meditações curtas para focar a energia.</item>
-    </string-array>
-    <string-array name="menstrual_tips_ovulation">
-        <item>Ótimo momento para apresentações, negociações ou datas importantes.</item>
-        <item>Se estiver tentando engravidar, mantenha relações nesta janela fértil.</item>
-        <item>Acompanhe sinais como muco cervical elástico ou aumento da temperatura basal.</item>
-        <item>Hidrate-se bastante e adicione eletrólitos em atividades intensas.</item>
-        <item>Faça treinos de alta intensidade apenas se o corpo pedir.</item>
-        <item>Carregue-se de antioxidantes com frutas coloridas, chá verde ou cacau.</item>
-        <item>Planeje conversas difíceis enquanto a clareza mental está alta.</item>
-        <item>Canalize sua energia para colaborações que precisem de liderança.</item>
-        <item>Pratique respiração profunda para equilibrar picos de adrenalina.</item>
-        <item>Revise metas trimestrais enquanto a motivação está nas alturas.</item>
-    </string-array>
-    <string-array name="menstrual_tips_luteal">
-        <item>Proteja o sono profundo com rotinas noturnas relaxantes.</item>
-        <item>Reduza a cafeína se sentir as mamas sensíveis ou oscilações de humor.</item>
-        <item>Priorize carboidratos complexos e magnésio para estabilizar o humor.</item>
-        <item>Classifique tarefas por prioridade e evite se sobrecarregar.</item>
-        <item>Agende massagens, banhos quentes ou compressas para liberar tensões.</item>
-        <item>Anote sintomas de TPM para identificar tendências cedo.</item>
-        <item>Prepare lanches ricos em triptofano como aveia, banana ou sementes.</item>
-        <item>Adicione alongamentos suaves ou caminhadas lentas para movimentar líquidos.</item>
-        <item>Mantenha um kit de autocuidado pronto com chá, cobertor e música suave.</item>
-        <item>Expresse suas necessidades e deixe que pessoas de confiança te apoiem.</item>
-    </string-array>
-    <string name="menstrual_calendar_cycle_range">%1$s - %2$s</string>
 
     <string name="read_qr">Ler QR</string>
     <string name="generate_qr">Criar QR</string>
@@ -185,7 +128,6 @@
 
     <string name="profile_item">Perfil</string>
 
-    <string name="sudoku_select_difficulty">Dificuldade</string>
     <string name="pause_label">Pausar</string>
     <string name="resume_label">Continuar</string>
     <string name="reset_label">Reiniciar</string>
@@ -193,7 +135,6 @@
     <string name="toast_press_back_again_to_exit">Pressione voltar de novo para sair</string>
     <string name="select_time">Hora</string>
 
-    <string name="game_mode_selection_title">Modo de jogo</string>
 
     <string name="widget_description">Mostra seus contatos favoritos na tela inicial</string>
     <string name="widget_contact_not_found">Não conseguimos carregar este contato</string>
@@ -279,7 +220,6 @@
     <string name="expense_manager_item_description">Acompanhe transações, orçamentos e estatísticas em um único painel.</string>
 
     <string name="selection_placeholder">Escolha uma opção</string>
-    <string name="expense_category_delete_blocked_title">Não é possível excluir</string>
     <string name="loading">Carregando…</string>
 
     <string name="auth_method_choose">Método de autenticação</string>

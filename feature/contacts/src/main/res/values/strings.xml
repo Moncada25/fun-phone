@@ -171,7 +171,6 @@
     <string name="update_profile_title">Edit Profile</string>
     <string name="profile_updated_success">Profile updated successfully</string>
     <string name="create_profile_title">Create Profile</string>
-    <string name="settings_title">Settings</string>
     <string name="add_phone_number">Add phone number</string>
     <string name="add_tag">Add a tag</string>
     <string name="websites">Websites</string>

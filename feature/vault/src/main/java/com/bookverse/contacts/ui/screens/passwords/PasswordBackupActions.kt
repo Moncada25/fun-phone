@@ -66,7 +66,7 @@ fun rememberPasswordBackupActions(
                     val result = PasswordJsonUtils.importPasswords(context, uri, passwords)
                     val message = when {
                         result.skipped > 0 -> resources.getString(R.string.passwords_json_import_summary, result.imported, result.skipped)
-                        result.imported > 0 -> resources.getString(R.string.passwords_json_import_success, result.imported)
+                        result.imported > 0 -> resources.getQuantityString(R.plurals.passwords_json_import_success, result.imported, result.imported)
                         else -> null
                     }
                     message?.let { Toast.makeText(context, it, Toast.LENGTH_LONG).show() }

@@ -72,7 +72,11 @@
     <string name="password_username_required">Saisissez le nom d’utilisateur</string>
     <string name="password_value_required">Saisissez un mot de passe</string>
     <string name="password_editor_intro">Vos identifiants restent chiffrés sur cet appareil.</string>
-    <string name="passwords_json_import_success">%1$d mots de passe importés</string>
+    <plurals name="passwords_json_import_success">
+        <item quantity="one">%1$d mot de passe importé</item>
+        <item quantity="many">%1$d mots de passe importés</item>
+        <item quantity="other">%1$d mots de passe importés</item>
+    </plurals>
     <string name="passwords_json_import_summary">Importés : %1$d · Déjà dans le coffre (ignorés) : %2$d</string>
     <string name="passwords_export_unencrypted_title">Sauvegarde non chiffrée</string>
     <string name="passwords_export_unencrypted_message">Cette sauvegarde n\'est pas chiffrée. Le fichier contiendra tous les mots de passe, identifiants et notes en texte clair, et toute personne qui l\'ouvre pourra les lire. Enregistrez-le uniquement dans un endroit de confiance et supprimez-le dès que vous n\'en avez plus besoin.</string>

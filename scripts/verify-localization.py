@@ -71,7 +71,6 @@ EXACT_VALUE_ALLOWLIST: Dict[str, Tuple[str, Set[str], str]] = {
     "list_density_normal": ("Normal", ALL_LOCALES, "list-density value"),
     "memory_pairs_value": ("%1$d / %2$d", ALL_LOCALES, "placeholder-only template"),
     "memory_theme_emoji": ("Emoji \U0001f680", ALL_LOCALES, "technical media term"),
-    "menstrual_calendar_cycle_range": ("%1$s - %2$s", ALL_LOCALES, "placeholder-only template"),
     "normal": ("Normal", ALL_LOCALES, "generic settings value"),
     "paint_collage": ("Collage", ALL_LOCALES, "art term"),
     "pomodoro_title": ("Pomodoro", ALL_LOCALES, "named method"),

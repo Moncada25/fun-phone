@@ -50,7 +50,6 @@
 
     <!-- Nuevos strings para el buscador -->
     <string name="search">Buscar</string>
-    <string name="search_close">Cerrar búsqueda</string>
     <string name="no_results">No se encontraron resultados</string>
 
     <!-- Nuevos strings para extras -->
@@ -111,9 +110,7 @@
 
     <string name="games_title">Juegos</string>
 
-    <string name="puzzle_start_game">Iniciar juego</string>
 
-    <string name="sudoku_select_difficulty">Dificultad</string>
     <string name="pause_label">Pausar</string>
     <string name="resume_label">Reanudar</string>
     <string name="reset_label">Reiniciar</string>
@@ -122,8 +119,6 @@
     <string name="contact_photo_description">Foto de %1$s</string>
     <string name="contact_no_photo_description">Sin foto de perfil para %1$s</string>
     <string name="slide_to_answer_or_reject">Llamada entrante de %1$s, desliza para contestar o rechazar</string>
-    <string name="notes_search_close">Cerrar búsqueda</string>
-    <string name="passwords_search_close">Cerrar búsqueda</string>
     <string name="edit">Editar</string>
     <string name="select_date">Fecha</string>
     <string name="crop_image">Recortar imagen</string>
@@ -132,59 +127,6 @@
     <!-- Menstrual calendar -->
     <string name="menstrual_calendar_item">Calendario menstrual</string>
     <string name="menstrual_calendar_description">Consulta predicciones del ciclo, ventanas de fertilidad y tips rápidos.</string>
-    <string name="menstrual_calendar_intro">Ingresa el primer día de tu ciclo y obtén una visualización estimada de las fases actuales. Esta herramienta es informativa y no reemplaza asesoría médica.</string>
-    <string name="menstrual_calendar_form_title">Configuración del ciclo</string>
-    <string name="menstrual_calendar_month_counter">Mes %1$d de %2$d</string>
-    <string name="menstrual_timeline_title">Resumen del ciclo actual</string>
-    <string-array name="menstrual_tips_menstruation">
-        <item>Escucha a tu cuerpo y reserva bloques de descanso genuino.</item>
-        <item>Aplica calor en abdomen o espalda baja para aliviar cólicos.</item>
-        <item>Prefiere sopas, infusiones y bebidas tibias para apoyar la circulación.</item>
-        <item>Realiza movimientos suaves como yoga restaurativo o estiramientos ligeros.</item>
-        <item>Respira profundo contando 4–4–6 para relajar el sistema nervioso.</item>
-        <item>Registra tus emociones y nivel de energía para detectar patrones del ciclo.</item>
-        <item>Incluye alimentos ricos en hierro y omega-3 para apoyar la recuperación.</item>
-        <item>Ten snacks con proteína y grasas saludables para evitar caídas de glucosa.</item>
-        <item>Reduce compromisos sociales exigentes y prioriza actividades reconfortantes.</item>
-        <item>Comparte cómo te sientes con tu red de apoyo para coordinar ayuda práctica.</item>
-    </string-array>
-    <string-array name="menstrual_tips_follicular">
-        <item>Aprovecha el repunte de energía para planear proyectos creativos.</item>
-        <item>Incrementa de forma gradual la intensidad del ejercicio.</item>
-        <item>Agenda reuniones estratégicas o sesiones de brainstorming.</item>
-        <item>Experimenta con nuevos hábitos; el cerebro está más receptivo al aprendizaje.</item>
-        <item>Refuerza tu alimentación con hojas verdes, folatos y proteína de calidad.</item>
-        <item>Optimiza rutinas matutinas exponiéndote a luz natural temprano.</item>
-        <item>Organiza espacios físicos y digitales para surfear la motivación disponible.</item>
-        <item>Socializa o comparte ideas; suele haber facilidad para comunicarte.</item>
-        <item>Dedica tiempo a fijar metas y dividirlas en pasos alcanzables.</item>
-        <item>Integra respiraciones activadoras o meditaciones cortas para canalizar energía.</item>
-    </string-array>
-    <string-array name="menstrual_tips_ovulation">
-        <item>Momento ideal para presentaciones, negociaciones o citas relevantes.</item>
-        <item>Si buscas embarazo, mantén relaciones durante esta ventana fértil.</item>
-        <item>Escucha señales corporales: moco cervical elástico o aumento de temperatura basal.</item>
-        <item>Hidrátate bien y agrega electrolitos si haces actividad intensa.</item>
-        <item>Prueba entrenamientos de alta intensidad solo si el cuerpo se siente listo.</item>
-        <item>Refuerza antioxidantes con frutas de colores, té verde o cacao.</item>
-        <item>Agenda conversaciones difíciles aprovechando mayor claridad mental.</item>
-        <item>Distribuye energía en colaboraciones o tareas que requieran liderazgo.</item>
-        <item>Usa técnicas de respiración profunda para equilibrar adrenalina.</item>
-        <item>Haz un chequeo de objetivos trimestrales mientras la motivación está alta.</item>
-    </string-array>
-    <string-array name="menstrual_tips_luteal">
-        <item>Prioriza sueño reparador y establece rutinas relajantes antes de acostarte.</item>
-        <item>Reduce cafeína si notas sensibilidad en senos o cambios de humor.</item>
-        <item>Incluye carbohidratos complejos y magnesio para estabilizar el ánimo.</item>
-        <item>Planifica tareas por prioridad y evita sobrecargarte en esta fase.</item>
-        <item>Integra masajes, baños tibios o compresas para relajar tensión.</item>
-        <item>Practica journaling para registrar síntomas premenstruales y detectarlos a tiempo.</item>
-        <item>Anticipa snacks con triptófano como avena, plátano o semillas.</item>
-        <item>Realiza estiramientos suaves o caminatas lentas para movilizar líquidos.</item>
-        <item>Prepara un kit de autocuidado con té favorito, manta y música suave.</item>
-        <item>Comunica tus necesidades y permite que tu entorno te apoye.</item>
-    </string-array>
-    <string name="menstrual_calendar_cycle_range">%1$s - %2$s</string>
     <string name="select_color">Seleccionar color</string>
 
     <!-- Game instructions modals -->
@@ -231,7 +173,6 @@
     <string name="pomodoro_fgs_explanation">El servicio de Pomodoro mantiene activo tu temporizador de productividad incluso cuando la pantalla está bloqueada, para que no pierdas el seguimiento de tus sesiones de trabajo y descansos.</string>
 
     <!-- Hangman game mode strings -->
-    <string name="game_mode_selection_title">Modo de Juego</string>
 
     <string name="select_time">Hora</string>
     <string name="toast_press_back_again_to_exit">Presiona atrás nuevamente para salir</string>
@@ -326,7 +267,6 @@
     <string name="expense_manager_item_title">Gestor de gastos</string>
     <string name="expense_manager_item_description">Controla tus transacciones, presupuestos y estadísticas desde un solo lugar.</string>
     <string name="selection_placeholder">Selecciona una opción</string>
-    <string name="expense_category_delete_blocked_title">No se puede eliminar</string>
     <string name="loading">Cargando…</string>
 
     <!-- Password manager authentication strings -->

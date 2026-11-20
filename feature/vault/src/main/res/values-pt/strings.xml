@@ -72,7 +72,11 @@
     <string name="password_username_required">Digite o usuário</string>
     <string name="password_value_required">Digite uma senha</string>
     <string name="password_editor_intro">Suas credenciais permanecem criptografadas neste dispositivo.</string>
-    <string name="passwords_json_import_success">%1$d senhas importadas</string>
+    <plurals name="passwords_json_import_success">
+        <item quantity="one">%1$d senha importada</item>
+        <item quantity="many">%1$d senhas importadas</item>
+        <item quantity="other">%1$d senhas importadas</item>
+    </plurals>
     <string name="passwords_json_import_summary">Importadas: %1$d · Já estavam no cofre (ignoradas): %2$d</string>
     <string name="passwords_export_unencrypted_title">Backup sem criptografia</string>
     <string name="passwords_export_unencrypted_message">Este backup não é criptografado. O arquivo conterá todas as senhas, usuários e notas em texto simples, e qualquer pessoa que o abrir poderá lê-los. Salve-o apenas em um local confiável e exclua-o quando não precisar mais dele.</string>
