@@ -419,7 +419,7 @@ fun SecondaryScreenContent(
                 navigationViewModel.openSecondary(SecondaryScreen.UPDATE_PROFILE)
             },
             onNavigateToCreateProfile = {
-                navigationViewModel.openSecondary(SecondaryScreen.CREATE_PROFILE)
+                navigationViewModel.replaceSecondary(SecondaryScreen.CREATE_PROFILE)
             },
             appSettingsViewModel = appSettingsViewModel,
             contactsViewModel = contactsViewModel

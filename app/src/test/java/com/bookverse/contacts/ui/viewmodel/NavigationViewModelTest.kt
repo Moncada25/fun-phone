@@ -98,6 +98,30 @@ class NavigationViewModelTest {
     }
 
     @Test
+    fun cancellingProfileCreationReturnsToWhereTheProfileWasOpened() {
+        val viewModel = NavigationViewModel(SavedStateHandle())
+        viewModel.openSecondary(SecondaryScreen.SETTINGS)
+        viewModel.openSecondary(SecondaryScreen.PROFILE)
+        viewModel.replaceSecondary(SecondaryScreen.CREATE_PROFILE)
+        viewModel.navigateBack()
+        assertEquals(SecondaryScreen.SETTINGS, viewModel.uiState.value.secondaryScreen)
+        assertEquals(listOf(SecondaryScreen.SETTINGS), viewModel.uiState.value.secondaryBackStack)
+    }
+
+    @Test
+    fun createdProfileReplacesTheCreationForm() {
+        val viewModel = NavigationViewModel(SavedStateHandle())
+        viewModel.openSecondary(SecondaryScreen.SETTINGS)
+        viewModel.openSecondary(SecondaryScreen.PROFILE)
+        viewModel.replaceSecondary(SecondaryScreen.CREATE_PROFILE)
+        viewModel.replaceSecondary(SecondaryScreen.PROFILE)
+        assertEquals(
+            listOf(SecondaryScreen.SETTINGS, SecondaryScreen.PROFILE),
+            viewModel.uiState.value.secondaryBackStack,
+        )
+    }
+
+    @Test
     fun returningToExistingParentDoesNotDuplicateDestinations() {
         val viewModel = NavigationViewModel(SavedStateHandle())
         viewModel.openSecondary(SecondaryScreen.NOTES)
