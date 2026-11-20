@@ -118,9 +118,12 @@ class AppSettingsViewModel(
             }.getOrDefault(false)
         }
 
-        suspend fun isIncomingCallVolumeKeyActionEnabled(context: Context): Boolean {
+        suspend fun isIncomingCallVolumeKeyActionEnabled(
+            context: Context,
+            settingsStore: AppSettingsStore = DataStoreAppSettingsStore,
+        ): Boolean {
             return runCatching {
-                val prefs = AppDataStore.getDataStore(context).data.first()
+                val prefs = settingsStore.dataStore(context).data.first()
                 prefs[answerWithVolumeUpKey] == true || prefs[declineWithVolumeDownKey] == true
             }.getOrDefault(false)
         }
