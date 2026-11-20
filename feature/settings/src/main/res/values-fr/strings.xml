@@ -359,6 +359,25 @@
     <string name="spam_filter_hidden_description">Bloque les appels qui masquent leur numéro (privé ou inconnu).</string>
     <string name="spam_filter_unknown_title">Numéros absents des contacts</string>
     <string name="spam_filter_unknown_description">Bloque les appels de numéros visibles qui ne figurent pas dans vos contacts.</string>
+    <string name="spam_filter_spoofed_title">Numéros usurpés</string>
+    <string name="spam_filter_spoofed_description">Bloque les appels dont la vérification du numéro échoue chez votre opérateur. Fonctionne uniquement là où l’opérateur vérifie les numéros.</string>
+    <string name="spam_filter_neighbor_title">Numéros proches du vôtre</string>
+    <string name="spam_filter_neighbor_description">Bloque les appels de numéros presque identiques à ceux de votre profil, une technique courante de spam. Vos contacts enregistrés sonnent toujours.</string>
+    <string name="spam_filter_neighbor_needs_profile">Ajoutez votre numéro de téléphone à votre profil pour utiliser cette règle. La comparaison se fait uniquement sur cet appareil.</string>
+    <string name="spam_filter_unknown_silence_title">Sonner en silence</string>
+    <string name="spam_filter_unknown_silence_description">Les numéros inconnus vous parviennent toujours, sans son ni vibration, et apparaissent comme manqués si vous ne répondez pas.</string>
+    <string name="spam_filter_unknown_allow_recent_title">Autoriser les numéros appelés</string>
+    <plurals name="spam_filter_unknown_allow_recent_description">
+        <item quantity="one">Laisse passer les numéros que vous avez appelés au cours du dernier %1$d jour.</item>
+        <item quantity="many">Laisse passer les numéros que vous avez appelés au cours des %1$d derniers jours.</item>
+        <item quantity="other">Laisse passer les numéros que vous avez appelés au cours des %1$d derniers jours.</item>
+    </plurals>
+    <string name="spam_filter_unknown_allow_repeated_title">Autoriser les appels répétés</string>
+    <plurals name="spam_filter_unknown_allow_repeated_description">
+        <item quantity="one">Laisse passer un numéro qui rappelle dans la %1$d minute.</item>
+        <item quantity="many">Laisse passer un numéro qui rappelle dans les %1$d minutes.</item>
+        <item quantity="other">Laisse passer un numéro qui rappelle dans les %1$d minutes.</item>
+    </plurals>
     <string name="spam_filter_history_note">Les appels filtrés ne sonnent pas et apparaissent comme bloqués dans l’historique.</string>
     <string name="call_screening_title">Filtrage des appels</string>
     <string name="call_screening_active">Actif</string>

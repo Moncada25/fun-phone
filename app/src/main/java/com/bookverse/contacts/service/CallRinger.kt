@@ -24,7 +24,10 @@ internal fun resolveRingerOutputs(
     ringerMode: Int,
     ringVolume: Int,
     callWaiting: Boolean,
-): RingerOutputs = if (callWaiting) {
+    silenced: Boolean = false,
+): RingerOutputs = if (silenced) {
+    RingerOutputs(playRingtone = false, vibrate = false, playWaitingTone = false)
+} else if (callWaiting) {
     RingerOutputs(playRingtone = false, vibrate = false, playWaitingTone = true)
 } else {
     RingerOutputs(
@@ -71,14 +74,16 @@ object CallRinger {
     private var toneGenerator: ToneGenerator? = null
 
     @Synchronized
-    fun start(context: Context, callId: String, callWaiting: Boolean) {
+    fun start(context: Context, callId: String, callWaiting: Boolean, silenced: Boolean = false) {
         if (!tracker.onRinging(callId)) return
+        if (silenced) tracker.silence()
         val appContext = context.applicationContext
         val audioManager = appContext.getSystemService(AudioManager::class.java)
         val outputs = resolveRingerOutputs(
             ringerMode = audioManager?.ringerMode ?: AudioManager.RINGER_MODE_NORMAL,
             ringVolume = audioManager?.getStreamVolume(AudioManager.STREAM_RING) ?: 0,
             callWaiting = callWaiting,
+            silenced = silenced,
         )
         if (outputs.playRingtone) playRingtone(appContext)
         if (outputs.vibrate) vibrate(appContext)

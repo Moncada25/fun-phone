@@ -72,7 +72,10 @@
     <string name="password_username_required">Benutzernamen eingeben</string>
     <string name="password_value_required">Passwort eingeben</string>
     <string name="password_editor_intro">Deine Zugangsdaten bleiben auf diesem Gerät verschlüsselt.</string>
-    <string name="passwords_json_import_success">%1$d Passwörter importiert</string>
+    <plurals name="passwords_json_import_success">
+        <item quantity="one">%1$d Passwort importiert</item>
+        <item quantity="other">%1$d Passwörter importiert</item>
+    </plurals>
     <string name="passwords_json_import_summary">Importiert: %1$d · Bereits im Tresor (übersprungen): %2$d</string>
     <string name="passwords_export_unencrypted_title">Unverschlüsselte Sicherung</string>
     <string name="passwords_export_unencrypted_message">Diese Sicherung ist nicht verschlüsselt. Die Datei enthält alle Passwörter, Benutzernamen und Notizen im Klartext, und jeder, der sie öffnet, kann sie lesen. Speichere sie nur an einem vertrauenswürdigen Ort und lösche sie, wenn du sie nicht mehr brauchst.</string>

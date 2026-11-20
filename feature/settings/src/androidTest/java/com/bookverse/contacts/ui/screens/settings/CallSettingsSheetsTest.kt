@@ -3,12 +3,16 @@ package com.bookverse.contacts.ui.screens.settings
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsOff
 import androidx.compose.ui.test.assertIsOn
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
+import com.bookverse.contacts.domain.call.CallScreeningOption
 import com.bookverse.contacts.domain.call.CallScreeningSettings
 import com.bookverse.contacts.domain.call.SimAccount
 import com.bookverse.contacts.domain.call.SimPreference
@@ -27,7 +31,7 @@ class CallSettingsSheetsTest {
 
     @Test
     fun spamRulesStartOffAndDispatchEachToggleSeparately() {
-        val toggled = AtomicReference<Pair<String, Boolean>>()
+        val toggled = AtomicReference<Pair<CallScreeningOption, Boolean>>()
         showScreeningSheet(
             settings = CallScreeningSettings(),
             onToggle = { rule, enabled -> toggled.set(rule to enabled) },
@@ -38,11 +42,82 @@ class CallSettingsSheetsTest {
         composeRule.onNodeWithTag(SPAM_RULE_NOT_IN_CONTACTS_TAG).assertIsOff()
 
         composeRule.onNodeWithTag(SPAM_RULE_HIDDEN_TAG).performClick()
-        assertEquals("hidden" to true, toggled.get())
+        assertEquals(CallScreeningOption.BLOCK_HIDDEN to true, toggled.get())
         composeRule.onNodeWithTag(SPAM_RULE_BLOCKED_LIST_TAG).performClick()
-        assertEquals("listed" to true, toggled.get())
-        composeRule.onNodeWithTag(SPAM_RULE_NOT_IN_CONTACTS_TAG).performClick()
-        assertEquals("contacts" to true, toggled.get())
+        assertEquals(CallScreeningOption.BLOCK_LISTED to true, toggled.get())
+        composeRule.onNodeWithTag(SPAM_RULE_NOT_IN_CONTACTS_TAG).performScrollTo().performClick()
+        assertEquals(CallScreeningOption.BLOCK_NOT_IN_CONTACTS to true, toggled.get())
+        composeRule.onNodeWithTag(SPAM_RULE_SPOOFED_TAG).performScrollTo().assertIsOff().performClick()
+        assertEquals(CallScreeningOption.BLOCK_FAILED_VERIFICATION to true, toggled.get())
+        composeRule.onNodeWithTag(SPAM_RULE_SILENCE_UNKNOWN_TAG).assertDoesNotExist()
+    }
+
+    @Test
+    fun neighborRuleNeedsANumberInTheProfile() {
+        val toggled = AtomicReference<Pair<CallScreeningOption, Boolean>>()
+        showScreeningSheet(
+            settings = CallScreeningSettings(),
+            hasProfileNumber = false,
+            onToggle = { rule, enabled -> toggled.set(rule to enabled) },
+        )
+
+        composeRule.onNodeWithTag(SPAM_RULE_NEIGHBOR_TAG).performScrollTo().assertIsOff().assertIsNotEnabled()
+        composeRule
+            .onNodeWithText(composeRule.activity.getString(R.string.spam_filter_neighbor_needs_profile))
+            .assertExists()
+        composeRule.onNodeWithTag(SPAM_RULE_NEIGHBOR_TAG).performClick()
+        assertEquals(null, toggled.get())
+    }
+
+    @Test
+    fun neighborRuleCanStillBeTurnedOffAfterTheProfileNumberIsRemoved() {
+        val toggled = AtomicReference<Pair<CallScreeningOption, Boolean>>()
+        showScreeningSheet(
+            settings = CallScreeningSettings(blockNeighborNumbers = true),
+            hasProfileNumber = false,
+            onToggle = { rule, enabled -> toggled.set(rule to enabled) },
+        )
+
+        composeRule.onNodeWithTag(SPAM_RULE_NEIGHBOR_TAG).performScrollTo().assertIsOn().assertIsEnabled()
+        composeRule.onNodeWithTag(SPAM_RULE_NEIGHBOR_TAG).performClick()
+        assertEquals(CallScreeningOption.BLOCK_NEIGHBOR_NUMBERS to false, toggled.get())
+    }
+
+    @Test
+    fun neighborRuleCanBeToggledWithAProfileNumber() {
+        val toggled = AtomicReference<Pair<CallScreeningOption, Boolean>>()
+        showScreeningSheet(
+            settings = CallScreeningSettings(),
+            hasProfileNumber = true,
+            onToggle = { rule, enabled -> toggled.set(rule to enabled) },
+        )
+
+        composeRule.onNodeWithTag(SPAM_RULE_NEIGHBOR_TAG).performScrollTo().assertIsOff().assertIsEnabled()
+        composeRule.onNodeWithTag(SPAM_RULE_NEIGHBOR_TAG).performClick()
+        assertEquals(CallScreeningOption.BLOCK_NEIGHBOR_NUMBERS to true, toggled.get())
+    }
+
+    @Test
+    fun unknownCallerOptionsAppearOnlyWithTheirRule() {
+        val toggled = AtomicReference<Pair<CallScreeningOption, Boolean>>()
+        showScreeningSheet(
+            settings = CallScreeningSettings(
+                blockNumbersNotInContacts = true,
+                allowRecentlyDialed = true,
+            ),
+            onToggle = { rule, enabled -> toggled.set(rule to enabled) },
+        )
+
+        composeRule.onNodeWithTag(SPAM_RULE_SILENCE_UNKNOWN_TAG).performScrollTo().assertIsOff()
+        composeRule.onNodeWithTag(SPAM_RULE_ALLOW_RECENT_TAG).performScrollTo().assertIsOn()
+        composeRule.onNodeWithTag(SPAM_RULE_ALLOW_REPEATED_TAG).performScrollTo().assertIsOff()
+
+        composeRule.onNodeWithTag(SPAM_RULE_SILENCE_UNKNOWN_TAG).performScrollTo().performClick()
+        assertEquals(CallScreeningOption.SILENCE_NOT_IN_CONTACTS to true, toggled.get())
+        composeRule.onNodeWithTag(SPAM_RULE_ALLOW_RECENT_TAG).performScrollTo().performClick()
+        assertEquals(CallScreeningOption.ALLOW_RECENTLY_DIALED to false, toggled.get())
+        composeRule.onNodeWithTag(SPAM_RULE_ALLOW_REPEATED_TAG).performScrollTo().performClick()
+        assertEquals(CallScreeningOption.ALLOW_REPEATED_CALLS to true, toggled.get())
     }
 
     @Test
@@ -104,7 +179,8 @@ class CallSettingsSheetsTest {
     private fun showScreeningSheet(
         settings: CallScreeningSettings,
         roleActive: Boolean = true,
-        onToggle: (String, Boolean) -> Unit = { _, _ -> },
+        hasProfileNumber: Boolean = true,
+        onToggle: (CallScreeningOption, Boolean) -> Unit = { _, _ -> },
         onRequestRole: () -> Unit = {},
     ) {
         testContent.show {
@@ -113,9 +189,8 @@ class CallSettingsSheetsTest {
                     settings = settings,
                     roleActive = roleActive,
                     roleAvailable = true,
-                    onBlockListedChanged = { onToggle("listed", it) },
-                    onBlockHiddenChanged = { onToggle("hidden", it) },
-                    onBlockNotInContactsChanged = { onToggle("contacts", it) },
+                    hasProfileNumber = hasProfileNumber,
+                    onOptionChanged = onToggle,
                     onRequestRole = onRequestRole,
                     onDismiss = {},
                 )

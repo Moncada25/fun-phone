@@ -72,7 +72,11 @@
     <string name="password_username_required">Ingresa el usuario</string>
     <string name="password_value_required">Ingresa una contraseña</string>
     <string name="password_editor_intro">Tus credenciales permanecen cifradas en este dispositivo.</string>
-    <string name="passwords_json_import_success">%1$d contraseñas importadas</string>
+    <plurals name="passwords_json_import_success">
+        <item quantity="one">%1$d contraseña importada</item>
+        <item quantity="many">%1$d contraseñas importadas</item>
+        <item quantity="other">%1$d contraseñas importadas</item>
+    </plurals>
     <string name="passwords_json_import_summary">Importadas: %1$d · Ya estaban en la bóveda (omitidas): %2$d</string>
     <string name="passwords_export_unencrypted_title">Copia sin cifrar</string>
     <string name="passwords_export_unencrypted_message">Esta copia no está cifrada. El archivo contendrá todas las contraseñas, usuarios y notas en texto plano, y cualquiera que lo abra podrá leerlos. Guárdalo solo en un lugar de confianza y elimínalo cuando ya no lo necesites.</string>

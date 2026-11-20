@@ -497,7 +497,7 @@ class FunPhoneInCallService : InCallService() {
         val callWaiting = DefaultCallRepository.calls.value.any { other ->
             other.id != id && other.state != CallState.RINGING && other.state != CallState.DISCONNECTED
         }
-        CallRinger.start(this, id, callWaiting)
+        CallRinger.start(this, id, callWaiting, silenced = SilencedCalls.consume(number))
         val notificationShown = CallNotificationManager.showIncoming(this, id, number)
         if (!notificationShown) {
             DiagnosticLog.warning(DiagnosticEvent.CALL_SURFACE_UNAVAILABLE)

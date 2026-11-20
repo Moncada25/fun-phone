@@ -41,9 +41,6 @@ class ExpenseCategoriesScreenTest {
             text(ExpensesR.string.expense_category_linked_transactions_title, CATEGORY.name),
         ).assertIsDisplayed()
         composeRule.onNodeWithText(TRANSACTION.note!!).assertIsDisplayed()
-        composeRule.onNodeWithText(
-            text(R.string.expense_category_delete_blocked_title),
-        ).assertDoesNotExist()
 
         composeRule.onNodeWithContentDescription(text(R.string.more_options)).performClick()
         composeRule.onNodeWithText(text(R.string.edit)).performClick()

@@ -46,10 +46,10 @@ import com.bookverse.contacts.core.ui.R as CoreUiR
 @Composable
 fun NumberKeypad(
     onKeyPressed: (String) -> Unit,
-    onKeyDown: ((String) -> Unit)? = null,
-    onKeyUp: ((String) -> Unit)? = null,
     accentColor: Color,
     modifier: Modifier = Modifier,
+    onKeyDown: ((String) -> Unit)? = null,
+    onKeyUp: ((String) -> Unit)? = null,
     onOneLongPress: () -> Unit = {},
     onNumberLongPress: ((Int) -> Unit)? = null,
     vibrationDuration: Int = 30,

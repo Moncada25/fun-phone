@@ -48,6 +48,18 @@ class CallRingerTest {
     }
 
     @Test
+    fun staysQuiet_whenTheScreeningServiceSilencedTheCall() {
+        val outputs = resolveRingerOutputs(
+            ringerMode = AudioManager.RINGER_MODE_NORMAL,
+            ringVolume = 5,
+            callWaiting = true,
+            silenced = true,
+        )
+
+        assertEquals(RingerOutputs(playRingtone = false, vibrate = false, playWaitingTone = false), outputs)
+    }
+
+    @Test
     fun startsSoundOnce_forConcurrentRingingCalls() {
         val tracker = RingingCallTracker()
 

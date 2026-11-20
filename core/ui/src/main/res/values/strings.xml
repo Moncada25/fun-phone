@@ -22,7 +22,6 @@
     <string name="tab_extras">Tools</string>
     <!-- New strings for search -->
     <string name="search">Search</string>
-    <string name="search_close">Close search</string>
     <string name="no_results">No results found</string>
 
     <!-- New strings for dialer -->
@@ -106,15 +105,12 @@
     <string name="deselect_all">Deselect all</string>
 
     <string name="games_title">Games</string>
-    <string name="puzzle_start_game">Start game</string>
 
     <!-- NotesScreen -->
     <string name="notes_title">Notes</string>
     <string name="contact_photo_description">%1$s photo</string>
     <string name="contact_no_photo_description">No profile photo for %1$s</string>
     <string name="slide_to_answer_or_reject">Incoming call from %1$s, slide to answer or reject</string>
-    <string name="notes_search_close">Close search</string>
-    <string name="passwords_search_close">Close search</string>
     <string name="edit">Edit</string>
     <string name="select_date">Date</string>
     <!-- New strings for HangmanScreen -->
@@ -138,59 +134,6 @@
     <!-- Menstrual calendar -->
     <string name="menstrual_calendar_item">Cycle calendar</string>
     <string name="menstrual_calendar_description">Track cycle predictions, fertile windows, and quick tips.</string>
-    <string name="menstrual_calendar_intro">Enter the first day of your cycle and get an estimated view of each phase. This tool is for information only and does not replace medical advice.</string>
-    <string name="menstrual_calendar_form_title">Cycle settings</string>
-    <string name="menstrual_calendar_month_counter">Month %1$d of %2$d</string>
-    <string name="menstrual_timeline_title">Current cycle overview</string>
-    <string-array name="menstrual_tips_menstruation">
-        <item>Listen to your body and reserve real downtime blocks.</item>
-        <item>Apply heat on your lower belly or back to relax cramps.</item>
-        <item>Favor soups, teas and warm drinks to support circulation.</item>
-        <item>Stick to gentle moves like restorative yoga or light stretching.</item>
-        <item>Use 4–4–6 breathing to calm the nervous system.</item>
-        <item>Log your moods and energy to detect cycle patterns.</item>
-        <item>Add iron-rich foods and omega-3s to aid recovery.</item>
-        <item>Keep protein and healthy fat snacks handy to avoid energy dips.</item>
-        <item>Scale back demanding plans and opt for comforting rituals.</item>
-        <item>Share how you feel with your support network to coordinate help.</item>
-    </string-array>
-    <string-array name="menstrual_tips_follicular">
-        <item>Ride the energy boost to map creative projects.</item>
-        <item>Increase workout intensity gradually.</item>
-        <item>Schedule strategy meetings or brainstorms.</item>
-        <item>Test new habits; your brain is primed for learning.</item>
-        <item>Fuel with greens, folate-rich foods and quality protein.</item>
-        <item>Anchor your morning routine with early natural light.</item>
-        <item>Declutter physical and digital spaces while motivation is high.</item>
-        <item>Connect with others; communication usually feels easy.</item>
-        <item>Break down goals into achievable steps.</item>
-        <item>Use activating breaths or short meditations to focus energy.</item>
-    </string-array>
-    <string-array name="menstrual_tips_ovulation">
-        <item>Great moment for presentations, negotiations or key dates.</item>
-        <item>If trying to conceive, have intercourse during this fertile window.</item>
-        <item>Track signs like stretchy cervical mucus or a basal temp rise.</item>
-        <item>Hydrate generously and add electrolytes for intense activity.</item>
-        <item>Go for high-intensity workouts only if your body wants it.</item>
-        <item>Load up on antioxidants through colorful fruits, green tea or cacao.</item>
-        <item>Plan difficult conversations while mental clarity is high.</item>
-        <item>Channel your drive into collaborations that need leadership.</item>
-        <item>Practice deep breathing to balance adrenaline spikes.</item>
-        <item>Review quarterly goals while motivation feels sky high.</item>
-    </string-array>
-    <string-array name="menstrual_tips_luteal">
-        <item>Protect deep sleep with calming night routines.</item>
-        <item>Reduce caffeine if breasts feel tender or mood shifts.</item>
-        <item>Prioritize complex carbs and magnesium to steady your mood.</item>
-        <item>Triage tasks by priority and avoid overbooking.</item>
-        <item>Book massages, warm baths or compresses to release tension.</item>
-        <item>Journal PMS symptoms to spot early trends.</item>
-        <item>Prep tryptophan-rich snacks like oats, banana or seeds.</item>
-        <item>Add gentle stretching or slow walks to move fluids.</item>
-        <item>Keep a self-care kit ready with tea, blanket and mellow music.</item>
-        <item>Express your needs and let trusted people support you.</item>
-    </string-array>
-    <string name="menstrual_calendar_cycle_range">%1$s - %2$s</string>
     <!-- Snake game strings -->
 
     <!-- TicTacToe scoring strings -->
@@ -214,7 +157,6 @@
 
     <!-- New strings for AlertDialog links -->
 
-    <string name="sudoku_select_difficulty">Difficulty</string>
     <string name="pause_label">Pause</string>
     <string name="resume_label">Resume</string>
     <string name="reset_label">Reset</string>
@@ -222,7 +164,6 @@
     <string name="toast_press_back_again_to_exit">Press back again to exit</string>
     <string name="select_time">Time</string>
 
-    <string name="game_mode_selection_title">Game Mode</string>
 
     <!-- Reminder validation strings -->
 
@@ -345,7 +286,6 @@
     <string name="expense_manager_item_title">Expense manager</string>
     <string name="expense_manager_item_description">Track transactions, budgets, and stats from a single dashboard.</string>
     <string name="selection_placeholder">Pick an option</string>
-    <string name="expense_category_delete_blocked_title">Cannot delete</string>
     <string name="loading">Loading…</string>
 
     <string name="auth_method_choose">Authentication method</string>
