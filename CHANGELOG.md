@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Contact details list the contact's SIP addresses. Tapping one places a `sip:` call through a
+  calling account that supports SIP, such as one registered by a SIP app that works with the system
+  dialer; with several such accounts the account picker opens, and with none a message explains
+  that no account supports SIP. Fun Phone still has no SIP stack of its own.
+
 ## [3.21.2] - 2026-11-19
 
 ### Added

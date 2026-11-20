@@ -342,6 +342,7 @@
     <string name="tools_menu_visible_title">Werkzeugmenü anzeigen</string>
     <string name="call_permission_required">Die Anruferlaubnis ist erforderlich</string>
     <string name="call_failed">Der Anruf konnte nicht getätigt werden</string>
+    <string name="sip_account_unavailable">Kein Anrufkonto unterstützt SIP</string>
     <string name="call_initialization_error">Der Anruf konnte nicht initialisiert werden</string>
     <string name="device_info_open_error">Geräteinformationen konnten nicht geöffnet werden</string>
     <string name="call_execution_error">Fehler beim Tätigen des Anrufs</string>

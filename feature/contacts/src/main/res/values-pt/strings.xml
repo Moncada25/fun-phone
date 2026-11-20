@@ -146,6 +146,8 @@
     <string name="in_call_preview_title">Prévia da chamada em curso</string>
     <string name="contact_photo_permission_message">É necessária permissão de câmera para tirar fotos de contato</string>
     <string name="phone_copied">Telefone copiado para a área de transferência</string>
+    <string name="sip_address_label">Endereço SIP</string>
+    <string name="sip_address_copied">Endereço SIP copiado para a área de transferência</string>
     <string name="email_copied">E-mail copiado para a área de transferência</string>
     <string name="company_copied">Empresa copiada para a área de transferência</string>
     <string name="website_copied">Site copiado para a área de transferência</string>

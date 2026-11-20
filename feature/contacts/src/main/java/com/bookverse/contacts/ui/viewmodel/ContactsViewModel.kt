@@ -592,6 +592,7 @@ class ContactsViewModel(
 
     override suspend fun loadContactPhoto(uri: Uri): Bitmap? = contactMediaCoordinator.loadContactPhoto(uri)
 
+    suspend fun getSipAddresses(contactId: String): List<String> = contactRepository.getSipAddresses(contactId)
     suspend fun getIncomingCallBackgroundUri(contactId: String): Uri? = contactMediaCoordinator.getIncomingCallBackgroundUri(contactId)
     fun updateIncomingCallBackground(contactId: String, change: IncomingCallBackgroundChange, onResult: (Boolean) -> Unit) =
         contactMediaCoordinator.updateIncomingCallBackground(contactId, change, onResult)

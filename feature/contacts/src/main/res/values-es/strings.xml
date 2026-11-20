@@ -146,6 +146,8 @@
     <string name="creating_qr">Creando QR</string>
     <string name="contact_photo_permission_message">Se requiere permiso de cámara para tomar fotos de contactos</string>
     <string name="phone_copied">Teléfono copiado al portapapeles</string>
+    <string name="sip_address_label">Dirección SIP</string>
+    <string name="sip_address_copied">Dirección SIP copiada al portapapeles</string>
     <string name="email_copied">Correo copiado al portapapeles</string>
     <string name="company_copied">Empresa copiada al portapapeles</string>
     <string name="website_copied">Sitio web copiado al portapapeles</string>

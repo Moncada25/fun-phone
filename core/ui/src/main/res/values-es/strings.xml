@@ -393,6 +393,7 @@
     <!-- Copy compartido fuera del código de las funcionalidades -->
     <string name="call_permission_required">Se necesita permiso para realizar llamadas</string>
     <string name="call_failed">No se pudo realizar la llamada</string>
+    <string name="sip_account_unavailable">Ninguna cuenta de llamadas admite SIP</string>
     <string name="call_initialization_error">No se pudo inicializar la llamada</string>
     <string name="device_info_open_error">No se pudo abrir la información del dispositivo</string>
     <string name="call_execution_error">Error al realizar la llamada</string>

@@ -20,6 +20,7 @@ import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.domain.call.SimDecision
 import com.bookverse.contacts.domain.call.SimPreference
 import com.bookverse.contacts.domain.call.SimSelectionPolicy
+import com.bookverse.contacts.domain.call.SipAddressPolicy
 import com.bookverse.contacts.service.PhoneAccountDirectory
 import com.bookverse.contacts.service.SimSelectionCoordinator
 import com.bookverse.contacts.settings.CallPreferences
@@ -45,6 +46,7 @@ object PhoneActions : PhoneActionLauncher {
     private fun classify(number: String): DialType {
         val n = number
         return when {
+            SipAddressPolicy.isSipAddress(n) -> DialType.NORMAL
             n == "*#06#" -> DialType.SECRET
             n.contains('*') && n.endsWith('#') && n.any { it.isDigit() } -> DialType.USSD
             else -> DialType.NORMAL
@@ -52,6 +54,9 @@ object PhoneActions : PhoneActionLauncher {
     }
 
     private fun buildDialUri(raw: String): Uri {
+        SipAddressPolicy.addressOrNull(raw)?.let { address ->
+            return Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null)
+        }
         val sanitized = raw.replace(" ", "")
             .replace("-", "")
             .replace("(", "")
@@ -265,10 +270,29 @@ object PhoneActions : PhoneActionLauncher {
                 return
             }
 
-            val accounts = PhoneAccountDirectory.callCapableAccounts(context)
-            if (accounts.size < 2 || PhoneAccountDirectory.isEmergencyNumber(context, phoneNumber)) {
-                placeCall(context, phoneNumber, null)
-                return
+            val isSip = SipAddressPolicy.isSipAddress(phoneNumber)
+            val accounts = PhoneAccountDirectory.callCapableAccounts(
+                context,
+                PhoneAccountDirectory.schemeFor(phoneNumber),
+            )
+            when {
+                isSip && accounts.isEmpty() -> {
+                    DiagnosticLog.warning(DiagnosticEvent.CALL_SIP_ACCOUNT_UNAVAILABLE)
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.sip_account_unavailable),
+                        Toast.LENGTH_LONG,
+                    ).show()
+                    return
+                }
+                isSip && accounts.size == 1 -> {
+                    placeCall(context, phoneNumber, accounts.single().id)
+                    return
+                }
+                accounts.size < 2 || PhoneAccountDirectory.isEmergencyNumber(context, phoneNumber) -> {
+                    placeCall(context, phoneNumber, null)
+                    return
+                }
             }
 
             callScope.launch {
@@ -305,7 +329,7 @@ object PhoneActions : PhoneActionLauncher {
             DiagnosticLog.debug(DiagnosticEvent.CALL_PLACE_REQUESTED)
 
             if (type == DialType.NORMAL) {
-                InCallNavigator.open(context, phoneNumber)
+                InCallNavigator.open(context, SipAddressPolicy.addressOrNull(phoneNumber) ?: phoneNumber)
             }
 
             if (PermissionUtils.isDefaultDialer(context)) {

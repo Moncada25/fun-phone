@@ -43,6 +43,7 @@ import contacts.core.util.setName
 import contacts.core.util.setNote
 import contacts.core.util.setOptions
 import contacts.core.util.setOrganization
+import contacts.core.util.sipAddresses
 import contacts.core.util.websiteList
 import contacts.permissions.accounts.queryWithPermission
 import contacts.permissions.queryWithPermission
@@ -385,6 +386,26 @@ class ContactRepository(private val context: Context) {
                             .toList()
                     }
             }.getOrElse { emptyMap() }
+        }
+
+    suspend fun getSipAddresses(contactId: String): List<String> =
+        withContext(Dispatchers.IO) {
+            val id = contactId.toLongOrNull() ?: return@withContext emptyList()
+            try {
+                Contacts(context).query()
+                    .where { Contact.Id equalTo id }
+                    .find()
+                    .flatMap { contact ->
+                        contact.sipAddresses()
+                            .mapNotNull { entry -> entry.sipAddress?.trim()?.takeIf(String::isNotEmpty) }
+                            .toList()
+                    }
+                    .distinct()
+            } catch (cancellation: CancellationException) {
+                throw cancellation
+            } catch (_: Exception) {
+                emptyList()
+            }
         }
 
     suspend fun findExistingContactIds(contactIds: List<Long>): Set<Long> =
