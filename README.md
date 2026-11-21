@@ -55,11 +55,11 @@
 
 | Dialer | Favorites | Calls | Notes |
 |:---:|:---:|:---:|:---:|
-| <img src="screenshots/store-v3/en/01-dialer.jpg" width="180" alt="Dialer"> | <img src="screenshots/store-v3/en/02-favorites.jpg" width="180" alt="Favorites"> | <img src="screenshots/store-v3/en/03-calls.jpg" width="180" alt="Incoming call"> | <img src="screenshots/store-v3/en/04-notes.jpg" width="180" alt="Notes"> |
+| <img src="screenshots/store/en/01-dialer.jpg" width="180" alt="Dialer"> | <img src="screenshots/store/en/02-favorites.jpg" width="180" alt="Favorites"> | <img src="screenshots/store/en/03-calls.jpg" width="180" alt="Incoming call"> | <img src="screenshots/store/en/04-notes.jpg" width="180" alt="Notes"> |
 | **Vault** | **Expenses** | **Tools** | **Styles** |
-| <img src="screenshots/store-v3/en/05-vault.jpg" width="180" alt="Password vault"> | <img src="screenshots/store-v3/en/06-expenses.jpg" width="180" alt="Expenses"> | <img src="screenshots/store-v3/en/07-tools.jpg" width="180" alt="Tools and games"> | <img src="screenshots/store-v3/en/08-styles.jpg" width="180" alt="Visual styles"> |
+| <img src="screenshots/store/en/05-vault.jpg" width="180" alt="Password vault"> | <img src="screenshots/store/en/06-expenses.jpg" width="180" alt="Expenses"> | <img src="screenshots/store/en/07-tools.jpg" width="180" alt="Tools and games"> | <img src="screenshots/store/en/08-styles.jpg" width="180" alt="Visual styles"> |
 
-All screenshots use fictional demo data.
+All screenshots use fictional demo data; contact photos are [Unsplash portraits](screenshots/store/CREDITS.md).
 
 ## Features
 

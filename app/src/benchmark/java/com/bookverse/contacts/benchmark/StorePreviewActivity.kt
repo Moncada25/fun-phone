@@ -70,7 +70,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bookverse.contacts.App
-import com.bookverse.contacts.core.ui.R
+import com.bookverse.contacts.R
 import com.bookverse.contacts.data.db.AppDatabase
 import com.bookverse.contacts.data.expenses.ExpenseBudgetEntity
 import com.bookverse.contacts.data.expenses.ExpenseCategoryEntity
@@ -295,7 +295,7 @@ class StorePreviewActivity : FragmentActivity() {
 
     /** In-memory fictional ringing call: no Telecom call, service or provider is involved. */
     private fun seedFixtureCall() {
-        val avatar = resources.openRawResource(R.drawable.avatar_person_pink).use { it.readBytes() }
+        val avatar = resources.openRawResource(R.drawable.store_contact_emma).use { it.readBytes() }
         container.callRepository.upsert(
             FIXTURE_CALL_ID,
             UiCall(id = FIXTURE_CALL_ID, number = "+1 555 010 0004", displayName = "Emma Wilson", state = CallState.RINGING, avatarBytes = avatar, canRespondViaText = true),
@@ -321,14 +321,18 @@ class StorePreviewActivity : FragmentActivity() {
         fun strings(values: JSONArray): List<String> = List(values.length()) { values.getString(it) }
         fun localizedList(key: String): List<String> = strings(copy.getJSONArray(key))
         val names = listOf("Marco Vega", "Alex Rivera", "Sofía Torres", "Leo Martín", "Emma Wilson", "Daniel Costa", "Maya Chen", "Oliver Reed", "Lucía Silva", "Mateo Ruiz", "Zoe Moreau", "Liam Becker")
-        val avatars = listOf(R.drawable.avatar_person_orange, R.drawable.avatar_person_teal, R.drawable.avatar_person_violet, R.drawable.avatar_person_blue, R.drawable.avatar_person_pink, R.drawable.avatar_person_green)
+        val photos = listOf(
+            R.drawable.store_contact_marco, R.drawable.store_contact_alex, R.drawable.store_contact_sofia, R.drawable.store_contact_leo,
+            R.drawable.store_contact_emma, R.drawable.store_contact_daniel, R.drawable.store_contact_maya, R.drawable.store_contact_oliver,
+            R.drawable.store_contact_lucia, R.drawable.store_contact_mateo, R.drawable.store_contact_zoe, R.drawable.store_contact_liam,
+        )
         contactCache.replaceCachedContacts(names.mapIndexed { index, name ->
             Contact(
                 id = "store-fixture-$index",
                 name = name,
                 phones = listOf(ContactPhone("+15550100${index.toString().padStart(3, '0')}", null)),
                 isFavorite = index < 6,
-                photoUri = Uri.parse("android.resource://$packageName/${avatars[index % avatars.size]}"),
+                photoUri = Uri.parse("android.resource://$packageName/${photos[index]}"),
                 email = "demo${index + 1}@example.test",
             )
         }, null)

@@ -300,21 +300,26 @@ Each image deliberately shows a different look of the app:
 | 7 · Tools | RETRO · dark (AMOLED) · amber |
 | 8 · Personalization | MODERN light blue · MINIMAL dark purple · RETRO light red |
 
-## Preview assets — campaign v3
+## Preview assets — campaign v4
 
-- Canonical source: `screenshots/store-v3/campaign.json` (stories, copy, per-capture style, theme
+- Canonical source: `screenshots/store/campaign.json` (stories, copy, per-capture style, theme
   and accent, composition theme). Real Compose UI captured on the Pixel 9 Pro emulator
   (1280×2856) with fictional names, notes, accounts and amounts, plus normalized fixture status
-  chrome. Campaign v2 stays archived in `screenshots/store-v2/`.
-- Phone masters: eight **1080×1920 RGB JPEGs** per locale in `screenshots/store-v3/{es,en,de,fr,pt}/`.
+  chrome. Earlier campaigns were removed; git history keeps them.
+- Contact photos are real portraits under the Unsplash License, bundled only in the benchmark
+  capture host and paired with fictional names. Credits: `screenshots/store/CREDITS.md`.
+- Phone masters: eight **1080×1920 RGB JPEGs** per locale in `screenshots/store/{es,en,de,fr,pt}/`.
 - Feature graphics: **1024×500 RGB JPEGs**, `feature-graphic.jpg` in each locale folder.
-- Raw native captures: `screenshots/store-v3/raw/`. No real notifications, provider contacts or calls
+- Raw native captures: `screenshots/store/raw/`. No real notifications, provider contacts or calls
   belong in these assets. The shell-only benchmark capture host uses its own fixture cache and
   refuses Contacts/Call Log permission; it must never preload or refresh the phone's provider.
   The incoming call is an in-memory fictional `UiCall`; no Telecom call is placed or received.
-- Review sheets: `screenshots/store-v3/overview-{es,en,de,fr,pt}.jpg`.
-- Backgrounds are deterministic CSS gradients declared per slide in `campaign.json`; there is no
-  generated artwork in this campaign. App UI and all typography are rendered deterministically.
+  If a home-screen widget of the benchmark package asks for Contacts during a capture, the script
+  denies it.
+- Review sheets: `screenshots/store/overview-{es,en,de,fr,pt}.jpg`.
+- Editorial composition: one flat muted background and one accent per slide, serif headline with
+  the second line in italics, no gradients, glows, badges or generated artwork. App UI and all
+  typography are rendered deterministically.
 - Identical compositions feed the website's ES/EN WebP set.
 - All five languages have localized headlines, subtitles, native UI and fictional sample content.
   Play locale mapping: `en-US`, `es-419`, `de-DE`, `fr-FR` and `pt-BR`; Portuguese copy follows the
@@ -336,11 +341,11 @@ ANDROID_SERIAL=<serial> ./scripts/capture-store-previews.sh de fr pt
 
 The capture host accepts `scene`, `language`, `style` (`MODERN`, `MINIMAL`, `RETRO`), `dark`,
 `darkStyle`, `accent` (a named app accent) and `number` extras; `campaign.json` lists every capture
-and the taps needed to reach a state (country code, two-step code, yearly summary).
+and the taps needed to reach a state (two-step code, yearly summary).
 
 Export from the sibling `fun-phone-web` checkout with `npm run render:store`. This reads the
 canonical capture set and emits both Play masters and website assets; it does not publish.
-From another checkout or worktree pass the source: `npm run render:store -- /path/to/screenshots/store-v3`.
+From another checkout or worktree pass the source: `npm run render:store -- /path/to/screenshots/store`.
 To export only some languages, add `--locales=de,fr,pt`.
 The graphics are a review candidate. Release/Play predecessor gates still apply before uploading.
 

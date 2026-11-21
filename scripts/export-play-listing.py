@@ -79,7 +79,7 @@ def main():
     parser.add_argument("--source", type=Path, default=ROOT / "PLAY_STORE_LISTING.md")
     args = parser.parse_args()
     document = args.source.read_text(encoding="utf-8")
-    campaign = json.loads((ROOT / "screenshots/store-v3/campaign.json").read_text(encoding="utf-8"))
+    campaign = json.loads((ROOT / "screenshots/store/campaign.json").read_text(encoding="utf-8"))
     expected_languages = set(LANGUAGES)
     if set(campaign["export"]["locales"]) != expected_languages:
         raise ValueError("The campaign must cover all five app languages")
@@ -122,11 +122,11 @@ def main():
             if any(scene not in capture_ids for scene in raw_scenes):
                 raise ValueError("Slide uses an undeclared capture: " + slide["id"])
             for scene in raw_scenes:
-                raw = ROOT / "screenshots/store-v3/raw" / language / (scene + ".png")
+                raw = ROOT / "screenshots/store/raw" / language / (scene + ".png")
                 if not raw.is_file():
                     raise ValueError("Missing native capture: " + str(raw))
-            images.append(f"screenshots/store-v3/{language}/{slide['id']}.jpg")
-        feature = f"screenshots/store-v3/{language}/feature-graphic.jpg"
+            images.append(f"screenshots/store/{language}/{slide['id']}.jpg")
+        feature = f"screenshots/store/{language}/feature-graphic.jpg"
         if len(images) != 8:
             raise ValueError("Each language requires eight phone screenshots")
         for image in images + [feature]:

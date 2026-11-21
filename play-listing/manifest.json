@@ -7,80 +7,80 @@
       "playLocale": "en-US",
       "textDirectory": "play-listing/en-US",
       "phoneScreenshots": [
-        "screenshots/store-v3/en/01-dialer.jpg",
-        "screenshots/store-v3/en/02-favorites.jpg",
-        "screenshots/store-v3/en/03-calls.jpg",
-        "screenshots/store-v3/en/04-notes.jpg",
-        "screenshots/store-v3/en/05-vault.jpg",
-        "screenshots/store-v3/en/06-expenses.jpg",
-        "screenshots/store-v3/en/07-tools.jpg",
-        "screenshots/store-v3/en/08-styles.jpg"
+        "screenshots/store/en/01-dialer.jpg",
+        "screenshots/store/en/02-favorites.jpg",
+        "screenshots/store/en/03-calls.jpg",
+        "screenshots/store/en/04-notes.jpg",
+        "screenshots/store/en/05-vault.jpg",
+        "screenshots/store/en/06-expenses.jpg",
+        "screenshots/store/en/07-tools.jpg",
+        "screenshots/store/en/08-styles.jpg"
       ],
-      "featureGraphic": "screenshots/store-v3/en/feature-graphic.jpg"
+      "featureGraphic": "screenshots/store/en/feature-graphic.jpg"
     },
     {
       "language": "es",
       "playLocale": "es-419",
       "textDirectory": "play-listing/es-419",
       "phoneScreenshots": [
-        "screenshots/store-v3/es/01-dialer.jpg",
-        "screenshots/store-v3/es/02-favorites.jpg",
-        "screenshots/store-v3/es/03-calls.jpg",
-        "screenshots/store-v3/es/04-notes.jpg",
-        "screenshots/store-v3/es/05-vault.jpg",
-        "screenshots/store-v3/es/06-expenses.jpg",
-        "screenshots/store-v3/es/07-tools.jpg",
-        "screenshots/store-v3/es/08-styles.jpg"
+        "screenshots/store/es/01-dialer.jpg",
+        "screenshots/store/es/02-favorites.jpg",
+        "screenshots/store/es/03-calls.jpg",
+        "screenshots/store/es/04-notes.jpg",
+        "screenshots/store/es/05-vault.jpg",
+        "screenshots/store/es/06-expenses.jpg",
+        "screenshots/store/es/07-tools.jpg",
+        "screenshots/store/es/08-styles.jpg"
       ],
-      "featureGraphic": "screenshots/store-v3/es/feature-graphic.jpg"
+      "featureGraphic": "screenshots/store/es/feature-graphic.jpg"
     },
     {
       "language": "de",
       "playLocale": "de-DE",
       "textDirectory": "play-listing/de-DE",
       "phoneScreenshots": [
-        "screenshots/store-v3/de/01-dialer.jpg",
-        "screenshots/store-v3/de/02-favorites.jpg",
-        "screenshots/store-v3/de/03-calls.jpg",
-        "screenshots/store-v3/de/04-notes.jpg",
-        "screenshots/store-v3/de/05-vault.jpg",
-        "screenshots/store-v3/de/06-expenses.jpg",
-        "screenshots/store-v3/de/07-tools.jpg",
-        "screenshots/store-v3/de/08-styles.jpg"
+        "screenshots/store/de/01-dialer.jpg",
+        "screenshots/store/de/02-favorites.jpg",
+        "screenshots/store/de/03-calls.jpg",
+        "screenshots/store/de/04-notes.jpg",
+        "screenshots/store/de/05-vault.jpg",
+        "screenshots/store/de/06-expenses.jpg",
+        "screenshots/store/de/07-tools.jpg",
+        "screenshots/store/de/08-styles.jpg"
       ],
-      "featureGraphic": "screenshots/store-v3/de/feature-graphic.jpg"
+      "featureGraphic": "screenshots/store/de/feature-graphic.jpg"
     },
     {
       "language": "fr",
       "playLocale": "fr-FR",
       "textDirectory": "play-listing/fr-FR",
       "phoneScreenshots": [
-        "screenshots/store-v3/fr/01-dialer.jpg",
-        "screenshots/store-v3/fr/02-favorites.jpg",
-        "screenshots/store-v3/fr/03-calls.jpg",
-        "screenshots/store-v3/fr/04-notes.jpg",
-        "screenshots/store-v3/fr/05-vault.jpg",
-        "screenshots/store-v3/fr/06-expenses.jpg",
-        "screenshots/store-v3/fr/07-tools.jpg",
-        "screenshots/store-v3/fr/08-styles.jpg"
+        "screenshots/store/fr/01-dialer.jpg",
+        "screenshots/store/fr/02-favorites.jpg",
+        "screenshots/store/fr/03-calls.jpg",
+        "screenshots/store/fr/04-notes.jpg",
+        "screenshots/store/fr/05-vault.jpg",
+        "screenshots/store/fr/06-expenses.jpg",
+        "screenshots/store/fr/07-tools.jpg",
+        "screenshots/store/fr/08-styles.jpg"
       ],
-      "featureGraphic": "screenshots/store-v3/fr/feature-graphic.jpg"
+      "featureGraphic": "screenshots/store/fr/feature-graphic.jpg"
     },
     {
       "language": "pt",
       "playLocale": "pt-BR",
       "textDirectory": "play-listing/pt-BR",
       "phoneScreenshots": [
-        "screenshots/store-v3/pt/01-dialer.jpg",
-        "screenshots/store-v3/pt/02-favorites.jpg",
-        "screenshots/store-v3/pt/03-calls.jpg",
-        "screenshots/store-v3/pt/04-notes.jpg",
-        "screenshots/store-v3/pt/05-vault.jpg",
-        "screenshots/store-v3/pt/06-expenses.jpg",
-        "screenshots/store-v3/pt/07-tools.jpg",
-        "screenshots/store-v3/pt/08-styles.jpg"
+        "screenshots/store/pt/01-dialer.jpg",
+        "screenshots/store/pt/02-favorites.jpg",
+        "screenshots/store/pt/03-calls.jpg",
+        "screenshots/store/pt/04-notes.jpg",
+        "screenshots/store/pt/05-vault.jpg",
+        "screenshots/store/pt/06-expenses.jpg",
+        "screenshots/store/pt/07-tools.jpg",
+        "screenshots/store/pt/08-styles.jpg"
       ],
-      "featureGraphic": "screenshots/store-v3/pt/feature-graphic.jpg"
+      "featureGraphic": "screenshots/store/pt/feature-graphic.jpg"
     }
   ]
 }

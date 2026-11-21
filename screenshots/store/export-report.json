@@ -1,0 +1,209 @@
+{
+  "size": [
+    1080,
+    1920
+  ],
+  "alpha": false,
+  "assets": [
+    {
+      "id": "01-dialer",
+      "lang": "es",
+      "bytes": 59760
+    },
+    {
+      "id": "02-favorites",
+      "lang": "es",
+      "bytes": 114854
+    },
+    {
+      "id": "03-calls",
+      "lang": "es",
+      "bytes": 53486
+    },
+    {
+      "id": "04-notes",
+      "lang": "es",
+      "bytes": 85428
+    },
+    {
+      "id": "05-vault",
+      "lang": "es",
+      "bytes": 72744
+    },
+    {
+      "id": "06-expenses",
+      "lang": "es",
+      "bytes": 60442
+    },
+    {
+      "id": "07-tools",
+      "lang": "es",
+      "bytes": 135376
+    },
+    {
+      "id": "08-styles",
+      "lang": "es",
+      "bytes": 74324
+    },
+    {
+      "id": "01-dialer",
+      "lang": "en",
+      "bytes": 52544
+    },
+    {
+      "id": "02-favorites",
+      "lang": "en",
+      "bytes": 116184
+    },
+    {
+      "id": "03-calls",
+      "lang": "en",
+      "bytes": 48742
+    },
+    {
+      "id": "04-notes",
+      "lang": "en",
+      "bytes": 84410
+    },
+    {
+      "id": "05-vault",
+      "lang": "en",
+      "bytes": 69082
+    },
+    {
+      "id": "06-expenses",
+      "lang": "en",
+      "bytes": 61288
+    },
+    {
+      "id": "07-tools",
+      "lang": "en",
+      "bytes": 121886
+    },
+    {
+      "id": "08-styles",
+      "lang": "en",
+      "bytes": 69916
+    },
+    {
+      "id": "01-dialer",
+      "lang": "de",
+      "masterBytes": 227629
+    },
+    {
+      "id": "02-favorites",
+      "lang": "de",
+      "masterBytes": 385234
+    },
+    {
+      "id": "03-calls",
+      "lang": "de",
+      "masterBytes": 201388
+    },
+    {
+      "id": "04-notes",
+      "lang": "de",
+      "masterBytes": 285564
+    },
+    {
+      "id": "05-vault",
+      "lang": "de",
+      "masterBytes": 244148
+    },
+    {
+      "id": "06-expenses",
+      "lang": "de",
+      "masterBytes": 238436
+    },
+    {
+      "id": "07-tools",
+      "lang": "de",
+      "masterBytes": 413113
+    },
+    {
+      "id": "08-styles",
+      "lang": "de",
+      "masterBytes": 252377
+    },
+    {
+      "id": "01-dialer",
+      "lang": "fr",
+      "masterBytes": 218736
+    },
+    {
+      "id": "02-favorites",
+      "lang": "fr",
+      "masterBytes": 380917
+    },
+    {
+      "id": "03-calls",
+      "lang": "fr",
+      "masterBytes": 188424
+    },
+    {
+      "id": "04-notes",
+      "lang": "fr",
+      "masterBytes": 285511
+    },
+    {
+      "id": "05-vault",
+      "lang": "fr",
+      "masterBytes": 246376
+    },
+    {
+      "id": "06-expenses",
+      "lang": "fr",
+      "masterBytes": 241349
+    },
+    {
+      "id": "07-tools",
+      "lang": "fr",
+      "masterBytes": 397894
+    },
+    {
+      "id": "08-styles",
+      "lang": "fr",
+      "masterBytes": 257190
+    },
+    {
+      "id": "01-dialer",
+      "lang": "pt",
+      "masterBytes": 223869
+    },
+    {
+      "id": "02-favorites",
+      "lang": "pt",
+      "masterBytes": 374864
+    },
+    {
+      "id": "03-calls",
+      "lang": "pt",
+      "masterBytes": 187101
+    },
+    {
+      "id": "04-notes",
+      "lang": "pt",
+      "masterBytes": 286996
+    },
+    {
+      "id": "05-vault",
+      "lang": "pt",
+      "masterBytes": 225387
+    },
+    {
+      "id": "06-expenses",
+      "lang": "pt",
+      "masterBytes": 234838
+    },
+    {
+      "id": "07-tools",
+      "lang": "pt",
+      "masterBytes": 405120
+    },
+    {
+      "id": "08-styles",
+      "lang": "pt",
+      "masterBytes": 255382
+    }
+  ]
+}
