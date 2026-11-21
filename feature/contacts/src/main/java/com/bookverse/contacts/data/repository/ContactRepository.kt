@@ -1,5 +1,6 @@
 package com.bookverse.contacts.data.repository
 
+import android.Manifest
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
@@ -15,8 +16,10 @@ import com.bookverse.contacts.diagnostics.DiagnosticLog
 import com.bookverse.contacts.domain.contacts.BlockedNumberMatchPolicy
 import com.bookverse.contacts.domain.contacts.ContactAccountPolicy
 import com.bookverse.contacts.domain.contacts.ContactSyncAdapter
+import com.bookverse.contacts.domain.contacts.ContactsReadPolicy
 import com.bookverse.contacts.utils.ContactUtils
 import com.bookverse.contacts.utils.ImageProcessor
+import com.bookverse.contacts.utils.PermissionUtils
 import contacts.core.Contacts
 import contacts.core.ContactsFields
 import contacts.core.Insert
@@ -45,8 +48,6 @@ import contacts.core.util.setOptions
 import contacts.core.util.setOrganization
 import contacts.core.util.sipAddresses
 import contacts.core.util.websiteList
-import contacts.permissions.accounts.queryWithPermission
-import contacts.permissions.queryWithPermission
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -67,9 +68,12 @@ class ContactRepository(private val context: Context) {
         contactAccounts
     }
 
-    private suspend fun queryWritableAccounts(api: Contacts): List<ContactAccount> {
-        val systemAccounts = api.accounts().queryWithPermission().find()
-            .map(ContactAccount::fromAccount)
+    private fun queryWritableAccounts(api: Contacts): List<ContactAccount> {
+        val systemAccounts = ContactsReadPolicy.readIfGranted(
+            isGranted = PermissionUtils.hasPermission(context, Manifest.permission.GET_ACCOUNTS),
+        ) {
+            api.accounts().query().find()
+        }.map(ContactAccount::fromAccount)
         val providerAccounts = if (api.permissions.canQuery()) {
             queryProviderAccounts(ContactsContract.Settings.CONTENT_URI, selection = null) +
                 queryProviderAccounts(
@@ -115,9 +119,12 @@ class ContactRepository(private val context: Context) {
 
     suspend fun getContacts(): List<Contact> = withContext(Dispatchers.IO) {
         val contactsApi = Contacts(context)
-        val allContactsRaw = contactsApi.queryWithPermission()
-            .orderBy(ContactsFields.DisplayNamePrimary.asc(ignoreCase = true))
-            .find()
+        val canReadContacts = PermissionUtils.hasPermission(context, Manifest.permission.READ_CONTACTS)
+        val allContactsRaw = ContactsReadPolicy.readIfGranted(canReadContacts) {
+            contactsApi.query()
+                .orderBy(ContactsFields.DisplayNamePrimary.asc(ignoreCase = true))
+                .find()
+        }
         val blockedNumbers = contactsApi.queryBlockedNumbersIfSupported()
             .mapNotNull { sanitizeNumberForMatching(it.normalizedNumber ?: it.number) }
             .toSet()
@@ -136,7 +143,7 @@ class ContactRepository(private val context: Context) {
                 contact.copy(isBlocked = isContactBlocked(contact, blockedNumbers))
             }
         }.filter { it.phones.isNotEmpty() && it.phones.any { phone -> phone.number.isNotEmpty() } }
-        if (contactsApi.permissions.canQuery()) {
+        if (canReadContacts) {
             val activeLookupKeys = allContactsRaw.map { it.lookupKey }.toSet()
             contactPhotoStore.reconcileContacts(activeLookupKeys)
             incomingCallBackgroundStore.reconcile(activeLookupKeys)
