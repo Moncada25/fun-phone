@@ -6,11 +6,11 @@ UTF-8 plain text ready to paste into Play Console: `title.txt`, `short-descripti
 
 | Language | Play locale / text | Eight phone screenshots and feature graphic |
 | --- | --- | --- |
-| English | [en-US](en-US/) | [en](../screenshots/store-v3/en/) |
-| Español LATAM | [es-419](es-419/) | [es](../screenshots/store-v3/es/) |
-| Deutsch | [de-DE](de-DE/) | [de](../screenshots/store-v3/de/) |
-| Français | [fr-FR](fr-FR/) | [fr](../screenshots/store-v3/fr/) |
-| Português do Brasil | [pt-BR](pt-BR/) | [pt](../screenshots/store-v3/pt/) |
+| English | [en-US](en-US/) | [en](../screenshots/store/en/) |
+| Español LATAM | [es-419](es-419/) | [es](../screenshots/store/es/) |
+| Deutsch | [de-DE](de-DE/) | [de](../screenshots/store/de/) |
+| Français | [fr-FR](fr-FR/) | [fr](../screenshots/store/fr/) |
+| Português do Brasil | [pt-BR](pt-BR/) | [pt](../screenshots/store/pt/) |
 
 Phone JPEGs are 1080×1920; each `feature-graphic.jpg` is 1024×500. All app screens use fictional
 fixtures and localized native UI. Overview sheets are review aids; upload the eight numbered

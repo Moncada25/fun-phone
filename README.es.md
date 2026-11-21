@@ -55,11 +55,11 @@
 
 | Marcador | Favoritos | Llamadas | Notas |
 |:---:|:---:|:---:|:---:|
-| <img src="screenshots/store-v3/es/01-dialer.jpg" width="180" alt="Marcador"> | <img src="screenshots/store-v3/es/02-favorites.jpg" width="180" alt="Favoritos"> | <img src="screenshots/store-v3/es/03-calls.jpg" width="180" alt="Llamada entrante"> | <img src="screenshots/store-v3/es/04-notes.jpg" width="180" alt="Notas"> |
+| <img src="screenshots/store/es/01-dialer.jpg" width="180" alt="Marcador"> | <img src="screenshots/store/es/02-favorites.jpg" width="180" alt="Favoritos"> | <img src="screenshots/store/es/03-calls.jpg" width="180" alt="Llamada entrante"> | <img src="screenshots/store/es/04-notes.jpg" width="180" alt="Notas"> |
 | **Bóveda** | **Gastos** | **Herramientas** | **Estilos** |
-| <img src="screenshots/store-v3/es/05-vault.jpg" width="180" alt="Bóveda de contraseñas"> | <img src="screenshots/store-v3/es/06-expenses.jpg" width="180" alt="Gastos"> | <img src="screenshots/store-v3/es/07-tools.jpg" width="180" alt="Herramientas y juegos"> | <img src="screenshots/store-v3/es/08-styles.jpg" width="180" alt="Estilos visuales"> |
+| <img src="screenshots/store/es/05-vault.jpg" width="180" alt="Bóveda de contraseñas"> | <img src="screenshots/store/es/06-expenses.jpg" width="180" alt="Gastos"> | <img src="screenshots/store/es/07-tools.jpg" width="180" alt="Herramientas y juegos"> | <img src="screenshots/store/es/08-styles.jpg" width="180" alt="Estilos visuales"> |
 
-Todas las capturas usan datos de demostración ficticios.
+Todas las capturas usan datos de demostración ficticios; las fotos de contactos son [retratos de Unsplash](screenshots/store/CREDITS.md).
 
 ## Funciones
 

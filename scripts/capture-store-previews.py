@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Capture the store-preview scenes declared in screenshots/store-v3/campaign.json.
+"""Capture the store-preview scenes declared in screenshots/store/campaign.json.
 
 Drives only the isolated benchmark capture host on the device named by ANDROID_SERIAL.
 """
@@ -15,13 +15,15 @@ import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CAMPAIGN = json.loads((ROOT / "screenshots/store-v3/campaign.json").read_text(encoding="utf-8"))
+CAMPAIGN = json.loads((ROOT / "screenshots/store/campaign.json").read_text(encoding="utf-8"))
 FIXTURES = json.loads((ROOT / "app/src/benchmark/assets/store-fixtures.json").read_text(encoding="utf-8"))
 PACKAGE = CAMPAIGN["capture"]["package"]
 ACTIVITY = CAMPAIGN["capture"]["activity"]
 SERIAL = os.environ.get("ANDROID_SERIAL") or sys.exit("Select the authorized synthetic-data device with ANDROID_SERIAL")
-OUTPUT = Path(os.environ.get("STORE_CAPTURE_DIR", ROOT / "screenshots/store-v3/raw"))
+OUTPUT = Path(os.environ.get("STORE_CAPTURE_DIR", ROOT / "screenshots/store/raw"))
 DEVICE_XML = "/data/local/tmp/fun-phone-store-preview.xml"
+PERMISSION_PROMPT = re.compile(r"GrantPermissionsActivity|TedPermissionActivity")
+DENY_BUTTON = re.compile(r'resource-id="(?:android:id/button2|com\.android\.permissioncontroller:id/permission_deny_button)"[^>]*?bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"')
 NODE = re.compile(r'<node[^>]*?text="([^"]*)"[^>]*?content-desc="([^"]*)"[^>]*?bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"')
 
 
@@ -36,12 +38,21 @@ def shell(*args):
 
 def foreground():
     lines = [line for line in shell("dumpsys", "activity", "activities").splitlines() if "topResumedActivity=" in line]
+    if lines and PERMISSION_PROMPT.search(lines[0]):
+        deny = DENY_BUTTON.search(hierarchy())
+        if deny:
+            left, top, right, bottom = map(int, deny.groups())
+            shell("input", "tap", str((left + right) // 2), str((top + bottom) // 2))
+        return False
     return bool(lines) and f"{PACKAGE}/{ACTIVITY}" in lines[0]
 
 
 def hierarchy():
-    shell("uiautomator", "dump", DEVICE_XML)
-    return shell("cat", DEVICE_XML)
+    try:
+        shell("uiautomator", "dump", DEVICE_XML)
+        return shell("cat", DEVICE_XML)
+    except subprocess.CalledProcessError:
+        return ""
 
 
 def app_string(language, name):
@@ -122,7 +133,11 @@ def main():
                     while time.time() % 30 > 20:
                         time.sleep(0.5)
                 time.sleep(1.2)
-                if not foreground():
+                for _attempt in range(10):
+                    if foreground():
+                        break
+                    time.sleep(0.6)
+                else:
                     sys.exit(f"Capture aborted: {language}/{capture['id']} left the foreground.")
                 if re.search(r"android\.permission\.READ_(CONTACTS|CALL_LOG): granted=true", shell("dumpsys", "package", PACKAGE)):
                     sys.exit("Capture aborted: benchmark has personal-provider permissions.")
