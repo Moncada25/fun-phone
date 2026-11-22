@@ -285,7 +285,7 @@ fun ChecklistScreen(
                 ),
                 onBackClick = { handleBack() },
                 searchAction = if (checklistState.isNotEmpty() && note != null) com.bookverse.contacts.ui.components.AppBarSearchAction(
-                    stringResource(R.string.search_checklist_items), { searchActive = true }, feedback = true,
+                    stringResource(R.string.search_checklist_items), { searchActive = true },
                 ) else null,
                 actions = {
                     if (noteFolders.isNotEmpty() && note == null) {

@@ -29,6 +29,7 @@ fun ToolsPresetSelector(
     modifier: Modifier = Modifier,
 ) {
     val selectedPreset = toolsOrder.matchingPreset()
+    val colorScheme = MaterialTheme.colorScheme
 
     Column(
         modifier = modifier,
@@ -41,26 +42,18 @@ fun ToolsPresetSelector(
         Text(
             text = stringResource(R.string.tools_presets_description),
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurface
+            color = colorScheme.onSurface
         )
         ToolsPreset.entries.forEach { preset ->
             val selected = selectedPreset == preset
-            val colors = if (selected) {
-                ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-            } else {
-                ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    contentColor = MaterialTheme.colorScheme.onSurface
-                )
-            }
             Button(
                 onClick = { onPresetSelected(preset) },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = colors
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (selected) colorScheme.primaryContainer else colorScheme.surface,
+                    contentColor = colorScheme.onSurface,
+                ),
             ) {
                 Column(
                     modifier = Modifier
@@ -86,8 +79,8 @@ fun ToolsPresetSelector(
                     .semantics { selected = true },
                 shape = RoundedCornerShape(12.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    containerColor = colorScheme.primaryContainer,
+                    contentColor = colorScheme.onSurface,
                 ),
             ) {
                 Column(

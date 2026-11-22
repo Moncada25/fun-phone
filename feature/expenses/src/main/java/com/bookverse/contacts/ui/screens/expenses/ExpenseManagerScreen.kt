@@ -78,8 +78,9 @@ import com.bookverse.contacts.ui.components.OptionsDialogItem
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.TopBarSearchField
 import com.bookverse.contacts.ui.screens.settings.SettingsSelectionSheet
-import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.theme.chromePolicy
+import com.bookverse.contacts.ui.utils.rememberHapticClick
+import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ExpensesViewModel
 import com.composables.icons.lucide.Coins
 import com.composables.icons.lucide.ListCheck
@@ -710,9 +711,7 @@ fun ExpenseManagerScreen(
             OptionsDialogItem(
                 label = stringResource(R.string.expense_search_title),
                 icon = Icons.Default.Search,
-                onClick = {
-                    currentSection = ExpenseSection.SEARCH
-                }
+                onClick = rememberHapticClick({ currentSection = ExpenseSection.SEARCH }),
             ),
             OptionsDialogItem(
                 label = stringResource(R.string.expense_yearly_title),
