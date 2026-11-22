@@ -22,9 +22,13 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -38,8 +42,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,10 +53,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -144,6 +153,7 @@ fun AboutScreen(
     val resources = LocalResources.current
     val scope = rememberCoroutineScope()
 
+    var showDonationSheet by rememberSaveable { mutableStateOf(false) }
     var tapCount by remember { mutableIntStateOf(0) }
     var lastTapTime by remember { mutableLongStateOf(0L) }
     var confettiKey by remember { mutableIntStateOf(0) }
@@ -350,24 +360,11 @@ fun AboutScreen(
                         description = stringResource(R.string.about_open_source_description),
                     ) {
                         AboutLinkGroup(items = openSourceLinks)
-                        FilledTonalButton(
+                        AboutActionButton(
+                            label = stringResource(R.string.about_star_repository),
+                            icon = Lucide.Star,
                             onClick = { open(AboutLinks.REPOSITORY) },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(min = 52.dp),
-                            shape = RoundedCornerShape(16.dp),
-                        ) {
-                            Icon(
-                                imageVector = Lucide.Star,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp),
-                            )
-                            Text(
-                                text = stringResource(R.string.about_star_repository),
-                                style = MaterialTheme.typography.labelLarge,
-                                modifier = Modifier.padding(start = 10.dp),
-                            )
-                        }
+                        )
                     }
                 }
 
@@ -391,6 +388,11 @@ fun AboutScreen(
                         description = stringResource(R.string.about_support_description),
                     ) {
                         AboutLinkGroup(items = supportLinks)
+                        AboutActionButton(
+                            label = stringResource(R.string.about_support_project),
+                            icon = Lucide.Heart,
+                            onClick = { showDonationSheet = true },
+                        )
                     }
                 }
 
@@ -425,6 +427,86 @@ fun AboutScreen(
                 }
             }
         }
+    }
+
+    if (showDonationSheet) {
+        var useNequi by rememberSaveable { mutableStateOf(false) }
+        val paymentId = stringResource(if (useNequi) R.string.about_nequi_number else R.string.about_breb_key)
+        val recipient = stringResource(if (useNequi) R.string.about_nequi_recipient else R.string.about_breb_recipient)
+        SettingsSheetScaffold(
+            title = stringResource(R.string.about_support_project),
+            subtitle = stringResource(R.string.about_colombia_only),
+            onDismiss = { showDonationSheet = false },
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f, fill = false)
+                    .padding(bottom = 12.dp)
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Text(stringResource(R.string.about_donation_instructions))
+                Row(
+                    modifier = Modifier.selectableGroup(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    FilterChip(
+                        selected = !useNequi,
+                        onClick = { useNequi = false },
+                        label = { Text(stringResource(R.string.about_breb_label)) },
+                    )
+                    FilterChip(
+                        selected = useNequi,
+                        onClick = { useNequi = true },
+                        label = { Text(stringResource(R.string.about_nequi_label)) },
+                    )
+                }
+                Image(
+                    bitmap = ImageBitmap.imageResource(
+                        if (useNequi) R.drawable.about_qr_nequi else R.drawable.about_qr_breb,
+                    ),
+                    contentDescription = stringResource(
+                        R.string.about_donation_qr,
+                        stringResource(if (useNequi) R.string.about_nequi_label else R.string.about_breb_label),
+                    ),
+                    modifier = Modifier.align(Alignment.CenterHorizontally).size(240.dp),
+                    filterQuality = FilterQuality.None,
+                )
+                Text(recipient, style = MaterialTheme.typography.titleMedium)
+                Text(paymentId, style = MaterialTheme.typography.titleLarge)
+            }
+            AboutActionButton(
+                label = stringResource(if (useNequi) R.string.about_copy_nequi_number else R.string.about_copy_breb_key),
+                icon = Lucide.Copy,
+                onClick = {
+                    ContactUtils.copyToClipboard(context, paymentId, toast = false)
+                    showDonationSheet = false
+                    scope.launch {
+                        snackbar.show(
+                            message = resources.getString(CoreUiR.string.copied_to_clipboard),
+                            type = SnackbarType.Info,
+                        )
+                    }
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun AboutActionButton(label: String, icon: ImageVector, onClick: () -> Unit) {
+    FilledTonalButton(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
+        shape = RoundedCornerShape(16.dp),
+    ) {
+        Icon(imageVector = icon, contentDescription = null, modifier = Modifier.size(18.dp))
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelLarge,
+            modifier = Modifier.padding(start = 10.dp),
+        )
     }
 }
 

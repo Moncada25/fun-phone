@@ -433,6 +433,12 @@
     <string name="about_contribute_summary">Lies den Leitfaden und sende deinen ersten Pull Request.</string>
     <string name="about_license">Lizenz</string>
     <string name="about_license_summary">GNU General Public License, Version 3.0</string>
+    <string name="about_support_project">Projekt unterstützen</string>
+    <string name="about_colombia_only">Beiträge nur aus Kolumbien</string>
+    <string name="about_donation_instructions">Scanne den QR-Code oder kopiere die Zahlungsdaten, um in kolumbianischen Pesos zu unterstützen.</string>
+    <string name="about_donation_qr">QR-Code für Zahlungen mit %1$s</string>
+    <string name="about_copy_nequi_number">Nummer kopieren</string>
+    <string name="about_copy_breb_key">Schlüssel kopieren</string>
     <string name="about_star_repository">Auf GitHub mit Stern markieren</string>
     <string name="about_support_title">Projekt unterstützen</string>
     <string name="about_support_description">Erzähl davon und hilf mehr Menschen, eine private, quelloffene Telefon-App zu entdecken.</string>

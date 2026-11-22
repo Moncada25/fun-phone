@@ -440,6 +440,12 @@
     <string name="about_contribute_summary">Lee la guía y envía tu primer pull request.</string>
     <string name="about_license">Licencia</string>
     <string name="about_license_summary">Licencia Pública General de GNU v3.0</string>
+    <string name="about_support_project">Apoyar el proyecto</string>
+    <string name="about_colombia_only">Aportes solo desde Colombia</string>
+    <string name="about_donation_instructions">Escanea el QR o copia los datos para aportar en pesos colombianos.</string>
+    <string name="about_donation_qr">Código QR para aportar con %1$s</string>
+    <string name="about_copy_nequi_number">Copiar número</string>
+    <string name="about_copy_breb_key">Copiar llave</string>
     <string name="about_star_repository">Dar una estrella en GitHub</string>
     <string name="about_support_title">Apoya el proyecto</string>
     <string name="about_support_description">Corre la voz y ayuda a más personas a descubrir un marcador privado y de código abierto.</string>

@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.settings
 
+import android.content.ClipboardManager
 import com.bookverse.contacts.BuildConfig
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +28,7 @@ import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -110,6 +112,57 @@ class AboutScreenTest {
             .performClick()
 
         assertTrue(wasBackPressed.get())
+    }
+
+    @Test
+    fun supportButtonSitsBelowGooglePlayRatingInPlayEdition() {
+        org.junit.Assume.assumeTrue(BuildConfig.DISTRIBUTION == "play")
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        val rating = composeRule.onNodeWithText(string(SettingsR.string.about_rate_play))
+        val support = composeRule.onNodeWithText(string(SettingsR.string.about_support_project))
+        rating.assertIsDisplayed()
+        support.assertIsDisplayed()
+        assertTrue(support.fetchSemanticsNode().boundsInRoot.top >= rating.fetchSemanticsNode().boundsInRoot.bottom)
+    }
+
+    @Test
+    fun copiesDisplayedBreBKey() {
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
+        composeRule.onNodeWithContentDescription(
+            string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_breb_label)),
+        ).assertIsDisplayed()
+        val key = string(SettingsR.string.about_breb_key)
+        composeRule.onNodeWithText(key).assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).performClick()
+        composeRule.waitForIdle()
+
+        composeRule.runOnIdle {
+            val clipboard = composeRule.activity.getSystemService(ClipboardManager::class.java)
+            assertEquals(key, clipboard.primaryClip?.getItemAt(0)?.text?.toString())
+        }
+    }
+
+    @Test
+    fun copiesNequiNumberFromColombiaSheet() {
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
+        composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_nequi_label)).performClick()
+        composeRule.onNodeWithContentDescription(
+            string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_nequi_label)),
+        ).assertIsDisplayed()
+        val number = string(SettingsR.string.about_nequi_number)
+        composeRule.onNodeWithText(number).assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_nequi_number)).performClick()
+
+        composeRule.runOnIdle {
+            val clipboard = composeRule.activity.getSystemService(ClipboardManager::class.java)
+            assertEquals(number, clipboard.primaryClip?.getItemAt(0)?.text?.toString())
+        }
     }
 
     @Test
