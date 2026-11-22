@@ -191,13 +191,14 @@ class MainActivity : LocalizedAppCompatActivity() {
         super.onCreate(savedInstanceState)
         PhoneActions.setupCallPermissionLauncher(this)
         readCallExtras(intent)
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
+            handleMissedCallExtras(intent)
+            readWidgetAndShortcutExtras(intent.extras)
+        } else {
             leaveAfterCall = savedInstanceState.getBoolean(STATE_LEAVE_AFTER_CALL)
+            readWidgetAndShortcutExtras(savedInstanceState.getBundle(STATE_PENDING_SHORTCUTS))
         }
-        if (savedInstanceState == null) handleMissedCallExtras(intent)
         readDialerExtras(intent, initialLaunch = true)
-        readWidgetExtras(intent)
-        readShortcutDestination(intent)
         updateLockScreenBehavior(
             shouldShowCallWhileLocked(DefaultCallRepository.activeCall.value) || openIncoming || openInCall
         )
@@ -207,12 +208,6 @@ class MainActivity : LocalizedAppCompatActivity() {
             val settingsViewModel = this@MainActivity.settingsViewModel
             val contactsViewModel = this@MainActivity.contactsViewModel
             val navigationViewModel = this@MainActivity.navigationViewModel
-            LaunchedEffect(openRecents) {
-                if (openRecents) {
-                    navigationViewModel.navigateTo(NavigationItem.Recents.route); openRecents =
-                        false
-                }
-            }
             LaunchedEffect(openPomodoro) {
                 if (openPomodoro) {
                     navigationViewModel.navigateTo(NavigationItem.Extras.route)
@@ -264,9 +259,13 @@ class MainActivity : LocalizedAppCompatActivity() {
             }
 
             val startupScreen by settingsViewModel.startupScreen.collectAsStateWithLifecycle()
-            LaunchedEffect(startupScreen, isDataLoaded) {
+            LaunchedEffect(startupScreen, isDataLoaded, openRecents) {
                 if (isDataLoaded) {
                     navigationViewModel.setInitialRoute(startupScreen)
+                    if (openRecents) {
+                        navigationViewModel.navigateTo(NavigationItem.Recents.route)
+                        openRecents = false
+                    }
                 }
             }
 
@@ -453,6 +452,21 @@ class MainActivity : LocalizedAppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(STATE_LEAVE_AFTER_CALL, leaveAfterCall)
+        outState.putBundle(STATE_PENDING_SHORTCUTS, Bundle().apply {
+            if (openFavoritesShortcut) putBoolean("open_favorites", true)
+            if (openRecents) putBoolean("open_recents", true)
+            if (openContactDetailsShortcut) {
+                putBoolean("open_contact_details", true)
+                putString("contact_id", widgetContactId)
+            }
+            if (openPomodoro) putBoolean("OPEN_POMODORO", true)
+            if (openNotesList) putBoolean("open_notes_list", true)
+            openNoteId?.let { id ->
+                putBoolean("open_note", true)
+                putLong("note_id", id)
+            }
+            homeShortcutDestination?.let { putString(HomeShortcutDestination.EXTRA_KEY, it.id) }
+        })
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -461,8 +475,7 @@ class MainActivity : LocalizedAppCompatActivity() {
         readCallExtras(intent)
         handleMissedCallExtras(intent)
         readDialerExtras(intent)
-        readWidgetExtras(intent)
-        readShortcutDestination(intent)
+        readWidgetAndShortcutExtras(intent.extras)
         updateLockScreenBehavior(
             shouldShowCallWhileLocked(DefaultCallRepository.activeCall.value) || openIncoming || openInCall
         )
@@ -483,9 +496,6 @@ class MainActivity : LocalizedAppCompatActivity() {
             inCallCallId = intent.getStringExtra("incall_call_id")
             inCallNumber = intent.getStringExtra("incall_number")
             if (isCallOpenedFromOutside(openInCall, visibleBeforeNewIntent)) leaveAfterCall = true
-        }
-        if (intent.hasExtra("open_recents")) {
-            openRecents = intent.getBooleanExtra("open_recents", false)
         }
     }
 
@@ -511,28 +521,28 @@ class MainActivity : LocalizedAppCompatActivity() {
         if (request != null) DiagnosticLog.debug(DiagnosticEvent.APP_DIALER_OPENED)
     }
 
-    private fun readWidgetExtras(intent: Intent) {
-        if (intent.getBooleanExtra("open_favorites", false)) {
+    private fun readWidgetAndShortcutExtras(extras: Bundle?) {
+        homeShortcutDestination = HomeShortcutDestination.fromId(extras?.getString(HomeShortcutDestination.EXTRA_KEY))
+        if (extras == null) return
+        if (extras.containsKey("open_recents")) {
+            openRecents = extras.getBoolean("open_recents")
+        }
+        if (extras.getBoolean("open_favorites")) {
             openFavoritesShortcut = true
         }
-        if (intent.getBooleanExtra("open_contact_details", false)) {
+        if (extras.getBoolean("open_contact_details")) {
             openContactDetailsShortcut = true
-            widgetContactId = intent.getStringExtra("contact_id")
+            widgetContactId = extras.getString("contact_id")
         }
-        if (intent.getBooleanExtra("OPEN_POMODORO", false)) {
+        if (extras.getBoolean("OPEN_POMODORO")) {
             openPomodoro = true
         }
-        if (intent.getBooleanExtra("open_notes_list", false)) {
+        if (extras.getBoolean("open_notes_list")) {
             openNotesList = true
         }
-        if (intent.getBooleanExtra("open_note", false)) {
-            openNoteId = intent.getLongExtra("note_id", 0L)
+        if (extras.getBoolean("open_note")) {
+            openNoteId = extras.getLong("note_id")
         }
-    }
-
-    private fun readShortcutDestination(intent: Intent) {
-        val shortcutId = intent.getStringExtra(HomeShortcutDestination.EXTRA_KEY)
-        homeShortcutDestination = HomeShortcutDestination.fromId(shortcutId)
     }
 
     private fun setupPermissionLauncher() {
@@ -645,6 +655,7 @@ internal fun resolveCallRestoreTarget(call: UiCall?): CallRestoreTarget = when (
 }
 
 private const val STATE_LEAVE_AFTER_CALL = "leave_after_call"
+private const val STATE_PENDING_SHORTCUTS = "pending_widget_and_shortcut_extras"
 
 internal fun isCallOpenedFromOutside(openInCall: Boolean, appWasVisible: Boolean): Boolean =
     openInCall && !appWasVisible

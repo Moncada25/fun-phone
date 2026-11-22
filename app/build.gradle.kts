@@ -453,6 +453,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.androidx.uiautomator)
 }
 
 tasks.register("getApk") {
