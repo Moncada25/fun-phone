@@ -6,13 +6,18 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.bookverse.contacts.data.model.ToolsOrderConfig
@@ -99,6 +104,34 @@ class ToolsPresetSelectorTest {
         composeRule
             .onNodeWithText(composeRule.activity.getString(ToolsR.string.tools_preset_custom))
             .assertIsDisplayed()
+    }
+
+    @Test
+    fun selectedAndUnselectedPresetTextUseOnSurface() {
+        val colors = lightColorScheme(onSurface = Color.Black, onPrimaryContainer = Color.Blue)
+        composeRule.runOnUiThread {
+            ComposeTestContent.show {
+                MaterialTheme(colorScheme = colors) {
+                    ToolsPresetSelector(
+                        toolsOrder = ToolsOrderConfig.default().applyPreset(ToolsPreset.ESSENTIAL_PHONE),
+                        onPresetSelected = {},
+                    )
+                }
+            }
+        }
+
+        listOf(
+            ToolsR.string.tools_preset_essential_phone,
+            ToolsR.string.tools_preset_essential_phone_description,
+            ToolsR.string.tools_preset_everything,
+            ToolsR.string.tools_preset_everything_description,
+        ).forEach { label ->
+            val layouts = mutableListOf<TextLayoutResult>()
+            composeRule
+                .onNodeWithText(composeRule.activity.getString(label), useUnmergedTree = true)
+                .performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
+            assertEquals(colors.onSurface, layouts.single().layoutInput.style.color)
+        }
     }
 
     private fun showSelector(onPresetSelected: (ToolsPreset) -> Unit) {

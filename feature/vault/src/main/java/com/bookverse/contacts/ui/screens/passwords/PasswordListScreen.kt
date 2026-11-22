@@ -270,7 +270,7 @@ fun PasswordListScreen(
                 onBackClick = onBackClick,
                 onCountClick = { showStrengthSheet = true },
                 searchAction = if (credentials.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(
-                    stringResource(CoreUiR.string.search_password), { searchActive = true }, feedback = true,
+                    stringResource(CoreUiR.string.search_password), { searchActive = true },
                 ) else null,
                 actions = {
                     IconAction(

@@ -588,7 +588,7 @@ fun NoteListScreen(
                 count = folderNoteCount,
                 onBackClick = onBackClick,
                 searchAction = if (notes.isNotEmpty()) com.bookverse.contacts.ui.components.AppBarSearchAction(
-                    stringResource(R.string.search_note), { searchActive = true }, feedback = true,
+                    stringResource(R.string.search_note), { searchActive = true },
                 ) else null,
                 actions = {
                     IconAction(

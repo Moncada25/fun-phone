@@ -19,7 +19,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.junit4.StateRestorationTester
@@ -198,6 +201,46 @@ class ModernChromeTest {
         compose.onNodeWithContentDescription("Clear search").performClick()
         compose.runOnIdle { assertTrue(!active) }
         assertEquals(expandedY, compose.onNodeWithText("Contacts").fetchSemanticsNode().boundsInRoot.center.y, 1f)
+    }
+
+    @Test
+    fun openingSearchPerformsOneHapticInEachBarStyle() {
+        var style by mutableStateOf(AccentBarStyle.MODERN)
+        val feedbackEvents = mutableListOf<HapticFeedbackType>()
+        var openCount = 0
+        val haptics = object : HapticFeedback {
+            override fun performHapticFeedback(hapticFeedbackType: HapticFeedbackType) {
+                feedbackEvents.add(hapticFeedbackType)
+            }
+        }
+        compose.setContent {
+            ContactsAppTheme(themeMode = ThemeMode.LIGHT, accentBarStyle = style) {
+                CompositionLocalProvider(LocalHapticFeedback provides haptics) {
+                    MainTopBar(
+                        title = "Contacts",
+                        searchAction = AppBarSearchAction("Search contacts", { openCount++ }),
+                    )
+                }
+            }
+        }
+
+        AccentBarStyle.entries.forEach { barStyle ->
+            compose.runOnIdle {
+                style = barStyle
+                feedbackEvents.clear()
+                openCount = 0
+            }
+            val search = if (barStyle == AccentBarStyle.MODERN) {
+                compose.onNodeWithText("Search contacts")
+            } else {
+                compose.onNodeWithContentDescription("Search contacts")
+            }
+            search.performClick()
+            compose.runOnIdle {
+                assertEquals(listOf(HapticFeedbackType.LongPress), feedbackEvents)
+                assertEquals(1, openCount)
+            }
+        }
     }
 
     private fun showList(expandable: Boolean, search: Boolean = false, searchEntry: Boolean = false, onState: (TopAppBarState) -> Unit) {

@@ -23,7 +23,7 @@ import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Search
 
 /** Search state and focus remain owned by the destination. */
-data class AppBarSearchAction(val label: String, val onClick: () -> Unit, val feedback: Boolean = false)
+data class AppBarSearchAction(val label: String, val onClick: () -> Unit, val feedback: Boolean = true)
 
 @Composable
 fun AppBarSearchEntry(action: AppBarSearchAction) {
