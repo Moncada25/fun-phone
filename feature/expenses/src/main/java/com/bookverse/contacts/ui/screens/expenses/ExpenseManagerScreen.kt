@@ -29,7 +29,6 @@ import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.MonetizationOn
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -73,13 +72,13 @@ import com.bookverse.contacts.domain.expenses.buildCategoryDistribution
 import com.bookverse.contacts.domain.expenses.calculateMonthlyTotals
 import com.bookverse.contacts.domain.expenses.transactionsForMonth
 import com.bookverse.contacts.settings.LocaleController
+import com.bookverse.contacts.ui.components.AppBarSearchAction
 import com.bookverse.contacts.ui.components.OptionsDialog
 import com.bookverse.contacts.ui.components.OptionsDialogItem
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.TopBarSearchField
 import com.bookverse.contacts.ui.screens.settings.SettingsSelectionSheet
 import com.bookverse.contacts.ui.theme.chromePolicy
-import com.bookverse.contacts.ui.utils.rememberHapticClick
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ExpensesViewModel
 import com.composables.icons.lucide.Coins
@@ -136,7 +135,9 @@ fun ExpenseManagerScreen(
     var isFixedMode by rememberSaveable { mutableStateOf(false) }
     var showManageDialog by remember { mutableStateOf(false) }
     var showCurrencyDialog by remember { mutableStateOf(false) }
-    val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior()
+    val scrollBehavior = com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior {
+        currentSection != ExpenseSection.SEARCH
+    }
 
     val handleBack = {
         if (currentSection == ExpenseSection.HOME) {
@@ -324,11 +325,6 @@ fun ExpenseManagerScreen(
             ).show()
         })
     }
-    LaunchedEffect(currentSection) {
-        if (currentSection == ExpenseSection.SEARCH && !expensesViewModel.transactionFilter.value.isActive) {
-            runCatching { searchFocusRequester.requestFocus() }
-        }
-    }
 
     val importLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.OpenDocument()
@@ -370,6 +366,10 @@ fun ExpenseManagerScreen(
                 expandable = true,
                 title = stringResource(R.string.expense_manager_title),
                 onBackClick = handleBack,
+                searchAction = AppBarSearchAction(
+                    label = stringResource(R.string.expense_search_title),
+                    onClick = { currentSection = ExpenseSection.SEARCH },
+                ),
                 actions = {
                     IconAction(
                         imageVector = Icons.Filled.MoreVert,
@@ -391,6 +391,9 @@ fun ExpenseManagerScreen(
                             onClose = handleBack,
                             clearContentDescription = stringResource(CoreUiR.string.clear),
                         )
+                        LaunchedEffect(searchFocusRequester) {
+                            searchFocusRequester.requestFocus()
+                        }
                     }
                 } else null
             )
@@ -707,11 +710,6 @@ fun ExpenseManagerScreen(
                     transactionReturnSection = ExpenseSection.HOME
                     currentSection = ExpenseSection.ADD
                 }
-            ),
-            OptionsDialogItem(
-                label = stringResource(R.string.expense_search_title),
-                icon = Icons.Default.Search,
-                onClick = rememberHapticClick({ currentSection = ExpenseSection.SEARCH }),
             ),
             OptionsDialogItem(
                 label = stringResource(R.string.expense_yearly_title),

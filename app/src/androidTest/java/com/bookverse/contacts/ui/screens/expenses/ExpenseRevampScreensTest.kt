@@ -10,13 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -33,6 +36,9 @@ import com.bookverse.contacts.data.expenses.ExpensesStore
 import com.bookverse.contacts.domain.expenses.BudgetState
 import com.bookverse.contacts.domain.expenses.BudgetStatus
 import com.bookverse.contacts.domain.expenses.ExpenseCurrency
+import com.bookverse.contacts.ui.theme.AccentBarStyle
+import com.bookverse.contacts.ui.theme.ContactsAppTheme
+import com.bookverse.contacts.ui.theme.ThemeMode
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.ExpensesViewModel
 import java.time.LocalDate
@@ -228,6 +234,39 @@ class ExpenseRevampScreensTest {
         composeRule.onNodeWithContentDescription(text(R.string.back)).performClick()
 
         assertTrue(exited.get())
+    }
+
+    @Test
+    fun modernShowsTransactionSearchBar() = verifyTransactionSearch(AccentBarStyle.MODERN)
+
+    @Test
+    fun minimalShowsTransactionSearchIcon() = verifyTransactionSearch(AccentBarStyle.MINIMAL)
+
+    @Test
+    fun retroShowsTransactionSearchIcon() = verifyTransactionSearch(AccentBarStyle.RETRO)
+
+    private fun verifyTransactionSearch(style: AccentBarStyle) {
+        val expenses = ExpensesViewModel(InMemoryExpensesStore())
+        val settings = AppSettingsViewModel()
+        composeRule.setContent {
+            ContactsAppTheme(themeMode = ThemeMode.LIGHT, accentBarStyle = style) {
+                ExpenseManagerScreen({}, expenses, settings)
+            }
+        }
+
+        val label = text(ExpensesR.string.expense_search_title)
+        val entry = if (style == AccentBarStyle.MODERN) {
+            composeRule.onNodeWithText(label)
+        } else {
+            composeRule.onNodeWithContentDescription(label)
+        }
+        entry.assertIsDisplayed().performClick()
+        composeRule.onNode(hasSetTextAction()).assertIsFocused().performTextInput("Lunch")
+        composeRule.onNodeWithText(text(R.string.no_results)).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(text(R.string.clear)).performClick()
+        composeRule.onNodeWithText(text(ExpensesR.string.expense_search_no_transactions)).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(text(R.string.clear)).performClick()
+        entry.assertIsDisplayed()
     }
 
     private class InMemoryExpensesStore : ExpensesStore {
