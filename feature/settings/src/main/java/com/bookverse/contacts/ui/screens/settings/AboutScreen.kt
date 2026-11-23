@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -38,8 +40,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,10 +51,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -119,6 +126,7 @@ private object AboutLinks {
     const val LICENSE = "$REPOSITORY/blob/main/LICENSE"
     const val WEBSITE = "https://moncada25.github.io/fun-phone-web/"
     const val PLAY_STORE = "https://play.google.com/store/apps/details?id=com.bookverse.contacts"
+    const val GITHUB_SPONSORS = "https://github.com/sponsors/Moncada25"
     const val DEVELOPER_GITHUB = "https://github.com/Moncada25"
     const val DEVELOPER_LINKEDIN = "https://www.linkedin.com/in/santiagomoncadavelez/"
 }
@@ -137,13 +145,14 @@ private data class AboutLinkItem(
 @Composable
 fun AboutScreen(
     onBack: () -> Unit,
-    showPlayStoreRating: Boolean,
+    gitHubSponsorsEnabled: Boolean = false,
 ) {
     val colorScheme = MaterialTheme.colorScheme
     val context = LocalContext.current
     val resources = LocalResources.current
     val scope = rememberCoroutineScope()
 
+    var showDonationSheet by rememberSaveable { mutableStateOf(false) }
     var tapCount by remember { mutableIntStateOf(0) }
     var lastTapTime by remember { mutableLongStateOf(0L) }
     var confettiKey by remember { mutableIntStateOf(0) }
@@ -273,37 +282,29 @@ fun AboutScreen(
         ),
     )
 
-    val supportLinks = buildList {
-        add(
-            AboutLinkItem(
-                key = "share",
-                title = stringResource(CoreUiR.string.share),
-                summary = stringResource(R.string.about_share_summary),
-                icon = Lucide.Share2,
-                onClick = { shareApp() },
-            ),
-        )
-        add(
-            AboutLinkItem(
-                key = "website",
-                title = stringResource(CoreUiR.string.website),
-                summary = stringResource(R.string.about_website_host),
-                icon = Lucide.Globe,
-                onClick = { open(AboutLinks.WEBSITE) },
-            ),
-        )
-        if (showPlayStoreRating) {
-            add(
-                AboutLinkItem(
-                    key = "rate",
-                    title = stringResource(R.string.about_rate_play),
-                    summary = stringResource(R.string.about_rate_play_summary),
-                    icon = Lucide.Star,
-                    onClick = { open(AboutLinks.PLAY_STORE) },
-                ),
-            )
-        }
-    }
+    val supportLinks = listOf(
+        AboutLinkItem(
+            key = "share",
+            title = stringResource(CoreUiR.string.share),
+            summary = stringResource(R.string.about_share_summary),
+            icon = Lucide.Share2,
+            onClick = { shareApp() },
+        ),
+        AboutLinkItem(
+            key = "website",
+            title = stringResource(CoreUiR.string.website),
+            summary = stringResource(R.string.about_website_host),
+            icon = Lucide.Globe,
+            onClick = { open(AboutLinks.WEBSITE) },
+        ),
+        AboutLinkItem(
+            key = "rate",
+            title = stringResource(R.string.about_rate_play),
+            summary = stringResource(R.string.about_rate_play_summary),
+            icon = Lucide.Star,
+            onClick = { open(AboutLinks.PLAY_STORE) },
+        ),
+    )
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -350,24 +351,11 @@ fun AboutScreen(
                         description = stringResource(R.string.about_open_source_description),
                     ) {
                         AboutLinkGroup(items = openSourceLinks)
-                        FilledTonalButton(
+                        AboutActionButton(
+                            label = stringResource(R.string.about_star_repository),
+                            icon = Lucide.Star,
                             onClick = { open(AboutLinks.REPOSITORY) },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(min = 52.dp),
-                            shape = RoundedCornerShape(16.dp),
-                        ) {
-                            Icon(
-                                imageVector = Lucide.Star,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp),
-                            )
-                            Text(
-                                text = stringResource(R.string.about_star_repository),
-                                style = MaterialTheme.typography.labelLarge,
-                                modifier = Modifier.padding(start = 10.dp),
-                            )
-                        }
+                        )
                     }
                 }
 
@@ -391,6 +379,11 @@ fun AboutScreen(
                         description = stringResource(R.string.about_support_description),
                     ) {
                         AboutLinkGroup(items = supportLinks)
+                        AboutActionButton(
+                            label = stringResource(R.string.about_support_project),
+                            icon = Lucide.Heart,
+                            onClick = { showDonationSheet = true },
+                        )
                     }
                 }
 
@@ -425,6 +418,89 @@ fun AboutScreen(
                 }
             }
         }
+    }
+
+    if (showDonationSheet) {
+        val brebKey = stringResource(R.string.about_breb_key)
+        SettingsSheetScaffold(
+            title = stringResource(R.string.about_support_project),
+            subtitle = stringResource(R.string.about_voluntary_contribution),
+            onDismiss = { showDonationSheet = false },
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f, fill = false)
+                    .padding(bottom = 12.dp)
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                if (gitHubSponsorsEnabled) {
+                    Text(
+                        stringResource(R.string.about_international_contribution),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    AboutActionButton(
+                        label = stringResource(R.string.about_github_sponsors),
+                        icon = Lucide.Globe,
+                        onClick = { open(AboutLinks.GITHUB_SPONSORS) },
+                    )
+                    HorizontalDivider()
+                }
+                Text(
+                    stringResource(R.string.about_colombia_only),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.semantics { heading() },
+                )
+                Text(stringResource(R.string.about_donation_instructions))
+                Image(
+                    bitmap = ImageBitmap.imageResource(R.drawable.about_qr_breb),
+                    contentDescription = stringResource(
+                        R.string.about_donation_qr,
+                        stringResource(R.string.about_breb_label),
+                    ),
+                    modifier = Modifier.align(Alignment.CenterHorizontally).size(228.dp),
+                    filterQuality = FilterQuality.None,
+                )
+                Text(stringResource(R.string.about_breb_recipient), style = MaterialTheme.typography.titleMedium)
+                Text(brebKey, style = MaterialTheme.typography.titleLarge)
+            }
+            AboutActionButton(
+                label = stringResource(R.string.about_copy_breb_key),
+                icon = Lucide.Copy,
+                onClick = {
+                    ContactUtils.copyToClipboard(context, brebKey, toast = false)
+                    showDonationSheet = false
+                    scope.launch {
+                        snackbar.show(
+                            message = resources.getString(CoreUiR.string.copied_to_clipboard),
+                            type = SnackbarType.Info,
+                        )
+                    }
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun AboutActionButton(
+    label: String,
+    icon: ImageVector,
+    onClick: () -> Unit,
+) {
+    FilledTonalButton(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
+        shape = RoundedCornerShape(16.dp),
+    ) {
+        Icon(imageVector = icon, contentDescription = null, modifier = Modifier.size(18.dp))
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelLarge,
+            modifier = Modifier.padding(start = 10.dp),
+        )
     }
 }
 

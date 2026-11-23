@@ -36,6 +36,19 @@ caf15843b5efc692ff6dec15e989d2fb32946dfc089453dfc6d31edf242b7151
 - Never commit keystores, passwords or the private properties file, and never paste them in issues,
   PRs or logs.
 
+## GitHub Sponsors in About
+
+The Community support sheet links to the maintainer’s public GitHub Sponsors profile, where supporters
+choose their contribution amount. The Play sheet shows only Bre-B for contributions from Colombia.
+The distribution flavors set `GITHUB_SPONSORS_ENABLED` in `app/build.gradle.kts`.
+[GitHub Sponsors profile](https://github.com/sponsors/Moncada25)
+
+The applicability of Google Play’s direct-tip exception to GitHub’s sponsor badge and fee structure
+remains unresolved.
+[GitHub sponsor benefits](https://docs.github.com/en/sponsors/sponsoring-open-source-contributors) ·
+[Google Play payments FAQ](https://support.google.com/googleplay/android-developer/answer/10281818?hl=en) ·
+[GitHub Sponsors billing](https://docs.github.com/en/billing/concepts/third-party-payments/github-sponsors)
+
 ## 1. Prepare the release PR
 
 On a branch from an up-to-date `main` (for example `release/X.Y.Z`):

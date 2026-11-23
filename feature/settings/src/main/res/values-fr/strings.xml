@@ -440,6 +440,13 @@
     <string name="about_contribute_summary">Lisez le guide et envoyez votre première pull request.</string>
     <string name="about_license">Licence</string>
     <string name="about_license_summary">Licence publique générale GNU v3.0</string>
+    <string name="about_support_project">Soutenir le projet</string>
+    <string name="about_voluntary_contribution">Les contributions sont volontaires. Tout le monde a accès aux mêmes fonctionnalités.</string>
+    <string name="about_international_contribution">Contributions internationales</string>
+    <string name="about_colombia_only">Dons depuis la Colombie uniquement</string>
+    <string name="about_donation_instructions">Scannez le code QR Bre-B ou copiez la clé pour contribuer en pesos colombiens.</string>
+    <string name="about_donation_qr">QR code pour contribuer avec %1$s</string>
+    <string name="about_copy_breb_key">Copier la clé</string>
     <string name="about_star_repository">Ajouter une étoile sur GitHub</string>
     <string name="about_support_title">Soutenir le projet</string>
     <string name="about_support_description">Faites passer le mot et aidez plus de personnes à découvrir un composeur privé et libre.</string>

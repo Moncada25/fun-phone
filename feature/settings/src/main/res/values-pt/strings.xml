@@ -440,6 +440,13 @@
     <string name="about_contribute_summary">Leia o guia e envie seu primeiro pull request.</string>
     <string name="about_license">Licença</string>
     <string name="about_license_summary">Licença Pública Geral GNU v3.0</string>
+    <string name="about_support_project">Apoiar o projeto</string>
+    <string name="about_voluntary_contribution">As contribuições são voluntárias. Todos têm acesso aos mesmos recursos.</string>
+    <string name="about_international_contribution">Contribuições internacionais</string>
+    <string name="about_colombia_only">Contribuições somente da Colômbia</string>
+    <string name="about_donation_instructions">Escaneie o QR code do Bre-B ou copie a chave para contribuir em pesos colombianos.</string>
+    <string name="about_donation_qr">QR Code para contribuir com %1$s</string>
+    <string name="about_copy_breb_key">Copiar chave</string>
     <string name="about_star_repository">Dar uma estrela no GitHub</string>
     <string name="about_support_title">Apoie o projeto</string>
     <string name="about_support_description">Divulgue e ajude mais pessoas a descobrir um discador privado e de código aberto.</string>

@@ -340,7 +340,7 @@ fun SecondaryScreenContent(
         )
 
         SecondaryScreen.ABOUT -> AboutScreen(
-            showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
+            gitHubSponsorsEnabled = BuildConfig.GITHUB_SPONSORS_ENABLED,
             onBack = { navigationViewModel.navigateBack() },
         )
 

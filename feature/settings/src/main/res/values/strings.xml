@@ -440,6 +440,17 @@
     <string name="about_contribute_summary">Read the guide and send your first pull request.</string>
     <string name="about_license">License</string>
     <string name="about_license_summary">GNU General Public License v3.0</string>
+    <string name="about_support_project">Support the project</string>
+    <string name="about_voluntary_contribution">Contributions are voluntary. Everyone has access to the same features.</string>
+    <string name="about_international_contribution">International contributions</string>
+    <string name="about_github_sponsors" translatable="false">GitHub Sponsors</string>
+    <string name="about_colombia_only">Contributions from Colombia only</string>
+    <string name="about_donation_instructions">Scan the Bre-B QR code or copy the key to contribute in Colombian pesos.</string>
+    <string name="about_donation_qr">%1$s payment QR code</string>
+    <string name="about_breb_label" translatable="false">Bre-B</string>
+    <string name="about_copy_breb_key">Copy key</string>
+    <string name="about_breb_key" translatable="false">\@SAMOVE</string>
+    <string name="about_breb_recipient" translatable="false">Bookverse · RappiCuenta</string>
     <string name="about_star_repository">Star on GitHub</string>
     <string name="about_support_title">Support the project</string>
     <string name="about_support_description">Spread the word and help more people discover a private, open source dialer.</string>

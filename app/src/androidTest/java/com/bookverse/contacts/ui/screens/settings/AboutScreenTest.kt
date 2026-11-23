@@ -1,12 +1,13 @@
 package com.bookverse.contacts.ui.screens.settings
 
-import com.bookverse.contacts.BuildConfig
+import android.content.ClipboardManager
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasClickAction
@@ -17,16 +18,19 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.Density
+import com.bookverse.contacts.BuildConfig
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
 import com.bookverse.contacts.ui.theme.AccentBarStyle
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -113,6 +117,55 @@ class AboutScreenTest {
     }
 
     @Test
+    fun supportButtonSitsBelowGooglePlayRating() {
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        val rating = composeRule.onNodeWithText(string(SettingsR.string.about_rate_play))
+        val support = composeRule.onNodeWithText(string(SettingsR.string.about_support_project))
+        rating.assertIsDisplayed()
+        support.assertIsDisplayed()
+        assertTrue(support.fetchSemanticsNode().boundsInRoot.top >= rating.fetchSemanticsNode().boundsInRoot.bottom)
+    }
+
+    @Test
+    fun showsBreBInBothEditionsAndSponsorsOnlyInCommunity() {
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
+
+        val internationalHeading = composeRule.onNodeWithText(string(SettingsR.string.about_international_contribution))
+        val sponsorsButton = composeRule.onNodeWithText(string(SettingsR.string.about_github_sponsors))
+        if (BuildConfig.DISTRIBUTION == "community") {
+            internationalHeading.assertIsDisplayed()
+            sponsorsButton.assertIsDisplayed().assertIsEnabled()
+        } else {
+            internationalHeading.assertDoesNotExist()
+            sponsorsButton.assertDoesNotExist()
+        }
+        composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertIsDisplayed()
+    }
+
+    @Test
+    fun copiesDisplayedBreBKey() {
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
+        composeRule.onNodeWithContentDescription(
+            string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_breb_label)),
+        ).performScrollTo().assertIsDisplayed()
+        val key = string(SettingsR.string.about_breb_key)
+        composeRule.onNodeWithText(key).performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).performClick()
+        composeRule.waitForIdle()
+
+        composeRule.runOnIdle {
+            val clipboard = composeRule.activity.getSystemService(ClipboardManager::class.java)
+            assertEquals(key, clipboard.primaryClip?.getItemAt(0)?.text?.toString())
+        }
+    }
+
+    @Test
     fun copyingVersionShowsConfirmationSnackbar() {
         showAboutScreen()
 
@@ -161,7 +214,6 @@ class AboutScreenTest {
                     MaterialTheme {
                         Box(modifier = androidx.compose.ui.Modifier.fillMaxSize()) {
                             AboutScreen(
-                                showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                                 onBack = {},
                             )
                         }
@@ -195,7 +247,6 @@ class AboutScreenTest {
                 ) {
                     MaterialTheme(colorScheme = darkColorScheme()) {
                         AboutScreen(
-                            showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                             onBack = {},
                         )
                     }
@@ -217,8 +268,8 @@ class AboutScreenTest {
             ComposeTestContent.show {
                 MaterialTheme {
                     AboutScreen(
-                        showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                         onBack = onBack,
+                        gitHubSponsorsEnabled = BuildConfig.GITHUB_SPONSORS_ENABLED,
                     )
                 }
             }
