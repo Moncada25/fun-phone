@@ -1,0 +1,5 @@
+• After opening the app from a widget or shortcut, rotating your phone keeps you on the current screen.
+• Background contact lookups no longer show permission prompts over other apps.
+• Search now gives haptic feedback. Expense transactions use the same search bar as Notes.
+• Tool Order presets are easier to read.
+• In Colombia, you can support the project with Bre-B from the About screen.

@@ -1,0 +1,5 @@
+• Si abres la app desde un widget o un acceso directo, al girar el teléfono sigues en la misma pantalla.
+• Las consultas de contactos en segundo plano ya no piden permisos sobre otras apps.
+• Ahora sientes una vibración al abrir la búsqueda. Los movimientos de gastos usan la misma barra de búsqueda que las notas.
+• Los ajustes predefinidos del orden de herramientas son más legibles.
+• En Colombia puedes apoyar el proyecto con Bre-B desde «Acerca de».

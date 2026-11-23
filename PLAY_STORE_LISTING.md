@@ -1,7 +1,7 @@
 # Google Play listing source
 
 **Listing copy:** 3.21.1/270 behavior; saved in Play Console on 2026-11-19
-**Release notes candidate below:** 3.21.3 (272)
+**Release notes candidate below:** 3.21.4 (273)
 **Graphics candidate:** current 3.19.6/259 UI; not a Play publication claim
 **Primary markets:** English global and Spanish LATAM
 **Available app languages:** English, Spanish, Portuguese, French and German
@@ -232,47 +232,47 @@ Privado por natureza: contatos, chamadas, notas e senhas são processados no apa
 
 Para começar, abra Status do dispositivo após instalar, conceda as permissões e escolha o Fun Phone como app de telefone padrão. Alguns recursos dependem do aparelho e da versão do Android.
 
-## What's new — 3.21.3
+## What's new — 3.21.4
 
 ### English
 
-• New private spam rules: spoofed numbers, numbers that look like yours, and silent ringing for unknown callers.
-• Answer or decline with the volume keys even while another app is open.
-• Calls stay on Android Auto and car kits instead of jumping to the earpiece.
-• After a call from another app, you return to that app.
-• Call contacts' SIP addresses through your SIP apps.
+• After opening the app from a widget or shortcut, rotating your phone keeps you on the current screen.
+• Background contact lookups no longer show permission prompts over other apps.
+• Search now gives haptic feedback. Expense transactions use the same search bar as Notes.
+• Tool Order presets are easier to read.
+• In Colombia, you can support the project with Bre-B from the About screen.
 
 ### Español
 
-• Nuevas reglas privadas contra spam: números falsificados, números parecidos al tuyo y timbre silencioso para desconocidos.
-• Contesta o rechaza con las teclas de volumen aunque haya otra app abierta.
-• Las llamadas se mantienen en Android Auto y kits de auto en vez de pasar al auricular.
-• Tras una llamada desde otra app, vuelves a esa app.
-• Llama a direcciones SIP de tus contactos con tus apps SIP.
+• Si abres la app desde un widget o un acceso directo, al girar el teléfono sigues en la misma pantalla.
+• Las consultas de contactos en segundo plano ya no piden permisos sobre otras apps.
+• Ahora sientes una vibración al abrir la búsqueda. Los movimientos de gastos usan la misma barra de búsqueda que las notas.
+• Los ajustes predefinidos del orden de herramientas son más legibles.
+• En Colombia puedes apoyar el proyecto con Bre-B desde «Acerca de».
 
 ### Deutsch
 
-• Neue private Spam-Regeln: gefälschte Nummern, Nummern ähnlich deiner eigenen und stilles Klingeln bei Unbekannten.
-• Mit den Lautstärketasten annehmen oder ablehnen, auch wenn eine andere App offen ist.
-• Anrufe bleiben bei Android Auto und Freisprechanlagen statt zur Hörmuschel zu springen.
-• Nach einem Anruf aus einer anderen App kehrst du zu ihr zurück.
-• SIP-Adressen von Kontakten über deine SIP-Apps anrufen.
+• Nach dem Start über ein Widget oder eine Verknüpfung bleibt beim Drehen die aktuelle Ansicht geöffnet.
+• Kontaktabfragen im Hintergrund blenden keine Berechtigungsdialoge mehr über anderen Apps ein.
+• Beim Öffnen der Suche gibt es haptisches Feedback. Ausgaben nutzen dieselbe Suchleiste wie Notizen.
+• Die Voreinstellungen für die Reihenfolge der Werkzeuge sind besser lesbar.
+• In Kolumbien kannst du das Projekt unter „Info“ mit Bre-B unterstützen.
 
 ### Français
 
-• Nouvelles règles anti-spam privées : numéros usurpés, numéros proches du vôtre et sonnerie silencieuse pour les inconnus.
-• Répondez ou refusez avec les touches de volume même si une autre app est ouverte.
-• Les appels restent sur Android Auto et les kits voiture au lieu de passer à l’écouteur.
-• Après un appel depuis une autre app, vous y revenez.
-• Appelez les adresses SIP de vos contacts via vos apps SIP.
+• Après un lancement depuis un widget ou un raccourci, vous restez sur le même écran en tournant le téléphone.
+• Les recherches de contacts en arrière-plan ne demandent plus d’autorisation par-dessus les autres applis.
+• Ouvrir la recherche déclenche une vibration. Les dépenses utilisent la même barre de recherche que les notes.
+• Les préréglages d’ordre des outils sont plus lisibles.
+• En Colombie, vous pouvez soutenir le projet avec Bre-B depuis « À propos ».
 
 ### Português
 
-• Novas regras privadas contra spam: números falsificados, números parecidos com o seu e toque silencioso para desconhecidos.
-• Atenda ou recuse com as teclas de volume mesmo com outro app aberto.
-• As chamadas ficam no Android Auto e kits do carro em vez de irem para o fone.
-• Após uma chamada vinda de outro app, você volta para ele.
-• Ligue para endereços SIP dos contatos pelos seus apps SIP.
+• Ao abrir o app por um widget ou atalho, você continua na mesma tela ao girar o aparelho.
+• Consultas de contatos em segundo plano não pedem mais permissão sobre outros apps.
+• Abrir a busca agora dá uma resposta tátil. Os lançamentos de despesas usam a mesma barra de busca das notas.
+• As opções predefinidas de ordem das ferramentas estão mais legíveis.
+• Na Colômbia, você pode apoiar o projeto com Bre-B na tela Sobre.
 
 ## Screenshot order
 

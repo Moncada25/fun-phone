@@ -1,0 +1,5 @@
+• Après un lancement depuis un widget ou un raccourci, vous restez sur le même écran en tournant le téléphone.
+• Les recherches de contacts en arrière-plan ne demandent plus d’autorisation par-dessus les autres applis.
+• Ouvrir la recherche déclenche une vibration. Les dépenses utilisent la même barre de recherche que les notes.
+• Les préréglages d’ordre des outils sont plus lisibles.
+• En Colombie, vous pouvez soutenir le projet avec Bre-B depuis « À propos ».

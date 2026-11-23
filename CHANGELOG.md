@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.21.4] - 2026-11-23
+
+### Added
+- The About screen offers voluntary contributions through Bre-B in Colombia. Scan the QR code or
+  copy the payment key in either edition. Community also offers international contributions through
+  GitHub Sponsors.
+
+### Changed
+- Opening search gives haptic feedback. Expense transactions use the same search bar as Notes.
+- Tool Order presets have clearer text contrast.
+- Store screenshots have been refreshed in all five languages.
+
+### Fixed
+- Rotating the device after launching Fun Phone from a widget or shortcut keeps the current screen.
+- Background contact lookups skip unavailable data when permission is missing, preventing permission
+  prompts from appearing over other apps.
+
 ## [3.21.3] - 2026-11-20
 
 ### Added
