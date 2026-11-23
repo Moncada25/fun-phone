@@ -129,7 +129,7 @@ class AboutScreenTest {
     }
 
     @Test
-    fun showsSponsorsAvailabilityForDistributionBeforeChoosingALocalMethod() {
+    fun showsSponsorsAvailabilityForDistributionAndBreBKeyAction() {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
@@ -141,8 +141,7 @@ class AboutScreenTest {
             composeRule.onNodeWithText(string(SettingsR.string.about_sponsors_unavailable)).assertIsNotEnabled()
         }
         composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
-        composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertDoesNotExist()
-        composeRule.onNodeWithText(string(SettingsR.string.about_copy_nequi_number)).assertDoesNotExist()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertIsDisplayed()
     }
 
     @Test
@@ -150,10 +149,9 @@ class AboutScreenTest {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
-        composeRule.onNodeWithText(string(SettingsR.string.about_breb_label)).performClick()
         composeRule.onNodeWithContentDescription(
             string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_breb_label)),
-        ).assertIsDisplayed()
+        ).performScrollTo().assertIsDisplayed()
         val key = string(SettingsR.string.about_breb_key)
         composeRule.onNodeWithText(key).performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).performClick()
@@ -162,26 +160,6 @@ class AboutScreenTest {
         composeRule.runOnIdle {
             val clipboard = composeRule.activity.getSystemService(ClipboardManager::class.java)
             assertEquals(key, clipboard.primaryClip?.getItemAt(0)?.text?.toString())
-        }
-    }
-
-    @Test
-    fun copiesNequiNumberFromColombiaSheet() {
-        showAboutScreen()
-        scrollTo(SettingsR.string.about_support_project)
-        composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
-        composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
-        composeRule.onNodeWithText(string(SettingsR.string.about_nequi_label)).performClick()
-        composeRule.onNodeWithContentDescription(
-            string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_nequi_label)),
-        ).assertIsDisplayed()
-        val number = string(SettingsR.string.about_nequi_number)
-        composeRule.onNodeWithText(number).performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText(string(SettingsR.string.about_copy_nequi_number)).performClick()
-
-        composeRule.runOnIdle {
-            val clipboard = composeRule.activity.getSystemService(ClipboardManager::class.java)
-            assertEquals(number, clipboard.primaryClip?.getItemAt(0)?.text?.toString())
         }
     }
 

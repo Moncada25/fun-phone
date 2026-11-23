@@ -446,13 +446,9 @@
     <string name="about_sponsors_unavailable">GitHub Sponsors · Unavailable in this edition</string>
     <string name="about_github_sponsors" translatable="false">GitHub Sponsors</string>
     <string name="about_colombia_only">Contributions from Colombia only</string>
-    <string name="about_donation_instructions">Scan the QR code or copy the payment details to contribute in Colombian pesos.</string>
+    <string name="about_donation_instructions">Scan the Bre-B QR code or copy the key to contribute in Colombian pesos.</string>
     <string name="about_donation_qr">%1$s payment QR code</string>
-    <string name="about_copy_nequi_number">Copy number</string>
     <string name="about_breb_label" translatable="false">Bre-B</string>
-    <string name="about_nequi_label" translatable="false">Nequi</string>
-    <string name="about_nequi_recipient" translatable="false">Santiago Moncada</string>
-    <string name="about_nequi_number" translatable="false">3012499315</string>
     <string name="about_copy_breb_key">Copy key</string>
     <string name="about_breb_key" translatable="false">\@SAMOVE</string>
     <string name="about_breb_recipient" translatable="false">Bookverse · RappiCuenta</string>

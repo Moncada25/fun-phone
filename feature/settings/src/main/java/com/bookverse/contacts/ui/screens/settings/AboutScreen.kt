@@ -26,9 +26,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -423,10 +421,7 @@ fun AboutScreen(
     }
 
     if (showDonationSheet) {
-        var localMethod by rememberSaveable { mutableStateOf<ColombianPaymentMethod?>(null) }
-        val useNequi = localMethod == ColombianPaymentMethod.NEQUI
-        val paymentId = stringResource(if (useNequi) R.string.about_nequi_number else R.string.about_breb_key)
-        val recipient = stringResource(if (useNequi) R.string.about_nequi_recipient else R.string.about_breb_recipient)
+        val brebKey = stringResource(R.string.about_breb_key)
         SettingsSheetScaffold(
             title = stringResource(R.string.about_support_project),
             subtitle = stringResource(R.string.about_voluntary_contribution),
@@ -460,58 +455,35 @@ fun AboutScreen(
                     modifier = Modifier.semantics { heading() },
                 )
                 Text(stringResource(R.string.about_donation_instructions))
-                Row(
-                    modifier = Modifier.selectableGroup(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    FilterChip(
-                        selected = localMethod == ColombianPaymentMethod.BREB,
-                        onClick = { localMethod = ColombianPaymentMethod.BREB },
-                        label = { Text(stringResource(R.string.about_breb_label)) },
-                    )
-                    FilterChip(
-                        selected = useNequi,
-                        onClick = { localMethod = ColombianPaymentMethod.NEQUI },
-                        label = { Text(stringResource(R.string.about_nequi_label)) },
-                    )
-                }
-                if (localMethod != null) {
-                    Image(
-                        bitmap = ImageBitmap.imageResource(
-                            if (useNequi) R.drawable.about_qr_nequi else R.drawable.about_qr_breb,
-                        ),
-                        contentDescription = stringResource(
-                            R.string.about_donation_qr,
-                            stringResource(if (useNequi) R.string.about_nequi_label else R.string.about_breb_label),
-                        ),
-                        modifier = Modifier.align(Alignment.CenterHorizontally).size(240.dp),
-                        filterQuality = FilterQuality.None,
-                    )
-                    Text(recipient, style = MaterialTheme.typography.titleMedium)
-                    Text(paymentId, style = MaterialTheme.typography.titleLarge)
-                }
-            }
-            if (localMethod != null) {
-                AboutActionButton(
-                    label = stringResource(if (useNequi) R.string.about_copy_nequi_number else R.string.about_copy_breb_key),
-                    icon = Lucide.Copy,
-                    onClick = {
-                        ContactUtils.copyToClipboard(context, paymentId, toast = false)
-                        showDonationSheet = false
-                        scope.launch {
-                            snackbar.show(
-                                message = resources.getString(CoreUiR.string.copied_to_clipboard),
-                                type = SnackbarType.Info,
-                            )
-                        }
-                    },
+                Image(
+                    bitmap = ImageBitmap.imageResource(R.drawable.about_qr_breb),
+                    contentDescription = stringResource(
+                        R.string.about_donation_qr,
+                        stringResource(R.string.about_breb_label),
+                    ),
+                    modifier = Modifier.align(Alignment.CenterHorizontally).size(228.dp),
+                    filterQuality = FilterQuality.None,
                 )
+                Text(stringResource(R.string.about_breb_recipient), style = MaterialTheme.typography.titleMedium)
+                Text(brebKey, style = MaterialTheme.typography.titleLarge)
             }
+            AboutActionButton(
+                label = stringResource(R.string.about_copy_breb_key),
+                icon = Lucide.Copy,
+                onClick = {
+                    ContactUtils.copyToClipboard(context, brebKey, toast = false)
+                    showDonationSheet = false
+                    scope.launch {
+                        snackbar.show(
+                            message = resources.getString(CoreUiR.string.copied_to_clipboard),
+                            type = SnackbarType.Info,
+                        )
+                    }
+                },
+            )
         }
     }
 }
-
-private enum class ColombianPaymentMethod { BREB, NEQUI }
 
 @Composable
 private fun AboutActionButton(

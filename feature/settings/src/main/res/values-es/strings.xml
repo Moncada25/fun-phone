@@ -445,9 +445,8 @@
     <string name="about_international_contribution">Aportes internacionales</string>
     <string name="about_sponsors_unavailable">GitHub Sponsors · No disponible en esta edición</string>
     <string name="about_colombia_only">Aportes solo desde Colombia</string>
-    <string name="about_donation_instructions">Escanea el QR o copia los datos para aportar en pesos colombianos.</string>
+    <string name="about_donation_instructions">Escanea el QR de Bre-B o copia la llave para aportar en pesos colombianos.</string>
     <string name="about_donation_qr">Código QR para aportar con %1$s</string>
-    <string name="about_copy_nequi_number">Copiar número</string>
     <string name="about_copy_breb_key">Copiar llave</string>
     <string name="about_star_repository">Dar una estrella en GitHub</string>
     <string name="about_support_title">Apoya el proyecto</string>
