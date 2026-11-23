@@ -443,7 +443,7 @@
     <string name="about_support_project">Soutenir le projet</string>
     <string name="about_voluntary_contribution">Les contributions sont volontaires. Tout le monde a accès aux mêmes fonctionnalités.</string>
     <string name="about_international_contribution">Contributions internationales</string>
-    <string name="about_sponsors_unavailable">GitHub Sponsors · Pas encore disponible</string>
+    <string name="about_sponsors_unavailable">GitHub Sponsors · Indisponible dans cette édition</string>
     <string name="about_colombia_only">Dons depuis la Colombie uniquement</string>
     <string name="about_donation_instructions">Scannez le QR code ou copiez les coordonnées pour contribuer en pesos colombiens.</string>
     <string name="about_donation_qr">QR code pour contribuer avec %1$s</string>

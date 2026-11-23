@@ -269,7 +269,7 @@ android {
             applicationIdSuffix = ".community"
             versionNameSuffix = "-community"
             buildConfigField("String", "DISTRIBUTION", "\"community\"")
-            buildConfigField("boolean", "GITHUB_SPONSORS_ENABLED", "false")
+            buildConfigField("boolean", "GITHUB_SPONSORS_ENABLED", "true")
             if (communitySigningCredentials.isComplete()) {
                 signingConfig = signingConfigs.getByName("community")
             }

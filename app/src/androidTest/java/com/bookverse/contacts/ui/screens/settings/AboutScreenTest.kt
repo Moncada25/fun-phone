@@ -7,6 +7,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
@@ -24,6 +25,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.Density
+import com.bookverse.contacts.BuildConfig
 import com.bookverse.contacts.core.ui.R
 import com.bookverse.contacts.testing.ComposeTestContent
 import com.bookverse.contacts.testing.ComposeTestHostActivity
@@ -127,13 +129,17 @@ class AboutScreenTest {
     }
 
     @Test
-    fun unavailableSponsorsShowsStatusBeforeChoosingALocalMethod() {
+    fun showsSponsorsAvailabilityForDistributionBeforeChoosingALocalMethod() {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
 
         composeRule.onNodeWithText(string(SettingsR.string.about_international_contribution)).assertIsDisplayed()
-        composeRule.onNodeWithText(string(SettingsR.string.about_sponsors_unavailable)).assertIsNotEnabled()
+        if (BuildConfig.DISTRIBUTION == "community") {
+            composeRule.onNodeWithText(string(SettingsR.string.about_github_sponsors)).assertIsEnabled()
+        } else {
+            composeRule.onNodeWithText(string(SettingsR.string.about_sponsors_unavailable)).assertIsNotEnabled()
+        }
         composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertDoesNotExist()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_nequi_number)).assertDoesNotExist()
@@ -283,6 +289,7 @@ class AboutScreenTest {
                 MaterialTheme {
                     AboutScreen(
                         onBack = onBack,
+                        gitHubSponsorsEnabled = BuildConfig.GITHUB_SPONSORS_ENABLED,
                     )
                 }
             }

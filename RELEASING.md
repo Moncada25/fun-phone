@@ -40,13 +40,15 @@ caf15843b5efc692ff6dec15e989d2fb32946dfc089453dfc6d31edf242b7151
 
 The support sheet offers voluntary contributions. A contribution leaves all app features available to everyone.
 The `GITHUB_SPONSORS_ENABLED` field in each distribution flavor in `app/build.gradle.kts` controls the
-external link. Enable it for Community once the maintainer's public Sponsors page accepts contributions.
+external link. Community links to the maintainer's published [Sponsors profile](https://github.com/sponsors/Moncada25).
 
 For Play, verify the actual sponsorship checkout and available tiers first. Google classifies direct tips as
 peer-to-peer when the creator receives the full tip and the contribution grants no digital content or services.
 GitHub documents zero fees for personal sponsors and fees of up to 6% for organization sponsors. Check who
 pays any fee and whether sponsorship grants benefits such as badges or private repository access. Keep the
 Play link disabled if the available flow falls outside the exception or its eligibility is unclear.
+GitHub currently offers a sponsor badge, so the Play flavor keeps the external link disabled.
+[GitHub sponsor benefits](https://docs.github.com/en/sponsors/sponsoring-open-source-contributors) ·
 [Google Play payments FAQ](https://support.google.com/googleplay/android-developer/answer/10281818?hl=en) ·
 [GitHub Sponsors billing](https://docs.github.com/en/billing/concepts/third-party-payments/github-sponsors)
 
