@@ -340,7 +340,6 @@ fun SecondaryScreenContent(
         )
 
         SecondaryScreen.ABOUT -> AboutScreen(
-            showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
             onBack = { navigationViewModel.navigateBack() },
         )
 

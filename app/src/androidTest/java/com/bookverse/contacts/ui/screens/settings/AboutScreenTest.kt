@@ -1,7 +1,6 @@
 package com.bookverse.contacts.ui.screens.settings
 
 import android.content.ClipboardManager
-import com.bookverse.contacts.BuildConfig
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.darkColorScheme
@@ -115,8 +114,7 @@ class AboutScreenTest {
     }
 
     @Test
-    fun supportButtonSitsBelowGooglePlayRatingInPlayEdition() {
-        org.junit.Assume.assumeTrue(BuildConfig.DISTRIBUTION == "play")
+    fun supportButtonSitsBelowGooglePlayRating() {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         val rating = composeRule.onNodeWithText(string(SettingsR.string.about_rate_play))
@@ -214,7 +212,6 @@ class AboutScreenTest {
                     MaterialTheme {
                         Box(modifier = androidx.compose.ui.Modifier.fillMaxSize()) {
                             AboutScreen(
-                                showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                                 onBack = {},
                             )
                         }
@@ -248,7 +245,6 @@ class AboutScreenTest {
                 ) {
                     MaterialTheme(colorScheme = darkColorScheme()) {
                         AboutScreen(
-                            showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                             onBack = {},
                         )
                     }
@@ -270,7 +266,6 @@ class AboutScreenTest {
             ComposeTestContent.show {
                 MaterialTheme {
                     AboutScreen(
-                        showPlayStoreRating = BuildConfig.DISTRIBUTION == "play",
                         onBack = onBack,
                     )
                 }

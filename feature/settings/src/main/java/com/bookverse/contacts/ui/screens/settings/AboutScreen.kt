@@ -146,7 +146,6 @@ private data class AboutLinkItem(
 @Composable
 fun AboutScreen(
     onBack: () -> Unit,
-    showPlayStoreRating: Boolean,
 ) {
     val colorScheme = MaterialTheme.colorScheme
     val context = LocalContext.current
@@ -283,37 +282,29 @@ fun AboutScreen(
         ),
     )
 
-    val supportLinks = buildList {
-        add(
-            AboutLinkItem(
-                key = "share",
-                title = stringResource(CoreUiR.string.share),
-                summary = stringResource(R.string.about_share_summary),
-                icon = Lucide.Share2,
-                onClick = { shareApp() },
-            ),
-        )
-        add(
-            AboutLinkItem(
-                key = "website",
-                title = stringResource(CoreUiR.string.website),
-                summary = stringResource(R.string.about_website_host),
-                icon = Lucide.Globe,
-                onClick = { open(AboutLinks.WEBSITE) },
-            ),
-        )
-        if (showPlayStoreRating) {
-            add(
-                AboutLinkItem(
-                    key = "rate",
-                    title = stringResource(R.string.about_rate_play),
-                    summary = stringResource(R.string.about_rate_play_summary),
-                    icon = Lucide.Star,
-                    onClick = { open(AboutLinks.PLAY_STORE) },
-                ),
-            )
-        }
-    }
+    val supportLinks = listOf(
+        AboutLinkItem(
+            key = "share",
+            title = stringResource(CoreUiR.string.share),
+            summary = stringResource(R.string.about_share_summary),
+            icon = Lucide.Share2,
+            onClick = { shareApp() },
+        ),
+        AboutLinkItem(
+            key = "website",
+            title = stringResource(CoreUiR.string.website),
+            summary = stringResource(R.string.about_website_host),
+            icon = Lucide.Globe,
+            onClick = { open(AboutLinks.WEBSITE) },
+        ),
+        AboutLinkItem(
+            key = "rate",
+            title = stringResource(R.string.about_rate_play),
+            summary = stringResource(R.string.about_rate_play_summary),
+            icon = Lucide.Star,
+            onClick = { open(AboutLinks.PLAY_STORE) },
+        ),
+    )
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
