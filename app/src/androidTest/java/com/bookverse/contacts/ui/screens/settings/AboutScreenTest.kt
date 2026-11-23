@@ -7,6 +7,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasClickAction
@@ -17,6 +18,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalDensity
@@ -125,15 +127,29 @@ class AboutScreenTest {
     }
 
     @Test
+    fun unavailableSponsorsShowsStatusBeforeChoosingALocalMethod() {
+        showAboutScreen()
+        scrollTo(SettingsR.string.about_support_project)
+        composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
+
+        composeRule.onNodeWithText(string(SettingsR.string.about_international_contribution)).assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_sponsors_unavailable)).assertIsNotEnabled()
+        composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertDoesNotExist()
+        composeRule.onNodeWithText(string(SettingsR.string.about_copy_nequi_number)).assertDoesNotExist()
+    }
+
+    @Test
     fun copiesDisplayedBreBKey() {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
+        composeRule.onNodeWithText(string(SettingsR.string.about_breb_label)).performClick()
         composeRule.onNodeWithContentDescription(
             string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_breb_label)),
         ).assertIsDisplayed()
         val key = string(SettingsR.string.about_breb_key)
-        composeRule.onNodeWithText(key).assertIsDisplayed()
+        composeRule.onNodeWithText(key).performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).performClick()
         composeRule.waitForIdle()
 
@@ -154,7 +170,7 @@ class AboutScreenTest {
             string(SettingsR.string.about_donation_qr, string(SettingsR.string.about_nequi_label)),
         ).assertIsDisplayed()
         val number = string(SettingsR.string.about_nequi_number)
-        composeRule.onNodeWithText(number).assertIsDisplayed()
+        composeRule.onNodeWithText(number).performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_nequi_number)).performClick()
 
         composeRule.runOnIdle {

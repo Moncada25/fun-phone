@@ -441,6 +441,10 @@
     <string name="about_license">License</string>
     <string name="about_license_summary">GNU General Public License v3.0</string>
     <string name="about_support_project">Support the project</string>
+    <string name="about_voluntary_contribution">Contributions are voluntary. Everyone has access to the same features.</string>
+    <string name="about_international_contribution">International contributions</string>
+    <string name="about_sponsors_unavailable">GitHub Sponsors · Not available yet</string>
+    <string name="about_github_sponsors" translatable="false">GitHub Sponsors</string>
     <string name="about_colombia_only">Contributions from Colombia only</string>
     <string name="about_donation_instructions">Scan the QR code or copy the payment details to contribute in Colombian pesos.</string>
     <string name="about_donation_qr">%1$s payment QR code</string>

@@ -269,6 +269,7 @@ android {
             applicationIdSuffix = ".community"
             versionNameSuffix = "-community"
             buildConfigField("String", "DISTRIBUTION", "\"community\"")
+            buildConfigField("boolean", "GITHUB_SPONSORS_ENABLED", "false")
             if (communitySigningCredentials.isComplete()) {
                 signingConfig = signingConfigs.getByName("community")
             }
@@ -276,6 +277,7 @@ android {
         create("play") {
             dimension = "distribution"
             buildConfigField("String", "DISTRIBUTION", "\"play\"")
+            buildConfigField("boolean", "GITHUB_SPONSORS_ENABLED", "false")
             signingConfig = signingConfigs.getByName("release")
         }
     }

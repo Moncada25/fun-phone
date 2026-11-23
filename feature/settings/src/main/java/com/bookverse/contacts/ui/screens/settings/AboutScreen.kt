@@ -128,6 +128,7 @@ private object AboutLinks {
     const val LICENSE = "$REPOSITORY/blob/main/LICENSE"
     const val WEBSITE = "https://moncada25.github.io/fun-phone-web/"
     const val PLAY_STORE = "https://play.google.com/store/apps/details?id=com.bookverse.contacts"
+    const val GITHUB_SPONSORS = "https://github.com/sponsors/Moncada25"
     const val DEVELOPER_GITHUB = "https://github.com/Moncada25"
     const val DEVELOPER_LINKEDIN = "https://www.linkedin.com/in/santiagomoncadavelez/"
 }
@@ -146,6 +147,7 @@ private data class AboutLinkItem(
 @Composable
 fun AboutScreen(
     onBack: () -> Unit,
+    gitHubSponsorsEnabled: Boolean = false,
 ) {
     val colorScheme = MaterialTheme.colorScheme
     val context = LocalContext.current
@@ -421,12 +423,13 @@ fun AboutScreen(
     }
 
     if (showDonationSheet) {
-        var useNequi by rememberSaveable { mutableStateOf(false) }
+        var localMethod by rememberSaveable { mutableStateOf<ColombianPaymentMethod?>(null) }
+        val useNequi = localMethod == ColombianPaymentMethod.NEQUI
         val paymentId = stringResource(if (useNequi) R.string.about_nequi_number else R.string.about_breb_key)
         val recipient = stringResource(if (useNequi) R.string.about_nequi_recipient else R.string.about_breb_recipient)
         SettingsSheetScaffold(
             title = stringResource(R.string.about_support_project),
-            subtitle = stringResource(R.string.about_colombia_only),
+            subtitle = stringResource(R.string.about_voluntary_contribution),
             onDismiss = { showDonationSheet = false },
         ) {
             Column(
@@ -437,58 +440,89 @@ fun AboutScreen(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
+                Text(
+                    stringResource(R.string.about_international_contribution),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.semantics { heading() },
+                )
+                AboutActionButton(
+                    label = stringResource(
+                        if (gitHubSponsorsEnabled) R.string.about_github_sponsors else R.string.about_sponsors_unavailable,
+                    ),
+                    icon = Lucide.Globe,
+                    onClick = { open(AboutLinks.GITHUB_SPONSORS) },
+                    enabled = gitHubSponsorsEnabled,
+                )
+                HorizontalDivider()
+                Text(
+                    stringResource(R.string.about_colombia_only),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.semantics { heading() },
+                )
                 Text(stringResource(R.string.about_donation_instructions))
                 Row(
                     modifier = Modifier.selectableGroup(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     FilterChip(
-                        selected = !useNequi,
-                        onClick = { useNequi = false },
+                        selected = localMethod == ColombianPaymentMethod.BREB,
+                        onClick = { localMethod = ColombianPaymentMethod.BREB },
                         label = { Text(stringResource(R.string.about_breb_label)) },
                     )
                     FilterChip(
                         selected = useNequi,
-                        onClick = { useNequi = true },
+                        onClick = { localMethod = ColombianPaymentMethod.NEQUI },
                         label = { Text(stringResource(R.string.about_nequi_label)) },
                     )
                 }
-                Image(
-                    bitmap = ImageBitmap.imageResource(
-                        if (useNequi) R.drawable.about_qr_nequi else R.drawable.about_qr_breb,
-                    ),
-                    contentDescription = stringResource(
-                        R.string.about_donation_qr,
-                        stringResource(if (useNequi) R.string.about_nequi_label else R.string.about_breb_label),
-                    ),
-                    modifier = Modifier.align(Alignment.CenterHorizontally).size(240.dp),
-                    filterQuality = FilterQuality.None,
-                )
-                Text(recipient, style = MaterialTheme.typography.titleMedium)
-                Text(paymentId, style = MaterialTheme.typography.titleLarge)
+                if (localMethod != null) {
+                    Image(
+                        bitmap = ImageBitmap.imageResource(
+                            if (useNequi) R.drawable.about_qr_nequi else R.drawable.about_qr_breb,
+                        ),
+                        contentDescription = stringResource(
+                            R.string.about_donation_qr,
+                            stringResource(if (useNequi) R.string.about_nequi_label else R.string.about_breb_label),
+                        ),
+                        modifier = Modifier.align(Alignment.CenterHorizontally).size(240.dp),
+                        filterQuality = FilterQuality.None,
+                    )
+                    Text(recipient, style = MaterialTheme.typography.titleMedium)
+                    Text(paymentId, style = MaterialTheme.typography.titleLarge)
+                }
             }
-            AboutActionButton(
-                label = stringResource(if (useNequi) R.string.about_copy_nequi_number else R.string.about_copy_breb_key),
-                icon = Lucide.Copy,
-                onClick = {
-                    ContactUtils.copyToClipboard(context, paymentId, toast = false)
-                    showDonationSheet = false
-                    scope.launch {
-                        snackbar.show(
-                            message = resources.getString(CoreUiR.string.copied_to_clipboard),
-                            type = SnackbarType.Info,
-                        )
-                    }
-                },
-            )
+            if (localMethod != null) {
+                AboutActionButton(
+                    label = stringResource(if (useNequi) R.string.about_copy_nequi_number else R.string.about_copy_breb_key),
+                    icon = Lucide.Copy,
+                    onClick = {
+                        ContactUtils.copyToClipboard(context, paymentId, toast = false)
+                        showDonationSheet = false
+                        scope.launch {
+                            snackbar.show(
+                                message = resources.getString(CoreUiR.string.copied_to_clipboard),
+                                type = SnackbarType.Info,
+                            )
+                        }
+                    },
+                )
+            }
         }
     }
 }
 
+private enum class ColombianPaymentMethod { BREB, NEQUI }
+
 @Composable
-private fun AboutActionButton(label: String, icon: ImageVector, onClick: () -> Unit) {
+private fun AboutActionButton(
+    label: String,
+    icon: ImageVector,
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+) {
     FilledTonalButton(
         onClick = onClick,
+        enabled = enabled,
         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
         shape = RoundedCornerShape(16.dp),
     ) {

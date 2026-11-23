@@ -340,6 +340,7 @@ fun SecondaryScreenContent(
         )
 
         SecondaryScreen.ABOUT -> AboutScreen(
+            gitHubSponsorsEnabled = BuildConfig.GITHUB_SPONSORS_ENABLED,
             onBack = { navigationViewModel.navigateBack() },
         )
 
