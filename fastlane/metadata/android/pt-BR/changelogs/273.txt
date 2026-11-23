@@ -1,0 +1,5 @@
+• Ao abrir o app por um widget ou atalho, você continua na mesma tela ao girar o aparelho.
+• Consultas de contatos em segundo plano não pedem mais permissão sobre outros apps.
+• Abrir a busca agora dá uma resposta tátil. Os lançamentos de despesas usam a mesma barra de busca das notas.
+• As opções predefinidas de ordem das ferramentas estão mais legíveis.
+• Na Colômbia, você pode apoiar o projeto com Bre-B na tela Sobre.

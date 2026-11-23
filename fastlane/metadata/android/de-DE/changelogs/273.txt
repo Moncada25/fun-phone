@@ -1,0 +1,5 @@
+• Nach dem Start über ein Widget oder eine Verknüpfung bleibt beim Drehen die aktuelle Ansicht geöffnet.
+• Kontaktabfragen im Hintergrund blenden keine Berechtigungsdialoge mehr über anderen Apps ein.
+• Beim Öffnen der Suche gibt es haptisches Feedback. Ausgaben nutzen dieselbe Suchleiste wie Notizen.
+• Die Voreinstellungen für die Reihenfolge der Werkzeuge sind besser lesbar.
+• In Kolumbien kannst du das Projekt unter „Info“ mit Bre-B unterstützen.
