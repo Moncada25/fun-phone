@@ -443,7 +443,6 @@
     <string name="about_support_project">Apoyar el proyecto</string>
     <string name="about_voluntary_contribution">Los aportes son voluntarios. Todas las funciones están disponibles para todos.</string>
     <string name="about_international_contribution">Aportes internacionales</string>
-    <string name="about_sponsors_unavailable">GitHub Sponsors · No disponible en esta edición</string>
     <string name="about_colombia_only">Aportes solo desde Colombia</string>
     <string name="about_donation_instructions">Escanea el QR de Bre-B o copia la llave para aportar en pesos colombianos.</string>
     <string name="about_donation_qr">Código QR para aportar con %1$s</string>

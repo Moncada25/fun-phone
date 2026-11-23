@@ -435,20 +435,19 @@ fun AboutScreen(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(
-                    stringResource(R.string.about_international_contribution),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.semantics { heading() },
-                )
-                AboutActionButton(
-                    label = stringResource(
-                        if (gitHubSponsorsEnabled) R.string.about_github_sponsors else R.string.about_sponsors_unavailable,
-                    ),
-                    icon = Lucide.Globe,
-                    onClick = { open(AboutLinks.GITHUB_SPONSORS) },
-                    enabled = gitHubSponsorsEnabled,
-                )
-                HorizontalDivider()
+                if (gitHubSponsorsEnabled) {
+                    Text(
+                        stringResource(R.string.about_international_contribution),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.semantics { heading() },
+                    )
+                    AboutActionButton(
+                        label = stringResource(R.string.about_github_sponsors),
+                        icon = Lucide.Globe,
+                        onClick = { open(AboutLinks.GITHUB_SPONSORS) },
+                    )
+                    HorizontalDivider()
+                }
                 Text(
                     stringResource(R.string.about_colombia_only),
                     style = MaterialTheme.typography.titleMedium,
@@ -490,11 +489,9 @@ private fun AboutActionButton(
     label: String,
     icon: ImageVector,
     onClick: () -> Unit,
-    enabled: Boolean = true,
 ) {
     FilledTonalButton(
         onClick = onClick,
-        enabled = enabled,
         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
         shape = RoundedCornerShape(16.dp),
     ) {

@@ -38,16 +38,13 @@ caf15843b5efc692ff6dec15e989d2fb32946dfc089453dfc6d31edf242b7151
 
 ## GitHub Sponsors in About
 
-The support sheet in both editions opens the maintainer’s public GitHub Sponsors profile for voluntary
-contributions. Sponsors choose the amount on GitHub. Fun Phone grants no digital benefits for contributing.
+The Community support sheet links to the maintainer’s public GitHub Sponsors profile, where supporters
+choose their contribution amount. The Play sheet shows only Bre-B for contributions from Colombia.
+The distribution flavors set `GITHUB_SPONSORS_ENABLED` in `app/build.gradle.kts`.
 [GitHub Sponsors profile](https://github.com/sponsors/Moncada25)
 
-Before publishing the Play edition, review the actual checkout against Google Play’s direct-tip exception.
-The creator must receive the full contribution and the payment must grant no digital content or services.
-GitHub offers a sponsor badge and documents different fees for personal and organization sponsorships.
-Whether GitHub’s own badge and the available payment flows qualify for the exception remains unresolved.
-If needed, the Play flavor’s `GITHUB_SPONSORS_ENABLED` flag in `app/build.gradle.kts` can disable the link
-independently of Community.
+The applicability of Google Play’s direct-tip exception to GitHub’s sponsor badge and fee structure
+remains unresolved.
 [GitHub sponsor benefits](https://docs.github.com/en/sponsors/sponsoring-open-source-contributors) ·
 [Google Play payments FAQ](https://support.google.com/googleplay/android-developer/answer/10281818?hl=en) ·
 [GitHub Sponsors billing](https://docs.github.com/en/billing/concepts/third-party-payments/github-sponsors)

@@ -128,13 +128,20 @@ class AboutScreenTest {
     }
 
     @Test
-    fun offersGitHubSponsorsAndBreBKeyInBothEditions() {
+    fun showsBreBInBothEditionsAndSponsorsOnlyInCommunity() {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
 
-        composeRule.onNodeWithText(string(SettingsR.string.about_international_contribution)).assertIsDisplayed()
-        composeRule.onNodeWithText(string(SettingsR.string.about_github_sponsors)).assertIsEnabled()
+        val internationalHeading = composeRule.onNodeWithText(string(SettingsR.string.about_international_contribution))
+        val sponsorsButton = composeRule.onNodeWithText(string(SettingsR.string.about_github_sponsors))
+        if (BuildConfig.DISTRIBUTION == "community") {
+            internationalHeading.assertIsDisplayed()
+            sponsorsButton.assertIsDisplayed().assertIsEnabled()
+        } else {
+            internationalHeading.assertDoesNotExist()
+            sponsorsButton.assertDoesNotExist()
+        }
         composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertIsDisplayed()
     }

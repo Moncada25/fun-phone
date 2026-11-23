@@ -436,7 +436,6 @@
     <string name="about_support_project">Projekt unterstützen</string>
     <string name="about_voluntary_contribution">Beiträge sind freiwillig. Alle können dieselben Funktionen nutzen.</string>
     <string name="about_international_contribution">Internationale Beiträge</string>
-    <string name="about_sponsors_unavailable">GitHub Sponsors · In dieser Edition nicht verfügbar</string>
     <string name="about_colombia_only">Beiträge nur aus Kolumbien</string>
     <string name="about_donation_instructions">Scanne den Bre-B-QR-Code oder kopiere den Schlüssel, um in kolumbianischen Pesos beizutragen.</string>
     <string name="about_donation_qr">QR-Code für Zahlungen mit %1$s</string>
