@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasClickAction
@@ -129,17 +128,13 @@ class AboutScreenTest {
     }
 
     @Test
-    fun showsSponsorsAvailabilityForDistributionAndBreBKeyAction() {
+    fun offersGitHubSponsorsAndBreBKeyInBothEditions() {
         showAboutScreen()
         scrollTo(SettingsR.string.about_support_project)
         composeRule.onNodeWithText(string(SettingsR.string.about_support_project)).performClick()
 
         composeRule.onNodeWithText(string(SettingsR.string.about_international_contribution)).assertIsDisplayed()
-        if (BuildConfig.DISTRIBUTION == "community") {
-            composeRule.onNodeWithText(string(SettingsR.string.about_github_sponsors)).assertIsEnabled()
-        } else {
-            composeRule.onNodeWithText(string(SettingsR.string.about_sponsors_unavailable)).assertIsNotEnabled()
-        }
+        composeRule.onNodeWithText(string(SettingsR.string.about_github_sponsors)).assertIsEnabled()
         composeRule.onNodeWithText(string(SettingsR.string.about_colombia_only)).assertIsDisplayed()
         composeRule.onNodeWithText(string(SettingsR.string.about_copy_breb_key)).assertIsDisplayed()
     }

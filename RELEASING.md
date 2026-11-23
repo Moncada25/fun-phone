@@ -38,16 +38,16 @@ caf15843b5efc692ff6dec15e989d2fb32946dfc089453dfc6d31edf242b7151
 
 ## GitHub Sponsors in About
 
-The support sheet offers voluntary contributions. A contribution leaves all app features available to everyone.
-The `GITHUB_SPONSORS_ENABLED` field in each distribution flavor in `app/build.gradle.kts` controls the
-external link. Community links to the maintainer's published [Sponsors profile](https://github.com/sponsors/Moncada25).
+The support sheet in both editions opens the maintainer’s public GitHub Sponsors profile for voluntary
+contributions. Sponsors choose the amount on GitHub. Fun Phone grants no digital benefits for contributing.
+[GitHub Sponsors profile](https://github.com/sponsors/Moncada25)
 
-For Play, verify the actual sponsorship checkout and available tiers first. Google classifies direct tips as
-peer-to-peer when the creator receives the full tip and the contribution grants no digital content or services.
-GitHub documents zero fees for personal sponsors and fees of up to 6% for organization sponsors. Check who
-pays any fee and whether sponsorship grants benefits such as badges or private repository access. Keep the
-Play link disabled if the available flow falls outside the exception or its eligibility is unclear.
-GitHub currently offers a sponsor badge, so the Play flavor keeps the external link disabled.
+Before publishing the Play edition, review the actual checkout against Google Play’s direct-tip exception.
+The creator must receive the full contribution and the payment must grant no digital content or services.
+GitHub offers a sponsor badge and documents different fees for personal and organization sponsorships.
+Whether GitHub’s own badge and the available payment flows qualify for the exception remains unresolved.
+If needed, the Play flavor’s `GITHUB_SPONSORS_ENABLED` flag in `app/build.gradle.kts` can disable the link
+independently of Community.
 [GitHub sponsor benefits](https://docs.github.com/en/sponsors/sponsoring-open-source-contributors) ·
 [Google Play payments FAQ](https://support.google.com/googleplay/android-developer/answer/10281818?hl=en) ·
 [GitHub Sponsors billing](https://docs.github.com/en/billing/concepts/third-party-payments/github-sponsors)

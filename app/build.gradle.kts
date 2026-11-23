@@ -277,7 +277,7 @@ android {
         create("play") {
             dimension = "distribution"
             buildConfigField("String", "DISTRIBUTION", "\"play\"")
-            buildConfigField("boolean", "GITHUB_SPONSORS_ENABLED", "false")
+            buildConfigField("boolean", "GITHUB_SPONSORS_ENABLED", "true")
             signingConfig = signingConfigs.getByName("release")
         }
     }
