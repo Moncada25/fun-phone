@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.history
 
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.utils.ContactDisplay
 import com.bookverse.contacts.utils.PhoneActionLauncher
 import android.telephony.PhoneNumberUtils
@@ -51,6 +52,7 @@ import com.bookverse.contacts.data.model.RecentOperation
 import com.bookverse.contacts.data.model.RecentType
 import com.bookverse.contacts.settings.LocaleController
 import com.bookverse.contacts.ui.components.getPhoneTypeLabel
+import com.bookverse.contacts.utils.contactInitials
 import java.text.SimpleDateFormat
 import java.util.Date
 import com.bookverse.contacts.core.ui.R as CoreUiR
@@ -195,7 +197,7 @@ private fun RecentOperationAvatar(
         val bitmap = remember(photoUri) {
             photoUri?.let(callHistory::uriToBitmap)
         }
-        val initials = remember(operation.contact.name) { historyInitials(operation.contact.name) }
+        val initials = remember(operation.contact.name) { operation.contact.name.contactInitials() }
         when {
             bitmap != null -> Image(
                 bitmap = bitmap.asImageBitmap(),
@@ -212,7 +214,7 @@ private fun RecentOperationAvatar(
                         .background(avatarColor),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(
+                    ContactAvatarText(
                         text = initials,
                         color = if (avatarColor.luminance() > 0.5f) Color.Black else Color.White,
                         style = MaterialTheme.typography.titleMedium,
@@ -239,13 +241,6 @@ private fun RecentOperationAvatar(
 }
 
 internal val HistoryAvatarSize = 44.dp
-
-internal fun historyInitials(name: String): String? =
-    name.split(' ')
-        .mapNotNull { word -> word.firstOrNull(Char::isLetter)?.uppercaseChar() }
-        .take(2)
-        .joinToString("")
-        .ifEmpty { null }
 
 @Composable
 private fun recentTypePresentation(type: RecentType) = when (type) {

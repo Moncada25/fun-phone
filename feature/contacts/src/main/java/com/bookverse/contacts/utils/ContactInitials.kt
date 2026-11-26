@@ -10,7 +10,6 @@ data class ContactInitialInfo(
     val category: Int,
     val sortKey: String,
     val headerLabel: String,
-    val avatarLabel: String
 )
 
 data class ContactGroup(
@@ -25,7 +24,6 @@ fun String.toContactInitialInfo(): ContactInitialInfo {
             category = 3,
             sortKey = "~",
             headerLabel = "#",
-            avatarLabel = "#"
         )
     }
 
@@ -43,7 +41,6 @@ fun String.toContactInitialInfo(): ContactInitialInfo {
                 category = 2,
                 sortKey = base,
                 headerLabel = base,
-                avatarLabel = base
             )
         }
 
@@ -51,21 +48,19 @@ fun String.toContactInitialInfo(): ContactInitialInfo {
             category = 1,
             sortKey = label,
             headerLabel = "#",
-            avatarLabel = label
         )
 
         else -> ContactInitialInfo(
             category = 0,
             sortKey = label,
             headerLabel = label,
-            avatarLabel = label
         )
     }
 }
 
 fun Contact.initialInfo(): ContactInitialInfo = name.toContactInitialInfo()
 
-fun Contact.avatarLabel(): String = initialInfo().avatarLabel
+fun Contact.avatarLabel(): String = name.contactAvatarLabel()
 
 fun Contact.headerLabel(): String = initialInfo().headerLabel
 

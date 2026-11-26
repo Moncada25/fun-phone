@@ -46,6 +46,7 @@ import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.utils.ContactUtils
+import com.bookverse.contacts.utils.contactAvatarLabel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.math.roundToInt
@@ -164,8 +165,8 @@ private fun initialAvatar(name: String, size: Int): Bitmap {
         radius,
         Paint(Paint.ANTI_ALIAS_FLAG).apply { color = ContactDisplay.getRandomColor(name).toArgb() },
     )
-    val initial = name.firstOrNull()?.uppercaseChar()?.toString().orEmpty()
-    if (initial.isNotEmpty()) {
+    val initials = name.contactAvatarLabel(emptyLabel = "")
+    if (initials.isNotEmpty()) {
         val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = android.graphics.Color.WHITE
             textSize = size * 0.42f
@@ -173,8 +174,8 @@ private fun initialAvatar(name: String, size: Int): Bitmap {
             typeface = Typeface.DEFAULT_BOLD
         }
         val bounds = Rect()
-        textPaint.getTextBounds(initial, 0, initial.length, bounds)
-        canvas.drawText(initial, radius, radius + bounds.height() / 2f, textPaint)
+        textPaint.getTextBounds(initials, 0, initials.length, bounds)
+        canvas.drawText(initials, radius, radius + bounds.height() / 2f, textPaint)
     }
     return bitmap
 }

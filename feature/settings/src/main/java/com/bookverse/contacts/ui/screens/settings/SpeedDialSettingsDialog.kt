@@ -50,7 +50,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.feature.settings.R
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.ui.components.SearchFieldSurface
+import com.bookverse.contacts.utils.contactAvatarLabel
 import com.bookverse.contacts.core.ui.R as CoreUiR
 
 internal fun filterSpeedDialContacts(
@@ -375,8 +377,8 @@ private fun ContactPickerItem(
                         .background(accentColor.copy(alpha = 0.15f)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = contact.name.firstOrNull()?.uppercase() ?: "?",
+                    ContactAvatarText(
+                        text = contact.name.contactAvatarLabel(emptyLabel = "?"),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = accentColor

@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.utils.ContactDisplay
 import android.graphics.Bitmap
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -652,22 +653,20 @@ fun FavoriteContactItem(
                     contentScale = ContentScale.Crop
                 )
             } else if (cardShapeMode != FavoritesCardShape.ROUND) {
-                Text(
+                ContactAvatarText(
                     text = contact.avatarLabel(),
                     color = textColor,
                     fontSize = avatarFontSize,
                     fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
                     modifier = avatarTextModifier
                 )
             }
         } else if (cardShapeMode != FavoritesCardShape.ROUND) {
-            Text(
+            ContactAvatarText(
                 text = contact.avatarLabel(),
                 color = textColor,
                 fontSize = avatarFontSize,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
                 modifier = avatarTextModifier
             )
         }
@@ -731,12 +730,11 @@ fun ProfileFavoriteItem(
                         contentScale = ContentScale.Crop
                     )
                 } else {
-                    Text(
+                    ContactAvatarText(
                         text = profileContact.avatarLabel(),
                         color = textColor,
                         fontSize = avatarFontSize,
                         fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
                         modifier = avatarTextModifier
                     )
                 }

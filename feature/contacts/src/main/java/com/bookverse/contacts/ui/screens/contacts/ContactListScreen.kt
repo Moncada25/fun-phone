@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.utils.ContactDisplay
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -912,22 +913,20 @@ fun ContactItem(
                                 contentScale = ContentScale.Crop
                             )
                         } else {
-                            Text(
+                            ContactAvatarText(
                                 text = contact.avatarLabel(),
                                 color = textColor,
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }
                     } else {
-                        Text(
+                        ContactAvatarText(
                             text = contact.avatarLabel(),
                             color = textColor,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center,
                             modifier = Modifier.align(Alignment.Center)
                         )
                     }
