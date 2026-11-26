@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bookverse.contacts.feature.contacts.R
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.ui.theme.BadgeBackgroundColor
 import com.bookverse.contacts.ui.theme.BadgeColor
 
@@ -109,12 +110,11 @@ internal fun ContactDetailsAvatar(
                 contentScale = ContentScale.Crop,
             )
         } else {
-            Text(
+            ContactAvatarText(
                 text = initials,
                 color = initialsColor,
                 style = MaterialTheme.typography.displaySmall,
                 fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center,
             )
         }
     }

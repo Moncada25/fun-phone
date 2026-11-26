@@ -43,6 +43,8 @@ import com.bookverse.contacts.data.model.CalendarAttendee
 import com.bookverse.contacts.data.model.CalendarEvent
 import com.bookverse.contacts.feature.tools.R
 import com.bookverse.contacts.settings.LocaleController
+import com.bookverse.contacts.ui.components.ContactAvatarText
+import com.bookverse.contacts.utils.contactAvatarLabel
 
 @Composable
 fun HtmlText(
@@ -227,7 +229,7 @@ private fun AttendeeRow(
             .padding(horizontal = 12.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        val initials = displayName.firstOrNull()?.uppercaseChar()?.toString() ?: "?"
+        val initials = displayName.contactAvatarLabel(emptyLabel = "?")
         Box(
             modifier = Modifier
                 .size(36.dp)
@@ -235,7 +237,7 @@ private fun AttendeeRow(
                 .background(accentColor.copy(alpha = 0.2f)),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
+            ContactAvatarText(
                 text = initials,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,

@@ -30,6 +30,8 @@ verdad ejecutable.
     declarar con claridad cualquier validación omitida.
 11. **Sin comentarios en el código** salvo que el usuario los pida de forma explícita.
 12. **Responder en el idioma del usuario.**
+13. **Redactar en inglés el título y la descripción de todos los pull requests**, tanto al crearlos
+    como al actualizarlos, independientemente del idioma de la conversación.
 
 ## 2. Fuentes de verdad
 

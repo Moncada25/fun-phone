@@ -61,6 +61,7 @@ import com.bookverse.contacts.data.model.Contact
 import com.bookverse.contacts.data.model.DuplicateGroup
 import com.bookverse.contacts.data.model.MatchType
 import com.bookverse.contacts.ui.components.AppSnackbarHost
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppSnackbarState
@@ -445,7 +446,7 @@ private fun ContactRow(
                     .background(accentColor.copy(alpha = 0.15f)),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
+                ContactAvatarText(
                     text = initials,
                     style = MaterialTheme.typography.titleMedium,
                     color = accentColor,
@@ -550,7 +551,7 @@ private fun MergeDialog(
                                     .background(accentColor.copy(alpha = 0.15f)),
                                 contentAlignment = Alignment.Center,
                             ) {
-                                Text(
+                                ContactAvatarText(
                                     text = initials,
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = accentColor,

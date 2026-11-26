@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.calls
 
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.utils.ContactDisplay
 import android.graphics.Bitmap
 import androidx.compose.animation.animateColorAsState
@@ -107,6 +108,7 @@ import com.bookverse.contacts.ui.components.NumberKeypad
 import com.bookverse.contacts.ui.viewmodel.AppSettingsViewModel
 import com.bookverse.contacts.ui.viewmodel.calls.InCallViewModel
 import com.bookverse.contacts.utils.ProximitySensorManager
+import com.bookverse.contacts.utils.contactAvatarLabel
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -292,7 +294,7 @@ fun InCallScreen(
     val identity: @Composable (Modifier, Dp?) -> Unit = { identityModifier, avatarSize ->
         InCallIdentity(
             displayName = displayName,
-            avatarInitial = (contact?.name ?: unknownName).take(1).uppercase(),
+            avatarInitials = (contact?.name ?: unknownName).contactAvatarLabel(emptyLabel = ""),
             avatarColor = ContactDisplay.getRandomColor(contact?.name ?: unknownName),
             photo = photo,
             showAvatar = !hasInCallBackground,
@@ -628,7 +630,7 @@ fun InCallScreen(
 @Composable
 private fun InCallIdentity(
     displayName: String,
-    avatarInitial: String,
+    avatarInitials: String,
     avatarColor: Color,
     photo: ImageBitmap?,
     showAvatar: Boolean,
@@ -684,12 +686,11 @@ private fun InCallIdentity(
                         modifier = Modifier.fillMaxSize(0.5f),
                     )
                 } else {
-                    Text(
-                        text = avatarInitial,
+                    ContactAvatarText(
+                        text = avatarInitials,
                         color = primaryTextColor,
                         fontSize = initialFontSize,
                         fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
                     )
                 }
             }

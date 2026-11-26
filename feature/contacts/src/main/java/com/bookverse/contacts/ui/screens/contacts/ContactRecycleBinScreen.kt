@@ -53,6 +53,7 @@ import com.bookverse.contacts.core.ui.R as CoreUiR
 import com.bookverse.contacts.ui.components.AppScreenScaffold as Scaffold
 import com.bookverse.contacts.ui.components.AppSnackbarHost
 import com.bookverse.contacts.ui.components.ConfirmDialog
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.ui.components.SecondaryTopBar
 import com.bookverse.contacts.ui.components.SnackbarType
 import com.bookverse.contacts.ui.components.rememberAppBarScrollBehavior
@@ -60,7 +61,7 @@ import com.bookverse.contacts.ui.components.rememberAppSnackbarState
 import com.bookverse.contacts.ui.components.rememberDestinationListState
 import com.bookverse.contacts.ui.viewmodel.ContactRecycleBinEvent
 import com.bookverse.contacts.ui.viewmodel.ContactRecycleBinViewModel
-import com.bookverse.contacts.utils.toContactInitialInfo
+import com.bookverse.contacts.utils.contactAvatarLabel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -275,8 +276,8 @@ private fun DeletedContactCard(
                     .background(accentColor.copy(alpha = 0.15f), CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = label.toContactInitialInfo().avatarLabel,
+                ContactAvatarText(
+                    text = label.contactAvatarLabel(),
                     color = accentColor,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleMedium,

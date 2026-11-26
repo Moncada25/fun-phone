@@ -1,5 +1,6 @@
 package com.bookverse.contacts.ui.screens.contacts
 
+import com.bookverse.contacts.ui.components.ContactAvatarText
 import com.bookverse.contacts.utils.ContactDisplay
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -390,12 +391,11 @@ fun AddFavoriteContactItem(
                                 .background(ContactDisplay.getRandomColor(contact.name)),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text(
+                            ContactAvatarText(
                                 text = contact.avatarLabel(),
                                 color = Color.White,
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
                             )
                         }
                     }
@@ -406,12 +406,11 @@ fun AddFavoriteContactItem(
                             .background(ContactDisplay.getRandomColor(contact.name)),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
+                        ContactAvatarText(
                             text = contact.avatarLabel(),
                             color = Color.White,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center
                         )
                     }
                 }
